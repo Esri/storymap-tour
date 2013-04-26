@@ -1,0 +1,193 @@
+#settingsPopup {
+	overflow:hidden;
+}
+
+.settingsPopupHeader {
+	width: 100%;
+	margin-top: -3px;
+	margin-left: -2px;
+}
+
+#settingsPopup .tab {
+	width: auto;
+	min-width: inherit;
+	padding: 5px 12px 5px 10px;
+}
+
+#settingsPopup .tab.disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+
+.settingsPopupHeader button {
+	border-radius: 0 !important;
+	width: 34%;
+}
+
+/*
+ * Layout
+ */
+
+.layout-box {
+	display: inline-block;
+	width: 260px;
+	text-align: center;
+	padding-top: 10px;
+	margin-top: 15px;
+}
+
+.layout-box:nth-child(2) {
+	padding-right: 5px;
+}
+
+.layout-box > img {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.layout-box {
+	min-height: 250px;
+}
+
+.layout-box button {
+	display: inline-block;
+}
+
+.layout-box .selectedLayout {
+	font-weight: bold;
+	line-height: 28px;
+	display: none;
+}
+
+#layout span:nth-child(2) {
+	border-right: 1px solid black;
+}
+
+.layout-box.selected .selectedLayout {
+	display: block;
+}
+
+.layout-box.selected button {
+	display: none;
+}
+
+/*
+ * Color
+ */
+
+#settingsPopup input[type=radio] {
+	cursor:pointer;
+}
+
+#settingsPopup .radio {
+	cursor:pointer;
+}
+
+#settingsPopup .swatch {
+	width:25px;
+	height:17px;
+	border:solid;
+	border-width:thin;
+	border-color:#CCCCCC;
+	margin-left: 4px;
+}
+
+#settingsPopup .caption {
+	font-size:12px;
+}
+
+/*
+ * Header
+ */
+
+#settingsPopup #logo img {
+	float:right;
+	max-width: 250px;
+	max-height: 50px;
+}
+
+#settingsPopup #logo .form1 .controls {
+	float:left;
+	margin-left:65px;
+	width: 290px;
+}
+
+#settingsPopup #logo .form2 .control-label {
+	width: 50px;
+}
+
+#settingsPopup #logo .form2 .control-group:nth-child(2) {
+	margin-bottom: 0px;
+}
+
+#settingsPopup #logo .form2 .controls {
+	margin-left: 65px;
+}
+
+#settingsPopup #logo #headerSimulator {
+	padding: 5px 5px 0px 0px;
+	float:left;
+	width:140px;
+	height:55px;
+	background-color:#666;
+}
+
+#settingsPopup #logo .optionsLogoCustom {
+	margin-left: 25px;
+}
+
+#settingsPopup #logo #logoTargetInput {
+	margin-top:10px;
+	display:block;
+}
+
+#settingsPopup #appearance p, #settingsPopup #logo p, #settingsPopup #fields p, #settingsPopup #extent p , #settingsPopup #zoom p {
+	margin-bottom: 20px;
+}
+
+/*
+ * Fields
+ */
+
+#settingsPopup .error-msg {
+	display: none;
+	background: url('../../../../resources/icons/errorbox-close.png') 0 0px;
+	height: 75px;
+	background-repeat: no-repeat;
+	padding-left: 80px;
+	padding-top: 13px;
+	color: red;
+}
+
+#settingsPopup .error-msg2 {
+	margin-top: 10px;
+	color: red;
+	font-weight: bold;
+}
+
+/*
+ * Extent
+ */
+#extentMap{
+	width: 100% !important;
+	height: 337px !important;
+}
+
+#extentMap .logo-sm {
+	display: none;
+}
+
+.extentMapControl {
+	margin-bottom: 4px;
+}
+
+.explain2 {
+	margin-top: 10px;
+}
+
+/*
+ * Color picker override
+ */
+.sp-input-container {
+	height: 16px !important;
+}

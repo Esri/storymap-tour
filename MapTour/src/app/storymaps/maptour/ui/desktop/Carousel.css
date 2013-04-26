@@ -1,0 +1,181 @@
+#footerDesktop {
+	position: relative;
+	height: 150px;
+	padding-top: 10px; 
+}
+
+.modern-layout #footerDesktop {
+	height: 140px;
+	padding-top: 0px; 
+}
+
+#footerDesktop .carousel {
+	position: absolute;
+	bottom: 0px;
+	left: 37px;
+	right: 36px;
+	height: 150px;
+}
+
+.modern-layout #footerDesktop .carousel {
+	bottom: 1px;
+	height: 145px;
+}
+
+.carouselWrapper {
+	position:absolute; 
+	z-index:1;
+	top: 12px;
+	bottom:0px;
+	left:0px;
+	right: 0;
+	width:100%;
+	height: 135px;
+	overflow:auto;
+	/* SURFACE */
+	-ms-touch-action: none;
+}
+
+/* The scroll bar */
+.modern-layout .carouselWrapper > div:nth-child(2) {
+	bottom: 1px !important;
+}
+
+.carouselWrapper > div:nth-child(2) {
+	bottom: 0px !important;
+}
+
+.carouselScroller {
+	height:100%;
+	float:left;
+	padding:0;
+	cursor: pointer;
+}
+
+
+.carouselScroller ul {
+	list-style:none;
+	display:block;
+	float:left;
+	width:100%;
+	height:100%;
+	padding:0;
+	margin:0;
+	text-align:left;
+	counter-reset: item;
+}
+
+.carouselScroller li {
+	display:block;
+	text-align: center;
+	vertical-align: middle;
+	float:left;
+	padding:0 8px;
+	width:145px;
+	height:100%;
+	font-size:10px;
+	font-family:Verdana, Geneva, sans-serif;
+}
+
+.modern-layout .carouselScroller li {
+	width: 140px;
+}
+
+.carouselScroller li:first-child {
+	padding-left: 0px;
+}
+
+.carouselScroller .carousel-item-div {
+	display: table-cell;
+	width: 140px;
+	height: 120px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 4px 4px 2px 4px;
+}
+
+.carouselScroller .carousel-item-div div {
+	max-height: 24px;
+	overflow: hidden;
+	height: 24px;
+	line-height: 12px;
+    word-wrap: break-word;
+	width: 140px;
+	overflow: hidden;
+}
+
+/* 
+ * :hover is an issue on touch device
+ * A no-touch class is added by JS if we are not on a touch device
+ */
+.carouselScroller.no-touch .carousel-item-div:not(.selected):hover {
+	background-color:#7D7D7D;
+}
+
+.carouselScroller .carousel-item-div.selected {
+	background-color:#FFFFFF;
+}
+
+
+.carousel-item-div img {
+	max-width: 140px;
+	max-height: 93px;
+}
+
+/* Numbering */
+
+.carouselScroller span {
+	display: inline-block;
+}
+
+.carouselScroller span:before {
+	position: absolute;
+	display: inline-block;
+	content: counter(item);
+	counter-increment: item;
+	width: 20px;
+	height: 15px;
+	text-align: center;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFFFFF;
+	padding-right: 1px;
+	padding-bottom: 1px;
+}
+
+.carouselScroller span.number-blue:before {
+	background-color:#1880f3;
+}
+
+.carouselScroller span.number-red:before {
+	background-color:#FF0000;
+}
+
+.carouselScroller span.number-green:before {
+	background-color:#369A22;
+}
+
+.carouselScroller span.number-purple:before {
+	background-color:#8A26FD;
+}
+
+/* Arrows */
+
+.arrowLeft {
+	position: absolute;
+	top: 52px;
+	left: -32px;
+	cursor: pointer;
+}
+
+.arrowRight {
+	position: absolute;
+	top: 52px;
+	right: -33px;
+	cursor: pointer;
+}
+
+.arrowLeft.disabled, .arrowRight.disabled {
+	cursor: default;
+	display: none;
+}

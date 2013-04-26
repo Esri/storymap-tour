@@ -1,0 +1,179 @@
+/*
+ * Bootstrap override
+ */
+.modal-backdrop {
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+
+.popover {
+	color: black;
+	-ms-user-select:none;
+}
+
+/*
+ * Top panel
+ */
+
+#builderPanel {
+	position: absolute;
+	top: 0px;
+	display: none;
+	z-index: 500;
+	text-align: center;
+    word-wrap: break-word;
+	height: 100px;
+	padding: 15px 20px 0px 20px;
+}
+
+#builderPanel > div > button {
+	margin: 0px;
+}
+
+#builderPanel > div > button:nth-child(1) {
+	min-width: 83px; /* Surface */
+}
+
+#builderPanel button.small {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+#builderPanel .leftPanel {
+	width: 132px;
+	text-align: left;
+}
+
+#builderPanel h4 {
+	color: white;
+	margin: 1px 0 2px 4px;
+	line-height: 22px;
+	font-weight: normal;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+#save-counter {
+	display: inline-block;
+	margin-top: 6px;
+	margin-left: 1px;
+	font-size: 12px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: #999;
+}
+
+#builderPanel .popover-content {
+	padding: 6px 10px;
+}
+
+.builderPanelPopover {
+	width: 200px;
+	left: 0px !important;
+	z-index: 5555;
+}
+
+.discard-popover {
+	min-width: 271px;
+}
+
+.view-popover {
+	width: 283px;
+	max-width: 283px !important;
+}
+
+.view-popover .popover-title {
+	display: none;
+}
+
+.builder-save {
+	margin-left: 12px;
+}
+
+.builder-settings {
+	margin-left: 11px;
+}
+
+.settings-popover {
+	text-align: center;
+	min-height: 40px;
+	left: 0px !important;
+	min-width: 280px !important;
+	max-width: 360px !important;
+}
+
+.settings-popover .popover-title {
+	display: none;
+}
+
+.datawarning-popover {
+	left: 0px !important;
+	width: 400px !important;
+	max-width: 400px !important;
+}
+
+.datawarning-popover .popover-title {
+	display: none;
+}
+
+.hide {
+	display: none;
+}
+
+/*
+ * Map/Carousel panel
+ */
+#builderPanel2 {
+	position: absolute;
+	display: none;
+	z-index: 500;
+	min-width: 180px;
+	bottom: 150px;
+	text-align: center;
+	background-color: #c2c2c2;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	padding: 8px 11px 4px 3px;
+	height: 30px;
+}
+
+#builderPanel2 .text_edit_icon {
+	vertical-align: -4px;
+}
+
+#organizeSlidesButton, #addPopupButton {
+	min-width: 85px;
+	margin-left: 7px;
+}
+
+/*
+ * Map Pin Infowindow
+ */
+
+.colorSelectorPin{
+	height:27px;
+	padding:4px;
+	border:2px #444 solid;
+	margin-top: 3px;
+	cursor:pointer;
+}
+
+.selectedColor{
+	border-radius: 4px;
+	background-color: #777;
+	cursor: default;
+}
+
+/*
+ * Browser warning popup
+ */
+
+#browserPopup {
+	top: 27% !important
+}
+
+#browserPopup .browserExplain2 {
+	margin-top: 15px;
+}

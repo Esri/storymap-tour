@@ -1,0 +1,240 @@
+#addPopup {
+	overflow: hidden;
+}
+
+.modal .modal-body {
+    max-height: none; 
+  }
+
+/*
+#addPopup .modal-body {
+	height: 388px;
+}
+*/
+
+.addPopupHeader {
+	width: 100%;
+	margin-top: -3px;
+	margin-left: -2px;
+}
+
+.addPopupHeader button {
+	border-radius: 0 !important;
+	width: 34%;
+}
+
+#addPopup label {
+	font-weight: bold;
+	display: block;
+	font-family: Arial, Helvetica, sans-serif
+}
+
+#addPopup input {
+	display: block;
+	margin-bottom: 10px;
+}
+
+#addPopup .locationForm input {
+	border: 1px solid #cccccc;
+	color: #555555;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tab-icon{
+	float:right;
+	margin-left: 5px;
+}
+
+.errorList{
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size:14px;
+	color:#c43d40;
+	list-style:none;
+	padding-left:0;
+}
+
+.maxPictureReached {
+	display: none;
+}
+
+/*
+ * Picture tab
+ */
+.addImage{
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+#addPopup .imageUploadWrapper {
+	color:#FFFFFF;
+	height: 380px;
+	width: 100%;
+	border: 4px dashed #848484;
+	margin-left:-4px;
+}
+
+#addImageUploadFormPicture{
+	text-align: center;
+}
+
+.pictureSize {
+	margin-top: 4px;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.pictureSize input {
+	display: inline-block !important;
+	vertical-align: -5px !important;
+	margin: 0px 4px 2px 10px !important;
+}
+
+.imageUploadWrapper a {
+	margin-top: 160px;
+}
+
+.leftPanel{
+	display:table-cell;
+	width:320px;
+	text-align:center;
+	vertical-align:middle;
+	float:left;
+}
+
+.imagePreview{
+	max-width:100%;
+	max-height:300px;
+}
+
+.imagePreviewName{
+	font-size:18px;
+	font-weight:bold;
+	padding-bottom:5px;
+	border-bottom:1px #ccc solid;
+	word-wrap: break-word;
+}
+
+.rightPanel {
+	float:right;
+	max-height:400px;
+	width:200px;
+}
+
+.rightPanel .thumbnail .thumbnailFile {
+	display:none;
+}
+
+.rightPanel .thumbnail canvas {
+	background-color: grey;
+}
+
+.rightPanel .thumbnail .thumbnailForm {
+	display:none;
+}
+
+.cameraSettings{
+	margin-top:5px;
+	font-size:14px;
+}
+
+.settingHeading{
+	font-size:12px;
+	font-weight:bold;
+	margin-top:15px;
+	margin-bottom:5px;
+	color:#888;
+}
+
+.exifMinor{
+	position:relative;
+}
+
+.cameraSmallSettings{
+	display:inline;
+	background-color:#dadada;
+	padding:3px;
+	margin-right:5px;
+	font-size:11px;
+	color:#777;
+	line-height:2.5em;
+	border:1px solid #999;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	white-space:nowrap;
+}
+
+.changeThumbnail{
+	color:#444;
+	font-size:10px;
+	cursor:pointer;
+}
+
+/*
+ * Information tab
+ */
+
+.addText input, .addText textarea {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	width: 98%;
+}
+
+/*
+ * Location tab
+ */
+
+.addLocation label, .addLocation input {
+	display: inline !important;
+}
+
+.addLocation label:not(:first-child){
+	margin-left: 8px;
+}
+
+.addLocation input {
+	width: 80px;
+	font-size: 12px;
+	height: 14px;
+	vertical-align: 2px;
+	width: 54px;
+}
+
+.pinSelector{
+	width:22px;
+	padding:3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	cursor:pointer;
+	vertical-align: -3px;
+}
+
+.pinSelector.selected{
+	border:2px solid #666;
+	padding-left: 5px;
+}
+
+#locateMap{
+	position:relative;
+	width: 100%;
+	height: 337px;
+}
+
+#geocoder{
+	display: block;
+	position: absolute;
+	z-index: 2;
+	bottom: 20px;
+	left: 20px;
+}
+
+#geocoder input{
+	border-radius:0;
+	margin-bottom: 0;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}

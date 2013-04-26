@@ -1,0 +1,33 @@
+#footerMobile {
+	display: none;
+	height:100px;
+	border-top:1px solid #999;
+}
+
+#footerMobile .carousel {
+	height: 100%;
+	-ms-touch-action: none;
+}
+
+#footerMobile .carousel .tpPreview {
+	height:100px;
+	cursor: pointer;
+}
+
+#footerMobile .carousel > div > div {
+	overflow: hidden;
+}
+
+#footerMobile .builderMobileContainer {
+	display: none;
+	position: absolute;
+	width: 100%;
+	text-align: right;
+	margin-top: -20px;
+	height: 22px;
+	right: 60px;
+	margin-top: -33px;
+	height: 22px;
+	right: 5px;
+	z-index: 499;
+}

@@ -1,0 +1,39 @@
+#dataPopup {
+	top: 20% !important
+}
+
+.dataExplain {
+	margin-bottom: 20px;
+	line-height: 19px;
+}
+
+.dataNameLbl, .dataFolderListLbl {
+	width: 290px;
+}
+
+.dataError {
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: 14px;
+	color: #C43D40;
+	list-style: none;
+	padding-left: 0;
+}
+
+.dataFooterText {
+	display: none;
+	float: left;
+	margin-top: 6px;
+	font-size: 14px;
+	color: #30750a;
+	font-weight: bold;
+	padding-top: 2px;
+}
+
+.dataFooterText .error {
+	color: red;
+}
+
+.dataFooterText img {
+	vertical-align: -2px;
+}

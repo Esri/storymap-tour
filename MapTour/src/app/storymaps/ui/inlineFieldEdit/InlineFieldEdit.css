@@ -1,0 +1,22 @@
+.text_edit_label {
+	float: left;
+	margin: 0;
+	word-wrap: break-word;
+}
+
+.text_edit_input {
+	display: none;
+	width: 100%;
+	margin-bottom: 0px;
+}
+
+.text_edit_icon {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background: url(../../../../resources/icons/builder-edit-fields.png) 3px 2px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	background-color: rgb(237,237,237);
+	border-radius: 2px;
+}

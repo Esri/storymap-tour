@@ -1,0 +1,90 @@
+#picturePanel {
+	height:100%;
+	float:left;
+	position:relative;
+	background-color:#797979;
+}
+
+.modern-layout #picturePanel {
+	position: absolute;
+	right: 4px;
+	top: 100px;
+	width: 400px;
+	height: 400px;
+	background-color: transparent;
+}
+
+.arrow {
+	cursor:pointer;
+}
+
+#arrowPrev {
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:100;
+}
+
+#arrowNext {
+	position:absolute;
+	right:0px;
+	top:0px;
+	z-index:101;
+}
+
+#arrowPrev.disabled, #arrowNext.disabled {
+	cursor: default;
+	display: none;
+}
+
+#cfader {
+	width:100%;
+	height:100%;
+	position:relative;
+}
+
+.editPictureButtons {
+	display: none;
+	position: absolute;
+	top: 76px;
+	text-align: center;
+	height: 30px;
+}
+
+.editPictureButtons a {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.editPictureButtons > div {
+	display: inline-block;
+}
+
+.modernBrowserWay, .oldBrowserWay {
+	display: none;
+}
+
+.editPictureButtons a {
+	font-weight: normal;
+	margin-top: 2px;
+}
+
+.editPictureButtons .oldBrowserWay .btn-upload {
+	vertical-align: -1px;
+}
+
+.editPictureButtons .oldBrowserWay form {
+	display: inline;
+}
+
+.picturePanelPicturePopoverFR{
+	max-width: 315px;
+}
+
+.picturePanelPicturePopoverOLD {
+	max-width: 335px;
+}
+
+.picturePanelThumbnailPopover {
+	/*width: 225px;*/
+	max-width: 290px;
+}

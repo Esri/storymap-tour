@@ -1,0 +1,29 @@
+#infoPanel {
+	display: none;
+	height: 100%;
+	min-height: 100%;
+}
+
+#infoCarousel {
+	text-align:center;
+	overflow:auto;
+	height: 100%;
+	min-height: 100%;
+	-ms-touch-action: none;
+}
+
+#infoCarousel > div > div {
+	overflow: hidden;
+}
+
+.iconHolder {
+	position: absolute;
+	left: 32px;
+	top: 0px;
+	text-align:left;
+}
+
+.iconHolder img {
+	height:40px;
+	margin:10px 5% 5px 5%;
+}

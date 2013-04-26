@@ -1,0 +1,17 @@
+#introPanel {
+	display: none;
+	position: absolute;
+	top: 41px;
+	text-align: center;
+	overflow: auto;
+	min-height: 100%;
+	background-color: grey;
+	z-index: 2000;
+	width: 100%;
+	max-width: 100%;
+}
+
+#introPanel .tourPointName {
+	margin-left: 0px;
+	padding: 0px 5% 0px 5%;
+}

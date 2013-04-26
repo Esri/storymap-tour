@@ -1,0 +1,29 @@
+.esriSimpleSlider {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.esriSimpleSlider.touch div {
+	width: 35px;
+	height: 35px;
+	line-height: 30px;
+}
+
+.mapCommandLocation {
+	top: 130px;
+	left: 20px;
+	z-index: 30;
+}
+
+.mapCommandLocation img {
+	width: 20px;
+	margin-top: 5px;
+}
+
+.mapCommandLocation.touch {
+	top: 145px;
+}
+
+.mapCommandLocation.touch img {
+	margin-top: 2px;
+	width: 32px;
+}
