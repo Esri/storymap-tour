@@ -11,13 +11,13 @@ The template is now available in two versions:
 
 To use this template on ArcGIS Online you need to be a member of an Organization and have Publisher or Administrator access. The template can be accessed from the ArcGIS Online's map viewer Share dialog.
 
-[View it live](TODO) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/map-tour/Storytelling-MapTour-1 0.zip) | [Developer Download (source code)](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
+[View it live](TODO) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1 0.zip) | [Developer Download (source code)](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
-![App](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/map-tour/map-tour-storytelling-template-js.jpg)
+![App](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/map-tour-storytelling-template-js.png)
 
 ## How to configure and deploy a Map Tour
 
-Download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/map-tour/Storytelling-MapTour-1 0.zip), it contains the following files:
+Download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1 0.zip), it contains the following files:
 
 | File                	                     | Contains                                                              |
 | ------------------------------------------ | --------------------------------------------------------------------- |
@@ -41,7 +41,7 @@ A typical Map Tour configuration involves the following steps:
  * Optionally remove samples folder and Readme.pdf
  * Copy files to your web server root or in a specific folder
 
-For detailed instructions and recommendations, please refer to the **[Readme document](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/map-tour/Readme.pdf)**.
+For detailed instructions and recommendations, please refer to the **[Readme document](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Readme.pdf)**.
 
 ## Feedback
 
