@@ -11,7 +11,7 @@ The template is now available in two versions:
 
 To use this template on ArcGIS Online you need to be a member of an Organization and have Publisher or Administrator access. The template can be accessed from the ArcGIS Online's map viewer Share dialog.
 
-[View it live](TODO) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1.0.zip) | [Developer Download (source code)](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
+[View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1.0.zip) | [Developer Download (source code)](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
 ![App](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/map-tour-storytelling-template-js.png)
 
