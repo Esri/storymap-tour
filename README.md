@@ -120,9 +120,67 @@ Configuration happens in two files:
   - Data fields name
 
 ### Can I enhance the application?
-Yes, most of the look and feel customization can be done using the user download and including the css/html override directly into index.html. We know that this can be hard, so here are some examples of customization:
-
+Yes, most of the look and feel customization can be done using the user download and including the css/html override directly into index.html. 
 If you want to change the behavior of one functionality or want to add new one, you will need to read the developer guide below.
+
+
+Here are some customization examples that have to be included inside a \<style\> element after the \<body\> element like below :
+
+      ...
+      <body class="claro">
+         <style>
+            #element {
+               /* changes */
+            }
+         </style>
+      <div id="header">
+      ...
+
+#### Use an image as the background of the desktop header:
+
+      #headerDesktop {
+         background: url('resources/my_background.jpg');
+      }
+
+To remove the bottom border:
+
+      #header {
+         background: none !important;
+      }
+
+#### Header top-right links tunning
+
+Hide the link to the external website and the social buttons:
+
+      #header .social {
+         display: none;
+         visibility: hidden; 
+      }
+
+Same but reuse the vertical space for the logo:
+
+      #header .social {
+         display: none;
+      }
+
+Hide only the social buttons:
+
+      #header .social > span:not(.msLink) {
+         display: none;
+      }
+
+The external link can be configured through maptour-config.js file. 
+
+To hide the text, empty the HEADER_LINK_TEXT property.
+
+To display multiple line text, empty the HEADER_LINK_URL and configure HEADER_LINK_TEXT with html markup like 
+
+      <a href='http://myorganization.com' target='_blank'>My organization</a><br /><a href='http://myorganization.com/myproject' target='_blank'>My project</a>
+
+#### Logo tunning
+
+The logo image can be configured through maptour-config.js file. To hide the logo, empty the HEADER_LOGO_URL property.
+
 
 ## Developer guide
 
