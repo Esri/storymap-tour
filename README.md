@@ -136,7 +136,7 @@ Here are some customization examples that have to be included inside a \<style\>
       <div id="header">
       ...
 
-#### Use an image as the background of the desktop header:
+#### Use an image as the background of the desktop header
 
       #headerDesktop {
          background: url('resources/my_background.jpg');
@@ -153,7 +153,6 @@ To remove the bottom border:
 Hide the link to the external website and the social buttons:
 
       #header .social {
-         display: none;
          visibility: hidden; 
       }
 
@@ -181,6 +180,12 @@ To display multiple line text, empty the HEADER_LINK_URL and configure HEADER_LI
 
 The logo image can be configured through maptour-config.js file. To hide the logo, empty the HEADER_LOGO_URL property.
 
+The logo dimension is constrained to 250x50px. To use more horizontal or vertical space you need to remove this restriction using:
+
+      #headerDesktop .logo img {
+         max-width: none;
+         max-height: none;
+      }
 
 ## Developer guide
 
