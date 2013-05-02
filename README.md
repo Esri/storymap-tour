@@ -184,8 +184,20 @@ The logo dimension is constrained to 250x50px. To use more horizontal or vertica
 
       #headerDesktop .logo img {
          max-width: none;
-         max-height: none;
+         max-height: 90px;
       }
+      
+You can save 10 more px by changing the top margin of the logo:
+
+      #headerDesktop .rightArea {
+         padding-top: 15px;
+      }
+
+      #headerDesktop .logo img {
+         max-width: none;
+         max-height: 100px;
+      }
+
 
 ## Developer guide
 
