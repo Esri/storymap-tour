@@ -344,7 +344,8 @@ define(["esri/map",
 						spatialReference: {
 							wkid:4326
 						}
-					})
+					}),
+					showAttribution: true
 				},
 				ignorePopups: true,
 				bingMapsKey: configOptions.bingmapskey
@@ -451,6 +452,7 @@ define(["esri/map",
 						// If it's a webmap layer check that all mandatory fields are present to allow additional decoration layer
 						if( ! layer.url && layer.graphics && layer.graphics.length > 0 ) {
 							var fields = app.data.electFields(layer.graphics[0].attributes);
+							
 							if (fields && fields.allWebmapLayerMandatoryFieldsFound()) {
 								app.data.setSourceLayer(layer);
 								break;
@@ -458,14 +460,6 @@ define(["esri/map",
 						}
 						else {
 							app.data.setSourceLayer(layer);
-							
-							/*
-							var newFL = new esri.layers.FeatureLayer(layer.url, {userIsAdmin: true});
-							app.map.addLayer(newFL);
-							app.data.setSourceLayer(newFL);
-							layer.setVisibility(false);
-							*/
-							
 							break;
 						}
 					}

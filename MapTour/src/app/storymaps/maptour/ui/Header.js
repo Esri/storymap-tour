@@ -40,7 +40,8 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit", "dojo/has"], function(In
 				new InlineFieldEdit(selector, editFieldsEnterEvent, editFieldsExitEvent);
 			
 			if( ! isInBuilderMode && ! subtitle ) {
-				$(selector + ' #headerDesktop .title').css("margin-top", "22px");
+				$(selector + ' #headerDesktop .title').css("padding-top", 40);
+				$(selector + ' #headerDesktop .subtitle').css("height", 32);
 			}
 
 			// Mobile init

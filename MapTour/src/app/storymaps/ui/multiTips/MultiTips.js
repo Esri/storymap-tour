@@ -80,7 +80,8 @@ define(["dojo/dom-style", "dojo/dom-construct"], function(domStyle, domConstruct
 			
 			var event2 = dojo.connect(settings.map, "onZoomEnd", function(extent)
 			{
-				refreshTips(extent, true);
+				if( ! forceHidden )
+					refreshTips(extent, true);
 			});
 	
 			var event3 = dojo.connect(settings.map, "onPan", function(extent, delta)

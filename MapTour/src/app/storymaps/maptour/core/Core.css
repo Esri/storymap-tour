@@ -38,7 +38,11 @@ img {
 	float:inherit;
 }
 
-.logo-med {
+.modern-layout .logo-med {
+	display: none !important;
+}
+
+.modern-layout:not(.mobile-view) .esriAttribution {
 	display: none !important;
 }
 

@@ -523,7 +523,6 @@ define(["storymaps/maptour/core/WebApplicationData",
 				app.data.initialExtentHasBeenEdited = true;
 			}
 
-			// TODO
 			_this.incrementSaveCounter();
 			dojo.publish("CORE_UPDATE_UI");
 		}
@@ -805,7 +804,6 @@ define(["storymaps/maptour/core/WebApplicationData",
 		
 		function isNonEditableHostedFS(layer)
 		{
-			// TODO
 			return false;
 			//return ! layer.isEditable() && layer.url.match(/\/\/services[a-zA-Z0-9]*.arcgis.com\//);
 		}

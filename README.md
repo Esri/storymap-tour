@@ -11,13 +11,13 @@ The template is now available in two versions:
 
 To use this template on ArcGIS Online you need to be a member of an Organization and have Publisher or Administrator access. The template can be accessed from the ArcGIS Online's map viewer Share dialog.
 
-[View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1.0.zip) | [Developer Download (source code)](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
+[View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1.1.zip) | [Developer Download (source code)](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
 ![App](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/map-tour-storytelling-template-js.png)
 
 ## How to configure and deploy a Map Tour
 
-Download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1.0.zip), it contains the following files:
+Download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1.1.zip), it contains the following files:
 
 | File                	                     | Contains                                                              |
 | ------------------------------------------ | --------------------------------------------------------------------- |
@@ -66,7 +66,13 @@ Yes, web map designed for the previous version should continue to work without a
 
 ### What's new?
 
-#### Map Tour 1.0.1 released on 13/04/26
+#### Map Tour 1.1 released on 05/09/2013
+Minor version with few bug fixes :
+ * Fix some map navigation issues in the three panel layout after important browser width resize (pan impossible on some part of the map)
+ * Add the map Esri logo on the three-layout panel
+ * Prevent closed black popup to reappear after a map zoom
+
+#### Map Tour 1.0 released on 04/26/2013
  * Responsive web design that offer a new user experience on Smartphone
  * Localized in 20 languages: Arabic, Brazilian Portuguese, Chinese, Danish, Dutch, French, English, German, Hebrew, Italian, Japanese, Korean, Lithuanian, Norwegian, Polish, Portuguese, Romanian, Russian, Spanish and Swedish.
  * Support of Feature Service

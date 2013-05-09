@@ -137,6 +137,11 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit", "storymaps/ui/loadingInd
 			$(_current).css("left",(ALLOWABLE_WIDTH - $(_current).width()) / 2);
 			$(_current).css("top",(ALLOWABLE_HEIGHT - $(_current).height()) / 2);
 			
+			$(_other).width($(_current).width());
+			$(_other).height($(_current).height());
+			$(_other).css("left", $(_current).css("left"));
+			$(_other).css("top", $(_current).css("top"));
+			
 			resizePlacardContainer();
 		}
 		

@@ -34,7 +34,7 @@
 				sourceLayerTitle: "",
 				// Use the first data record as an introduction instead of a point (can be overridden through URL)
 				firstRecordAsIntro: true,
-				// Optional zoom level to be applied for the story points following introduction (e.g: 0 to 16 for Gray Canvas, 0 to 19 for Street Map, -1 to disable)
+				// Optional zoom level to be applied for the story points following introduction (can be overridden through URL) (e.g: 0 to 16 for Gray Canvas, 0 to 19 for Street Map, -1 to disable)
 				zoomLevel: -1,
 				// If the webmap uses Bing Maps data, you will need to provide your Bing Maps Key
 				bingmapskey: "",
@@ -46,9 +46,9 @@
 				geometryserviceurl: "//tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer"
 			};
 		</script>
-		
+
 		<script type="text/javascript">
-			var version = '1.0.1';
+			var version = '1.1';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
