@@ -1,21 +1,44 @@
 Map Tour
 ========
 
-A storytelling template combining an interactive map, a photo and text panel, and a thumbnail carousel.
-
-This is a new version of the popular map tour template that has been rewritten to provide a better experience on smartphone, see [what's new](#whats-new).
-
-The template is now available in two versions:
- * An hosted version in ArcGIS Online that provide an interactive builder tool
- * A downloadable version that you can deploy on your web server and enhance to fit your needs
-
-To use this template on ArcGIS Online you need to be a member of an Organization and have Publisher or Administrator access. The template can be accessed from the ArcGIS Online's map viewer Share dialog.
-
-[View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1.1.zip) | [Developer Download (source code)](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
+A storytelling template combining an interactive map, a photo and text panel, and a thumbnail carousel. This is a new version of the popular map tour template that provide a better experience on smartphone, see [what's new](#whats-new).
 
 ![App](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/map-tour-storytelling-template-js.png)
 
-## How to configure and deploy a Map Tour
+The template is now available in two versions:
+ * **An hosted version** in ArcGIS Online that provide an interactive builder tool
+ * **A downloadable version** that you can deploy on your web server and enhance to fit your needs
+
+If you want to be informed of new releases, we recommend you to watch these repository.
+
+[View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1.1.zip) | [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
+
+
+### About the hosted version
+
+To use the hosted map tour template on ArcGIS Online you need to be a **member of an Organization and have Publisher or Administrator access**. The template can then be accessed from the ArcGIS Online's map viewer Share As Web Mapping Application dialog.
+
+There is multiple ways to start building a Map Tour:
+ * **Create your webmap without any "map tour layer"** and the builder will create an hosted Feature Service for you
+ * **Add a CSV layer** (Add Layer from File) into your webmap, the builder will not be available. You can publish a fully functional map tour that way but cannot make any customization
+ * **Upload a CSV as an item**, this will create a Hosted Feature Service, then add the Feature Service to your webmap. The builder will not be available by default but you can make it available (read below)
+ * **Reference a Feature service** in your webmap. The builder will be available if the Feature Service meets the requirements (read below)
+
+### Feature service requirements for using the interactive builder
+
+To be able to use the builder when your data are stored in a Feature Service:
+ * The layer needs to have the **same structure than the CSV** (see Readme in the downloadable)
+ * The layer needs **attachments to be enabled**
+
+When you create an hosted Feature Service from a CSV, the attachments are not enabled by default. To enable them, open the Feature Service item page, click the small arrow on the layer section and you will see that option. After that the map tour will continue to use the pictures and thumbnail you have referenced through attributes. Optionally if you want to upload your pictures as Feature Service attachments you will be able to do so through two buttons on the picture panel (change picture and change thumbnail).
+
+### About the downloadable version
+
+If you are not a member of an organization or want to customize the application, you need to use that version.
+
+The downloadable does not offer the interactive builder that is available on for Organization but you will have access to the same configuration options through a configuration file. To use the downloadable you start with a webmap that reference a CSV or Feature Service (with or without attachments, hosted on ArcGIS Online or on ArcGIS for Server). There is short readme available on github and the download includes an extensive documentation.
+
+## How to deploy a Map Tour with the downloadable version
 
 Download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1.1.zip), it contains the following files:
 
