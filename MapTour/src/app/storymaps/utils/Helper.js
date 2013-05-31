@@ -191,7 +191,7 @@ define(["dojo/cookie", "dojo/has"], function(cookie, has){
 		},
 		getWebmapViewerLinkFromSharingURL: function(sharingUrl)
 		{
-			var portalUrl = configOptions.sharingurl.split('/').slice(0,3).join('/');
+			var portalUrl = configOptions.sharingurl.split('/sharing/')[0];
 			return portalUrl + '/home/webmap/viewer.html'
 		},
 		browserSupportAttachementUsingFileReader: function()

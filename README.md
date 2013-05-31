@@ -9,9 +9,9 @@ The template is now available in two versions:
  * **An hosted version** in ArcGIS Online that provide an interactive builder tool
  * **A downloadable version** that you can deploy on your web server and enhance to fit your needs
 
-If you want to be informed of new releases, we recommend you to watch these repository.
+The latest release is **V1.2**, if you want to be informed of new releases, we recommend you to watch these repository.
 
-[View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1.1.zip) | [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
+[View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-1.2.zip) | [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
 
 ### About the hosted version
@@ -88,6 +88,11 @@ Anyone and everyone is welcome to contribute.
 Yes, web map designed for the previous version should continue to work without any modification. Customization and enhancement of the application will require code changes, most of them should be easy to translate into the new application.
 
 ### What's new?
+
+#### Map Tour 1.2 released on 05/31/2013
+Minor version with few bug fixes :
+ * Optimized application loading, strong gain on 3G network
+ * Improved header's UI when the subtitle is wrapped on three lines
 
 #### Map Tour 1.1 released on 05/09/2013
 Minor version with few bug fixes :

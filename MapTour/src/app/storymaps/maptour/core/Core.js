@@ -112,6 +112,16 @@ define(["esri/map",
 				filterMouseHoverEvent: false
 			};
 			
+			if ( true && !isProd() ) {
+				dojo.connect(esri.id, 'onDialogCreate', function(){
+					dojo.connect(esri.id.dialog, 'onShow', function(){
+						esri.id.dialog.txtUser_.set('value', 'guest');
+						esri.id.dialog.txtPwd_.set('value', 'guest');
+						esri.id.dialog.btnSubmit_.onClick();
+					});
+				});
+			}
+			
 			startLoadingTimeout();
 
 			// Set the Portal
@@ -311,7 +321,7 @@ define(["esri/map",
 		function portalLogin()
 		{
 			var resultDeferred = new dojo.Deferred();
-			var portalUrl = configOptions.sharingurl.split('/').slice(0,3).join('/') + '/';
+			var portalUrl = configOptions.sharingurl.split('/sharing/')[0];
 			app.portal = new esri.arcgis.Portal(portalUrl);
 
 			dojo.connect(esri.id, "onDialogCreate", styleIdentityManagerForLoad);
@@ -402,7 +412,7 @@ define(["esri/map",
 				WebApplicationData.getHeaderLinkText() == undefined ? APPCFG.HEADER_LINK_TEXT : WebApplicationData.getHeaderLinkText(),
 				WebApplicationData.getHeaderLinkURL() == undefined ? APPCFG.HEADER_LINK_URL : WebApplicationData.getHeaderLinkURL()
 			);
-			document.title = title;
+			document.title = $('<div>' + title + '</div>').text();
 
 			// Initialize picture panel
 			app.desktopPicturePanel.init(appColors[1]);

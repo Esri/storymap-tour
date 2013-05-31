@@ -48,7 +48,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '1.1';
+			var version = '1.2';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -87,8 +87,8 @@
 
 				loadCSS("app/storymaps/ui/crossfader/CrossFader.css");
 				loadCSS("app/storymaps/ui/multiTips/MultiTips.css");
-				loadCSS("app/storymaps/ui/inlineFieldEdit/InlineFieldEdit.css");
-				loadCSS("app/storymaps/ui/loadingIndicator/LoadingIndicator.css");
+				loadCSS("app/storymaps/ui/InlineFieldEdit/InlineFieldEdit.css");
+				loadCSS("app/storymaps/ui/LoadingIndicator/LoadingIndicator.css");
 
 				loadCSS("app/storymaps/maptour/core/Core.css");
 				loadCSS("app/storymaps/maptour/ui/Header.css");
@@ -112,7 +112,7 @@
 			}
 
 			var dojoConfig = {
-				parseOnLoad: true,
+				parseOnLoad: false,
 				isDebug: false,
 				packages: [
 					{
@@ -576,13 +576,31 @@
 		</div>
 
 		<script type="text/javascript">
-			loadJS('//serverapi.arcgisonline.com/jsapi/arcgis/3.5compact/', true);
+			loadJS('//serverapi.arcgisonline.com/jsapi/arcgis/3.5/', true);
 			loadJS('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', true);
 			
 			loadJS('app/maptour-config.js');
 			
+			function getUrlVar(name)
+			{
+			    var vars = [], hash;
+			   	if( window.location.href.indexOf('?') == -1 ) return null;
+		
+			    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			    for(var i = 0; i < hashes.length; i++){
+			        hash = hashes[i].split('=');
+					hash[0] = hash[0].split('#')[0];
+			        vars.push(hash[0]);
+			        vars[hash[0]] = (hash[1] == undefined) ? "true" : hash[1];
+			    }
+			    return vars[name];
+			}
+			
 			if( isProduction ) {
-				loadJS('app/maptour-min.js');
+				if( getUrlVar('edit') )
+					loadJS('app/maptour-builder-min.js');
+				else
+					loadJS('app/maptour-viewer-min.js');
 			}
 			else {
 				loadJS('lib/bootstrap/js/bootstrap.min.js');
@@ -633,14 +651,14 @@
 				});
 			}
 			else {
-			 	require(["storymaps/ui/loadingIndicator/LoadingIndicator", "esri/map", "dojo/domReady!"], function(LoadingIndicator) {
-			 		i18n = dojo.i18n.getLocalization("esriTemplate", "template");
+			 	require(["storymaps/ui/LoadingIndicator/LoadingIndicator", "esri/map", "dojo/domReady!"], function(LoadingIndicator) {
+					i18n = dojo.i18n.getLocalization("esriTemplate", "template");
 			 		loadingIndicator = new LoadingIndicator("loadingIndicator", "loadingMessage");
 			 		loadingIndicator.init();
-			 		loadingIndicator.setMessage(i18n.viewer.loading.step1);
+					loadingIndicator.setMessage(i18n.viewer.loading.step1);
 			 	});
 			 	
-			 	require(["esri/map", "dijit/dijit",  "dojo/ready", "dojo/domReady!"], function(){
+			 	require(["esri/map", "dojo/ready"], function(){
 			 		var urlParams = esri.urlToObject(document.location.search).query || {};
 			 		var isInBuilderMode = urlParams.edit != null;
 			 		

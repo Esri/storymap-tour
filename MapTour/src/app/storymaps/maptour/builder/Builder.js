@@ -1312,7 +1312,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		
 		function getPortalURL()
 		{
-			return configOptions.sharingurl.split('/').slice(0,3).join('/');
+			return configOptions.sharingurl.split('/sharing/')[0];
 		}
 
 		function styleIdentityManagerForSave()

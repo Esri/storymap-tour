@@ -1,4 +1,4 @@
-define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit", "dojo/has"], function(InlineFieldEdit, has){
+define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "dojo/has"], function(InlineFieldEdit, has){
 	/**
 	 * Header
 	 * @class Header

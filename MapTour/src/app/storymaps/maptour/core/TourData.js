@@ -763,7 +763,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		{
 			for(var i=0; i < candidates.length; i++) {
 				for (var fieldName in attributes) {
-					if( fieldName.toLowerCase() == candidates[i].toLowerCase() )
+					if( fieldName.toLowerCase().trim() == candidates[i].toLowerCase().trim() )
 						return fieldName;
 				}
 			}
@@ -774,7 +774,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		{
 			for(var i=0; i < candidates.length; i++) {
 				for (var j=0; j < fields.length; j++) {
-					if( fields[j].name.toLowerCase() == candidates[i].toLowerCase() )
+					if( fields[j].name.toLowerCase().trim() == candidates[i].toLowerCase().trim() )
 						return fields[j].name;
 				}
 			}

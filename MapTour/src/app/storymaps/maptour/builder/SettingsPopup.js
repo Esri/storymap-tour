@@ -1,12 +1,9 @@
-define(["dijit/ColorPalette",
-		"dijit/Dialog",
-		"storymaps/maptour/core/FieldConfig", 
+define(["storymaps/maptour/core/FieldConfig", 
 		"storymaps/maptour/core/MapTourHelper",
 		"storymaps/utils/Helper",
-		"esri/toolbars/Draw",
-		"esri/toolbars/Edit"
-		], 
-		function (ColorPalette, Dialog, FieldConfig, MapTourHelper, Helper) {
+		/*"esri/toolbars/Draw",*/
+		"esri/toolbars/Edit"], 
+		function (FieldConfig, MapTourHelper, Helper) {
 	return function SettingsPopup(container, colorSchemes, defaultLogoURL) 
 	{
 		var DEFAULT_GRAY = "#C0C0C0";

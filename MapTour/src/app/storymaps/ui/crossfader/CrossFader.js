@@ -1,4 +1,4 @@
-define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit", "storymaps/ui/loadingIndicator/LoadingIndicator", "storymaps/maptour/core/MapTourHelper"], function(InlineFieldEdit, LoadingIndicator, MapTourHelper){
+define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "storymaps/ui/LoadingIndicator/LoadingIndicator", "storymaps/maptour/core/MapTourHelper"], function(InlineFieldEdit, LoadingIndicator, MapTourHelper){
 	return function CrossFader(selector, isInBuilderMode)
 	{
 		var _self = this;

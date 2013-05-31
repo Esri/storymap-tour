@@ -23,7 +23,8 @@ echo          Javascript
 echo ------------------------------
 
 echo Minyfing project !PROJECT_DIR!\src\app
-node r.js -o maptour.build.js
+node r.js -o maptour.build.viewer.js
+node r.js -o maptour.build.builder.js
 
 echo Minyfing libraries !PROJECT_DIR!\src\lib
 
@@ -71,16 +72,23 @@ echo            BUILD
 echo ------------------------------
 
 xcopy /Y /Q %PROJECT_DIR%\src\lib\bootstrap\img\* %PROJECT_DIR%\deploy\resources\bootstrap\
-copy /b /Y %PROJECT_DIR%\deploy\app\maptour-lib-min.js+%PROJECT_DIR%\deploy\app\maptour-app-min.js "%PROJECT_DIR%\deploy\app\maptour-min.js"
+copy /b /Y %PROJECT_DIR%\deploy\app\maptour-lib-min.js+%PROJECT_DIR%\deploy\app\maptour-app-viewer-min.js "%PROJECT_DIR%\deploy\app\maptour-viewer-min.js"
+copy /b /Y %PROJECT_DIR%\deploy\app\maptour-lib-min.js+%PROJECT_DIR%\deploy\app\maptour-app-builder-min.js "%PROJECT_DIR%\deploy\app\maptour-builder-min.js"
 
-del %PROJECT_DIR%\deploy\app\maptour-app-min.js
+del %PROJECT_DIR%\deploy\app\maptour-app-viewer-min.js
+del %PROJECT_DIR%\deploy\app\maptour-app-builder-min.js
 del %PROJECT_DIR%\deploy\app\maptour-lib-min.js
 
 xcopy /Y /Q %PROJECT_DIR%\src\index.html %PROJECT_DIR%\deploy\
 xcopy /Y /Q %PROJECT_DIR%\src\preview.html %PROJECT_DIR%\deploy\
+
 cscript replace.vbs %PROJECT_DIR%\deploy\index.html "var isProduction = false;" "var isProduction = true;"
-cscript replace.vbs %PROJECT_DIR%\deploy\app\maptour-min.js "TPL_ENV_DEV" "TPL_ENV_PRODUCTION"
-cscript replace.vbs %PROJECT_DIR%\deploy\app\maptour-min.js "TPL_PREVIEW_TRUE" "TPL_PREVIEW_FALSE"
+
+cscript replace.vbs %PROJECT_DIR%\deploy\app\maptour-viewer-min.js "TPL_ENV_DEV" "TPL_ENV_PRODUCTION"
+cscript replace.vbs %PROJECT_DIR%\deploy\app\maptour-viewer-min.js "TPL_PREVIEW_TRUE" "TPL_PREVIEW_FALSE"
+
+cscript replace.vbs %PROJECT_DIR%\deploy\app\maptour-builder-min.js "TPL_ENV_DEV" "TPL_ENV_PRODUCTION"
+cscript replace.vbs %PROJECT_DIR%\deploy\app\maptour-builder-min.js "TPL_PREVIEW_TRUE" "TPL_PREVIEW_FALSE"
 
 xcopy /S /Q /I /Y %PROJECT_DIR%\src\resources %PROJECT_DIR%\deploy\resources
 xcopy /Y /Q %PROJECT_DIR%\src\app\maptour-config.js %PROJECT_DIR%\deploy\app

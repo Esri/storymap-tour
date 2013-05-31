@@ -1,8 +1,6 @@
-define(["esri/layers/FeatureLayer", 
-		"storymaps/maptour/core/TourPointAttributes",
-		"storymaps/maptour/core/MapTourHelper"
-		], 
-		function (FeatureLayer, TourPointAttributes, MapTourHelper) {
+define(["storymaps/maptour/core/TourPointAttributes",
+		"storymaps/maptour/core/MapTourHelper"], 
+		function (TourPointAttributes, MapTourHelper) {
 	return function FeatureServiceManager()
 	{
 		var graphics = [];
@@ -49,7 +47,6 @@ define(["esri/layers/FeatureLayer",
 		{
 			if( feature.geometry != null ) {
 				nbRequest++;
-				
 				featureLayer.queryAttachmentInfos(
 					feature.attributes[idField], 
 					function(attachmentInfos) {
