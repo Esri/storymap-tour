@@ -50,7 +50,10 @@ Download the [User Download archive](https://github.com/Esri/map-tour-storytelli
 | **index.html**         		               | Application html file (to be edited with web map id)                   |
 | **Readme.pdf**       		                  | Detailed readme guide                                                 |
 
-A typical Map Tour configuration involves the following steps:
+[This ArcWatch article](http://www.esri.com/esri-news/arcwatch/0513/make-a-map-tour-story-map) provides step-by-step instructions on how to make a map tour story map using the downloadable version of the template.
+For detailed instructions and recommendations, please refer to the **[Readme document](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Readme.pdf)**.
+
+For quick start, a typical Map Tour configuration involves the following steps:
  * Create a web map that fits your need (basemap, eventual additional context layers like the path of your tour, etc.)
  * Import your data:
    - Your data can be stored in **Feature Layer**, **CSV**, **Shapefile** or **Map Service**, see **samples** for ready to use layer
@@ -63,8 +66,6 @@ A typical Map Tour configuration involves the following steps:
  * Edit the line **webmap:""** to **include your web map id** between the quotes
  * Optionally remove samples folder and Readme.pdf
  * Copy files to your web server root or in a specific folder
-
-For detailed instructions and recommendations, please refer to the **[Readme document](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Readme.pdf)**.
 
 ## Feedback
 
