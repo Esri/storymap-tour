@@ -91,8 +91,8 @@ Yes, web map designed for the previous version should continue to work without a
 
 #### Map Tour 1.2 released on 05/31/2013
 Minor version with few bug fixes :
- * Optimized application loading, strong gain on 3G network
- * Improved header's UI when the subtitle is wrapped on three lines
+ * Optimize application loading process  which should result in improved load times especially on slower connections like 3G mobile connections 
+ * Improve header's UI when the subtitle is wrapped on three lines
 
 #### Map Tour 1.1 released on 05/09/2013
 Minor version with few bug fixes :
