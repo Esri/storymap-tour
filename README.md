@@ -184,7 +184,7 @@ To remove the bottom border:
          background: none !important;
       }
 
-#### Header top-right links tunning
+#### Customizing the links in the top right of the header
 
 Hide the link to the external website and the social buttons:
 
@@ -212,7 +212,7 @@ To display multiple line text, empty the HEADER_LINK_URL and configure HEADER_LI
 
       <a href='http://myorganization.com' target='_blank'>My organization</a><br /><a href='http://myorganization.com/myproject' target='_blank'>My project</a>
 
-#### Logo tunning
+#### Customizing the header logo
 
 The logo image can be configured through maptour-config.js file. To hide the logo, empty the HEADER_LOGO_URL property.
 
