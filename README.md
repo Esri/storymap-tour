@@ -5,7 +5,9 @@ The Map Tour template is designed for presenting geographic information where th
 ![App](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/map-tour-storytelling-template-js.png)
 
 [View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | 
-[Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (for production, source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.0.zip) | [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
+[Features](http://arcgis.com/apps/MapTour/preview.html) | 
+[User Download (source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.0.zip) | 
+[Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
 The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets.
 
