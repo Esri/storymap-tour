@@ -196,18 +196,19 @@ There's a limit of 99 points per tour. Most Map Tours will of course be signific
 Major version with the following new functionalities:
  * The hosted version is available to all ArcGIS Online account levels including the free Public account
  * The interactive builder offer to import photos from Flickr, Facebook, Picasa and a CSV
- * The interactive builder is now usable on CSV added through ArcGIS Online web map viewer
-
-Other evolution includes:
+ * The interactive builder can use CSV added through ArcGIS Online web map viewer
+ * Serveral UI and productivity improvements for the hosted interactive builder
  * Improved loading time
+ * Support of non mercator data
  * Picture panel respond to swipe and keyboard event
- * Mobile introduction view include a start button and the whole view can be clicked/tapped to start the tour
+ * Mobile introduction view include a start button and can be swiped away
  * Mobile view images are clipped instead of cropped
- * The Map popup can now be customized through the configuration file
+ * The Map popup can now customized through the configuration file
  
 Bug fixes :
  * Application loading issues when using Internet Explorer
  * Application loading issues when using Bing Maps basemap
+ * Interactive builder enforce description maximum length
 
 #### Map Tour 1.2 released on 05/31/2013
 Minor version with few bug fixes :
