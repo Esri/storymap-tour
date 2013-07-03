@@ -1,4 +1,4 @@
-define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "dojo/has"], function(InlineFieldEdit, has){
+define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit", "dojo/has"], function(InlineFieldEdit, has){
 	/**
 	 * Header
 	 * @class Header
@@ -46,8 +46,8 @@ define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "dojo/has"], function(In
 
 			// Mobile init
 			$(window).scroll(this.hideMobileBanner);
-			$("#headerMobile .banner").fastClick(this.hideMobileBanner);
-			$("#openHeaderMobile").fastClick(showMobileHeader);
+			$(selector + " #headerMobile .banner").fastClick(this.hideMobileBanner);
+			$(selector + " #openHeaderMobile").fastClick(showMobileHeader);
 
 			// Navigation bar
 			$(".navBar span").fastClick(function(){
@@ -65,17 +65,22 @@ define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "dojo/has"], function(In
 
 			$(selector).css("display", "block");
 		}
+		
+		this.resize = function(widthViewport)
+		{
+			$(selector + " #headerDesktop .textArea").width(widthViewport - $(selector + " #headerDesktop .rightArea").outerWidth() - 35);
+		}
 
 		this.hideMobileBanner = function(immediate)
 		{
-			$("#headerMobile .banner").slideUp(immediate === true ? 0 : 250);
-			$("#openHeaderMobile").css("top", "41px");
-			$("#headerMobile").removeClass("firstDisplay");
+			$(selector + " #headerMobile .banner").slideUp(immediate === true ? 0 : 250);
+			$(selector + " #openHeaderMobile").css("top", "41px");
+			$(selector + " #headerMobile").removeClass("firstDisplay");
 		}
 		
 		this.mobileHeaderIsInFirstState = function()
 		{
-			return $("#headerMobile").hasClass("firstDisplay");
+			return $(selector + " #headerMobile").hasClass("firstDisplay");
 		}
 
 		this.setColor = function(bgColor)
@@ -116,13 +121,13 @@ define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "dojo/has"], function(In
 
 		function showMobileHeader(immediate)
 		{
-			$("#headerMobile .banner").slideDown(immediate === true ? 0 : 250);
+			$(selector + " #headerMobile .banner").slideDown(immediate === true ? 0 : 250);
 		}
 		
 		function editFieldsEnterEvent()
 		{
 			if( ! _builderButtonHidden )
-				$("#builderPanel", selector).fadeOut("fast");
+				$(selector + " #builderPanel", selector).fadeOut("fast");
 			_builderButtonHidden = false;
 		}
 		
@@ -131,7 +136,7 @@ define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "dojo/has"], function(In
 			_builderButtonHidden = true;
 			setTimeout(function(){ 
 				if( _builderButtonHidden )
-					$("#builderPanel", selector).fadeIn("fast");
+					$(selector + " #builderPanel", selector).fadeIn("fast");
 				_builderButtonHidden = false;
 			}, has("ios") || has("ie") == 10 ? 500 : 100);
 			
@@ -140,6 +145,7 @@ define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "dojo/has"], function(In
 					src: $(src).attr("class"), 
 					value: value
 				});
+				$(selector + ' #headerMobile .banner .' + $(src).attr("class")).html(value);
 			}, has("ios") || has("ie") == 10 ? 700 : 0);
 		}
 

@@ -1,4 +1,4 @@
-define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "storymaps/ui/LoadingIndicator/LoadingIndicator", "storymaps/maptour/core/MapTourHelper"], function(InlineFieldEdit, LoadingIndicator, MapTourHelper){
+define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit", "storymaps/ui/loadingIndicator/LoadingIndicator", "storymaps/maptour/core/MapTourHelper"], function(InlineFieldEdit, LoadingIndicator, MapTourHelper){
 	return function CrossFader(selector, isInBuilderMode)
 	{
 		var _self = this;
@@ -19,10 +19,12 @@ define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "storymaps/ui/LoadingInd
 		var _isLegacyIE = (navigator.appVersion.indexOf("MSIE 7.0") > -1) || (navigator.appVersion.indexOf("MSIE 8.0") > -1);
 		
 		_img1 = document.createElement("img");
+		$(_img1).attr("ondragstart", "return false");
 		$(_img1).addClass("member-image");
 		$(_img1).error(function(){ mediaNotFoundHandler(this); });
 		
 		_img2 = document.createElement("img");
+		$(_img2).attr("ondragstart", "return false");
 		$(_img2).addClass("member-image");
 		$(_img2).error(function(){ mediaNotFoundHandler(this); });
 		
@@ -43,7 +45,7 @@ define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "storymaps/ui/LoadingInd
 		$(_img1).load(onImageLoad);
 		$(_img2).load(onImageLoad);
 		
-		$(_toggle).click(function(e) {
+		$(_toggle).fastClick(function(e) {
 			if ($(_placardContainer2).css('display')=='none'){
 			  $(_toggle).html('&#x25BC;');
 			}
@@ -185,11 +187,11 @@ define(["storymaps/ui/InlineFieldEdit/InlineFieldEdit", "storymaps/ui/LoadingInd
 		function setPlacard(name, text)
 		{			
 			if (isInBuilderMode) {
-				var nameLength = descrLength = -1;
+				var nameLength = 254, descrLength = 1000;
 				$.each(app.data.getSourceLayer().fields, function(i, field){
-					if( field.alias == app.data.getFieldsConfig().getNameField() )
+					if( field.name == app.data.getFieldsConfig().getNameField() )
 						nameLength = field.length;
-					if( field.alias == app.data.getFieldsConfig().getDescriptionField() )
+					if( field.name == app.data.getFieldsConfig().getDescriptionField() )
 						descrLength = field.length;
 				});
 				

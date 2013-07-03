@@ -1,0 +1,20 @@
+#settings-extent p {
+	margin-bottom: 20px;
+}
+
+#settings-extent  #extentMap{
+	width: 100% !important;
+	height: 337px !important;
+}
+
+#settings-extent  #extentMap .logo-sm {
+	display: none;
+}
+
+#settings-extent  .extentMapControl {
+	margin-bottom: 4px;
+}
+
+#settings-extent .explain2 {
+	margin-top: 10px;
+}

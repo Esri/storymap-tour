@@ -49,6 +49,7 @@ define(["dojo/dom-style", "dojo/dom-construct"], function(domStyle, domConstruct
 				'content' : '',
 				'zoomToPoints' : false,
 				"backgroundColor" : "#000000",
+				"borderColor" : "#000000",
 				"pointerColor" : "#000000",
 				"textColor" : "#ffffff",
 				"minWidth" : "",
@@ -111,6 +112,7 @@ define(["dojo/dom-style", "dojo/dom-construct"], function(domStyle, domConstruct
 				
 				domStyle.set('multiTip' + i, {
 					backgroundColor: settings.backgroundColor,
+					borderColor: settings.borderColor,
 					color: settings.textColor,
 					padding: "5px",
 					position: "absolute"

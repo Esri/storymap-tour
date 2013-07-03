@@ -1,0 +1,11 @@
+#initPopup {
+	top: 20% !important;
+}
+
+#initPopup .modal-footer {
+	min-height: 32px;
+}
+
+#initPopup .modal-body {
+	overflow: hidden;
+}

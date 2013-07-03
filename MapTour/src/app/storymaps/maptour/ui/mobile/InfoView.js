@@ -8,6 +8,7 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 	return function InfoView(selector)
 	{
 		var _carousel = null;
+		var _firstDisplaySinceRendered = true;
 		
 		this.init = function(slides, bgColor)
 		{
@@ -34,6 +35,13 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 		{
 			$("#infoPanel").show();
 			
+			if( _firstDisplaySinceRendered ) {
+				$(selector).find(".tourPoint img").each(function(i, img){ 
+					$(img).attr("src", $(img).data("src"));
+				});
+				_firstDisplaySinceRendered = false;
+			}
+			
 			_carousel.refreshSize();
 			_carousel.goToPage(app.data.getCurrentIndex());
 		}
@@ -45,6 +53,8 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 		
 		function render(slides)
 		{
+			_firstDisplaySinceRendered = true;
+			
 			_carousel = new SwipeView(selector, {
 				numberOfPages: slides.length
 			});
@@ -85,7 +95,7 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 
 				var imgEl = document.createElement('img');
 				imgEl.className = "tourPointImg";
-				imgEl.src = attr.getURL();
+				imgEl.setAttribute(location.hash == "#info" ? 'src' : 'data-src', attr.getURL());
 				mainEl.appendChild(imgEl);
 
 				_carousel.masterPages[i].appendChild(mainEl);
@@ -112,7 +122,7 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 					
 					if (upcoming != page.dataset.pageIndex) {
 						var iconEl = page.querySelector('.tourPointIcon');
-						iconEl.src = MapTourHelper.getSymbolUrl(attr.getColor(), parseInt(upcoming) + 1);;
+						iconEl.src = MapTourHelper.getSymbolUrl(attr.getColor(), parseInt(upcoming) + 1);
 						
 						var imgEl = page.querySelector('.tourPointImg');
 						imgEl.src = attr.getURL();
@@ -126,7 +136,7 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 				}
 
 				$("body").scrollTop(0);
-				downloadCurrentImage();
+				checkViewSize();
 				dojo.publish("MOBILE_INFO_SWIPE", _carousel.pageIndex);
 			});
 
@@ -135,11 +145,11 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 				app.header.hideMobileBanner();
 			});
 			
-			downloadCurrentImage();
+			checkViewSize();
 		}
 		
 		
-		function downloadCurrentImage()
+		function checkViewSize()
 		{
 			var img = _carousel.masterPages[_carousel.currentMasterPage].querySelector('.tourPointImg');
 			if (img){
@@ -147,10 +157,9 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 				imgCheck.onload = function(){
 					$("#infoCarousel").height(_carousel.masterPages[_carousel.currentMasterPage].childNodes[0].clientHeight + 15);
 				}
-				imgCheck.src = img.src;
+				imgCheck.src = img.src || img.getAttribute("data-src");
 			}
 		}
-		
 		
 		function updateSlide(param)
 		{

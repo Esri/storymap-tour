@@ -8,6 +8,12 @@
 	}
 }
 
+@media only screen and (min-device-width : 768px)  and (max-device-width : 1024px)  and (orientation : landscape) {
+	#initPopup, #helpPopup, #importPopup {
+		top: 10% !important;
+	}
+}
+
 @media screen and (min-width: 768px) and (orientation:portrait) {
 	#picturePanel {
 		display: none !important;
@@ -52,7 +58,7 @@
 		top: 0px;
 	}
 	
-	#builderPanel2 {
+	#builderPanel2, #builderPanel3 {
 		display: none !important;
 	}
 	

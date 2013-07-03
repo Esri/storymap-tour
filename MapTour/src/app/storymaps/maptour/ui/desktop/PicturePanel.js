@@ -1,8 +1,7 @@
 define(["storymaps/ui/crossfader/CrossFader",
 		"storymaps/utils/Helper",
 		"storymaps/utils/ResamplePicture",
-		"storymaps/maptour/core/MapTourHelper"
-		], 
+		"storymaps/maptour/core/MapTourHelper"], 
 		function(CrossFader, Helper, ResamplePicture, MapTourHelper){
 	/**
 	 * PicturePanel
@@ -34,7 +33,7 @@ define(["storymaps/ui/crossfader/CrossFader",
 		var _selectPictureInput = null,
 			_selectThumbnailInput = null;
 
-		function init(bgColor)
+		function init(bgColor, isPicturesHosted)
 		{
 			clean();
 			$(selector + " #cfader").empty();
@@ -57,8 +56,17 @@ define(["storymaps/ui/crossfader/CrossFader",
 				dojo.publish("PIC_PANEL_NEXT", null);
 			});
 
+			// Swipe event on picture panel	
+			var el = document.getElementById('picturePanel');
+			Hammer(el).on("swipeleft", function() {
+			    dojo.publish("PIC_PANEL_NEXT", null);
+			});
+			Hammer(el).on("swiperight", function() {
+			    dojo.publish("PIC_PANEL_PREV", null);
+			});
+
 			if( isInBuilderMode )
-				initBuilder();
+				initBuilder(isPicturesHosted);
 
 			dojo.subscribe("CROSSFADER_DATA_UPDATE", function(){
 				dojo.publish("CORE_RESIZE");
@@ -92,7 +100,7 @@ define(["storymaps/ui/crossfader/CrossFader",
 			$("#arrowNext").addClass("disabled");
 		}
 
-		function updatePicture(picurl, name, caption, buttonStatus)
+		function updatePicture(picurl, name, caption, thumburl, buttonStatus)
 		{
 			if( crossfader )
 				crossfader.setSource(picurl, name, caption);
@@ -110,6 +118,9 @@ define(["storymaps/ui/crossfader/CrossFader",
 				$("#arrowNext").removeClass("disabled").attr("src","resources/icons/picturepanel-right.png");
 			else 
 				$("#arrowNext").addClass("disabled");
+				
+			if ( isInBuilderMode )
+				setAttributesPopover(picurl, thumburl);
 		}
 
 		/**
@@ -177,7 +188,6 @@ define(["storymaps/ui/crossfader/CrossFader",
 		
 		function resizeRegularLayout(panelAvailableWidth, panelAvailableHeight)
 		{
-			
 			// The future dimension of the image
 			var width, height;
 			
@@ -320,14 +330,20 @@ define(["storymaps/ui/crossfader/CrossFader",
 		//
 		///////////////////////////////
 		
-		function initBuilder()
+		function initBuilder(isPicturesHosted)
 		{
 			initBuilderLocalization();
 			
-			if( Helper.browserSupportAttachementUsingFileReader() )
-				initBuilderFileReader();
+			$(".editPictureButtons > div > span", panel).hide();
+			
+			if( isPicturesHosted ) {
+				if( Helper.browserSupportAttachementUsingFileReader() )
+					initBuilderFileReader();
+				else
+					initBuilderForm();
+			}
 			else
-				initBuilderForm();
+				initBuilderAttributes();
 		}
 		
 		function forceSaveEdits()
@@ -364,10 +380,66 @@ define(["storymaps/ui/crossfader/CrossFader",
 				description: descr 
 			});
 		}
+		
+		// ---------------------
+		// Builder - Attributes
+		// ---------------------
+		
+		function initBuilderAttributes()
+		{
+			$(".editPictureButtons .attributesWay", panel).show();
+		}
+		
+		function setAttributesPopover(picUrl, thumbUrl)
+		{
+			if( ! $(".editPictureButtons .attributesWay form").is(":visible") )
+				return;
+			
+			panel.find(".editPictureButtons .attributesWay .btn-picture").popover('destroy');
+			panel.find(".editPictureButtons .attributesWay .btn-picture").popover({
+				trigger: 'click',
+				placement: 'bottom',
+				html: true,
+				// Inject the CSS properties
+				content: '<script>'
+							+ '$(".editPictureButtons .attributesWay .btn-picture").next(".popover").addClass("edit-attr-popover");'
+							+ '$(".editPictureButtons .attributesWay .btn-thumbnail").popover("hide");'
+							+ '</script>'
+							+ '<input type="text" value="' + picUrl + '"/>'
+							+ '<button type="button" class="btn btn-small btn-primary" onClick="app.desktopPicturePanel.editPointURL(0, true)">'+i18n.viewer.builderHTML.modalApply+'</button>'
+							+ '<button type="button" class="btn btn-small" onClick="app.desktopPicturePanel.editPointURL(0, false)">'+i18n.viewer.builderHTML.modalCancel+'</button>'
+			});
+			
+			panel.find(".editPictureButtons .attributesWay .btn-thumbnail").popover('destroy');
+			panel.find(".editPictureButtons .attributesWay .btn-thumbnail").popover({
+				trigger: 'click',
+				placement: 'bottom',
+				html: true,
+				// Inject the CSS properties
+				content: '<script>'
+							+ '$(".editPictureButtons .attributesWay .btn-thumbnail").next(".popover").addClass("edit-attr-popover");'
+							+ '$(".editPictureButtons .attributesWay .btn-picture").popover("hide");'
+							+ '</script>'
+							+ '<input type="text" value="' + thumbUrl + '"/>'
+							+ '<button type="button" class="btn btn-small btn-primary" onClick="app.desktopPicturePanel.editPointURL(1, true)">'+i18n.viewer.builderHTML.modalApply+'</button>'
+							+ '<button type="button" class="btn btn-small" onClick="app.desktopPicturePanel.editPointURL(1,false)">'+i18n.viewer.builderHTML.modalCancel+'</button>'
+			});
+		}
+		
+		function editPointURL(target, performSave)
+		{
+			var node = ".editPictureButtons .attributesWay " + (target == 0 ? ".btn-picture" : ".btn-thumbnail");
+			var value = $(node).next(".popover").find("input").val();
+			
+			if( performSave )
+				app.data.changeCurrentPointPicURL(target == 0 ? "picture" : "thumbnail", value);
+			
+			$(node).popover("hide");
+		}
 
-		// ----------------------------
-		// Builder - FileReader
-		// ----------------------------
+		// ---------------------------------------
+		// Builder - Hosted Features - FileReader
+		// ---------------------------------------
 		
 		function initBuilderFileReader()
 		{
@@ -550,9 +622,9 @@ define(["storymaps/ui/crossfader/CrossFader",
 			_changeThumbnailInput.closest("form").get(0).reset();
 		}
 		
-		// ----------------------------
-		// Builder - Form
-		// ----------------------------
+		// ---------------------------------
+		// Builder - Hosted Features - Form
+		// ---------------------------------
 		
 		function initBuilderForm()
 		{
@@ -659,6 +731,9 @@ define(["storymaps/ui/crossfader/CrossFader",
 			_selectPictureInput = oldBrowserDiv.find(".btn-picture input");
 			_selectThumbnailInput = oldBrowserDiv.find(".btn-thumbnail input");
 			_uploadPicAndThumb = oldBrowserDiv.find(".btn-upload");
+			
+			$('.editPictureButtons .attributesWay .btn-picture').html(i18n.viewer.picturePanelJS.selectPic);
+			$('.editPictureButtons .attributesWay .btn-thumbnail').html(i18n.viewer.picturePanelJS.selectThumb);
 		}
 
 		return {
@@ -672,7 +747,8 @@ define(["storymaps/ui/crossfader/CrossFader",
 			update: update,
 			pictureConfirmation: pictureConfirmation,
 			thumbnailConfirmation: thumbnailConfirmation,
-			formConfirmation: formConfirmation
+			formConfirmation: formConfirmation,
+			editPointURL: editPointURL
 		}
 	}
 });

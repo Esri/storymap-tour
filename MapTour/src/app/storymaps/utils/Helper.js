@@ -20,10 +20,10 @@ define(["dojo/cookie", "dojo/has"], function(cookie, has){
 		},
 		getWebmapID: function(isProd)
 		{
-			var urlParams = esri.urlToObject(document.location.search).query || {};
-			
 			if( configOptions && configOptions.webmap )
 				return configOptions.webmap;
+			
+			var urlParams = esri.urlToObject(document.location.search).query || {};
 			
 			if ( this.isArcGISHosted(isProd) )
 				return urlParams.webmap;
@@ -164,30 +164,6 @@ define(["dojo/cookie", "dojo/has"], function(cookie, has){
 		{
 			var esriCookie = cookie('esri_auth');
 			return esriCookie ? JSON.parse(esriCookie.replace('"ssl":undefined','"ssl":""')).role : null;
-		},
-		/**
-		 * Clean the web map item to allow to clone the item
-		 * @param {Object} item
-		 */
-		prepareWebmapItemForCloning: function(itemData)
-		{
-			dojo.forEach(itemData.baseMap.baseMapLayers, function(layer){
-				delete layer.errors;
-				delete layer.layerObject;
-				delete layer.resourceInfo;
-			});
-			
-			dojo.forEach(itemData.operationalLayers, function(layer){
-				delete layer.errors;
-				delete layer.layerObject;
-				delete layer.resourceInfo;
-				
-				if( layer.featureCollection && layer.featureCollection.layers ) {
-					dojo.forEach(layer.featureCollection.layers, function(fc){
-						delete fc.layerObject;
-					});
-				}
-			});
 		},
 		getWebmapViewerLinkFromSharingURL: function(sharingUrl)
 		{

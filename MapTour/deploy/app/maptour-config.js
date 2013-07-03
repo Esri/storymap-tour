@@ -11,6 +11,10 @@ APPCFG = {
 	HEADER_LINK_URL: "http://storymaps.esri.com/home/",
 	// Header, Picture Panel and Carousel colors
 	COLORS: ["#444", "#797979", "#c2c2c2"],
+	// Map popup colors
+	POPUP_BACKGROUND_COLOR: "#444444", 
+	POPUP_BORDER_COLOR: "#444444",
+	POPUP_ARROW_COLOR: "#444444",
 	
 	MINIMUM_MAP_WIDTH: 450,
 	TIMEOUT_VIEWER_LOAD: 12000,
@@ -82,6 +86,10 @@ APPCFG = {
 	//
 	// Builder
 	//
+	
+	// Online photo sharing services connection parameters
+	FLICKR_API_KEY: "750b36a2ac65a72e03cf9cef06d79f45",
+	FACEBOOK_APP_ID: "471023926309627",
 	
 	DEFAULT_SHARING_URL: "//www.arcgis.com/sharing/content/items",
 	COLOR_SCHEMES:  [

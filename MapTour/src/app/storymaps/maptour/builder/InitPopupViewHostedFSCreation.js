@@ -1,4 +1,4 @@
-define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
+define(["storymaps/utils/Helper", "storymaps/utils/WebMapHelper", "dojo/_base/lang"], function (Helper, WebMapHelper, lang) {
 	var mapTourFSJson = {
 		"service": {
 		    "currentVersion": 10.1,
@@ -131,7 +131,7 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
 		        "domain": null,
 		        "editable": true,
 		        "nullable": true,
-		        "length": 500
+		        "length": 1000
 		    }, {
 		        "name": "icon_color",
 		        "type": "esriFieldTypeString",
@@ -245,42 +245,47 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
         }
     };
 	
-	return function DataPopup(container)
+	return function InitPopupViewHostedFSCreation(container)
 	{
 		var _this = this;
 		var _container = container;
 		
 		var _portal = null;
-		var _result = null;
+		var _initCompleteDeferred = null;
 		var _webmap = null;
 		
 		var _nameField  = $('#dataNameInput', _container);
 		var _folderList = $('#dataFolderListInput', _container);
 		var _errorList  = $('.dataError', _container);
-		var _boxClose   = $('.modal-header .close', _container);
-		var _btnClose   = $('.btnClose', _container);
-		var _btnSave    = $('.btnSave', _container);
-		var _footerText = $('.dataFooterText', _container);
+		var _btnPrev = null;
+		var _btnNext = null;
+		var _footerText = null;
 
-		this.present = function(portal, webmap)
+		this.init = function(params, initCompleteDeferred, footer)
 		{
-			_portal = portal;
-			_webmap = webmap;
-			_result = new dojo.Deferred();
+			_portal = params.portal;
+			_webmap = params.webmap;
+			_initCompleteDeferred = initCompleteDeferred;
+			_btnPrev = footer.find('.btnPrev');
+			_btnNext = footer.find('.btnNext');
+			_footerText = footer.find('.dataFooterText');
+			
+			if( ! _portal || ! _webmap )
+				return;
 			
 			// Init UI
 			initEmptyFolderList();
 			cleanUI();
 			_portal.getPortalUser().getFolders().then(buildFolderList);
+		}
+		
+		this.getView = function()
+		{
+			_btnNext.html(i18n.viewer.builderHTML.dataBtnSave);
+			_btnNext.unbind('click');
+			_btnNext.click(createService);
 			
-			_boxClose.click(cancel);
-			_btnClose.click(cancel);
-			_btnSave.click(createService);
-			
-			// Show the modal
-			$(_container).modal();
-			
-			return _result;
+			return _container;
 		}
 		
 		//
@@ -323,8 +328,7 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
 			changeFooterState("succeed");
 			
 			setTimeout(function(){
-				_result.resolve();
-				$(_container).modal("hide");
+				_initCompleteDeferred.resolve();
 			}, 800);
 		}
 		
@@ -337,16 +341,6 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
 			else {
 				changeFooterState("error");
 			}
-		}
-		
-		function cancel()
-		{
-			// Don't close popup while creating service
-			if( _btnClose.attr("disabled") )
-				return false;
-			
-			_result.reject();
-			return true;
 		}
 		
 		//
@@ -382,21 +376,24 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
 			dojo.mixin(serviceJSON.service, {'name': name});
 
 			// Service creation request
-			var serviceRqUrl = getSharingURL() + "content/users/" + user.credential.userId + "/" + (folder ? folder + '/' : '') + "createService";
+			var serviceRqUrl = WebMapHelper.getSharingURL(_portal) 
+					+ "content/users/" + user.credential.userId 
+					+ "/" + (folder ? folder + '/' : '') 
+					+ "createService";
 			
 			var serviceRqData = {
 				createParameters: dojo.toJson(serviceJSON.service),
 				targetType: "featureService"
 			};
 			
-			request(serviceRqUrl, serviceRqData, true).then(
+			WebMapHelper.request(serviceRqUrl, serviceRqData, true).then(
 				function(serviceRqResponse) {
 					var layersRqUrl = getAdminUrl(serviceRqResponse.serviceurl) + "/AddToDefinition";
 					var layersRqData = { addToDefinition: dojo.toJson({layers: serviceJSON.layers}) };
 					// Force reuse of the portal token as
 					// ArcGIS For Orga hosted FS are on on a different domain than the portal api
 					var token = user.credential.token;
-					request(layersRqUrl, layersRqData, true, token).then(
+					WebMapHelper.request(layersRqUrl, layersRqData, true, token).then(
 						function(layersRqResponse) {
 							resultDeferred.resolve(serviceRqResponse);
 						},
@@ -417,14 +414,14 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
 		{
 			var resultDeferred = new dojo.Deferred();
 			var user = _portal.getPortalUser(); 
-			var rqUrl = getSharingURL() + "content/users/" + user.credential.userId + "/shareItems";
+			var rqUrl = WebMapHelper.getSharingURL(_portal) + "content/users/" + user.credential.userId + "/shareItems";
 			var rqData = lang.mixin(item, {
 				f: "json",
 				everyone: false,
 				items: item.itemId
 			});
 			
-			request(rqUrl, rqData, true).then(
+			WebMapHelper.request(rqUrl, rqData, true).then(
 				function(){
 					resultDeferred.resolve(item);
 				},
@@ -447,18 +444,10 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
 		
 		function addFSToWebmap(fsItem)
 		{
-			var resultDeferred = new dojo.Deferred();
-			var user = _portal.getPortalUser(); 
-			
-			// Remove reference to JS API object before cloning
-			Helper.prepareWebmapItemForCloning(_webmap.itemData);
-			
-			var item = lang.clone(_webmap.item);
-			var data = lang.clone(_webmap.itemData);
-			
 			// Add the FS layer
-			var layer = lang.mixin({
-					id: "maptour-layer1",
+			var layer = lang.mixin(
+				{
+					id: "maptour-layer" + new Date().getTime(),
 					title: "Map Tour layer",
 					url: fsItem.serviceurl + '/0',
 					itemId: fsItem.itemId
@@ -466,31 +455,8 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
 				lang.clone(mapTourWebmapLayerJson)
 			);
 			
-			data.operationalLayers.push(layer);
-			
-			var rqUrl = getSharingURL() + "content/users/" + user.credential.userId + (item.ownerFolder ? ("/" + item.ownerFolder) : "") + "/addItem";
-			var rqData = {
-				item: item.item,
-				title: item.title,
-				tags: item.tags,
-				extent: JSON.stringify(item.extent),
-				text: JSON.stringify(data),
-				type: item.type,
-				typeKeywords: item.typeKeywords,
-				overwrite: true,
-				thumbnailURL: item.thumbnailURL
-			};
-			
-			request(rqUrl, rqData, true).then(
-				function(){
-					resultDeferred.resolve();
-				},
-				function(){
-					resultDeferred.reject();
-				}
-			);
-			
-			return resultDeferred;
+			_webmap.itemData.operationalLayers.push(layer);
+			return WebMapHelper.saveWebmap(_webmap, _portal);
 		}
 		
 		//
@@ -501,14 +467,14 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
 		{
 			var resultDeferred = new dojo.Deferred();
 			
-			var rqUrl = getSharingURL() + "portals/" + _portal.id + "/isServiceNameAvailable";
+			var rqUrl = WebMapHelper.getSharingURL(_portal) + "portals/" + _portal.id + "/isServiceNameAvailable";
 			var rqData = {
 				f: "json",
 				type: "Feature Service",
 				name: name
 			};
 			
-			request(rqUrl, rqData, true).then(
+			WebMapHelper.request(rqUrl, rqData, true).then(
 				function(result){
 					if(result && result.available)
 						resultDeferred.resolve();
@@ -521,40 +487,6 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
 			);
 			
 			return resultDeferred;
-		}
-		
-		function request(url, content, post, token)
-		{
-			var usePost = post || false;
-			var content = content || {};
-			var token = token || '';
-			
-			var requestDeferred = esri.request(
-				{
-					url: url,
-					content: dojo.mixin(content, {f: 'json', token: token}),
-					callbackParamName: 'callback',
-					handleAs: 'json'
-				},
-				{
-					usePost: usePost
-				}
-			);
-			return requestDeferred;
-		}
-		
-		function getSharingURL()
-		{
-			var sharingUrl = _portal.portalUrl;
-			
-			if( _portal.portalUrl.match('/sharing/rest/$') )
-				sharingUrl = _portal.portalUrl.split('/').slice(0,-2).join('/') + '/';
-			else if ( _portal.portalUrl.match('/sharing/rest$') )
-				sharingUrl = _portal.portalUrl.split('/').slice(0,-1).join('/') + '/';
-			else if ( _portal.portalUrl.match('/sharing$') )
-				sharingUrl = _portal.portalUrl + '/';
-			
-			return sharingUrl;
 		}
 		
 		//
@@ -599,26 +531,26 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
 		function changeFooterState(state)
 		{
 			if( state == "progress" ) {
-				_btnSave.attr("disabled", "true");
-				_btnClose.attr("disabled", "true");
+				_btnNext.attr("disabled", "true");
+				_btnPrev.attr("disabled", "true");
 				_footerText.html(i18n.viewer.builderHTML.dataFooterProgress + ' <img src="resources/icons/loader-upload.gif" />');
 				_footerText.show();
 			}
 			else if( state == "succeed" ) {
-				_btnSave.attr("disabled", "true");
-				_btnClose.attr("disabled", "true");
+				_btnNext.attr("disabled", "true");
+				_btnPrev.attr("disabled", "true");
 				_footerText.html(i18n.viewer.builderHTML.dataFooterSucceed);
 				_footerText.show();
 			}
 			else if ( state == "original" ) {
-				_btnSave.removeAttr("disabled");
-				_btnClose.removeAttr("disabled");
+				_btnNext.removeAttr("disabled");
+				_btnPrev.removeAttr("disabled");
 				_footerText.html("");
 				_footerText.hide();
 			}
 			else if ( state == "error" ) {
-				_btnSave.removeAttr("disabled");
-				_btnClose.removeAttr("disabled");
+				_btnNext.removeAttr("disabled");
+				_btnPrev.removeAttr("disabled");
 				_footerText.html(i18n.viewer.builderHTML.dataFooterError);
 				_footerText.addClass("error");
 			}
@@ -647,12 +579,9 @@ define(["storymaps/utils/Helper", "dojo/_base/lang"], function (Helper, lang) {
 
 		this.initLocalization = function()
 		{
-			$('.modal-header h3', container).html(i18n.viewer.builderHTML.dataHeader);
-			$('.modal-body .dataExplain', container).html(i18n.viewer.builderHTML.dataExplain);
-			$('.modal-body .dataNameLbl', container).html(i18n.viewer.builderHTML.dataNameLbl + ':');
-			$('.modal-body .dataFolderListLbl', container).html(i18n.viewer.builderHTML.dataFolderListLbl + ':');
-			$('.modal-footer .btnClose', container).html(i18n.viewer.builderHTML.dataBtnClose);
-			$('.modal-footer .btnSave', container).html(i18n.viewer.builderHTML.dataBtnSave);
+			$('.dataExplain', container).html(i18n.viewer.builderHTML.dataExplain);
+			$('.dataNameLbl', container).html(i18n.viewer.builderHTML.dataNameLbl + ':');
+			$('.dataFolderListLbl', container).html(i18n.viewer.builderHTML.dataFolderListLbl + ':');
 		}
 	}
 });

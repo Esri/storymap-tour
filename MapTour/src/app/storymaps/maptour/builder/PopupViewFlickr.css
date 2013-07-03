@@ -1,0 +1,48 @@
+.popupViewFlickr .headerContainer {
+	margin-bottom: 15px;
+}
+
+.popupViewFlickr .btn-userLogin {
+	vertical-align: 4px;
+	margin-bottom: 15px;
+}
+
+.popupViewFlickr .signInMsg {
+	font-size: 14px;
+	color: #30750a;
+	font-weight: bold;
+	vertical-align: 2px;
+}
+
+.popupViewFlickr .signInMsg.error {
+	color: #c43d40;
+}
+
+.popupViewFlickr .signInMsg img {
+	vertical-align: -2px;
+}
+
+.popupViewFlickr .selectContainer {
+	width: 49%;
+	display: inline-block;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+
+.popupViewFlickr .selectContainer:nth-child(1) {
+	border-right: 1px solid black;
+}
+
+/*
+ * Location
+ */
+
+ .popupViewFlickr .useLocation {
+ 	text-align: center;
+ }
+ 
+ .popupViewFlickr .useLocation a {
+  	font-weight: normal;
+	text-decoration: underline;
+}

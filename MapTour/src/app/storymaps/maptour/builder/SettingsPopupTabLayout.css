@@ -1,0 +1,42 @@
+#settings-layout .layout-box {
+	display: inline-block;
+	width: 260px;
+	text-align: center;
+	padding-top: 10px;
+	margin-top: 15px;
+}
+
+#settings-layout .layout-box:nth-child(2) {
+	padding-right: 5px;
+}
+
+#settings-layout .layout-box > img {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#settings-layout .layout-box {
+	min-height: 250px;
+}
+
+#settings-layout .layout-box button {
+	display: inline-block;
+}
+
+#settings-layout .layout-box .selectedLayout {
+	font-weight: bold;
+	line-height: 26px;
+	display: none;
+}
+
+#settings-layout span:nth-child(2) {
+	border-right: 1px solid black;
+}
+
+#settings-layout .layout-box.selected .selectedLayout {
+	display: block;
+}
+
+#settings-layout .layout-box.selected button {
+	display: none;
+}

@@ -3,6 +3,7 @@
 	<head>
 		<title></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 		
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -48,7 +49,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '1.2';
+			var version = '2.0';
 			var isProduction = true;
 
 			function loadJS(url, isExternal)
@@ -75,8 +76,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("//serverapi.arcgisonline.com/jsapi/arcgis/3.5compact/js/esri/css/esri.css", true);
-			loadCSS("//serverapi.arcgisonline.com/jsapi/arcgis/3.5compact/js/dojo/dijit/themes/claro/claro.css", true);			
+			loadCSS("//js.arcgis.com/3.6/js/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.6/js/dojo/dijit/themes/claro/claro.css", true);			
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -87,21 +88,42 @@
 
 				loadCSS("app/storymaps/ui/crossfader/CrossFader.css");
 				loadCSS("app/storymaps/ui/multiTips/MultiTips.css");
-				loadCSS("app/storymaps/ui/InlineFieldEdit/InlineFieldEdit.css");
-				loadCSS("app/storymaps/ui/LoadingIndicator/LoadingIndicator.css");
+				loadCSS("app/storymaps/ui/inlineFieldEdit/InlineFieldEdit.css");
+				loadCSS("app/storymaps/ui/loadingIndicator/LoadingIndicator.css");
 
-				loadCSS("app/storymaps/maptour/core/Core.css");
-				loadCSS("app/storymaps/maptour/ui/Header.css");
+				loadCSS("app/storymaps/core/Core.css");
+				loadCSS("app/storymaps/maptour/core/MainView.css");
+				loadCSS("app/storymaps/ui/header/Header.css");
 				loadCSS("app/storymaps/maptour/ui/MapCommand.css");
 				loadCSS("app/storymaps/maptour/ui/desktop/Carousel.css");
 				loadCSS("app/storymaps/maptour/ui/desktop/PicturePanel.css");
 				
-				loadCSS("app/storymaps/maptour/builder/Common.css");
-				loadCSS("app/storymaps/maptour/builder/Builder.css");
-				loadCSS("app/storymaps/maptour/builder/DataPopup.css");
+				loadCSS("app/storymaps/builder/Builder.css");
+				loadCSS("app/storymaps/builder/BuilderPanel.css");
+				
+				loadCSS("app/storymaps/builder/SettingsPopup.css");
+				loadCSS("app/storymaps/maptour/builder/SettingsPopupTabLayout.css");
+				loadCSS("app/storymaps/builder/SettingsPopupTabColors.css");
+				loadCSS("app/storymaps/builder/SettingsPopupTabHeader.css");
+				loadCSS("app/storymaps/maptour/builder/SettingsPopupTabFields.css");
+				loadCSS("app/storymaps/builder/SettingsPopupTabExtent.css");
+				loadCSS("app/storymaps/maptour/builder/SettingsPopupTabZoom.css");
+				
+				loadCSS("app/storymaps/maptour/builder/InitPopup.css");
+				loadCSS("app/storymaps/maptour/builder/InitPopupViewHome.css");
+				loadCSS("app/storymaps/maptour/builder/InitPopupViewHostedFSCreation.css");
+				loadCSS("app/storymaps/maptour/builder/ImportPopupViewHome.css");
+				
+				loadCSS("app/storymaps/maptour/builder/PopupViewCSV.css");
+				loadCSS("app/storymaps/maptour/builder/PopupViewFlickr.css");
+				loadCSS("app/storymaps/maptour/builder/PopupViewFacebook.css");
+				loadCSS("app/storymaps/maptour/builder/PopupViewPicasa.css");
+				loadCSS("app/storymaps/maptour/builder/PopupViewGeoTag.css");
+				
+				loadCSS("app/storymaps/maptour/builder/BuilderView.css");
 				loadCSS("app/storymaps/maptour/builder/OrganizePopup.css");
 				loadCSS("app/storymaps/maptour/builder/AddPopup.css");
-				loadCSS("app/storymaps/maptour/builder/SettingsPopup.css");
+				loadCSS("app/storymaps/maptour/builder/HelpPopup.css");
 				
 				loadCSS("app/storymaps/maptour/ui/mobile/Common.css");
 				loadCSS("app/storymaps/maptour/ui/mobile/Carousel.css");
@@ -168,10 +190,11 @@
 				<div id="builderPanel">
 					<h4></h4>
 					<div>
-						<button type="button" class="btn builder-save" onclick="app.builder.save()"></button>
+						<button type="button" class="btn builder-save"></button>
 						<button type="button" class="btn builder-discard"></button>
-						<button type="button" class="btn small builder-settings" onclick="app.builder.settingsPopupShow()"></button>
+						<button type="button" class="btn builder-settings"></button>
 						<button type="button" class="btn small builder-view"></button>
+						<button type="button" class="btn small builder-help"></button>
 					</div>
 					<div id="save-counter"></div>
 				</div>
@@ -193,6 +216,12 @@
 				<!-- Builder picture panel buttons -->
 				<div class="editPictureButtons">
 					<div>
+						<span class="attributesWay">
+							<form>
+								<button class="btn btn-picture" type="button" class="btn"></button>
+								<button class="btn btn-thumbnail" type="button" class="btn"></button>
+							</form>
+						</span>
 						<span class="modernBrowserWay">
 							<form>
 								<input class="btn-picture" type="file" accept="image/jpeg" />
@@ -212,9 +241,14 @@
 				</div>
 			</div>
 			<!-- Builder bottom panel -->
+			<div id="builderPanel3">
+				<button id="introRecordButton" type="button" class="btn"></button>
+			</div>
+			<!-- Builder bottom panel -->
 			<div id="builderPanel2">
-				<button id="addPopupButton" type="button" class="btn" onclick="app.builder.addPopupShow()"></button>
-				<button id="organizeSlidesButton" type="button" class="btn" onclick="app.builder.organizePopupShow()"></button>
+				<button id="addPopupButton" type="button" class="btn"></button>
+				<button id="organizeSlidesButton" type="button" class="btn"></button>
+				<button id="importPopupButton" type="button" class="btn"></button>
 			</div>
 		</div>
 
@@ -257,39 +291,6 @@
 		<div id="loadingIndicator"></div>
 		<div id="loadingMessage"></div>
 
-		<!-- Data popup -->
-		<div class="modal hide" id="dataPopup" data-backdrop="static">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3></h3>
-			</div>
-			<div class="modal-body">
-				<p class="dataExplain"></p>
-				<form class="form-horizontal">
-					<div class="control-group">
-						<label class="control-label dataNameLbl" for="dataNameInput"></label>
-						<div class="controls">
-							<input id="dataNameInput" type="text" placeholder="" maxlength="80"/>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label dataFolderListLbl" for="dataFolderListInput"></label>
-						<div class="controls">
-							<div class="btn-group">
-								<select id="dataFolderListInput"></select>
-							</div>
-						</div>
-					</div>
-				</form>
-				<ul class="dataError"></ul>
-			</div>
-			<div class="modal-footer">
-				<span class="dataFooterText"></span>
-				<button class="btnSave btn btn-primary" data-dismiss="modal"></button>
-				<button class="btnClose btn" data-dismiss="modal" aria-hidden="true"></button>
-			</div>
-		</div>
-
 		<!-- Organize popup -->
 		<div class="modal hide" id="organizePopup" data-backdrop="static" tabindex="-1">
 			<div class="modal-header">
@@ -309,6 +310,7 @@
 				<div class="gridContainer">
 					<ul class="picturesGrid"></ul>
 				</div>
+				<div class="organizeIntro"></div>
 			</div>
 			<div class="modal-footer">
 				<button class="btnSave btn btn-primary" data-dismiss="modal"></button>
@@ -329,7 +331,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="maxPictureReached"></div>
-				<!-- Picture -->
+				<!-- Picture tab for layer with attachments -->
 				<div class="addImage tab-content">
 					<div class="imageUploadWrapper">
 						<form id="addImageUploadFormPicture" onsubmit="return false">
@@ -366,19 +368,29 @@
 						</div>
 					</div>
 				</div>
-				<!-- Information -->
-				<div class="addText tab-content">
+				<!-- Picture tab for embedded layer --> 
+				<div class="addImageAttributes tab-content">
 					<form>
 						<div>
 						<label></label>
-						<input class="tourPointNameField clearVal" type="text" placeholder="" maxlength="80"/>
+						<input class="tourPointPicUrl clearVal" type="text" placeholder=""/>
 						<label></label>
-						<textarea rows="4" class="tourPointDescr clearVal" placeholder=""></textarea>
+						<input class="tourPointThumbUrl clearVal" type="text" placeholder=""/>
 						</div>
 					</form>
 					<ul class="errorList"></ul>
 				</div>
-				<!-- Location -->
+				<!-- Information tab -->
+				<div class="addText tab-content">
+					<div>
+						<label></label>
+						<input class="tourPointNameField clearVal" type="text" placeholder="" />
+						<label></label>
+						<textarea rows="4" class="tourPointDescr clearVal" placeholder=""></textarea>
+					</div>
+					<ul class="errorList"></ul>
+				</div>
+				<!-- Location tab -->
 				<div class="addLocation tab-content">
 					<ul class="errorList"></ul>
 					<div>
@@ -401,7 +413,270 @@
 				<button class="btnClose btn" data-dismiss="modal" aria-hidden="true"></button>
 			</div>
 		</div>
+		
+		<!-- Init popup -->
+		<div class="modal hide" id="initPopup" data-backdrop="static">
+			<div class="modal-header">
+				<h3></h3>
+			</div>
+			<div class="modal-body">
+				<!-- views declared in init-import-views are injected -->
+			</div>
+			<div class="modal-footer">
+				<span class="dataFooterText"></span>
+				<button class="btnNext btn btn-primary"></button>
+				<button class="btnPrev btn"></button>
+			</div>
+		</div>
+		
+		<!-- Import popup -->
+		<div class="modal hide" id="importPopup" data-backdrop="static" tabindex="-1">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3></h3>
+			</div>
+			<div class="modal-body">
+				<!-- views declared in init-import-views are injected -->
+			</div>
+			<div class="modal-footer">
+				<span class="dataFooterText"></span>
+				<button class="btnNext btn btn-primary"></button>
+				<button class="btnPrev btn"></button>
+			</div>
+		</div>
+		
+		<div id="init-import-views">
+			<!-- Init specific -->
+			<div id="initPopupViewHome">
+				<div class="header2"></div>
+				<div class="sideContainer">
+					<div class="sideTitle sideTitle1"></div>
+					<table class="leftTable">
+						<tr>
+							<td class="btn-select-flickr">
+								<img src="resources/icons/builder-import-flickr.png" style="width: 50px"/>
+								<div>Flickr</div>
+							</td>
+							<td class="btn-select-fb">
+								<img src="resources/icons/builder-import-facebook.png" style="height: 46px"/>
+								<div style="margin-top: 6px;">Facebook</div>
+							</td>
+							<td class="btn-select-picasa">
+								<img src="resources/icons/builder-import-picasa.png" style="width: 50px"/>
+								<div>Picasa</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="btn-select-csv">
+								<img src="resources/icons/builder-import-csv.png" style="width: 50px"/>
+								<div class="csvLbl"></div>
+							</td>
+							<td class="btn-select-scratch"><img src="resources/icons/builder-import-scratch.png" style="width: 40px"/>
+								<div class="scratchLbl"></div>
+							</td>
+						</tr>
+						
+					</table>
+				</div>
+				<div class="sideContainer">
+					<div class="sideTitle sideTitle2"></div>
+					<table>
+						<tr>
+							<td class="btn-select-hostedFS">
+								<img src="resources/icons/builder-import-arcgis.png" style="width: 120px"/>
+								<div>ArcGIS Online</div>
+								<div>Hosted Feature Service</div>
+							</td>
+						</tr>
+					</table>
+					<div class="notAvailable hostedFsNote"></div>
+				</div>
+				<div class="footer1"></div>
+				<div class="footer2"></div>
+			</div>
+			
+			<div id="initPopupViewHostedFSCreation">
+				<p class="dataExplain"></p>
+				<form class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label dataNameLbl" for="dataNameInput"></label>
+						<div class="controls">
+							<input id="dataNameInput" type="text" placeholder="" maxlength="80"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label dataFolderListLbl" for="dataFolderListInput"></label>
+						<div class="controls">
+							<div class="btn-group">
+								<select id="dataFolderListInput"></select>
+							</div>
+						</div>
+					</div>
+				</form>
+				<ul class="dataError"></ul>
+			</div>
+			
+			<!-- Import specific -->
+			<div id="importPopupViewHome">
+				<h3 class="header"></h3>
+				<table>
+					<tr>
+						<td class="btn-select-flickr">
+							<img src="resources/icons/builder-import-flickr.png" style="width: 50px"/>
+							<div>Flickr</div>
+						</td>
+						<td class="btn-select-fb">
+							<img src="resources/icons/builder-import-facebook.png" style="height: 46px"/>
+							<div style="margin-top: 6px;">Facebook</div>
+						</td>
+						<td class="btn-select-picasa">
+							<img src="resources/icons/builder-import-picasa.png" style="width: 50px"/>
+							<div>Picasa</div>
+						</td>
+						<td class="btn-select-csv">
+							<img src="resources/icons/builder-import-csv.png" style="width: 50px"/>
+							<div class="csvLbl"></div>
+						</td>
+					</tr>
+				</table>
+				<div class="footer"></div>
+			</div>
+			
+			<!-- Common -->
+			<div id="popupViewCSV" class="popupViewCSV">
+				<div class="popupViewCSVView popupViewCSV-home">
+					<div class="csvUploadWrapper">
+						<form onsubmit="return false">
+							<input class="uploadButton btn-success btn-large" type="file" accept=".csv" />
+						</form>
+					</div>
+				</div>
+				<div class="popupViewCSVView popupViewCSV-result">
+					<div class="csvResultHeader"></div>
+					<div class="csvResultFields"></div>
+					<div class="csvResultMap"></div>
+				</div>
+				<div class="popupViewCSVView popupViewCSV-error">
+				</div>
+			</div>
+			<div id="popupViewFlickr" class="popupViewFlickr">
+				<div class="headerContainer">
+					<span class="header"></span>
+					<span class="commonHeader"></span>
+				</div>
+				<input class="selectUserName" type="text" value=""/>
+				<button class="btn btn-userLogin"></button>
+				<span class="signInMsg"></span>
+				<div>
+					<div class="selectContainer">
+						<div class="control-group">
+							<label class="control-label" for="flickrListSet"></label>
+							<div class="controls">
+								<div class="btn-group">
+									<select id="flickrListSet"></select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="selectContainer">
+						<div class="control-group">
+							<label class="control-label" for="flickrListTag"></label>
+							<div class="controls">
+								<div class="btn-group">
+									<select id="flickrListTag"></select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="useLocation">
+						<input type="checkbox" name="fbUseLocation"/>
+						<span></span>
+					</div>
+				</div>
+			</div>
+			<div id="popupViewFacebook" class="popupViewFacebook">
+				<div class="headerContainer">
+					<span class="header"></span>
+					<span class="commonHeader"></span>
+				</div>
+				<div>
+					<div class="selectContainer">
+						<div class="control-group">
+							<div class="sideHeader"></div>
+							<div class="facebookLogin">
+								<fb:login-button size="small" show-faces="true" width="200" max-rows="1" scope="user_photos" autologoutlink="true"></fb:login-button>
+							</div>
+							<label class="control-label" for="facebookListAlbum1"></label>
+							<div class="controls">
+								<div class="btn-group">
+									<select id="facebookListAlbum1"></select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="selectContainer">
+						<div class="control-group">
+							<div class="sideHeader"></div>
+							<input class="selectPageName" type="text" value=""/>
+							<button class="btn btn-pageLookup"><i class="icon-search"></i></button>
+							<div class="spacer">&nbsp;</div>
 
+							<label class="control-label" for="facebookListAlbum2"></label>
+							<div class="controls">
+								<div class="btn-group">
+									<select id="facebookListAlbum2"></select>
+								</div>
+							</div>
+							<div class="lookingUpMsg"></div>
+						</div>
+					</div>
+				</div>
+				<div class="useLocation">
+					<input type="checkbox" name="fbUseLocation"/>
+					<span></span>
+				</div>
+			</div>
+			<div id="popupViewPicasa" class="popupViewPicasa">
+				<div class="headerContainer">
+					<span class="header"></span>
+					<span class="commonHeader"></span>
+				</div>
+				<div class="contentContainer">
+					<input class="selectUserName" type="text" value=""/>
+					<button class="btn btn-userLogin"></button>
+					<span class="signInMsg"></span>
+					
+					<label class="control-label" for="picasaListAlbum"></label>
+					<div class="controls">
+						<div class="btn-group">
+							<select id="picasaListAlbum"></select>
+						</div>
+					</div>
+					
+					<div class="howToFind">
+						<a></a>
+					</div>
+				</div>
+			</div>
+			<div id="popupViewGeoTag" class="popupViewGeoTag">
+				<div class="header"></div>
+				<div class="leftPanel">
+					<ul class="nav nav-tabs">
+						<li><a></a></li>
+						<li><a></a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tobelocated"></div>
+						<div class="located"></div>
+					</div>
+				</div>
+				<div class="mapPanel">
+					<div class="geotagMap"></div>
+					<div class="clickOrTapInfo"></div>
+				</div>
+			</div>
+		</div>
+		
 		<!-- Settings popup -->
 		<div class="modal hide" id="settingsPopup" data-backdrop="static" tabindex="-1">
 			<div class="modal-header">
@@ -418,7 +693,7 @@
 			</div>
 			<div class="modal-body">
 				<!-- Layout -->
-				<div id="layout" class="tab-content">
+				<div id="settings-layout" class="tab-content">
 					<p></p>
 					<span class="layout-box">
 						<div></div>
@@ -434,7 +709,7 @@
 					</span>
 				</div>
 				<!-- Colors -->
-				<div id="appearance" class="tab-content">
+				<div id="settings-colors" class="tab-content">
 					<p></p>
 					<form class="form-horizontal">
 						<div id="colorScheme" class="control-group" style="margin-bottom: 5px">
@@ -443,8 +718,8 @@
 						</div>
 					</form>
 				</div>
-				<!-- Logo -->
-				<div id="logo" class="tab-content">
+				<!-- Header -->
+				<div id="settings-header" class="tab-content">
 					<p></p>
 					<form class="form-horizontal form1">
 						<div class="control-group">
@@ -488,7 +763,7 @@
 					</form>
 				</div>
 				<!-- Data Fields -->
-				<div id="fields" class="tab-content">
+				<div id="settings-fields" class="tab-content">
 					<div class="error-msg"></div>
 					<p></p>
 					<form class="form-horizontal">
@@ -514,7 +789,7 @@
 					<div class="error-msg2"></div>
 				</div>
 				<!-- Extent -->
-				<div id="extent" class="tab-content">
+				<div id="settings-extent" class="tab-content">
 					<p></p>
 					<div class="extentMapControl">
 						<button class="btn btn-small" id="extentModify"></button>
@@ -525,7 +800,7 @@
 					<div class="explain2"></div>
 				</div>
 				<!-- Zoom level -->
-				<div id="zoom" class="tab-content">
+				<div id="settings-zoom" class="tab-content">
 					<form class="form-horizontal">
 						<p></p>
 						<div class="control-group" style="margin-bottom: 5px">
@@ -542,6 +817,31 @@
 			<div class="modal-footer">
 				<span class="error"></span>
 				<button class="btnSave btn btn-primary" data-dismiss="modal"></button>
+				<button class="btnClose btn" data-dismiss="modal" aria-hidden="true"></button>
+			</div>
+		</div>
+		
+		<!-- Help popup -->
+		<div class="modal hide" id="helpPopup" data-backdrop="static" tabindex="-1">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3></h3>
+			</div>
+			<div class="helpPopupHeader modal-tabs">
+				<div class="tab"></div>
+				<div class="tab"></div>
+				<div class="tab"></div>
+				<div class="tab"></div>
+				<div class="tab"></div>
+			</div>
+			<div class="modal-body">
+				<div id="help-tab1" class="tab-content"></div>
+				<div id="help-tab2" class="tab-content"></div>
+				<div id="help-tab3" class="tab-content"></div>
+				<div id="help-tab4" class="tab-content"></div>
+				<div id="help-tab5" class="tab-content"></div>
+			</div>
+			<div class="modal-footer">
 				<button class="btnClose btn" data-dismiss="modal" aria-hidden="true"></button>
 			</div>
 		</div>
@@ -576,7 +876,7 @@
 		</div>
 
 		<script type="text/javascript">
-			loadJS('//serverapi.arcgisonline.com/jsapi/arcgis/3.5/', true);
+			loadJS('//js.arcgis.com/3.6/init.js', true);
 			loadJS('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', true);
 			
 			loadJS('app/maptour-config.js');
@@ -611,6 +911,7 @@
 				loadJS('lib/jquery.ui.touch-punch.min.js');
 				loadJS('lib/jquery.exif.js');
 				loadJS('lib/jquery.fastClick.js');
+				loadJS('lib/jquery.hammer.min.js');
 				loadJS('lib/megapix-image.js');
 				loadJS('lib/spectrum/spectrum.js');
 				loadJS('lib/bootstrap.file-input.js');
@@ -639,7 +940,6 @@
 		</script>
 
 		<script type="text/javascript">
-			dojo.requireLocalization("esriTemplate", "template");
 			var loadingIndicator = {};
 			var i18n = null;
 			
@@ -651,29 +951,28 @@
 				});
 			}
 			else {
-			 	require(["storymaps/ui/LoadingIndicator/LoadingIndicator", "esri/map", "dojo/domReady!"], function(LoadingIndicator) {
-					i18n = dojo.i18n.getLocalization("esriTemplate", "template");
-			 		loadingIndicator = new LoadingIndicator("loadingIndicator", "loadingMessage");
-			 		loadingIndicator.init();
-					loadingIndicator.setMessage(i18n.viewer.loading.step1);
-			 	});
-			 	
-			 	require(["esri/map", "dojo/ready"], function(){
-			 		var urlParams = esri.urlToObject(document.location.search).query || {};
-			 		var isInBuilderMode = urlParams.edit != null;
-			 		
-			 		if (isInBuilderMode) {
-			 			require(["storymaps/maptour/core/Core", "storymaps/maptour/builder/Builder"], function(core, builder) {
-			 				core.init(builder);
-			 				builder.init(core);
-			 			});
-			 		}
-			 		else {
-			 			require(["storymaps/maptour/core/Core"], function(core) {
-			 				core.init();
-			 			});
-			 		}
-			 	});
+			 	dojo.addOnLoad(function() {
+					require(["dojo/i18n", "storymaps/ui/loadingIndicator/LoadingIndicator", "esri/map", "dojo/domReady!", "esri/arcgis/Portal", "esri/arcgis/utils", "dojo/ready"], function(jsapiBundle, LoadingIndicator) {
+						i18n = jsapiBundle.getLocalization("esriTemplate", "template");
+				 		loadingIndicator = new LoadingIndicator("loadingIndicator", "loadingMessage");
+				 		loadingIndicator.init();
+						loadingIndicator.setMessage(i18n.viewer.loading.step1);
+						
+					 	require(["storymaps/core/Core", "storymaps/maptour/core/MainView"], function(Core, MainView){
+					 		var urlParams = esri.urlToObject(document.location.search).query || {};
+					 		var isInBuilderMode = urlParams.edit != null;
+					 		
+					 		if (isInBuilderMode) {
+					 			require(["storymaps/builder/Builder", "storymaps/maptour/builder/BuilderView"], function(Builder, BuilderView) {
+					 				Core.init(new MainView(), Builder);
+					 				Builder.init(Core, new BuilderView());
+					 			});
+					 		}
+					 		else
+					 			Core.init(new MainView());
+					 	});
+				 	});
+				});
 			 }
 		</script>
 	</body>

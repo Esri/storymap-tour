@@ -9,6 +9,7 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 	{
 		// The color need to be applied on each item during rendering
 		var _bgColor = "";
+		var _firstDisplaySinceRendered = true;
 		
 		this.init = function(slides, bgColor)
 		{
@@ -27,6 +28,13 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 		{			
 			$(selector).show();
 			
+			if( _firstDisplaySinceRendered ) {
+				$(selector).find(".tpImgPane img").each(function(i, img){ 
+					$(img).attr("src", $(img).data("src"));
+				});
+				_firstDisplaySinceRendered = false;
+			}
+			
 			setTimeout(function(){
 				if( app.data.getCurrentIndex() == 0 )
 					$('body').animate({scrollTop:'0px'}, 0);
@@ -44,6 +52,8 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 		{
 			var fragment = document.createDocumentFragment();
 			
+			_firstDisplaySinceRendered = true;
+			
 			$.each(slides, function(i, tp) {
 				var attributes = tp.attributes;
 				
@@ -54,10 +64,14 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 				var imgPane = document.createElement('div');
 				imgPane.className = "tpImgPane";
 				mainEl.appendChild(imgPane);
+				
+				var imgContainer = document.createElement('div');
+				imgContainer.className = "tpImgContainer";
+				imgPane.appendChild(imgContainer);
 
 				var imgEl = document.createElement('img');
-				imgEl.src = attributes.getThumbURL();
-				imgPane.appendChild(imgEl);
+				imgEl.setAttribute(location.hash == "#list" ? 'src' : 'data-src', attributes.getThumbURL());
+				imgContainer.appendChild(imgEl);
 
 				var iconEl = document.createElement('img');
 				iconEl.className = "tpIcon";

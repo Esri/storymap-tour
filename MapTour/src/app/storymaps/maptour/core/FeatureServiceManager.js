@@ -67,7 +67,7 @@ define(["storymaps/maptour/core/TourPointAttributes",
 				var pict  = attachmentInfos[0].id < attachmentInfos[1].id ? attachmentInfos[0] : attachmentInfos[1];
 				var thumb = attachmentInfos[0].id > attachmentInfos[1].id ? attachmentInfos[0] : attachmentInfos[1];
 				
-				// Check the type of attahcment
+				// Check the type of attachment
 				if( MapTourHelper.isSupportedMedia(pict.name) && MapTourHelper.isSupportedMedia(thumb.name) ) {
 					var graphic = new esri.Graphic(
 						new esri.geometry.Point(

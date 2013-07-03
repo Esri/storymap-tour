@@ -1,0 +1,39 @@
+.popupViewCSV .csvUploadWrapper {
+	color: #FFFFFF;
+	height: 380px;
+	width: 100%;
+	border: 4px dashed #848484;
+	margin-left: -4px;
+	text-align: center;
+}
+
+.popupViewCSV .csvUploadWrapper a {
+	margin-top: 160px;
+}
+
+.popupViewCSV .csvResultMap {
+	width: 350px !important;
+} 
+
+.popupViewCSV .csvResultFields {
+	float: right;
+	width: 170px;
+	text-align: left;
+}
+
+.popupViewCSV .csvResultFields ul {
+	margin-left: 25px;
+}
+
+.popupViewCSV .csvResultHeader {
+	margin-bottom: 10px;
+}
+
+.popupViewCSV .csvResultHeader ul {
+	margin-left: 30px
+}
+
+.popupViewCSV .csvResultHeader.error {
+	font-weight: normal;
+	color: #c43d40;
+}

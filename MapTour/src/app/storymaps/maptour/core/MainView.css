@@ -1,0 +1,89 @@
+#mapPanel {
+	height:100%;
+	float:right;
+	background-color:#848484;
+	position:relative;
+}
+
+#mainMap {
+	border:none;
+	padding:0;
+	height:100%;
+	width:100% !important;
+	overflow:hidden;
+}
+
+.modern-layout #mapPanel {
+	width: 100% !important;
+	float:inherit;
+}
+
+.modern-layout .logo-med {
+	display: none !important;
+}
+
+.modern-layout:not(.mobile-view) .esriAttribution {
+	display: none !important;
+}
+
+#footer {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	background-color:#c2c2c2;
+}
+
+.builderMobile a {
+	font-size: 24px;
+	padding-top: 2px;
+	padding-bottom: 6px;
+}
+
+.modern-layout.mobile-view #footer {
+	width:100%;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.modern-layout #footer {
+	width: auto;
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	right: 10px;
+}
+
+/* FS/CSV/SHP layers will be hidden until explicitly set visible */
+#mainMap svg > g {
+	visibility: hidden;
+}
+
+#mainMap svg g#mainMap_graphics_layer {
+	visibility: visible;
+}
+
+#hoverInfo {
+	font-size:10px;
+	font-family:Verdana, Geneva, sans-serif;
+	position:absolute;
+	padding:5px;
+	max-width:200px;
+	background-color:#FFC;
+	border:#848484 solid 1px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-moz-box-shadow: 2px 2px 10px #333;
+	-webkit-box-shadow: 2px 2px 10px #333;
+	box-shadow: 2px 2px 10px #333;
+	filter: progid: DXImageTransform.Microsoft.Shadow(strength = 2, direction = 135, color = '#333333');
+	-ms-filter: "progid: DXImageTransform.Microsoft.Shadow(strength = 2, Direction = 135, Color = '#333333')";
+	overflow:hidden;
+	display:none;
+	z-index:100;
+    word-wrap: break-word;
+}
+

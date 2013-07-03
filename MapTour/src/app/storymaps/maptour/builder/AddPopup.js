@@ -9,6 +9,7 @@ define(["esri/dijit/Geocoder",
 	return function AddPopup(container)
 	{		
 		var _this = this,
+			_modeAttachments = null,
 			_tempItemData,
 			_map,
 			_geocoder,
@@ -35,8 +36,12 @@ define(["esri/dijit/Geocoder",
 			_thumbnailName = _thumbnailForm.find('.fileName'),
 			_thumbnailBtn = _thumbnailForm.find('input'),
 
+			_picUrl = $(_container).find(".tourPointPicUrl"),
+			_thumbUrl = $(_container).find(".tourPointThumbUrl"),
+			
 			_name = $(_container).find(".tourPointNameField"),
 			_description = $(_container).find(".tourPointDescr"),
+			
 			_lat = $(_container).find(".latitude"),
 			_long = $(_container).find(".longitude"),
 			_pinContainer = $(_container).find(".pinContainer"),
@@ -51,6 +56,8 @@ define(["esri/dijit/Geocoder",
 		
 		this.present = function()
 		{
+			_modeAttachments = ! app.data.sourceIsNotFSAttachments();
+			
 			// If on application loading or right now, the dataset contained more than APPCFG.MAX_ALLOWED_POINTS features
 			// Add is disabled permanently (dropping point has no effect)
 			if( app.data.getMaxAllowedFeatureReached() || app.data.getTourPoints().length >= APPCFG.MAX_ALLOWED_POINTS ) {
@@ -75,6 +82,9 @@ define(["esri/dijit/Geocoder",
 				pictureId: null,
 				// If using FileReader API and canvas
 				pictureData: null,
+				// If using attributes
+				picUrl: null,
+				thumbUrl: null,
 				name: '',
 				description: '',
 				color: APPCFG.PIN_DEFAULT_CFG,
@@ -88,7 +98,7 @@ define(["esri/dijit/Geocoder",
 			_tabs.eq(2).addClass("disabled");
 			cleanTabsIcons();
 			_tabContent.hide();
-			_tabContent.eq(0).show();
+			_tabContent.eq(_modeAttachments ? 0 : 1).show();
 			_long.val("");
 			_lat.val("");
 			changeFooterButtons("enabled");
@@ -107,6 +117,17 @@ define(["esri/dijit/Geocoder",
 			_preImg.attr("src", "").hide();
 			_thumbnailForm.hide();
 			_thumbnailCanvas.getContext("2d").clearRect(0,0,_thumbnailCanvas.width,_thumbnailCanvas.height);
+			
+			// Information tab
+			var nameLength = 254, descrLength = 1000;
+			$.each(app.data.getSourceLayer().fields, function(i, field){
+				if( field.name == app.data.getFieldsConfig().getNameField() )
+					nameLength = field.length;
+				if( field.name == app.data.getFieldsConfig().getDescriptionField() )
+					descrLength = field.length;
+			});
+			_name.attr("maxlength", nameLength);
+			_description.attr("maxlength", descrLength);
 			
 			// Map tab
 			if( _map ) {
@@ -133,7 +154,13 @@ define(["esri/dijit/Geocoder",
 			_tabs.removeClass("active");
 			$(this).addClass("active");
 			_tabContent.hide();
-			_tabContent.eq($(this).index()).show();
+			
+			var tabIndex = $(this).index();
+			if( tabIndex == 0 && ! _modeAttachments )
+				tabIndex = 1;
+			else if ( tabIndex != 0 )
+				tabIndex++;
+			_tabContent.eq(tabIndex).show();
 			
 			// Open Location tab
 			if($(this).index() == 2) {
@@ -160,28 +187,46 @@ define(["esri/dijit/Geocoder",
 
 			_error.hide().html("");
 
-			if (Helper.browserSupportAttachementUsingFileReader() && ! _tempItemData.pictureData){
-				_tabs.eq(0).children(".tab-icon").removeClass("icon-ok").addClass("icon-exclamation-sign");
-				allVerified = false;
-				_error.eq(0).append("<li>"+i18n.viewer.addPopupJS.errorNoPhoto+"</li>").show();
+			// Picture tab
+			if( _modeAttachments ) {
+				if (Helper.browserSupportAttachementUsingFileReader() && ! _tempItemData.pictureData){
+					_tabs.eq(0).children(".tab-icon").removeClass("icon-ok").addClass("icon-exclamation-sign");
+					allVerified = false;
+					_error.eq(0).append("<li>"+i18n.viewer.addPopupJS.errorNoPhoto+"</li>").show();
+				}
+				else if( ! Helper.browserSupportAttachementUsingFileReader() && _thumbnailName.html() == i18n.viewer.builderHTML.addNoThumbSelected ) {
+					_tabs.eq(0).children(".tab-icon").removeClass("icon-ok").addClass("icon-exclamation-sign");
+					allVerified = false;
+					_error.eq(1).append("<li>"+i18n.viewer.addPopupJS.errorNoThumbnail+"</li>").show();
+				}		
+				else {
+					_tabs.eq(0).children(".tab-icon").removeClass("icon-exclamation-sign").addClass("icon-ok");
+				}
 			}
-			else if( ! Helper.browserSupportAttachementUsingFileReader() && _thumbnailName.html() == i18n.viewer.builderHTML.addNoThumbSelected ) {
-				_tabs.eq(0).children(".tab-icon").removeClass("icon-ok").addClass("icon-exclamation-sign");
-				allVerified = false;
-				_error.eq(1).append("<li>"+i18n.viewer.addPopupJS.errorNoThumbnail+"</li>").show();
-			}		
 			else {
-				_tabs.eq(0).children(".tab-icon").removeClass("icon-exclamation-sign").addClass("icon-ok");
+				if( ! _tempItemData.picUrl )
+					_error.eq(2).append("<li>"+i18n.viewer.addPopupJS.errorInvalidPicUrl+"</li>");
+				if( ! _tempItemData.thumbUrl )
+					_error.eq(2).append("<li>"+i18n.viewer.addPopupJS.errorInvalidThumbUrl+"</li>");
+				
+				if( ! _tempItemData.picUrl || ! _tempItemData.thumbUrl ) {
+					allVerified = false;
+					_tabs.eq(0).children(".tab-icon").removeClass("icon-ok").addClass("icon-exclamation-sign");
+					_error.eq(2).show();
+				}
+				else
+					_tabs.eq(0).children(".tab-icon").removeClass("icon-exclamation-sign").addClass("icon-ok");
 			}
 
+			// Information tab			
 			if (_tempItemData.name === "" /*|| _tempItemData.description === ""*/){
 				if(!_tabs.eq(1).hasClass("disabled") || saving){
 					_tabs.eq(1).children(".tab-icon").removeClass("icon-ok").addClass("icon-exclamation-sign");
-					_error.eq(2).show();
+					_error.eq(3).show();
 				}
 				
 				if(_tempItemData.name === "")
-					_error.eq(2).append("<li>"+i18n.viewer.addPopupJS.errorNoName+"</li>");
+					_error.eq(3).append("<li>"+i18n.viewer.addPopupJS.errorNoName+"</li>");
 				//if(_tempItemData.description === "")
 				//	_error.eq(2).append("<li>"+i18n.viewer.addPopupJS.errorNoDescription+"</li>");
 
@@ -193,11 +238,12 @@ define(["esri/dijit/Geocoder",
 				}
 			}
 
+			// Location tab
 			if (!_tempItemData.point){
 				if(!_tabs.eq(2).hasClass("disabled") || saving){
 					_tabs.eq(2).children(".tab-icon").removeClass("icon-ok").addClass("icon-exclamation-sign");
-					_error.eq(3).append("<li>"+i18n.viewer.addPopupJS.errorNoLocation+"</li>");
-					_error.eq(3).show();
+					_error.eq(4).append("<li>"+i18n.viewer.addPopupJS.errorNoLocation+"</li>");
+					_error.eq(4).show();
 				}
 				allVerified = false;
 			}
@@ -207,7 +253,7 @@ define(["esri/dijit/Geocoder",
 				}
 			}
 
-			if(saving){
+			if(saving) {
 				return allVerified;
 			}
 		}
@@ -237,33 +283,51 @@ define(["esri/dijit/Geocoder",
 				};
 				
 				// Using form
-				if( _tempItemData.objectId && _tempItemData.pictureId ) {
-					app.data.saveTemporaryTourPointUsingForm(
-						_tempItemData.objectId,
-						_tempItemData.point,
-						_tempItemData.name,
-						_tempItemData.description,
-						_tempItemData.color,
-						_tempItemData.pictureId,
-						"addImageUploadFormThumbnail",
-						addSuccessCallback,
-						addFailCallback
-					);
+				if(_modeAttachments) {
+					if( _tempItemData.objectId && _tempItemData.pictureId ) {
+						app.data.saveTemporaryTourPointUsingForm(
+							_tempItemData.objectId,
+							_tempItemData.point,
+							_tempItemData.name,
+							_tempItemData.description,
+							_tempItemData.color,
+							_tempItemData.pictureId,
+							"addImageUploadFormThumbnail",
+							addSuccessCallback,
+							addFailCallback
+						);
+					}
+					// Using canvas
+					else {
+						var mainPictureResampled = $("input[name=picSize]:checked").val();
+						if( mainPictureResampled == "resample")
+							_tempItemData.pictureData = _mainPicCanvas.toDataURL("image/jpeg");
+						
+						app.data.addTourPointUsingData(
+							_tempItemData.point,
+							_tempItemData.name,
+							_tempItemData.description,
+							_tempItemData.color,
+							_tempItemData.pictureData,
+							_thumbnailCanvas.toDataURL("image/jpeg"),
+							addSuccessCallback,
+							addFailCallback
+						);
+					}
 				}
-				// Using canvas
 				else {
-					var mainPictureResampled = $("input[name=picSize]:checked").val();
-					if( mainPictureResampled == "resample")
-						_tempItemData.pictureData = _mainPicCanvas.toDataURL("image/jpeg");
-					
-					app.data.addTourPointUsingData(
+					app.data.addTourPointUsingAttributes(
 						_tempItemData.point,
 						_tempItemData.name,
 						_tempItemData.description,
 						_tempItemData.color,
-						_tempItemData.pictureData,
-						_thumbnailCanvas.toDataURL("image/jpeg"),
-						addSuccessCallback,
+						_tempItemData.picUrl,
+						_tempItemData.thumbUrl,
+						function() {
+							$(".modal-footer .addSpinner", _container).hide();
+							$(".modal-footer .success", _container).html(i18n.viewer.builderHTML.addUploading).hide();
+							$(_container).modal("hide");
+						},
 						addFailCallback
 					);
 				}
@@ -290,7 +354,7 @@ define(["esri/dijit/Geocoder",
 		}
 		
 		//
-		// Picture tab
+		// Picture tab - Attachments
 		//
 		
 		function pictureSelected(files)
@@ -320,7 +384,7 @@ define(["esri/dijit/Geocoder",
 		}
 
 		//
-		// Picture tab - File Reader
+		// Picture tab - Attachments - File Reader
 		// 
 
 		function loadPictureFromFileReader(file)
@@ -401,7 +465,7 @@ define(["esri/dijit/Geocoder",
 		}
 		
 		//
-		// Picture tab - Form
+		// Picture tab - Attachments - Form
 		//
 		
 		function loadPictureFromForm()
@@ -450,7 +514,7 @@ define(["esri/dijit/Geocoder",
 		}
 		
 		//
-		// Picture tab - EXIF
+		// Picture tab - Attachments - EXIF
 		//
 
 		function displayExifInfo(exif)
@@ -578,8 +642,28 @@ define(["esri/dijit/Geocoder",
 		}
 		
 		//
+		// Picture tab - attributes
+		//
+		
+		function validateImageURL(textval)
+		{
+			return /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?((\.jp(e)?g)|(.png))$/.test(textval);
+		}
+		
+		_picUrl.change(function()
+		{
+			_tempItemData.picUrl = validateImageURL(_picUrl.val()) ? _picUrl.val() : '';
+		});
+
+		_thumbUrl.change(function()
+		{
+			_tempItemData.thumbUrl = validateImageURL(_thumbUrl.val()) ? _thumbUrl.val() : '';
+		});
+		
+		//
 		// Information tab
 		//
+		
 		_name.change(function(){
 			_tempItemData.name = _name.val();
 		});
@@ -732,8 +816,14 @@ define(["esri/dijit/Geocoder",
 			if( success ) {
 				if( _map.spatialReference.wkid == 102100 )
 					geom = esri.geometry.geographicToWebMercator(geom);
-				else if ( _map.spatialReference.wkid != 4326 )
-					return;
+				else if ( _map.spatialReference.wkid != 4326 ) {
+					esri.config.defaults.geometryService.project([geom], _map.spatialReference, function(features){
+						if( ! features || ! features[0] )
+							return;
+						
+						latLongChange(features[0]);
+					});
+				}
 				
 				latLongChange(geom);
 			}
@@ -786,27 +876,37 @@ define(["esri/dijit/Geocoder",
 		{
 			dojo.query('#addPopup .maxPictureReached')[0].innerHTML = i18n.viewer.builderHTML.addMaxPointReached;
 			
+			// Tabs
 			dojo.query('#addPopup h3')[0].innerHTML = i18n.viewer.builderHTML.addHeader;
 			dojo.query('#addPopup .tab')[0].innerHTML += i18n.viewer.builderHTML.addTabPicture;
 			dojo.query('#addPopup .tab')[1].innerHTML += i18n.viewer.builderHTML.addTabInformation;
 			dojo.query('#addPopup .tab')[2].innerHTML += i18n.viewer.builderHTML.addTabLocation;
 			
+			// Picture - attachments
 			// Set button localization and then init events
 			var selectCaption = Helper.browserSupportAttachementUsingFileReader() ? i18n.viewer.builderHTML.addSelectCaption : i18n.viewer.builderHTML.addSelectCaptionNoFileReader;
 			$(_uploadBtn).attr("title", selectCaption);	
 			$(_uploadBtn).closest("a").html($(_uploadBtn).closest("a").html().replace('Browse', selectCaption));
 			$('#addPopup #addImageUploadFormThumbnail a').html($('#addPopup #addImageUploadFormThumbnail a').html().replace('Browse', i18n.viewer.builderHTML.addSelectThumbnail));
 			initFileSelectEvents();
-			
 			_thumbnailName.html(i18n.viewer.builderHTML.addNoThumbSelected);
-			
 			dojo.query('#addPopup .changePhoto button')[0].innerHTML = i18n.viewer.builderHTML.addChangePhoto;
 			dojo.query('#addPopup .settingHeading')[0].innerHTML = i18n.viewer.builderHTML.addCameraSettingsHeader;
 			dojo.query('#addPopup .settingHeading')[1].innerHTML = i18n.viewer.builderHTML.addThumbnailHeader;
+			
+			// Picture - attributes
+			dojo.query('#addPopup .addImageAttributes label')[0].innerHTML = i18n.viewer.builderHTML.addLabelPicUrl;
+			dojo.query('#addPopup .addImageAttributes label')[1].innerHTML = i18n.viewer.builderHTML.addLabelThumbUrl;
+			dojo.attr(dojo.query('#addPopup .addImageAttributes input')[0],"placeholder",i18n.viewer.builderHTML.addTextPlaceholderUrl+"...");
+			dojo.attr(dojo.query('#addPopup .addImageAttributes input')[1],"placeholder",i18n.viewer.builderHTML.addTextPlaceholderUrl+"...");
+			
+			// Information
 			dojo.query('#addPopup .addText label')[0].innerHTML = i18n.viewer.builderHTML.addLabelName;
 			dojo.query('#addPopup .addText label')[1].innerHTML = i18n.viewer.builderHTML.addLabelDescription;
 			dojo.attr(dojo.query('#addPopup .addText input')[0],"placeholder",i18n.viewer.builderHTML.addTextPlaceholder+"...");
 			dojo.attr(dojo.query('#addPopup .addText textarea')[0],"placeholder",i18n.viewer.builderHTML.addTextPlaceholder+"...");
+			
+			// Location
 			dojo.query('#addPopup .addLocation label')[0].innerHTML = i18n.viewer.builderHTML.addPinColor;
 			dojo.query('#addPopup .addLocation label')[1].innerHTML = i18n.viewer.builderHTML.addLatitude;
 			dojo.query('#addPopup .addLocation label')[2].innerHTML = i18n.viewer.builderHTML.addLongitude;

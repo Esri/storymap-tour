@@ -4,7 +4,7 @@
 
 .modal .modal-body {
     max-height: none; 
-  }
+ }
 
 /*
 #addPopup .modal-body {
@@ -15,7 +15,6 @@
 .addPopupHeader {
 	width: 100%;
 	margin-top: -3px;
-	margin-left: -2px;
 }
 
 .addPopupHeader button {
@@ -61,7 +60,7 @@
 }
 
 /*
- * Picture tab
+ * Picture tab - attachments
  */
 .addImage{
 	font-family:Arial, Helvetica, sans-serif;
@@ -70,9 +69,7 @@
 #addPopup .imageUploadWrapper {
 	color:#FFFFFF;
 	height: 380px;
-	width: 100%;
 	border: 4px dashed #848484;
-	margin-left:-4px;
 }
 
 #addImageUploadFormPicture{
@@ -173,6 +170,14 @@
 }
 
 /*
+ * Picture tab - attributes
+ */
+
+.addImageAttributes input {
+	width: 97%;
+}
+
+/*
  * Information tab
  */
 
@@ -180,7 +185,7 @@
 	position: relative;
 	left: 0px;
 	top: 0px;
-	width: 98%;
+	width: 97%;
 }
 
 /*

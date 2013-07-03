@@ -169,11 +169,17 @@ define(["storymaps/maptour/core/WebApplicationData",
 			var fieldsOverride = WebApplicationData.getFieldsOverride();
 			var nameField = fieldsOverride ? fieldsOverride.getNameField() : _fields.getNameField();
 			var descField = fieldsOverride ? fieldsOverride.getDescriptionField() : _fields.getDescriptionField();
-			var colorField= fieldsOverride ? fieldsOverride.getIconColorField() : _fields.getIconColorField();
+			var colorField = fieldsOverride ? fieldsOverride.getIconColorField() : _fields.getIconColorField();
+			var picUrlField = fieldsOverride ? fieldsOverride.getURLField() : _fields.getURLField();
+			var picThumbField = fieldsOverride ? fieldsOverride.getThumbField() : _fields.getThumbField();
 			
 			return _attributes[nameField] != _graphic.attributes[nameField]
 					|| _attributes[descField] != _graphic.attributes[descField]
-					|| _attributes[colorField] != _graphic.attributes[colorField];
+					|| _attributes[colorField] != _graphic.attributes[colorField]
+					|| (app.data.sourceIsNotFSAttachments() &&
+							_attributes[picUrlField] != _graphic.attributes[picUrlField]
+							|| _attributes[picThumbField] != _graphic.attributes[picThumbField]
+						);
 		}
 		
 		/**
@@ -184,11 +190,18 @@ define(["storymaps/maptour/core/WebApplicationData",
 			var fieldsOverride = WebApplicationData.getFieldsOverride();
 			var nameField = fieldsOverride ? fieldsOverride.getNameField() : _fields.getNameField();
 			var descField = fieldsOverride ? fieldsOverride.getDescriptionField() : _fields.getDescriptionField();
-			var colorField= fieldsOverride ? fieldsOverride.getIconColorField() : _fields.getIconColorField();
+			var colorField = fieldsOverride ? fieldsOverride.getIconColorField() : _fields.getIconColorField();
+			var picUrlField = fieldsOverride ? fieldsOverride.getURLField() : _fields.getURLField();
+			var picThumbField = fieldsOverride ? fieldsOverride.getThumbField() : _fields.getThumbField();
 
 			_graphic.attributes[nameField] = _attributes[nameField];
 			_graphic.attributes[descField] = _attributes[descField];
 			_graphic.attributes[colorField] = _attributes[colorField];
+			
+			if( app.data.sourceIsNotFSAttachments() ) {
+				_graphic.attributes[picUrlField] = _attributes[picUrlField];
+				_graphic.attributes[picThumbField] = _attributes[picThumbField];
+			}
 		}
 		
 		this.restoreOriginal = function()

@@ -74,9 +74,13 @@ define(["storymaps/maptour/core/MapTourHelper"], function(MapTourHelper){
 				imgPane.className = "tpImgPane";
 				mainEl.appendChild(imgPane);
 
+				var imgContainer = document.createElement('div');
+				imgContainer.className = "tpImgContainer";
+				imgPane.appendChild(imgContainer);
+
 				var imgEl = document.createElement('img');
 				imgEl.src = attr.getThumbURL();
-				imgPane.appendChild(imgEl);
+				imgContainer.appendChild(imgEl);
 				
 				var iconEl = document.createElement('img');
 				iconEl.className = "tpIcon";

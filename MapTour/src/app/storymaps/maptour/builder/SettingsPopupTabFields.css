@@ -1,0 +1,20 @@
+#settings-fields p {
+	margin-bottom: 20px;
+}
+
+#settings-fields .error-msg {
+	display: none;
+	background: url('../../../../resources/icons/errorbox-close.png') 0 0px;
+	height: 75px;
+	background-repeat: no-repeat;
+	padding-top: 13px;
+	padding-left: 85px;
+	color: red;
+}
+
+#settings-fields .error-msg2 {
+	display: none;
+	margin-top: 10px;
+	color: red;
+	font-weight: bold;
+}

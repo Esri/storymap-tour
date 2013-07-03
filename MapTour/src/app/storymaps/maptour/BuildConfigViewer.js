@@ -1,7 +1,8 @@
 require(
 	[
-		"storymaps/ui/LoadingIndicator/LoadingIndicator", 
-		"storymaps/maptour/core/Core"
+		"storymaps/ui/loadingIndicator/LoadingIndicator", 
+		"storymaps/core/Core",
+		"storymaps/maptour/core/MainView",
 	], 
 	function()
 	{

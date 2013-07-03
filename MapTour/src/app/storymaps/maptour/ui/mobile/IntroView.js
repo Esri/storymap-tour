@@ -18,8 +18,14 @@ define([], function(){
 				+ ' <h2 class="tourPointName">' + feature.attributes.getName() + '</h2>'
 				+ ' <p class="tourPointDescription">' + feature.attributes.getDescription() + '</p>'
 				+ ' <img class="tourPointImg" src="' + feature.attributes.getURL() + '">'
+				+ ' <br /><br />'
+				+ ' <button class="btn btn-large btn-primary">' +  i18n.viewer.mobileHTML.introStartBtn + '</button>'
 				+ '</div>'
 			);
+			
+			$("#introPanel").fastClick(function(){
+				dojo.publish("PIC_PANEL_NEXT");
+			});
 			
 			$("#introPanel").css("background-color", bgColor);
 			$("#introPanel").show();
@@ -27,10 +33,8 @@ define([], function(){
 		
 		this.hide = function()
 		{
+			$("#mapViewLink").addClass("current");
 			$("#introPanel").hide();
-			
-			if( location.hash == "" || location.hash == "#" )
-				location.hash = "map";
 		}
 	}
 });

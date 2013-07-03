@@ -6,6 +6,10 @@ define([], function(){
 	 * Collection of helper functions specific to Map Tour
 	 */
 	return {
+		isOnMobileView: function()
+		{
+			return $("#headerMobile").css("display") == "block";
+		},
 		/*
 		 * Data
 		 */

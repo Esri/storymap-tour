@@ -1,0 +1,127 @@
+.popupViewGeoTag .header {
+	margin-bottom: 15px;
+}
+
+.popupViewGeoTag .header  a {
+	font-weight: normal;
+	text-decoration: underline;
+}
+ 
+.popupViewGeoTag .leftPanel {
+	width: 220px;
+	height: 400px;
+}
+
+
+/*
+ * Tab common
+ */
+
+.popupViewGeoTag .nav-tabs {
+	font-size: 12px;
+	margin-bottom: 0px;
+}
+
+.popupViewGeoTag .tab-content > div {
+	display: none;
+	width: 210px;
+	height: 362px;
+	overflow-x: hidden;
+	padding-right: 5px;
+}
+
+.popupViewGeoTag .tab-content li {
+	margin-bottom: 10px;
+	font-size: 10px;
+	text-align: center;
+}
+
+.popupViewGeoTag .tab-content img {
+	max-width: 100%;
+}
+
+/*
+ * To be located
+ */
+
+.popupViewGeoTag .tobelocated li {
+	display: table;
+	text-align: center;
+	width: 202px;
+	border: 2px solid transparent;
+	cursor: pointer;
+}
+
+.popupViewGeoTag .tobelocated li.clicked {
+	border: 2px dashed #52a552;
+}
+
+.popupViewGeoTag .tobelocated li > div {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.popupViewGeoTag .tobelocated button {
+	display: none;
+}
+
+/*
+ * Located
+ */
+
+.popupViewGeoTag .located li > div {
+	position: relative;
+}
+
+.popupViewGeoTag .located button {
+	display: none;
+	font-size: 80px;
+	position: absolute;
+	top: 50%;
+	opacity: 1.0;
+	left: 50%;
+	margin-top: -60px;
+	line-height: inherit;
+	margin-left: -24px;
+}
+
+.popupViewGeoTag .located li:hover button {
+	display: block;
+}
+
+/*
+ * Map
+ */
+
+.popupViewGeoTag .geotagMap {
+	width: 300px;
+	height: 400px;
+}
+
+.popupViewGeoTag .geotagMap {
+	border: 4px dashed transparent;
+}
+
+.popupViewGeoTag .geotagMap .logo-med {
+	display: none;
+}
+
+.popupViewGeoTag .clickOrTapInfo {
+	display: none;
+	opacity: 0;
+	position: absolute;
+	top: 235px;
+	left: 305px;
+	z-index: 9999;
+	background-color: #FFF;
+	border: 2px dashed #52a552;
+	padding: 4px;
+	font-weight: bold;
+	width: 160px;
+	text-align: center;
+}
+
+.popupViewGeoTag .clickOrTapInfo.stickTop {
+	top: 80px;
+}

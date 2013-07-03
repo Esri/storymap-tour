@@ -41,7 +41,8 @@ define(["dojo/has"], function(has){
 				function(e) {
 					locationButtonCallback(true, new esri.geometry.Point(e.coords.longitude, e.coords.latitude), e);
 				},
-				getDeviceLocationError
+				getDeviceLocationError,
+				{ timeout: 2000 }
 			);
 		}
 		

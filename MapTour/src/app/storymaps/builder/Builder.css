@@ -12,6 +12,42 @@
 }
 
 /*
+ * Popup views
+ */
+
+#init-import-views {
+	display: none;
+}
+
+/*
+ * Modal footer
+ */
+.modal-footer .error, .modal-footer .success, .modal-footer .addSpinner {
+	display: none;
+	float: left;
+	vertical-align: -4px;
+	margin-top: 6px;
+	font-size: 14px;
+	color: #c43d40;
+	font-weight: bold;
+}
+
+/*
+ * Mobile Builder 
+ */
+.builderMobile {
+	display: none;
+}
+
+.modal-footer .success {
+	color: #30750a;
+}
+
+.modal-footer .addSpinner {
+	margin-left:8px;
+}
+
+/*
  * Top panel
  */
 
@@ -104,76 +140,15 @@
 	display: none;
 }
 
-.datawarning-popover {
-	left: 0px !important;
-	width: 400px !important;
-	max-width: 400px !important;
-}
-
-.datawarning-popover .popover-title {
-	display: none;
-}
-
 .hide {
 	display: none;
 }
 
-/*
- * Map/Carousel panel
- */
-#builderPanel2 {
-	position: absolute;
-	display: none;
-	z-index: 500;
-	min-width: 180px;
-	bottom: 150px;
-	text-align: center;
-	background-color: #c2c2c2;
-	-webkit-border-top-left-radius: 4px;
-	-webkit-border-top-right-radius: 4px;
-	-moz-border-radius-topleft: 4px;
-	-moz-border-radius-topright: 4px;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	padding: 8px 11px 4px 3px;
-	height: 30px;
+/* Spectrum input color picker */
+.sp-input {
+	background-color: #B9B9B9 !important;
 }
 
-#builderPanel2 .text_edit_icon {
-	vertical-align: -4px;
-}
-
-#organizeSlidesButton, #addPopupButton {
-	min-width: 85px;
-	margin-left: 7px;
-}
-
-/*
- * Map Pin Infowindow
- */
-
-.colorSelectorPin{
-	height:27px;
-	padding:4px;
-	border:2px #444 solid;
-	margin-top: 3px;
-	cursor:pointer;
-}
-
-.selectedColor{
-	border-radius: 4px;
-	background-color: #777;
-	cursor: default;
-}
-
-/*
- * Browser warning popup
- */
-
-#browserPopup {
-	top: 27% !important
-}
-
-#browserPopup .browserExplain2 {
-	margin-top: 15px;
+.sp-input-container {
+	height: 16px !important;
 }

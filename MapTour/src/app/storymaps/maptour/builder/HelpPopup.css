@@ -1,0 +1,20 @@
+#helpPopup {
+	top: 20% !important;
+}
+
+#helpPopup .modal-body {
+	height: 396px;
+}
+
+#helpPopup .tab {
+	min-width: 0px;
+}
+
+#helpPopup a {
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+#helpPopup ul {
+	margin-left: 30px;
+}

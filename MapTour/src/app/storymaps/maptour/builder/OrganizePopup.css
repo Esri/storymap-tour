@@ -114,3 +114,8 @@
 #organizePopup .savePopover {
 	width: 260px;
 }
+
+#organizePopup .organizeIntro {
+	margin-left: 40px;
+	margin-top: 6px;
+}

@@ -4,7 +4,7 @@ define(["dojo/has"], function(has) {
 	 * @class InlineFieldEdit
 	 * 
 	 * Create editable fields for the given CSS selector (can target multiple fields with one call)
-	 * Optional callback to be called when exiting edit mode can be provided
+	 * Optional callback to be called when entering and exiting edit mode can be provided
 	 */
 	return function InlineFieldEdit(selector, callbackEnterEdit, callbackAfterEdit)
 	{

@@ -133,6 +133,14 @@ define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"], function(Field
 		{
 			_data.values.headerLinkText = linkText;
 			_data.values.headerLinkURL = linkURL;
+		},
+		getFirstRecordAsIntro: function()
+		{
+			return _data.values.firstRecordAsIntro;
+		},
+		setFirstRecordAsIntro: function(firstRecordAsIntro)
+		{
+			_data.values.firstRecordAsIntro = firstRecordAsIntro;
 		}
 	}
 });

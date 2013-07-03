@@ -59,7 +59,7 @@
 	display: inline-block;
 }
 
-.modernBrowserWay, .oldBrowserWay {
+.modernBrowserWay, .oldBrowserWay, .attributesWay {
 	display: none;
 }
 
@@ -87,4 +87,15 @@
 .picturePanelThumbnailPopover {
 	/*width: 225px;*/
 	max-width: 290px;
+}
+
+.edit-attr-popover {
+	max-width: 376px;
+	width: 376px;
+}
+
+.edit-attr-popover input {
+	vertical-align: -2px;
+	margin-bottom: 0px;
+	margin-right: 8px;
 }

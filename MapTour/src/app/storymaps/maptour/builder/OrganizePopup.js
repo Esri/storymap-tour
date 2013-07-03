@@ -10,52 +10,34 @@ define(["storymaps/maptour/core/MapTourHelper"], function (MapTourHelper) {
 		var _btnDelete = $(_container).find("#btnDelete");
 		var _btnHide = $(_container).find("#btnHide");
 
-		var _selected;
-		var _dropped;
+		var _selectedsIds = [];
+		var _dropped = [];
+
+		$(_btnDelete).fastClick(del);
+		$(_btnHide).fastClick(hide);
 
 		$(_btnSave).click(save);
 		$(_btnClose).click(dismiss);
-
-		$(_btnDelete).fastClick(function(){
-			if (_selected) {
-				_dropped.push(parseInt($(_selected).data("featureid")));
-				$(_selected).remove();
-				enableButtons(false);
-				renumber();
-			}
-		});
-
-		$(_btnHide).fastClick(function(){
-
-			if (_selected) {
-				if ($(_btnHide).html() == i18n.viewer.organizePopupJS.labelButtonShow) {
-					$(_selected).find(".veil").hide();
-					$(_selected).find(".numberLabel").show();
-				}
-				else {
-					$(_selected).find(".veil").show();
-					$(_selected).find(".numberLabel").hide();
-				}
-
-				renumber()
-				enableButtons(true);
-			}
-
-		});
-
-		this.present = function(tourPoints)
+		
+		this.present = function(tourPoints, hasIntroRecord)
 		{
 			_dropped = [];
+			_selectedsIds = [];
 
 			$(_list).empty();
 
 			$.each(tourPoints, function(index, tourPoint) {
+				var forceHidden = '';
+				if( tourPoint == app.data.getIntroData() )
+					forceHidden = 'style="display: none;"';
+				
 				var pinCssClass = MapTourHelper.getSymbolCss(tourPoint.attributes.getColor());
-				var elt = $('<li data-featureid="'+tourPoint.attributes.getID()+'"></li>');
+				var elt = $('<li data-featureid="'+tourPoint.attributes.getID()+'"' + forceHidden + '></li>');
 				var img = $('<img src="' + tourPoint.attributes.getThumbURL() + '"/>');
 				var num = $('<div class="numberLabel ' + pinCssClass + '">'+(index+1)+'</div>');
 				var veil = $('<div class="veil"></div>');
 				var halo = $('<div class="halo"></div>');
+				
 				$(elt).append(img);
 				$(elt).append(num);
 				$(elt).append(veil);
@@ -70,8 +52,12 @@ define(["storymaps/maptour/core/MapTourHelper"], function (MapTourHelper) {
 
 			$(_list).sortable({
 				start: function(event,ui) {
+					$(_list).find(".halo").hide();
+					_selectedsIds = [];
 				},
 				update:function(event,ui) {
+					$(_list).find(".halo").hide();
+					_selectedsIds = [];
 					renumber();
 				}
 			});
@@ -81,6 +67,14 @@ define(["storymaps/maptour/core/MapTourHelper"], function (MapTourHelper) {
 			$($("li",_list)).bind("mousedown", function(event){
 				setSelected(event.currentTarget);
 			});
+			
+			// First record as intro
+			$(_container).find('.organizeIntro').html(
+				'<input type="checkbox" name="organizeFirstRecordIntro" ' + (hasIntroRecord ? "checked" : "") + '/> ' 
+				+ i18n.viewer.builderHTML.introRecordActivate
+			);
+			
+			$(_container).find('input[name="organizeFirstRecordIntro"]').change(onFirstRecordCheckboxChange);
 
 			enableButtons(false);
 
@@ -94,17 +88,7 @@ define(["storymaps/maptour/core/MapTourHelper"], function (MapTourHelper) {
 
 			renumber();
 		}
-
-		function setSelected(selection)
-		{
-			if (_selected) 
-				$(".halo",_selected).hide();
-			
-			_selected = selection;
-			$(".halo",_selected).show();
-			enableButtons(true);
-		}
-
+		
 		function save()
 		{
 			if (_dropped.length == 0) 
@@ -113,6 +97,84 @@ define(["storymaps/maptour/core/MapTourHelper"], function (MapTourHelper) {
 				createConfirmationPopover();
 				return false;
 			}
+		}
+
+		function setSelected(selectedNode)
+		{
+			var featureId = $(selectedNode).data("featureid");
+			var alreadySelectedIndex = $.inArray(featureId, _selectedsIds);
+			
+			if( alreadySelectedIndex == -1 ) {
+				_selectedsIds.push(featureId);
+				$(".halo", selectedNode).show();
+			}
+			else {
+				_selectedsIds.splice(alreadySelectedIndex, 1);
+				$(".halo", selectedNode).hide();
+			}
+			
+			if( _selectedsIds.length )
+				enableButtons(true);
+		}
+
+		function del()
+		{
+			if (! _selectedsIds.length)
+				return;
+			
+			getSelectedNodes().remove();
+			
+			_dropped = _dropped.concat(_selectedsIds);
+			_selectedsIds = [];
+			enableButtons(false);
+			renumber();
+		}
+
+		function hide()
+		{
+			if (! _selectedsIds.length)
+				return;
+			
+			var selectedNodes = getSelectedNodes();
+			
+			if ($(_btnHide).html() == i18n.viewer.organizePopupJS.labelButtonShow) {
+				selectedNodes.find(".veil").hide();
+				selectedNodes.find(".numberLabel").show();
+			}
+			else {
+				selectedNodes.find(".veil").show();
+				selectedNodes.find(".numberLabel").hide();
+			}
+			
+			selectedNodes.find(".halo").hide();
+			_selectedsIds = [];
+			
+			renumber()
+			enableButtons(false);
+		}
+		
+		function onFirstRecordCheckboxChange()
+		{
+			$(_list).find("li").first().css("display", $(this).is(":checked") ? "none" : "block");
+			$(_list).find(".veil").first().css("display", $(this).is(":checked") ? "block" : "none");
+			renumber();
+		}
+		
+		function getFirstSelectedNode()
+		{
+			if( ! _selectedsIds.length )
+				return;
+			
+			return $($.grep($(_list).find("li"), function(e){ 
+				return $(e).data("featureid") == _selectedsIds[0]; 
+			}));
+		}
+		
+		function getSelectedNodes()
+		{
+			return $($.grep($(_list).find("li"), function(e){ 
+				return $.inArray($(e).data("featureid"), _selectedsIds) != -1; 
+			}));
 		}
 		
 		function createConfirmationPopover()
@@ -148,7 +210,8 @@ define(["storymaps/maptour/core/MapTourHelper"], function (MapTourHelper) {
 			
 			dojo.publish("ORGANIZE_POPUP_SAVE", {
 				order: pointsOrder.toArray(),
-				dropped: _dropped
+				dropped: _dropped,
+				firstRecordAsIntro: $(_container).find('input[name="organizeFirstRecordIntro"]').is(":checked")
 			});
 			
 			dismiss();
@@ -165,7 +228,7 @@ define(["storymaps/maptour/core/MapTourHelper"], function (MapTourHelper) {
 			var count = 1;
 			$.each($("li",_list),function(index,value) {
 				if ($(".veil",value).css("display") == "none") {
-					$(".numberLabel",value).html(count);
+					$(".numberLabel",value).show().html(count);
 					count++;
 				}
 			});
@@ -182,14 +245,14 @@ define(["storymaps/maptour/core/MapTourHelper"], function (MapTourHelper) {
 				_btnDelete.attr("disabled", true);
 			}
 
-			if (_selected) {
-				var veil = $(".veil",_selected)[0];
-				($(veil).css("display") == "none") ? $(_btnHide).html(i18n.viewer.organizePopupJS.labelButtonHide) : $(_btnHide).html(i18n.viewer.organizePopupJS.labelButtonShow);
-			} else
-			{
+			// The label of the hide/show button is the one appropriate for the first selected item
+			if ( _selectedsIds.length ) {
+				var veil = $(".veil", getFirstSelectedNode())[0];
+				$(_btnHide).html($(veil).css("display") == "none" ? i18n.viewer.organizePopupJS.labelButtonHide : i18n.viewer.organizePopupJS.labelButtonShow);
+			} 
+			else {
 				$(_btnHide).html(i18n.viewer.organizePopupJS.labelButtonHide);
 			}
-
 		}
 
 		function generateMessage(count)
