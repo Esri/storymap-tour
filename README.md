@@ -76,7 +76,7 @@ To use the downloadable version, download the [User Download archive](https://gi
 | **Readme.pdf**       		                 | Detailed readme guide                                                 |
 
 Map Tour rely on a web map to get the tour data. That's the only mandatory configuration. There is multiple ways to build a Map Tour web map:
- * The traditional way, that is to build a CSV and add it as a web map layer using ArcGIS.com map viewer. [This ArcWatch article](http://www.esri.com/esri-news/arcwatch/0513/make-a-map-tour-story-map) provides step-by-step instructions
+ * The traditional way, that is to build a CSV and add it as a web map layer using ArcGIS Online web map viewer. [This ArcWatch article](http://www.esri.com/esri-news/arcwatch/0513/make-a-map-tour-story-map) provides step-by-step instructions
  * Using an existing Feature Service, see the chapter below
  * Using the interactive builder on ArcGIS Online. This allow you to build the webmap that you will reuse with the downloadable version. This include importing photos from Flickr, Facebook, Picasa
 
@@ -101,7 +101,7 @@ TODO
 
 ### Using an existing Feature Service
 
-Any point Feature Service, Map Service, Shapefile or CSV can be used as a Map Tour data source (add your layer into your web map through ArcGIS.com Map Viewer). The application will try to find the expected attributes using a configurable list of possible field name.
+Any point Feature Service, Map Service, Shapefile or CSV can be used as a Map Tour data source (add your layer into your web map through ArcGIS Online web map viewer). The application will try to find the expected attributes using a configurable list of possible field name.
 
 By default, the valid fields names are:
 
@@ -193,9 +193,10 @@ There's a limit of 99 points per tour. Most Map Tours will of course be signific
 ## What's new?
 
 #### Map Tour 2.0 released on 07/03/2013
-Major version with the following new functionality:
- * Open the hosted version to all ArcGIS Online account levels including the free Public account
- * Ability to import photos from Flickr, Facebook, Picasa and a CSV from the interactive builder 
+Major version with the following new functionalities:
+ * The hosted version is available to all ArcGIS Online account levels including the free Public account
+ * The interactive builder offer to import photos from Flickr, Facebook, Picasa and a CSV
+ * The interactive builder is now usable on CSV added through ArcGIS Online web map viewer
 
 Other evolution includes:
  * Improved loading time
