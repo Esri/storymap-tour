@@ -4,32 +4,36 @@ The Map Tour template is designed for presenting geographic information where th
 
 ![App](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/map-tour-storytelling-template-js.png)
 
+[View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | 
+[Features](http://arcgis.com/apps/MapTour/preview.html) | 
+[User Download (source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.0.zip) | 
+[Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
+
 The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets.
 
 This help will guide you through the steps for publishing Map Tours like:
-    [Palm Springs Map Tour](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5)
-    [Nederland country's best mountain biking](http://story.maps.arcgis.com/apps/MapTour/index.html?appid=4d6054b109ce482d88588d5c06a7a478)
-    [Los Angeles River Map Tour](http://ugis.esri.com/LA_River_Tour/)
+ * [Palm Springs Map Tour](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5)
+ * [Nederland country's best mountain biking](http://story.maps.arcgis.com/apps/MapTour/index.html?appid=4d6054b109ce482d88588d5c06a7a478)
+ * [Los Angeles River Map Tour](http://ugis.esri.com/LA_River_Tour/)
 
 The latest release is **V2.0**, if you want to be informed of new releases, we recommend you to watch these repository.
 
-[View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.0.zip) | [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
 Help content:
- * [Template hosting](#Template-hosting)
- * [How to deploy a Map Tour](#How-to-deploy-a-Map-Tour)
- * [Data storage options](#)
- * [FAQ](#)
- * [Tips](#)
- * [What's new](#)
- * [Customize the look and feel](#)
- * [Developer guide](#)
- * [Feedback](#)
- * [Issues](#)
- * [Contributing](#)
- * [Licensing](#)
+ * [Introduction](#introduction)
+ * [How to deploy a Map Tour](#how-to-deploy-a-map-tour)
+ * [Data storage options](#data-storage-options)
+ * [FAQ](#faq)
+ * [Tips](#tips)
+ * [What's new](#whats-new)
+ * [Customize the look and feel](#customize-the-look-and-feel)
+ * [Developer guide](#developer-guide)
+ * [Feedback](#feedback)
+ * [Issues](#issues)
+ * [Contributing](#contributing)
+ * [Licensing](#licensing)
 
-## Template hosting
+## Introduction
 
 The template is available in two versions:
  * **An hosted version** in ArcGIS Online that provide hosting and an interactive builder tool to all ArcGIS Online account levels including the free Public account
@@ -37,17 +41,21 @@ The template is available in two versions:
 
 You don't have to download the template to use it! You can create and deploy a Map Tour using the hosted version of this template that is built into ArcGIS.com. This is available to all ArcGIS Online account levels including the free Public account. We host the template for you so you don't have to download the template and put it on your server or website. There's an interactive builder too that makes it easy to author your Map Tour. Using the hosted template is the easiest and fastest way to create a Map Tour.
 
+The main element to consider when building a Map Tour is to choose where your pictures will be stored. A Map Tour can use pictures stored on major photo sharing services, on any web server or in Feature Services.
+Applications produced by both versions provides the same capabilities, only the authoring is different.
+
 ### The hosted version
 
-To use the hosted Map Tour template, you start by making a map (it doesn't need to contain any layers), saving it, and then clicking the Share button in the ArcGIS Online web map viewer. In the Share dialog, choose the 'Make a Web Application' option and then choose the Map Tour template from the gallery of templates that appears, and continue with the steps that you see. When you configure the application, the interactive builder will open automatically.
+To use the hosted Map Tour template, you start by making a web map and publishing it with the Map Tour template.
 
-The main element to consider when building a Map Tour is to choose where your pictures will be stored. A Map Tour can use pictures stored on major photo sharing services, on any web server or in Feature Services.
+[This article](https://developers.arcgis.com/en/tools/web-mapping-templates/) provides step-by-step instructions. 
+For Map Tour, your webmap doesn't need to contains any layer. In the Share dialog available from ArcGIS Online web map viewer, choose the 'Make a Web Application' option and then choose the Map Tour template from the gallery of templates that appears, and continue with the steps that you see. When you configure the application, the interactive builder will open automatically.
 
 The interactive builder gives you two options for handling the images in your Map Tour:
  * You can use **photos that are already online**, such as images stored in a photo sharing site like Flickr or images stored on your own website. These images will be referenced in your Map Tour via their URLs
  * You can also **upload photos from your computer** directly into your Map Tour. This upload option requires that you have an ArcGIS for Organizations subscription account and you have Publisher or Administrator privileges (because it automatically creates a hosted feature service for you in which your photos are stored as attachments)
 
-Using the hosed version will allow you to benefits from periodic update of ArcGIS Online that will improve the performance and fix issues.
+Using the hosed version will allow you to benefits from ArcGIS Online periodic updates that improve performance and fix issues without introducting breaking changes.
  
 ### The downloadable version
 
@@ -68,7 +76,7 @@ To use the downloadable version, download the [User Download archive](https://gi
 | **Readme.pdf**       		                 | Detailed readme guide                                                 |
 
 Map Tour rely on a web map to get the tour data. That's the only mandatory configuration. There is multiple ways to build a Map Tour web map:
- * The traditional way, that is to build a CSV and add it as a web map layer using ArcGIS.com map viewer. [This ArcWatch article](http://www.esri.com/esri-news/arcwatch/0513/make-a-map-tour-story-map) provides step-by-step instructions
+ * The traditional way, that is to build a CSV and add it as a web map layer using ArcGIS Online web map viewer. [This ArcWatch article](http://www.esri.com/esri-news/arcwatch/0513/make-a-map-tour-story-map) provides step-by-step instructions
  * Using an existing Feature Service, see the chapter below
  * Using the interactive builder on ArcGIS Online. This allow you to build the webmap that you will reuse with the downloadable version. This include importing photos from Flickr, Facebook, Picasa
 
@@ -93,7 +101,7 @@ TODO
 
 ### Using an existing Feature Service
 
-Any point Feature Service, Map Service, Shapefile or CSV can be used as a Map Tour data source (add your layer into your web map through ArcGIS.com Map Viewer). The application will try to find the expected attributes using a configurable list of possible field name.
+Any point Feature Service, Map Service, Shapefile or CSV can be used as a Map Tour data source (add your layer into your web map through ArcGIS Online web map viewer). The application will try to find the expected attributes using a configurable list of possible field name.
 
 By default, the valid fields names are:
 
@@ -185,20 +193,22 @@ There's a limit of 99 points per tour. Most Map Tours will of course be signific
 ## What's new?
 
 #### Map Tour 2.0 released on 07/03/2013
-Major version with the following new functionality:
- * Open the hosted version to all ArcGIS Online account levels including the free Public account
- * Ability to import photos from Flickr, Facebook, Picasa and a CSV from the interactive builder 
-
-Other evolution includes:
+Major version with the following new functionalities:
+ * The hosted version is available to all ArcGIS Online account levels including the free Public account
+ * The interactive builder offer to import photos from Flickr, Facebook, Picasa and a CSV
+ * The interactive builder can use CSV added through ArcGIS Online web map viewer
+ * Serveral UI and productivity improvements for the hosted interactive builder
  * Improved loading time
+ * Support of non mercator data
  * Picture panel respond to swipe and keyboard event
- * Mobile introduction view include a start button and the whole view can be clicked/tapped to start the tour
+ * Mobile introduction view include a start button and can be swiped away
  * Mobile view images are clipped instead of cropped
- * The Map popup can now be customized through the configuration file
+ * The Map popup can now customized through the configuration file
  
 Bug fixes :
  * Application loading issues when using Internet Explorer
  * Application loading issues when using Bing Maps basemap
+ * Interactive builder enforce description maximum length
 
 #### Map Tour 1.2 released on 05/31/2013
 Minor version with few bug fixes :
