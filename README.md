@@ -20,7 +20,7 @@ The latest release is **V2.0**, if you want to be informed of new releases, we r
 
 
 Help content:
- * [Template hosting](#template-hosting)
+ * [Introduction](#introduction)
  * [How to deploy a Map Tour](#how-to-deploy-a-map-tour)
  * [Data storage options](#data-storage-options)
  * [FAQ](#faq)
@@ -33,7 +33,7 @@ Help content:
  * [Contributing](#contributing)
  * [Licensing](#licensing)
 
-## Template hosting
+## Introduction
 
 The template is available in two versions:
  * **An hosted version** in ArcGIS Online that provide hosting and an interactive builder tool to all ArcGIS Online account levels including the free Public account
@@ -41,17 +41,21 @@ The template is available in two versions:
 
 You don't have to download the template to use it! You can create and deploy a Map Tour using the hosted version of this template that is built into ArcGIS.com. This is available to all ArcGIS Online account levels including the free Public account. We host the template for you so you don't have to download the template and put it on your server or website. There's an interactive builder too that makes it easy to author your Map Tour. Using the hosted template is the easiest and fastest way to create a Map Tour.
 
+The main element to consider when building a Map Tour is to choose where your pictures will be stored. A Map Tour can use pictures stored on major photo sharing services, on any web server or in Feature Services.
+Applications produced by both versions provides the same capabilities, only the authoring is different.
+
 ### The hosted version
 
-To use the hosted Map Tour template, you start by making a map (it doesn't need to contain any layers), saving it, and then clicking the Share button in the ArcGIS Online web map viewer. In the Share dialog, choose the 'Make a Web Application' option and then choose the Map Tour template from the gallery of templates that appears, and continue with the steps that you see. When you configure the application, the interactive builder will open automatically.
+To use the hosted Map Tour template, you start by making a web map and publishing it with the Map Tour template.
 
-The main element to consider when building a Map Tour is to choose where your pictures will be stored. A Map Tour can use pictures stored on major photo sharing services, on any web server or in Feature Services.
+[This article](https://developers.arcgis.com/en/tools/web-mapping-templates/) provides step-by-step instructions. 
+For Map Tour, your webmap doesn't need to contains any layer. In the Share dialog available from ArcGIS Online web map viewer, choose the 'Make a Web Application' option and then choose the Map Tour template from the gallery of templates that appears, and continue with the steps that you see. When you configure the application, the interactive builder will open automatically.
 
 The interactive builder gives you two options for handling the images in your Map Tour:
  * You can use **photos that are already online**, such as images stored in a photo sharing site like Flickr or images stored on your own website. These images will be referenced in your Map Tour via their URLs
  * You can also **upload photos from your computer** directly into your Map Tour. This upload option requires that you have an ArcGIS for Organizations subscription account and you have Publisher or Administrator privileges (because it automatically creates a hosted feature service for you in which your photos are stored as attachments)
 
-Using the hosed version will allow you to benefits from periodic update of ArcGIS Online that will improve the performance and fix issues.
+Using the hosed version will allow you to benefits from ArcGIS Online periodic updates that improve performance and fix issues without introducting breaking changes.
  
 ### The downloadable version
 
