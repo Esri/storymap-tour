@@ -4,30 +4,32 @@ The Map Tour template is designed for presenting geographic information where th
 
 ![App](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/map-tour-storytelling-template-js.png)
 
+[View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | 
+[Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (for production, source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.0.zip) | [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
+
 The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets.
 
 This help will guide you through the steps for publishing Map Tours like:
-    [Palm Springs Map Tour](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5)
-    [Nederland country's best mountain biking](http://story.maps.arcgis.com/apps/MapTour/index.html?appid=4d6054b109ce482d88588d5c06a7a478)
-    [Los Angeles River Map Tour](http://ugis.esri.com/LA_River_Tour/)
+ * [Palm Springs Map Tour](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5)
+ * [Nederland country's best mountain biking](http://story.maps.arcgis.com/apps/MapTour/index.html?appid=4d6054b109ce482d88588d5c06a7a478)
+ * [Los Angeles River Map Tour](http://ugis.esri.com/LA_River_Tour/)
 
 The latest release is **V2.0**, if you want to be informed of new releases, we recommend you to watch these repository.
 
-[View it live](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5) | [Features](http://arcgis.com/apps/MapTour/preview.html) | [User Download (production application, doesn't include source code)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.0.zip) | [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
 Help content:
- * [Template hosting](#Template-hosting)
- * [How to deploy a Map Tour](#How-to-deploy-a-Map-Tour)
- * [Data storage options](#)
- * [FAQ](#)
- * [Tips](#)
- * [What's new](#)
- * [Customize the look and feel](#)
- * [Developer guide](#)
- * [Feedback](#)
- * [Issues](#)
- * [Contributing](#)
- * [Licensing](#)
+ * [Template hosting](#template-hosting)
+ * [How to deploy a Map Tour](#how-to-deploy-a-map-tour)
+ * [Data storage options](#data-storage-options)
+ * [FAQ](#faq)
+ * [Tips](#tips)
+ * [What's new](#whats-new)
+ * [Customize the look and feel](#customize-the-look-and-feel)
+ * [Developer guide](#developer-guide)
+ * [Feedback](#feedback)
+ * [Issues](#issues)
+ * [Contributing](#contributing)
+ * [Licensing](#licensing)
 
 ## Template hosting
 
