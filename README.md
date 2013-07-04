@@ -97,12 +97,18 @@ It is crucial for the application performance that your tour points have well-de
 
 ## Data storage options
 
-TODO
+In addition to the workflow supported by the interactive builder, you can use any point Feature Service, Map Service, Shapefile or CSV as a Map Tour data source if you follow some rules.
+To use a layer, simply add it into your webmap through ArcGIS Online web map viewer, 
+see (FAQ)[#which-web-map-layer-will-be-used) to learn more about which web map layer will be used.
 
-### Using an existing Feature Service
+### Using a CSV
 
-Any point Feature Service, Map Service, Shapefile or CSV can be used as a Map Tour data source (add your layer into your web map through ArcGIS Online web map viewer). The application will try to find the expected attributes using a configurable list of possible field name.
+The interactive builder now support importing CSV into your webmap and will give you detailed error if something goes wrong.
+If you are looking to reuse a CSV created for a previous version of Map Tour, note that to be able to use the interactive builder, you will need to have a color field.
 
+### Using an existing Feature Service, Map Service or Shapefile
+
+The application will try to find the expected attributes using a configurable list of possible field name. 
 By default, the valid fields names are:
 
 | Fields            		                                | Valid fields names (case insensitive)     |
@@ -117,12 +123,11 @@ If that doesn't match your data, you can change the possible fields name through
 
 The picture and Thumbnail fields are mandatory for Feature Service without attachments and optional but strongly recommended for Feature service with attachments (this save one request per feature to get the URL of the picture and thumbnail).
 
+When using a Feature Service that store the pictures as attachments, only the features with two attachments will be used (first attachments defines the main picture, second defines the thumbnail)
+
 ### Importing pictures from online photo sharing services
 
 Using the interactive builder, you can create a webmap to be reused in the downloadable. That webmap will use photos that are already online, such as images stored in a photo sharing site like Flickr or images stored on your own website. Images will be referenced in your web map via their URLs and a feature collection. This mean that pictures are not stored in ArcGIS Online. If hosted pictures can't be accessed, they won't be available in the Map Tour and you'll see a 'Picture not available' image. Depending on your photo service provider, the Map Tour may not import the name, description and location of the pictures. Those attributes are stored in the web map and any edits to the online services won't be reflected in the Map Tour.
-
-### On my own webserver ?
-TODO
 
 ## FAQ
 
