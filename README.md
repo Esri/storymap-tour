@@ -9,15 +9,15 @@ The Map Tour template is designed for presenting geographic information where th
 [User Download (source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.0.zip) | 
 [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
+**Latest release is version 2.0**, if you want to be informed of new releases, we recommend you to watch these repository.
+
+
 The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets.
 
 This help will guide you through the steps for publishing Map Tours like:
  * [Palm Springs Map Tour](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5)
  * [Nederland country's best mountain biking](http://story.maps.arcgis.com/apps/MapTour/index.html?appid=4d6054b109ce482d88588d5c06a7a478)
  * [Los Angeles River Map Tour](http://ugis.esri.com/LA_River_Tour/)
-
-The latest release is **V2.0**, if you want to be informed of new releases, we recommend you to watch these repository.
-
 
 Help content:
  * [Introduction](#introduction)
@@ -99,12 +99,11 @@ It is crucial for the application performance that your tour points have well-de
 
 In addition to the workflow supported by the interactive builder, you can use any point Feature Service, Map Service, Shapefile or CSV as a Map Tour data source if you follow some rules.
 To use a layer, simply add it into your webmap through ArcGIS Online web map viewer, 
-see (FAQ)[#which-web-map-layer-will-be-used) to learn more about which web map layer will be used.
+consult [FAQ](#which-web-map-layer-will-be-used) to learn more about which web map layer will be used.
 
 ### Using a CSV
 
-The interactive builder now support importing CSV into your webmap and will give you detailed error if something goes wrong.
-If you are looking to reuse a CSV created for a previous version of Map Tour, note that to be able to use the interactive builder, you will need to have a color field.
+The interactive builder support importing CSV, it will give you detailed information if your CSV doesn't match the requirements. 
 
 ### Using an existing Feature Service, Map Service or Shapefile
 
@@ -117,13 +116,16 @@ By default, the valid fields names are:
 | description (mandatory)                                   | caption, description, snippet, comment 	|
 | Picture (optional for Feature service with attachments) 	| pic_url, pic, picture, url                |
 | Thumbnail (optional for Feature service with attachments)	| thumb_url, thumb, thumbnail               |
-| Color (optional)                                          | icon_color, color, style                  |
+| Color (optional for viewer, mandatory for builder)            | icon_color, color, style                  |
 
 If that doesn't match your data, you can change the possible fields name through the configuration file **app/maptour-config.js**.
 
 The picture and Thumbnail fields are mandatory for Feature Service without attachments and optional but strongly recommended for Feature service with attachments (this save one request per feature to get the URL of the picture and thumbnail).
 
-When using a Feature Service that store the pictures as attachments, only the features with two attachments will be used (first attachments defines the main picture, second defines the thumbnail)
+When using a Feature Service that store the pictures as attachments, only the features with two attachments will be used (first attachments defines the main picture, second defines the thumbnail).
+
+The color field is mandatory for the interactive builder. This means that if you are looking to reuse a web map containing a Map Tour layer that doesn't include a color field, the interactive builder will ask you to choose which field has to be used for defining the color. You can select any field and it will default to the default color (red) if the record doesn't contains valid values. But if you choose to use a field used for another Map Tour information, you should not use the  color selection as it would overwrite that information by the new color you define.
+If possible, it is more safe to add that extra field to your data.
 
 ### Importing pictures from online photo sharing services
 
