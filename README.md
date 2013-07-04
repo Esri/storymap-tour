@@ -367,7 +367,7 @@ The application is structured as this:
 
 | Path          			                  	| Contains																				|
 | ---------------------------------------------	|  ------------------------------------------------------------------------------------ |
-| app      				                     	| Package structured Javascript and CSS source code 									|
+| app/      				                     	| Package structured Javascript and CSS source code 									|
 | app/maptour-config.js			            	| Configuration file (loaded at execution time) 										|
 | app/storymaps/builder/		         		| Builder modules common with other storymaps templates (main module is Builder.js)		|
 | app/storymaps/core/		         			| Core modules common with other storymaps templates (main module is Core.js)			|
