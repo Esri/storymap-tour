@@ -208,7 +208,7 @@ Major version with the following new functionalities:
  * Improved loading time
  * Support of non mercator data
  * Picture panel respond to swipe and keyboard event
- * Mobile introduction view include a start button and can be swiped away
+ * Mobile introduction view include a start button
  * Mobile view images are clipped instead of cropped
  * The Map popup can now customized through the configuration file
  
