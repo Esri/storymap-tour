@@ -47,16 +47,24 @@ Applications produced by both versions provides the same capabilities, only the 
 ### The hosted version
 
 To use the hosted Map Tour template, you start by making a web map and publishing it with the Map Tour template.
-
-[This article](https://developers.arcgis.com/en/tools/web-mapping-templates/) provides step-by-step instructions. 
-For Map Tour, your webmap doesn't need to contains any layer. In the Share dialog available from ArcGIS Online web map viewer, choose the 'Make a Web Application' option and then choose the Map Tour template from the gallery of templates that appears, and continue with the steps that you see. When you configure the application, the interactive builder will open automatically.
+Your webmap doesn't need to contains any layer. In the Share dialog available from ArcGIS Online web map viewer, choose the 'Make a Web Application' option and then choose the Map Tour template from the gallery of templates that appears, and continue with the steps that you see. When you configure the application, the interactive builder will open automatically.
+[This article (require an ArcGIS developer account)](https://developers.arcgis.com/en/tools/web-mapping-templates/) provides generic step-by-step instructions on how to publish a template. 
 
 The interactive builder gives you two options for handling the images in your Map Tour:
  * You can use **photos that are already online**, such as images stored in a photo sharing site like Flickr or images stored on your own website. These images will be referenced in your Map Tour via their URLs
  * You can also **upload photos from your computer** directly into your Map Tour. This upload option requires that you have an ArcGIS for Organizations subscription account and you have Publisher or Administrator privileges (because it automatically creates a hosted feature service for you in which your photos are stored as attachments)
 
 Using the hosed version will allow you to benefits from ArcGIS Online periodic updates that improve performance and fix issues without introducting breaking changes.
- 
+
+**How to upgrade from a self hosted version to the hosted template**
+
+If you've previously used the map tour template and hosted it from your own servers, 
+you can update to the ArcGIS Online hosted tour by opening your existing web map, choosing Share, 
+then Make a Web Application, and choosing Publish with the new Map Tour template. 
+
+Note that if your actual tour point layer doesn’t contains the optional attribute that define the point marker color, the interactive builder will require you to choose the attribute that define the color. So we recommend that you drop the layer from the webmap and import your original CSV using the assistant that will create the color field for you. Otherwise you can also select any attribute like the description field even if it doesn’t contains any valid color value but be aware that if you change the color using the interactive builder that value will be persisted and you will lose the point description.
+
+
 ### The downloadable version
 
 The hosted Map Tour template provides several customization options that are accessible through the SETTINGS button in the top panel. If you don't find the option you expect or you are a developer and want to enhance the application, you should use the downloadable version.
