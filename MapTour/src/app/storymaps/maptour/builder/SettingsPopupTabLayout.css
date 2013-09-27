@@ -1,9 +1,11 @@
 #settings-layout .layout-box {
 	display: inline-block;
 	width: 260px;
+	vertical-align: top;
 	text-align: center;
 	padding-top: 10px;
 	margin-top: 15px;
+	/*margin-bottom: 35px;*/
 }
 
 #settings-layout .layout-box:nth-child(2) {
@@ -15,8 +17,27 @@
 	padding-bottom: 10px;
 }
 
+#settings-layout .layout-box:nth-child(3) > img {
+	padding-bottom: 36px;
+}
+
 #settings-layout .layout-box {
 	min-height: 250px;
+}
+
+#settings-layout .layout-box .layoutOption {
+	margin-bottom: 8px;
+	font-size: 14px;
+}
+
+#settings-layout .layout-box .layoutOption input:checkbox {
+	height: 12px;
+}
+
+#settings-layout .layout-box .layoutFooter {
+	position: absolute;
+	bottom: 15px;
+	width: 258px;
 }
 
 #settings-layout .layout-box button {
@@ -25,7 +46,7 @@
 
 #settings-layout .layout-box .selectedLayout {
 	font-weight: bold;
-	line-height: 26px;
+	line-height: 28px;
 	display: none;
 }
 
@@ -35,6 +56,7 @@
 
 #settings-layout .layout-box.selected .selectedLayout {
 	display: block;
+	margin-bottom: 2px;
 }
 
 #settings-layout .layout-box.selected button {

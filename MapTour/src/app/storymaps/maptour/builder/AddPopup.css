@@ -76,6 +76,17 @@
 	text-align: center;
 }
 
+.addNoteVideo {
+	position: absolute;
+	bottom: 25px;
+	left: 0px;
+	font-size: 14px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-style: italic;
+	width: 100%;
+	color: #000;
+}
+
 .pictureSize {
 	margin-top: 4px;
 	font-size: 13px;
@@ -173,8 +184,78 @@
  * Picture tab - attributes
  */
 
-.addImageAttributes input {
+#addImageAttributesTypeChooser {
+	margin-bottom: 13px;
+}
+
+.addImageAttributes .video {
+	display: none;
+}
+
+.addImageAttributes td:nth-child(2) {
+	padding-left: 20px;
+}
+
+.addImageAttributes tr.fade {
+	opacity: 0.5;
+}
+
+.addImageAttributes img.click {
+	cursor: pointer;
+	width: 17px;
+	vertical-align: 1px;
+}
+
+.addImageAttributes img {
+	margin-left: 3px;
+}
+
+.addImageAttributes a img {
+	margin-left: 2px;
+}
+
+.addImageAttributes i {
+	vertical-align: 4px;
+	margin-left: 3px;
+	display: inline-block;
+}
+
+.addImageAttributes i.icon-exclamation-sign {
+	vertical-align: 3px;
+}
+
+.addImageAttributes .video input {
+	display: inline-block !important;
+}
+
+.addImageAttributes .video input[type="radio"] {
+	margin-right: 5px;
+}
+
+.addImageAttributes .video input[type="text"] {
+	width: 250px !important;
+}
+
+.addImageAttributes .video input[type="text"].type {
+	width: 310px !important;
+}
+
+.addImageAttributes .video input[type="text"].tourPointThumbUrl2 {
+	width: 465px !important;
+}
+
+.addImageAttributes input[type="text"] {
 	width: 97%;
+}
+
+.video1-popover {
+	min-width: 410px;
+	width: 410px;
+	max-width: 410px !important;
+}
+
+.video2-popover {
+	min-width: 350px;
 }
 
 /*

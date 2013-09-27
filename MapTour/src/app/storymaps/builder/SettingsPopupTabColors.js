@@ -3,11 +3,12 @@ define([],
 		return function SettingsPopupTabColors(titleContainer, contentContainer, colorSchemes) 
 		{
 			// Add the default StoryMaps theme
-			colorSchemes.splice(0, 0, {
-				name: "Gray", 
-				headerColor: APPCFG.COLORS[0], 
-				middleColor: APPCFG.COLORS[1], 
-				footerColor: APPCFG.COLORS[2]
+			colorSchemes.splice(0, 0, 
+				{
+					name: "Gray", 
+					headerColor: APPCFG.COLORS[0], 
+					middleColor: APPCFG.COLORS[1], 
+					footerColor: APPCFG.COLORS[2]
 				}
 			);
 
@@ -38,12 +39,12 @@ define([],
 					$(_inputMiddleColor).spectrum("set", settings.colors[1]);	
 					$(_inputFooterColor).spectrum("set", settings.colors[2]);				
 				}
-			}
+			};
 			
 			this.show = function()
 			{
 				//
-			}
+			};
 			
 			this.save = function()
 			{		
@@ -58,7 +59,7 @@ define([],
 					];
 				}
 				else {
-					var scheme = $.grep(colorSchemes,function(n,i){return n.name == schemeName})[0];
+					var scheme = $.grep(colorSchemes, function(n){ return n.name == schemeName; })[0];
 					colors = [
 						scheme.headerColor,
 						scheme.middleColor,
@@ -69,7 +70,7 @@ define([],
 				return {
 					colors: colors
 				};
-			}
+			};
 	
 			function getCurrentScheme() 
 			{
@@ -89,10 +90,10 @@ define([],
 							&& currentColors[1] == value.middleColor 
 							&& currentColors[2] == value.footerColor;
 							
-						 if (isCurrentColors) {
-						 	colorFound = true;
-						 	setSelectedScheme(index + 1);
-						 }
+						if (isCurrentColors) {
+							colorFound = true;
+							setSelectedScheme(index + 1);
+						}
 					});
 					
 					if( ! colorFound )
@@ -143,7 +144,7 @@ define([],
 				});
 			}
 			
-			function onColorSchemeRadioClick(event)
+			function onColorSchemeRadioClick()
 			{
 				updatePickers();
 				
@@ -152,7 +153,7 @@ define([],
 					$("#headerSimulator", contentContainer).css("background-color", $(_inputHeaderColor).val());			
 				}
 				else {
-					var scheme = $.grep(colorSchemes,function(n,i){
+					var scheme = $.grep(colorSchemes,function(n){
 						return n.name == getCurrentScheme();
 					})[0]; 
 					$("#headerSimulator", contentContainer).css("background-color", scheme.headerColor);
@@ -204,7 +205,7 @@ define([],
 				
 				$(contentContainer).find('p').html(i18n.viewer.builderHTML.settingsColorExplain);
 				$(contentContainer).find('.control-label').html(i18n.viewer.builderHTML.settingsLabelColor+":");
-			}
-		}
+			};
+		};
 	}
 );

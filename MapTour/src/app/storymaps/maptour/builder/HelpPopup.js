@@ -20,9 +20,9 @@ define([],
 				container.find(".modal-header .close").attr("data-dismiss", "modal");
 				displayTab(0);
 				$(container).modal({keyboard: true});	
-			}
+			};
 			
-			function onTabClick(event) 
+			function onTabClick() 
 			{
 				if ( $(this).hasClass("disabled") )
 					return;
@@ -57,7 +57,7 @@ define([],
 				
 				container.find('.tab').eq(1).html(i18n.viewer.helpPopup.tab2.title);
 				container.find('#help-tab2').html(
-					i18n.viewer.helpPopup.tab2.div1 + '<br /><br />'
+					i18n.viewer.helpPopup.tab2.div1 + ' ' + i18n.viewer.helpPopup.tab2.div1a +'<br /><br />'
 					+ i18n.viewer.helpPopup.tab2.div2 + '<br />'
 					+ i18n.viewer.helpPopup.tab2.div3 + '<br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab2.div4 + '</b><ul>'
@@ -80,9 +80,18 @@ define([],
 					+ ' <li><b>' + i18n.viewer.helpPopup.tab2.div155 + '</b>: ' + APPCFG.FIELDS_CANDIDATE.color.join(', ') + '</li>' 
 					+ '</ul><br />'
 					+ i18n.viewer.helpPopup.tab2.div16 + '<br /><br />'
-					+ i18n.viewer.helpPopup.tab2.div17 + '<br /><br />'
+					+ i18n.viewer.helpPopup.tab2.div162 + '<br /><br />'
+					+ i18n.viewer.helpPopup.tab2.div17 + ' '
+					+ i18n.viewer.helpPopup.tab2.div172 + '<br /><br />'
+					+ i18n.viewer.helpPopup.tab2.div173 + ' <a href="https://github.com/Esri/map-tour-storytelling-template-js/tree/master/samples" target="_blank">GitHub</a>.<br /><br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab2.div18 + '</b><br />'
-					+ i18n.viewer.helpPopup.tab2.div19
+					+ i18n.viewer.helpPopup.tab2.div19 + '<br /><br />'
+					+ '<b>' + i18n.viewer.helpPopup.tab2.div20 + '</b><br />'
+					+ i18n.viewer.helpPopup.tab2.div21 + '<br /><br />'
+					+ i18n.viewer.helpPopup.tab2.div22 + '<br /><br />'
+					+ i18n.viewer.helpPopup.tab2.div23 + '<br /><br />'
+					+ '<div style="text-align:center"><img src="resources/icons/builder-help-data-fs-video.png" /></div><br />'
+					+ i18n.viewer.helpPopup.tab2.div24
 				);
 
 				container.find('.tab').eq(2).html(i18n.viewer.helpPopup.tab3.title);
@@ -90,21 +99,35 @@ define([],
 					i18n.viewer.helpPopup.tab3.div1 + '<br /><br />'
 					+ i18n.viewer.helpPopup.tab3.div2 + '<br />'
 					+ '<ul>' + i18n.viewer.helpPopup.tab3.div3 + '</ul><br />'
-					+ i18n.viewer.helpPopup.tab3.div4 + '<br /><br />'
+					+ i18n.viewer.helpPopup.tab3.div4
+					+ '<ul>'
+					+ ' <li>' + i18n.viewer.helpPopup.tab3.div41 + '</li>'
+					+ ' <li>' + i18n.viewer.helpPopup.tab3.div42 + '</li>'
+					+ '</ul><br />'
+					+ i18n.viewer.helpPopup.tab3.div43 + '<br /><br />'
 					+ i18n.viewer.helpPopup.tab3.div5
 				);
 				
 				container.find('.tab').eq(3).html(i18n.viewer.helpPopup.tab4.title);
 				container.find('#help-tab4').html(
-					'<b>' + i18n.viewer.helpPopup.tab4.div1 + '</b><br />'
+					'<b>' + i18n.viewer.helpPopup.tab4.div0 + '</b><br />'
+					+ i18n.viewer.helpPopup.tab4.div0a + '<br /><br />'
+					+ i18n.viewer.helpPopup.tab4.div0b + '<br /><br />'
+					+ '<b>' + i18n.viewer.helpPopup.tab4.div1 + '</b><br />'
 					+ i18n.viewer.helpPopup.tab4.div2 + '<br /><br />'
+					+ i18n.viewer.helpPopup.tab4.div2a + '<br /><br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab4.div3 + '</b><br />'
-					+ i18n.viewer.helpPopup.tab4.div4 + '<br /><br />'
+					+ i18n.viewer.helpPopup.tab4.div4 
+					+ ' <div style="margin-left: 40px; margin-right: 70px; margin-top: 6px; color: #D14;background-color: #F7F7F9;border: 1px solid #E1E1E8; font-size: 12px; font-family: Monaco, Menlo, Consolas, monospace;">&lt;a href="http://storymaps.esri.com/" style="color:yellow" target="_blank">StoryMaps Website&lt;/a></div>'
+					+ '<br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab4.div5 + '</b><br />'
 					+ i18n.viewer.helpPopup.tab4.div6 + '<br /><br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab4.div7 + '</b><br />'
 					+ i18n.viewer.helpPopup.tab4.div8 + '<br /><br />'
+					+ '<b>' + i18n.viewer.helpPopup.tab4.div10 + '</b><br />'
+					+ i18n.viewer.helpPopup.tab4.div11 + '<br /><br />'
 					+ i18n.viewer.helpPopup.tab4.div9
+					
 				);
 				
 				container.find('.tab').eq(4).html(i18n.viewer.helpPopup.tab5.title);
@@ -121,7 +144,7 @@ define([],
 			this.initLocalization = function()
 			{
 				//
-			}
-		}
+			};
+		};
 	}
 );

@@ -3,10 +3,6 @@
 	max-height:500px;
 }
 
-#organizePopup .pictureGridHeader {
-	text-align: center;
-}
-
 #organizePopup .gridContainer {
 	width:490px;
 	height:350px;
@@ -17,18 +13,14 @@
 	-ms-touch-action: none;
 }
 
-.pictureGridHeader > div {
-	display: inline-block;
-	padding: 2px;
-	margin-left: 12px;
+#organizePopup .organizeHeader .generalCaption {
+	margin-left: 40px;
+	padding-top: 8px;
 }
 
-.pictureGridHeader #generalCaption {
-	vertical-align: -2px;
-}
-
-.pictureGridHeader #buttonBar {
-	margin-left: 20px;
+#organizePopup .organizeHeader .buttonBar {
+	float: right;
+	margin-right: 40px;
 }
 
 #organizePopup .picturesGrid {
@@ -115,7 +107,14 @@
 	width: 260px;
 }
 
-#organizePopup .organizeIntro {
-	margin-left: 40px;
+#organizePopup .organizeFooter {
 	margin-top: 6px;
+}
+
+#organizePopup .organizeIntro {
+	margin-left: 5px;
+}
+
+#organizePopup .btnReset {
+	float:right;
 }

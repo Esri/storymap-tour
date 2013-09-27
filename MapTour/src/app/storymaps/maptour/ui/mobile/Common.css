@@ -74,6 +74,7 @@
 	margin-right: 90px;
 	text-align:left;
 	word-wrap: break-word;
+	min-height:30px;
 }
 
 .tourPointDescription {
@@ -86,6 +87,15 @@
 .tourPointImg {
 	margin-top:10px;
 	max-width:90%;
+	border:5px #fff solid;
+	-webkit-box-shadow: 2px 2px 3px 0px #444444;
+	box-shadow: 2px 2px 3px 0px #444444;
+}
+
+.tourPointIframe {
+	margin-top:10px;
+	width: 90%;
+	height: 500px;
 	border:5px #fff solid;
 	-webkit-box-shadow: 2px 2px 3px 0px #444444;
 	box-shadow: 2px 2px 3px 0px #444444;

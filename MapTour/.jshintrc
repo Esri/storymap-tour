@@ -1,0 +1,44 @@
+{
+	"browser": true,
+	"dojo": true,
+	"jquery": true,
+	
+	"globals": {
+		"console": false,
+		"alert": false,
+		"prompt": false,
+		"BlobBuilder": false,
+		"BinaryFile": false,
+		"unescape": false,
+
+		"$": false,
+		"esri": false,
+
+		"APPCFG": true,
+		"configOptions": true,
+		"commonConfig": true,
+		"version": false,
+		"i18n": false,
+		"app": true,
+		"loadingIndicator": false,
+		"mediaNotFoundHandler": false,
+
+		"FB": false,
+		"SwipeView": false,
+		"EXIF": false,
+		"Spinner": false,
+		"MegaPixImage": false,
+		"Hammer": false,
+		"iScroll": false
+	},
+	
+	"expr": true,
+	"laxbreak": true,
+	"eqnull": true,
+	"multistr": true,
+	"loopfunc": true,
+	"newcap": true,
+	"noarg": true,
+	"undef": true,
+	"unused": true
+}

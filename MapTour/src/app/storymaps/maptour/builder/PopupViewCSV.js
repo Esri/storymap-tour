@@ -2,8 +2,32 @@ define(["storymaps/utils/Helper",
 		"storymaps/utils/WebMapHelper", 
 		"storymaps/maptour/builder/MapTourBuilderHelper", 
 		"storymaps/maptour/core/MapTourHelper",
-		"dojo/_base/lang"], 
-	function (Helper, WebMapHelper, MapTourBuilderHelper, MapTourHelper, lang) {
+		"dojo/_base/lang",
+		"esri/map",
+		"esri/layers/FeatureLayer",
+		"esri/geometry/Point",
+		"esri/renderers/UniqueValueRenderer",
+		"esri/geometry/webMercatorUtils",
+		"esri/graphicsUtils",
+		"esri/config",
+		"dojo/_base/array",
+		"dojo/on"], 
+	function (
+		Helper, 
+		WebMapHelper, 
+		MapTourBuilderHelper, 
+		MapTourHelper, 
+		lang, 
+		Map,
+		FeatureLayer,
+		Point,
+		UniqueValueRenderer,
+		webMercatorUtils,
+		graphicsUtils,
+		esriConfig,
+		array,
+		on)
+	{
 		return function PopupViewCSV(parentContainer) 
 		{
 			var LAT_FIELD_CANDIDATES  = ["lat", "latitude", "y", "ycenter"];
@@ -52,7 +76,7 @@ define(["storymaps/utils/Helper",
 				_initCompleteDeferred = initCompleteDeferred;
 				_footer = footer;
 				
-			}
+			};
 			
 			this.getView = function()
 			{
@@ -61,7 +85,7 @@ define(["storymaps/utils/Helper",
 				else
 					showView('error');
 				return _container;
-			}
+			};
 			
 			this.getNextView = function()
 			{
@@ -73,7 +97,7 @@ define(["storymaps/utils/Helper",
 				}
 				
 				return;
-			}
+			};
 			
 			//
 			// FILE SELECTION VIEW
@@ -85,7 +109,7 @@ define(["storymaps/utils/Helper",
 					var files = data.files || data;
 					
 					if ( files.length != 1 || files[0].name.indexOf(".csv") == -1 )
-					 	return;
+						return;
 					
 					var file = files[0];				
 					var reader = new FileReader();
@@ -106,9 +130,9 @@ define(["storymaps/utils/Helper",
 						return;
 					
 					var fso  = new ActiveXObject("Scripting.FileSystemObject"); 
-			        var fh = fso.OpenTextFile(data.value, 1); 
-			        var contents = fh.ReadAll(); 
-			        fh.Close();
+					var fh = fso.OpenTextFile(data.value, 1); 
+					var contents = fh.ReadAll(); 
+					fh.Close();
 					parseCSV(contents);
 				}
 				*/
@@ -117,7 +141,7 @@ define(["storymaps/utils/Helper",
 			function parseCSV(data)
 			{
 				var newLineIdx = data.indexOf("\n");
-				var firstLine = dojo.trim(data.substr(0, newLineIdx));
+				var firstLine = lang.trim(data.substr(0, newLineIdx));
 				var separator = getSeparator(firstLine);
 				
 				// Initialize a Dojo CsvStore
@@ -137,10 +161,11 @@ define(["storymaps/utils/Helper",
 				}
 				
 				csvStore.fetch({
-					onComplete: function(items, request){
+					onComplete: function(items){
 						var objectId = _startIndex;
 						var latField, longField;
 						var fieldNames = csvStore._attributes;
+						var error;
 						
 						// Empty CSV
 						if( ! items.length ) {
@@ -150,14 +175,14 @@ define(["storymaps/utils/Helper",
 						}
 						
 						// Find lat/long fields
-						dojo.forEach(fieldNames, function(fieldName){
+						array.forEach(fieldNames, function(fieldName){
 							var matchId = null;
 							
-							matchId = dojo.indexOf(LAT_FIELD_CANDIDATES, fieldName.toLowerCase());
+							matchId = array.indexOf(LAT_FIELD_CANDIDATES, fieldName.toLowerCase());
 							if (matchId !== -1)
 								latField = fieldName;
 							
-							matchId = dojo.indexOf(LONG_FIELD_CANDIDATES, fieldName.toLowerCase());
+							matchId = array.indexOf(LONG_FIELD_CANDIDATES, fieldName.toLowerCase());
 							if (matchId !== -1)
 								longField = fieldName;
 						});
@@ -172,9 +197,9 @@ define(["storymaps/utils/Helper",
 						// Fail if not found
 						var fieldsMatchCSV = app.data.lookForMatchingFields(fieldNames);
 						if( ! fieldsMatchCSV.allFieldsFound ) {
-							var error = i18n.viewer.viewCSV.errorFieldsExplain + ":";
+							error = i18n.viewer.viewCSV.errorFieldsExplain + ":";
 							
-							error += "<ul>"
+							error += "<ul>";
 							if( ! fieldsMatchCSV.fields.fieldName )
 								error += "<li>" + i18n.viewer.viewCSV.errorFieldsName.replace('%VAL%', APPCFG.FIELDS_CANDIDATE.name.join(', ')) + "</li>";
 							if( ! fieldsMatchCSV.fields.fieldDescription )
@@ -197,8 +222,8 @@ define(["storymaps/utils/Helper",
 						// If in import mode, filter the fields to only keep the one present in the existing layer
 						if( _fields ) {
 							fieldNames = fieldNames.filter(function(field) {
-						        return _fields.indexOf(field) != -1;
-						    });
+								return _fields.indexOf(field) != -1;
+							});
 						}
 						
 						// Look for fields after the filtering
@@ -208,9 +233,9 @@ define(["storymaps/utils/Helper",
 							var fieldsMatchLayer = app.data.lookForMatchingFields(_fields);
 						
 							if( ! fieldsMatchCSVAfterFilter.allFieldsFound ) {
-								var error = i18n.viewer.viewCSV.errorFields2Explain + ":";
+								error = i18n.viewer.viewCSV.errorFields2Explain + ":";
 								
-								error += "<ul>"
+								error += "<ul>";
 								if (!fieldsMatchCSVAfterFilter.fields.fieldName) 
 									error += "<li>" + i18n.viewer.viewCSV.errorFields2Name.replace('%VAL1%', fieldsMatchCSV.fields.fieldName).replace('%VAL2%', fieldsMatchLayer.fields.fieldName) + "</li>";
 								if (!fieldsMatchCSVAfterFilter.fields.fieldDescription) 
@@ -219,10 +244,10 @@ define(["storymaps/utils/Helper",
 									error += "<li>" + i18n.viewer.viewCSV.errorFields2Url.replace('%VAL1%', fieldsMatchCSV.fields.fieldURL).replace('%VAL2%', fieldsMatchLayer.fields.fieldURL) + "</li>";
 								if (!fieldsMatchCSVAfterFilter.fields.fieldThumb) 
 									error += "<li>" + i18n.viewer.viewCSV.errorFields2Thumb.replace('%VAL1%', fieldsMatchCSV.fields.fieldThumb).replace('%VAL2%', fieldsMatchLayer.fields.fieldThumb) + "</li>";
-								error += "</ul>"
+								error += "</ul>";
 								
 								showError(error);
-								showView('result');
+								showView('result', 'error');
 								return;
 							}
 						}
@@ -235,10 +260,11 @@ define(["storymaps/utils/Helper",
 
 						// Get the feature collection template
 						var featureCollection = generateFeatureCollectionTemplateCsv(csvStore, items);
-						
+
 						// Add records in the CSV
 						var nbPointsAdded = 0;
-						dojo.forEach(items, function(item, index){
+						var featuresNeedReprojection = [];
+						array.forEach(items, function(item){
 							var attributes = {};
 							
 							// Enforce the import limitation
@@ -248,17 +274,17 @@ define(["storymaps/utils/Helper",
 							nbPointsAdded++;
 							
 							// Read all the attributes for  this record/item
-							dojo.forEach(fieldNames, function(attr){
+							array.forEach(fieldNames, function(attr){
 								var value = Number(csvStore.getValue(item, attr));
 								if( isNaN(value) )
-									value = csvStore.getValue(item, attr)
-								if ( value == null || value == undefined )
+									value = csvStore.getValue(item, attr);
+								if ( value == null || value === undefined )
 									value = '';
 									
 								attributes[attr] = value;
 							});
 							
-							attributes["__OBJECTID"] = objectId++;
+							attributes.__OBJECTID = objectId++;
 							
 							// Take care of lat/long
 							var latitude = parseFloat(attributes[latField]);
@@ -268,12 +294,19 @@ define(["storymaps/utils/Helper",
 								return;
 							
 							// Add new points to the FC
-							var geometry = esri.geometry.geographicToWebMercator(new esri.geometry.Point(longitude, latitude));
+							var geometry = new Point(longitude, latitude);
+							
+							if (app.map.spatialReference.wkid == 102100)
+								geometry = webMercatorUtils.geographicToWebMercator(geometry);
+							
 							var feature = {
 								"geometry": geometry.toJson(),
 								"attributes": attributes
 							};
 							featureCollection.featureSet.features.push(feature);
+							
+							if ( app.map.spatialReference.wkid != 102100 && app.map.spatialReference.wkid != 4326 )
+								featuresNeedReprojection.push(geometry);
 						});
 						
 						// Prepare the warning message if the number of features imported has been limited
@@ -285,8 +318,28 @@ define(["storymaps/utils/Helper",
 												.replace('%VAL3%', _nbPicturesMax);
 						}
 						
-						showResultMap(featureCollection, csvStore._attributes, importLimitation);
-						showView('result');
+						if (featuresNeedReprojection.length > 0) {
+							// TODO: there should be a wait indicator somewhere (the button on the main screen?)
+							esriConfig.defaults.geometryService.project(featuresNeedReprojection, app.map.spatialReference, function(features){
+								if (!features || !features.length) {
+									console.error("Error fetching items from CSV store: ", error);
+									showError(i18n.viewer.viewCSV.resultHeaderEmpty);
+									showView('result');
+									return;
+								}
+								
+								$.each(features, function(i, point){
+									featureCollection.featureSet.features[i].geometry = point.toJson();
+								});
+								
+								showResultMap(featureCollection, csvStore._attributes, importLimitation);
+								showView('result');
+							});
+						}
+						else {
+							showResultMap(featureCollection, csvStore._attributes, importLimitation);
+							showView('result');
+						}
 					},
 					onError: function(error){
 						console.error("Error fetching items from CSV store: ", error);
@@ -305,16 +358,16 @@ define(["storymaps/utils/Helper",
 				// The FeatureLayer will pollute featureCollection
 				_resultFeatureCollection = lang.clone(featureCollection);
 				
-				var featureLayer = new esri.layers.FeatureLayer(featureCollection, { id: 'csvLayer' });
+				var featureLayer = new FeatureLayer(featureCollection, { id: 'csvLayer' });
 				
 				// Set the renderer
-				var renderer = new esri.renderer.UniqueValueRenderer(null, "__OBJECTID");
+				var renderer = new UniqueValueRenderer(null, "__OBJECTID");
 				if( ! _startIndex )
 					_startIndex = 1;
 					
 				$(featureLayer.graphics).each(function(index, graphic) {
 					renderer.addValue({
-						value: graphic.attributes["__OBJECTID"],
+						value: graphic.attributes.__OBJECTID,
 						symbol: MapTourHelper.getSymbol(null, _startIndex + index)
 					});
 				});
@@ -324,7 +377,7 @@ define(["storymaps/utils/Helper",
 				
 				var headerText = "<b>" + i18n.viewer.viewCSV.resultHeaderSuccess.replace('%NB_POINTS%', nbPoints) + "</b>";
 				if( importLimitation )
-					headerText += ". " + importLimitation + "."
+					headerText += ". " + importLimitation + "." ;
 				_container.find('.csvResultHeader').html(headerText);
 
 				// Right Fields panel			
@@ -354,9 +407,9 @@ define(["storymaps/utils/Helper",
 				_container.find('.csvResultFields').html(fieldsHtml);
 				
 				// Map
-				var initialExtent = esri.graphicsExtent(featureLayer.graphics);
+				var initialExtent = graphicsUtils.graphicsExtent(featureLayer.graphics);
 				_container.find("#" + _mapDivId).show();
-				_csvMap = new esri.Map(_mapDivId, {
+				_csvMap = new Map(_mapDivId, {
 					slider: true,
 					extent: initialExtent,
 					// iOS requirement
@@ -368,8 +421,7 @@ define(["storymaps/utils/Helper",
 				_csvMap.addLayer(Helper.cloneLayer(basemap));
 				_csvMap.addLayer(featureLayer);
 	
-				var handle = dojo.connect(_csvMap, "onUpdateEnd", function() {
-					dojo.disconnect(handle);
+				on.once(_csvMap, "update-end", function() {
 					_csvMap.resize();
 					_csvMap.reposition();
 					_csvMap.disableKeyboardNavigation();
@@ -417,7 +469,7 @@ define(["storymaps/utils/Helper",
 			{
 				var featureCollection = MapTourBuilderHelper.getFeatureCollectionTemplate(false);
 				
-				dojo.forEach(store._attributes, function(field){
+				array.forEach(store._attributes, function(field){
 					var value = store.getValue(items[0], field);
 					var parsedValue = Number(value);
 					
@@ -433,21 +485,23 @@ define(["storymaps/utils/Helper",
 				return featureCollection;
 			}
 			
+			/*
 			function bytesToString(b)
 			{
 				var s = [];
-				dojo.forEach(b, function (c) {
+				array.forEach(b, function (c) {
 					s.push(String.fromCharCode(c));
 				});
 				return s.join("");
 			}
+			*/
 			
 			function getSeparator(string)
 			{
 				var separators = [",", "      ", ";", "|"];
 				var maxSeparatorLength = 0;
 				var maxSeparatorValue = "";
-				dojo.forEach(separators, function (separator) {
+				array.forEach(separators, function (separator) {
 					var length = string.split(separator).length;
 					if (length > maxSeparatorLength) {
 						maxSeparatorLength = length;
@@ -461,12 +515,12 @@ define(["storymaps/utils/Helper",
 			// UI
 			//
 			
-			function showView(view)
+			function showView(view, options)
 			{
 				_container.find('.popupViewCSVView').hide();
 				_container.find('.popupViewCSV-' + view).show();
 				
-				changeFooterState(view);
+				changeFooterState(view, options);
 			}
 			
 			function showError(error)
@@ -474,7 +528,7 @@ define(["storymaps/utils/Helper",
 				_container.find('.csvResultHeader').addClass('error').html(error);
 			}
 			
-			function changeFooterState(state)
+			function changeFooterState(state, options)
 			{
 				var btnPrev = _footer.find('.btnPrev');
 				var btnNext = _footer.find('.btnNext');
@@ -484,7 +538,10 @@ define(["storymaps/utils/Helper",
 				
 				if( state == "result" ) {
 					btnNext.html(i18n.viewer.viewCSV.footerNextBtnResult);
-					btnNext.removeAttr("disabled");
+					if( options == "error" )
+						btnNext.attr("disabled", "true");
+					else
+						btnNext.removeAttr("disabled");
 					btnNext.show();
 					btnPrev.removeAttr("disabled");
 					footerText.html("");
@@ -552,7 +609,7 @@ define(["storymaps/utils/Helper",
 				_container.find('.popupViewCSV-error').html(i18n.viewer.viewCSV.browserSupport);
 				
 				initEvents();
-			}
-		}
+			};
+		};
 	}
 );

@@ -3,8 +3,33 @@ define(["storymaps/maptour/core/MapTourHelper",
 		"storymaps/utils/MovableGraphic",
 		"storymaps/maptour/builder/MapTourBuilderHelper",
 		"storymaps/utils/WebMapHelper",
-		"esri/toolbars/edit"], 
-	function (MapTourHelper, Helper, MovableGraphic, MapTourBuilderHelper, WebMapHelper) {
+		"esri/toolbars/edit",
+		"esri/map",
+		"esri/layers/GraphicsLayer",
+		"esri/geometry/webMercatorUtils",
+		"esri/graphicsUtils",
+		"esri/graphic",
+		"esri/geometry/Point",
+		"esri/config",
+		"dojo/on",
+		"dojo/_base/event"], 
+	function (
+		MapTourHelper, 
+		Helper, 
+		MovableGraphic, 
+		MapTourBuilderHelper, 
+		WebMapHelper,
+		Edit,
+		Map,
+		GraphicsLayer,
+		webMercatorUtils,
+		graphicsUtils,
+		Graphic,
+		Point,
+		esriConfig,
+		on,
+		event)
+	{
 		return function PopupViewGeoTag(parentContainer) 
 		{
 			// Clone the #popupViewCSV template into a new DIV
@@ -26,6 +51,8 @@ define(["storymaps/maptour/core/MapTourHelper",
 			
 			var _data = null;
 			var _geotagMap = null;
+			var _mapIsReady = false;
+			var _postDisplayCalled = false;
 			var _pointsLayer = null;
 			var _extentMapEditToolbar;
 			var _selectedGraphic = null;
@@ -43,7 +70,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 				_footer = footer;
 				
 				app.builder.popupViewGeoTagDeletePic = deletePoint;
-			}
+			};
 			
 			this.getView = function(params)
 			{
@@ -52,12 +79,12 @@ define(["storymaps/maptour/core/MapTourHelper",
 					showView();
 				}
 				return _container;
-			}
+			};
 			
 			this.postDisplayCallback = function()
 			{
 				mapFirstDisplay();
-			}
+			};
 			
 			this.getNextView = function()
 			{
@@ -69,7 +96,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 					saveWebmap();
 				
 				return;
-			}
+			};
 			
 			//
 			// View creation
@@ -77,13 +104,17 @@ define(["storymaps/maptour/core/MapTourHelper",
 			
 			function showView()
 			{
-				if( _data.length == 0 ) {
-					console.error("Error empty dataset")
+				if( _data.length === 0 ) {
+					console.error("Error empty dataset");
 					return;
 				}
 				
 				var btnNext = _footer.find('.btnNext');
 				btnNext.html(i18n.viewer.viewGeoTag.footerImport);
+				
+				_container.find('.wait').removeClass('error').html(i18n.viewer.viewGeoTag.loading + '<img src="resources/icons/loader-upload.gif" class="waitSpinner"/>');
+				_container.find('.waitContainer').show();
+				
 				initMapAndList();
 				updateTabName();
 				displayTab(0);
@@ -91,6 +122,52 @@ define(["storymaps/maptour/core/MapTourHelper",
 			
 			function initMapAndList()
 			{
+				_mapIsReady = false;
+				_postDisplayCalled = false;
+				
+				// If the webmap isn't in mercator or WGS we need to reproject already geolocated points
+				if (app.map.spatialReference.wkid != 102100 && app.map.spatialReference.wkid != 4326){
+					var geoReferencedIdx = [];
+					var geoReferencedGeom = [];
+					$.each(_data, function(i, point){
+						if( point.lat && point.lng ) {
+							geoReferencedIdx.push(i);
+							geoReferencedGeom.push(new Point(point.lng, point.lat));
+						}
+					});
+					
+					if( geoReferencedIdx.length > 0 ) {
+						esriConfig.defaults.geometryService.project(geoReferencedGeom, app.map.spatialReference, function(features){
+							if (!features || ! features.length) {
+								_container.find('.wait').addClass('error').html(i18n.viewer.viewGeoTag.error);
+								initMapAndListStep2(true);
+								return;
+							}
+							
+							$.each(features, function(i, point){
+								_data[geoReferencedIdx[i]].lng = point.x;
+								_data[geoReferencedIdx[i]].lat = point.y;
+							});
+							
+							initMapAndListStep2();
+						});
+					}
+					else
+						initMapAndListStep2();
+				}
+				else
+					initMapAndListStep2();
+			}
+			
+			function initMapAndListStep2(errorDuringDataProjection)
+			{	
+				if( errorDuringDataProjection )
+					setTimeout(function(){
+						_container.find('.waitContainer').hide();
+					}, 5000);
+				else
+					_container.find('.waitContainer').hide();
+				
 				var listGeo = "";
 				var listNonGeo = "";
 				
@@ -99,7 +176,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 					_geotagMap = null;
 				}
 				
-				_pointsLayer = new esri.layers.GraphicsLayer({
+				_pointsLayer = new GraphicsLayer({
 					id: "geotagLayer"
 				});
 				
@@ -107,9 +184,15 @@ define(["storymaps/maptour/core/MapTourHelper",
 				
 				// Populate the tabs
 				$.each(_data, function(i, point){
-					if( point.lat && point.lng ) {
-						var geom = esri.geometry.geographicToWebMercator(new esri.geometry.Point(point.lng, point.lat));
-						_pointsLayer.add(getGraphic(geom, _geoTagIndex, point));
+					if( ! errorDuringDataProjection && point.lat && point.lng ) {
+						var geom = new Point(point.lng, point.lat);
+						
+						if (app.map.spatialReference.wkid == 102100)
+							geom = webMercatorUtils.geographicToWebMercator(geom);
+						
+						var graphic = getGraphic(geom, _geoTagIndex, i, point);
+						graphic.geoTagIndex = _geoTagIndex;
+						_pointsLayer.add(graphic);
 						
 						listGeo += generatePictureDiv(point, i, _geoTagIndex);
 						_geoTagIndex++;
@@ -122,22 +205,29 @@ define(["storymaps/maptour/core/MapTourHelper",
 				
 				_container.find('.clickOrTapInfo').removeClass('stickTop');
 				
-				_geotagMap = new esri.Map(_mapDivId, {
+				_geotagMap = new Map(_mapDivId, {
 					slider: true,
 					autoResize: false,
 					extent: Helper.getWebMapExtentFromItem(app.data.getWebMapItem().item)
 				});
 				
-				var handle = dojo.connect(_geotagMap, "onUpdateEnd", function() {
-					dojo.disconnect(handle);
+				on.once(_geotagMap, "load", function() {
 					_geotagMap.disableKeyboardNavigation();
 					
 					// Does not work on Ipad (onpress doesn't get the event.graphic
 					//new MovableGraphic(_geotagMap, _pointsLayer, null);
 					
-					_extentMapEditToolbar = new esri.toolbars.Edit(_geotagMap);
-					dojo.connect(_pointsLayer, "onClick", pointLayerClick);
-					dojo.connect(_geotagMap, "onClick", mapClick);
+					_extentMapEditToolbar = new Edit(_geotagMap);
+					on(_pointsLayer, "click", pointLayerClick);
+					on(_geotagMap, "click", mapClick);
+					
+					// That logic can probably get better
+					_mapIsReady = true;
+					// If post display have been called before we get ready ...
+					if ( _postDisplayCalled ) {
+						_geotagMap.resize(true);
+						centerMap();
+					}
 				});
 				
 				// Click event on the to be located list
@@ -152,33 +242,48 @@ define(["storymaps/maptour/core/MapTourHelper",
 			
 			function generatePictureDiv(point, index, geoTagIndex)
 			{
-				return  "<li> \
+				var str = "<li> \
 							<div> \
 								<img \
-									data-index='" + index + "' data-geotagindex='" + geoTagIndex + "'\
+									data-index='" + index + "' \
+									data-geotagindex='" + geoTagIndex + "' \
 									src='" + point.thumb_url + "' \
 									draggable='false' \
-								 	/>\
-								<div>" + point.name + "</div> \
-								<button type='button' class='close' title='" + i18n.viewer.viewGeoTag.clickDrop + "' onClick='app.builder.popupViewGeoTagDeletePic(" + index + ")'>×</button> \
+									/>\
+								<div class='geotagPicName'>" + point.name + "</div> \
+								<button type='button' class='close' title='" + i18n.viewer.viewGeoTag.clickDrop + "' onClick='app.builder.popupViewGeoTagDeletePic(this)'>×</button> \
 							</div> \
 						</li>";
+				return str;
 			}
 			
 			function mapFirstDisplay()
 			{
-				_geotagMap.resize();
-				var handle = dojo.connect(_geotagMap, 'onUpdateEnd', function(error, info){
-					dojo.disconnect(handle);
-					var initialExtent = Helper.getWebMapExtentFromItem(app.data.getWebMapItem().item);
-					
-					if (_pointsLayer.graphics.length > 1) {
-						try {
-							initialExtent = esri.graphicsExtent(_pointsLayer.graphics).expand(2);
-						} catch(e){ }
-					}
+				if (_mapIsReady)
+					centerMap();
+				_postDisplayCalled = true;
+			}
+			
+			function centerMap()
+			{
+				var initialExtent = Helper.getWebMapExtentFromItem(app.data.getWebMapItem().item);
+				
+				if (_pointsLayer.graphics.length > 1) {
+					try {
+						initialExtent = graphicsUtils.graphicsExtent(_pointsLayer.graphics).expand(2);
+					} catch(e){ }
+				}
+				
+				if (_geotagMap.spatialReference.wkid != initialExtent.spatialReference.wkid) {
+					esriConfig.defaults.geometryService.project([initialExtent], _geotagMap.spatialReference, function(features){
+						if (!features || !features[0]) 
+							return;
+						
+						_geotagMap.setExtent(features[0], true);
+					});
+				}
+				else
 					_geotagMap.setExtent(initialExtent, true);
-				});
 			}
 			
 			//
@@ -187,12 +292,13 @@ define(["storymaps/maptour/core/MapTourHelper",
 			
 			function pointLayerClick(evt)
 			{
-				dojo.stopEvent(evt);
-				_extentMapEditToolbar.activate(esri.toolbars.Edit.MOVE, evt.graphic);
-				evt.graphic.setSymbol(MapTourHelper.getSymbol(null, evt.graphic.attributes["__OBJECTID"], "selected"));
+				event.stop(evt);
+								
+				_extentMapEditToolbar.activate(Edit.MOVE, evt.graphic);
+				evt.graphic.setSymbol(MapTourHelper.getSymbol(null, evt.graphic.geoTagIndex, "selected"));
 				
 				if( _selectedGraphic )
-					_selectedGraphic.setSymbol(MapTourHelper.getSymbol(null, _selectedGraphic.attributes["__OBJECTID"]));
+					_selectedGraphic.setSymbol(MapTourHelper.getSymbol(null, _selectedGraphic.geoTagIndex));
 				
 				_selectedGraphic = evt.graphic;
 			}
@@ -205,26 +311,26 @@ define(["storymaps/maptour/core/MapTourHelper",
 				else {
 					_extentMapEditToolbar.deactivate();
 					if (_selectedGraphic) 
-						_selectedGraphic.setSymbol(MapTourHelper.getSymbol(null, _selectedGraphic.attributes["__OBJECTID"]));
+						_selectedGraphic.setSymbol(MapTourHelper.getSymbol(null, _selectedGraphic.geoTagIndex));
 				}
 			}
 			
 			function createToLocateClickEvent()
 			{
 				_container.find(".tab-content > div").eq(0).find("li").unbind("click").click(
-					function(event){
+					function(){
 						var alreadySelected = $(this).hasClass("clicked");
 						
 						_container.find(".tab-content > div").eq(0).find("li").removeClass("clicked");
 						
 						if( ! alreadySelected ) {
 							$(this).addClass("clicked");
-							$(this).css("min-height", $(this).css("height"))
+							$(this).css("min-height", $(this).css("height"));
 							_container.find('.clickOrTapInfo').css("display", "block").animate({opacity:1}, 150);
 							setTimeout(function(){
 								setTimeout(function(){
 									_container.find('.clickOrTapInfo').animate({opacity:0}, 250);
-									_geotagMap.setMapCursor("pointer")
+									_geotagMap.setMapCursor("pointer");
 									setTimeout(function(){ 
 										_container.find('.clickOrTapInfo').css("display", "none");
 										_container.find('.clickOrTapInfo').addClass('stickTop');
@@ -237,7 +343,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 							setTimeout(function(){
 								_container.find('.clickOrTapInfo').css("display", "none");
 							}, 260);
-							_geotagMap.setMapCursor("default")
+							_geotagMap.setMapCursor("default");
 						}
 					}
 				);
@@ -249,26 +355,26 @@ define(["storymaps/maptour/core/MapTourHelper",
 			//
 			
 			/**
-			 * Create the esri.graphic for the point of index and geom
+			 * Create the Graphic for the point of index and geom
 			 * @param {Object} geom
 			 * @param {Object} index
 			 * @param {Object} point
 			 */
-			function getGraphic(geom, index, point)
+			function getGraphic(geom, geoTagIndex, index, point)
 			{
 				var attributes = {};
 				var fieldsName = getFieldsName();
 				
-				attributes['icon_color'] = APPCFG.PIN_DEFAULT_CFG;
-				attributes['__OBJECTID'] = index;
+				attributes.icon_color = APPCFG.PIN_DEFAULT_CFG;
+				attributes.__OBJECTID = index;
 				attributes[fieldsName.fieldName] = point.name || '';
 				attributes[fieldsName.fieldDescription] = point.description || '';
 				attributes[fieldsName.fieldURL] = point.pic_url;
 				attributes[fieldsName.fieldThumb] = point.thumb_url;
 				
-				return new esri.Graphic(
+				return new Graphic(
 					geom,
-					MapTourHelper.getSymbol(null, index),
+					MapTourHelper.getSymbol(null, geoTagIndex),
 					attributes
 				);
 			}
@@ -295,14 +401,15 @@ define(["storymaps/maptour/core/MapTourHelper",
 			{	
 				if (pointIndex != null && event) {
 					var point = _data[pointIndex];
-					var geom = _geotagMap.toMap(new esri.geometry.Point(event.layerX, event.layerY));
+					var geom = _geotagMap.toMap(new Point(event.layerX, event.layerY));
+					var graphic = getGraphic(geom, _startIndex + _pointsLayer.graphics.length, pointIndex, point);
 					
-					_pointsLayer.add(getGraphic(geom, _startIndex + _pointsLayer.graphics.length, point));
-					
+					graphic.geoTagIndex = _startIndex + _pointsLayer.graphics.length;
+					_pointsLayer.add(graphic);
 					
 					var newLocatedImg = _container.find(".tab-content > div").eq(0).find("img[data-index='" + pointIndex + "']");
 					var newLocatedContainer = newLocatedImg.parent().parent();
-					newLocatedImg.data("geotagindex", _geoTagIndex)
+					newLocatedImg.data("geotagindex", _geoTagIndex);
 					newLocatedContainer.removeClass("clicked");
 					_container.find(".tab-content > div ul").eq(1).append(newLocatedContainer);
 					
@@ -311,22 +418,22 @@ define(["storymaps/maptour/core/MapTourHelper",
 					$("#" + _mapDivId).removeClass('dragover');
 					updateTabName();
 					changeFooterState(_geoTagIndex == _startIndex ? "nodata" : "data");
-					_geotagMap.setMapCursor("default")
+					_geotagMap.setMapCursor("default");
 				}
 			}
 			
-			function deletePoint(pointIndex)
+			function deletePoint(e)
 			{
-				var img = _container.find(".tab-content > div").eq(1).find("img[data-index='" + pointIndex + "']");
-				var imgContainer = img.parent().parent();
-				var geotagIndex = img.data('geotagindex');
+				var imgContainer = $(e).parent().parent();
+				var img = _container.find(".tab-content > div").eq(1).find("li").eq(imgContainer.index()).find('img');
+				var index = img.data('index');
 				
 				img.attr("draggable", "false");
 				imgContainer.removeClass("clicked");
 				_container.find(".tab-content > div ul").eq(0).append(imgContainer);
 				
 				$.each(_pointsLayer.graphics, function(i, graphic){
-					if( graphic && graphic.attributes.__OBJECTID == geotagIndex )
+					if( graphic && graphic.attributes.__OBJECTID == index )
 						_pointsLayer.remove(graphic);
 				});
 				
@@ -335,7 +442,8 @@ define(["storymaps/maptour/core/MapTourHelper",
 					// _geoTagIndex is not kept in sync with the numbering, it increment each time
 					// a feature is located and is not decremented when deleted
 					// Ok as the import doesn't use the objectid, it will renumber them based on layer order
-					graphic.setSymbol(MapTourHelper.getSymbol(null, _startIndex + i));
+					graphic.setSymbol(MapTourHelper.getSymbol(null, _startIndex + i, _selectedGraphic == graphic ? "selected" : ""));
+					graphic.geoTagIndex = _startIndex + i;
 				});
 				
 				updateTabName();
@@ -388,10 +496,10 @@ define(["storymaps/maptour/core/MapTourHelper",
 			
 			function initEvents()
 			{
-				 _container.find(".nav-tabs > li").click(onTabClick);
+				_container.find(".nav-tabs > li").click(onTabClick);
 			}
 			
-			function onTabClick(event) 
+			function onTabClick() 
 			{
 				var tabIndex = $(this).index();
 				displayTab(tabIndex);
@@ -450,7 +558,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 			this.initLocalization = function()
 			{
 				// Prevent multiple initialization from different components
-				if( _container.find('.header').html() != "" )
+				if( _container.find('.header').html() !== "" )
 					return;
 				
 				_container.find('.header').append(i18n.viewer.viewGeoTag.header + ' <a>' + i18n.viewer.viewGeoTag.headerMore + '<a>');
@@ -463,9 +571,10 @@ define(["storymaps/maptour/core/MapTourHelper",
 				});
 				
 				_container.find('.clickOrTapInfo').append(i18n.viewer.viewGeoTag.clickOrTap);
+				_container.find('.wait').html(i18n.viewer.viewGeoTag.loading);
 				
 				initEvents();
-			}
-		}
+			};
+		};
 	}
 );

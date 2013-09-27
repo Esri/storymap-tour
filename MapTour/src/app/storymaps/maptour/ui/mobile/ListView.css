@@ -6,6 +6,26 @@
 	-ms-touch-action: none;
 }
 
+.listWrapper {
+	width:100%;
+	height: 100%;
+	overflow:auto;
+	/* SURFACE */
+	-ms-touch-action: none;
+}
+
+.listScroller {
+	padding:0;
+	cursor: pointer;
+	/* header height */
+	padding-bottom:41px;
+}
+
+/* The scroll bar */
+.listWrapper > div:nth-child(2) {
+	display: none;
+}
+
 .listItem {
 	position:relative;
 	height:100px;

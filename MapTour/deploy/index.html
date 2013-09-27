@@ -3,7 +3,7 @@
 	<head>
 		<title></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 		
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -12,17 +12,24 @@
 		<link type="image/ico" rel="icon"  href="//resources.esri.com/favicon.ico">
 		
 		<meta property="og:title" content="Map Tour"/>
-		<meta property="og:image" content="resources/icons/esri-logo.jpg"/>
 		<meta property="og:description" content="Map Tour template enable ArcGIS user to create place-based narrative combining images, text, and a map through an interactive editing tool."/>
+		<meta property="og:image" content="http://www.arcgis.com/sharing/rest/content/items/d4a2705a8b224e71961404542ae94c6f/info/thumbnail/highline_thumbnail.png"/>
 
 		<script type="text/javascript">
-			//--------------------------------
-			//     Template configuration
-			//--------------------------------
+			//----------------------------------------------------
+			//     Template configuration (ignored on Portal)
+			//----------------------------------------------------
 			configOptions = {
-				// The web map id (can be overridden through URL)
+				// Enter either a web map ID or a web application ID
+				// - Using a Map Tour application ID created through the interactive builder in ArcGIS.com allow to reuse 
+				//   the settings like the header configuration without having to edit any configuration here
+				// - Web map and application can be dynamically specified through url parameters (webmap and appid) 
+				//   if the authorizedOwners property is specified (see below)
+				// - If an application id is specified, the webmap configuration isn't used
 				webmap: "",
-				// The list of authorized web map owners (e.g. ["user1"], ["user1", "user2"])
+				appid: "",
+				// Optional list of authorized application or web map owners
+				// Has to be specified when using appid or webmap url parameters (e.g. ["user1"], ["user1", "user2"])
 				authorizedOwners: [""],
 				// Select the application layout between "three-panel" and "integrated"
 				layout: "three-panel",
@@ -36,20 +43,17 @@
 				// Use the first data record as an introduction instead of a point (can be overridden through URL)
 				firstRecordAsIntro: true,
 				// Optional zoom level to be applied for the story points following introduction (can be overridden through URL) (e.g: 0 to 16 for Gray Canvas, 0 to 19 for Street Map, -1 to disable)
-				zoomLevel: -1,
-				// If the webmap uses Bing Maps data, you will need to provide your Bing Maps Key
-				bingmapskey: "",
-				// Optionally specify a proxy for specific deployment
-				//proxyurl: "//www.arcgis.com/sharing/proxy",
-				// Optionally specify the sharing service URL if you are using Portal for ArcGIS
-				//sharingurl: "//www.arcgis.com/sharing/content/items",
-				// Specify the url to a geometry service
-				geometryserviceurl: "//tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer"
+				zoomLevel: -1
 			};
+			// Optionally sharing and proxy URLs can be configured in app/maptour-config.js. This is only required  
+			//  when the webmap is not hosted on ArcGIS Online or a Portal for ArcGIS instance and the template isn't deployed as /home/MapTour/ or /apps/MapTour/. 
+			// Optionally Bing Maps key, Geometry and Geocode service's URLs can be configured in app/commonConfig.js. This is only required 
+			//  if the Organization or Portal for ArcGIS instance default configuration has to be overwritten. If the application is deployed 
+			//  on Portal for ArcGIS as /home/MapTour/ or /apps/MapTour/, that configuration is available in ../commonConfig.js
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.0';
+			var version = '2.1';
 			var isProduction = true;
 
 			function loadJS(url, isExternal)
@@ -76,8 +80,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("//js.arcgis.com/3.6/js/esri/css/esri.css", true);
-			loadCSS("//js.arcgis.com/3.6/js/dojo/dijit/themes/claro/claro.css", true);			
+			loadCSS("//js.arcgis.com/3.7/js/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.7/js/dojo/dijit/themes/claro/claro.css", true);			
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -94,7 +98,7 @@
 				loadCSS("app/storymaps/core/Core.css");
 				loadCSS("app/storymaps/maptour/core/MainView.css");
 				loadCSS("app/storymaps/ui/header/Header.css");
-				loadCSS("app/storymaps/maptour/ui/MapCommand.css");
+				loadCSS("app/storymaps/ui/mapCommand/MapCommand.css");
 				loadCSS("app/storymaps/maptour/ui/desktop/Carousel.css");
 				loadCSS("app/storymaps/maptour/ui/desktop/PicturePanel.css");
 				
@@ -133,17 +137,22 @@
 				loadCSS("app/storymaps/maptour/ui/Responsive.css");
 			}
 
+			var path_location = location.pathname.replace(/\/[^/]+$/, '');
 			var dojoConfig = {
 				parseOnLoad: false,
 				isDebug: false,
+				useDeferredInstrumentation: true,
+				cacheBust: ! isProduction,
 				packages: [
 					{
 						name: 'storymaps',
 						location: location.pathname.replace(/\/[^/]+$/, '/') + 'app/storymaps'
 					},
 					{
-						name: 'esriTemplate',
-						location: location.pathname.replace(/\/[^/]+$/, '/') + 'resources'
+						name: "templateConfig",
+						// If the template is deployed on a Portal (apps path contains /apps/MapTour/ or /home/MapTour/)
+						// commonConfig.js is loaded from the parent folder, otherwise it's loaded from the app folder
+						location: /(\/apps\/|\/home\/)(MapTour\/)/.test(document.location.pathname) ? path_location.substr(0,path_location.lastIndexOf('/MapTour')) : path_location.replace(/\/+$/, '') + '/app'
 					}
 				]
 			};
@@ -176,8 +185,9 @@
 						<span class="msLink">
 							<a href="http://storymaps.esri.com" target="_blank"></a>
 						</span>
-						<span class='st_facebook'></span>
-						<span class='st_twitter'></span>
+						<div class="shareIcon share_facebook"></div>
+						<div class="shareIcon share_twitter"></div>
+						<a class="shareIcon share_bitly"></a>
 					</div>
 					<div class="logo">
 						<a target="_blank">
@@ -190,11 +200,12 @@
 				<div id="builderPanel">
 					<h4></h4>
 					<div>
-						<button type="button" class="btn builder-save"></button>
-						<button type="button" class="btn builder-discard"></button>
-						<button type="button" class="btn builder-settings"></button>
-						<button type="button" class="btn small builder-view"></button>
-						<button type="button" class="btn small builder-help"></button>
+						<button type="button" class="btn builder-cmd builder-save"></button>
+						<button type="button" class="btn builder-cmd builder-discard"></button>
+						<button type="button" class="btn builder-cmd builder-settings"></button>
+						<button type="button" class="btn builder-cmd small builder-view"></button>
+						<button type="button" class="btn builder-cmd small builder-item"></button>
+						<button type="button" class="btn builder-cmd small builder-help"></button>
 					</div>
 					<div id="save-counter"></div>
 				</div>
@@ -253,7 +264,11 @@
 		</div>
 
 		<!-- Mobile views -->
-		<div id="listPanel" class="mobileView"><div id="listPanel2"></div></div>
+		<div id="listPanel" class="mobileView">
+			<div class="listWrapper">
+				<div class="listScroller" id="listPanelScroller"></div>
+			</div>
+		</div>
 		<div id="infoPanel" class="mobileView">
 			<div id="infoCarousel"></div>
 		</div>
@@ -298,19 +313,20 @@
 				<h3></h3>
 			</div>
 			<div class="modal-body">
-				<div class="pictureGridHeader">
-					<div>
-						<span id="generalCaption"></span>
-						<span id="buttonBar">
-							<button id="btnDelete" class="btn" disabled="true"></button>
-							<button id="btnHide" class="btn" disabled="true"></button>
-						</span>
-					</div>
+				<div class="organizeHeader">
+					<span class="buttonBar">
+						<button class="btn btnDelete" disabled="true"></button>
+						<button class="btn btnHide" disabled="true"></button>
+					</span>
+					<div class="generalCaption"></div>
 				</div>
 				<div class="gridContainer">
 					<ul class="picturesGrid"></ul>
 				</div>
-				<div class="organizeIntro"></div>
+				<div class="organizeFooter">
+					<button class="btn btnReset" class="btn"></button>
+					<div class="organizeIntro"></div>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button class="btnSave btn btn-primary" data-dismiss="modal"></button>
@@ -338,6 +354,7 @@
 							<input class="uploadButton clearVal btn-success btn-large" type="file" accept="image/jpeg" name="attachment" />
 							<ul class="errorList" style="text-align:center; margin-top: 4px"></ul>
 						</form>
+						<div class="addNoteVideo"></div>
 					</div>
 					<div class="leftPanel previewPanel">
 						<img id="addImagePreview" class="imagePreview img-polaroid" src="" alt="" />
@@ -372,10 +389,48 @@
 				<div class="addImageAttributes tab-content">
 					<form>
 						<div>
-						<label></label>
-						<input class="tourPointPicUrl clearVal" type="text" placeholder=""/>
-						<label></label>
-						<input class="tourPointThumbUrl clearVal" type="text" placeholder=""/>
+							<ul id="addImageAttributesTypeChooser" class="nav nav-pills">
+							</ul>
+						</div>
+						
+						<div class="type-container">
+							<label></label>
+							<input class="tourPointPicUrl clearVal" type="text" placeholder=""/>
+							<label></label>
+							<input class="tourPointThumbUrl clearVal" type="text" placeholder=""/>
+						</div>
+						
+						<div class="type-container video">
+							<label></label>
+							<table>
+								<tr class="youtube">
+									<td><input type="radio" name="addVideoSrc" value="youtube" checked />Youtube</td>
+									<td>
+										<input class="clearVal type youtube" type="text" />
+										<a><img /></a>
+										<img class="click"/>
+										<i class="youtube"></i>
+									</td>
+								</tr>
+								<tr class="vimeo fade">
+									<td><input type="radio" name="addVideoSrc" value="vimeo" />Vimeo</td>
+									<td>
+										<input class="clearVal type vimeo" type="text" disabled />
+										<a><img /></a>
+										<img class="click"/>
+										<i class="vimeo"></i>
+									</td>
+								</tr>
+								<tr class="other fade">
+									<td><input type="radio" name="addVideoSrc" value="other" /><span class="other"></span></td>
+									<td>
+										<input class="clearVal type other" type="text" disabled />
+										<a><img /></a>
+									</td>
+								</tr>
+							</table>
+							<label></label>
+							<input class="tourPointThumbUrl2 clearVal" type="text" />
 						</div>
 					</form>
 					<ul class="errorList"></ul>
@@ -454,24 +509,24 @@
 					<table class="leftTable">
 						<tr>
 							<td class="btn-select-flickr">
-								<img src="resources/icons/builder-import-flickr.png" style="width: 50px"/>
+								<img style="width: 50px"/>
 								<div>Flickr</div>
 							</td>
 							<td class="btn-select-fb">
-								<img src="resources/icons/builder-import-facebook.png" style="height: 46px"/>
+								<img style="height: 46px"/>
 								<div style="margin-top: 6px;">Facebook</div>
 							</td>
 							<td class="btn-select-picasa">
-								<img src="resources/icons/builder-import-picasa.png" style="width: 50px"/>
+								<img style="width: 50px"/>
 								<div>Picasa</div>
 							</td>
 						</tr>
 						<tr>
 							<td class="btn-select-csv">
-								<img src="resources/icons/builder-import-csv.png" style="width: 50px"/>
+								<img style="width: 50px"/>
 								<div class="csvLbl"></div>
 							</td>
-							<td class="btn-select-scratch"><img src="resources/icons/builder-import-scratch.png" style="width: 40px"/>
+							<td class="btn-select-scratch"><img style="width: 40px"/>
 								<div class="scratchLbl"></div>
 							</td>
 						</tr>
@@ -483,7 +538,7 @@
 					<table>
 						<tr>
 							<td class="btn-select-hostedFS">
-								<img src="resources/icons/builder-import-arcgis.png" style="width: 120px"/>
+								<img style="width: 120px"/>
 								<div>ArcGIS Online</div>
 								<div>Hosted Feature Service</div>
 							</td>
@@ -522,19 +577,19 @@
 				<table>
 					<tr>
 						<td class="btn-select-flickr">
-							<img src="resources/icons/builder-import-flickr.png" style="width: 50px"/>
+							<img style="width: 50px"/>
 							<div>Flickr</div>
 						</td>
 						<td class="btn-select-fb">
-							<img src="resources/icons/builder-import-facebook.png" style="height: 46px"/>
+							<img style="height: 46px"/>
 							<div style="margin-top: 6px;">Facebook</div>
 						</td>
 						<td class="btn-select-picasa">
-							<img src="resources/icons/builder-import-picasa.png" style="width: 50px"/>
+							<img style="width: 50px"/>
 							<div>Picasa</div>
 						</td>
 						<td class="btn-select-csv">
-							<img src="resources/icons/builder-import-csv.png" style="width: 50px"/>
+							<img style="width: 50px"/>
 							<div class="csvLbl"></div>
 						</td>
 					</tr>
@@ -674,6 +729,9 @@
 					<div class="geotagMap"></div>
 					<div class="clickOrTapInfo"></div>
 				</div>
+				<div class="waitContainer">
+					<div class="wait">Wait</div>
+				</div>
 			</div>
 		</div>
 		
@@ -698,14 +756,19 @@
 					<span class="layout-box">
 						<div></div>
 						<img />
-						<button class="btn"></button>
-						<div class="selectedLayout"></div>
+						<!--<div class="layoutOption"></div>-->
+						<div class="layoutFooter">
+							<button class="btn"></button>
+							<div class="selectedLayout"></div>
+						</div>
 					</span>
 					<span class="layout-box">
 						<div class="layout-box-title"></div>
 						<img />
-						<button class="btn"></button>
-						<div class="selectedLayout"></div>
+						<div class="layoutFooter">
+							<button class="btn"></button>
+							<div class="selectedLayout"></div>
+						</div>
 					</span>
 				</div>
 				<!-- Colors -->
@@ -748,16 +811,32 @@
 					</form>
 					<p></p>
 					<form class="form-horizontal form2">
-						<div class="control-group">
-							<label class="control-label" for="selectSocialText"></label>
-							<div class="controls">
-								<input id="selectSocialText" type="text" />
-							</div>
+						<div class="socialConfig">
+							<label class="checkbox">
+								<input type="checkbox" class="enableFB" />
+								<span>Facebook</span>
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" class="enableTwitter" />
+								<span>Twitter</span>
+							</label>
+							<label class="checkbox">
+								<input type="checkbox" class="enableBitly" />
+								<span>Bitly</span>
+							</label>
 						</div>
-						<div class="control-group">
-							<label class="control-label" for="selectSocialLink"></label>
-							<div class="controls">
-								<input id="selectSocialLink" type="text" />
+						<div>
+							<div class="control-group">
+								<label class="control-label" for="selectSocialText"></label>
+								<div class="controls">
+									<input id="selectSocialText" type="text" />
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="selectSocialLink"></label>
+								<div class="controls">
+									<input id="selectSocialLink" type="text" />
+								</div>
 							</div>
 						</div>
 					</form>
@@ -786,6 +865,9 @@
 							</div>
 						</div>
 					</form>
+					<div class="fieldResetContainer">
+						<button class="btn fieldReset"></button>
+					</div>
 					<div class="error-msg2"></div>
 				</div>
 				<!-- Extent -->
@@ -794,10 +876,12 @@
 					<div class="extentMapControl">
 						<button class="btn btn-small" id="extentModify"></button>
 						<button class="btn btn-small" id="extentDraw"></button>
+						<button class="btn btn-small" id="extentUseMainMap"></button>
 						<button class="btn btn-small" id="extentApply"></button>
 					</div>
 					<div id="extentMap"></div>
 					<div class="explain2"></div>
+					<div class="dateLineError"></div>
 				</div>
 				<!-- Zoom level -->
 				<div id="settings-zoom" class="tab-content">
@@ -874,11 +958,9 @@
 				</tr>
 			</table>
 		</div>
-
+		
 		<script type="text/javascript">
-			loadJS('//js.arcgis.com/3.6/init.js', true);
-			loadJS('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', true);
-			
+			loadJS('//js.arcgis.com/3.7/init.js', true);
 			loadJS('app/maptour-config.js');
 			
 			function getUrlVar(name)
@@ -903,6 +985,7 @@
 					loadJS('app/maptour-viewer-min.js');
 			}
 			else {
+				loadJS('lib/_jquery.1.9.1.min.js');
 				loadJS('lib/bootstrap/js/bootstrap.min.js');
 				loadJS('lib/spin.min.js');
 				loadJS('lib/cubiq.iscroll.js');
@@ -915,15 +998,9 @@
 				loadJS('lib/megapix-image.js');
 				loadJS('lib/spectrum/spectrum.js');
 				loadJS('lib/bootstrap.file-input.js');
-				loadJS('lib/sharethis.buttons.js');
 			}
 		</script>
 		
-		<!-- sharethis.com social media sharing -->
-		<script type="text/javascript">
-			stLight.options({publisher:'77225c91-2742-42f7-b1b4-bddda99a9bde'});
-		</script>
-
 		<!-- Enable Google Analytics on storymaps.esri.com -->
 		<script type="text/javascript">
 			if (window.location.href.toLowerCase().indexOf("storymaps.esri.com") >= 0) {
@@ -952,26 +1029,38 @@
 			}
 			else {
 			 	dojo.addOnLoad(function() {
-					require(["dojo/i18n", "storymaps/ui/loadingIndicator/LoadingIndicator", "esri/map", "dojo/domReady!", "esri/arcgis/Portal", "esri/arcgis/utils", "dojo/ready"], function(jsapiBundle, LoadingIndicator) {
-						i18n = jsapiBundle.getLocalization("esriTemplate", "template");
-				 		loadingIndicator = new LoadingIndicator("loadingIndicator", "loadingMessage");
-				 		loadingIndicator.init();
-						loadingIndicator.setMessage(i18n.viewer.loading.step1);
-						
-					 	require(["storymaps/core/Core", "storymaps/maptour/core/MainView"], function(Core, MainView){
-					 		var urlParams = esri.urlToObject(document.location.search).query || {};
-					 		var isInBuilderMode = urlParams.edit != null;
-					 		
-					 		if (isInBuilderMode) {
-					 			require(["storymaps/builder/Builder", "storymaps/maptour/builder/BuilderView"], function(Builder, BuilderView) {
-					 				Core.init(new MainView(), Builder);
-					 				Builder.init(Core, new BuilderView());
-					 			});
-					 		}
-					 		else
-					 			Core.init(new MainView());
-					 	});
-				 	});
+					require([
+							"dojo/i18n!./resources/nls/template.js?v=" + version, 
+							"storymaps/ui/loadingIndicator/LoadingIndicator", 
+							"esri/urlUtils", 
+							"templateConfig/commonConfig.js?v=" + version,
+							"dojo/domReady!", 
+							"dojo/ready"
+						], function(
+							_i18n, 
+							LoadingIndicator, 
+							urlUtils
+						){
+							i18n = _i18n;
+							loadingIndicator = new LoadingIndicator("loadingIndicator", "loadingMessage");
+					 		loadingIndicator.init();
+							loadingIndicator.setMessage(i18n.viewer.loading.step1);
+							
+						 	require(["storymaps/core/Core", "storymaps/maptour/core/MainView"], function(Core, MainView){
+						 		var urlParams = urlUtils.urlToObject(document.location.search).query || {};
+						 		var isInBuilderMode = urlParams.edit != null;
+						 		
+						 		if (isInBuilderMode) {
+						 			require(["storymaps/builder/Builder", "storymaps/maptour/builder/BuilderView"], function(Builder, BuilderView) {
+						 				Core.init(new MainView(), Builder);
+						 				Builder.init(Core, new BuilderView());
+						 			});
+						 		}
+						 		else
+						 			Core.init(new MainView());
+						 	});
+				 		}
+					);
 				});
 			 }
 		</script>

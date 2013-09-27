@@ -1,6 +1,6 @@
-define(["storymaps/utils/FlickrConnector"], 
-	function (FlickrConnector) {
-		return function PopupViewFlickr(container) 
+define(["storymaps/utils/FlickrConnector", "dojo/Deferred"], 
+	function (FlickrConnector, Deferred) {
+		return function PopupViewFlickr() 
 		{
 			$('#init-import-views').append($('#popupViewFlickr').clone());
 			var _container = $('.popupViewFlickr').last();
@@ -17,18 +17,18 @@ define(["storymaps/utils/FlickrConnector"],
 				
 				_nbPicturesMax = params.nbPicturesMax;
 				_nbPicturesAuthorized = params.nbPicturesAuthorized;
-			}
+			};
 			
 			this.getView = function(params)
 			{
 				if( params )
 					showView(params);
 				return _container;
-			}
+			};
 			
 			this.getNextView = function()
 			{
-				var nextViewDeferred = new dojo.Deferred();				
+				var nextViewDeferred = new Deferred();				
 				var pictureRqHandler = function(data){
 					if( ! data.length ) {
 						updateFooter("error");
@@ -68,7 +68,7 @@ define(["storymaps/utils/FlickrConnector"],
 					).then(pictureRqHandler);
 					
 				return nextViewDeferred;
-			}
+			};
 			
 			function showView(params)
 			{
@@ -155,6 +155,9 @@ define(["storymaps/utils/FlickrConnector"],
 						i18n.viewer.viewFlickr.footerImportTag
 					);
 				});
+				
+				// iPad keyboard workaround
+				_container.find('.selectUserName').blur(function(){ $(window).scrollTop(0); });
 			}
 			
 			function selectChange(select, otherSelect, nextBtn)
@@ -202,9 +205,7 @@ define(["storymaps/utils/FlickrConnector"],
 				
 				_container.find('.useLocation span').html(
 					i18n.viewer.onlinePhotoSharingCommon.locUse 
-					+ ' ('
-					+ '<a>' + i18n.viewer.onlinePhotoSharingCommon.locWhy + '<a>'
-					+ ')'
+					+ '<a><img src="resources/icons/builder-help.png" style="vertical-align: -4px;"/><a>'
 				);
 				_container.find('.useLocation a').popover({
 					trigger: 'hover',
@@ -215,7 +216,7 @@ define(["storymaps/utils/FlickrConnector"],
 				});
 				
 				initEvents();
-			}
-		}
+			};
+		};
 	}
 );

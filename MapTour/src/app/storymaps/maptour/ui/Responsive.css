@@ -9,8 +9,23 @@
 }
 
 @media only screen and (min-device-width : 768px)  and (max-device-width : 1024px)  and (orientation : landscape) {
-	#initPopup, #helpPopup, #importPopup {
-		top: 10% !important;
+	/*
+	 *  iPad rules 
+	 */
+	#initPopup, #helpPopup, #importPopup, #organizePopup  {
+		top: 8% !important;
+	}
+	
+	#settingsPopup {
+		top: 5% !important;
+	}
+	
+	#footer {
+		height: 160px;
+	}
+	
+	.modern-layout #footer {
+		height: 140px
 	}
 }
 
@@ -26,7 +41,7 @@
 	}
 	
 	#header {
-		height: 41px;
+		height: 41px !important;
 		background-color: #c2c2c2;
 	}
 	

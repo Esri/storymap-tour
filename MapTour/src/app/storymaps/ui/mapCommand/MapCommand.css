@@ -1,0 +1,55 @@
+.esriSimpleSlider {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.esriSimpleSlider.touch div {
+	width: 35px;
+	height: 35px;
+	line-height: 30px;
+}
+
+.mapCommandHomeBtn {
+	background: url(../../../../resources/icons/mapcommand-home.png);
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+}
+
+.mapCommandHomeBtn.touch {
+	background-position: 7px 7px;
+}
+
+body.mobile-view .mapCommandHomeBtn.loading {
+	 background: url(../../../../resources/icons/mapcommand-loading.gif);
+	 background-repeat:no-repeat;
+	 background-size: 24px 24px;
+	 background-position: 3px 3px;
+	 cursor: default;
+}
+
+body.mobile-view .mapCommandHomeBtn.loading.touch {
+	background-position: 5px 5px;
+}
+
+.mapCommandHomeBtn.loading:hover {
+	background-color: #FFFFFF;
+}
+
+.mapCommandLocation {
+	top: 130px;
+	left: 20px;
+	z-index: 30;
+}
+
+.mapCommandLocation img {
+	width: 20px;
+	margin-top: 5px;
+}
+
+.mapCommandLocation.touch {
+	top: 145px;
+}
+
+.mapCommandLocation.touch img {
+	margin-top: 2px;
+	width: 32px;
+}

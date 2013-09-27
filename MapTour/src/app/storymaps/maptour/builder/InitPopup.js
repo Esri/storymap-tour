@@ -4,7 +4,8 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 		"storymaps/maptour/builder/PopupViewFlickr",
 		"storymaps/maptour/builder/PopupViewFacebook",
 		"storymaps/maptour/builder/PopupViewPicasa",
-		"storymaps/maptour/builder/PopupViewGeoTag"], 
+		"storymaps/maptour/builder/PopupViewGeoTag",
+		"dojo/Deferred"], 
 	function (
 			InitPopupViewHome, 
 			InitPopupViewHostedFSCreation, 
@@ -12,7 +13,8 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 			PopupViewFlickr,
 			PopupViewFacebook,
 			PopupViewPicasa,
-			PopupViewGeoTag)
+			PopupViewGeoTag,
+			Deferred)
 	{
 		return function InitPopup(container) 
 		{
@@ -34,29 +36,29 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 			var _btnNext = container.find(".btnNext");
 			var _footerText = container.find('.dataFooterText');
 			
-			this.init = function(builderView)
+			this.init = function()
 			{
 				//
-			}
+			};
 			
 			this.present = function(params) 
 			{			
-				var initCompleteDeferred = new dojo.Deferred()
+				var initCompleteDeferred = new Deferred();
 				var footer = container.find('.modal-footer');
 				
-				_views['home'].init(params['home'], initCompleteDeferred, footer);
-				_views['hostedFS'].init(params['hostedFS'], initCompleteDeferred, footer);
-				_views['CSV'].init(params['CSV'], initCompleteDeferred, footer);
-				_views['Flickr'].init(params['Flickr'], null, footer);
-				_views['Facebook'].init(params['Facebook'], null, footer);
-				_views['Picasa'].init(params['Picasa'], null, footer);
-				_views['geotag'].init(params['geotag'], initCompleteDeferred, footer);
+				_views.home.init(params.home, initCompleteDeferred, footer);
+				_views.hostedFS.init(params.hostedFS, initCompleteDeferred, footer);
+				_views.CSV.init(params.CSV, initCompleteDeferred, footer);
+				_views.Flickr.init(params.Flickr, null, footer);
+				_views.Facebook.init(params.Facebook, null, footer);
+				_views.Picasa.init(params.Picasa, null, footer);
+				_views.geotag.init(params.geotag, initCompleteDeferred, footer);
 				
 				displayView('home');
 				container.modal({keyboard: false});
 				
 				return initCompleteDeferred;
-			}
+			};
 			
 			function displayView(name, params)
 			{
@@ -105,7 +107,7 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 			function showNextView()
 			{
 				var nextView = _views[_currentViewName].getNextView();
-				if (nextView instanceof dojo.Deferred) {
+				if (nextView instanceof Deferred) {
 					nextView.then(function(view){
 						_viewsNameStack.push(_currentViewName);
 						displayView(view.name, view.params);
@@ -124,7 +126,7 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 				$.each(_views, function(i, view){
 					view.initLocalization();
 				});
-			}
-		}
+			};
+		};
 	}
 );

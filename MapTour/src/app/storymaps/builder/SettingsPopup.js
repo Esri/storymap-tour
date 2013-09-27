@@ -1,5 +1,5 @@
-define([], 
-	function () {
+define(["dojo/topic"], 
+	function (topic) {
 		return function SettingsPopup(container, colorSchemes, defaultLogoURL) 
 		{
 			var _tabs = [];
@@ -19,7 +19,7 @@ define([],
 					colorSchemes: colorSchemes,
 					defaultLogoURL: defaultLogoURL
 				});
-			}
+			};
 			
 			this.present = function(settings, lockOnTabIndex) 
 			{			
@@ -35,7 +35,7 @@ define([],
 				
 				displayTab(lockOnTabIndex ? lockOnTabIndex : 0);
 				
-				if( lockOnTabIndex != undefined ) {
+				if( lockOnTabIndex ) {
 					_tabsBar.addClass("disabled");
 					_tabsBar.eq(lockOnTabIndex).removeClass("disabled");
 					
@@ -44,11 +44,11 @@ define([],
 				}
 				else
 					displayTab(0);
+
+				$(container).modal({keyboard: ! lockOnTabIndex});	
+			};
 			
-				$(container).modal({keyboard: lockOnTabIndex == undefined });	
-			}
-			
-			function onTabClick(event) 
+			function onTabClick() 
 			{
 				if ( $(this).hasClass("disabled") )
 					return;
@@ -71,7 +71,7 @@ define([],
 				});
 				
 				if (tabError == -1) 
-					dojo.publish("SETTINGS_POPUP_SAVE", { settings: settings });
+					topic.publish("SETTINGS_POPUP_SAVE", { settings: settings });
 				else {
 					displayTab(tabError);
 					return false;
@@ -93,13 +93,13 @@ define([],
 				$(container).find('h3').html(i18n.viewer.builderHTML.settingsHeader);
 				
 				$.each(_tabs, function(i, tab){
-					tab.initLocalization();
+					tab && tab.initLocalization();
 				});
 				
 				$(container).find('.btnClose').html(i18n.viewer.builderHTML.modalCancel);
 				$(container).find('.btnSave').html(i18n.viewer.builderHTML.modalApply);
 				$(container).find('.error').html(i18n.viewer.builderHTML.tabError);
-			}
-		}
+			};
+		};
 	}
 );

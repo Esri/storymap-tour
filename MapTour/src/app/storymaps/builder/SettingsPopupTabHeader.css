@@ -18,12 +18,26 @@
 	width: 50px;
 }
 
+#settings-header .form2 .control-group {
+	margin-bottom: 10px;
+}
+
 #settings-header .form2 .control-group:nth-child(2) {
 	margin-bottom: 0px;
 }
 
 #settings-header .form2 .controls {
 	margin-left: 65px;
+}
+
+#settings-header .form2 .socialConfig {
+	position: absolute;
+	left: 370px;
+	margin-top: -2px;
+}
+
+#settings-header .form2 .socialConfig label.disabled {
+	opacity: 0.5;
 }
 
 #settings-header #headerSimulator {

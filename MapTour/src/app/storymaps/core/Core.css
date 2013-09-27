@@ -129,23 +129,34 @@ a:hover{
  */
 
 #fatalError {
+	position: absolute;
 	display: none;
 	z-index: 999;
-	position: fixed;
 	top: 50%;
-	left: 50%;
-	margin-left:-247px;
+	left: 0px;
+	width: 100%;
+}
+
+#fatalError > table {
 	margin-top: -100px;
-	width:490px;
+	margin-left:-247px;
+	max-width:490px;
 	min-height: 85px;
 	background-color: white;
 	border: 2px solid #333;
 	padding:0px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#fatalError .error-title {
+	margin-right: 12px;
 }
 
 #fatalError .error-msg {
 	margin-top: 8px;
 	padding-bottom: 8px;
+	margin-right: 8px;
 }
 
 #fatalError-icon {

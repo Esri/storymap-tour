@@ -101,6 +101,13 @@
 	padding: 6px 10px;
 }
 
+#builderPanel .builder-item i.icon-file {
+	width: 20px;
+	background-position: -21px -23px;
+	opacity: 0.7;
+	height: 18px;
+}
+
 .builderPanelPopover {
 	width: 200px;
 	left: 0px !important;
@@ -131,12 +138,24 @@
 .settings-popover {
 	text-align: center;
 	min-height: 40px;
-	left: 0px !important;
 	min-width: 280px !important;
 	max-width: 360px !important;
 }
 
 .settings-popover .popover-title {
+	display: none;
+}
+
+.datawarning-popover {
+	max-width: 420px !important;
+	width: 420px;
+}
+
+.datawarning-popover .btn {
+	vertical-align: 1px;
+}
+
+.datawarning-popover .popover-title {
 	display: none;
 }
 

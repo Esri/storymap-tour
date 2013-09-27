@@ -8,7 +8,6 @@
 .modern-layout #picturePanel {
 	position: absolute;
 	right: 4px;
-	top: 100px;
 	width: 400px;
 	height: 400px;
 	background-color: transparent;
@@ -78,6 +77,7 @@
 
 .picturePanelPicturePopoverFR{
 	max-width: 315px;
+	width: 315px;
 }
 
 .picturePanelPicturePopoverOLD {
@@ -85,17 +85,26 @@
 }
 
 .picturePanelThumbnailPopover {
-	/*width: 225px;*/
-	max-width: 290px;
+	width:280px;
+	max-width: 280px;
 }
 
 .edit-attr-popover {
-	max-width: 376px;
-	width: 376px;
+	max-width: 378px;
+	width: 378px;
 }
 
-.edit-attr-popover input {
+.edit-attr-popover input[type="text"] {
 	vertical-align: -2px;
 	margin-bottom: 0px;
 	margin-right: 8px;
+}
+
+.attributesWay .error {
+	display: none;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size:14px;
+	color:#c43d40;
+	margin-top: 4px;
 }

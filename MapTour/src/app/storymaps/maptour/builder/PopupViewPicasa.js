@@ -1,6 +1,6 @@
-define(["storymaps/utils/PicasaConnector"], 
-	function (PicasaConnector) {
-		return function PopupViewPicasa(container) 
+define(["storymaps/utils/PicasaConnector", "dojo/Deferred"], 
+	function (PicasaConnector, Deferred) {
+		return function PopupViewPicasa() 
 		{
 			$('#init-import-views').append($('#popupViewPicasa').clone());
 			var _container = $('.popupViewPicasa').last();
@@ -17,18 +17,18 @@ define(["storymaps/utils/PicasaConnector"],
 				
 				_nbPicturesMax = params.nbPicturesMax;
 				_nbPicturesAuthorized = params.nbPicturesAuthorized;
-			}
+			};
 			
 			this.getView = function(params)
 			{
 				if( params )
 					showView(params);
 				return _container;
-			}
+			};
 			
 			this.getNextView = function()
 			{
-				var nextViewDeferred = new dojo.Deferred();
+				var nextViewDeferred = new Deferred();
 				
 				_picasa.getAlbum(_container.find("#picasaListAlbum").val(), _nbPicturesAuthorized).then(function(data){
 					if( ! data.length ) {
@@ -44,7 +44,7 @@ define(["storymaps/utils/PicasaConnector"],
 					});
 				});
 				return nextViewDeferred;
-			}
+			};
 			
 			function showView(params)
 			{
@@ -110,6 +110,9 @@ define(["storymaps/utils/PicasaConnector"],
 					btnNext.removeAttr("disabled");
 					updateFooter();
 				});
+				
+				// iPad keyboard workaround
+				_container.find('.selectUserName').blur(function(){ $(window).scrollTop(0); });
 			}
 			
 			function disableList()
@@ -156,7 +159,7 @@ define(["storymaps/utils/PicasaConnector"],
 				});
 				
 				initEvents();
-			}
-		}
+			};
+		};
 	}
 );

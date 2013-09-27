@@ -11,6 +11,14 @@
  * Desktop
  */
 
+#header.hideDesktop {
+	height: 0px;
+}
+
+#header.hideDesktop #headerDesktop {
+	display: none;
+}
+
 .textArea {
 	padding-top:0px;
 	padding-left:25px;
@@ -59,7 +67,7 @@
 }
 
 .rightArea .social {
-	margin-bottom:20px;
+	margin-bottom: 6px;
 }
 
 .social .msLink, .social .msLink a {
@@ -70,13 +78,27 @@
 }
 
 .rightArea .logo {
+	position:relative;
+	height: 60px;
 	border:none;
 	outline:none;
 }
 
+@-moz-document url-prefix() { 
+	.rightArea .logo a {
+		position:relative;
+		display: inline-block;
+	}
+}
+
 .rightArea .logo img {
+	position: absolute;
+	top: 50%;
+	bottom: 50%;
+	right: 0px;
 	max-width: 250px;
 	max-height: 50px;
+	margin: auto 0;
 }
 
 .switchBuilder {
@@ -97,11 +119,41 @@
 }
 
 /*
- * Sharethis
+ * Social sharing
  */
 
-span.stButton {
-	margin-right: 0px !important;
+.shareIcon {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	vertical-align: -4px;
+	margin-left: 3px;
+}
+
+.shareIcon:hover {
+	opacity: 0.75;
+}
+
+.share_facebook {
+	background: url("../../../../resources/icons/header-social-facebook.png") 0 0;
+}
+
+.share_twitter {
+	background: url("../../../../resources/icons/header-social-twitter.png") 0 0;
+}
+
+.share_bitly {
+	background: url("../../../../resources/icons/header-social-bitly.png") 0 0;
+	width: 19px;
+}
+
+.social .popover-title {
+	display: none;
+}
+
+#bitlyInput::-ms-clear {
+	display: none;
 }
 
 /*

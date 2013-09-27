@@ -6,10 +6,10 @@ The Map Tour template is designed for presenting geographic information where th
 
 [View it live](http://storymaps.esri.com/stories/maptour-palmsprings/) | 
 [Features](http://arcgis.com/apps/MapTour/preview.html) | 
-[User Download (source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.0.zip) | 
+[User Download (source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.1.zip) | 
 [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
-**Latest release is version 2.0**, if you want to be informed of new releases, we recommend you to watch these repository.
+**Latest release is version 2.1**, if you want to be informed of new releases, we recommend you to watch these repository.
 
 
 The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets.
@@ -47,7 +47,7 @@ Applications produced by both versions provides the same capabilities, only the 
 ### The hosted version
 
 To use the hosted Map Tour template, you start by making a web map and publishing it with the Map Tour template.
-Your webmap doesn't need to contains any layer. In the Share dialog available from ArcGIS Online web map viewer, choose the 'Make a Web Application' option and then choose the Map Tour template from the gallery of templates that appears, and continue with the steps that you see. When you configure the application, the interactive builder will open automatically.
+Your webmap doesn't need to contains any layer. In the **Share dialog available from ArcGIS Online web map viewer**, choose the **'Make a Web Application'** option and then choose the Map Tour template from the gallery of templates that appears, and continue with the steps that you see. When you configure the application, the interactive builder will open automatically.
 [This article (require an ArcGIS developer account)](https://developers.arcgis.com/en/tools/web-mapping-templates/) provides generic step-by-step instructions on how to publish a template. 
 
 The interactive builder gives you two options for handling the images in your Map Tour:
@@ -67,9 +67,16 @@ Note that if your actual tour point layer doesn’t contains the optional attrib
 
 ### The downloadable version
 
-The hosted Map Tour template provides several customization options that are accessible through the SETTINGS button in the top panel. If you don't find the option you expect or you are a developer and want to enhance the application, you should use the downloadable version.
+Although the hosted Map Tour template provides several customization options that are accessible through the Settings button in map tour builder app, you may want to perform additional customizations or add your own code to the application. In this case, you should use the downloadable version. 
 
-The downloadable version doesn't offer the interactive builder. The Map Tour gets its data from a web map and its configuration from parameters in a file that offer the same capabilities than the hosted version. We recommend that you create and refine your web map using the hosted version and that you reuse it with the downloadable.
+By downloading the template and putting it on your own web server or website, you can make unlimited customizations and changes to the template. With the download, the URL of your map tour will be start with your own web domain instead of being on the ArcGIS cloud system. 
+
+The downloadable version can be configured through a web map or a web mapping application identifier. The main use cases are:
+
+ * You build your map tour using the interactive builder in the hosted environment and configure the template with the web mapping application identifier. All your configuration will be there
+ * You build your web map outside of the interactive builder and configure the template with the web map identifier. You will have to read the documentation to learn how to configure the template
+
+Note that the interactive builder is available in the downloadable version but with some technical restrictions on browsers like Internet Explorer before version 10.
 
 ## How to deploy a Map Tour
 
@@ -81,23 +88,46 @@ To use the downloadable version, download the [User Download archive](https://gi
 | resources/                                 | Resources (markers, icons, translation)                               |
 | **samples/**      			             | Sample data layer to create your webmap                               |
 | **index.html**         		             | Application html file (to be edited with web map id)                  |
+| license.txt        		             | Application license                  |
 | **Readme.pdf**       		                 | Detailed readme guide                                                 |
 
-Map Tour rely on a web map to get the tour data. That's the only mandatory configuration. There is multiple ways to build a Map Tour web map:
- * The traditional way, that is to build a CSV and add it as a web map layer using ArcGIS Online web map viewer. [This ArcWatch article](http://www.esri.com/esri-news/arcwatch/0513/make-a-map-tour-story-map) provides step-by-step instructions
- * Using an existing Feature Service, see the chapter below
- * Using the interactive builder on ArcGIS Online. This allow you to build the webmap that you will reuse with the downloadable version. This include importing photos from Flickr, Facebook, Picasa
+Map Tour rely on a web map (or a web mapping application) identifier to get the data. 
+
+There is multiple ways to build a web map for Map Tour:
+ * Create a blank webmap using ArcGIS Online, publish a Map Tour and use the interactive builder to create your data source. This will allow you to import photos from Flickr, Facebook, Picasa, create a Feature Service hosted in ArcGIS Online or load data from a CSV
+ * Use an existing Feature Service, see the chapter below
+ * Build a CSV and add it as a web map layer using ArcGIS Online web map viewer. That is not the recommended way to proceed anymore. [This ArcWatch article](http://www.esri.com/esri-news/arcwatch/0513/make-a-map-tour-story-map) provides step-by-step instructions
 
 For detailed instructions and recommendations, please refer to the **[Readme document](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Readme.pdf)**.
 
-For quick start, a typical Map Tour configuration involves the following steps:
+For quick start, there is two typical ways of configuring a Map Tour: 
+ * You build your map tour using the interactive builder in the hosted environment and configure the template with the web mapping application identifier. All the settings you have defined with the interactive builder will be applied and you will have minimal configuration to perform.
+ * You build your web map outside of the interactive builder and configure the template with the web map identifier. You will have to read the documentation to learn how to configure the template.
+
+To build a Map Tour using the interactive viewer:
+ * Open ArcGIS Online web map viewer
  * Create a web map that fits your need (basemap, eventual additional context layers like the path of your tour, etc.)
- * Import your data
+ * Save the web map
+ * In the **Share dialog**, choose the **'Make a Web Application'** option and then choose the Map Tour template from the gallery of templates that appears, and continue with the steps that you see. 
+ * Open the application item and the interactive builder will open automatically.
+ * Follow the steps to build your Map Tour
+ * Visit the settings to customize the look and feel
+ * **Save and share the web application publicly**
+ * Open **index.html** with a text file editor
+ * Locate the configuration section at the beginning of the file
+ * Edit the line **appid:""** to **include your application id** between the quotes (the application id is the string emphasized in this hosted Map Tour URL apps/MapTour/index.html?appid=`12348616c3984f91bc3fdc517e119999`&webmap=1234fdc2c21847c7b5b13f68c5d9999)
+ * Optionally remove samples folder and Readme.pdf 
+ * Copy files to your web server root or in a specific folder
+
+If you prefer to build your webmap without the interactive builder:
+ * Open ArcGIS Online web map viewer
+ * Create a web map that fits your need (basemap, eventual additional context layers like the path of your tour, etc.)
+ * Import your data in the webmap
  * Center the web map to the initial extent you want for the tour
  * **Save and share the web map publicly**
  * Open **index.html** with a text file editor
  * Locate the configuration section at the beginning of the file
- * Edit the line **webmap:""** to **include your web map id** between the quotes
+ * Edit the line **webmap:""** to **include your web map id** between the quotes (the webmap id is the string emphasized in this hosted Map Tour URL apps/MapTour/index.html?appid=12348616c3984f91bc3fdc517e119999&webmap=`1234fdc2c21847c7b5b13f68c5d9999`)
  * Optionally remove samples folder and Readme.pdf
  * Copy files to your web server root or in a specific folder
 
@@ -144,39 +174,66 @@ Using the interactive builder, you can create a webmap to be reused in the downl
 ### Is the template compatible with previous version?
 Yes, web map designed for the previous version should continue to work without any modification. Customization and enhancement of the application will require code changes, most of them should be easy to translate into the new application.
 
-### Can I deploy Map Tour on Portal for ArcGIS
-Yes, but some limitations apply and you will need a special version. Please contact us to get it. Map Tour should be included in future releases of Portal for ArcGIS (after 10.2).
+### Can I deploy Map Tour on Portal for ArcGIS?
+Yes, Map Tour 2.1 is included in Portal for ArcGIS 10.2.1. Note that for technical reason, the Feature Service creation isn't yet available from the interactive builder. If you want to use a Feature Service, please consult [this section](#using-an-existing-feature-service-map-service-or-shapefile).
+
+If you use an older version of Portal, you can [download](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.1.zip) and deploy the template in the following folder `ArcGIS\Portal\webapps\arcgis#home\webmap\templates\MapTour`. This folder may already contain a non-functional version of the template. If this is the case, remove the folder's content before copying the new files. Then refer your Portal documentation for instructions on publishing a new web application item and adding it to the web application gallery. If you choose to deploy the template in any other folder, some configuration will be required (see index.html configuration). Also note that the web application gallery preview feature won't be functional and give a 404 error.
+
+
+### Can the template be used offline?
+Yes, by using Portal for ArcGIS. When deployed on a Portal for ArcGIS instance, the Map Tour doesn't require any external service to function. But by default the template will still include the header social buttons and template publishers are able to import pictures from the some online pictures hosting services. These options can be disabled individually through the configuration file app/maptour-config.js.
+
+### Why pictures hosted on Feature Service are not displayed?
+
+This can happen when you are referencing pictures stored as Feature Service attachments (or specific data source) in a CSV without using a web mapping application (i.e: you are drag and dropping the CSV into ArcGIS.com web map viewer and configuring the downloadable with the web map id).
+
+You have two options:
+
+ * Drop the csv layer from your webmap and use the interactive builder to import it (publish a blank webmap and create a hosted Map Tour). The interactive builder will check the CSV for you
+ * Edit your data to end your picture's URL with `#isImage` (not needed for the thumbnail)
+
+### Supported pictures formats and videos
+
+Supported picture format are: **.jpg, .jpeg, .png, .gif and .bmp**. If your media doesn’t end with that extension, the Map Tour will consider it to be a video, except when using a feature service (see below).
+
+The Map Tour template doesn't include a video player, so you have to use the external video player provided by your favorite video hosting service (find the option to embed the video and copy the URL present in the given code). If you want to host the video yourself, you can create an HTML page that contains a video player like [Video.js](http://www.videojs.com/).
+
+### Can I integrate video when using Feature Service with attachments
+
+The interactive builder doesn't provide a dialog to include video when using feature services with attachments, but it is possible to do so by editing your data outside of the interactive builder. In the arcgis.com map viewer, if you modify the picture fields to point to an external video and add a special parameter at the end of your URL (#isVideo), your media will be considered to be a video.
+
+Note that you still need to have two valid pictures attachments or the point won’t be used. It isn't possible to use videos when using feature service attachments without the picture and thumbnail fields.
 
 ### Can I use the builder with the downloadable
-We distribute the builder source code but for technical reason it's not yet usable without a code modification that we don't document. If you are interested, please contact us.
+Yes, when the template is configured with an application ID, adding the URL parameter 'edit' will open the interactive builder. You will be prompted for user authentication. Note that some technical restrictions on browsers like Internet Explorer older than version 10 may apply.
 
 ### What are the configuration settings?
 
-Configuration happens in two files:
+Configuration happens in three files:
  * index.html
-  - Web map id
+  - Web map id or web mapping application id
   - Application layout
   - Use the first data record as an introduction slide
-  - Header title/subtitle (webmap title/subtitle used by default)
-  - Force webmap layer to be used
+  - Header title/subtitle (webmap title/subtitle are used by default)
+  - Force a webmap layer to be used as the tour data source
   - Optional zoom level to be applied for the story points following introduction
-  - Bing map key
-  - Proxy URL
-  - Portal URL
-  - Geometry service URL
  * app/maptour-config.js
   - Header, picture panel and carousel colors
-  - Header logo image and link
-  - Header "A story map" title and link
-  - Marker sets  
-  - Data fields name
-  - Map popup
+  - Header logo image, link and social button configuration
+  - Map popup colors
+  - Map markers icons sets
+  - Data fields election rules
+  - Data import from online service
+  - Portal and proxy URLs
+ * app/commonConfig.js
+  - Bing map key
+  - Geometry and geocode service URLs
 
 ### Which web map layer will be used?
 The application will use the web map **upper visible point feature layer**. 
 
 Eligible feature layer are:
- - Feature service with two attachments per feature (main picture has first attachment, thumbnail as the second)
+ - Feature service with two attachments per feature (main picture as the first attachment, thumbnail as the second)
  - Feature layer without attachments
  - Web map embedded data: CSV, Shapefile
  - Map service: specific layer only (e.g. MyService/MapServer/0)
@@ -186,6 +243,11 @@ If that doesn't match your web map structure, look for the configuration propert
   
 ## Tips
 
+### Supported browsers
+The Map Tour viewer is supported on IE8+. The interactive builder is supported on IE9+. We actively test it in all major browsers but if you experience some difficulties, we recommend that you use Chrome.
+
+If you experience some difficulties, please let us know. In the meantime, by building your Map Tour using the CSV template you will minimize your interaction with the builder interface.
+
 ### Pictures
 
 We recommend landscape orientation photos instead of portrait. Portrait orientation images can be used but on smaller screens like the iPad, a lot of the photo may be obscured by the caption, because text takes up more space when it is displayed in a tall area compared to a wide area. Although images of different sizes, shapes and orientation can be used in one Map Tour, we recommend using the exact same size and shape for all the images. In this way, the user won't be distracted by different sized images as they follow the tour.
@@ -194,7 +256,11 @@ The recommended picture size is 1090x725px. The recommended thumbnail size is 14
 
 ### Formatting your caption text using HTML tags
 
-The caption text can include HTML tags to define formatting and links, see [this blog post](http://blogs.esri.com/esri/arcgis/2013/03/29/add-links-map-tour/).
+The header and picture title/caption can include HTML tags to define formatting and links. 
+
+For example, this code adds a yellow link:
+
+       <a href="http://storymaps.esri.com/" style="color:yellow" target="_blank">StoryMaps Website</a>
 
 ### Supporting Layers
 
@@ -204,8 +270,58 @@ You can add additional supporting layers into the map. These layers will appear 
 
 There's a limit of 99 points per tour. Most Map Tours will of course be significantly shorter than that. Don't expect your audience to want to step through too many tour points. You might find your subject fascinating, but don't assume they will too!
 
+### Embed Map Tour in a website
+
+If you want to embed the template in another website through an iframe, adding the optional parameter "&embed" at the end of the URL will remove the header. That mode can also be set in the downloadable version through the configuration file.
+
+### Starting the Map Tour on a specific point
+
+It is possible to open the Map Tour on a specific point and not on the first one by using the URL parameter `index` (from index=1 to index={number of point}).
 
 ## What's new?
+
+#### Map Tour 2.1 released on 09/18/2013
+
+Major changes:
+ * Support of video in place of the main picture in existing and new Map Tour
+ * Interactive builder overall stability improvement
+ * Support of Portal for ArcGIS (see [FAQ](#can-i-deploy-map-tour-on-portal-for-arcgis))
+ * Fixed application loading and UI glitches on IE8
+ * Performance improvement 
+
+Viewer evolution:
+ * Better Facebook and Twitter sharing and new bit.ly button
+ * Smoother transition between points
+ * Better vertical centering of the header logo (appear centered whatever it’s size)
+ * Don't show the media title and description if they are empty
+ * Don't show the Map popup or tooltip if the point title is empty
+ * New embed mode that remove the header (see [tips](#embed-mode))
+ * New URL option to specify the starting point by index (see [tips](#embed-mode)) 
+ * When using Feature Service attachments, attachments that are png, bmp or jpg file with upper case extension aren’t ignored anymore (jpg continues to be the only type supported by the interactive builder for Feature Service with attachments)
+
+Interactive builder evolution:
+ * New button to open the Web Application item page
+ * Better support of dynamic CSV (CSV content is downloaded at application runtime, allowing for dynamic data source without using Feature Service)
+ * When using pictures referenced by URL, support gif, png and bmp
+ * New reset button in Organize to reset order and hidden points
+ * New reset button in the Settings Data tab to reset the selected fields
+ * New button in the Settings extent tab to use the current map extent 
+
+Interactive builder issues:
+ * When editing a description through the picture panel, the description can be loss if it contains a `<p>` or `<div>`
+ * On Ipad, when entering text with the virtual keyboard, the layout is often broken after the keyboard close
+ * Multiple issues in the geotag screen (after Flickr/Picasa/Facebook import) when removing pictures already geolocated
+ * Using change picture/thumbnail on the introduction slide put the interactive builder in invalid state until application reload
+
+Downloadable/Portal version evolution:
+ * Be able to specify the application ID to be use (this allow to reuse the settings defined using the interactive builder in ArcGIS.com and so to have less manual configuration to perform)
+ * Added new configuration option and moved some to a new file (see [settings](#what-are-the-configuration-settings))
+
+Developer evolution:
+ * Use ArcGIS API for Javascript 3.7
+ * The build script isn’t limited to Windows environment anymore through grunt
+ * The application fire some events to allow customization with lose integration
+ * Embedded jQuery and removed sharethis dependency
 
 #### Map Tour 2.0 released on 07/03/2013
 Major version with the following new functionalities:
@@ -276,25 +392,7 @@ To remove the bottom border:
 
 #### Customizing the links in the top right of the header
 
-Hide the link to the external website and the social buttons:
-
-      #header .social {
-         visibility: hidden; 
-      }
-
-Same but reuse the vertical space for the logo:
-
-      #header .social {
-         display: none;
-      }
-
-Hide only the social buttons:
-
-      #header .social > span:not(.msLink) {
-         display: none;
-      }
-
-The external link can be configured through maptour-config.js file. 
+The button can now be disabled through app/maptour-config.js file and many other property are available.
 
 To hide the text, empty the HEADER_LINK_TEXT property.
 
@@ -337,6 +435,30 @@ This is useful if you use a custom basemap that don't cover the whole world.
 This developer guide is intended to developer that wants to modify behavior or add new functionalities to the Map Tour application. If you only need to customize look and feel of the Map Tour, you should be able to do so using the User download.
 It requires basic knowledge of HTML, Javascript and CSS languages.
 
+### Developer extension events
+
+The template fire some events to allow customization with lose integration. This mean that you may not need to understand the internal of the application to extend it.
+
+Three events are available (application ready, before/after picture change):
+
+		require(["dojo/topic"], function(topic) {
+			// The application is ready
+			topic.subscribe("maptour-ready", function(){
+				console.log("maptour-ready");
+			});
+			
+			// Before loading the new point picture/video
+			topic.subscribe("maptour-point-change-before", function(oldIndex, newIndex){
+				console.log("maptour-point-change-before", oldIndex, newIndex);
+			});
+
+			// After the new point is displayed
+			topic.subscribe("maptour-point-change-after", function(newIndex){
+				console.log("maptour-point-change-after", newIndex, app.data.getCurrentGraphic());
+			});
+		});
+
+
 ### Developer archive
 
 Download and unzip the [Developer download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) or clone the repo.
@@ -346,9 +468,8 @@ Download and unzip the [Developer download](https://github.com/Esri/map-tour-sto
 | **MapTour/**            	                 | Map Tour source folder                                                |
 | **MapTour/src/**                           | The application source code                                           |
 | **MapTour/deploy/**                        | The ready to be deployed Map Tour application                         |
-| **MapTour/tools/**                         | Developer tools to build deploy/ from src/                            |
 | samples/      			                 | Sample data layer to create your webmap                               |
-| Storytelling-MapTour-2.0.zip      		 | User download archive	                                             |
+| Storytelling-MapTour-2.1.zip      		 | User download archive	                                             |
 | Readme.pdf       		                     | The detailed readme guide                                             |
 | Readme.md                                  | This document                                                         |
 | map-tour-storytelling-template-js.png      | The application screenshot                                            |
@@ -357,16 +478,26 @@ Download and unzip the [Developer download](https://github.com/Esri/map-tour-sto
 
 ### Introduction
 
-To build a production version of the application from the source code, you need:
- * a Windows OS 
- * [Node.js](http://nodejs.org/)
- * [Java Runtime version 6 or higher](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html)
+To build a production version of the application from the source code, you first need to install [Node.js](http://nodejs.org/).
 
-The build script use: 
- * [RequireJS](http://requirejs.org/) to optimize the Map Tour code 
- * [Google Closure Compiler](https://developers.google.com/closure/compiler/) and [YUI Compressor](http://yui.github.com/yuicompressor/) to optimize external dependencies
+Then initialize the environment by running the following commands in the template root:
+ * `npm install`
+ * `npm install –g grunt-cli`
 
- The script will be ported to a full node.js later on. 
+This will create a new `node-modules` folder in your project root with all tools to build the project. If you have trouble running the second command, [this may help you](https://github.com/gruntjs/grunt-cli#installing-grunt-cli-locally).
+
+### How to use the application from the source code
+ * Make accessible the src folder to your web server
+ * Configure the default credential to be used to authorize you against the webmap or web application item in `storymaps/core/Core.js` (look for `// Automatic login in development mode` around line 150)
+ * If using a Portal for ArcGIS instance configure the sharing url `app/maptour-config.js` (last properties)
+ * If you are not using a modern browser you have to [set-up a proxy](https://developers.arcgis.com/en/javascript/jshelp/ags_proxy.html) on your development computer and configure the url in `app/maptour-config.js` (you can use a relative path)
+ * Use or use the URL parameters `webmap` and `appid` to specify the item to be loaded (all parameters from index.html are ignored in development mode)
+
+### How to build application from the source code
+  * Open a terminal and navigate to the root folder 
+  * Run the following command: `grunt`
+
+The deploy folder now contains the built application that you can deploy to your web server.
 
 ### Design
 Map Tour relies on AMD and Dojo loader [AMD](http://help.arcgis.com/en/webapi/javascript/arcgis/jshelp/#inside_dojo_amd) for application structure.
@@ -397,18 +528,6 @@ The main dependencies are:
  * [Bootstrap](http://twitter.github.com/bootstrap/)
  * [iScroll](http://cubiq.org/iscroll-4)
  * [SwipeView](http://cubiq.org/swipeview)
-
-### How to use the application from the source code
- * Make accessible the src folder to your web server
- * Edit index.html to the web map you want to use
-
-### How to build application from the source code
-  * Open a terminal and navigate to the tools folder 
-  * Run the following command:
-
-        build.bat
-
-The deploy folder now contains the built application that you can deploy to your web server.
 
 ## Feedback
 

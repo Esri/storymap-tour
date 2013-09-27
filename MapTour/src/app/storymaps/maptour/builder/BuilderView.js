@@ -17,7 +17,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"storymaps/builder/SettingsPopupTabHeader",
 		"storymaps/maptour/builder/SettingsPopupTabFields",
 		"storymaps/builder/SettingsPopupTabExtent",
-		"storymaps/maptour/builder/SettingsPopupTabZoom"], 
+		"storymaps/maptour/builder/SettingsPopupTabZoom",
+		// Utils
+		"dojo/topic",
+		"dojo/query",
+		"dojo/dom"], 
 	function (
 		WebApplicationData, 
 		MovableGraphic,
@@ -38,7 +42,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 		SettingsPopupTabHeader, 
 		SettingsPopupTabFields,
 		SettingsPopupTabExtent, 
-		SettingsPopupTabZoom
+		SettingsPopupTabZoom,
+		// Utils
+		topic,
+		query,
+		dom
 	){
 		return function BuilderView() 
 		{
@@ -55,12 +63,13 @@ define(["storymaps/maptour/core/WebApplicationData",
 			this.init = function(settingsPopup)
 			{
 				_settingsPopup = settingsPopup;
-				dojo.subscribe("SETTINGS_POPUP_SAVE", settingsPopupSave);
-				dojo.subscribe("ORGANIZE_POPUP_SAVE", organizePopupSave);
-				dojo.subscribe("PIC_PANEL_EDIT", picturePanelEdited);
-				dojo.subscribe("CORE_UPDATE_UI", updateUI);
+				topic.subscribe("SETTINGS_POPUP_SAVE", settingsPopupSave);
+				topic.subscribe("ORGANIZE_POPUP_SAVE", organizePopupSave);
+				topic.subscribe("PIC_PANEL_EDIT", picturePanelEdited);
+				topic.subscribe("CORE_UPDATE_UI", updateUI);
 				
 				$("#builderPanel2").css("display", "block");
+				// TODO: use fastClick (make the modal flash - see after bootstrap upgrade)
 				$("#addPopupButton").click(addPopupShow);
 				$("#organizeSlidesButton").click(organizePopupShow);
 				$("#importPopupButton").click(importPopupShow);
@@ -78,6 +87,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				app.builder.organizePopupSaveConfirmationCallback = organizePopupSaveConfirmationCallback;
 				
 				app.builder.setDataWarning = setDataWarning;
+				app.builder.destroyDataWarning = destroyDataWarning;
 				app.builder.showBrowserWarning = showBrowserWarning;
 				app.builder.presentInitPopup = presentInitPopup;
 				app.builder.openFieldsSettingOnStartup = openFieldsSettingOnStartup;
@@ -87,20 +97,29 @@ define(["storymaps/maptour/core/WebApplicationData",
 				app.builder.hidePinPopup = hidePinPopup;
 				
 				app.builder.openHelpPopup = openHelpPopup;
-			}
+				
+				app.builder.checkPicturesExtension = checkPicturesExtension;
+			};
 			
 			this.appInitComplete = function(saveApp)
 			{
+				// Disable data edition when using a non editable data source like CSV
+				if( app.data.sourceIsNotEditable()) {
+					$("#builderPanel2").html("&nbsp;&nbsp;<strong>" + i18n.viewer.builderHTML.dataEditionDisabled + "</strong>");
+					app.desktopPicturePanel.exitBuilderMode();
+					return;
+				}
+				
 				if( ! app.data.sourceIsNotFSAttachments() && Helper.browserSupportAttachementUsingFileReader() )
 					new AddButton().init(saveApp);
-			}
+			};
 			
 			function updateBuilderMoveable(graphic)
 			{
 				app.builderMoveEvents && app.builderMoveEvents.clean();
 					if ( ! MapTourHelper.isOnMobileView() ) {
-						 app.builderMoveEvents = new MovableGraphic(
-						 	app.map, 
+						app.builderMoveEvents = new MovableGraphic(
+							app.map, 
 							app.data.getTourLayer(), 
 							graphic, 
 							app.builder.movedPin, 
@@ -121,7 +140,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			function introRecordClick()
 			{
 				app.data.setCurrentPointByGraphic(app.data.getIntroData());
-				dojo.publish("CORE_UPDATE_UI", { editFirstRecord: true });
+				topic.publish("CORE_UPDATE_UI", { editFirstRecord: true });
 			}
 			
 			//
@@ -138,14 +157,15 @@ define(["storymaps/maptour/core/WebApplicationData",
 					new SettingsPopupTabExtent(_tabsBar.eq(4), _tabContent.eq(4)),
 					new SettingsPopupTabZoom(_tabsBar.eq(5), _tabContent.eq(5))
 				];
-			}
+			};
 			
 			this.openSettingPopup = function(fieldsError)
 			{
 				_settingsPopup.present(
 					[
 						{
-							name: WebApplicationData.getLayout()
+							name: WebApplicationData.getLayout(),
+							placardUnder: WebApplicationData.getPlacardPosition() === "under"
 						},
 						{
 							colors: WebApplicationData.getColors()
@@ -153,25 +173,27 @@ define(["storymaps/maptour/core/WebApplicationData",
 						{
 							logoURL: getLogoURL(),
 							logoTarget: WebApplicationData.getLogoTarget(),
-							linkText: WebApplicationData.getHeaderLinkText() == undefined ? APPCFG.HEADER_LINK_TEXT : WebApplicationData.getHeaderLinkText(),
-							linkURL: WebApplicationData.getHeaderLinkURL() == undefined ? APPCFG.HEADER_LINK_URL : WebApplicationData.getHeaderLinkURL(),
+							linkText: WebApplicationData.getHeaderLinkText() === undefined ? APPCFG.HEADER_LINK_TEXT : WebApplicationData.getHeaderLinkText(),
+							linkURL: WebApplicationData.getHeaderLinkURL() === undefined ? APPCFG.HEADER_LINK_URL : WebApplicationData.getHeaderLinkURL(),
 							// For the simulator
-							colors: WebApplicationData.getColors()
+							colors: WebApplicationData.getColors(),
+							social: WebApplicationData.getSocial()
 						},
 						{
 							allFields: app.data.getSourceLayer().fields,
-							fieldConfig: app.data.getFieldsConfig()
+							fieldConfig: app.data.getFieldsConfig(),
+							defaultConfig:  app.data.getFieldsConfig(true)
 						},
 						{
 							extent: Helper.getWebMapExtentFromItem(app.data.getWebMapItem().item)
 						},
 						{
-							zoomLevel: WebApplicationData.getZoomLevel(),
+							zoomLevel: WebApplicationData.getZoomLevel()
 						}
 					],
 					fieldsError ? 3 : null
 				);
-			}
+			};
 			
 			function openFieldsSettingOnStartup()
 			{
@@ -181,7 +203,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			function settingsPopupSave(data)
 			{
 				// Layout
-				WebApplicationData.setLayout(data.settings[0].name);
+				WebApplicationData.setLayout(data.settings[0].name, data.settings[0].placardUnder ? "under" : "");
 				
 				// Colors
 				WebApplicationData.setColors(data.settings[1].colors[0], data.settings[1].colors[1], data.settings[1].colors[2]);
@@ -200,9 +222,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 					WebApplicationData.setLogoURL(NO_LOGO_OPTION);
 				}
 				WebApplicationData.setLogoTarget(data.settings[2].logoTarget);
+				WebApplicationData.setSocial(data.settings[2].social);
 				
 				// Fields
-				WebApplicationData.setFieldsOverride(data.settings[3].fieldConfig);
+				WebApplicationData.setFieldsOverride(data.settings[3].isUserConfig, data.settings[3].fieldConfig);
 				
 				// Extent
 				var extent = Helper.serializeExtentToItem(data.settings[4].extent);
@@ -217,8 +240,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 				else
 					WebApplicationData.setZoomLevel("");
 				
-				dojo.publish("BUILDER_INCREMENT_COUNTER", 1);
-				dojo.publish("CORE_UPDATE_UI");
+				topic.publish("BUILDER_INCREMENT_COUNTER", 1);
+				topic.publish("CORE_UPDATE_UI");
 			}
 			
 			function getLogoURL()
@@ -316,7 +339,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				
 				app.data.updateTourPointsOrder(param.order);
 	
-				dojo.publish("BUILDER_INCREMENT_COUNTER", 1);
+				topic.publish("BUILDER_INCREMENT_COUNTER", 1);
 			}
 	
 			//
@@ -377,6 +400,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					{
 						$('#importPopup').modal("hide");
 						app.data.importTourPoints(newGraphics);
+						checkPicturesExtension(true);
 					},
 					function()
 					{
@@ -404,7 +428,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					nbChange++;
 					
 				if (nbChange) {
-					dojo.publish("BUILDER_INCREMENT_COUNTER", nbChange);
+					topic.publish("BUILDER_INCREMENT_COUNTER", nbChange);
 					if( ! app.data.getCurrentGraphic() )
 						app.data.updateIntroRecord(param.title, param.description);
 					else
@@ -416,20 +440,24 @@ define(["storymaps/maptour/core/WebApplicationData",
 			// Warning
 			//
 			
-			function setDataWarning(popoverContent, webmapEditUrl)
+			function setDataWarning(content, includeButton)
 			{
-				var content = popoverContent;
-				content += ' <button type="button" class="btn btn-small" onclick="window.open(\'' + webmapEditUrl + '\', \'_blank\');">'+i18n.viewer.builderJS.dataWarningEdit+'</button>';
-				content += ' <button type="button" class="btn btn-small" onclick="app.builder.destroyDataWarning()">'+i18n.viewer.builderJS.dataWarningClose+'</button>';
-				
-				$("#builderPanel .builder-settings").popover('destroy');
-				$("#builderPanel .builder-settings").popover({
+				$("#builderPanel .builder-help").popover('destroy');
+				$("#builderPanel .builder-help").popover({
 					html: true,
 					trigger: 'manual',
-					content: '<script>$("#builderPanel .builder-settings").next(".popover").addClass("datawarning-popover").css("margin-left", $("#builderPanel > div").eq(0).width() + 30 + "px");</script>' + content
+					placement: 'bottom',
+					content: '<script>$("#builderPanel .builder-help").next(".popover").addClass("datawarning-popover");</script>' 
+								+ content 
+								+ (includeButton ? '&nbsp;<button type="button" class="btn btn-small" onclick="app.builder.destroyDataWarning()">'+i18n.viewer.builderJS.dataWarningClose+'</button>' : '')
 				});
 				
-				$("#builderPanel .builder-settings").popover('show');
+				$("#builderPanel .builder-help").popover('show');
+			}
+			
+			function destroyDataWarning()
+			{
+				$("#builderPanel .builder-help").popover('destroy');
 			}
 			
 			function showBrowserWarning()
@@ -477,8 +505,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 					minWidth: (width+15) * MapTourHelper.getSymbolColors().length,
 					offsetTop: 32,
 					topLeftNotAuthorizedArea: has('touch') ? [40, 173] : [30,143],
-					mapAuthorizedWidth: MapTourHelper.isModernLayout() ? dojo.query("#picturePanel").position()[0].x : -1,
-					mapAuthorizedHeight: MapTourHelper.isModernLayout() ? dojo.query("#footerDesktop").position()[0].y - dojo.query("#header").position()[0].h : -1,
+					mapAuthorizedWidth: MapTourHelper.isModernLayout() ? query("#picturePanel").position()[0].x : -1,
+					mapAuthorizedHeight: MapTourHelper.isModernLayout() ? query("#footerDesktop").position()[0].y - query("#header").position()[0].h : -1,
 					visible : visible
 				});
 				
@@ -487,11 +515,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 			
 			function movedPin()
 			{
-				dojo.publish("BUILDER_INCREMENT_COUNTER", 1);
+				topic.publish("BUILDER_INCREMENT_COUNTER", 1);
 				app.mapTips.show();
 			}
 			
-			function hidePinPopup(graphic)
+			function hidePinPopup()
 			{
 				app.mapTips.hide();
 			}
@@ -508,8 +536,84 @@ define(["storymaps/maptour/core/WebApplicationData",
 					var color = $.grep(MapTourHelper.getSymbolColors(), function(color, index){
 						return index == newColorIndex;
 					});
-					dojo.publish("BUILDER_INCREMENT_COUNTER", 1);
+					topic.publish("BUILDER_INCREMENT_COUNTER", 1);
 					app.data.updateCurrentTourPointColor(color[0]);
+				}
+			}
+			
+			//
+			// Data check
+			//
+			
+			function checkPicturesExtension(duringImport)
+			{
+				if( WebApplicationData.getDisableVideo() ) {
+					if( duringImport )
+						return;
+					
+					app.builder.pictureNoExtensionError = function()
+					{
+						WebApplicationData.setDisableVideo(false);
+						app.builder.destroyDataWarning();
+						topic.publish("BUILDER_INCREMENT_COUNTER", 1);
+					};
+					
+					app.builder.setDataWarning(
+						i18n.viewer.builderHTML.dataPicError7
+						+ '<div style="text-align: center; margin-top:5px;">'
+						+ ' <button class="btn btn-small" onclick="app.builder.pictureNoExtensionError(1)">' + i18n.viewer.builderHTML.dataPicError8 + '</button>'
+						+ ' <button type="button" class="btn btn-small btn-pic-error" onclick="app.builder.destroyDataWarning()">' + i18n.viewer.builderJS.dataWarningClose + '</button>'
+						+ '</div>',
+						false
+					);
+				}
+				else if (! WebApplicationData.getTemplateCreation() || duringImport){
+					var scanResult = app.data.scanDataForPictureWithoutExtension();
+					if ( scanResult ) {
+						app.builder.pictureNoExtensionError = function(act)
+						{
+							if( act == 1 ) 
+								app.data.editPictureWithoutExtension();
+							else 
+								WebApplicationData.setDisableVideo(true);
+							
+							topic.publish("BUILDER_INCREMENT_COUNTER", 1);
+							$('.btn-pic-error').removeAttr('disabled');
+							$('.builder-save').removeAttr('disabled');
+							$('.btn-pic-act').attr('disabled', 'disabled');
+						};
+						
+						var firstPart = '';
+						var closeState = '';
+						if( ! WebApplicationData.getTemplateCreation() ) {
+							firstPart = i18n.viewer.builderHTML.dataPicError0a.replace('%NB%', scanResult)
+										+ ' ' + i18n.viewer.builderHTML.dataPicError1
+										+ '<br /><br />'
+										+ i18n.viewer.builderHTML.dataPicError2;
+							
+							closeState = 'disabled="disabled"';
+							$('.builder-save').attr('disabled', 'disabled');
+						}
+						else 
+							firstPart = i18n.viewer.builderHTML.dataPicError0b.replace('%NB%', scanResult)
+										+ ' ' + i18n.viewer.builderHTML.dataPicError1
+										+ '<br /><br />'
+										+ i18n.viewer.builderHTML.dataPicError9;
+						 
+						app.builder.setDataWarning(
+							firstPart
+							+ '<ul style="margin-left: 25px; margin-top: 5px;">'
+							+ ' <li><b>' + i18n.viewer.builderHTML.dataPicError3 + '</b>: ' + i18n.viewer.builderHTML.dataPicError4 + '</li>'
+							+ ' <li><b>' + i18n.viewer.builderHTML.dataPicError5 + '</b>: ' + i18n.viewer.builderHTML.dataPicError6 + '</li>'
+							+ '</ul>'
+							+ '<div style="text-align: center; margin-top:15px;">'
+							+ ' <button class="btn btn-small btn-pic-act" onclick="app.builder.pictureNoExtensionError(1)">' + i18n.viewer.builderHTML.dataPicError3 + '</button>'
+							+ ' <button class="btn btn-small btn-pic-act" onclick="app.builder.pictureNoExtensionError(2)">' + i18n.viewer.builderHTML.dataPicError5 + '</button>'
+							+ ' <button type="button" class="btn btn-small btn-pic-error" onclick="app.builder.destroyDataWarning()"' + closeState + '>' + i18n.viewer.builderJS.dataWarningClose + '</button>'
+							+ '</div>',
+							false
+						);
+					}
 				}
 			}
 			
@@ -520,33 +624,26 @@ define(["storymaps/maptour/core/WebApplicationData",
 					$("#builderPanel2 button").width($("#organizeSlidesButton").width() > $("#addPopupButton").width() ? $("#organizeSlidesButton").width() : $("#addPopupButton").width());
 					$("#builderPanel2").css("margin-left", $("body").width() / 2 - $("#builderPanel2").outerWidth() / 2);
 				}
-			}
+			};
 	
 			this.initLocalization = function()
 			{
-				dojo.byId('organizeSlidesButton').innerHTML = i18n.viewer.builderHTML.buttonOrganize;
-				dojo.byId('addPopupButton').innerHTML = i18n.viewer.builderHTML.buttonAdd;
+				dom.byId('organizeSlidesButton').innerHTML = i18n.viewer.builderHTML.buttonOrganize;
+				dom.byId('addPopupButton').innerHTML = i18n.viewer.builderHTML.buttonAdd;
 	
 				_initPopup.initLocalization();
 				_organizePopup.initLocalization();
 				_settingsPopup.initLocalization();
 				_addPopup.initLocalization();
-			}
-			
-			this.destroyDataWarning = function()
-			{
-				$("#builderPanel .builder-settings").popover('destroy');
-				createAppSavedConfirmation();
-			}
+			};
 			
 			function initLocalization()
 			{
-				dojo.byId('organizeSlidesButton').innerHTML = i18n.viewer.builderHTML.buttonOrganize;
-				dojo.byId('addPopupButton').innerHTML = i18n.viewer.builderHTML.buttonAdd;
-				dojo.byId('importPopupButton').innerHTML = i18n.viewer.builderHTML.buttonImport;
-				
-				dojo.byId('introRecordButton').innerHTML = i18n.viewer.builderHTML.introRecordBtn;
+				dom.byId('organizeSlidesButton').innerHTML = i18n.viewer.builderHTML.buttonOrganize;
+				dom.byId('addPopupButton').innerHTML = i18n.viewer.builderHTML.buttonAdd;
+				dom.byId('importPopupButton').innerHTML = i18n.viewer.builderHTML.buttonImport;
+				dom.byId('introRecordButton').innerHTML = i18n.viewer.builderHTML.introRecordBtn;
 			}
-		}
+		};
 	}
 );

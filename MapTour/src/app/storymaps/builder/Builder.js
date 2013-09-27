@@ -1,4 +1,5 @@
-define(["storymaps/maptour/core/WebApplicationData",
+define(["esri/arcgis/Portal",
+		"storymaps/maptour/core/WebApplicationData",
 		"storymaps/maptour/builder/FeatureServiceManager",
 		"storymaps/builder/BuilderPanel",
 		"storymaps/builder/SettingsPopup",
@@ -7,8 +8,27 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"storymaps/utils/WebMapHelper",
 		"dojo/_base/lang",
 		"dojo/has",
-		"esri/IdentityManager"],
-	function(WebApplicationData, FeatureServiceManager, BuilderPanel, SettingsPopup, MyTplHelper, Helper, WebMapHelper, lang, has)
+		"esri/arcgis/utils",
+		"esri/IdentityManager",
+		"esri/request",
+		"dojo/topic",
+		"dojo/on"],
+	function(
+		esriPortal, 
+		WebApplicationData, 
+		FeatureServiceManager, 
+		BuilderPanel, 
+		SettingsPopup, 
+		MyTplHelper, 
+		Helper, 
+		WebMapHelper, 
+		lang, 
+		has, 
+		arcgisUtils,
+		IdentityManager, 
+		esriRequest,
+		topic,
+		on)
 	{
 		var _core = null;
 		var _builderView = null;
@@ -28,14 +48,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 			_core = core;
 			_builderView = builderView;
 			
-			$(document).ready(dojo.hitch(this, function(){
+			$(document).ready(lang.hitch(this, function(){
 				console.log("maptour.builder.Builder - init");
 			
 				if( ! Helper.getAppID(_core.isProd()) ) {
 					console.error("mytpl.builder.Builder - abort builder initialization, no appid supplied");
 					return;
 				}
-	
+				
 				$("body").addClass("builder-mode");
 				
 				_builderView.init(_settingsPopup);
@@ -44,8 +64,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 				_settingsPopup.init(_builderView);
 				_settingsPopup.initLocalization();
 				
-				dojo.subscribe("BUILDER_INCREMENT_COUNTER", _builderPanel.incrementSaveCounter);	
-				dojo.subscribe("HEADER_EDITED", headerEdited);
+				topic.subscribe("BUILDER_INCREMENT_COUNTER", _builderPanel.incrementSaveCounter);	
+				topic.subscribe("HEADER_EDITED", headerEdited);
 				
 				// Reload / close confirmation if there is unsaved change
 				window.onbeforeunload = function (e) {
@@ -54,12 +74,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 					if( ! _builderPanel.hasPendingChange() )
 						return;
 					
-			        if (e)
-			            e.returnValue = i18n.builder.builder.closeWithPendingChange;
+					if (e)
+						e.returnValue = i18n.viewer.builderJS.closeWithPendingChange;
 			
-			        // Safari
-			        return i18n.builder.builder.closeWithPendingChange;
-			    };
+					// Safari
+					return i18n.viewer.builderJS.closeWithPendingChange;
+				};
+				
+				app.cleanApp = cleanApp;
 			}));
 		}
 		
@@ -73,7 +95,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			_builderPanel.resize();
 			_builderView.resize();
 
-			if (app.data.getCurrentGraphic()) {
+			if (app.data.getCurrentGraphic() && app.data.sourceIsEditable()) {
 				app.builder.updateBuilderMoveable(app.data.getCurrentGraphic());
 				
 				if (cfg.isMobileView)
@@ -121,14 +143,13 @@ define(["storymaps/maptour/core/WebApplicationData",
 		function saveApp()
 		{
 			var portalUrl = getPortalURL();
-			var portal = new esri.arcgis.Portal(portalUrl);
+			var portal = new esriPortal.Portal(portalUrl);
 
-			dojo.connect(esri.id, "onDialogCreate", styleIdentityManagerForSave);
+			on(IdentityManager, "dialog-create", styleIdentityManagerForSave);
 			portal.signIn().then(
 				function(){
-					var itemId = Helper.getAppID(_core.isProd()),
-						uid = esri.id.findCredential(portalUrl).userId,
-						token  = esri.id.findCredential(portalUrl).token,
+					var uid = IdentityManager.findCredential(portalUrl).userId,
+						token  = IdentityManager.findCredential(portalUrl).token,
 						appItem = lang.clone(app.data.getAppItem());
 
 					// Remove properties that don't have to be committed
@@ -145,8 +166,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 						overwrite: true,
 						text: JSON.stringify(WebApplicationData.get())
 					});
-
-					var saveRq = esri.request(
+					
+					var saveRq = esriRequest(
 						{
 							url: portalUrl + "/sharing/content/users/" + uid + (appItem.ownerFolder ? ("/" + appItem.ownerFolder) : "") + "/addItem",
 							handleAs: 'json',
@@ -182,17 +203,17 @@ define(["storymaps/maptour/core/WebApplicationData",
 						webmapEmbeddedLayerChange = true;
 				});
 				
-				if( app.data.getDroppedPoints() || app.data.pointsAdded() )
+				if( app.data.getDroppedPoints().length  || app.data.pointsAdded() )
 					webmapEmbeddedLayerChange = true;
 			}
-			
+						
 			// If the extent or data has changed
 			if( app.data.initialExtentHasBeenEdited || webmapEmbeddedLayerChange ) {
 				var portalUrl = getPortalURL(),
 					item = app.data.getWebMapItem().item,
 					itemData = app.data.getWebMapItem().itemData,
-					uid = esri.id.findCredential(portalUrl).userId,
-					token  = esri.id.findCredential(portalUrl).token;
+					uid = IdentityManager.findCredential(portalUrl).userId,
+					token  = IdentityManager.findCredential(portalUrl).token;
 				
 				// Data change
 				if( webmapEmbeddedLayerChange ) {
@@ -205,12 +226,12 @@ define(["storymaps/maptour/core/WebApplicationData",
 					
 					// Serialize the layer to the webmap definition
 					if( layerIndex != -1 )
-						itemData.operationalLayers[layerIndex].featureCollection = serializeMapTourGraphicsLayerToFeatureCollection(app.data.getTourLayer(), app.data.getSourceLayer());	
+						itemData.operationalLayers[layerIndex].featureCollection = serializeMapTourGraphicsLayerToFeatureCollection(app.data.getTourLayer(), app.data.getAllFeatures(), app.data.getSourceLayer());	
 				}
 				
 				// Cleanup item data
 				WebMapHelper.prepareWebmapItemForCloning({ itemData: itemData });
-
+				
 				var rqData = {
 					f: 'json',
 					item: item.item,
@@ -225,7 +246,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					token: token
 				};
 
-				var saveRq = esri.request(
+				var saveRq = esriRequest(
 					{
 						url: portalUrl + "/sharing/content/users/" + uid + (item.ownerFolder ? ("/" + item.ownerFolder) : "") + "/addItem",
 						handleAs: 'json',
@@ -238,35 +259,43 @@ define(["storymaps/maptour/core/WebApplicationData",
 				
 				saveRq.then(
 					function(){
-						FeatureServiceManager.saveFS(
-							function() {
-								appSaveSucceeded({success: true});
-							},
-							function() {
-								appSaveFailed("FS", error);
-							}
-						)	
+						if( app.data.sourceIsFS() ) {
+							FeatureServiceManager.saveFS(
+								function() {
+									appSaveSucceeded({success: true});
+								},
+								function(error) {
+									appSaveFailed("FS", error);
+								}
+							);
+						}
+						else
+							appSaveSucceeded({success: true});
 					},
 					appSaveFailed
 				);
 			}
 			else
-				FeatureServiceManager.saveFS(
-					function() {
-						appSaveSucceeded({success: true});
-					},
-					function() {
-						appSaveFailed("FS", error);
-					}
-				);
+				if ( app.data.sourceIsFS() ) {
+					FeatureServiceManager.saveFS(
+						function() {
+							appSaveSucceeded({success: true});
+						},
+						function(error) {
+							appSaveFailed("FS", error);
+						}
+					);
+				}
+				else
+					appSaveSucceeded({success: true});
 		}
 		
-		function serializeMapTourGraphicsLayerToFeatureCollection(tourLayer, sourceLayer)
+		function serializeMapTourGraphicsLayerToFeatureCollection(tourLayer, tourGraphics, sourceLayer)
 		{
 			var graphics = [];
 			var droppedPoints = app.data.getDroppedPoints();
 			
-			$.each(tourLayer.graphics, function(i, graphic){
+			$.each(tourGraphics, function(i, graphic){
 				// Do not save the graphic if it's in dropped points
 				if( $.inArray(graphic, droppedPoints) == -1 )
 					graphics.push(graphic.getUpdatedFeature());
@@ -289,10 +318,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 				appSaveFailed();
 		}
 
-		function appSaveFailed(source, error)
+		function appSaveFailed()
 		{
 			_builderPanel.saveFailed();
-			changeBuilderPanelButtonState(true);
 		}
 		
 		//
@@ -301,7 +329,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		
 		function getPortalURL()
 		{
-			return configOptions.sharingurl.split('/sharing/')[0];
+			return arcgisUtils.arcgisUrl.split('/sharing/')[0];
 		}
 
 		function styleIdentityManagerForSave()
@@ -310,11 +338,65 @@ define(["storymaps/maptour/core/WebApplicationData",
 			$(".esriSignInDialog").find("#dijitDialogPaneContentAreaLoginText").css("display", "none");
 
 			// Setup a more friendly text
-			$(".esriSignInDialog").find(".dijitDialogPaneContentArea:first-child").find(":first-child").first().after("<div id='dijitDialogPaneContentAreaAtlasLoginText'>"+i18n.viewer.builderJS.signIn+" <a href='http://" + esri.id._arcgisUrl + "' title='" + esri.id._arcgisUrl + "' target='_blank'>" + esri.id._arcgisUrl + "</a> "+i18n.viewer.builderHTML.signInTwo+"</div>");
+			$(".esriSignInDialog").find(".dijitDialogPaneContentArea:first-child").find(":first-child").first().after("<div id='dijitDialogPaneContentAreaAtlasLoginText'>"+i18n.viewer.builderJS.signIn+" <a href='http://" + IdentityManager._arcgisUrl + "' title='" + IdentityManager._arcgisUrl + "' target='_blank'>" + IdentityManager._arcgisUrl + "</a> "+i18n.viewer.builderHTML.signInTwo+"</div>");
 			
-			dojo.connect(esri.id, "onDialogCancel", function (info){ 
+			on(IdentityManager, "dialog-cancel", function (){ 
 				$("#builderPanel .builder-settings").popover('hide');
 			});
+		}
+		
+		function cleanApp()
+		{
+			var portalUrl = getPortalURL();
+			var portal = new esriPortal.Portal(portalUrl);
+
+			on(IdentityManager, "dialog-create", styleIdentityManagerForSave);
+			portal.signIn().then(
+				function(){
+					var uid = IdentityManager.findCredential(portalUrl).userId,
+						token  = IdentityManager.findCredential(portalUrl).token,
+						appItem = lang.clone(app.data.getAppItem());
+
+					// Remove properties that don't have to be committed
+					delete appItem.avgRating;
+					delete appItem.modified;
+					delete appItem.numComments;
+					delete appItem.numRatings;
+					delete appItem.numViews;
+					delete appItem.size;
+
+					appItem = lang.mixin(appItem, {
+						f: "json",
+						token: token,
+						overwrite: true,
+						text: JSON.stringify(WebApplicationData.getBlank())
+					});
+
+					var saveRq = esriRequest(
+						{
+							url: portalUrl + "/sharing/content/users/" + uid + (appItem.ownerFolder ? ("/" + appItem.ownerFolder) : "") + "/addItem",
+							handleAs: 'json',
+							content: appItem
+						},
+						{
+							usePost: true
+						}
+					);
+					
+					saveRq.then(
+						function(){
+							console.log("Web Application data cleaned successfully");
+						}, function(){
+							console.log("Web Application data cleaning has failed");
+						}
+					);
+				},
+				function(error) {
+					console.error("Web Application data cleaning has failed", error);
+				}
+			);
+			
+			return "Cleaning ...";
 		}
 		
 		return {

@@ -18,3 +18,9 @@
 	color: red;
 	font-weight: bold;
 }
+
+#settings-fields .fieldResetContainer {
+	width:100%;
+	text-align:center;
+	margin-top: 15px;
+}

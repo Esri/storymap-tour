@@ -1,40 +1,45 @@
-define([], function(){
-	/**
-	 * IntroView
-	 * @class IntoView
-	 * 
-	 * Mobile intro view
-	 */
-	return function IntroView(selector)
-	{
-		this.init = function(feature, bgColor)
+define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"], 
+	function(MapTourHelper, topic){
+		/**
+		 * IntroView
+		 * @class IntoView
+		 * 
+		 * Mobile intro view
+		 */
+		return function IntroView()
 		{
-			$(".navBar span").removeClass("current");
-			app.header.hideMobileBanner(true);
-			location.hash = "";
+			this.init = function(feature, bgColor)
+			{
+				$(".navBar span").removeClass("current");
+				app.header.hideMobileBanner(true);
+				location.hash = "";
+				
+				$("#introPanel").html(
+					'<div class="slide">'
+					+ ' <h2 class="tourPointName">' + feature.attributes.getName() + '</h2>'
+					+ ' <p class="tourPointDescription">' + feature.attributes.getDescription() + '</p>'
+					+ (MapTourHelper.mediaIsSupportedImg(feature.attributes.getURL()) ? 
+						'<img class="tourPointImg" src="' + feature.attributes.getURL() + '" />'
+						: '<iframe class="tourPointIframe" src="' + feature.attributes.getURL() + '"></iframe>')
+					+ ' <br /><br />'
+					+ ' <button class="btn btn-large btn-primary">' +  i18n.viewer.mobileHTML.introStartBtn + '</button>'
+					+ '</div>'
+				);
+				
+				$("#introPanel").fastClick(function(){
+					topic.publish("PIC_PANEL_NEXT");
+				});
+				
+				$("#introPanel").css("background-color", bgColor);
+				$("#introPanel").show();
+			};
 			
-			$("#introPanel").html(
-				  '<div class="slide">'
-				+ ' <h2 class="tourPointName">' + feature.attributes.getName() + '</h2>'
-				+ ' <p class="tourPointDescription">' + feature.attributes.getDescription() + '</p>'
-				+ ' <img class="tourPointImg" src="' + feature.attributes.getURL() + '">'
-				+ ' <br /><br />'
-				+ ' <button class="btn btn-large btn-primary">' +  i18n.viewer.mobileHTML.introStartBtn + '</button>'
-				+ '</div>'
-			);
-			
-			$("#introPanel").fastClick(function(){
-				dojo.publish("PIC_PANEL_NEXT");
-			});
-			
-			$("#introPanel").css("background-color", bgColor);
-			$("#introPanel").show();
-		}
-		
-		this.hide = function()
-		{
-			$("#mapViewLink").addClass("current");
-			$("#introPanel").hide();
-		}
+			this.hide = function()
+			{
+				$("#introPanel").find(".tourPointIframe").attr('src', '');
+				$("#mapViewLink").addClass("current");
+				$("#introPanel").hide();
+			};
+		};
 	}
-});
+);

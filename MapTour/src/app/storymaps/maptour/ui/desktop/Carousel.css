@@ -122,6 +122,10 @@
 	max-height: 93px;
 }
 
+.carousel-item-div sup {
+	line-height: 6px;
+}
+
 /* Numbering */
 
 .carouselScroller span {

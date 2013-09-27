@@ -3,8 +3,17 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 		"storymaps/maptour/builder/PopupViewFacebook",
 		"storymaps/maptour/builder/PopupViewPicasa",
 		"storymaps/maptour/builder/PopupViewCSV",
-		"storymaps/maptour/builder/PopupViewGeoTag"], 
-	function (ImportPopupViewHome, PopupViewFlickr, PopupViewFacebook, PopupViewPicasa, PopupViewCSV, PopupViewGeoTag) {
+		"storymaps/maptour/builder/PopupViewGeoTag",
+		"dojo/Deferred"], 
+	function (
+		ImportPopupViewHome, 
+		PopupViewFlickr, 
+		PopupViewFacebook, 
+		PopupViewPicasa, 
+		PopupViewCSV, 
+		PopupViewGeoTag,
+		Deferred
+	){
 		return function ImportPopup(container) 
 		{
 			var _views = {
@@ -24,30 +33,30 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 			var _btnNext = container.find(".btnNext");
 			var _footerText = container.find('.dataFooterText');
 			
-			this.init = function(builderView)
+			this.init = function()
 			{
 				//
-			}
+			};
 			
 			this.present = function(params) 
 			{			
 				var footer = container.find('.modal-footer');
-				var importCompleteDeferred = new dojo.Deferred();
+				var importCompleteDeferred = new Deferred();
 				
 				$(".modal-header .close", container).attr("data-dismiss", "modal");
 
-				_views['home'].init(footer);
-				_views['CSV'].init(params['CSV'], importCompleteDeferred, footer);
-				_views['Flickr'].init(params['Flickr'], importCompleteDeferred, footer);
-				_views['Facebook'].init(params['Facebook'], importCompleteDeferred, footer);
-				_views['Picasa'].init(params['Picasa'], importCompleteDeferred, footer);
-				_views['geotag'].init(params['geotag'], importCompleteDeferred, footer);
+				_views.home.init(footer);
+				_views.CSV.init(params.CSV, importCompleteDeferred, footer);
+				_views.Flickr.init(params.Flickr, importCompleteDeferred, footer);
+				_views.Facebook.init(params.Facebook, importCompleteDeferred, footer);
+				_views.Picasa.init(params.Picasa, importCompleteDeferred, footer);
+				_views.geotag.init(params.geotag, importCompleteDeferred, footer);
 				
 				displayView('home');
 				container.modal({keyboard: true});
 				
 				return importCompleteDeferred;
-			}
+			};
 			
 			function displayView(name, params)
 			{
@@ -96,7 +105,7 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 			function showNextView()
 			{
 				var nextView = _views[_currentViewName].getNextView();
-				if (nextView instanceof dojo.Deferred) {
+				if (nextView instanceof Deferred) {
 					nextView.then(function(view){
 						_viewsNameStack.push(_currentViewName);
 						displayView(view.name, view.params);
@@ -115,7 +124,7 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 				$.each(_views, function(i, view){
 					view.initLocalization();
 				});
-			}
-		}
+			};
+		};
 	}
 );

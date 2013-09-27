@@ -36,6 +36,11 @@
 	padding: 4px;
 }
 
+#initPopupViewHome td.disabled {
+	opacity: 0.4;
+	cursor: default !important;
+}
+
 #initPopupViewHome td div {
 	margin-top: 2px;
 }

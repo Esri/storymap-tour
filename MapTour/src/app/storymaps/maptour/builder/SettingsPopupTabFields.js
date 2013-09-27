@@ -2,10 +2,14 @@ define([],
 	function () {
 		return function SettingsPopupTabFields(titleContainer, contentcontainer) 
 		{
-			var _fieldConfig;
+			var _fieldConfig,
+				_defaultConfig;
+
 			var _selectName = $(contentcontainer).find("#selectName");
 			var _selectDescription = $(contentcontainer).find("#selectDescription");
 			var _selectColor = $(contentcontainer).find("#selectColor");
+			
+			$(contentcontainer).find(".fieldReset").fastClick(reset);
 				
 			this.init = function(settings, openOnError) 
 			{		
@@ -14,9 +18,16 @@ define([],
 				_selectColor.empty();
 				
 				_fieldConfig = settings.fieldConfig;
-				var foundName = foundDescription = foundColor = false;
+				_defaultConfig = settings.defaultConfig;
+				
+				var foundName = false;
+                var foundDescription = false;
+                var foundColor = false;
+				
 				$.each(settings.allFields, function(i, field){
-					var selectedName = selectedDesc = selectedColor = "";
+					var selectedName = "";
+                    var selectedDesc = "";
+                    var selectedColor = "";
 					
 					if( field.name == _fieldConfig.getNameField() ) {
 						selectedName = 'selected="selected"';
@@ -42,21 +53,22 @@ define([],
 					$(_selectName).prepend('<option value="-1" selected="selected">---</option>');
 					
 				if( ! foundDescription )
-					$(selectedDesc).prepend('<option value="-1" selected="selected">---</option>');
+					$(_selectDescription).prepend('<option value="-1" selected="selected">---</option>');
 					
 				if( ! foundColor )
 					$(_selectColor).prepend('<option value="-1" selected="selected">---</option>');	
 					
 				$(".error-msg", contentcontainer).toggle(openOnError);
-			}
+			};
 			
 			this.show = function()
 			{
 				$(contentcontainer).find(".error-msg2").hide();
-			}
+			};
 			
 			this.save = function()
 			{		
+				var isUserConfig = false;
 				var fieldName  = _selectName.find(":selected").val();
 				var fieldDesc  = _selectDescription.find(":selected").val();
 				var fieldColor = _selectColor.find(":selected").val();
@@ -66,7 +78,13 @@ define([],
 					return false;
 				}
 				
+				if( fieldName != _defaultConfig.getNameField() 
+						|| fieldDesc != _defaultConfig.getDescriptionField() 
+						|| fieldColor != _defaultConfig.getIconColorField() )
+					isUserConfig = true;
+				
 				return {
+					isUserConfig: isUserConfig,
 					fieldConfig: {
 						fieldName: fieldName,
 						fieldDescription: fieldDesc,
@@ -76,6 +94,13 @@ define([],
 						fieldThumb: _fieldConfig.getThumbField()
 					}
 				};
+			};
+			
+			function reset()
+			{
+				$(_selectName).val(_defaultConfig.getNameField());
+				$(_selectDescription).val(_defaultConfig.getDescriptionField());
+				$(_selectColor).val(_defaultConfig.getIconColorField());
 			}
 
 			this.initLocalization = function()
@@ -88,7 +113,8 @@ define([],
 				$(contentcontainer).find('.control-label').eq(0).html(i18n.viewer.builderHTML.settingsFieldsLabelName + ':');
 				$(contentcontainer).find('.control-label').eq(1).html(i18n.viewer.builderHTML.settingsFieldsLabelDescription + ':');
 				$(contentcontainer).find('.control-label').eq(2).html(i18n.viewer.builderHTML.settingsFieldsLabelColor + ':');
-			}
-		}
+				$(contentcontainer).find('.fieldReset').html(i18n.viewer.builderHTML.settingsFieldsReset);
+			};
+		};
 	}
 );

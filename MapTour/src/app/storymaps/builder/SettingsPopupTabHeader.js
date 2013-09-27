@@ -32,7 +32,7 @@ define([],
 						_logoInput.removeAttr("disabled");
 						_logoTargetInput.removeAttr("disabled");
 					}
-			    });
+				});
 				
 				$("#headerSimulator", contentContainer).css("background-color", settings.colors[0]);
 				if (logoURL == null) {
@@ -59,13 +59,47 @@ define([],
 				$("#selectSocialText", contentContainer).val(settings.linkText);
 				$("#selectSocialLink", contentContainer).val(settings.linkURL);
 				
+				// iPad keyboard workaround
+				$("#selectSocialText", contentContainer).blur(function(){ $(window).scrollTop(0); });
+				$("#selectSocialLink", contentContainer).blur(function(){ $(window).scrollTop(0); });
+				$("#logoInput", contentContainer).blur(function(){ $(window).scrollTop(0); });
+				_logoTargetInput.blur(function(){ $(window).scrollTop(0); });
+				
+				// Social sharing
+				if ( ! APPCFG.HEADER_SOCIAL.facebook )
+					$(".enableFB", contentContainer)
+						.attr("disabled", "disabled")
+						.parent()
+						.addClass("disabled")
+						.attr("title", i18n.viewer.builderHTML.settingsLogoSocialDisabled);
+				else if ( ! settings.social || settings.social.facebook )
+					$(".enableFB", contentContainer).prop('checked', true);
+				
+				if ( ! APPCFG.HEADER_SOCIAL.twitter )
+					$(".enableTwitter", contentContainer)
+						.attr("disabled", "disabled")
+						.parent()
+						.addClass("disabled")
+						.attr("title", i18n.viewer.builderHTML.settingsLogoSocialDisabled);
+				else if ( ! settings.social || settings.social.twitter )
+					$(".enableTwitter", contentContainer).prop('checked', true);
+				
+				if( ! APPCFG.HEADER_SOCIAL.bitly || ! APPCFG.HEADER_SOCIAL.bitly.enable || ! APPCFG.HEADER_SOCIAL.bitly.login || ! APPCFG.HEADER_SOCIAL.bitly.key )
+					$(".enableBitly", contentContainer)
+						.attr("disabled", "disabled")
+						.parent()
+						.addClass("disabled")
+						.attr("title", i18n.viewer.builderHTML.settingsLogoSocialDisabled);
+				else if ( ! settings.social || settings.social.bitly )
+					$(".enableBitly", contentContainer).prop('checked', true);
+				
 				updateForm();
-			}
+			};
 			
 			this.show = function()
 			{
 				//
-			}
+			};
 			
 			this.save = function()
 			{		
@@ -86,24 +120,36 @@ define([],
 					logoTarget = _logoTargetInput.val();
 				}
 				
+				// Basic XSS check
+				var linkText = $("#selectSocialText", contentContainer).val() || '';
+				linkText = linkText.replace(/<\/?script>/g,'');
+				
+				var linkURL = $("#selectSocialLink", contentContainer).val() || '';
+				linkURL = linkURL.replace(/<\/?script>/g,'');
+				
 				return {
 					logoURL: logoURL,
 					logoTarget: logoTarget,
-					linkText: $("#selectSocialText", contentContainer).val(),
-					linkURL: $("#selectSocialLink", contentContainer).val(),
+					linkText: linkText,
+					linkURL: linkURL,
+					social: {
+						facebook: $(".enableFB").prop('checked'),
+						twitter: $(".enableTwitter").prop('checked'),
+						bitly: $(".enableBitly").prop('checked')
+					}
 				};
-			}
+			};
 			
-			function onLogoRadioClick(event)
+			function onLogoRadioClick()
 			{
 				updateForm();
 			}
 			
-			function onLogoLoadComplete(event)
+			function onLogoLoadComplete()
 			{
 			}
 			
-			function onLogoLoadError(event) 
+			function onLogoLoadError() 
 			{
 				_badLogo = true;			
 				$("#imgLogo", contentContainer).hide();
@@ -171,7 +217,7 @@ define([],
 				$(contentContainer).find('p').eq(1).html(i18n.viewer.builderHTML.settingsLogoSocialExplain);
 				$(contentContainer).find('.control-label[for=selectSocialText]').html(i18n.viewer.builderHTML.settingsLogoSocialText + ":");
 				$(contentContainer).find('.control-label[for=selectSocialLink]').html(i18n.viewer.builderHTML.settingsLogoSocialLink + ":");
-			}
-		}
+			};
+		};
 	}
 );

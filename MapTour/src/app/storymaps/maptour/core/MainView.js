@@ -12,7 +12,23 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"storymaps/maptour/ui/mobile/InfoView",
 		"storymaps/maptour/ui/mobile/Carousel",
 		"storymaps/utils/Helper",
-		"dojo/has"], 
+		"dojo/has",
+		"esri/tasks/query",
+		"esri/layers/GraphicsLayer",
+		"esri/renderers/UniqueValueRenderer",
+		"esri/graphic",
+		"esri/geometry/Point",
+		"esri/geometry/Extent",
+		"esri/config",
+		"esri/urlUtils",
+		"esri/geometry/webMercatorUtils",
+		"dojo/topic",
+		"dojo/Deferred",
+		"dojo/dom",
+		"dojo/on",
+		"dojo/_base/connect",
+		"dojo/query",
+		"dojo/dom-geometry"], 
 	function (
 		WebApplicationData, 
 		TourPointAttributes,
@@ -26,7 +42,23 @@ define(["storymaps/maptour/core/WebApplicationData",
 		InfoView,
 		MobileCarousel, 
 		Helper, 
-		has)
+		has,
+		Query,
+		GraphicsLayer,
+		UniqueValueRenderer,
+		Graphic,
+		Point,
+		Extent,
+		esriConfig,
+		urlUtils,
+		webMercatorUtils,
+		topic,
+		Deferred,
+		dom,
+		on,
+		connect,
+		domQuery,
+		domGeom)
 	{
 		return function MainView() 
 		{
@@ -38,8 +70,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 				_core = core;
 				
 				/*
-				 // Disable CORS on IE 10
-				 if( has("ie") == 10 ) {
+				// Disable CORS on IE 10
+				if( has("ie") == 10 ) {
 					esriConfig.defaults.io.corsEnabledServers = [];
 					esriConfig.defaults.io.corsDetection = false;
 				}
@@ -52,10 +84,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 				}
 				
 				// Url parameters handling
-				var urlParams = esri.urlToObject(document.location.search).query || {};
+				var urlParams = urlUtils.urlToObject(document.location.search).query || {};
 				configOptions.sourceLayerTitle = (urlParams.sourceLayerTitle ? unescape(urlParams.sourceLayerTitle) : null) || configOptions.sourceLayerTitle;
 				configOptions.firstRecordAsIntro = urlParams.firstRecordAsIntro
-														? (urlParams.firstRecordAsIntro == "true" ? true : false)
+														? urlParams.firstRecordAsIntro == "true"
 														: configOptions.firstRecordAsIntro;
 				configOptions.zoomLevel = urlParams.zoomLevel || configOptions.zoomLevel;
 				
@@ -70,14 +102,16 @@ define(["storymaps/maptour/core/WebApplicationData",
 				
 				addMapTourBusinessToEsriGraphic();
 				
-				dojo.subscribe("CORE_UPDATE_EXTENT", this.setMapExtent);
-				dojo.subscribe("CORE_PICTURE_CHANGED", selectedPointChange_afterStep2);
-				dojo.subscribe("CORE_SELECTED_TOURPOINT_UPDATE", updateSelectedPointRenderer);
+				topic.subscribe("CORE_UPDATE_EXTENT", this.setMapExtent);
+				topic.subscribe("CORE_PICTURE_CHANGED", selectedPointChange_afterStep2);
+				topic.subscribe("CORE_SELECTED_TOURPOINT_UPDATE", updateSelectedPointRenderer);
+				topic.subscribe("PIC_PANEL_PREV", loadPrevPicture);
+				topic.subscribe("PIC_PANEL_NEXT", loadNextPicture);
 				
 				// Global handler for not found image 
 				window.mediaNotFoundHandler = function(that){
 					that.src = MapTourHelper.getNotFoundMedia();
-					// Avoid infinite loop if something is wront with the not found image
+					// Avoid infinite loop if something is wrong with the not found image
 					that.onerror = '';
 				};
 				
@@ -91,23 +125,40 @@ define(["storymaps/maptour/core/WebApplicationData",
 					});
 				}
 				
+				// Prevent iPad vertical bounce effect
+				// except on few containers that needs that
+				$(document).bind(
+					'touchmove',
+					function(e) {
+						if( ! $(e.target).parents('#helpPopup, #placardContainer, #infoPanel, #popupViewGeoTag').length )
+							e.preventDefault();
+					}
+				);
+				
 				return true;
-			}
+			};
 			
 			this.webmapLoaded = function()
 			{
+				var i, 
+					layerId,
+					layerName,
+					layer;
+				
 				// If a layer was specified in config
 				if( configOptions.sourceLayerTitle ) {
 					var webmapLayers = app.data.getWebMapItem() 
 										&& app.data.getWebMapItem().itemData
 										? app.data.getWebMapItem().itemData.operationalLayers : [];
 					
-					for (var i = app.map.graphicsLayerIds.length-1; i >= 0; i--) {
-						var layerId = app.map.graphicsLayerIds[i];
-						var layer = app.map._layers[layerId];
+					for (i = app.map.graphicsLayerIds.length-1; i >= 0; i--) {
+						layerId = app.map.graphicsLayerIds[i];
+						layer = app.map._layers[layerId];
 	
 						if( layerId.split('_').length == 3 ) 
 							layerId = layerId.split('_').slice(0,2).join('_');	
+						else if( layerId.split('_').length == 2 ) 
+							layerId = layerId.split('_').slice(0,1).join('_');	
 						
 						// Exclude map notes and not point layers
 						if( layerId.match(/^mapNotes_/) || layer.geometryType != "esriGeometryPoint" )
@@ -127,24 +178,27 @@ define(["storymaps/maptour/core/WebApplicationData",
 				}
 				else {
 					// Elect the tour point layer - the upper visible point layer exluding map notes 
-					for (var i = app.map.graphicsLayerIds.length-1; i >= 0; i--) {
-						var layerName = app.map.graphicsLayerIds[i];
-						var layer = app.map._layers[layerName];
+					for (i = app.map.graphicsLayerIds.length-1; i >= 0; i--) {
+						layerName = app.map.graphicsLayerIds[i];
+						layer = app.map._layers[layerName];
+						
 						// Catch visible FS and webmap embedded point layers
-						if( (layer.visible == true || layer.visible == undefined) 
-								&& layer.type == "Feature Layer" 
+						if( (layer.visible || layer.visible === undefined) 
+								&& (layer.type == "Feature Layer" || layer._collection) 
 								&& layer.geometryType == "esriGeometryPoint" 
 								&& ! layerName.match(/^mapNotes_/) )
 						{
 							// If it's a webmap layer check that all mandatory fields are present to allow additional decoration layer
-							if( ! layer.url && layer.graphics && layer.graphics.length > 0 ) {
-								var fields = app.data.electFields(layer.graphics[0].attributes);
+							if( ! layer.url ) {
+								var fields = app.data.electFieldsFromFieldsList(layer.fields);
 								
 								if (fields && fields.allWebmapLayerMandatoryFieldsFound()) {
 									app.data.setSourceLayer(layer);
 									break;
 								}
 							}
+							// If it's a FS perform less check to allow for enterprise integration where fiels are different
+							// Acceptable as FS decoration layer should be under map tour data layer
 							else {
 								app.data.setSourceLayer(layer);
 								break;
@@ -154,9 +208,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 				}
 				
 				// Initialize picture panel
-				app.desktopPicturePanel.init(WebApplicationData.getColors()[1], ! app.data.sourceIsNotFSAttachments());
-				dojo.subscribe("PIC_PANEL_PREV", loadPrevPicture);
-				dojo.subscribe("PIC_PANEL_NEXT", loadNextPicture);
+				app.desktopPicturePanel.init(
+					WebApplicationData.getColors()[1], 
+					! app.data.sourceIsNotFSAttachments(),
+					MapTourHelper.isModernLayout()
+				);
 				
 				// FeatureLayer
 				if ( app.data.sourceIsFS() ) {
@@ -171,23 +227,25 @@ define(["storymaps/maptour/core/WebApplicationData",
 						loadingIndicator.setMessage(i18n.viewer.loading.step3);
 						
 						var FSManager = new FeatureServiceManager();
-						dojo.subscribe("FS_MANAGER_LAYER_LOADED", function(tourPoints) {
+						topic.subscribe("FS_MANAGER_LAYER_LOADED", function(tourPoints) {
 							// If in builder or preview mode
 							if( app.isInBuilderMode || ! Helper.getAppID(_core.isProd()) ) {							
 								// Count FS features and warn user if they are not all visible
 								// There should always be the same number of feature now that the web map is loaded at full extent
-								var queryCount = new esri.tasks.Query();
+								var queryCount = new Query();
 								queryCount.where = "1=1";
 								app.data.getSourceLayer().queryCount(
 									queryCount,
 									function(nbFeature) {
 										if( app.data.getSourceLayer().graphics.length != nbFeature ) {
 											/*
-											var webmapEditUrl = Helper.getWebmapViewerLinkFromSharingURL() + '?webmap=' + app.data.getWebMapItem().item.id;
+											var webmapEditUrl = Helper.getWebmapViewerLinkFromSharingURL(arcgisUtils.arcgisUrl) + '?webmap=' + app.data.getWebMapItem().item.id;
 											var popoverContent = app.data.getSourceLayer().graphics.length != 0 ? i18n.viewer.builderJS.dataWarningExtent : i18n.viewer.builderJS.dataWarningVisibi.replace('%MAPSIZE%', APPCFG.MINIMUM_MAP_WIDTH + 'px');
-											
+											popoverContent += ' <button type="button" class="btn btn-small" onclick="window.open(\'' + webmapEditUrl + '\', \'_blank\');">'+i18n.viewer.builderJS.dataWarningEdit+'</button>';
+											popoverContent += ' <button type="button" class="btn btn-small" onclick="app.builder.destroyDataWarning()">'+i18n.viewer.builderJS.dataWarningClose+'</button>';
+				
 											if( app.isInBuilderMode )
-												app.builder.setDataWarning(popoverContent, webmapEditUrl);
+												app.builder.setDataWarning(popoverContent, true);
 											*/
 										}
 	
@@ -213,8 +271,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					if( has("ie") > 0 && has("ie") < 9 )
 						setTimeout(layerLoaded, 1000);
 					else {
-						var handle = dojo.connect(app.map, 'onUpdateEnd', function(){
-							dojo.disconnect(handle);
+						on.once(app.map, 'update-end', function(){
 							layerLoaded();
 						});
 					}
@@ -225,8 +282,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 					
 					var graphics = [];
 					$(app.data.getSourceLayer().graphics).each(function(i, graphic) {
-						graphics.push(new esri.Graphic(
-							new esri.geometry.Point(graphic.geometry.x, graphic.geometry.y, graphic.geometry.spatialReference),
+						graphics.push(new Graphic(
+							new Point(graphic.geometry.x, graphic.geometry.y, graphic.geometry.spatialReference),
 							null,
 							new TourPointAttributes(graphic, null, null, true)
 						));
@@ -245,7 +302,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				}
 				// No data in view mode
 				else if( Helper.getAppID(_core.isProd()) ) {
-					if( app.data.userIsAppOwnerOrAdmin() ){
+					if( app.data.userIsAppOwner() ){
 						loadingIndicator.setMessage(i18n.viewer.loading.loadBuilder);
 						setTimeout(function(){
 							app.header.switchToBuilder();
@@ -258,7 +315,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				else {
 					_core.initError("noLayer");
 				}
-			}
+			};
 			
 			function tourPointLayerLoaded(result)
 			{
@@ -270,7 +327,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// <meta http-equiv="x-ua-compatible" content="IE=9" >
 				if (app.isInBuilderMode && ! app.data.sourceIsNotFSAttachments() && has("ie") == 10 && navigator.userAgent.match('Windows NT 6.1')) {
 					_core.initError("ie10Win7Explain");
-					return false;
+					return;
 				}
 				
 				_core.cleanLoadingTimeout();
@@ -285,17 +342,34 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// Set Map extent to the map initial extent	
 				_this.setMapExtent(Helper.getWebMapExtentFromItem(app.data.getWebMapItem().item)).then(function()
 				{
+					// Look for an URL index parameter
+					var urlParams = esri.urlToObject(document.location.search).query || {};
+					var forceStartIndex = parseInt(urlParams.index, 10);
+					
+					// Set the data
+					app.data.setTourPoints(result.graphics.slice(0, APPCFG.MAX_ALLOWED_POINTS));
+					
+					// If the index parameter isn't valid discard it
+					if( forceStartIndex && (isNaN(forceStartIndex) || forceStartIndex < 0 || forceStartIndex > app.data.getTourPoints().length) )
+						forceStartIndex = null;
+					
 					// If the first record is an introduction 
 					if( (configOptions.firstRecordAsIntro || WebApplicationData.getFirstRecordAsIntro()) && result.graphics.length > 1 ) {
-						app.data.setTourPoints(result.graphics.slice(0, APPCFG.MAX_ALLOWED_POINTS));
 						app.data.setFirstPointAsIntroRecord();
-						app.data.setCurrentPointByIndex(null);
+						
+						if( forceStartIndex )
+							app.data.setCurrentPointByIndex(forceStartIndex - 1);
+						else
+							app.data.setCurrentPointByIndex(null);
+							
 						if( app.isInBuilderMode )
 							$("#builderPanel3").toggle(app.data.hasIntroRecord());
 					}
 					else {
-						app.data.setTourPoints(result.graphics.slice(0, APPCFG.MAX_ALLOWED_POINTS));
-						app.data.setCurrentPointByIndex(result.graphics.length ? 0 : -1);
+						if( forceStartIndex )
+							app.data.setCurrentPointByIndex(forceStartIndex - 1);
+						else
+							app.data.setCurrentPointByIndex(result.graphics.length ? 0 : -1);
 					}
 					
 					if( result.graphics.length >= APPCFG.MAX_ALLOWED_POINTS )
@@ -304,7 +378,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					var tourPoints = app.data.getTourPoints();
 		
 					// Create a graphics layer for Map Tour data
-					var tourLayer = new esri.layers.GraphicsLayer({ id: 'mapTourGraphics' });
+					var tourLayer = new GraphicsLayer({ id: 'mapTourGraphics' });
 		
 					// Add ALL graphics to the layer (include hiddens that can become visible)
 					var allTourPoints = app.data.getTourPoints(true);
@@ -313,7 +387,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					});
 					
 					// Create a unique value renderer based on the ID field
-					var renderer = new esri.renderer.UniqueValueRenderer(null, app.data.getFeatureIDField());
+					var renderer = new UniqueValueRenderer(null, app.data.getFeatureIDField());
 					
 					//  Add renderer values
 					$(tourPoints).each(function(index, graphic) {
@@ -328,10 +402,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 					app.map.addLayer(tourLayer);
 					
 					// Event handler for graphics
-					dojo.connect(tourLayer, "onMouseOver", picLayer_onMouseOver);
-					dojo.connect(tourLayer, "onMouseOut", picLayer_onMouseOut);
-					dojo.connect(tourLayer, "onClick", picLayer_onClick);
-					dojo.connect(app.map, "onClick", handleMapClick);
+					connect.connect(tourLayer, "onMouseOver", picLayer_onMouseOver);
+					connect.connect(tourLayer, "onMouseOut", picLayer_onMouseOut);
+					on(tourLayer, "click", picLayer_onClick);
+					on(app.map, "click", handleMapClick);
 					
 					// Save the tour layer
 					app.data.setTourLayer(tourLayer);
@@ -339,34 +413,31 @@ define(["storymaps/maptour/core/WebApplicationData",
 					if(app.map.loaded)
 						_core.appInitComplete();
 					else
-						dojo.connect(app.map, "onLoad", _core.appInitComplete);
+						on(app.map, "load", function() {
+							// Bing basemap -> zoom another time
+							if( app.map._bingLogo ) {
+								on.once(app.map, "update-end", function(){
+									_this.setMapExtent(Helper.getWebMapExtentFromItem(app.data.getWebMapItem().item)).then(_core.appInitComplete);
+								});
+							}
+							else
+								_core.appInitComplete();
+						});
 				});
 			}
 			
 			this.appInitComplete = function()
 			{
 				// Hide header after first map interaction
-				var firstExtentChange = true;
-				var handle1 = dojo.connect(app.map, "onExtentChange", function(extent, delta){
-					if( ! firstExtentChange && delta && (delta.x || delta.y) ) {
-						app.header.hideMobileBanner();
-						dojo.disconnect(handle1);
-					}
-					else
-						firstExtentChange = false;
-				});
-				
-				//  After the initial map extent change, flag that next action will be the first user action
-				app.handleFirstExtentChange = dojo.connect(app.map, "onExtentChange", function(extent, delta) {
-					dojo.disconnect(app.handleFirstExtentChange);
-					app.isFirstUserAction = true;
+				on.once(app.map, "extent-change", function(){
+					app.header.hideMobileBanner();
 				});
 				
 				// Make sure that the current marker is displayed in front of others
-				dojo.connect(app.map, "onExtentChange", function(extent, delta) {
+				on(app.map, "extent-change", function(data) {
 					var currentPoint = app.data.getCurrentGraphic();
 					if( currentPoint ) {
-						if (extent.contains(currentPoint.geometry)) {
+						if (data.extent.contains(currentPoint.geometry)) {
 							try {
 								currentPoint.getDojoShape().moveToFront();
 							} 
@@ -375,20 +446,28 @@ define(["storymaps/maptour/core/WebApplicationData",
 						}
 					}
 				});
-			
+				
 				// Display alll graphics layers except the one that is used as the sourceLayer
 				$.each(app.map.graphicsLayerIds, function(i, layerName){
 					if( layerName != app.data.getSourceLayer().id )
 						$("#" + layerName + "_layer").css("visibility", "visible");
 				});
 	
-				// Force early init of the picture panel
+				// Picture panel init
 				if( app.data.getTourPoints().length ) 
-					selectedPointChange_after(app.data.getIntroData());
+					selectedPointChange_after(app.data.getCurrentGraphic() || app.data.getIntroData());
 				
 				// Let time for the map renderer to update and initialize all UI components
 				setTimeout(initUI, 0);
-					
+				
+				// If the layer used for Map Tour has changed
+				if( app.isInBuilderMode && WebApplicationData.getSourceLayer() && app.data.getSourceLayer().id != WebApplicationData.getSourceLayer() )
+					app.builder.setDataWarning(i18n.viewer.builderHTML.dataSourceWarning, true);
+				
+				// Since V2.1 images need to end with a valid extension
+				if (app.isInBuilderMode && app.data.sourceIsNotFSAttachments())
+					app.builder.checkPicturesExtension(false);
+				
 				// Show settings popup if not found fields mapping
 				if ( app.isInBuilderMode && app.data.getFieldsConfig() && ! app.data.getFieldsConfig().allCriticalFieldsFound() )
 					app.builder.openFieldsSettingOnStartup();
@@ -406,26 +485,25 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// See forced call to selectedPointChange_after before
 				if( ! app.data.getTourPoints().length )
 					selectedPointChange_afterStep2();
-			}
+			};
 			
 			function initUI()
 			{
-				var tourLayer  = app.data.getTourLayer();
 				var appColors  = WebApplicationData.getColors();
 				var tourPoints = app.data.getTourPoints();
 				
 				// Initialize desktop carousel
 				app.desktopCarousel.init(tourPoints, appColors[2], appColors[1]);
-				dojo.subscribe("CAROUSEL_CLICK", loadPictureAtIndex);
+				topic.subscribe("CAROUSEL_CLICK", loadPictureAtIndex);
 	
 				// Initialize mobile UI on IE > 8
-				if (dojo.isIE == undefined || dojo.isIE > 8) {
+				if (has("ie") === undefined || has("ie") > 8) {
 					app.mobileCarousel.init(tourPoints, appColors[2]);
-					dojo.subscribe("CAROUSEL_SWIPE", loadPictureAtIndex);
+					topic.subscribe("CAROUSEL_SWIPE", loadPictureAtIndex);
 					app.mobileListView.init(tourPoints, appColors[2]);
 					app.mobileInfoView.init(app.data.getTourPoints(), appColors[2]);
-					dojo.subscribe("OPEN_MOBILE_INFO", showMobileViewInfo);
-					dojo.subscribe("MOBILE_INFO_SWIPE", loadPictureAtIndex);
+					topic.subscribe("OPEN_MOBILE_INFO", showMobileViewInfo);
+					topic.subscribe("MOBILE_INFO_SWIPE", loadPictureAtIndex);
 				}
 			}
 			
@@ -439,7 +517,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					$("#infoViewLink").addClass("current");
 					app.mobileInfoView.show();
 				}
-			}
+			};
 			
 			this.updateUI = function(tourPoints, appColors, editFirstRecord)
 			{
@@ -449,11 +527,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 				app.mobileCarousel.update(tourPoints, appColors[2]);
 				app.mobileListView.update(tourPoints, appColors[2]);
 				app.mobileInfoView.update(tourPoints, appColors[2]);
-				app.desktopPicturePanel.update(appColors[1]);
+				app.desktopPicturePanel.update(appColors[1], MapTourHelper.isModernLayout());
 				
 				// Set the symbol, update UI component
 				selectedPointChange_after(editFirstRecord ? app.data.getIntroData() : null);
-			}
+			};
 			
 			this.resize = function(cfg)
 			{
@@ -473,15 +551,19 @@ define(["storymaps/maptour/core/WebApplicationData",
 					
 				app.desktopPicturePanel.resize(cfg.width - APPCFG.MINIMUM_MAP_WIDTH, cfg.height);
 				app.desktopCarousel.resize();
-					
-				if (cfg.isMobileView)
-					app.mapTips && app.mapTips.hide();
-				else
-					app.mapTips && app.mapTips.show();
-	
+				
+				if( app.mapTips ) {
+					if ( cfg.isMobileView )
+						app.mapTips.hide();
+					else if( app.isInBuilderMode )
+						app.mapTips.show();
+					else if ( app.data.getCurrentGraphic().attributes.getName() !== "" )
+						app.mapTips.show();
+				}
+				
 				if (! cfg.isMobileView)
 					app.desktopCarousel.checkItemIsVisible(app.data.getCurrentIndex());
-			}
+			};
 			
 			//
 			// Initialization
@@ -500,6 +582,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 					{
 						$('#initPopup').modal("hide");
 						app.isCreatingFS = false;
+						
+						var hasCleanedPreviousLayer = WebApplicationData.cleanWebAppAfterInitialization();
+						if( hasCleanedPreviousLayer )
+							topic.publish("BUILDER_INCREMENT_COUNTER", 1);
+							
 						_core.prepareAppForWebmapReload();
 						_core.loadWebMap(app.data.getWebMapItem().item.id);
 					},
@@ -514,7 +601,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 						_core.handleWindowResize();
 					}
 				);
-			}
+			};
 			
 			/**
 			 * Display the app
@@ -522,11 +609,17 @@ define(["storymaps/maptour/core/WebApplicationData",
 			 */
 			function displayApp()
 			{
-				// If intro record, set enhanced mobile intro
-				if ( app.data.getIntroData() && (! has("ie") || has("ie") > 8) ) 
+				// If intro record, display mobile intro view
+				if ( app.data.getIntroData() && app.data.getCurrentIndex() == null && (! has("ie") || has("ie") > 8) ) 
 					app.mobileIntroView.init(app.data.getIntroData(), WebApplicationData.getColors()[2]);
 				
 				_core.displayApp();
+				// Need to perform some layout check of the picture panel
+				setTimeout(app.desktopPicturePanel.firstDisplayCheck, 50);
+				
+				app.isFirstUserAction = true;
+				
+				topic.publish("maptour-ready");
 			}
 			
 			//
@@ -596,6 +689,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var x = ptScreen.x;
 				var y = ptScreen.y;
 				
+				if( ! graphic.attributes.getName() )
+					return;
+				
 				$("#hoverInfo").html(graphic.attributes.getName());
 	
 				if ( x <= $("#mainMap").width() - 230 )
@@ -616,8 +712,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 				$("#hoverInfo").hide();
 			}
 			
-			function checkPopoverState(){
-				if ( ! app.isInBuilderMode && ! MapTourHelper.isOnMobileView() && ! $(".multiTip").is(':visible') ) {
+			function checkPopoverState()
+			{
+				if ( ! app.isInBuilderMode && ! MapTourHelper.isOnMobileView() 
+						&& ! $(".multiTip").is(':visible') && app.data.getCurrentGraphic().attributes.getName() !== "" ) {
 					hideHoverTooltip();
 					app.mapTips && app.mapTips.show();
 				}
@@ -629,7 +727,12 @@ define(["storymaps/maptour/core/WebApplicationData",
 	
 			function selectedPointChange_before()
 			{
+				// Start the loading indicator
+				app.mapCommand.startLoading();
+				
 				updateGraphicIcon(app.data.getCurrentGraphic(), "normal");
+				if( app.mapTips )
+					app.mapTips.hide();
 				
 				// Hide the mobile header if it hasn't been closed once
 				if( app.header.mobileHeaderIsInFirstState() )
@@ -649,6 +752,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 	
 				var attributes = forcedRecord ? forcedRecord.attributes : app.data.getCurrentAttributes();
 				
+				app.data.setIsEditingFirstRecord(!! forcedRecord);
+				
 				if( ! attributes ) {
 					console.error("selectedPointChange_after - invalid point");
 					// To be sure to update picture panel
@@ -660,12 +765,17 @@ define(["storymaps/maptour/core/WebApplicationData",
 				
 				// Update the picture panel
 				// Once the image is loaded, selectedPointChange_afterStep2 is called through an event
+				
 				app.desktopPicturePanel.updatePicture(
 					attributes.getURL(),
 					attributes.getName(),
 					attributes.getDescription(),
 					attributes.getThumbURL(),
-					computePicturePanelButtonStatus(forcedRecord));
+					computePicturePanelButtonStatus(forcedRecord),
+					MapTourHelper.isModernLayout(),
+					WebApplicationData.getPlacardPosition() === "under" || configOptions.placardPosition === "under",
+					MapTourHelper.mediaIsSupportedImg(attributes.getURL())
+				);
 			}
 			
 			function selectedPointChange_afterStep2()
@@ -680,13 +790,13 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// Apply the selected zoom level on first user action
 				if( app.isFirstUserAction ) {
 					app.isFirstUserAction = false;
-					var appZoomLevel = parseInt( WebApplicationData.getZoomLevel() != "" && WebApplicationData.getZoomLevel() != undefined ? WebApplicationData.getZoomLevel() : configOptions.zoomLevel);
+					
+					var appZoomLevel = parseInt((WebApplicationData.getZoomLevel() !== "" && WebApplicationData.getZoomLevel() !== undefined ? WebApplicationData.getZoomLevel() : configOptions.zoomLevel), 10);
 					
 					if ( appZoomLevel !== "" && appZoomLevel != -1 && (""+appZoomLevel != "NaN") && appZoomLevel != app.map.getZoom() ) {
 						try {
 							_this.centerMap(graphic.geometry, appZoomLevel);
-							var handle = dojo.connect(app.map, "onExtentChange", function() {
-								dojo.disconnect(handle);
+							on.once(app.map, "extent-change", function() {
 								setCurrentGraphicIcon(graphic);
 							});
 						} catch( e ) { }
@@ -702,6 +812,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 	
 				// Update the mobile carousel
 				app.mobileCarousel.setSelectedPoint(index);
+				
+				// Update the map command
+				app.mapCommand.stopLoading();
+				
+				topic.publish("maptour-point-change-after", index);
 				
 				// If it's the first loading, display the app
 				if( app.isLoading )
@@ -740,15 +855,13 @@ define(["storymaps/maptour/core/WebApplicationData",
 				if (index == null) {
 					app.mobileIntroView.hide();
 					index = -1;
-					app.isFirstUserAction = true;
-					dojo.disconnect(app.handleFirstExtentChange);
 				}
 	
 				if ( index == app.data.getNbPoints() - 1 )
 					return;
 	
 				selectedPointChange_before();
-				app.data.setCurrentPointByIndex(index + 1)
+				app.data.setCurrentPointByIndex(index + 1);
 				selectedPointChange_after();
 			}
 	
@@ -757,8 +870,6 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// Intro record
 				if (app.data.getCurrentIndex() == null) {
 					app.mobileIntroView.hide();
-					app.isFirstUserAction = true;
-					dojo.disconnect(app.handleFirstExtentChange);
 				}
 				
 				if (index != app.data.getCurrentIndex()) {
@@ -783,7 +894,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var graphic = app.data.getCurrentGraphic();
 				
 				// Only catch color change
-				if( param.name != undefined || ! param.color )
+				if( param.name !== undefined || ! param.color )
 					return;
 				
 				updateRenderer();
@@ -798,7 +909,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var newIndex = -1;
 				
 				// Update the layer renderer
-				var renderer = new esri.renderer.UniqueValueRenderer(null, app.data.getFeatureIDField());
+				var renderer = new UniqueValueRenderer(null, app.data.getFeatureIDField());
 				$(tourPoints).each(function(index, graphic) {
 					renderer.addValue({
 						value: graphic.attributes.getID(),
@@ -809,7 +920,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 						newIndex = index;
 				});
 				app.data.getTourLayer().setRenderer(renderer);
-				app.map.setExtent(app.map.extent);
+				app.data.getTourLayer().refresh();
 				
 				// Current point has been removed or something
 				if( ! noRendererReset && newIndex == -1 && tourPoints.length > 0 ) 
@@ -826,7 +937,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 	
 				updateGraphicIcon(graphic, "selected");
 				
-				if (app.isInBuilderMode)
+				if (app.isInBuilderMode && app.data.sourceIsEditable())
 					app.builder.updateBuilderMoveable(graphic);
 			}
 			
@@ -835,17 +946,16 @@ define(["storymaps/maptour/core/WebApplicationData",
 				if( ! graphic )
 					return;
 	
-				var symbol = graphic.getLayer().renderer._symbols[graphic.attributes.getID()];
+				var symbol = graphic.getLayer().renderer.getSymbol(graphic);
 				var iconCfg = APPCFG.ICON_CFG[type];
 				if( ! iconCfg )
 					return;
 	
 				if( type == "selected" )
-					setTimeout(function(){moveGraphicToFront(graphic); }, 0);
-				else
-					app.map.setExtent(app.map.extent);
+					setTimeout(function(){ moveGraphicToFront(graphic); }, 0);
 					
 				symbol.setWidth(iconCfg.width).setHeight(iconCfg.height).setOffset(iconCfg.offsetX, iconCfg.offsetY);
+				graphic.draw();
 			}
 			
 			/**
@@ -854,40 +964,45 @@ define(["storymaps/maptour/core/WebApplicationData",
 			 */
 			function moveGraphicToFront(graphic)
 			{
-				if (! visibleMapContains(graphic.geometry))
+				if (! visibleMapContains(graphic.geometry) ) {
+					on.once(app.map, "extent-change", function() {
+						moveGraphicToFrontStep2(graphic);
+					});
 					_this.centerMap(graphic.geometry);
+				}
 				// Do not center the map if the app is loading (i.e. if the point is in the initial extent it doesn't need to be centered)
-				else if ( ! app.loadingTimeout )
-					app.map.setExtent(app.map.extent);
-				
-				var handle = dojo.connect(app.map, "onExtentChange", function() {
-					dojo.disconnect(handle);
-	
-					try {
-						graphic.getDojoShape().moveToFront();
-					}
-					catch (e) { }
+				else if ( ! app.loadingTimeout && (! app.isInBuilderMode || ! $(".multiTip").length) )
+					moveGraphicToFrontStep2(graphic);
+			}
+			
+			function moveGraphicToFrontStep2(graphic)
+			{
+				try {
+					graphic.getDojoShape().moveToFront();
+				}
+				catch (e) { }
 					
-					// Create the popover
-					if( app.isInBuilderMode )
+				// Create the popover
+				if( app.isInBuilderMode ){
+					if( app.data.sourceIsEditable() )
 						app.builder.createPinPopup(graphic, app.data.getCurrentIndex(), ! MapTourHelper.isOnMobileView());
-					else 
-						app.mapTips = new MultiTips({
-							map: app.map,
-							content: graphic.attributes.getName(),
-							pointArray: [graphic],
-							labelDirection: "auto",
-							backgroundColor: APPCFG.POPUP_BACKGROUND_COLOR,
-							borderColor: APPCFG.POPUP_BORDER_COLOR,
-							pointerColor: APPCFG.POPUP_ARROW_COLOR,
-							textColor: "#ffffff",
-							offsetTop: 32,
-							topLeftNotAuthorizedArea: has('touch') ? [40, 180] : [30, 150],
-							mapAuthorizedWidth: MapTourHelper.isModernLayout() ? dojo.query("#picturePanel").position()[0].x : -1,
-							mapAuthorizedHeight: MapTourHelper.isModernLayout() ? dojo.query("#footerDesktop").position()[0].y - dojo.query("#header").position()[0].h : -1,
-							visible: ! MapTourHelper.isOnMobileView()
-						});					
-				});
+				}
+				else 
+					app.mapTips = new MultiTips({
+						map: app.map,
+						content: graphic.attributes.getName(),
+						pointArray: [graphic],
+						labelDirection: "auto",
+						backgroundColor: APPCFG.POPUP_BACKGROUND_COLOR,
+						borderColor: APPCFG.POPUP_BORDER_COLOR,
+						pointerColor: APPCFG.POPUP_ARROW_COLOR,
+						textColor: "#ffffff",
+						offsetTop: 32,
+						topLeftNotAuthorizedArea: has('touch') ? [40, 180] : [30, 150],
+						mapAuthorizedWidth: MapTourHelper.isModernLayout() ? domQuery("#picturePanel").position()[0].x : -1,
+						mapAuthorizedHeight: MapTourHelper.isModernLayout() ? domQuery("#footerDesktop").position()[0].y - domQuery("#header").position()[0].h : -1,
+						visible: ! MapTourHelper.isOnMobileView() && graphic.attributes.getName() !== ""
+					});	
 			}
 			
 			//
@@ -896,11 +1011,15 @@ define(["storymaps/maptour/core/WebApplicationData",
 			
 			this.prepareMobileViewSwitch = function()
 			{
+				// Kill any playing video when leaving the page 
+				if( $("#infoViewLink").hasClass("current") )
+					$("#infoCarousel .swipeview-active").find('iframe').attr('src', '');
+					
 				$(".mobileView").hide();
 				$("#footerMobile").hide();
 				$(".navBar span").removeClass("current");
 				app.header.hideMobileBanner();
-			}
+			};
 			
 			function showMobileViewInfo(tourPointIndex)
 			{
@@ -920,17 +1039,17 @@ define(["storymaps/maptour/core/WebApplicationData",
 				if( ! isDesktopModernUI )
 					return app.map.extent.contains(geom);
 				
-				var visibleExtent = new esri.geometry.Extent(
+				var visibleExtent = new Extent(
 					app.map.extent.xmin,
-					app.map.extent.ymin + ((10 + dojo.position(dojo.byId("footer")).h) * app.map.__LOD.resolution),
-					app.map.extent.xmin + (dojo.position(dojo.byId("picturePanel")).x * app.map.__LOD.resolution),
+					app.map.extent.ymin + ((10 + domGeom.position(dom.byId("footer")).h) * app.map.__LOD.resolution),
+					app.map.extent.xmin + (domGeom.position(dom.byId("picturePanel")).x * app.map.__LOD.resolution),
 					app.map.extent.ymax,
 					app.map.extent.spatialReference
 				);
 				
 				/*
-				var testLayer = esri.layers.GraphicsLayer();
-				testLayer.add(new esri.Graphic(visibleExtent,new esri.symbol.SimpleFillSymbol()))
+				var testLayer = new GraphicsLayer();
+				testLayer.add(new Graphic(visibleExtent,new SimpleFillSymbol()))
 				app.map.addLayer(testLayer);
 				*/
 				
@@ -940,42 +1059,55 @@ define(["storymaps/maptour/core/WebApplicationData",
 			this.centerMap = function(geom, zoomLevel)
 			{
 				var isDesktopModernUI = MapTourHelper.isModernLayout() && ! MapTourHelper.isOnMobileView();
-				if( ! isDesktopModernUI && ! zoomLevel )			
+				if( zoomLevel === undefined && (! isDesktopModernUI || ! app.map.__LOD) )			
 					app.map.centerAt(geom);
-				if( ! isDesktopModernUI && zoomLevel )
+				else if( zoomLevel !== undefined && (! isDesktopModernUI || ! app.map.__LOD) )
 					app.map.centerAndZoom(geom, zoomLevel);
 				else {
-					var offsetX = 20 + dojo.position(dojo.byId("picturePanel")).x / 2;
-					var offsetY = 10 + dojo.position(dojo.byId("footer")).h / 2;
+					var center = geom;
+					var offsetX = 20 + domGeom.position(dom.byId("picturePanel")).x / 2;
+					var offsetY = 10 + domGeom.position(dom.byId("footer")).h / 2;
+
+					// Should not happen but it has been seen that point are in different proj that the map
+					if( geom.spatialReference.wkid == 4326 && app.map.spatialReference.wkid == 102100 )
+						center = webMercatorUtils.geographicToWebMercator(geom);
+					else if( geom.spatialReference.wkid == 102100 && app.map.spatialReference.wkid == 4326 )
+						center = webMercatorUtils.webMercatorToGeographic(geom);
+					// At least don't crash the app
+					else if ( geom.spatialReference.wkid != app.map.spatialReference.wkid )
+						return;
 					
 					if ( ! zoomLevel )
 						app.map.centerAt(
-							geom.offset(
+							center.offset(
 								offsetX * app.map.__LOD.resolution,
 								- offsetY * app.map.__LOD.resolution
 							)
 						);
 					else
 						app.map.centerAndZoom(
-							geom.offset(
+							center.offset(
 								offsetX * app.map._params.lods[zoomLevel].resolution,
 								- offsetY * app.map._params.lods[zoomLevel].resolution
 							),
 							zoomLevel
 						);
 				}
-			}
+			};
 			
 			this.setMapExtent = function(extent)
 			{
-				if( ! extent || ! extent.spatialReference || ! app.map || ! app.map.extent.spatialReference )
-					return;
+				if( ! extent || ! extent.spatialReference || ! app.map || ! app.map.extent.spatialReference || ! app.map.spatialReference ) {
+					var r = new Deferred();
+					r.resolve();
+					return r;
+				}
 					
 				if( app.map.spatialReference.wkid == extent.spatialReference.wkid )
 					return setMapExtentStep2(extent);
 				else {
-					var resultDeferred = new dojo.Deferred();
-					esri.config.defaults.geometryService.project([extent], app.map.spatialReference, function(features){
+					var resultDeferred = new Deferred();
+					esriConfig.defaults.geometryService.project([extent], app.map.spatialReference, function(features){
 						if( ! features || ! features[0] )
 							return;
 						
@@ -984,7 +1116,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					});
 					return resultDeferred;
 				}
-			}
+			};
 			
 			function setMapExtentStep2(extent)
 			{
@@ -992,13 +1124,13 @@ define(["storymaps/maptour/core/WebApplicationData",
 				if( ! isDesktopModernUI )
 					return app.map.setExtent(extent, true);
 				else {
-					var offsetX = 10 + dojo.position(dojo.byId("picturePanel")).w;
-					var offsetY = 10 + dojo.position(dojo.byId("footer")).h;
+					var offsetX = 10 + domGeom.position(dom.byId("picturePanel")).w;
+					var offsetY = 10 + domGeom.position(dom.byId("footer")).h;
 					
 					var extentResX = extent.getWidth() / app.map.width;
 					var extentResY = extent.getHeight() / app.map.height;
 					
-					var newExtent = new esri.geometry.Extent({
+					var newExtent = new Extent({
 						xmin: extent.xmin,
 						ymin: extent.ymin - extentResY * offsetY,
 						xmax: extent.xmax + extentResX * offsetX,
@@ -1007,18 +1139,18 @@ define(["storymaps/maptour/core/WebApplicationData",
 					});
 					
 					/*
-					var testLayer = esri.layers.GraphicsLayer();
-					testLayer.add(new esri.Graphic(extent,new esri.symbol.SimpleFillSymbol()))
-					testLayer.add(new esri.Graphic(newExtent,new esri.symbol.SimpleFillSymbol()))
+					var testLayer = new GraphicsLayer();
+					testLayer.add(new Graphic(extent,new SimpleFillSymbol()))
+					testLayer.add(new Graphic(newExtent,new SimpleFillSymbol()))
 					app.map.addLayer(testLayer);
 					*/
 					
 					var lods = app.map._params.lods;
 					var level = Helper.getFirstLevelWhereExtentFit(newExtent, app.map);
 					if( level != -1 ) {
-						var newCenter = new esri.geometry.Point(
-							extent.getCenter().x + (app.map.width / 2 - (dojo.position(dojo.byId("picturePanel")).x / 2)) * lods[level].resolution,
-							extent.getCenter().y - (10 + dojo.position(dojo.byId("footer")).h / 2) * lods[level].resolution,
+						var newCenter = new Point(
+							extent.getCenter().x + (app.map.width / 2 - (domGeom.position(dom.byId("picturePanel")).x / 2)) * lods[level].resolution,
+							extent.getCenter().y - (10 + domGeom.position(dom.byId("footer")).h / 2) * lods[level].resolution,
 							extent.spatialReference
 						);
 						return app.map.centerAndZoom(newCenter, level);
@@ -1032,9 +1164,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 			{
 				if( success ) {
 					if( app.map.spatialReference.wkid == 102100 )
-						geom = esri.geometry.geographicToWebMercator(geom);
+						geom = webMercatorUtils.geographicToWebMercator(geom);
 					else if ( app.map.spatialReference.wkid != 4326 ) {
-						esri.config.defaults.geometryService.project([geom], app.map.spatialReference, function(features){
+						esriConfig.defaults.geometryService.project([geom], app.map.spatialReference, function(features){
 							if( ! features || ! features[0] )
 								return;
 							
@@ -1044,10 +1176,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 					
 					_this.centerMap(geom);
 				}
-			}
+			};
 			
 			/**
-			 * Add two new function to esri.graphic that control the state of the tour point
+			 * Add two new function to Graphic that control the state of the tour point
 			 */
 			function addMapTourBusinessToEsriGraphic()
 			{
@@ -1055,19 +1187,19 @@ define(["storymaps/maptour/core/WebApplicationData",
 				 * Return true if the tour point has been updated between the last save
 				 * A tour point has been updated if the geometry or name or descriptiona attributes has changed
 				 */
-				esri.Graphic.prototype.hasBeenUpdated = function()
+				Graphic.prototype.hasBeenUpdated = function()
 				{
 					var originalGeom = this.attributes.getOriginalGraphic().geometry;
 					return this.attributes.hasBeenUpdated()
 							|| this.geometry.x != originalGeom.x
 							|| this.geometry.y != originalGeom.y;
-				}
+				};
 	
 				/**
 				 * Get the updated feature for commiting to Feature service
 				 * Commit change to the original feature and return the original feature
 				 */
-				esri.Graphic.prototype.getUpdatedFeature = function()
+				Graphic.prototype.getUpdatedFeature = function()
 				{
 					this.attributes.commitUpdate();
 	
@@ -1076,26 +1208,26 @@ define(["storymaps/maptour/core/WebApplicationData",
 					originalGeom.y = this.geometry.y;
 	
 					return this.attributes.getOriginalGraphic();
-				}
+				};
 	
 				/**
 				 * Restore the attributes and geometry to the data source.
 				 * Discard all changes in the app
 				 */
-				esri.Graphic.prototype.restoreOriginal = function()
+				Graphic.prototype.restoreOriginal = function()
 				{
 					this.attributes.restoreOriginal();
 	
 					var originalGeom = this.attributes.getOriginalGraphic().geometry;
 					this.geometry.x = originalGeom.x;
 					this.geometry.y = originalGeom.y;
-				}
+				};
 			}
 			
 			this.initLocalization = function()
 			{
 				app.desktopPicturePanel.initLocalization();
-			}
-		}
+			};
+		};
 	}
 );

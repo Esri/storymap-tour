@@ -1,6 +1,6 @@
-define(["storymaps/utils/FacebookConnector"], 
-	function (FacebookConnector) {
-		return function PopupViewFacebook(container) 
+define(["storymaps/utils/FacebookConnector", "dojo/Deferred"], 
+	function (FacebookConnector, Deferred) {
+		return function PopupViewFacebook() 
 		{
 			$('#init-import-views').append($('#popupViewFacebook').clone());
 			var _container = $('.popupViewFacebook').last();
@@ -17,18 +17,18 @@ define(["storymaps/utils/FacebookConnector"],
 				
 				_nbPicturesMax = params.nbPicturesMax;
 				_nbPicturesAuthorized = params.nbPicturesAuthorized;
-			}
+			};
 			
 			this.getView = function(params)
 			{
 				if( params )
 					showView(params);
 				return _container;
-			}
+			};
 			
 			this.getNextView = function()
 			{
-				var nextViewDeferred = new dojo.Deferred();
+				var nextViewDeferred = new Deferred();
 				
 				var pictureRqHandler = function(data){
 					if( ! data.length ) {
@@ -66,7 +66,7 @@ define(["storymaps/utils/FacebookConnector"],
 					).then(pictureRqHandler);
 					
 				return nextViewDeferred;
-			}
+			};
 			
 			function showView(params)
 			{
@@ -96,10 +96,10 @@ define(["storymaps/utils/FacebookConnector"],
 						var outHtml = "<option value='' style='display:none;' disabled selected>" + i18n.viewer.onlinePhotoSharingCommon.pleaseChoose + "</option>";
 						$.each(data, function(i, album){
 							outHtml += '<option value="' + album.id + '">'
-										 + album.name 
-										 + ' (' + (album.count||0) + ')'
-										 + ' - Privacy: ' + album.privacy
-										 + '</option>';
+										+ album.name 
+										+ ' (' + (album.count||0) + ')'
+										+ ' - Privacy: ' + album.privacy
+										+ '</option>';
 						});
 						_container.find("#facebookListAlbum1").html(outHtml);
 						_container.find("#facebookListAlbum1").removeAttr("disabled");
@@ -107,7 +107,7 @@ define(["storymaps/utils/FacebookConnector"],
 				};
 				
 				_facebook.loadApi().then(function(){
-					_facebook.onLogout().then(function(connectDeferred){
+					_facebook.onLogout().then(function(){
 						_container.find("#facebookListAlbum1").html("");
 						_container.find("#facebookListAlbum1").attr("disabled", "disabled");
 						loadUserAlbums();
@@ -128,9 +128,9 @@ define(["storymaps/utils/FacebookConnector"],
 						var outHtml = "<option value='' style='display:none;' disabled selected>" + i18n.viewer.onlinePhotoSharingCommon.pleaseChoose + "</option>";
 						$.each(data, function(i, album){
 							outHtml += '<option value="' + album.id + '">'
-										 + album.name 
-										 + ' (' + (album.count||0) + ')'
-										 + '</option>';
+										+ album.name 
+										+ ' (' + (album.count||0) + ')'
+										+ '</option>';
 						});
 						
 						_container.find("#facebookListAlbum2").removeAttr("disabled").html(outHtml);
@@ -169,6 +169,9 @@ define(["storymaps/utils/FacebookConnector"],
 						i18n.viewer.onlinePhotoSharingCommon.footerImport
 					);
 				});
+				
+				// iPad keyboard workaround
+				_container.find('.selectPageName').blur(function(){ $(window).scrollTop(0); });
 			}
 			
 			function selectChange(select, otherSelect, nextBtn)
@@ -213,16 +216,14 @@ define(["storymaps/utils/FacebookConnector"],
 			{
 				_container.find('.header').append(i18n.viewer.viewFacebook.header);
 				_container.find('.sideHeader').eq(0).html(i18n.viewer.viewFacebook.leftHeader);
-				_container.find('.sideHeader').eq(1).html(i18n.viewer.viewFacebook.rightHeader + '<span style="font-size: 14px;"> (<a>' + i18n.viewer.builderHTML.buttonHelp.toLowerCase() + '</a>)</span>');
+				_container.find('.sideHeader').eq(1).html(i18n.viewer.viewFacebook.rightHeader + '<span style="font-size: 14px;"> <a><img src="resources/icons/builder-help.png" style="vertical-align: -4px;"/></a></span>');
 				_container.find('.selectPageName').attr("placeholder", i18n.viewer.viewFacebook.pageInputLbl);
 				_container.find('.control-label[for="facebookListAlbum1"]').html(i18n.viewer.onlinePhotoSharingCommon.selectAlbum2);
 				_container.find('.control-label[for="facebookListAlbum2"]').html(i18n.viewer.onlinePhotoSharingCommon.selectAlbum);
 				
 				_container.find('.useLocation span').html(
 					i18n.viewer.onlinePhotoSharingCommon.locUse 
-					+ ' ('
-					+ '<a>' + i18n.viewer.onlinePhotoSharingCommon.locWhy + '<a>'
-					+ ')'
+					+ '<a><img src="resources/icons/builder-help.png" style="vertical-align: -4px;"/><a>'
 				);
 				_container.find('.useLocation a').popover({
 					trigger: 'hover',
@@ -245,7 +246,7 @@ define(["storymaps/utils/FacebookConnector"],
 				});
 				
 				initEvents();
-			}
-		}
+			};
+		};
 	}
 );

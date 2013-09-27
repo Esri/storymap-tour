@@ -2,15 +2,16 @@
 ({
 		viewer: {
 			loading: {
-				step1: "CARREGAR A APLICAÇÃO",
-				step2: "CARREGAR DADOS",
-				step3: "INICIAR A APRESENTAÇÃO",
-				loadBuilder: "A MUDAR PARA O MODO DE BUILDER",
+				step1: "A CARREGAR A APLICAÇÃO...",
+				step2: "A CARREGAR DADOS...",
+				step3: "A INICIAR A APRESENTAÇÃO...",
+				loadBuilder: "A MUDAR PARA O MODO DE BUILDER...",
 				fail: "Não foi possível carregar a Apresentação de Mapa",
 				failButton: "Tentar Novamente"
 			},
 			errors: {
 				boxTitle: "Ocorreu um erro",
+				portalSelf: "Erro fatal: falha na obtenção da configuração do portal",
 				invalidConfig: "Erro fatal: configuração não válida",
 				invalidConfigOwner: "Erro fatal: configuração não válida (é necessário um proprietário autorizado)",
 				invalidConfigNoWebmap: "Erro fatal: configuração não válida (são necessários um mapa web e um proprietário autorizado)",
@@ -41,7 +42,8 @@
 			},
 			desktopHTML: {
 				storymapsText: "Um mapa de história",
-				builderButton: "Mudar para modo de construtor"
+				builderButton: "Mudar para modo de construtor",
+				bitlyTooltip: "Obter uma pequena ligação para a aplicação"
 			},
 			builderHTML: {
 				panelHeader: "CONFIGURAÇÃO DA APLICAÇÃO",
@@ -49,17 +51,32 @@
 				buttonDiscard: "CANCELAR",
 				buttonSettings: "Configurações",
 				buttonView: "Ver modo",
+				buttonItem: "Abrir o item de Aplicação Web",
 				buttonHelp: "Ajuda",
 				buttonOrganize: "Organizar",
 				buttonAdd: "Adicionar",
 				buttonImport: "Importar",
 				buttonImportDisabled: "A função Importar não está disponível quando utiliza um Serviço de Elementos com anexos",
+				dataEditionDisabled: "A edição de dados está desativada na fonte dos dados do CSV",
+				dataSourceWarning: "A camada de dados da Apresentação de Mapa (Map Tour) foi alterada. Se os IDs dos elementos não forem iguais, terá que restaurar a ordem padrão e os pontos ocultos utilizando <b>Organizar</b>. Se o nome dos campos for diferente, terá que restaurar o padrão das definições dos campos através do <b>separador dados em Definições</b>.",
+				dataPicError0a: "Esta apresentação inclui <b>%NB%</b> URLs de imagem não-compatíveis.",
+				dataPicError0b: "Esta apresentação poderá incluir <b>%NB%</b> URLs de imagem não-compatíveis.",
+				dataPicError1: "A Apresentação de Mapa requer agora que um URL de uma imagem termine com uma das seguintes extensões: .jp(e)g, .png, .gif ou .bmp.",
+				dataPicError2: "Este requisito não afeta a sua Apresentação de Mapa já publicada. No entanto, a fim de usar o builder interativo, deve primeiro resolver o problema do  URL através da realização de uma das duas ações:",
+				dataPicError3: "Editar URLs",
+				dataPicError4: "Isto irá adicionar <i>#isPicture</i> no final dos URLs de imagem não suportados. A maioria dos servidores suporta o acrescentar de informação a URLs. Contudo, uma vez que tenha efetuado essa ação, deverá verificar que os URLs atualizados estão funcionais através da navegação nos seus pontos. Se cada imagem é carregada, pode agora guardar a Apresentação de Mapa. Se <b>as ligações para as imagens estão quebradas, não guarde a Apresentação de Mapa</b>. Em vez disso, recarregue o builder e efetue a segunda ação.",
+				dataPicError5: "Limitar a apresentação às imagens",
+				dataPicError6: "Esta opção faz com que todos os URLs sejam considerados como imagens, mas não conseguirá adicionar vídeos utilizando o builder interativo. Esta ação é reversível, caso decida no futuro adicionar vídeos.",
+				dataPicError7: "A sua Apresentação de Mapa foi limitada a imagens, não podem ser utilizados vídeos. Se escolher remover esta limitação, verifique que as suas imagens carregam corretamente antes de guardar a Apresentação de Mapa. Poderá restaura essa limitação mais tarde caso necessite.",
+				dataPicError8: "Remover limitação das imagem",
+				dataPicError9: "Se estes URLs apontam para vídeos,  pode ignorar este aviso, se eles apontam para imagens, necessita executar uma das duas seguintes ações:",
 				modalCancel: "Cancelar",
 				modalApply: "Aplicar",
 				organizeHeader: "Organizar a apresentação",
 				organizeGeneralCaption: "Utilizar arrastar e largar para ordenar os pontos da apresentação",
 				organizeDelete: "Eliminar",
 				organizeHide: "Ocultar",
+				organizeReset: "Restaurar padrão da ordem e de pontos ocultos",
 				addMaxPointReached: "Foi atingido o número máximo de pontos autorizados pelos ícones definidos e não é possível adicionar outro ponto de apresentação.<br /><br />Tenha em atenção que, se eliminar pontos existentes, terá de carregar novamente a aplicação.",
 				addMaxPointReachedMobile: "Foi atingido o número máximo de pontos autorizados e não é possível adicionar essa imagem.",
 				addClose: "Fechar",
@@ -68,6 +85,7 @@
 				addTabInformation: "Informações",
 				addTabLocation: "Local",
 				addSelectCaption: "Selecionar ou largar imagem",
+				addNoteVideo: "Consulte a Ajuda para instruções sobre como utilizar vídeos",		
 				addSelectCaptionNoFileReader: "Selecionar imagem",
 				addChangePhoto: "Alterar imagem e miniatura",
 				addPictureResolutionIntro: "A resolução da imagem é superior à resolução necessária:",
@@ -79,9 +97,18 @@
 				addThumbSelected: "Selecionada",
 				addCameraSettingsHeader: "DEFINIÇÕES DA CÂMARA",
 				addThumbnailHeader: "MINIATURA",
-				addLabelPicUrl: "URL de Imagem",
-				addLabelThumbUrl: "URL de Miniatura",
-				addTextPlaceholderUrl: "Introduzir um URL",
+				addLabelPicUrl: "Imagem",
+				addLabelThumbUrl: "Miniatura",
+				addTextPlaceholderUrl: "Introduzir um URL para imagem",
+				addTextPlaceholderUrl2: "Introduzir um URL para página Youtube",
+				addTextPlaceholderUrl3: "Introduzir um URL para página Vimeo",
+				addTextPlaceholderUrl4: "Introduzir um URL para vídeo incorporado",
+				addLabelVideo: "Vídeo",
+				addMediaVideoOther: "Outro",
+				addMediaVideoHelp: "Verifique o URL e obtenha a miniatura padrão",
+				addMediaVideoHelpTooltip1: "Verificação bem sucedida",
+				addMediaVideoHelpTooltip2: "Verificação falhada",
+				addMediaVideoHelpTooltip4: "Procure a opção para incorporar o vídeo e copie o URL do vídeo que está presente no código.",
 				addLabelName: "Nome",
 				addLabelDescription: "Legenda",
 				addTextPlaceholder: "Introduzir algo",
@@ -109,6 +136,7 @@
 				settingsLayoutModern: "Layout Integrado",
 				settingsLayoutSelected: "Layout selecionado",
 				settingsLayoutSelect: "Selecionar este layout",
+				settingsLayoutNote: "Atenção que em pontos que utilizam vídeo, o placard será sempre colocado por baixo do vídeo, mesmo que a opção esteja desativada.",
 				settingsColorExplain: "Mude o aspeto selecionando um tema pré-definido ou crie um tema à sua escolha.",
 				settingsLabelColor: "Cores do cabeçalho, conteúdo e rodapé",
 				settingsLogoExplain: "Personalize o logótipo do cabeçalho (o máximo é 250 x 50 px).",
@@ -120,16 +148,21 @@
 				settingsLogoSocialExplain: "Personalize a ligação superior direita do cabeçalho.",
 				settingsLogoSocialText: "Texto",
 				settingsLogoSocialLink: "Ligação",
+				settingsLogoSocialDisabled: "Esta funcionalidade foi desativada pelo Admnistrador",
 				settingsDataFieldsExplain: "Selecione os campos de nome da fotografia, legenda e cor.",
 				settingsDataFieldsError: "A aplicação não consegue determinar os dados apropriados de nome, legenda ou cor. Selecione os campos que pretende utilizar aqui. É possível alterar estas definições posteriormente.",
 				settingsFieldsLabelName: "Nome",
 				settingsFieldsLabelDescription: "Legenda",
 				settingsFieldsLabelColor: "Cor",
+				settingsFieldsReset: "Restaurar padrão da seleção de campos",
 				settingsExtentExplain: "Defina a extensão inicial da Apresentação de Mapa através do mapa interativo abaixo.",
 				settingsExtentExplainBottom: "Essa extensão é utilizada apenas se incluir o primeiro ponto da apresentação. O valor permanece através da extensão inicial do mapa web.",
+				settingsExtentDateLineError: "A extensão não pode ser ao longo do meridiano de180° de longitude",
+				settingsExtentDateLineError2: "Erro ao calcular extensão",
 				settingsExtentDrawBtn: "Desenhar uma nova extensão",
 				settingsExtentModifyBtn: "Editar a extensão atual",
 				settingsExtentApplyBtn: "Aplicar ao mapa principal",
+				settingsExtentUseMainMap: "Utilizar a extensão do mapa principal",
 				settingsZoomExplain: "Defina o zoom para pontos de história no seguimento da introdução (opcional).",
 				settingsLabelZoom: "Escala/nível",
 				settingsZoomFirstValue: "Nenhum",
@@ -160,6 +193,7 @@
 				errorNoThumbnail: "Selecione uma miniatura para carregar",
 				errorInvalidPicUrl: "Introduza um URL de imagem válido para este ponto de apresentação",
 				errorInvalidThumbUrl: "Introduza um URL de miniatura válido para este ponto de apresentação",
+				errorInvalidVideoUrl: "Introduzir um URL válido para um vídeo (começa por http(s)://)",
 				errorNoName: "Introduza o nome deste ponto de apresentação",
 				errorNoDescription: "Introduza uma legenda para este ponto de apresentação",
 				errorNoLocation: "Defina uma localização para este ponto de apresentação"
@@ -226,11 +260,11 @@
 				nextBtn: "Seguinte"
 			},
 			importPopupHome: {
-				header: "Onde estão guardadas as suas imagens?",
-				loadCSV: "Estão referenciadas num ficheiro CSV (imagens que partilhem um serviço ou servidor web, consultar a ajuda para mais informações)",
-				loadFolder: "Numa pasta no meu computador (é necessário um navegador recente e um Serviço de Elementos com fonte de dados de anexos)"
+				header: "Onde estão guardadas as suas imagens?"
 			},
 			onlinePhotoSharingCommon: {
+				disabled: "Esta funcionalidade foi desativada pelo Admnistrador",
+				disabledPortal: "Esta funcionalidade está desativada no Portal for ArcGIS",
 				header1: "As imagens têm de ser partilhadas publicamente.",
 				header2: "A importação será limitada a %NB1% imagens para respeitar o limite de %NB2% pontos por apresentação.",
 				emptyDataset: "Erro, não foram encontradas imagens",
@@ -244,7 +278,6 @@
 				fromScratch: "Começar do princípio",
 				select: "Escolher",
 				locUse: "Utilizar localização de imagens",
-				locWhy: "porquê essa opção?",
 				locExplain: "Pode não querer utilizar a localização de imagens, uma vez que as imagens podem ser herdadas do álbum, o que faz com que todas as fotografias fiquem na mesma localização."
 			},
 			viewFlickr: {
@@ -305,7 +338,9 @@
 				clickDrop: "Não importar",
 				footerImport: "Importar",
 				footerProgress: "Importação em curso",
-				footerSucceed: "Importação bem sucedida. A carregar..."
+				footerSucceed: "Importação bem sucedida. A carregar...",
+				loading: "A carregar",
+				error: "A importação da localização das imagens falhou, as localizações foram ignoradas."
 			},
 			initPopup: {
 				title: "Bem-vindo ao Builder de Apresentação de Mapa",
@@ -320,6 +355,7 @@
 				footer1: "Quando acabar, não se esqueça de partilhar a Apresentação de Mapa com o público-alvo através da página de itens da aplicação.",
 				footer2: "Consultar a ajuda de Apresentação de Mapa",
 				footer3: "Descarregar o modelo CSV",
+				footer4: "Guardar como se não conseguir descarregar",
 				footerProgress: "Criação em curso",
 				footerSucceed: "A criação foi bem sucedida. A carregar..."
 			},
@@ -339,6 +375,7 @@
 				tab2: {
 					title: "Dados",
 					div1: "O principal elemento a ter em conta ao construir uma Apresentação de Mapa é a escolha da localização de armazenamento das imagens. A Apresentação de Mapa pode utilizar imagens guardadas nos principais serviços de partilha de fotografias, em qualquer servidor web ou em Serviços de Elementos.",
+					div1a: "Consulte a última secção deste separador para mais detalhes sobre formatos de imagem e vídeo suportados.",
 					div2: "O builder interativo disponibiliza duas opções para gerir as imagens na Apresentação de Mapa:",
 					div3: "<ul><li>Pode utilizar <b>fotografias que já estejam online</b> (por exemplo, imagens guardadas num site de partilha de fotografias como o Flickr) ou imagens guardadas no seu próprio site. Essas imagens serão referenciadas na Apresentação de Mapa através dos respetivos URLs</li><li>Também pode <b>carregar fotografias do computador</b> diretamente para a Apresentação de Mapa. Para utilizar esta opção de carregamento, é necessário ter uma conta de subscrição ArcGIS for Organizations e privilégios de Publicador ou Administrador (porque é criado automaticamente um serviço de elementos alojado no qual as suas fotografias são guardadas como anexos)</li></ul>",
 					div4: "Os principais casos de utilização são:",
@@ -359,35 +396,53 @@
 					div154: "Miniatura",
 					div155: "Cor (opcional)",
 					div16: "Os campos de Nome e Descrição são obrigatórios. Se a aplicação não encontrar campos correspondentes quando é utilizado um Serviço de Elementos, o visualizador não irá funcionar até configurar os campos que pretende utilizar através do builder. A camada de CSV e Shapefile adicionada ao mapa web tem de ter todos os campos necessários; caso contrário, o builder não funciona.",
+					div162: "Ao utilizar um serviço de elementos que armazena as imagens como anexos, <b> apenas os elementos com dois anexos serão utilizados </ b>. O primeiro anexo define a imagem principal, e o segundo anexo define a miniatura.",
 					div17: "Os campos de Imagem e Miniatura são obrigatórios para Serviço de Elementos sem anexos e opcionais (mas extremamente recomendados) para Serviço de Elementos com anexos. Se o seu serviço tiver a função de anexos ativada, o builder permitirá o carregamento de imagens como anexos. Caso contrário, só poderá editar o URL da imagem e da miniatura.",
+					div172: "Quando presentes, os campos de imagem e de miniaturas serão sempre utilizados e os anexos do serviço de elementos não serão consultados.",
+					div173: "Ficheiros CSVs e shapefiles podem ser descarregados a partir de",
 					div18: "Criar um Serviço de Elementos alojado a partir de um ficheiro CSV ou Shapefile",
 					div19: "Quando cria um Serviço de Elementos alojado a partir de um ficheiro CSV ou Shapefile, os anexos não são ativados por predefinição. Para ativar os anexos, abra a página de itens do Serviço de Elementos, clique na seta pequena na secção de camadas e essa opção aparece. Depois disso, a Apresentação de Mapa continuará a utilizar as imagens e miniaturas referenciadas através de atributos. Opcionalmente, se pretender carregar as imagens como anexos de Serviço de Elementos, poderá fazê-lo utilizando dois botões no painel da imagem (Alterar imagem e Alterar miniatura).",
+					div20: "Formatos suportados de imagem e vídeo.",
+					div21: "Os formatos de imagem suportados são: <b> jpg, jpeg, png, gif e bmp </ b>...... Se os media não terminarem com essa extensão, a apresentação de mapa vai considerá-lo como sendo um vídeo, exceto quando é utilizado um serviço de elementos (ver abaixo).",
+					div22: "O modelo de Apresentação de Mapa não inclui um player de vídeo, logo, você tem que usar o player de vídeo externo fornecido pelo seu serviço de alojamento de vídeos favorito (encontrar a opção de incorporar o vídeo e copie a URL presente no código dado). Se quiser alojar o vídeo, pode criar uma página HTML que contém um player de vídeo como <a href='http://www.videojs.com/'> Video.js </ a>.",
+					div23: "O builder interativo não fornece uma caixa de diálogo para incluir vídeo ao usar os serviços de elementos com anexos, mas é possível fazê-lo editando os seus dados fora do builder interativo. No visualizador de mapa do arcgis.com, se modificar os campos de imagem para apontarem para um vídeo externo e adicionar um parâmetro especial no final do seu URL (# isVideo), os seus media serão considerados um vídeo.",
+					div24: "Note que ainda precisa ter dois  anexos válidos de imagem ou o ponto não será usado. Não é possível a utilização de vídeos, quando são utilizados anexos de serviços de elementos sem os campos de imagem e miniatura."
 				},
 				tab3: {
 					title: "Personalização",
 					div1: "O builder disponibiliza várias opções de personalização às quais é possível aceder através do botão DEFINIÇÕES no painel superior. Se não encontrar a opção pretendida, é também disponibilizada uma versão descarregável que pode implementar no seu servidor web e melhorar de acordo com as suas necessidades.",
 					div2: "É aconselhável a utilização da versão alojada, exceto se:",
-					div3: "<li>Não disponibilizar uma personalização de IU pretendida, como a utilização de uma imagem de fundo no cabeçalho</li><li>For um programador e pretender melhorar a aplicação</li>",
+					div3: "<li>Não disponibiliza uma personalização de IU pretendida, como a utilização de uma imagem de fundo no cabeçalho</li><li>Você é um programador que pretender melhorar a aplicação</li>",
 					div4: "A versão descarregável não disponibiliza o builder interativo. A Apresentação de Mapa obtém os dados de um mapa web e respetiva configuração de um ficheiro de configuração que disponibiliza as mesmas capacidades da versão alojada. É aconselhável criar e ajustar o seu mapa web utilizando a versão alojada e reutilizar o mapa com a versão descarregável.",
+					div41: "Você constrói a sua apresentação de mapa usando o builder interativo no ambiente alojado e configura o modelo com o identificador de aplicação web. As configurações que definiu com o builder interativo serão aplicadas.",
+					div42: "Você constrói o seu mapa web fora do builder interativo e configura o modelo com o identificador do mapa web. Terá que ler a documentação para aprender a configurar o modelo.",
+					div43: "Note que o builder interativo está disponível na versão para download, mas com algumas restrições técnicas em navegadores como o Internet Explorer mais velhos do que a versão 10.",
 					div5: "Visite a <a href='https://github.com/Esri/map-tour-storytelling-template-js' target='_blank'>página do projeto GitHub</a> para obter mais informações sobre a versão descarregável."
 				},
 				tab4: {
 					title: "Dicas",
+					div0: "Navegadores suportados",
+					div0a: "O visualizador Apresentação de Mapa é suportado em IE8 +. O builder interativo é compatível com IE9 +. Nós testámo-lo ativamente em todos os principais navegadores, mas se tiver algumas dificuldades, recomendamos que utilize o Chrome.",
+					div0b: "Se tiver alguma dificuldade, por favor, avise-nos. Entretanto, através da construção da sua Apresentação de Mapa usando o modelo CSV, irá minimizar a sua interação com a interface do builder.",
 					div1: "Imagens",
 					div2: "É aconselhável utilizar fotografias com orientação horizontal em vez de orientação vertical. É possível utilizar imagens com orientação vertical, mas em ecrãs mais pequenos (como o iPad) uma grande parte da fotografia pode ficar tapada pela legenda, uma vez que o texto ocupa mais espaço quando é visualizado numa área alta em comparação com uma área larga. Embora seja possível utilizar imagens de tamanhos, formas e orientações diferentes numa Apresentação de Mapa, é aconselhável utilizar exatamente o mesmo tamanho e forma para todas as imagens. Dessa forma, o utilizador não será distraído por imagens de tamanhos diferentes à medida que acompanha a apresentação.",
+					div2a: "Se está a alojar as imagens você mesmo, recomendamos uma resolução máxima de 1090x725 <b> </ b> para as principais fotos e <b> 140x93 </ b> para as miniaturas.",
 					div3: "Formatar o texto da legenda utilizando tags de HTML",
 					div4: "O texto da legenda pode incluir tags de HTML para definir a formatação e as ligações; consulte <a href='http://blogs.esri.com/esri/arcgis/2013/03/29/add-links-map-tour/' target='_blank'>este post de blog</a>.",
 					div5: "Camadas de Apoio",
 					div6: "Pode adicionar camadas de apoio ao mapa. Essas camadas aparecem na Apresentação de Mapa para fornecer orientação, fundo e outros elementos geográficos que pretenda apresentar no mapa além dos pontos da Apresentação de Mapa, como uma área de estudo, uma rota de caminhada ou condução a ligar os pontos da apresentação, etc. O modelo exibe essas camadas de apoio adicionais utilizando a simbologia definida por si no mapa web; não estão disponíveis janelas pop-up.",
 					div7: "Mantenha a sua apresentação resumida e interessante",
 					div8: "Existe um limite de 99 pontos por apresentação. Obviamente, a maioria das Apresentações de Mapa será significativamente mais pequena do que isso. Não espere que o público esteja disposto a percorrer demasiados pontos de apresentação. Poderá achar o seu tópico fascinante, mas não parta do princípio de que as outras pessoas acharão o mesmo!",
-					div9: "Para obter mais informações, consulte <a href='https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Readme.pdf' target='_blank'>o guia detalhado</a>."
+					div9: "Para obter mais informações, consulte <a href='https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Readme.pdf' target='_blank'>o guia detalhado</a>.",
+					div10: "Modo incorporado",
+					div11: "Se deseja incorporar o modelo noutro site através de um iframe, acrescentando o parâmetro opcional   \"&embed \" no final da URL irá remover o cabeçalho. Esse modo também pode ser definido na versão para download através do ficheiro de configuração." 
 				},
 				tab5: {
-					title: "Publicar",
+					title: "A Publicar",
 					div1: "Quando acabar, não se esqueça de partilhar a sua Apresentação de Mapa com o público através da página de itens da aplicação no ArcGIS Online. Durante esse processo, e se for necessário, o ArcGIS Online pedir-lhe-á que atualize quaisquer recursos dependentes (mapa web, Serviço de Elementos) que não tenham os mesmos privilégios de partilha. Se um dos recursos não for partilhado com o público, os utilizadores serão redirecionados para a página de início de sessão do ArcGIS Online.",
 					div2: "Se estiver a utilizar um Serviço de Elementos alojado criado através do builder de Apresentação de Mapa, a aplicação gere a segurança do serviço por si e você continuará a ser o único com privilégios de edição, mesmo que partilhe o serviço publicamente.",
-					div3: "Antes de partilhar uma Apresentação de Mapa publicamente, certifique-se de que a apresentação funciona quando não tem sessão iniciada na sua conta ArcGIS.com."
+					div3: "Antes de partilhar uma Apresentação de Mapa publicamente, certifique-se de que a apresentação funciona quando não tem sessão iniciada na sua conta ArcGIS.com.",
+					div4: "É uma boa idéia ver como é o aspecto da sua Apresentação de Mapa num iPad orientado na posição de paisagem (longitudinal). Isso pode ajudá-lo a ver se as legendas estão a encobrir muito as fotos."
 				}
 			}
         }

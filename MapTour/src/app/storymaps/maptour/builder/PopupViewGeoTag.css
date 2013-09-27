@@ -62,6 +62,10 @@
 	text-align: center;
 }
 
+.popupViewGeoTag .tobelocated .geotagPicName {
+	width: 202px;
+}
+
 .popupViewGeoTag .tobelocated button {
 	display: none;
 }
@@ -124,4 +128,41 @@
 
 .popupViewGeoTag .clickOrTapInfo.stickTop {
 	top: 80px;
+}
+
+/*
+ * Wait
+ */
+
+ .popupViewGeoTag .waitContainer {
+ 	position: absolute;
+	display: none;
+	top: 250px;
+	left: 0px;
+	width: 100%;
+	text-align: center;
+ }
+ 
+ .popupViewGeoTag .wait {
+	width: 210px;
+	text-align: center;
+	border: 2px dashed #52a552;
+	background-color: #FFF;
+	display: inline-block;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	font-weight: bold;
+ }
+ 
+ 
+.popupViewGeoTag .wait.error {
+	color: red;
+	width: 300px;
+	border: 2px dashed red;
+	font-weight: normal;
+}
+
+.popupViewGeoTag .waitSpinner {
+ 	margin-left: 6px;
+	vertical-align: -2px;
 }

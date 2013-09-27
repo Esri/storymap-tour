@@ -1,7 +1,7 @@
 #mapPanel {
 	height:100%;
 	float:right;
-	background-color:#848484;
+	background-color:#EEE;
 	position:relative;
 }
 
@@ -87,3 +87,7 @@
     word-wrap: break-word;
 }
 
+/* Override Map Marker link color */
+.multiTip a {
+	color: #FFF;
+}

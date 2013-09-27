@@ -1,7 +1,8 @@
 define(["dojo/has", 
 		"storymaps/utils/Helper", 
-		"storymaps/maptour/core/MapTourHelper"], 
-	function(has, Helper, MapTourHelper)
+		"storymaps/maptour/core/MapTourHelper",
+		"dojo/topic"], 
+	function(has, Helper, MapTourHelper, topic)
 	{
 		/**
 		 * Carousel
@@ -42,21 +43,21 @@ define(["dojo/has",
 				// Add a no-touch css class to the carousel if we are not on a touch device
 				if ( ! has('touch') )
 					$(selector + ' .carouselScroller').addClass('no-touch');
-			}
+			};
 			
 			this.update = function(slides, bgColor, hoverColor)
 			{
 				setColor(bgColor, hoverColor);
 				iscroll.destroy();
 				render(slides);
-			}
+			};
 			
 			this.resize = function()
 			{
 				updateArrows();
-			}
+			};
 			
-			function render(slides, bgColor)
+			function render(slides)
 			{
 				_picDownloadedIndex = -1;
 				
@@ -69,6 +70,7 @@ define(["dojo/has",
 					mousePos.onMove[1] = e.screenY;
 				}); 
 				
+				/*jshint -W055 */
 				iscroll = new iScroll($(selector + ' .carouselWrapper')[0], {
 					hideScrollbar: true,
 					onBeforeScrollMove: function(e){
@@ -77,13 +79,12 @@ define(["dojo/has",
 						updateArrows();
 						loadCarouselImages();
 					},
-					onScrollStart: function(e){
+					onScrollStart: function(){
 						mousePos.onScroll = [mousePos.onMove[0], mousePos.onMove[1]]; 
 					},
 					onBeforeScrollEnd: function(){
 						if( has("touch") )
 							isMoveEvent = false;
-						
 					},
 					// To detect scroll that end with the bounce effect
 					onScrollEnd: function(){
@@ -133,26 +134,26 @@ define(["dojo/has",
 				if( index == null || index == -1 )
 					return;
 				
-				if( ! $('.carousel-item-div:nth(0)').length )
+				if( ! $('.carousel-item-div').length )
 					_missedIndex = index;
 				
 				$(selector + ' .carousel-item-div').removeClass("selected");
-				$(selector + ' .carousel-item-div:nth(' + index + ')').addClass("selected");
+				$(selector + ' .carousel-item-div').eq(index).addClass("selected");
 				
 				scrollToIndex(index);
 				updateArrows();
-			}
+			};
 			
 			this.checkItemIsVisible = function(index)
 			{
 				if(! iscroll) return;
 				scrollToIndex(index);
-			}
+			};
 			
 			function initEvents()
 			{
 				$(selector).click(onUserClick);
-				dojo.subscribe("CORE_SELECTED_TOURPOINT_UPDATE", updateSlide);
+				topic.subscribe("CORE_SELECTED_TOURPOINT_UPDATE", updateSlide);
 			}
 			
 			function onUserClick(e)
@@ -163,7 +164,7 @@ define(["dojo/has",
 				if( e.target.className == "arrowLeft" )
 					onArrowClick(-1);
 				else if( e.target.className == "arrowRight" )
-					onArrowClick(1)
+					onArrowClick(1);
 				else
 					// Process the event with a delay to be sure that isMoveEvent has been correctly set
 					setTimeout(function(){ onUserClickTimed(e); } , 50);
@@ -174,17 +175,17 @@ define(["dojo/has",
 				var index = $(e.target).closest("li").index();
 				// If it's a real click, publish CAROUSEL_CLICK
 				if( ! isMoveEvent && index != -1 )
-					dojo.publish("CAROUSEL_CLICK", index);
+					topic.publish("CAROUSEL_CLICK", index);
 				
 				isMoveEvent = false;
 			}
 			
-			function updateArrows(e)
+			function updateArrows()
 			{
 				if( ! iscroll )
 					return;
 				
-				if( iscroll.x == iscroll.maxScrollX || iscroll.x == 0 )
+				if( iscroll.x == iscroll.maxScrollX || iscroll.x === 0 )
 					isMoveEvent = false;
 				
 				if( iscroll.x > - 25 )
@@ -213,7 +214,7 @@ define(["dojo/has",
 			
 			function scrollToIndex(index)
 			{
-				if(! iscroll || ! index)
+				if(! iscroll || index == null)
 					return;
 					
 				loadCarouselImages();
@@ -227,7 +228,7 @@ define(["dojo/has",
 					return;
 				
 				// If RWD switch from mobile to desktop, need to delay and disable animation 
-				if( firstVisibleItemIndex == 1 && lastVisibleItemIndex == 0 ) {
+				if( firstVisibleItemIndex == 1 && lastVisibleItemIndex === 0 ) {
 					$(selector + ' .carousel-item-div').css("visibility", "hidden");
 					setTimeout(function(){
 						scroll(Math.max(- index * ITEM_WIDTH), Math.abs(firstVisibleItemIndex - index), true);
@@ -247,7 +248,7 @@ define(["dojo/has",
 					return;
 				
 				$(selector + ' .carouselScroller ul img').slice(_picDownloadedIndex, indexToLoad).each(function(i, img){ 
-					var img = $(img);
+					img = $(img);
 					img.attr("src", img.data("src"));
 				});
 				
@@ -260,6 +261,7 @@ define(["dojo/has",
 			 * @param {Object} nbItem
 			 * @param {Object} noAnnimation
 			 */
+			/*jshint -W098 */
 			function scroll(targetX, nbItem, noAnnimation)
 			{
 				// Avoid to scroll beyond the limits
@@ -280,6 +282,6 @@ define(["dojo/has",
 					Helper.addCSSRule(".carouselScroller.no-touch .carousel-item-div:not(.selected):hover { background-color: " + hoverColor + " !important; }");
 				}
 			}
-		}
+		};
 	}
 );
