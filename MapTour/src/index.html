@@ -20,7 +20,6 @@
 			//     Template configuration (ignored on Portal)
 			//----------------------------------------------------
 			configOptions = {
-				
 				// Enter either a web map ID or a web application ID
 				// - Using a Map Tour application ID created through the interactive builder in ArcGIS.com allow to reuse 
 				//   the settings like the header configuration without having to edit any configuration here
@@ -54,7 +53,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.1';
+			var version = '2.1.1';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -81,8 +80,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 			
-			loadCSS("//jsdev.arcgis.com/3.7/js/esri/css/esri.css", true);
-			loadCSS("//jsdev.arcgis.com/3.7/js/dojo/dijit/themes/claro/claro.css", true);			
+			loadCSS("//js.arcgis.com/3.7/js/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.7/js/dojo/dijit/themes/claro/claro.css", true);			
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -961,7 +960,7 @@
 		</div>
 		
 		<script type="text/javascript">
-			loadJS('//jsdev.arcgis.com/3.7/init.js', true);
+			loadJS('//js.arcgis.com/3.7/init.js', true);
 			loadJS('app/maptour-config.js');
 			
 			function getUrlVar(name)

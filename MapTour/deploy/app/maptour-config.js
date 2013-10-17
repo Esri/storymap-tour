@@ -128,7 +128,7 @@ APPCFG = {
 		{name: "Green", headerColor: "#1a3606", middleColor: "#737c6c", footerColor: "#a8b09e"}
 	],
 	// Optional array of server that will leverage CORS (for developement or specific cross domain deployment)
-	CORS_SERVER: [],
+	CORS_SERVER: ["glazou.esri.com:7777", "monoprice.esri.com", "story.maps.arcgis.com", "active.mapsdevext.arcgis.com"],
 	
 	// Edit those to set a custom sharing or proxy URL
 	// You have to edit those only if your webmap is deployed on Portal for ArcGIS instance and if you are not deploying the template on the Portal webserver

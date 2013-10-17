@@ -80,8 +80,8 @@ define(["esri/dijit/Geocoder",
 				_pinContainer = $(_container).find(".pinContainer"),
 				_error = $(_container).find(".errorList"),
 				_btnSave = $(_container).find(".modal-footer .btnSave"),
-				_btnClose = $(_container).find(".modal-footer .btnClose");				
-	
+				_btnClose = $(_container).find(".modal-footer .btnClose");		
+				
 			//
 			// Popup managment 
 			//
@@ -1106,8 +1106,9 @@ define(["esri/dijit/Geocoder",
 				// Picture - attachments
 				// Set button localization and then init events
 				var selectCaption = Helper.browserSupportAttachementUsingFileReader() ? i18n.viewer.builderHTML.addSelectCaption : i18n.viewer.builderHTML.addSelectCaptionNoFileReader;
-				$(_uploadBtn).attr("title", selectCaption);	
-				$(_uploadBtn).closest("a").html($(_uploadBtn).closest("a").html().replace('Browse', selectCaption));
+				// Using _uploadBtn cause issues!
+				$("input.uploadButton",_container).attr("title", selectCaption);	
+				$("input.uploadButton",_container).closest("a").html($("input.uploadButton",_container).closest("a").html().replace('Browse', selectCaption));
 				
 				$('#addPopup .addNoteVideo').html('<div style="text-align: center;">' + i18n.viewer.builderHTML.addNoteVideo + '</div>');
 				
