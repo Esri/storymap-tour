@@ -488,7 +488,7 @@ Download and unzip the [Developer download](https://github.com/Esri/map-tour-sto
 
 To build a production version of the application from the source code, you first need to install [Node.js](http://nodejs.org/).
 
-Then initialize the environment by running the following commands in the template root:
+Then initialize the environment by running the following commands in the MapTour folder:
  * `npm install`
  * `npm install –g grunt-cli`
 
@@ -502,10 +502,14 @@ This will create a new `node-modules` folder in your project root with all tools
  * Use or use the URL parameters `webmap` and `appid` to specify the item to be loaded (all parameters from index.html are ignored in development mode)
 
 ### How to build application from the source code
-  * Open a terminal and navigate to the root folder 
+  * Open a terminal and navigate to the MapTour folder 
   * Run the following command: `grunt`
 
 The deploy folder now contains the built application that you can deploy to your web server.
+
+### Issues building the application
+
+The build script perform code validation through [JSHint](http://www.jshint.com/), you can disable that by editing Gruntfile.js and look for the following comments `/* Comment out to disable code linting */`.
 
 ### Design
 Map Tour relies on AMD and Dojo loader [AMD](http://help.arcgis.com/en/webapi/javascript/arcgis/jshelp/#inside_dojo_amd) for application structure.
