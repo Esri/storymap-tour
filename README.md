@@ -80,7 +80,7 @@ Note that the interactive builder is available in the downloadable version but w
 
 ## How to deploy a Map Tour
 
-To use the downloadable version, download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.0.zip), it contains the following files:
+To use the downloadable version, download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.1.1.zip), it contains the following files:
 
 | File                	                     | Contains                                                              |
 | ------------------------------------------ | --------------------------------------------------------------------- |
@@ -303,8 +303,8 @@ Viewer evolution:
  * Better vertical centering of the header logo (appear centered whatever it’s size)
  * Don't show the media title and description if they are empty
  * Don't show the Map popup or tooltip if the point title is empty
- * New embed mode that remove the header (see [tips](#embed-mode))
- * New URL option to specify the starting point by index (see [tips](#embed-mode)) 
+ * New embed mode that remove the header (see [tips](#tips))
+ * New URL option to specify the starting point by index (see [tips](#tips)) 
  * When using Feature Service attachments, attachments that are png, bmp or jpg file with upper case extension aren’t ignored anymore (jpg continues to be the only type supported by the interactive builder for Feature Service with attachments)
 
 Interactive builder evolution:
