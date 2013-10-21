@@ -372,7 +372,7 @@ Minor version with few bug fixes :
 Most of the look and feel customization can be done using the user download and including the css/html override directly into index.html. 
 If you want to change the behavior of one functionality or want to add new one, you will need to read the developer guide below.
 
-The easiest way to find the id or path to the DOM element that you want to customize is to use your browser developer tool, read documentation for for [Chrome](https://developers.google.com/chrome-developer-tools/), [Safari](http://developer.apple.com/library/safari/#documentation/AppleApplications/Conceptual/Safari_Developer_Guide/2SafariDeveloperTools/SafariDeveloperTools.html), [Firefox](https://getfirebug.com/).
+The easiest way to find the id or path to the DOM element that you want to customize is to use your browser developer tool, read documentation for [Chrome](https://developers.google.com/chrome-developer-tools/), [Safari](http://developer.apple.com/library/safari/#documentation/AppleApplications/Conceptual/Safari_Developer_Guide/2SafariDeveloperTools/SafariDeveloperTools.html), [Firefox](https://getfirebug.com/).
 
 Here are some customization examples that have to be included inside a \<style\> element after the \<body\> element like below :
 
@@ -492,7 +492,7 @@ Then initialize the environment by running the following commands in the MapTour
  * `npm install`
  * `npm install –g grunt-cli`
 
-This will create a new `node-modules` folder in your project root with all tools to build the project. If you have trouble running the second command, [this may help you](https://github.com/gruntjs/grunt-cli#installing-grunt-cli-locally).
+This will create a new `node-modules` folder in your project root with all tools to build the project. If you have trouble running the second command, [see this documentation on how to install grunt-cli locally](https://github.com/gruntjs/grunt-cli#installing-grunt-cli-locally).
 
 ### How to use the application from the source code
  * Make accessible the src folder to your web server
