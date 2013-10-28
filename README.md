@@ -135,13 +135,20 @@ It is crucial for the application performance that your tour points have well-de
 
 ## Data storage options
 
-In addition to the workflow supported by the interactive builder, you can use any point Feature Service, Map Service, Shapefile or CSV as a Map Tour data source if you follow some rules.
-To use a layer, simply add it into your webmap through ArcGIS Online web map viewer, 
-consult [FAQ](#which-web-map-layer-will-be-used) to learn more about which web map layer will be used.
+In addition to the workflow supported by the interactive builder, you can use any point Feature Service, Map Service, Shapefile or CSV as a Map Tour data source as long as your layer follow the expected requirements detailed below.
+
+To use your layer, simply add it into your webmap through ArcGIS Online web map viewer. See below for requirements depending on your layer type and 
+consult [FAQ](#which-web-map-layer-will-be-used) to learn more about which web map layer will be used as a Map Tour data source.
 
 ### Using a CSV
 
-The interactive builder support importing CSV, it will give you detailed information if your CSV doesn't match the requirements. 
+The interactive builder support loading a CSV. The builder will give you detailed information if your CSV doesn't match the requirements. 
+You can still drag and drop a CSV into the webmap but this is not the recommanded way anymore.
+
+A sample CSV can be downloaded from the interactive builder starting page or [here](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/samples/csv_file__lat_long/Locations.csv) (use right click + "Save as" if the file doesn't download).
+
+![image](https://f.cloud.github.com/assets/994078/1424386/097fe61c-401d-11e3-9a50-6e2cd23fe5cd.png)
+
 
 ### Using an existing Feature Service, Map Service or Shapefile
 
@@ -179,7 +186,6 @@ Yes, Map Tour 2.1.1 is included in Portal for ArcGIS 10.2.1. Note that for techn
 
 If you use an older version of Portal, you can [download](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.1.1.zip) and deploy the template in the following folder `ArcGIS\Portal\webapps\arcgis#home\webmap\templates\MapTour`. This folder may already contain a non-functional version of the template. If this is the case, remove the folder's content before copying the new files. Then refer your Portal documentation for instructions on publishing a new web application item and adding it to the web application gallery. If you choose to deploy the template in any other folder, some configuration will be required (see index.html configuration). Also note that the web application gallery preview feature won't be functional and give a 404 error.
 
-
 ### Can the template be used offline?
 Yes, by using Portal for ArcGIS. When deployed on a Portal for ArcGIS instance, the Map Tour doesn't require any external service to function. But by default the template will still include the header social buttons and template publishers are able to import pictures from the some online pictures hosting services. These options can be disabled individually through the configuration file app/maptour-config.js.
 
@@ -204,8 +210,16 @@ The interactive builder doesn't provide a dialog to include video when using fea
 
 Note that you still need to have two valid pictures attachments or the point won’t be used. It isn't possible to use videos when using feature service attachments without the picture and thumbnail fields.
 
-### Can I use the builder with the downloadable
+### Can I use the builder with the downloadable?
 Yes, when the template is configured with an application ID, adding the URL parameter 'edit' will open the interactive builder. You will be prompted for user authentication. Note that some technical restrictions on browsers like Internet Explorer older than version 10 may apply.
+
+### Can I use more than 99 points?
+Yes, that option is available with the download version. 
+You would have to edit `app/maptour-config.js`, change the `MAX_ALLOWED_POINTS` property to the desired value and add the new icons that will be used to number your points on the map.
+Icons are located in the `resources/markers/` folder. You only need to add new icons for the color you will use.
+
+There is no technical limitation to the maximum number of points per tour but we recommend to [keep your tour short and sweet](#Keep your tour short and sweet). 
+The number of points of the tour can impact significantly performance of the application on mobile device and older browser.
 
 ### What are the configuration settings?
 
