@@ -1,0 +1,2 @@
+This folder host sample data set that can be used to prepare your data outside of Map Tour interactive builder.
+See [documentation](https://github.com/Esri/map-tour-storytelling-template-js#data-storage-options) for details.
