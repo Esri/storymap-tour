@@ -216,10 +216,19 @@ Yes, when the template is configured with an application ID, adding the URL para
 ### Can I use more than 99 points?
 Yes, that option is available with the download version. 
 You would have to edit `app/maptour-config.js`, change the `MAX_ALLOWED_POINTS` property to the desired value and add the new icons that will be used to number your points on the map.
-Icons are located in the `resources/markers/` folder. You only need to add new icons for the color you will use.
+Icons are located in the `resources/markers/` folder. You only need to add new icons for the color you will use. 
+
+An extended marker set is available for [download](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/misc/Numbered_marker_symbol_sets.zip).
 
 There is no technical limitation to the maximum number of points per tour but we recommend to [keep your tour short and sweet](#keep-your-tour-short-and-sweet). 
 The number of points of the tour can impact significantly performance of the application on mobile device and older browser.
+
+### Can I customize the map icons?
+Yes, that option is available with the download version. 
+Icons are located in the `resources/markers/` folder. You only need to add new icons for the color you will use. 
+
+An extended marker set is available for [download](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/misc/Numbered_marker_symbol_sets.zip).
+
 
 ### What are the configuration settings?
 
