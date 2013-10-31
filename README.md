@@ -12,7 +12,8 @@ The Map Tour template is designed for presenting geographic information where th
 **Latest release is version 2.1.1**, if you want to be informed of new releases, we recommend you to watch these repository.
 
 
-The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets.
+The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets. 
+If you are not familiar with ArcGIS Online or StoryMaps concepts, [that document](http://storymaps.esri.com/downloads/Building%20Story%20Maps.pdf) describe general workflows and best practices.
 
 This help will guide you through the steps for publishing Map Tours like:
  * [Palm Springs Map Tour](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5)
