@@ -146,7 +146,7 @@ consult [FAQ](#which-web-map-layer-will-be-used) to learn more about which web m
 The interactive builder support loading a CSV. The builder will give you detailed information if your CSV doesn't match the requirements. 
 You can still drag and drop a CSV into the webmap but this is not the recommanded way anymore.
 
-A sample CSV can be downloaded from the interactive builder starting page or [here](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/samples/csv_file__lat_long/Locations.csv) (use right click + "Save as" if the file doesn't download).
+A sample CSV can be downloaded from the interactive builder `Advanced options` page or [here](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/samples/csv_file__lat_long/Locations.csv) (use right click + "Save as" if the file doesn't download).
 
 ### Using an existing Feature Service, Map Service or Shapefile
 
