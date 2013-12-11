@@ -109,6 +109,20 @@ define(["storymaps/maptour/core/WebApplicationData",
 				_sourceLayer = sourceLayer;
 			};
 			
+			this.getFSSourceLayerItemId = function()
+			{
+				var sourceLayerItemId = null;
+				
+				if ( ! this.sourceIsFS() )
+					return sourceLayerItemId;
+				
+				$.each(_webmapItem.itemData.operationalLayers, function(i, layer){
+					if( layer.id == _sourceLayer.id )
+						sourceLayerItemId = layer.itemId;
+				});
+				return sourceLayerItemId;
+			};
+			
 			this.getTourLayer = function()
 			{
 				return _tourLayer;
@@ -387,6 +401,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 				return user && user.orgId && (user.role == 'org_admin' || user.role == 'org_publisher');
 			};
 			
+			this.isOrga = function()
+			{
+				if ( ! app.portal || ! app.portal.getPortalUser() )
+					return false;
+				
+				return !! app.portal.getPortalUser().orgId;
+			};
+			
 			/*
 			this.userIsWebmapOwner = function()
 			{
@@ -423,6 +445,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 				attributes[fields.getNameField()] = name;
 				attributes[fields.getDescriptionField()] = description;
 				attributes[fields.getIconColorField()] = color;
+				
+				if ( app.data.layerHasVideoField() )
+					attributes[fields.getIsVideoField()] = false;
 	
 				var newPoint = new Graphic(point, null, attributes);
 	
@@ -430,16 +455,16 @@ define(["storymaps/maptour/core/WebApplicationData",
 					newPoint,
 					pictureData,
 					thumbnailData,
-					function(success, id, imgID, thumbID) {
+					function(success, idOrError, imgID, thumbID) {
 						if( success )
-							tourPointAdded(id, newPoint, imgID, thumbID, successCallback, errorCallback);
+							tourPointAdded(idOrError, newPoint, imgID, thumbID, successCallback, errorCallback);
 						else
-							errorCallback();
+							errorCallback(idOrError);
 					}
 				);
 			};
 			
-			this.addTourPointUsingAttributes = function(point, name, description, color, pictureUrl, thumbnailUrl, successCallback)
+			this.addTourPointUsingAttributes = function(point, name, description, color, pictureUrl, thumbnailUrl, isVideo, successCallback)
 			{
 				if( point == null || ! name /*|| ! description*/ || ! color || ! pictureUrl || ! thumbnailUrl )
 					return;
@@ -451,6 +476,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 				attributes[fields.getIconColorField()] = color;
 				attributes[fields.getURLField()] = pictureUrl;
 				attributes[fields.getThumbField()] = thumbnailUrl;
+				
+				if ( app.data.layerHasVideoField() )
+					attributes[fields.getIsVideoField()] = isVideo;
 				
 				addTourPointUsingAttributes(point, attributes);
 				
@@ -515,11 +543,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 				FeatureServiceManager.addTemporaryTourPointUsingForm(
 					new Graphic(new Point(0, 0), null, attributes), 
 					pictureFormId,
-					function(success, id, imgID) {
+					function(success, idOrError, imgID) {
 						if( success )
-							successCallback(id, imgID, app.data.getSourceLayer().url + '/' + id + '/attachments/' + imgID);
+							successCallback(idOrError, imgID, app.data.getSourceLayer().url + '/' + idOrError + '/attachments/' + imgID);
 						else
-							errorCallback();
+							errorCallback(idOrError);
 					}
 				);
 			};
@@ -535,6 +563,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 				attributes[fields.getNameField()] = name;
 				attributes[fields.getDescriptionField()] = description;
 				attributes[fields.getIconColorField()] = color;
+				
+				if ( app.data.layerHasVideoField() )
+					attributes[fields.getIsVideoField()] = false;
 	
 				var newPoint = new Graphic(point, null, attributes);
 				
@@ -542,11 +573,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 					objectId,
 					newPoint,
 					thumbnailFormId,
-					function(success, id, thumbID) {
+					function(success, idOrError, thumbID) {
 						if( success )
-							tourPointAdded(id, newPoint, imgID, thumbID, successCallback, errorCallback);
+							tourPointAdded(idOrError, newPoint, imgID, thumbID, successCallback, errorCallback);
 						else
-							errorCallback();
+							errorCallback(idOrError);
 					}
 				);
 			};
@@ -613,7 +644,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				);
 			};
 			
-			this.changeCurrentPointPicURL = function(target, value)
+			this.changeCurrentPointPicURL = function(target, value, isVideo)
 			{
 				var attributes = _this.getCurrentAttributes() || _this.getIntroData().attributes;
 				
@@ -621,6 +652,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 					attributes.setURL(value);
 				else
 					attributes.setThumbURL(value);
+					
+				if ( app.data.layerHasVideoField() )
+					attributes.setIsVideo(isVideo);
 				
 				topic.publish("BUILDER_INCREMENT_COUNTER", 1);
 				topic.publish("CORE_UPDATE_UI", { editFirstRecord: ! _this.getCurrentAttributes() });
@@ -796,8 +830,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 					});
 					
 					// If point is found or if it's a new visible point
-					if( found.length || (! found.length && feature.visible) )
-						newPointsOrders.push(feature);
+					//if( found.length || (! found.length && feature.visible) )
+					newPointsOrders.push(feature);
 					
 					return feature.visible && ! found.length;
 				});
@@ -882,8 +916,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 	
 				topic.publish("CORE_SELECTED_TOURPOINT_UPDATE", {
 					index: _currentIndex,
-					name: name,
-					description: description,
+					name: MapTourHelper.decodeText(name),
+					description: MapTourHelper.decodeText(description),
 					color: _currentGraphic.attributes.getColor()
 				});
 			};
@@ -990,6 +1024,32 @@ define(["storymaps/maptour/core/WebApplicationData",
 	
 				WebApplicationData.setTourPointOrder( _tourPointsOrder );
 			}
+			
+			this.detectDataAddedOutsideOfBuilder = function()
+			{
+				var counter = 0;
+				var pointOrder = WebApplicationData.getTourPointOrder() || [];
+				
+				// Loop on _tourPoints
+				$.each(_tourPoints, function(i, tourPoint) {
+					var id = tourPoint.attributes.getID();
+					var pos = -1;
+	
+					// Find the position of the point in pointOrder
+					$.each(pointOrder, function(i, v){
+						if (v.id == id) {
+							pos = i;
+							return true;
+						}
+					});
+	
+					// If point id hasn't been found
+					if( pos == -1 )
+						counter++;
+				});
+
+				return counter;
+			};
 	
 			/**
 			 * Find the best matching fields to construct a Map Tour point from the graphic attributes
@@ -1004,7 +1064,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 					fieldDescription: electFieldFromAttributes(attributes, APPCFG.FIELDS_CANDIDATE.description),
 					fieldURL: electFieldFromAttributes(attributes, APPCFG.FIELDS_CANDIDATE.pic_url),
 					fieldThumb: electFieldFromAttributes(attributes, APPCFG.FIELDS_CANDIDATE.thumb_url),
-					fieldIconColor: electFieldFromAttributes(attributes, APPCFG.FIELDS_CANDIDATE.color)
+					fieldIconColor: electFieldFromAttributes(attributes, APPCFG.FIELDS_CANDIDATE.color),
+					fieldIsVideo: electFieldFromAttributes(attributes, APPCFG.FIELDS_CANDIDATE.is_video)
 				});
 			};
 			
@@ -1018,7 +1079,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 					fieldDescription: electFieldFromFieldsList(fieldsList, APPCFG.FIELDS_CANDIDATE.description),
 					fieldURL: electFieldFromFieldsList(fieldsList, APPCFG.FIELDS_CANDIDATE.pic_url),
 					fieldThumb: electFieldFromFieldsList(fieldsList, APPCFG.FIELDS_CANDIDATE.thumb_url),
-					fieldIconColor: electFieldFromFieldsList(fieldsList, APPCFG.FIELDS_CANDIDATE.color)
+					fieldIconColor: electFieldFromFieldsList(fieldsList, APPCFG.FIELDS_CANDIDATE.color),
+					fieldIsVideo: electFieldFromFieldsList(fieldsList, APPCFG.FIELDS_CANDIDATE.is_video)
 				});
 			};
 			
@@ -1085,7 +1147,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 					fieldName: electFieldFromFieldsArray(fieldsName, APPCFG.FIELDS_CANDIDATE.name),
 					fieldDescription: electFieldFromFieldsArray(fieldsName, APPCFG.FIELDS_CANDIDATE.description),
 					fieldURL: electFieldFromFieldsArray(fieldsName, APPCFG.FIELDS_CANDIDATE.pic_url),
-					fieldThumb: electFieldFromFieldsArray(fieldsName, APPCFG.FIELDS_CANDIDATE.thumb_url)
+					fieldThumb: electFieldFromFieldsArray(fieldsName, APPCFG.FIELDS_CANDIDATE.thumb_url),
+					fieldVideo: electFieldFromFieldsArray(fieldsName, APPCFG.FIELDS_CANDIDATE.is_video)
 				};
 				
 				return {
@@ -1094,24 +1157,13 @@ define(["storymaps/maptour/core/WebApplicationData",
 				};
 			};
 			
-			this.scanDataForPictureWithoutExtension = function()
+			this.layerHasVideoField = function()
 			{
-				return $.grep(_tourPoints, function(tourPoint) {
-					var url = tourPoint.attributes.getURL();
-					return ! MapTourHelper.validateImageURL(url) && (url||'').indexOf('#isVideo') == -1;
-				}).length;
-			};
-			
-			this.editPictureWithoutExtension = function()
-			{
-				$.each(_tourPoints, function(i, tourPoint) {
-					var url = tourPoint.attributes.getURL();
-					if( ! MapTourHelper.validateImageURL(url) && (url||'').indexOf('#isVideo') == -1 )
-						tourPoint.attributes.setURL(url + "#isImage");
-				});
+				if ( ! app.data.getSourceLayer() )
+					return;
 				
-				if( ! WebApplicationData.getTemplateCreation() )
-					WebApplicationData.setTemplateCreation();
+				var fields = app.data.getSourceLayer().fields;
+				return electFieldFromFieldsList(fields, APPCFG.FIELDS_CANDIDATE.is_video) !== '';
 			};
 			
 			this.getWebAppData = function()

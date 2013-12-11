@@ -101,12 +101,12 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 					var iframeEl = document.createElement('iframe');
 					iframeEl.className = "tourPointIframe";
 	
-					if (MapTourHelper.mediaIsSupportedImg(attr.getURL())) {
+					if (! attr.isVideo() && MapTourHelper.mediaIsSupportedImg(attr.getURL())) {
 						imgEl.setAttribute(location.hash == "#info" ? 'src' : 'data-src', attr.getURL());
 						iframeEl.setAttribute('style', 'display:none');
 					}
 					else {
-						iframeEl.setAttribute('src', attr.getURL());
+						iframeEl.setAttribute('src', MapTourHelper.checkVideoURL(attr.getURL()));
 						imgEl.setAttribute('style', 'display:none');
 					}
 					mainEl.appendChild(imgEl);
@@ -147,14 +147,15 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 
 							var imgEl = page.querySelector('.tourPointImg');
 							var iframeEl = page.querySelector('.tourPointIframe');
+							var isImg = ! attr.isVideo() && MapTourHelper.mediaIsSupportedImg(attr.getURL());
 
-							if (MapTourHelper.mediaIsSupportedImg(attr.getURL()))
+							if ( isImg )
 								imgEl.src = attr.getURL();
 							else if( iframeEl.src != attr.getURL() ) 
-								iframeEl.src = attr.getURL();
+								iframeEl.src = MapTourHelper.checkVideoURL(attr.getURL());
 							
-							$(imgEl).toggle(MapTourHelper.mediaIsSupportedImg(attr.getURL()));
-							$(iframeEl).toggle(! MapTourHelper.mediaIsSupportedImg(attr.getURL()));
+							$(imgEl).toggle(isImg);
+							$(iframeEl).toggle(! isImg);
 							
 							var nameEl = page.querySelector('.tourPointName');
 							nameEl.innerHTML = attr.getName();

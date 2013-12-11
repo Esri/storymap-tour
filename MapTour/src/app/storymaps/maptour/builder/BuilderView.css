@@ -79,3 +79,23 @@
 #browserPopup .browserExplain2 {
 	margin-top: 15px;
 }
+
+/*
+ * Basemap chooser
+ */
+
+#basemapChooser {
+	position:absolute;
+	right:5px;
+	top:5px;
+	z-index: 401;
+	display: none;
+}
+
+body.mobile-view #basemapChooser {
+	display: none !important;
+}
+
+#basemapChooser .esriBasemapGalleryLabelContainer {
+	font-size: 14px;
+}

@@ -2,6 +2,20 @@
 	overflow:hidden;
 }
 
+@media only screen and (max-height : 708px) {
+	#settingsPopup {
+		top: 50%;
+		margin-top: -315px;
+	}
+}
+
+@media only screen and (max-height : 630px) {
+	#settingsPopup {
+		top: 0px;
+		margin-top: 0px;
+	}
+}
+
 #settingsPopup , #settingsPopup .modal-body {
 	max-height: none;
 }

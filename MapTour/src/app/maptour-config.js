@@ -32,6 +32,10 @@ APPCFG = {
 	POPUP_BORDER_COLOR: "#444444",
 	POPUP_ARROW_COLOR: "#444444",
 	
+	// Add a 'zoom on my location' button under the +/home/- buttons
+	// For example this is not supported in IE 8
+	DISPLAY_LOCATE_BUTTON: false,
+	
 	MINIMUM_MAP_WIDTH: 450,
 	TIMEOUT_VIEWER_LOAD: 12000,
 	TIMEOUT_VIEWER_REQUEST: 8000,
@@ -48,11 +52,29 @@ APPCFG = {
 		description: ['description', 'caption', 'snippet', 'comment'],
 		color: ['icon_color', 'color', 'style'],
 		pic_url: ['pic_url', 'url', 'pic', 'picture'],
-		thumb_url: ['thumb_url', 'thumb', 'thumbnail']
+		thumb_url: ['thumb_url', 'thumb', 'thumbnail'],
+		is_video: ['is_video', 'video', 'isVideo']
 	},
 	
-	// Pin has to be numbered from 1 to that value
+	// Maximum number of points in the tour
+	// If not using the USE_STATIC_ICON option, markers have to be numbered from 1 to that value
 	MAX_ALLOWED_POINTS: 99,
+	
+	//
+	// MAP MARKERS
+	//
+	
+	// Enable the use of static icons for map markers
+	// The desktop carousel and mobile UI won't be numbered
+	USE_STATIC_ICON: {
+		enabled: false,
+		// The path can be relative or absolute
+		url: 'resources/markers/StaticIcon1.png',
+		// If width and height are defined here, markers won't have hover or selected effect
+		// To keep those effects, comment the following line and the value from ICON_CFG will be used
+		width: 24,
+		height: 24
+	},
 	// Ordered list of pin configuration (has to be lower case)
 	PIN_CFG: {
 		r: {
@@ -82,7 +104,7 @@ APPCFG = {
 			height: 28, 
 			offsetX: 3,
 			offsetY: 8,
-			// Normal state has to define the clip information for mobile components
+			// Normal state has to define the clip information for mobile UI (carousel, list and picture view)
 			clipRules: "clip: rect(0px, 22px, 22px, 0px); left: 13px; top: 13px; height:40px; width: 32px;"
 		},
 		hover: {
@@ -110,7 +132,8 @@ APPCFG = {
 		featureService: true,
 		flickr: true,
 		facebook: true,
-		picasa: true
+		picasa: true,
+		youtube: true
 	},
 	
 	// Online photo sharing services connection parameters
@@ -128,7 +151,7 @@ APPCFG = {
 		{name: "Green", headerColor: "#1a3606", middleColor: "#737c6c", footerColor: "#a8b09e"}
 	],
 	// Optional array of server that will leverage CORS (for developement or specific cross domain deployment)
-	CORS_SERVER: ["glazou.esri.com:7777", "monoprice.esri.com", "story.maps.arcgis.com", "active.mapsdevext.arcgis.com"],
+	CORS_SERVER: [],
 	
 	// Edit those to set a custom sharing or proxy URL
 	// You have to edit those only if your webmap is deployed on Portal for ArcGIS instance and if you are not deploying the template on the Portal webserver

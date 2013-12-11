@@ -28,6 +28,8 @@ define(["dojo/dom"],
 					top: 4,
 					left: 6
 				};
+				// Fix for IE9 in dev mode
+				//spinner = {start: function(){}, stop: function(){}, spin: function(){}};
 				spinner = new Spinner(spinnerConfig).spin(spinnerNode);
 			};
 			
@@ -59,12 +61,15 @@ define(["dojo/dom"],
 			
 			this.setMessage = function(message, isFail)
 			{
+				spinnerNode.style.display = "block";
+					
 				if( messageNode ) {
 					if( isFail )
 						messageNode.style.marginTop = "-50px";
 					
 					messageNode.innerHTML = message;
 					messageNode.style.visibility = "visible";
+					messageNode.style.display = "block";
 				}
 			};
 			

@@ -4,6 +4,8 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 		{
 			$('#init-import-views').append($('#popupViewFlickr').clone());
 			var _container = $('.popupViewFlickr').last();
+			_container.attr("id", '#popupViewFlickr' + $('.popupViewFlickr').length);
+			
 			var _flickr = null;
 			var _footer = null;
 			
@@ -29,22 +31,16 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 			this.getNextView = function()
 			{
 				var nextViewDeferred = new Deferred();				
-				var pictureRqHandler = function(data){
+				var pictureRqHandler = function(data, title){
 					if( ! data.length ) {
 						updateFooter("error");
 						return;
 					}
 					
-					if( ! _container.find(".useLocation input").is(":checked") ) {
-						$.each(data, function(i, pic){
-							pic.lat = '';
-							pic.lng = '';
-						});
-					}
-					
 					nextViewDeferred.resolve({
 						name: 'geotag',
 						params: {
+							title: title,
 							data: data
 						}
 					});
@@ -65,15 +61,24 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 						{
 							per_page: _nbPicturesAuthorized
 						}
-					).then(pictureRqHandler);
+					).then(function(data) {
+						var albumTitle = _container.find("#flickrListSet option:selected").text();
+						albumTitle = albumTitle.split(/\ \([0-9]+\)/)[0];
+						
+						pictureRqHandler(data, albumTitle);
+					});
 					
 				return nextViewDeferred;
+			};
+			
+			this.getTitle = function()
+			{
+				return i18n.viewer.viewFlickr.title;
 			};
 			
 			function showView(params)
 			{
 				if (! params || ! params.isReturning) {
-					_container.find(".useLocation input").attr("checked", "checked");
 					if( ! _container.find(".selectUserName").val() )
 						_container.find('.btn-userLogin').attr("disabled", "disabled");
 					disableNextBtn();
@@ -84,15 +89,15 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 				// Restore the next button text
 				if( params.isReturning ) {
 					if( _container.find("#flickrListTag option:selected").index() )
-						_footer.find('.btnNext').html(i18n.viewer.viewFlickr.footerImportTag);
+						_footer.find('.btnNext').html(i18n.viewer.onlinePhotoSharingCommon.footerImport);
 					else
-						_footer.find('.btnNext').html(i18n.viewer.viewFlickr.footerImportSet);
+						_footer.find('.btnNext').html(i18n.viewer.onlinePhotoSharingCommon.footerImport);
 				}
 				
 				_container.find(".commonHeader").html(
 					i18n.viewer.onlinePhotoSharingCommon.header1 
 					+ ' ' 
-					+ i18n.viewer.onlinePhotoSharingCommon.header2.replace('%NB1%', _nbPicturesAuthorized).replace('%NB2%', _nbPicturesMax)
+					+ i18n.viewer.onlinePhotoSharingCommon.header2.replace('%NB1%', _nbPicturesAuthorized).replace('%NB1%', _nbPicturesAuthorized).replace('%MEDIA%', i18n.viewer.onlinePhotoSharingCommon.pictures).replace('%NB2%', _nbPicturesMax)
 				);
 				updateFooter();
 			}
@@ -144,7 +149,7 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 					selectChange(
 						_container.find("#flickrListSet"), 
 						_container.find("#flickrListTag"),
-						i18n.viewer.viewFlickr.footerImportSet
+						i18n.viewer.onlinePhotoSharingCommon.footerImport
 					);
 				});
 				
@@ -152,7 +157,7 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 					selectChange(
 						_container.find("#flickrListTag"), 
 						_container.find("#flickrListSet"),
-						i18n.viewer.viewFlickr.footerImportTag
+						i18n.viewer.onlinePhotoSharingCommon.footerImport
 					);
 				});
 				
@@ -202,18 +207,6 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 				_container.find('.btn-userLogin').html(i18n.viewer.onlinePhotoSharingCommon.userLookup);
 				_container.find('.control-label[for="flickrListSet"]').html(i18n.viewer.viewFlickr.selectSet);
 				_container.find('.control-label[for="flickrListTag"]').html(i18n.viewer.viewFlickr.selectTag);
-				
-				_container.find('.useLocation span').html(
-					i18n.viewer.onlinePhotoSharingCommon.locUse 
-					+ '<a><img src="resources/icons/builder-help.png" style="vertical-align: -4px;"/><a>'
-				);
-				_container.find('.useLocation a').popover({
-					trigger: 'hover',
-					placement: 'top',
-					html: true,
-					content: '<script>$(".useLocation a").next(".popover").css("width", "350px");</script>'
-								+ i18n.viewer.onlinePhotoSharingCommon.locExplain
-				});
 				
 				initEvents();
 			};

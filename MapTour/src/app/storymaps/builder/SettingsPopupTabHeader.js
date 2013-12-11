@@ -1,5 +1,5 @@
-define([], 
-	function () {
+define(["storymaps/utils/Helper"], 
+	function (Helper) {
 		return function SettingsPopupTabHeader(titleContainer, contentContainer, defaultLogoURL) 
 		{
 			var _logoInput = $(contentContainer).find("#logoInput");
@@ -129,9 +129,9 @@ define([],
 				
 				return {
 					logoURL: logoURL,
-					logoTarget: logoTarget,
+					logoTarget: Helper.prependURLHTTP(logoTarget),
 					linkText: linkText,
-					linkURL: linkURL,
+					linkURL: Helper.prependURLHTTP(linkURL),
 					social: {
 						facebook: $(".enableFB").prop('checked'),
 						twitter: $(".enableTwitter").prop('checked'),

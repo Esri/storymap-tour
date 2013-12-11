@@ -88,7 +88,7 @@
 	font-family:Arial, Helvetica, sans-serif;
 }
 
-#save-counter {
+#status-bar {
 	display: inline-block;
 	margin-top: 6px;
 	margin-left: 1px;
@@ -108,23 +108,12 @@
 	height: 18px;
 }
 
-.builderPanelPopover {
-	width: 200px;
-	left: 0px !important;
+.save-popover {
+	width: 170px;
 	z-index: 5555;
-}
-
-.discard-popover {
-	min-width: 271px;
-}
-
-.view-popover {
-	width: 283px;
-	max-width: 283px !important;
-}
-
-.view-popover .popover-title {
-	display: none;
+	color: #30750A;
+	font-weight: bold;
+	font-size: 14px;
 }
 
 .builder-save {
@@ -135,14 +124,17 @@
 	margin-left: 11px;
 }
 
-.settings-popover {
+.save-popover-2 {
 	text-align: center;
 	min-height: 40px;
 	min-width: 280px !important;
 	max-width: 360px !important;
+	color: #30750A;
+	font-weight: bold;
+	font-size: 14px;
 }
 
-.settings-popover .popover-title {
+.save-popover-2 .popover-title {
 	display: none;
 }
 
@@ -163,11 +155,7 @@
 	display: none;
 }
 
-/* Spectrum input color picker */
-.sp-input {
-	background-color: #B9B9B9 !important;
-}
-
+/* Spectrum input color picker */	
 .sp-input-container {
 	height: 16px !important;
 }

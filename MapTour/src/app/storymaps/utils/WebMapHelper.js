@@ -31,6 +31,10 @@ define(["esri/request",
 				var item = lang.clone(webmap.item);
 				var data = lang.clone(webmap.itemData);
 				
+				// Transform arrays
+				item.tags = item.tags ? item.tags.join(',') : '';
+				item.typeKeywords = item.typeKeywords ? item.typeKeywords.join(',') : '';
+				
 				var user = portal.getPortalUser();
 				var rqUrl = this.getSharingURL(portal) 
 								+ "content/users/" + user.credential.userId 

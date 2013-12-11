@@ -11,9 +11,23 @@
 		<link type="image/ico" rel="shortcut icon" href="//resources.esri.com/favicon.ico">
 		<link type="image/ico" rel="icon"  href="//resources.esri.com/favicon.ico">
 		
+		<!-- 
+			To correctly reference your Map Tour in search engine:
+			 - create and fill out extensively an ArcGIS.com item that link to your final application
+			 - edit the following four tags as well as the upper title tag on line 4
+		-->
+		<meta name="description" content="This story map was created with the Esri Map Tour application in ArcGIS Online.">
+		
+		<!-- Facebook sharing -->
 		<meta property="og:title" content="Map Tour"/>
-		<meta property="og:description" content="Map Tour template enable ArcGIS user to create place-based narrative combining images, text, and a map through an interactive editing tool."/>
-		<meta property="og:image" content="http://www.arcgis.com/sharing/rest/content/items/d4a2705a8b224e71961404542ae94c6f/info/thumbnail/highline_thumbnail.png"/>
+		<meta property="og:description" content="This story map was created with the Esri Map Tour application in ArcGIS Online."/>
+		<meta property="og:image" content="resources/icons/esri-globe.png"/>
+
+		<!-- 
+			This template is released under the Apache License V2.0 by Esri http://www.esri.com/
+			Checkout the project repository on GitHub to access source code, latest revision, developer documentation, FAQ and tips
+			https://github.com/Esri/map-tour-storytelling-template-js
+		-->
 
 		<script type="text/javascript">
 			//----------------------------------------------------
@@ -53,7 +67,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.1.1';
+			var version = '2.2';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -79,9 +93,9 @@
 				el.setAttribute("href", url);
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
-			
-			loadCSS("//js.arcgis.com/3.7/js/esri/css/esri.css", true);
-			loadCSS("//js.arcgis.com/3.7/js/dojo/dijit/themes/claro/claro.css", true);			
+
+			loadCSS("//js.arcgis.com/3.8/js/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css", true);			
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -89,6 +103,7 @@
 			else {
 				loadCSS("lib/bootstrap/css/bootstrap.min.css");
 				loadCSS("lib/spectrum/spectrum.css");
+				loadCSS("lib/colorbox/colorbox.css");
 
 				loadCSS("app/storymaps/ui/crossfader/CrossFader.css");
 				loadCSS("app/storymaps/ui/multiTips/MultiTips.css");
@@ -116,18 +131,21 @@
 				loadCSS("app/storymaps/maptour/builder/InitPopup.css");
 				loadCSS("app/storymaps/maptour/builder/InitPopupViewHome.css");
 				loadCSS("app/storymaps/maptour/builder/InitPopupViewHostedFSCreation.css");
+				loadCSS("app/storymaps/maptour/builder/InitPopupViewAdvanced.css");
 				loadCSS("app/storymaps/maptour/builder/ImportPopupViewHome.css");
 				
 				loadCSS("app/storymaps/maptour/builder/PopupViewCSV.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewFlickr.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewFacebook.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewPicasa.css");
+				loadCSS("app/storymaps/maptour/builder/PopupViewYoutube.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewGeoTag.css");
 				
 				loadCSS("app/storymaps/maptour/builder/BuilderView.css");
 				loadCSS("app/storymaps/maptour/builder/OrganizePopup.css");
 				loadCSS("app/storymaps/maptour/builder/AddPopup.css");
 				loadCSS("app/storymaps/maptour/builder/HelpPopup.css");
+				loadCSS("app/storymaps/maptour/builder/SharePopup.css");
 				
 				loadCSS("app/storymaps/maptour/ui/mobile/Common.css");
 				loadCSS("app/storymaps/maptour/ui/mobile/Carousel.css");
@@ -139,7 +157,7 @@
 
 			var path_location = location.pathname.replace(/\/[^/]+$/, '');
 			var dojoConfig = {
-				parseOnLoad: false,
+				parseOnLoad: true,
 				isDebug: false,
 				useDeferredInstrumentation: true,
 				cacheBust: ! isProduction,
@@ -157,6 +175,9 @@
 				]
 			};
 		</script>
+		<!--[if IE 7]>
+			<link rel="stylesheet" href="resources/font/storymaps-icons-ie7.css">
+		<![endif]-->
 	</head>
 	<body class="claro">
 		<div id="header">
@@ -185,29 +206,30 @@
 						<span class="msLink">
 							<a href="http://storymaps.esri.com" target="_blank"></a>
 						</span>
-						<div class="shareIcon share_facebook"></div>
-						<div class="shareIcon share_twitter"></div>
-						<a class="shareIcon share_bitly"></a>
+						<i class="shareIcon share_facebook icon-facebook-squared-1"></i>
+						<i class="icon-twitter-1 shareIcon share_twitter"></i>
+						<i class="icon-link shareIcon share_bitly"></i>
 					</div>
 					<div class="logo">
 						<a target="_blank">
-							<img alt="Esri - Home" />
+							<img alt="Esri - Home" class="headerLogoImg"/>
 						</a>
 					</div>
 				</div>
-				<button type="button" class="switchBuilder btn btn-success"></button>
+				<button type="button" class="switchBuilder btn"></button>
 				<!-- Builder top panel -->
 				<div id="builderPanel">
 					<h4></h4>
 					<div>
 						<button type="button" class="btn builder-cmd builder-save"></button>
-						<button type="button" class="btn builder-cmd builder-discard"></button>
+						<button type="button" class="btn builder-cmd builder-share"></button>
 						<button type="button" class="btn builder-cmd builder-settings"></button>
-						<button type="button" class="btn builder-cmd small builder-view"></button>
-						<button type="button" class="btn builder-cmd small builder-item"></button>
-						<button type="button" class="btn builder-cmd small builder-help"></button>
+						<button type="button" class="btn builder-cmd builder-help"></button>
 					</div>
-					<div id="save-counter"></div>
+					<div id="status-bar">
+						<span id="save-counter"></span>
+						<span id="sharing-status"></span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -217,6 +239,14 @@
 				<div id="mainMap">
 					<div id="hoverInfo"></div>
 				</div>
+				<!-- Builder switch basemap -->
+				<div id="basemapChooser">
+					<div data-dojo-type="dijit/TitlePane" 
+						 data-dojo-props="closable:false, open:false">
+					<div data-dojo-type="dijit/layout/ContentPane" style="width:380px; height:280px; overflow:auto;">
+						<div id="basemapGallery" ></div></div>
+					</div>
+				</div>
 			</div>
 			<!-- Picture panel -->
 			<div id="picturePanel">
@@ -224,6 +254,13 @@
 				<div id="cfader"></div>
 				<div id="pictureLoadingIndicator" style="visibility:hidden;"></div>
 				<img id="arrowNext" class="arrow disabled" />
+				
+				<div class="modern-layout-control left click-bg"></div>
+				<a class="modern-layout-control left click-btn">‹</a>
+				
+				<div class="modern-layout-control right click-bg"></div>
+				<a class="modern-layout-control right click-btn">›</a>
+				
 				<!-- Builder picture panel buttons -->
 				<div class="editPictureButtons">
 					<div>
@@ -251,6 +288,7 @@
 					</div>
 				</div>
 			</div>
+		
 			<!-- Builder bottom panel -->
 			<div id="builderPanel3">
 				<button id="introRecordButton" type="button" class="btn"></button>
@@ -404,7 +442,7 @@
 							<label></label>
 							<table>
 								<tr class="youtube">
-									<td><input type="radio" name="addVideoSrc" value="youtube" checked />Youtube</td>
+									<td><input type="radio" name="addVideoSrc" value="youtube" checked />YouTube</td>
 									<td>
 										<input class="clearVal type youtube" type="text" />
 										<a><img /></a>
@@ -412,7 +450,7 @@
 										<i class="youtube"></i>
 									</td>
 								</tr>
-								<tr class="vimeo fade">
+								<tr class="vimeo">
 									<td><input type="radio" name="addVideoSrc" value="vimeo" />Vimeo</td>
 									<td>
 										<input class="clearVal type vimeo" type="text" disabled />
@@ -421,7 +459,7 @@
 										<i class="vimeo"></i>
 									</td>
 								</tr>
-								<tr class="other fade">
+								<tr class="other">
 									<td><input type="radio" name="addVideoSrc" value="other" /><span class="other"></span></td>
 									<td>
 										<input class="clearVal type other" type="text" disabled />
@@ -459,6 +497,7 @@
 						</span>
 					</div>
 					<div id="locateMap"></div>
+					<div id="geocoder"></div>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -503,31 +542,29 @@
 		<div id="init-import-views">
 			<!-- Init specific -->
 			<div id="initPopupViewHome">
-				<div class="header2"></div>
+				<div class="header"></div>
 				<div class="sideContainer">
 					<div class="sideTitle sideTitle1"></div>
 					<table class="leftTable">
 						<tr>
 							<td class="btn-select-flickr">
-								<img style="width: 50px"/>
-								<div>Flickr</div>
+								<a><img style="width: 50px"/></a>
 							</td>
 							<td class="btn-select-fb">
-								<img style="height: 46px"/>
-								<div style="margin-top: 6px;">Facebook</div>
+								<a><img style="height: 46px"/></a>
 							</td>
 							<td class="btn-select-picasa">
-								<img style="width: 50px"/>
-								<div>Picasa</div>
+								<a><img style="width: 50px"/></a>
 							</td>
 						</tr>
+						<tr style="height: 15px">
+						</tr>
 						<tr>
-							<td class="btn-select-csv">
-								<img style="width: 50px"/>
-								<div class="csvLbl"></div>
+							<td class="btn-select-youtube">
+								<a><img style="width: 50px"/></a>
 							</td>
-							<td class="btn-select-scratch"><img style="width: 40px"/>
-								<div class="scratchLbl"></div>
+							<td class="btn-select-advanced">
+								<a><img style="width: 44px"/></a>
 							</td>
 						</tr>
 						
@@ -537,17 +574,16 @@
 					<div class="sideTitle sideTitle2"></div>
 					<table>
 						<tr>
-							<td class="btn-select-hostedFS">
-								<img style="width: 120px"/>
-								<div>ArcGIS Online</div>
-								<div>Hosted Feature Service</div>
+							<td class="btn-select-hostedFS" style="vertical-align: middle; height: 125px;">
+								<img style="width: 72px"/>
+								<div class="notAvailable hostedFsNote"></div>
 							</td>
 						</tr>
 					</table>
-					<div class="notAvailable hostedFsNote"></div>
+					
 				</div>
-				<div class="footer1"></div>
-				<div class="footer2"></div>
+				<div class="footer"></div>
+				<div class="popover-init"></div>
 			</div>
 			
 			<div id="initPopupViewHostedFSCreation">
@@ -571,6 +607,19 @@
 				<ul class="dataError"></ul>
 			</div>
 			
+			<div id="initPopupViewAdvanced">
+				<div class="header"></div>
+				<div class="options">
+					<div class="options-row">
+						<button class="btn btn-adv btn-select-scratch"></button>
+					</div>
+					<div class="options-row" style="margin-top: 20px;">
+						<button class="btn btn-adv btn-select-csv"></button>
+						<div class="csv-note"></div>
+					</div>
+				</div>
+			</div>
+			
 			<!-- Import specific -->
 			<div id="importPopupViewHome">
 				<h3 class="header"></h3>
@@ -578,23 +627,23 @@
 					<tr>
 						<td class="btn-select-flickr">
 							<img style="width: 50px"/>
-							<div>Flickr</div>
 						</td>
 						<td class="btn-select-fb">
 							<img style="height: 46px"/>
-							<div style="margin-top: 6px;">Facebook</div>
 						</td>
 						<td class="btn-select-picasa">
 							<img style="width: 50px"/>
-							<div>Picasa</div>
+						</td>
+						<td class="btn-select-youtube">
+							<img style="width: 50px"/>
 						</td>
 						<td class="btn-select-csv">
 							<img style="width: 50px"/>
-							<div class="csvLbl"></div>
 						</td>
 					</tr>
 				</table>
 				<div class="footer"></div>
+				<div class="popover-import"></div>
 			</div>
 			
 			<!-- Common -->
@@ -643,10 +692,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="useLocation">
-						<input type="checkbox" name="fbUseLocation"/>
-						<span></span>
-					</div>
 				</div>
 			</div>
 			<div id="popupViewFacebook" class="popupViewFacebook">
@@ -686,10 +731,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="useLocation">
-					<input type="checkbox" name="fbUseLocation"/>
-					<span></span>
-				</div>
 			</div>
 			<div id="popupViewPicasa" class="popupViewPicasa">
 				<div class="headerContainer">
@@ -707,10 +748,23 @@
 							<select id="picasaListAlbum"></select>
 						</div>
 					</div>
-					
 					<div class="howToFind">
 						<a></a>
 					</div>
+				</div>
+			</div>
+			<div id="popupViewYoutube" class="popupViewYoutube">
+				<div class="headerContainer">
+					<span class="header"></span>
+					<span class="commonHeader"></span>
+				</div>
+				<div class="youtubeContainer">
+					<input class="youtubeInput selectUserName" type="text" value=""/>
+					<button class="btn youtubeLookup btn-userLookup" disabled="disabled"><i class="icon-search"></i></button>
+					<span class="lookingUpMsg lookingUpUserMsg"></span>
+				</div>
+				<div class="howToFind">
+					<a></a>
 				</div>
 			</div>
 			<div id="popupViewGeoTag" class="popupViewGeoTag">
@@ -756,7 +810,6 @@
 					<span class="layout-box">
 						<div></div>
 						<img />
-						<!--<div class="layoutOption"></div>-->
 						<div class="layoutFooter">
 							<button class="btn"></button>
 							<div class="selectedLayout"></div>
@@ -770,6 +823,7 @@
 							<div class="selectedLayout"></div>
 						</div>
 					</span>
+					<div class="layoutOption"></div>
 				</div>
 				<!-- Colors -->
 				<div id="settings-colors" class="tab-content">
@@ -905,6 +959,54 @@
 			</div>
 		</div>
 		
+		<!-- Share popup -->
+		<div class="modal hide" id="sharePopup" data-backdrop="static" tabindex="-1">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3></h3>
+			</div>
+			<div class="modal-body">
+				<div class="first-save hide">
+					<div class="header"></div>
+					<div class="question question1"></div>
+					<div class="answer answer1"></div>
+					<div class="question question2"></div>
+					<div class="answer answer2"></div>
+				</div>
+				<div class="share">
+					<div class="not-shared hide">
+						<div class="header"></div>
+						<div class="share-btn">
+							<button class="btn btn-sharePublic"></button>
+							<button class="btn btn-shareOrga"></button>
+						</div>
+						<div class="footer">
+							<a class="btn-learnmore"></a>
+							| <a class="btn-preview"></a>
+						</div>
+					</div>
+					<div class="shared-dialog">
+						<div class="header"></div>
+						<div class="share-link"></div>
+						
+						<div class="question shared-question1"></div>
+						<div class="collapse answer shared-answer1"></div>
+						
+						<div class="question shared-question2"></div>
+						<div class="collapse answer shared-answer2"></div>
+						
+						<div class="question shared-question3"></div>
+						<div class="collapse answer shared-answer3"></div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<span class="footer-status success"></span>
+				<span class="footer-status error"></span>
+				<button class="btnClose btn" data-dismiss="modal" aria-hidden="true"></button>
+			</div>
+		</div>
+		
 		<!-- Help popup -->
 		<div class="modal hide" id="helpPopup" data-backdrop="static" tabindex="-1">
 			<div class="modal-header">
@@ -960,7 +1062,7 @@
 		</div>
 		
 		<script type="text/javascript">
-			loadJS('//js.arcgis.com/3.7/init.js', true);
+			loadJS('//js.arcgis.com/3.8/init.js', true);
 			loadJS('app/maptour-config.js');
 			
 			function getUrlVar(name)
@@ -979,7 +1081,7 @@
 			}
 			
 			if( isProduction ) {
-				if( getUrlVar('edit') )
+				if( getUrlVar('edit') || getUrlVar('fromScratch') || getUrlVar('fromscratch') || getUrlVar('fromGallery') )
 					loadJS('app/maptour-builder-min.js');
 				else
 					loadJS('app/maptour-viewer-min.js');
@@ -988,6 +1090,7 @@
 				loadJS('lib/_jquery.1.9.1.min.js');
 				loadJS('lib/bootstrap/js/bootstrap.min.js');
 				loadJS('lib/spin.min.js');
+				loadJS('lib/history.min.js');
 				loadJS('lib/cubiq.iscroll.js');
 				loadJS('lib/cubiq.swipeview.js');
 				loadJS('lib/jquery-ui-1.10.0.custom.min.js');
@@ -998,6 +1101,7 @@
 				loadJS('lib/megapix-image.js');
 				loadJS('lib/spectrum/spectrum.js');
 				loadJS('lib/bootstrap.file-input.js');
+				loadJS('lib/colorbox/jquery.colorbox-min.js');
 			}
 		</script>
 		
@@ -1015,7 +1119,7 @@
 				})();
 			}
 		</script>
-
+		
 		<script type="text/javascript">
 			var loadingIndicator = {};
 			var i18n = null;
@@ -1046,10 +1150,10 @@
 					 		loadingIndicator.init();
 							loadingIndicator.setMessage(i18n.viewer.loading.step1);
 							
-						 	require(["storymaps/core/Core", "storymaps/maptour/core/MainView"], function(Core, MainView){
-						 		var urlParams = urlUtils.urlToObject(document.location.search).query || {};
-						 		var isInBuilderMode = urlParams.edit != null;
-						 		
+						 	require(["storymaps/core/Core", "storymaps/maptour/core/MainView", "storymaps/utils/Helper"], function(Core, MainView, Helper){
+						 		var urlParams = Helper.getUrlParams();
+						 		var isInBuilderMode = urlParams.edit != null || urlParams.fromScratch != null || urlParams.fromscratch != null || urlParams.fromGallery != null;
+								
 						 		if (isInBuilderMode) {
 						 			require(["storymaps/builder/Builder", "storymaps/maptour/builder/BuilderView"], function(Builder, BuilderView) {
 						 				Core.init(new MainView(), Builder);

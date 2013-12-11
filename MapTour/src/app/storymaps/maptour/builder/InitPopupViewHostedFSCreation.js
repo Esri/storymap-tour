@@ -1,12 +1,14 @@
 define([
 	"storymaps/utils/Helper", 
 	"storymaps/utils/WebMapHelper", 
+	"esri/geometry/Extent",
 	"dojo/_base/lang",
 	"dojo/Deferred",
 	"dojo/json"], 
 	function (
 		Helper, 
 		WebMapHelper, 
+		Extent,
 		lang,
 		Deferred,
 		JSON
@@ -20,12 +22,12 @@ define([
 				"supportedQueryFormats": "JSON, AMF",
 				"maxRecordCount": 1000,
 				"capabilities": "Query",
-				/*"editorTrackingInfo":{
-					"enableEditorTracking":true,
+				"editorTrackingInfo":{
+					"enableEditorTracking":false,
 					"enableOwnershipAccessControl":false,
 					"allowOthersToUpdate":true,
-					"allowOthersToDelete":true
-				},*/
+					"allowOthersToDelete":false
+				},
 				"description": "",
 				"copyrightText": "",
 				"spatialReference": {
@@ -299,6 +301,11 @@ define([
 				return _container;
 			};
 			
+			this.getTitle = function()
+			{
+				return i18n.viewer.builderHTML.dataTitle;
+			};
+			
 			//
 			// Events
 			//
@@ -335,6 +342,10 @@ define([
 				// If it fail with a timeout, success is call
 				if( _footerText.html() == i18n.viewer.builderHTML.dataFooterError )
 					return; 
+					
+				// Set the extent to the portal default
+				if ( app.portal && app.portal.defaultExtent )
+					app.data.getWebMapItem().item.extent = Helper.serializeExtentToItem(new Extent(app.portal.defaultExtent));
 				
 				changeFooterState("succeed");
 				
@@ -467,7 +478,11 @@ define([
 				);
 				
 				_webmap.itemData.operationalLayers.push(layer);
-				return WebMapHelper.saveWebmap(_webmap, _portal);
+				
+				if( app.isDirectCreationFirstSave || app.isGalleryCreation ) 
+					return new Deferred().resolve();
+				else
+					return WebMapHelper.saveWebmap(_webmap, _portal);
 			}
 			
 			//

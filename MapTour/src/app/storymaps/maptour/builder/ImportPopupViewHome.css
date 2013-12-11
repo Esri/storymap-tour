@@ -1,5 +1,19 @@
+@media only screen and (max-height : 708px) {
+	#importPopup {
+		top: 50%;
+		margin-top: -304px;
+	}
+}
+
+@media only screen and (max-height : 608px) {
+	#importPopup {
+		top: 0px;
+		margin-top: 0px;
+	}
+}
+
 #importPopup .modal-body {
-	overflow: hidden;
+	overflow: visible;
 }
 
 #importPopupViewHome .header {
@@ -17,13 +31,16 @@
 	font-weight: normal;
 	width: 20%;
 	border: 1px solid rgba(0, 0, 0, 0);
-	padding: 4px;
-	height: 90px;
+	padding: 18px;
 	vertical-align: top;
 }
 
 #importPopupViewHome td.disabled {
 	opacity: 0.4;
+	cursor: default !important;
+}
+
+#importPopupViewHome td.disabled a {
 	cursor: default !important;
 }
 

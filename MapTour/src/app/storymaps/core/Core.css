@@ -5,10 +5,17 @@ html, body {
 }
 
 body {
+	position: fixed;
+    bottom: 0;
 	background-color:#c2c2c2;
 	color:#333;
 	overflow:hidden;
 	font-family:Georgia, "Times New Roman", Times, serif;
+}
+
+body.mobile-view {
+	position: initial;
+	bottom: initial;
 }
 
 html, body, h1, h2, h3, h4, h5, h6, p, ul, form {
@@ -34,11 +41,6 @@ textarea {
 	display: none;
 }
 
-body:not(.mobile-view) #mainMap #mainMap_zoom_location {
-	display: none;
-}
-
-
 #loadingOverlay {
 	position: absolute;
 	z-index: 500;
@@ -48,7 +50,6 @@ body:not(.mobile-view) #mainMap #mainMap_zoom_location {
 	overflow: hidden;
 	background-color: #c2c2c2;
 }
-
 
 a {
 	color:#555;

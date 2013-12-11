@@ -1,3 +1,17 @@
+@media only screen and (max-height : 708px) {
+	#organizePopup {
+		top: 50%;
+		margin-top: -290px;
+	}
+}
+
+@media only screen and (max-height : 577px) {
+	#organizePopup {
+		top: 0px;
+		margin-top: 0px;
+	}
+}
+
 #organizePopup .modal-body {
 	overflow:hidden;
 	max-height:500px;

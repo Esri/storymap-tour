@@ -41,6 +41,52 @@
 	border: 1px solid #797979;
 }
 
+/*
+ * Full screen btn
+ */
+.btn-fullscreen {
+	display: inline-block;
+	position: absolute;
+	width: 26px;
+	height: 26px;
+	background: url('../../../../resources/icons/media-fullscreen.png') 0 0px;
+	opacity: 0;
+	/* under app loading overlay ; above builder button */
+	z-index: 400;
+	margin-top: 1px;
+}
+
+.btn-fullscreen.hover {
+	opacity: 1.0;
+	cursor: pointer;
+}
+
+.btn-fullscreen.hover {
+	opacity: 0.8;
+}
+
+.btn-fullscreen.hover:hover {
+	opacity: 1.0 !important;
+}
+
+.btn-fullscreen.disabled {
+	display: none;
+}
+
+body.modern-layout .btn-fullscreen {
+	margin-right: 2px;
+	margin-top: -1px;
+}
+
+body.hasTouch .btn-fullscreen{
+	display: block !important;
+	opacity: 1.0 !important;
+}
+
+/*
+ * Placard
+ */
+
 #placardContainer {
 	position:absolute;
 	width:100%;

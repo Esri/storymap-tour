@@ -1,9 +1,26 @@
-#helpPopup {
-	top: 16% !important;
+@media only screen and (max-height : 708px) {
+	#helpPopup {
+		top: 50% !important;
+		margin-top: -304px;
+	}
+}
+
+@media only screen and (max-height : 607px) {
+	#helpPopup {
+		top: 0px !important;
+		margin-top: 0px;
+	}
 }
 
 #helpPopup .modal-body {
-	height: 396px;
+	height: 359px;
+}
+
+@media only screen and (min-device-width : 768px)  and (max-device-width : 1024px)  and (orientation : landscape) {
+	/* ipad */
+	#helpPopup .modal-body {
+		height: 370px;
+	}
 }
 
 #helpPopup .tab {

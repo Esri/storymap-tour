@@ -33,16 +33,3 @@
 .popupViewFlickr .selectContainer:nth-child(1) {
 	border-right: 1px solid black;
 }
-
-/*
- * Location
- */
-
- .popupViewFlickr .useLocation {
- 	text-align: center;
- }
- 
- .popupViewFlickr .useLocation a {
-  	font-weight: normal;
-	text-decoration: underline;
-}

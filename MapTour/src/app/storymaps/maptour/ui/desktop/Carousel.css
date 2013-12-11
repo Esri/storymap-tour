@@ -163,6 +163,11 @@
 	background-color:#8A26FD;
 }
 
+body.notNumbered .carouselScroller span:before {
+	display: none;
+}
+
+
 /* Arrows */
 
 .arrowLeft {

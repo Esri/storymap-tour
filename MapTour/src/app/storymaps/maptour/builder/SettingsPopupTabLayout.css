@@ -1,6 +1,6 @@
 #settings-layout .layout-box {
 	display: inline-block;
-	width: 260px;
+	width: 259px;
 	vertical-align: top;
 	text-align: center;
 	padding-top: 10px;
@@ -36,7 +36,7 @@
 
 #settings-layout .layout-box .layoutFooter {
 	position: absolute;
-	bottom: 15px;
+	bottom: 50px;
 	width: 258px;
 }
 
@@ -61,4 +61,19 @@
 
 #settings-layout .layout-box.selected button {
 	display: none;
+}
+
+#settings-layout .layoutOption {
+	text-align: center;
+	font-size: 90%;
+	margin-top: 10px;
+}
+
+#settings-layout .layoutOption .popover {
+	max-width: 245px;
+}
+
+#settings-layout .useLocBtn {
+	width: 12px;
+	vertical-align: -2px;
 }

@@ -38,9 +38,25 @@ define(["dojo/cookie",
 			{
 				return (/(\/apps\/|\/home\/)(MapTour\/)/).test(document.location.pathname);
 			},
+			browserSupportHistory: function()
+			{
+				return !!(window.history && history.pushState);
+			},
+			// Get URL parameters IE9 history not supported friendly
+			getUrlParams: function()
+			{
+				var urlParams = urlUtils.urlToObject(document.location.search).query;
+				if ( urlParams )
+					return urlParams;
+				
+				if( ! this.browserSupportHistory() && ! urlParams )
+					return urlUtils.urlToObject(document.location.hash).query || {};
+				
+				return {};
+			},
 			getWebmapID: function(isProd)
 			{
-				var urlParams = urlUtils.urlToObject(document.location.search).query || {};
+				var urlParams = this.getUrlParams();
 				
 				if( configOptions && configOptions.webmap )
 					return configOptions.webmap;
@@ -54,7 +70,7 @@ define(["dojo/cookie",
 			},
 			getAppID: function(isProd)
 			{
-				var urlParams = urlUtils.urlToObject(document.location.search).query || {};
+				var urlParams = this.getUrlParams();
 				
 				if( configOptions && configOptions.appid )
 					return configOptions.appid;
@@ -165,6 +181,9 @@ define(["dojo/cookie",
 				var mapHeight = map.height;
 				var lods = map._params.lods;
 				
+				if ( ! lods )
+					return -1;
+				
 				for (var l = lods.length - 1; l >= 0; l--) {
 					if( mapWidth * map._params.lods[l].resolution > extent.getWidth() && mapHeight * map._params.lods[l].resolution > extent.getHeight() )
 						return l;
@@ -181,7 +200,7 @@ define(["dojo/cookie",
 				
 				esriCookie = JSON.parse(esriCookie.replace('"ssl":undefined','"ssl":""'));
 				
-				// If the cookie is not set on the same organization
+				// Cookie has to be set on the same organization
 				if( esriCookie.urlKey 
 						&& esriCookie.customBaseUrl 
 						&& (esriCookie.urlKey + '.' + esriCookie.customBaseUrl).toLowerCase() != document.location.hostname.toLowerCase())
@@ -215,6 +234,10 @@ define(["dojo/cookie",
 			{
 				var portalUrl = sharingUrl.split('/sharing/')[0];
 				return portalUrl + '/home/item.html?id=' + id;
+			},
+			getMyContentURL: function(sharingurl)
+			{
+				return sharingurl.split('/sharing/')[0] + '/home/content.html';
 			},
 			browserSupportAttachementUsingFileReader: function()
 			{
@@ -257,12 +280,87 @@ define(["dojo/cookie",
 			},
 			hex2rgba: function(x, a)
 			{
+				if( ! x || x === "" )
+					return "";
+				
 				var r = x.replace('#','').match(/../g),g=[],i;
 				for(i in r){
 					g.push(parseInt(r[i],16));
 				}
 				g.push(a);
 				return 'rgba('+g.join()+')';
+			},
+			prependURLHTTP: function(url)
+			{
+				if ( ! url || url === "" )
+					return url;
+				
+				if ( ! /^(https?:\/\/)|^(\/\/)/i.test(url) )
+					return 'http://' + url;
+				
+				return url;
+			},
+			createGeocoderOptions: function() 
+			{
+				var hasEsri = false,
+					geocoders = dojo.clone(configOptions.geocodeServices);
+				
+				dojo.forEach(geocoders, function (geocoder) {
+					if (geocoder.url.indexOf(".arcgis.com/arcgis/rest/services/World/GeocodeServer") > -1) {
+						hasEsri = true;
+						geocoder.name = "Esri World Geocoder";
+						geocoder.outFields = "Match_addr, stAddr, City";
+						geocoder.singleLineFieldName = "Single Line";
+						//geocoder.placeholder = (configOptions.placefinder.placeholder === "") ? i18n.tools.search.title : configOptions.placefinder.placeholder;
+						geocoder.esri = geocoder.placefinding = true;
+						/*if (configOptions.placefinder.currentExtent || configOptions.searchextent) {
+							geocoder.searchExtent = app.mainMap.extent;
+						}
+						if (configOptions.placefinder.countryCode !== "") {
+							geocoder.sourceCountry = configOptions.placefinder.countryCode;
+						}*/
+					}
+				});
+				
+				//only use geocoders with a singleLineFieldName that allow placefinding
+				geocoders = dojo.filter(geocoders, function (geocoder) {
+					return (esri.isDefined(geocoder.singleLineFieldName) && esri.isDefined(geocoder.placefinding) && geocoder.placefinding);
+				});
+				
+				var esriIdx;
+				if (hasEsri) {
+					for (var i = 0; i < geocoders.length; i++) {
+						if (esri.isDefined(geocoders[i].esri) && geocoders[i].esri === true) {
+							esriIdx = i;
+							break;
+						}
+					}
+				}
+				
+				var options = {
+					autoNavigate: true, /* changed from false */
+					autoComplete: hasEsri,
+					theme: "simpleGeocoder"
+				};
+				
+				if(hasEsri){
+					options.minCharacters = 0;
+					options.maxLocations = 5;
+					options.searchDelay = 100;
+				}
+				
+				//If the World geocoder is primary enable auto complete 
+				if (hasEsri && esriIdx === 0) {
+					options.arcgisGeocoder = geocoders.splice(0, 1)[0]; //geocoders[0];
+					if (geocoders.length > 0) {
+						options.geocoders = geocoders;
+					}
+				} else {
+					options.arcgisGeocoder = false;
+					options.geocoders = geocoders;
+				}
+						
+				return options;	
 			}
 		};
 	}

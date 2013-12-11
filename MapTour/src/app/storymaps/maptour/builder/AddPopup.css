@@ -1,16 +1,29 @@
 #addPopup {
-	overflow: hidden;
+	overflow: visible;
+}
+
+@media only screen and (max-height : 708px) {
+	#addPopup {
+		top: 50%;
+		margin-top: -284px;
+	}
+}
+
+@media only screen and (max-height : 567px) {
+	#addPopup {
+		top: 0px;
+		margin-top: 0px;
+	}
 }
 
 .modal .modal-body {
     max-height: none; 
- }
-
-/*
-#addPopup .modal-body {
-	height: 388px;
 }
-*/
+
+#addPopup .modal-body {
+	/*height: 388px;*/
+	overflow: visible;
+}
 
 .addPopupHeader {
 	width: 100%;
@@ -85,6 +98,11 @@
 	font-style: italic;
 	width: 100%;
 	color: #000;
+}
+
+.addNoteVideo > div {
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .pictureSize {
@@ -312,7 +330,7 @@
 #geocoder{
 	display: block;
 	position: absolute;
-	z-index: 2;
+	z-index: 30;
 	bottom: 20px;
 	left: 20px;
 }
@@ -323,4 +341,9 @@
 	box-shadow: none;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
+}
+
+/* avoid flickering */
+#geocoder .esriGeocoderActive {
+	border-bottom: 2px solid #666;
 }

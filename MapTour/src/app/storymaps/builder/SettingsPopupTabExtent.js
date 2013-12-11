@@ -68,6 +68,7 @@ define(["storymaps/utils/Helper",
 				layer.clear();
 				layer.add(createExtentGraphics(app.map.extent));
 				_extentMap.setExtent(app.map.extent.expand(2));
+				_userExtent = app.map.extent;
 			});
 			
 			extentApplyBtn.click(function(){

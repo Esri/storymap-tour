@@ -4,6 +4,8 @@ define(["storymaps/utils/PicasaConnector", "dojo/Deferred"],
 		{
 			$('#init-import-views').append($('#popupViewPicasa').clone());
 			var _container = $('.popupViewPicasa').last();
+			_container.attr("id", '#popupViewPicasa' + $('.popupViewPicasa').length);
+			
 			var _picasa = null;
 			var _footer = null;
 			
@@ -39,11 +41,17 @@ define(["storymaps/utils/PicasaConnector", "dojo/Deferred"],
 					nextViewDeferred.resolve({
 						name: 'geotag',
 						params: {
+							title: _container.find("#picasaListAlbum option:selected").text(),
 							data: data
 						}
 					});
 				});
 				return nextViewDeferred;
+			};
+			
+			this.getTitle = function()
+			{
+				return i18n.viewer.viewPicasa.title;
 			};
 			
 			function showView(params)
@@ -55,18 +63,13 @@ define(["storymaps/utils/PicasaConnector", "dojo/Deferred"],
 						_container.find('.btn-userLogin').attr("disabled", "disabled");
 				}
 				
-				// Restore tne next button text
-				if( params.isReturning ) {
-					/*if( _container.find("#flickrListTag option:selected").index() )
-						_footer.find('.btnNext').html(i18n.viewer.viewFlickr.footerImportTag);
-					else
-						_footer.find('.btnNext').html(i18n.viewer.viewFlickr.footerImportSet);*/
-				}
+				if( params.isReturning )
+					_footer.find('.btnNext').html(i18n.viewer.onlinePhotoSharingCommon.footerImport);
 				
 				_container.find(".commonHeader").html(
 					i18n.viewer.onlinePhotoSharingCommon.header1 
 					+ ' ' 
-					+ i18n.viewer.onlinePhotoSharingCommon.header2.replace('%NB1%', _nbPicturesAuthorized).replace('%NB2%', _nbPicturesMax)
+					+ i18n.viewer.onlinePhotoSharingCommon.header2.replace('%NB1%', _nbPicturesAuthorized).replace('%NB1%', _nbPicturesAuthorized).replace('%MEDIA%', i18n.viewer.onlinePhotoSharingCommon.pictures).replace('%NB2%', _nbPicturesMax)
 				);
 				updateFooter();
 			}

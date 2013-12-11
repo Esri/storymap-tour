@@ -6,10 +6,25 @@ define([],
 					
 			this.init = function(settings) 
 			{			
+				// Recompute the list to reflect potential basemap change
+				_listZoomLevels.empty();
+				
 				if (_listZoomLevels.children().length === 0) {
 					_listZoomLevels.append('<option value="-1">' + i18n.viewer.builderHTML.settingsZoomFirstValue + '</option>');
 					
-					$.each(app.map._params.lods, function(i, lvl){
+					var lods = [];
+					
+					// Take lods from the first layer
+					if( app.map.layerIds[0] 
+							&& app.map.getLayer(app.map.layerIds[0]) 
+							&& app.map.getLayer(app.map.layerIds[0]).tileInfo 
+							&& app.map.getLayer(app.map.layerIds[0]).tileInfo.lods )
+						lods = app.map.getLayer(app.map.layerIds[0]).tileInfo.lods;
+					// Or from the webmap (not updated after basemap change
+					else
+						lods = app.map._params.lods;
+					
+					$.each(lods || [], function(i, lvl){
 						var scaleK = lvl.scale / 1000;
 						var scaleM = scaleK / 1000;
 						var lbl = "1:";
@@ -35,14 +50,13 @@ define([],
 				if( parseInt(settings.zoomLevel, 10) >= 0 && ! option[0] )
 					option = _listZoomLevels.find('option').last();
 				
-				if (option[0]) {
+				if (option[0])
 					$(option[0]).attr("selected", "selected");
-				}
 			};
 			
 			this.show = function()
 			{
-				//
+				// 
 			};
 			
 			this.save = function()

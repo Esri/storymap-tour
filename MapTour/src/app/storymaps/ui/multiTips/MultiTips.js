@@ -220,7 +220,7 @@ define(["dojo/dom-style",
 				var width  = domStyle.get("multiTip" + i, "width");
 				var height = domStyle.get("multiTip" + i, "height");
 				
-				// TODO
+				// TODO fix
 				if( has("ie") == 8 ) {
 					width -= 7;
 					height -= 14;

@@ -99,6 +99,11 @@ define(["storymaps/utils/Helper",
 				return;
 			};
 			
+			this.getTitle = function()
+			{
+				return i18n.viewer.viewCSV.title;
+			};
+			
 			//
 			// FILE SELECTION VIEW
 			//
@@ -170,7 +175,7 @@ define(["storymaps/utils/Helper",
 						// Empty CSV
 						if( ! items.length ) {
 							showError(i18n.viewer.viewCSV.resultHeaderEmpty);
-							showView('result');
+							showView('result', 'error');
 							return;
 						}
 						
@@ -189,7 +194,7 @@ define(["storymaps/utils/Helper",
 						
 						if( ! latField || ! longField ) {
 							showError(i18n.viewer.viewCSV.errorLatLng.replace('%LAT%', LAT_FIELD_CANDIDATES.join(', ')).replace('%LONG%', LONG_FIELD_CANDIDATES.join(', ')));
-							showView('result');
+							showView('result', 'error');
 							return;
 						}
 						
@@ -211,7 +216,7 @@ define(["storymaps/utils/Helper",
 							error += "</ul>";
 							
 							showError(error);
-							showView('result');
+							showView('result', 'error');
 							return;
 						}
 						
@@ -324,7 +329,7 @@ define(["storymaps/utils/Helper",
 								if (!features || !features.length) {
 									console.error("Error fetching items from CSV store: ", error);
 									showError(i18n.viewer.viewCSV.resultHeaderEmpty);
-									showView('result');
+									showView('result', 'error');
 									return;
 								}
 								
@@ -344,7 +349,7 @@ define(["storymaps/utils/Helper",
 					onError: function(error){
 						console.error("Error fetching items from CSV store: ", error);
 						showError(i18n.viewer.viewCSV.resultHeaderEmpty);
-						showView('result');
+						showView('result', 'error');
 					}
 				});
 			}
@@ -425,7 +430,7 @@ define(["storymaps/utils/Helper",
 					_csvMap.resize();
 					_csvMap.reposition();
 					_csvMap.disableKeyboardNavigation();
-					_csvMap.setExtent(initialExtent, true);
+					initialExtent && _csvMap.setExtent(initialExtent, true);
 				});
 			}
 			
@@ -442,14 +447,22 @@ define(["storymaps/utils/Helper",
 					return;
 				}
 				
+				// Add the new layer
 				_webmap.itemData.operationalLayers.push(MapTourBuilderHelper.getNewLayerJSON(_resultFeatureCollection));
+				// Set the extent to the dataset
+				app.data.getWebMapItem().item.extent = Helper.serializeExtentToItem(_csvMap.extent);
 				
-				WebMapHelper.saveWebmap(_webmap, _portal).then(function(){
+				var saveSucceed = function() {
 					changeFooterState("succeed");
 					setTimeout(function(){
 						_initCompleteDeferred.resolve();
 					}, 800);
-				});
+				};
+				
+				if( app.isDirectCreationFirstSave || app.isGalleryCreation ) 
+					saveSucceed();
+				else
+					WebMapHelper.saveWebmap(_webmap, _portal).then(saveSucceed);
 			}
 			
 			function importLayer()
@@ -537,7 +550,7 @@ define(["storymaps/utils/Helper",
 				_state = state;
 				
 				if( state == "result" ) {
-					btnNext.html(i18n.viewer.viewCSV.footerNextBtnResult);
+					btnNext.html(i18n.viewer.onlinePhotoSharingCommon.footerImport);
 					if( options == "error" )
 						btnNext.attr("disabled", "true");
 					else

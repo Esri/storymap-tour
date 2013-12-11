@@ -61,10 +61,10 @@ define(["storymaps/ui/crossfader/CrossFader",
 	
 				// Prevent double init when the webmap is reloaded
 				if( ! isInit ) {
-					$("#arrowPrev").fastClick(function(){
+					$("#arrowPrev, .modern-layout-control.left").fastClick(function(){
 						topic.publish("PIC_PANEL_PREV", null);
 					});
-					$("#arrowNext").fastClick(function(){
+					$("#arrowNext, .modern-layout-control.right").fastClick(function(){
 						topic.publish("PIC_PANEL_NEXT", null);
 					});
 				}
@@ -77,6 +77,22 @@ define(["storymaps/ui/crossfader/CrossFader",
 				});
 				Hammer(el).on("swiperight", function() {
 					topic.publish("PIC_PANEL_PREV", null);
+				});
+				Hammer(el).on("tap", function(e) {
+					if( ! e || ! e.target )
+						return;
+
+					if ( e.gesture && e.gesture.srcEvent 
+							&& e.gesture.srcEvent.buttons !== undefined 
+							&& e.gesture.srcEvent.buttons != 1 )
+						return;
+					
+					var target = $(e.target);
+					
+					if( ! target.is('img') || ! target.parent().hasClass('current') )
+						return;
+					
+					crossfader.fullScreen();
 				});
 	
 				if( isInBuilderMode )
@@ -92,7 +108,7 @@ define(["storymaps/ui/crossfader/CrossFader",
 	
 			function update(bgColor, isModernLayout)
 			{
-				// Update is called before _isModernLayout is set so the correct one is in argument
+				// Called before _isModernLayout is set so use the argument
 				
 				if (! isModernLayout )
 					panel.css("background-color", bgColor);
@@ -102,11 +118,13 @@ define(["storymaps/ui/crossfader/CrossFader",
 				if (isModernLayout) {
 					$("#picturePanel").css("top", $("#header").height());
 					$("#cfader").css("margin-left", 0);
+					$("#arrowPrev, #arrowNext").addClass("disabled");
 				}
 				else {
 					$("#picturePanel").css("top", "auto");
 					$("#cfader").css("margin-left", SIDE_MARGIN);
 					$("#cfader").css("margin-top", VERTICAL_MARGIN);
+					$(".modern-layout-control").addClass("disabled");
 				}
 			}
 			
@@ -121,8 +139,8 @@ define(["storymaps/ui/crossfader/CrossFader",
 				if( crossfader )
 					crossfader.clean();
 				
-				$("#arrowPrev").addClass("disabled");
-				$("#arrowNext").addClass("disabled");
+				$("#arrowPrev, #arrowNext, .modern-layout-control").addClass("disabled");
+				$(".btn-fullscreen", panel).addClass("disabled");
 			}
 			
 			function firstDisplayCheck()
@@ -146,23 +164,25 @@ define(["storymaps/ui/crossfader/CrossFader",
 					crossfader.setSource(picurl, name, caption, _isModernLayout, _placardIsUnder, _mediaIsImg);
 	
 				if ( buttonStatus.left && _isModernLayout )
-					$("#arrowPrev").removeClass("disabled").attr("src","resources/icons/picturepanel-modern-left.png");
+					$(".modern-layout-control.left").removeClass("disabled");
 				else if ( buttonStatus.left )
-					$("#arrowPrev").removeClass("disabled").attr("src","resources/icons/picturepanel-left.png");
+					$("#arrowPrev").removeClass("disabled");
 				else 
-					$("#arrowPrev").addClass("disabled");
+					$("#arrowPrev, .modern-layout-control.left").addClass("disabled");
 	
 				if( buttonStatus.right && _isModernLayout ) 
-					$("#arrowNext").removeClass("disabled").attr("src","resources/icons/picturepanel-modern-right.png");
+					$(".modern-layout-control.right").removeClass("disabled");
 				else if ( buttonStatus.right )
-					$("#arrowNext").removeClass("disabled").attr("src","resources/icons/picturepanel-right.png");
+					$("#arrowNext").removeClass("disabled");
 				else 
-					$("#arrowNext").addClass("disabled");
+					$("#arrowNext, .modern-layout-control.right").addClass("disabled");
 					
 				if (isInBuilderMode) {
 					$(".editPictureButtons", panel).show();
 					setAttributesPopover(picurl, thumburl);
 				}
+				
+				$(".btn-fullscreen", panel).removeClass("disabled");
 			}
 	
 			/**
@@ -216,12 +236,11 @@ define(["storymaps/ui/crossfader/CrossFader",
 	
 				// Arrows position (timeout for IE)
 				setTimeout(function(){
-					var arrowY = $(".member-image.current").position().top + 20;
-					$("#arrowPrev").css("top", arrowY);
-					$("#arrowNext").css("top", arrowY);
+					var arrowY = $(".member-image.current").position().top + $(".member-image.current").height() / 2 + 15;
+					$(".modern-layout-control").css("top", arrowY);
 					
-					$("#arrowPrev").css("left", (panel.width() - $(".member-image.current").width()) / 2 - 3);
-					$("#arrowNext").css("right", (panel.width() - $(".member-image.current").width()) / 2);
+					$(".modern-layout-control.left").css("left", (panel.width() - $(".member-image.current").width()) / 2 + 2);
+					$(".modern-layout-control.right").css("right", (panel.width() - $(".member-image.current").width()) / 2 + 6);
 				}, 50);
 				
 				/*
@@ -404,15 +423,7 @@ define(["storymaps/ui/crossfader/CrossFader",
 				var title = $(selector + " .name .text_edit_input").css("display") == "inline-block" ? $(selector + " .name .text_edit_input").val() : $(selector + " .name .text_edit_label").html();
 				var descr = $(selector + " .description .text_edit_input").css("display") == "inline-block" ? $(selector + " .description .text_edit_input").val() : $(selector + " .description .text_edit_label").html();
 				
-				if(title == i18n.viewer.headerJS.editMe)
-					title = "";
-				if(descr == i18n.viewer.headerJS.editMe)
-					descr = "";
-				 
-				topic.publish("PIC_PANEL_EDIT", {
-					title: title,
-					description: descr
-				});
+				saveEdits2(title, descr);
 			}
 			
 			function saveEdits()
@@ -422,10 +433,18 @@ define(["storymaps/ui/crossfader/CrossFader",
 				var title = $(selector + " .name .text_edit_label").html();
 				var descr = $(selector + " .description .text_edit_label").html();
 				
+				saveEdits2(title, descr);
+			}
+			
+			function saveEdits2(title, descr)
+			{
 				if(title == i18n.viewer.headerJS.editMe)
 					title = "";
 				if(descr == i18n.viewer.headerJS.editMe)
 					descr = "";
+				
+				title = MapTourHelper.encodeText(title);
+				descr = MapTourHelper.encodeText(descr);
 				
 				topic.publish("PIC_PANEL_EDIT", {
 					title: title,
@@ -472,7 +491,7 @@ define(["storymaps/ui/crossfader/CrossFader",
 										trigger: 'hover', \
 										placement: 'bottom', \
 										html: true, \
-										content: '<div style=\"font-size: 14px; margin-bottom: 2px;\">" + i18n.viewer.builderHTML.addMediaVideoHelpTooltip4 + "</div><img src=\"resources/icons/builder-picturepanel-tooltip-youtube.png\" width=\"245px\" />'});"
+										content: '<div style=\"font-size: 14px; margin-bottom: 2px;\">" + (i18n.viewer.builderHTML.addMediaVideoHelpTooltip4.replace("\'", "\\'", 'g')) + "</div><img src=\"resources/icons/builder-picturepanel-tooltip-youtube.png\" width=\"245px\" />'});"
 								+ '</script>'
 				});
 				
@@ -497,14 +516,12 @@ define(["storymaps/ui/crossfader/CrossFader",
 			{
 				var node = ".editPictureButtons .attributesWay " + (target === 0 ? ".btn-picture" : ".btn-thumbnail");
 				var value = $(node).next(".popover").find("input[type=text]").val();
-				
-				var valueIsValid = MapTourHelper.validateImageURL(value);
-				if( target === 0 && $("input[name=editType]:checked").val() == "video" )
-					valueIsValid = MapTourHelper.validateURL(value);
+				var valueIsValid = MapTourHelper.validateURL(value);
+				var isVideo = target === 0 && $("input[name=editType]:checked").val() == "video";
 				
 				if( performSave ) {
 					if (!valueIsValid) {
-						if (target === 0 && $("input[name=editType]:checked").val() == "video") 
+						if (isVideo) 
 							$(node).next(".popover").find(".error").html(i18n.viewer.addPopupJS.errorInvalidVideoUrl);
 						else if (target === 0) 
 							$(node).next(".popover").find(".error").html(i18n.viewer.addPopupJS.errorInvalidPicUrl);
@@ -514,7 +531,10 @@ define(["storymaps/ui/crossfader/CrossFader",
 					if( ! valueIsValid )
 						return;
 					
-					app.data.changeCurrentPointPicURL(target === 0 ? "picture" : "thumbnail", value);
+					if (isVideo && ! app.data.layerHasVideoField() && value.indexOf('isVideo') == -1)
+						value = MapTourHelper.addIsVideoToURL(value); 
+					
+					app.data.changeCurrentPointPicURL(target === 0 ? "picture" : "thumbnail", value, isVideo);
 				}
 					
 				$(node).popover("hide");
@@ -794,7 +814,8 @@ define(["storymaps/ui/crossfader/CrossFader",
 			
 			function initLocalization()
 			{
-			
+				$("#arrowPrev").attr("src","resources/icons/picturepanel-left.png");
+				$("#arrowNext").attr("src","resources/icons/picturepanel-right.png");
 			}
 			
 			function initBuilderLocalization()

@@ -11,6 +11,7 @@ define([],
 					settings.placardUnder*/
 				);
 				//$(contentcontainer).find('.layout1opt').prop('checked', settings.placardUnder);
+				$(contentcontainer).find('.useLocBtn').prop('checked', settings.locationButton ? 'checked' : '');
 				
 				/* Index.html code 
 				 * // Select the placard position (point title and caption) between "under" and "hover" 
@@ -27,7 +28,8 @@ define([],
 			this.save = function()
 			{		
 				return {
-					name: getSelectedlayout()/*,
+					name: getSelectedlayout(),
+					locationButton: $(contentcontainer).find('.useLocBtn').is(':checked')/*,
 					placardUnder: getLayoutOption()*/
 				};
 			};
@@ -81,7 +83,6 @@ define([],
 				
 				$(contentcontainer).find('p').html(i18n.viewer.builderHTML.settingsLayoutExplain);
 				$(contentcontainer).find('.layout-box:nth-child(2) div').eq(0).html(i18n.viewer.builderHTML.settingsLayoutProfessional);
-				// Todo hard coded string in here
 				//$(contentcontainer).find('.layout-box:nth-child(2) div').eq(1).html('<input type="checkbox" class="layout1opt"/> ' + 'Place the placard under the media <a class="layoutOptionTooltip"><img src="resources/icons/builder-help.png" style="vertical-align: -4px;"/></a>');
 				$(contentcontainer).find('.layout-box:nth-child(2) img').eq(0).attr("src", "resources/icons/builder-professional-layout.png");
 				$(contentcontainer).find('.layout-box:nth-child(3) div').eq(0).html(i18n.viewer.builderHTML.settingsLayoutModern);
@@ -98,6 +99,15 @@ define([],
 					content: i18n.viewer.builderHTML.settingsLayoutNote 
 				});
 				*/
+				
+				$(contentcontainer).find('.layoutOption').html('<input type="checkbox" class="useLocBtn"/> ' + i18n.viewer.builderHTML.settingsLayoutLocBtn + ' <a class="useLocBtnTooltip"><img src="resources/icons/builder-help.png" style="vertical-align: -4px;"/></a>');
+				$(contentcontainer).find('.useLocBtnTooltip').popover({
+					trigger: 'hover',
+					placement: 'top',
+					html: true,
+					content: '<img src="resources/icons/builder-settings-locate.png" style="position: absolute; top: 12px; left: 10px;"/>' 
+								+ '<div style="margin-left: 30px; min-height: 65px;">' + i18n.viewer.builderHTML.settingsLayoutLocBtnHelp + '</div>'
+				});
 			};
 		};
 	}

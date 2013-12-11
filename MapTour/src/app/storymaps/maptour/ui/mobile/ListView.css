@@ -22,8 +22,13 @@
 }
 
 /* The scroll bar */
-.listWrapper > div:nth-child(2) {
+
+body.hasTouch .listWrapper > div:nth-child(2) {
 	display: none;
+}
+
+.listWrapper > div:nth-child(2) {
+	z-index: 1 !important;
 }
 
 .listItem {

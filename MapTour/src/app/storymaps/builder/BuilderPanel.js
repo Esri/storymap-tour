@@ -1,6 +1,6 @@
-define(["storymaps/maptour/core/WebApplicationData", "storymaps/utils/Helper", "dojo/topic"], 
-	function (WebApplicationData, Helper, topic) {
-		return function BuilderPanel(container, builderSave) 
+define([], 
+	function () {
+		return function BuilderPanel(container, builderSave, builderDirectCreationFirstSave, builderGalleryCreationFirstSave) 
 		{
 			var _this = this;
 			var _displayBuilderSaveIntro = true;
@@ -12,21 +12,29 @@ define(["storymaps/maptour/core/WebApplicationData", "storymaps/utils/Helper", "
 				initLocalization();
 				
 				container.show();
-				setUpGeneralPanelButtonAction();
-				setUpPopover();
-				createAppSavedConfirmation();
+				createInitialSavePopover();
 				
-				// Map popover callback to app.builder
-				app.builder.closeBuilderSaveIntro = closeBuilderSaveIntro;
-				app.builder.switchToView = switchToView;
-				app.builder.discard = discard;
 				app.builder.hideSaveConfirmation = hideSaveConfirmation;
 				
-				// TODO: use fastClick (make the modal flash - see after bootstrap upgrade)
+				// TODO: slow but using fastClick (make the modal flash - see after bootstrap upgrade)
 				container.find('.builder-save').click(save);
+				container.find(".builder-share").click(function(){
+					app.builder.openSharePopup(false);
+				});
 				container.find('.builder-settings').click(showSettingsPopup);
-				container.find('.builder-item').click(openItem);
 				container.find('.builder-help').click(showHelpPopup);
+				
+				$(window).bind('keydown', function(event) {
+					if (event.ctrlKey || event.metaKey) {
+						// CTRL+S
+						if (String.fromCharCode(event.which).toLowerCase() == 's') {
+							if (!container.find('.builder-save').attr("disabled") && ! app.initScreenIsOpen) {
+								event.preventDefault();
+								save();
+							}
+						}
+					}
+				});
 			};
 			
 			//
@@ -37,28 +45,42 @@ define(["storymaps/maptour/core/WebApplicationData", "storymaps/utils/Helper", "
 			{
 				console.log("maptour.builder.Builder - save");
 				
-				changeBuilderPanelButtonState(false);
-				closeBuilderSaveIntro();
-				container.find(".builder-settings").popover('show');
-				
-				// Save the app 
-				// If OK and needed call save webmap 
-				// If OK call appSaveSucceeded
-				builderSave();
-			}
-	
-			function discard(confirmed)
-			{
-				if( confirmed ){
-					changeBuilderPanelButtonState(false);
-					WebApplicationData.restoreOriginalData();
-					app.data.discardChanges();
-					resetSaveCounter();
-					topic.publish("CORE_UPDATE_UI");
-					changeBuilderPanelButtonState(true);
+				if ( _displayBuilderSaveIntro ) {
+					_displayBuilderSaveIntro = false;
+					app.isInitializing = false;
+					container.find(".builder-save").popover('destroy');
+					createSavePopover();
 				}
-	
-				container.find(".builder-discard").popover('hide');
+				
+				container.find(".builder-save").popover('show');
+				changeBuilderPanelButtonState(false);
+				
+				if (app.isDirectCreationFirstSave) {
+					var appTitle = $('#headerDesktop .title .text_edit_label').text();
+					var appSubTitle = $('#headerDesktop .subtitle .text_edit_label').text();
+					if ( appSubTitle == i18n.viewer.headerJS.editMe )
+						appSubTitle = "";
+					
+					if ( ! appTitle || appTitle == i18n.viewer.headerJS.editMe ) {
+						_this.saveFailed("NONAME");
+						return;
+					}
+					
+					// Save the webmap
+					// If ok get the new id
+					// Call saveApp
+					// If ok call appSaveSucceeded
+					builderDirectCreationFirstSave(appTitle, appSubTitle);
+				}
+				else if (app.isGalleryCreation) {
+					builderGalleryCreationFirstSave();
+				}
+				else {
+					// Save the app 
+					// If OK and needed call save webmap 
+					// If OK call appSaveSucceeded
+					builderSave();
+				}
 			}
 			
 			function showSettingsPopup()
@@ -66,25 +88,10 @@ define(["storymaps/maptour/core/WebApplicationData", "storymaps/utils/Helper", "
 				closePopover();
 				_builderView.openSettingPopup(false);
 			}
-	
-			function switchToView(confirmed)
-			{
-				if( confirmed )
-					document.location = '?' + document.location.search.split('edit')[0].slice(1, -1);
-				else
-					container.find(".builder-view").popover('hide');
-			}
-			
-			function openItem()
-			{
-				window.open(
-					Helper.getItemURL(configOptions.sharingurl, app.data.getAppItem().id),
-					'_blank'
-				);
-			}
 			
 			function showHelpPopup()
 			{
+				closePopover();
 				app.builder.openHelpPopup();
 			}
 			
@@ -94,21 +101,38 @@ define(["storymaps/maptour/core/WebApplicationData", "storymaps/utils/Helper", "
 			
 			this.saveSucceeded = function()
 			{
-				container.find(".builder-settings").next(".popover").find(".stepSave").css("display", "none");
-				container.find(".builder-settings").next(".popover").find(".stepSaved").css("display", "block");
-				setTimeout(function(){
-					container.find(".builder-settings").popover('hide');
-				}, 3500);
+				container.find(".builder-save").next(".popover").find(".stepSave").css("display", "none");
+				container.find(".builder-save").popover('hide');
+				
+				if( app.isDirectCreationFirstSave || app.isGalleryCreation )
+					app.builder.openSharePopup(true);
 
 				closePopover();
 				resetSaveCounter();
 				changeBuilderPanelButtonState(true);
 			};
 			
-			this.saveFailed = function()
+			this.saveFailed = function(source, error)
 			{
-				container.find(".builder-settings").next(".popover").find(".stepSave").css("display", "none");
-				container.find(".builder-settings").next(".popover").find(".stepFailed").css("display", "block");
+				container.find(".builder-save").next(".popover").find(".stepSave").css("display", "none");
+				
+				if( source == "FS" && error && error.code == 400 && error.details && error.details[0] && error.details[0].split('html content').length >= 2 ) {
+					container.find(".builder-save").next(".popover").find(".stepFailed2").css("display", "block");
+				}
+				else if (source == "NONAME") {
+					container.find(".builder-save").next(".popover").find(".stepFailed3").css("display", "block");
+					
+					$("#headerDesktop .title").addClass("titleEmpty");
+					
+					container.find(".builder-save").attr("disabled", false);
+					container.find(".builder-settings").attr("disabled", false);
+					container.find(".builder-help").attr("disabled", false);
+					
+					return;
+				}
+				else 
+					container.find(".builder-save").next(".popover").find(".stepFailed").css("display", "block");
+				
 				changeBuilderPanelButtonState(true);
 			};
 			
@@ -126,9 +150,16 @@ define(["storymaps/maptour/core/WebApplicationData", "storymaps/utils/Helper", "
 				var value = container.find("#save-counter").html();
 				if (! _this.hasPendingChange()) {
 					value = 0;
-					if( _displayBuilderSaveIntro )
+					if (_displayBuilderSaveIntro) {
 						// Timer cause the header can be hidden
-						setTimeout(function(){ container.find(".builder-save").popover('show'); }, 250);	
+						setTimeout(function(){
+							container.find(".builder-save").popover('show');
+						}, 250);
+						setTimeout(function(){
+							if( _displayBuilderSaveIntro )
+								container.find(".builder-save").popover('destroy');
+						}, app.isDirectCreationFirstSave || app.isGalleryCreation || app.isInitializing ? 10000 : 3500);
+					}
 				}
 	
 				if( value === 0 ) {
@@ -148,7 +179,6 @@ define(["storymaps/maptour/core/WebApplicationData", "storymaps/utils/Helper", "
 			{
 				container.find("#save-counter").html(i18n.viewer.builderJS.noPendingChange);
 				container.find("#save-counter").css("color", "#999");
-				setUpGeneralPanelButtonAction();
 			}
 			
 			//
@@ -157,132 +187,84 @@ define(["storymaps/maptour/core/WebApplicationData", "storymaps/utils/Helper", "
 	
 			function closePopover()
 			{
-				if( container.find(".discard-popover").length > 0 )
-					container.find(".builder-discard").popover('hide');
-				if( container.find(".view-popover").length > 0 )
-					container.find(".builder-view").popover('hide');
+				container.find(".builder-save").popover('hide');
 			}
 	
-			function setUpPopover()
+			function createInitialSavePopover()
 			{
 				var containerId = "#" + container.attr("id");
-				
-				// Discard button
-				container.find(".builder-discard").popover({
-					trigger: 'manual',
-					placement: 'bottom',
-					html: true,
-					// Inject the CSS properties
-					content: '<script>'
-								+ ' $("' + containerId + ' .builder-discard").next(".popover").addClass("discard-popover");'
-								+ ' $("' + containerId + ' .builder-view").popover("hide");'
-								+ ' $("' + containerId + ' .builder-save").popover("hide");'
-								+ '</script>'
-								+ i18n.viewer.builderJS.popoverDiscard +' '
-								+ '<button type="button" class="btn btn-danger btn-small" onclick="app.builder.discard(true)">'+i18n.viewer.builderJS.yes+'</button> '
-								+ '<button type="button" class="btn btn-small" onClick="app.builder.discard(false)">'+i18n.viewer.builderJS.no+'</button>'
-				});
-	
-				// Switch to view button
-				container.find(".builder-view").popover({
-					trigger: 'manual',
-					html: true,
-					content: '<script>'
-								+ ' $("' + containerId + ' .builder-view").next(".popover").addClass("view-popover");'
-								+ ' $("' + containerId + ' .builder-discard").popover("hide");'
-								+ ' $("' + containerId + ' .builder-save").popover("hide");'
-								+ '</script>'
-								+ i18n.viewer.builderJS.popoverLoseSave + ' '
-								+ '<button type="button" class="btn btn-danger btn-small" onclick="app.builder.switchToView(true)">'+i18n.viewer.builderJS.ok+'</button> '
-								+ '<button type="button" class="btn btn-small" onClick="app.builder.switchToView(false)">'+i18n.viewer.builderHTML.modalCancel+'</button>'
-				});
 	
 				// Confirmation that user need to use the save button
 				container.find(".builder-save").popover({
 					trigger: 'manual',
+					placement: 'left',
 					html: true,
-					content: '<script>setTimeout(function(){$("' + containerId + ' .builder-save").next(".popover").css("margin-left", $("' + containerId + ' > div").width() + 30).addClass("builderPanelPopover");}, 0);'
-								+ '</script>'
+					content: '<script>$("' + containerId + ' .builder-save").next(".popover").addClass("save-popover");</script>'
 								+ i18n.viewer.builderJS.popoverSaveWhenDone
-								+ ' <button type="button" class="btn btn-success btn-small" onclick="app.builder.closeBuilderSaveIntro()">'+i18n.viewer.builderJS.gotIt+'</button> '
 				});
-				
-				container.find('.builder-view').attr('title', i18n.viewer.builderHTML.buttonView);
-				container.find('.builder-help').attr('title', i18n.viewer.builderHTML.buttonHelp);
 			}
 			
-			function createAppSavedConfirmation()
+			function createSavePopover()
 			{
 				var containerId = "#" + container.attr("id");
 
 				// App saved confirmation
-				container.find(".builder-settings").popover({
+				container.find(".builder-save").popover({
 					containerId: containerId,
 					html: true,
 					trigger: 'manual',
 					placement: 'bottom',
 					content: '<script>'
-								+ '$("' + containerId + ' .builder-settings").next(".popover").css("margin-left", "0px").addClass("settings-popover");'
-								+ 'setTimeout(function(){$("' + containerId + ' .builder-settings").next(".popover").css("margin-left", - ($(".builder-save").outerWidth()/2 + $(".builder-discard").outerWidth() + $(".builder-settings").outerWidth()/2+8));}, 0);'
-								+ '$("' + containerId + ' .builder-settings").next(".popover").find(".stepSave").css("display", "block");'
-								+ '$("' + containerId + ' .builder-settings").next(".popover").find(".stepSaved").css("display", "none");'
-								+ '$("' + containerId + ' .builder-settings").next(".popover").find(".stepFailed").css("display", "none");'
+								+ '$("' + containerId + ' .builder-save").next(".popover").addClass("save-popover-2");'
+								+ '$("' + containerId + ' .builder-save").next(".popover").find(".stepSave").css("display", "block");'
+								+ '$("' + containerId + ' .builder-save").next(".popover").find(".stepHidden").css("display", "none");'
 								+ '</script>'
 								+ '<div class="stepSave" style="margin-top: 3px">'
 								+  i18n.viewer.builderJS.savingApplication + '... <img src="resources/icons/loader-upload.gif" class="addSpinner" alt="Uploading">'
 								+ '</div>'
-								+ '<div class="stepSaved">'
-								+  i18n.viewer.builderJS.saveSuccess + ' '
-								+ '<button type="button" class="btn btn-success btn-small" onclick="app.builder.hideSaveConfirmation()" style="vertical-align: 1px;">'+i18n.viewer.builderJS.gotIt+'</button> '
-								+ '</div>'
-								+ '<div class="stepFailed" style="color: red;">'
+								+ '<div class="stepHidden stepFailed" style="color: red;">'
 								+  i18n.viewer.builderJS.saveError + ' '
 								+ '<button type="button" class="btn btn-danger btn-small" onclick="app.builder.hideSaveConfirmation()" style="vertical-align: 1px;">'+i18n.viewer.builderJS.gotIt+'</button> '
 								+ '</div>'
+								+ '<div class="stepHidden stepFailed2" style="color: red;">'
+								+  i18n.viewer.builderJS.saveError2 + ' '
+								+ '<button type="button" class="btn btn-danger btn-small" onclick="app.builder.hideSaveConfirmation()" style="vertical-align: 1px;">'+i18n.viewer.builderJS.gotIt+'</button> '
+								+ '</div>'
+								+ '<div class="stepHidden stepFailed3" style="color: red;">'
+								+  i18n.viewer.builderJS.saveError3 + ' '
+								+ '<button type="button" class="btn btn-danger btn-small" onclick="app.builder.hideSaveConfirmation()" style="vertical-align: 1px;">'+i18n.viewer.builderJS.gotIt+'</button> '
+								+ '</div>'
 				});
-				
-				//container.find('.builder-settings').attr('title', i18n.viewer.builderHTML.buttonSettings);
 			}
 	
-			function closeBuilderSaveIntro()
-			{
-				container.find(".builder-save").popover('destroy');
-				_displayBuilderSaveIntro = false;
-			}
-			
 			//
 			// UI
 			//
-	
-			function setUpGeneralPanelButtonAction()
-			{
-				container.find(".builder-view").click(clickView);
-				container.find(".builder-discard").click(clickDiscard);
-			}
-	
-			function clickDiscard()
-			{
-				if( _this.hasPendingChange() )
-					container.find(".builder-discard").popover('show');
-			}
-	
-			function clickView()
-			{
-				if( _this.hasPendingChange() )
-					container.find(".builder-view").popover('show');
-				else
-					switchToView(true);
-			}
-	
+			
 			function hideSaveConfirmation()
 			{
-				container.find(".builder-settings").popover('hide');
+				container.find(".builder-save").popover('hide');
+				$("#headerDesktop .title").removeClass("titleEmpty");
 			}
 			
 			function changeBuilderPanelButtonState(activate)
 			{
 				container.find(".builder-cmd").attr("disabled", ! activate);
 			}
+			
+			this.updateSharingStatus = function()
+			{
+				if( app.isDirectCreationFirstSave || app.isGalleryCreation ) {
+					$("#sharing-status").html("<span style='color: #FFF'>; " + i18n.viewer.builderJS.shareStatus1 + "</span>");
+					container.find('.builder-share').attr("disabled", "disabled");
+				}
+				else if ( app.data.getAppItem().access == "public" )
+					$("#sharing-status").html("; " + i18n.viewer.builderJS.shareStatus2);
+				else if ( app.data.getAppItem().access == "account" )
+					$("#sharing-status").html("; " + i18n.viewer.builderJS.shareStatus3);
+				else
+					$("#sharing-status").html("; " + i18n.viewer.builderJS.shareStatus4);
+			};
 			
 			this.resize = function()
 			{
@@ -301,12 +283,9 @@ define(["storymaps/maptour/core/WebApplicationData", "storymaps/utils/Helper", "
 			{
 				container.find('h4').html(i18n.viewer.builderHTML.panelHeader);
 				container.find('button').eq(0).html(i18n.viewer.builderHTML.buttonSave);
-				container.find('button').eq(1).html(i18n.viewer.builderHTML.buttonDiscard);
-				//container.find('button').eq(2).html('<img src="resources/icons/builder-setings.png" style="vertical-align: -6px;" alt="' + i18n.viewer.builderHTML.buttonSettings + '" />');
+				container.find('button').eq(1).html(i18n.viewer.builderHTML.buttonShare.toUpperCase());
 				container.find('button').eq(2).html(i18n.viewer.builderHTML.buttonSettings.toUpperCase());
-				container.find('button').eq(3).html('<img src="resources/icons/builder-view.png" style="vertical-align: -6px;" alt="' + i18n.viewer.builderHTML.buttonView + '" />');
-				container.find('button').eq(4).html('<i class="icon-file"></i>').attr("title", i18n.viewer.builderHTML.buttonItem);
-				container.find('button').eq(5).html('<img src="resources/icons/builder-help.png" style="vertical-align: -6px;" alt="' + i18n.viewer.builderHTML.buttonHelp + '" />');
+				container.find('button').eq(3).html(i18n.viewer.builderHTML.buttonHelp.toUpperCase());
 				container.find('#save-counter').html(i18n.viewer.builderJS.noPendingChange);
 			}
 		};

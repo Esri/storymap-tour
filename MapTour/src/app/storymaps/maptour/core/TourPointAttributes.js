@@ -47,27 +47,28 @@ define(["storymaps/maptour/core/WebApplicationData",
 			
 			this.getName = function()
 			{
-				if( ! _attributes || ! _fields)
+				if( ! _attributes || ! _fields )
 					return null;
 				
 				var fieldsOverride = WebApplicationData.getFieldsOverride();
 				var field = fieldsOverride ? fieldsOverride.getNameField() : _fields.getNameField();
-				return _attributes[field] || '';
+				
+				return MapTourHelper.decodeText(_attributes[field]) || '';
 			};
 			
 			this.getDescription = function()
 			{
-				if( ! _attributes || ! _fields)
+				if( ! _attributes || ! _fields )
 					return null;
 				
 				var fieldsOverride = WebApplicationData.getFieldsOverride();
 				var field = fieldsOverride ? fieldsOverride.getDescriptionField() : _fields.getDescriptionField();
-				return _attributes[field] || '';
+				return MapTourHelper.decodeText(_attributes[field]) || '';
 			};
 			
 			this.getColor = function()
 			{
-				if( ! _attributes || ! _fields)
+				if( ! _attributes || ! _fields )
 					return null;
 				
 				var fieldsOverride = WebApplicationData.getFieldsOverride();
@@ -135,6 +136,30 @@ define(["storymaps/maptour/core/WebApplicationData",
 				}
 			};
 			
+			// Is the main media set to a video by the 'is_video' attribute
+			// Doesn't take in consideration isVideo qualifier in URL
+			this.isVideo = function()
+			{
+				if( ! _attributes || ! _fields )
+					return null;
+				
+				var value = _attributes[_fields.getIsVideoField()];
+				return value === true || (""+value).toLowerCase() == "true";
+			};
+			
+			this.setIsVideo = function(isVideo)
+			{
+				if( ! _attributes || ! _fields )
+					return null;
+				
+				// For compatibility reason, the is_video field isn't saved in the config
+				
+				if( ! _fields.getIsVideoField() )
+					return;
+				
+				_attributes[_fields.getIsVideoField()] = isVideo;
+			};
+			
 			this.getOriginalGraphic = function()
 			{
 				return _graphic;
@@ -173,6 +198,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var colorField = fieldsOverride ? fieldsOverride.getIconColorField() : _fields.getIconColorField();
 				var picUrlField = fieldsOverride ? fieldsOverride.getURLField() : _fields.getURLField();
 				var picThumbField = fieldsOverride ? fieldsOverride.getThumbField() : _fields.getThumbField();
+				var isVideoField = _fields.getIsVideoField();
+				
+				var isVideoFieldChanged = _attributes[isVideoField] != _graphic.attributes[isVideoField];
 				
 				return _attributes[nameField] != _graphic.attributes[nameField]
 						|| _attributes[descField] != _graphic.attributes[descField]
@@ -180,7 +208,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 						|| (app.data.sourceIsNotFSAttachments() &&
 								_attributes[picUrlField] != _graphic.attributes[picUrlField]
 								|| _attributes[picThumbField] != _graphic.attributes[picThumbField]
-							);
+							)
+						|| isVideoFieldChanged;
 			};
 			
 			/**
@@ -194,10 +223,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var colorField = fieldsOverride ? fieldsOverride.getIconColorField() : _fields.getIconColorField();
 				var picUrlField = fieldsOverride ? fieldsOverride.getURLField() : _fields.getURLField();
 				var picThumbField = fieldsOverride ? fieldsOverride.getThumbField() : _fields.getThumbField();
+				var isVideoField = _fields.getIsVideoField();
 	
 				_graphic.attributes[nameField] = _attributes[nameField];
 				_graphic.attributes[descField] = _attributes[descField];
 				_graphic.attributes[colorField] = _attributes[colorField];
+				
+				if ( isVideoField )
+						_graphic.attributes[isVideoField] = _attributes[isVideoField];
 				
 				if( app.data.sourceIsNotFSAttachments() ) {
 					_graphic.attributes[picUrlField] = _attributes[picUrlField];

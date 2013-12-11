@@ -1,4 +1,18 @@
 /*
+ * General rules for mobile
+ */
+
+/* Disable text selection */
+#footerMobile, #listPanel, #infoPanel, #introPanel, #headerMobile, #openHeaderMobile {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/*
  * Rules used by ListView and Carousel
  */
 
@@ -34,6 +48,10 @@
 
 .tpIcon {
 	position:absolute;
+}
+
+body.notNumbered .tpIcon {
+	display: none;
 }
 
 .tpName {
@@ -90,6 +108,14 @@
 	border:5px #fff solid;
 	-webkit-box-shadow: 2px 2px 3px 0px #444444;
 	box-shadow: 2px 2px 3px 0px #444444;
+}
+
+body.notNumbered .tourPointIcon {
+	display: none;
+}
+
+body.notNumbered  .tourPointName {
+	margin-left: 40px;
 }
 
 .tourPointIframe {

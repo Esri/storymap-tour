@@ -1,0 +1,43 @@
+.popupViewYoutube .modal-body {
+	padding-bottom: 5px;
+}
+
+.popupViewYoutube .headerContainer {
+	margin-bottom: 28px;
+}
+
+.popupViewYoutube .youtubeContainer {
+	margin-bottom: -5px;
+}
+
+.popupViewYoutube .youtubeLookup {
+	vertical-align: 4px;
+}
+
+.popupViewYoutube .lookingUpMsg {
+	height: 16px;
+	font-size: 14px;
+	color: #30750a;
+	font-weight: bold;
+	vertical-align: 2px;
+}
+
+.popupViewYoutube .lookingUpMsg.error {
+	color: #c43d40;
+}
+
+.popupViewYoutube .howToFind { 
+	display: block;
+	margin-top: 20px;
+}
+
+.popupViewYoutube .howToFind a {
+	text-decoration: underline;
+	font-weight: normal;
+}
+
+.popupViewYoutube .howToFind-popover {
+	left: 10px !important;
+	width: 310px;
+	max-width: 310px;
+}

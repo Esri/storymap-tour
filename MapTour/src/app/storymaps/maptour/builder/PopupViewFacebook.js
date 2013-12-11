@@ -4,6 +4,8 @@ define(["storymaps/utils/FacebookConnector", "dojo/Deferred"],
 		{
 			$('#init-import-views').append($('#popupViewFacebook').clone());
 			var _container = $('.popupViewFacebook').last();
+			_container.attr("id", '#popupViewFacebook' + $('.popupViewFacebook').length);
+			
 			var _facebook = null;
 			var _footer = null;
 			
@@ -30,22 +32,16 @@ define(["storymaps/utils/FacebookConnector", "dojo/Deferred"],
 			{
 				var nextViewDeferred = new Deferred();
 				
-				var pictureRqHandler = function(data){
+				var pictureRqHandler = function(data, title){
 					if( ! data.length ) {
 						updateFooter("error");
 						return;
 					}
 					
-					if( ! _container.find(".useLocation input").is(":checked") ) {
-						$.each(data, function(i, pic){
-							pic.lat = '';
-							pic.lng = '';
-						});
-					}
-					
 					nextViewDeferred.resolve({
 						name: 'geotag',
 						params: {
+							title: title,
 							data: data
 						}
 					});
@@ -56,16 +52,31 @@ define(["storymaps/utils/FacebookConnector", "dojo/Deferred"],
 						_container.find("#facebookListAlbum1").val(), 
 						true, 
 						_nbPicturesAuthorized
-					).then(pictureRqHandler);
+					).then(function(data){
+						var albumTitle = _container.find("#facebookListAlbum1 option:selected").text();
+						albumTitle = albumTitle.split(/\ \([0-9]+\)/)[0];
+						
+						pictureRqHandler(data, albumTitle);
+					});
 				else 
 					_facebook.getPageAlbum(
 						_container.find("#facebookListAlbum2").val(), 
 						_nbPicturesAuthorized, 
 						true, 
 						true
-					).then(pictureRqHandler);
+					).then(function(data){
+						var albumTitle = _container.find("#facebookListAlbum2 option:selected").text();
+						albumTitle = albumTitle.split(/\ \([0-9]+\)/)[0];
+						
+						pictureRqHandler(data, albumTitle);
+					});
 					
 				return nextViewDeferred;
+			};
+			
+			this.getTitle = function()
+			{
+				return i18n.viewer.viewFacebook.title;
 			};
 			
 			function showView(params)
@@ -73,7 +84,6 @@ define(["storymaps/utils/FacebookConnector", "dojo/Deferred"],
 				if (! params || ! params.isReturning) {
 					disableNextBtn();
 					disableLists();
-					_container.find(".useLocation input").attr("checked", "checked");
 					if( ! _container.find(".selectPageName").val() )
 						_container.find('.btn-pageLookup').attr("disabled", "disabled");
 				}
@@ -81,8 +91,10 @@ define(["storymaps/utils/FacebookConnector", "dojo/Deferred"],
 				// TODO private list is buggy if the page has been used when returning
 				if( ! params.isReturning ) 
 					loadUserAlbums();
+				else
+					_footer.find('.btnNext').html(i18n.viewer.onlinePhotoSharingCommon.footerImport);
 				
-				_container.find(".commonHeader").html(i18n.viewer.onlinePhotoSharingCommon.header2.replace('%NB1%', _nbPicturesAuthorized).replace('%NB2%', _nbPicturesMax));
+				_container.find(".commonHeader").html(i18n.viewer.onlinePhotoSharingCommon.header2.replace('%NB1%', _nbPicturesAuthorized).replace('%MEDIA%', i18n.viewer.onlinePhotoSharingCommon.pictures).replace('%NB2%', _nbPicturesMax));
 				updateFooter();
 			}
 			
@@ -132,10 +144,10 @@ define(["storymaps/utils/FacebookConnector", "dojo/Deferred"],
 										+ ' (' + (album.count||0) + ')'
 										+ '</option>';
 						});
-						
+
+						_container.find(".lookingUpMsg").html("");						
 						_container.find("#facebookListAlbum2").removeAttr("disabled").html(outHtml);
 						_container.find("#facebookListAlbum2").change();
-						_container.find(".lookingUpMsg").html("");
 					},
 					function(){
 						_container.find(".lookingUpMsg").addClass('error').html(i18n.viewer.viewFacebook.lookupMsgError);
@@ -220,18 +232,6 @@ define(["storymaps/utils/FacebookConnector", "dojo/Deferred"],
 				_container.find('.selectPageName').attr("placeholder", i18n.viewer.viewFacebook.pageInputLbl);
 				_container.find('.control-label[for="facebookListAlbum1"]').html(i18n.viewer.onlinePhotoSharingCommon.selectAlbum2);
 				_container.find('.control-label[for="facebookListAlbum2"]').html(i18n.viewer.onlinePhotoSharingCommon.selectAlbum);
-				
-				_container.find('.useLocation span').html(
-					i18n.viewer.onlinePhotoSharingCommon.locUse 
-					+ '<a><img src="resources/icons/builder-help.png" style="vertical-align: -4px;"/><a>'
-				);
-				_container.find('.useLocation a').popover({
-					trigger: 'hover',
-					placement: 'top',
-					html: true,
-					content: '<script>$(".useLocation a").next(".popover").css("width", "350px");</script>'
-								+ i18n.viewer.onlinePhotoSharingCommon.locExplain
-				});
 				
 				_container.find('.sideHeader a').popover({
 					trigger: 'hover',

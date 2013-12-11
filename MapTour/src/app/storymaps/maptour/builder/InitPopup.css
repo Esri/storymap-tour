@@ -1,5 +1,15 @@
-#initPopup {
-	top: 20% !important;
+@media only screen and (max-height : 708px) {
+	#initPopup {
+		top: 50% !important;
+		margin-top: -304px;
+	}
+}
+
+@media only screen and (max-height : 608px) {
+	#initPopup {
+		top: 0px !important;
+		margin-top: 0px;
+	}
 }
 
 #initPopup .modal-footer {
@@ -7,5 +17,11 @@
 }
 
 #initPopup .modal-body {
-	overflow: hidden;
+	overflow: visible;
+}
+
+#initPopup .popover {
+	font-size: 14px;
+	font-weight: initial;
+	line-height: initial;
 }

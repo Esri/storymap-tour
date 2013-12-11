@@ -1,5 +1,5 @@
-define(["esri/request"], 
-	function(esriRequest){
+define(["esri/request", "dojo/_base/lang"], 
+	function(esriRequest, lang){
 		return {
 			restoreFS: function()
 			{
@@ -12,22 +12,98 @@ define(["esri/request"],
 			{
 				// For FS without attachments
 				var addedFeatures = app.data.getAddedPoints();
-				var updatedFeatures = [];
+				var updatedTourPoints = [], updatedFeatures = [];
 				var droppedFeatures = app.data.getDroppedPointsGraphics();
 				$.each(app.data.getTourPoints(true), function(i, tourPoint){
-					if( tourPoint.hasBeenUpdated() )
-						updatedFeatures.push( tourPoint.getUpdatedFeature() );
+					if (tourPoint.hasBeenUpdated()) {
+						updatedTourPoints.push(tourPoint);
+						updatedFeatures.push(tourPoint.getUpdatedFeature());
+					}
 				});
 				
-				if ( addedFeatures.length > 0 || updatedFeatures.length > 0 || droppedFeatures.length > 0 ) {
+				var applyEditRQ = lang.hitch(this, function() {
 					this.fsApplyEdits(
 						app.data.getSourceLayer(),
 						addedFeatures,
 						updatedFeatures,
 						droppedFeatures,
-						successCallback,
-						errorCallback
+						function(addedFeatures, updatedFeatures, deletedFeatures){
+							if( ! addedFeatures || ! updatedFeatures || ! deletedFeatures ) {
+								errorCallback();
+								return;
+							}
+							
+							var rqFail = false;
+							var results = [].concat(addedFeatures).concat(updatedFeatures).concat(deletedFeatures);
+							$.each(results, function(i, result){
+								if ( ! result.success )
+									rqFail = true;
+							});
+							
+							if ( rqFail ) {
+								// TODO added points should be cleaned
+								// Can lead to points added multiple times
+								
+								// TODO should only flag the points that failed better
+								$.each(updatedTourPoints, function(i, point){
+									point.setUpdateFailed();
+								});
+								
+								// TODO removed points should be cleaned
+								// Not an issue to delete a point non existing
+								
+								errorCallback();
+								return;
+							}
+							
+							$.each(updatedTourPoints, function(i, point){
+								point.cleanUpdateFailed();
+							});
+							
+							successCallback();
+						},
+						function(error){
+							$.each(updatedTourPoints, function(i, point){
+								point.setUpdateFailed();
+							});
+							errorCallback(error);
+						}
 					);
+				});
+				
+				if ( addedFeatures.length > 0 || updatedFeatures.length > 0 || droppedFeatures.length > 0 ) {
+					var layer = app.data.getSourceLayer();
+					// If the layer has StaticData -> need to set it to false for update to be stable
+					// Eventually this should be reset to true for performance
+					// But AGOL doesn't do it immediately after the request, so not sure when is a good time...
+					if( layer && layer._params && layer._params.resourceInfo && layer._params.resourceInfo.hasStaticData ) {
+						var urlSplit = layer.url.split('/');
+						if( urlSplit.length == 10 ) {							
+							esriRequest(
+								{
+									url: urlSplit.slice(0,5).join('/') + '/admin/services/' + urlSplit[7] + ".FeatureServer/updateDefinition",
+									content: {
+										"f": 'json',
+										"updateDefinition": "{\"hasStaticData\": false}"
+									},
+									handleAs: 'json'
+								},
+								{
+									usePost: true
+								}
+							).then(
+								function(){
+									layer._params.resourceInfo.hasStaticData = false;
+									applyEditRQ();
+								},
+								applyEditRQ
+							);
+						}
+						else
+							applyEditRQ();
+					}
+					else
+						applyEditRQ();
 				}
 				else
 					successCallback();
@@ -73,8 +149,8 @@ define(["esri/request"],
 						else
 							that.uploadPictureAndThumbnailUsingData(result[0].objectId, pictureData, thumbnailData, callback);
 					},
-					function(){
-						callback(false);
+					function(error){
+						callback(false, error);
 					}
 				);
 			},
@@ -93,8 +169,8 @@ define(["esri/request"],
 						else
 							that.uploadPictureUsingForm(result[0].objectId, pictureFormId, callback);
 					},
-					function(){
-						callback(false);
+					function(error){
+						callback(false, error);
 					}
 				);
 			},
@@ -107,15 +183,14 @@ define(["esri/request"],
 					null,
 					[tourPoint],
 					null,
-					function(){
-						// TODO why result is empty ?
-						//if (!result || !result[0] || !result[0].success)
-						//	callback(false);
-						//else
+					function(addedFeatures, updatedFeatures){
+						if (!updatedFeatures || !updatedFeatures[0] || !updatedFeatures[0].success)
+							callback(false);
+						else
 							that.uploadPictureUsingForm(objectId, thumbnailFormId, callback);
 					},
-					function(){
-						callback(false);
+					function(error){
+						callback(false, error);
 					}
 				);
 			},

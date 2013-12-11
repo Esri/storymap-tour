@@ -28,7 +28,7 @@
 
 .popupViewPicasa .howToFind { 
 	display: block;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 .popupViewPicasa .howToFind a {
@@ -36,7 +36,7 @@
 	font-weight: normal;
 }
 
-.howToFind-popover {
-	left: 5px !important;
+.popupViewPicasa .howToFind-popover {
+	left: 10px !important;
 	min-width: 380px;
 }

@@ -16,6 +16,7 @@ define([],
 			var _fieldURL = cfg ? cfg.fieldURL : null;
 			var _fieldThumb = cfg ? cfg.fieldThumb : null;
 			var _fieldIconColor = cfg ? cfg.fieldIconColor : null;
+			var _fieldIsVideo = cfg ? cfg.fieldIsVideo : null;
 		
 			this.setIDField = function(value)
 			{
@@ -77,6 +78,16 @@ define([],
 				return _fieldIconColor;
 			};
 			
+			this.setIsVideoField = function(value)
+			{
+				_fieldIsVideo = value;
+			};
+			
+			this.getIsVideoField = function()
+			{
+				return _fieldIsVideo;
+			};
+			
 			this.allFieldsFound = function()
 			{
 				return _this.getIDField() !== ''
@@ -111,7 +122,8 @@ define([],
 					fieldDescription: _this.getDescriptionField(),
 					fieldURL: _this.getURLField(),
 					fieldThumb: _this.getThumbField(),
-					fieldIconColor: _this.getIconColorField()				
+					fieldIconColor: _this.getIconColorField(),
+					fieldIsVideo: _this.getIsVideoField()		
 				};
 			};
 		};

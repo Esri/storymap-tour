@@ -1,0 +1,25 @@
+#initPopupViewAdvanced .header {
+	margin-bottom: 15px;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#initPopupViewAdvanced .options {
+	width: 100%;
+	text-align: center;
+}
+
+#initPopupViewAdvanced .btn-adv {
+	width: 310px;
+}
+
+#initPopupViewAdvanced .csv-note {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+#initPopupViewAdvanced .csv-note a {
+	text-decoration: underline;
+	font-size: 14px;
+}

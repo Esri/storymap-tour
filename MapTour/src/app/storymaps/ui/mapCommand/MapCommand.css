@@ -53,3 +53,7 @@ body.mobile-view .mapCommandHomeBtn.loading.touch {
 	margin-top: 2px;
 	width: 32px;
 }
+
+.mapCommandLocation.hidden {
+	display: none !important;
+}

@@ -1,18 +1,22 @@
 define(["storymaps/maptour/builder/InitPopupViewHome",
 		"storymaps/maptour/builder/InitPopupViewHostedFSCreation",
+		"storymaps/maptour/builder/InitPopupViewAdvanced",
 		"storymaps/maptour/builder/PopupViewCSV",
 		"storymaps/maptour/builder/PopupViewFlickr",
 		"storymaps/maptour/builder/PopupViewFacebook",
 		"storymaps/maptour/builder/PopupViewPicasa",
+		"storymaps/maptour/builder/PopupViewYoutube",
 		"storymaps/maptour/builder/PopupViewGeoTag",
 		"dojo/Deferred"], 
 	function (
 			InitPopupViewHome, 
 			InitPopupViewHostedFSCreation, 
+			InitPopupViewAdvanced,
 			PopupViewCSV,
 			PopupViewFlickr,
 			PopupViewFacebook,
 			PopupViewPicasa,
+			PopupViewYoutube,
 			PopupViewGeoTag,
 			Deferred)
 	{
@@ -21,10 +25,12 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 			var _views = {
 				home: new InitPopupViewHome(),
 				hostedFS: new InitPopupViewHostedFSCreation($('#initPopupViewHostedFSCreation')),
+				advanced: new InitPopupViewAdvanced(),
 				Flickr: new PopupViewFlickr(),
 				Facebook: new PopupViewFacebook(),
 				Picasa: new PopupViewPicasa(),
 				CSV: new PopupViewCSV(container),
+				Youtube: new PopupViewYoutube(container),
 				geotag: new PopupViewGeoTag(container)
 			};
 
@@ -48,10 +54,12 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 				
 				_views.home.init(params.home, initCompleteDeferred, footer);
 				_views.hostedFS.init(params.hostedFS, initCompleteDeferred, footer);
+				_views.advanced.init(params.advanced, initCompleteDeferred, footer);
 				_views.CSV.init(params.CSV, initCompleteDeferred, footer);
 				_views.Flickr.init(params.Flickr, null, footer);
 				_views.Facebook.init(params.Facebook, null, footer);
 				_views.Picasa.init(params.Picasa, null, footer);
+				_views.Youtube.init(params.Youtube, null, footer);
 				_views.geotag.init(params.geotag, initCompleteDeferred, footer);
 				
 				displayView('home');
@@ -77,7 +85,17 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 				else
 					_btnPrev.hide();
 				
+				container.find('h3').html(_views[_currentViewName].getTitle());
 				_viewContainer.html(_views[_currentViewName].getView(params || {}));
+				
+				if( _currentViewName == "home" ) {
+					container.find('.initHeaderTooltip').popover({
+						trigger: 'hover',
+						placement: 'bottom',
+						html: true,
+						content: i18n.viewer.initPopupHome.header2
+					});
+				}
 				
 				if( _views[_currentViewName].postDisplayCallback )
 					_views[_currentViewName].postDisplayCallback();
@@ -121,8 +139,6 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 	
 			this.initLocalization = function()
 			{
-				container.find('h3').html(i18n.viewer.initPopup.title);
-				
 				$.each(_views, function(i, view){
 					view.initLocalization();
 				});

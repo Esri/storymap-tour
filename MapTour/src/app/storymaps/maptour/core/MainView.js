@@ -20,7 +20,6 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"esri/geometry/Point",
 		"esri/geometry/Extent",
 		"esri/config",
-		"esri/urlUtils",
 		"esri/geometry/webMercatorUtils",
 		"dojo/topic",
 		"dojo/Deferred",
@@ -50,7 +49,6 @@ define(["storymaps/maptour/core/WebApplicationData",
 		Point,
 		Extent,
 		esriConfig,
-		urlUtils,
 		webMercatorUtils,
 		topic,
 		Deferred,
@@ -84,7 +82,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				}
 				
 				// Url parameters handling
-				var urlParams = urlUtils.urlToObject(document.location.search).query || {};
+				var urlParams = Helper.getUrlParams();
 				configOptions.sourceLayerTitle = (urlParams.sourceLayerTitle ? unescape(urlParams.sourceLayerTitle) : null) || configOptions.sourceLayerTitle;
 				configOptions.firstRecordAsIntro = urlParams.firstRecordAsIntro
 														? urlParams.firstRecordAsIntro == "true"
@@ -118,9 +116,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// Keybord event for previous/next pictures in viewer mode
 				if( ! app.isInBuilderMode ) {
 					$(window).keyup(function(e){
-						if( e.keyCode == 39 )
+						// Enter or right arrow or down arrow or page down
+						if( e.keyCode == 13 || e.keyCode == 39 || e.keyCode == 34 )
 							loadNextPicture();
-						else if ( e.keyCode == 37 )
+						else if ( e.keyCode == 37 || e.keyCode == 33 )
 							loadPrevPicture();
 					});
 				}
@@ -130,10 +129,16 @@ define(["storymaps/maptour/core/WebApplicationData",
 				$(document).bind(
 					'touchmove',
 					function(e) {
-						if( ! $(e.target).parents('#helpPopup, #placardContainer, #infoPanel, #popupViewGeoTag').length )
+						if( ! $(e.target).parents('#helpPopup, #placardContainer, #introPanel, #infoPanel, #popupViewGeoTag').length && ! $(e.target).hasClass('subtitle') )
 							e.preventDefault();
 					}
 				);
+				
+				if( has("touch") )
+					$("body").addClass("hasTouch");
+					
+				if ( APPCFG.USE_STATIC_ICON && APPCFG.USE_STATIC_ICON.enabled )
+					$("body").addClass("notNumbered");
 				
 				return true;
 			};
@@ -352,6 +357,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 					// If the index parameter isn't valid discard it
 					if( forceStartIndex && (isNaN(forceStartIndex) || forceStartIndex < 0 || forceStartIndex > app.data.getTourPoints().length) )
 						forceStartIndex = null;
+						
+					// Apply the zoom level if starting on a specific point
+					if ( forceStartIndex )
+						app.isFirstUserAction = true;
 					
 					// If the first record is an introduction 
 					if( (configOptions.firstRecordAsIntro || WebApplicationData.getFirstRecordAsIntro()) && result.graphics.length > 1 ) {
@@ -447,10 +456,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 					}
 				});
 				
-				// Display alll graphics layers except the one that is used as the sourceLayer
+				// Display all graphics layers except the one that is used as the sourceLayer
 				$.each(app.map.graphicsLayerIds, function(i, layerName){
 					if( layerName != app.data.getSourceLayer().id )
-						$("#" + layerName + "_layer").css("visibility", "visible");
+						$('g[id="' + layerName + '_layer"]').css("visibility", "visible");
 				});
 	
 				// Picture panel init
@@ -463,8 +472,12 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// If the layer used for Map Tour has changed
 				if( app.isInBuilderMode && WebApplicationData.getSourceLayer() && app.data.getSourceLayer().id != WebApplicationData.getSourceLayer() )
 					app.builder.setDataWarning(i18n.viewer.builderHTML.dataSourceWarning, true);
+				// If points have been added outside of the interactive builder
+				else if ( app.isInBuilderMode && app.data.detectDataAddedOutsideOfBuilder() )
+					app.builder.setOrganizeWarning();
 				
-				// Since V2.1 images need to end with a valid extension
+				// In V2.1 images needed to end with a valid extension
+				// In 2.2 not needed anymore but check is still needed for tour created with 2.1 that have disabled videos
 				if (app.isInBuilderMode && app.data.sourceIsNotFSAttachments())
 					app.builder.checkPicturesExtension(false);
 				
@@ -529,6 +542,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 				app.mobileInfoView.update(tourPoints, appColors[2]);
 				app.desktopPicturePanel.update(appColors[1], MapTourHelper.isModernLayout());
 				
+				app.mapCommand.enableLocationButton(WebApplicationData.getZoomLocationButton());
+				
 				// Set the symbol, update UI component
 				selectedPointChange_after(editFirstRecord ? app.data.getIntroData() : null);
 			};
@@ -536,7 +551,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			this.resize = function(cfg)
 			{
 				// Feature Service creation
-				if (app.isCreatingFS) {
+				if (app.initScreenIsOpen) {
 					// Display the fatal error dialog box on mobile or the data popup on desktop
 					$("#loadingOverlay").css("top", cfg.isMobileView ? "0px" : $("#header").height());
 					$("#loadingOverlay").css("height", cfg.isMobileView ? $("body").height() : $("body").height() - $("#header").height());
@@ -572,23 +587,36 @@ define(["storymaps/maptour/core/WebApplicationData",
 			this.showInitPopup = function()
 			{
 				_core.cleanLoadingTimeout();
-				app.isCreatingFS = true;
+				app.isInitializing = true;
+				app.initScreenIsOpen = true;
 				_core.initError("noLayerMobile", null, true);
 				_core.handleWindowResize();
 				
 				var resultDeferred = app.builder.presentInitPopup(app.portal, app.data.getWebMapItem());
 				resultDeferred.then(
-					function()
+					function(albumTitle)
 					{
 						$('#initPopup').modal("hide");
-						app.isCreatingFS = false;
+						app.initScreenIsOpen = false;
 						
 						var hasCleanedPreviousLayer = WebApplicationData.cleanWebAppAfterInitialization();
 						if( hasCleanedPreviousLayer )
 							topic.publish("BUILDER_INCREMENT_COUNTER", 1);
 							
 						_core.prepareAppForWebmapReload();
-						_core.loadWebMap(app.data.getWebMapItem().item.id);
+						$("#loadingOverlay").css("height", "100%");
+						
+						if (app.isDirectCreation) {
+							WebApplicationData.setTitle(albumTitle);
+							_core.loadWebMap(app.data.getWebMapItem());
+							topic.publish("BUILDER_INCREMENT_COUNTER", 1);
+						}
+						else if (app.isGalleryCreation) {
+							_core.loadWebMap(app.data.getWebMapItem());
+							topic.publish("BUILDER_INCREMENT_COUNTER", 1);
+						}
+						else 
+							_core.loadWebMap(app.data.getWebMapItem().item.id);
 					},
 					function()
 					{
@@ -597,7 +625,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 						$("#header").css("display", "inherit");
 						$("#fatalError").css("display", "block");
 						
-						app.isCreatingFS = false;
+						app.initScreenIsOpen = false;
 						_core.handleWindowResize();
 					}
 				);
@@ -771,10 +799,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 					attributes.getName(),
 					attributes.getDescription(),
 					attributes.getThumbURL(),
-					computePicturePanelButtonStatus(forcedRecord),
+					computePicturePanelButtonStatus(),
 					MapTourHelper.isModernLayout(),
 					WebApplicationData.getPlacardPosition() === "under" || configOptions.placardPosition === "under",
-					MapTourHelper.mediaIsSupportedImg(attributes.getURL())
+					(! attributes.isVideo()) && MapTourHelper.mediaIsSupportedImg(attributes.getURL())
 				);
 			}
 			
@@ -795,6 +823,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 					
 					if ( appZoomLevel !== "" && appZoomLevel != -1 && (""+appZoomLevel != "NaN") && appZoomLevel != app.map.getZoom() ) {
 						try {
+							if( appZoomLevel > app.map.getMaxZoom() )
+								appZoomLevel = app.map.getMaxZoom();
+							
 							_this.centerMap(graphic.geometry, appZoomLevel);
 							on.once(app.map, "extent-change", function() {
 								setCurrentGraphicIcon(graphic);
@@ -823,11 +854,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 					displayApp();
 			}
 	
-			function computePicturePanelButtonStatus(forceDisableLeft)
+			function computePicturePanelButtonStatus()
 			{
 				var index = app.data.getCurrentIndex();
 				return {
-					left: !! index && ! forceDisableLeft,
+					left: !! index,
 					right: index != app.data.getNbPoints() - 1
 				};
 			}
@@ -950,10 +981,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var iconCfg = APPCFG.ICON_CFG[type];
 				if( ! iconCfg )
 					return;
-	
+					
 				if( type == "selected" )
 					setTimeout(function(){ moveGraphicToFront(graphic); }, 0);
-					
+				
+				if ( APPCFG.USE_STATIC_ICON && APPCFG.USE_STATIC_ICON.enabled 
+						&& APPCFG.USE_STATIC_ICON.width && APPCFG.USE_STATIC_ICON.height )
+					return;
+				
 				symbol.setWidth(iconCfg.width).setHeight(iconCfg.height).setOffset(iconCfg.offsetX, iconCfg.offsetY);
 				graphic.draw();
 			}
@@ -981,7 +1016,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					graphic.getDojoShape().moveToFront();
 				}
 				catch (e) { }
-					
+				
 				// Create the popover
 				if( app.isInBuilderMode ){
 					if( app.data.sourceIsEditable() )
@@ -997,7 +1032,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 						borderColor: APPCFG.POPUP_BORDER_COLOR,
 						pointerColor: APPCFG.POPUP_ARROW_COLOR,
 						textColor: "#ffffff",
-						offsetTop: 32,
+						offsetTop: app.data.getTourLayer().renderer.getSymbol(graphic).height / 2 + app.data.getTourLayer().renderer.getSymbol(graphic).yoffset,
 						topLeftNotAuthorizedArea: has('touch') ? [40, 180] : [30, 150],
 						mapAuthorizedWidth: MapTourHelper.isModernLayout() ? domQuery("#picturePanel").position()[0].x : -1,
 						mapAuthorizedHeight: MapTourHelper.isModernLayout() ? domQuery("#footerDesktop").position()[0].y - domQuery("#header").position()[0].h : -1,
@@ -1041,8 +1076,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 				
 				var visibleExtent = new Extent(
 					app.map.extent.xmin,
-					app.map.extent.ymin + ((10 + domGeom.position(dom.byId("footer")).h) * app.map.__LOD.resolution),
-					app.map.extent.xmin + (domGeom.position(dom.byId("picturePanel")).x * app.map.__LOD.resolution),
+					app.map.extent.ymin + ((10 + domGeom.position(dom.byId("footer")).h) * app.map.getResolution()),
+					app.map.extent.xmin + (domGeom.position(dom.byId("picturePanel")).x * app.map.getResolution()),
 					app.map.extent.ymax,
 					app.map.extent.spatialReference
 				);
@@ -1080,8 +1115,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 					if ( ! zoomLevel )
 						app.map.centerAt(
 							center.offset(
-								offsetX * app.map.__LOD.resolution,
-								- offsetY * app.map.__LOD.resolution
+								offsetX * app.map.getResolution(),
+								- offsetY * app.map.getResolution()
 							)
 						);
 					else
@@ -1163,18 +1198,17 @@ define(["storymaps/maptour/core/WebApplicationData",
 			this.zoomToDeviceLocation = function(success, geom)
 			{
 				if( success ) {
-					if( app.map.spatialReference.wkid == 102100 )
-						geom = webMercatorUtils.geographicToWebMercator(geom);
-					else if ( app.map.spatialReference.wkid != 4326 ) {
+					if ( app.map.spatialReference.wkid != 102100 && app.map.spatialReference.wkid != 4326 ) {
 						esriConfig.defaults.geometryService.project([geom], app.map.spatialReference, function(features){
 							if( ! features || ! features[0] )
 								return;
 							
-							_this.centerMap(features[0]);
+							if (! visibleMapContains(features[0])) 
+								_this.centerMap(features[0]);
 						});
 					}
-					
-					_this.centerMap(geom);
+					else if (! visibleMapContains(geom)) 
+						_this.centerMap(geom);
 				}
 			};
 			
@@ -1192,7 +1226,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 					var originalGeom = this.attributes.getOriginalGraphic().geometry;
 					return this.attributes.hasBeenUpdated()
 							|| this.geometry.x != originalGeom.x
-							|| this.geometry.y != originalGeom.y;
+							|| this.geometry.y != originalGeom.y
+							|| this.commitFailed;
 				};
 	
 				/**
@@ -1221,6 +1256,17 @@ define(["storymaps/maptour/core/WebApplicationData",
 					var originalGeom = this.attributes.getOriginalGraphic().geometry;
 					this.geometry.x = originalGeom.x;
 					this.geometry.y = originalGeom.y;
+				};
+				
+				Graphic.prototype.setUpdateFailed = function()
+				{
+					this.commitFailed = true;
+				};
+				
+				Graphic.prototype.cleanUpdateFailed = function()
+				{
+					if( this.commitFailed )
+						delete this.commitFailed;
 				};
 			}
 			

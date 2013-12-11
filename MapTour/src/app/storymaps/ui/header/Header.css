@@ -47,10 +47,19 @@
 	white-space: pre;
 }
 
+#headerDesktop .title.titleEmpty .text_edit_label {
+	color: #F00;
+}
+
+#headerDesktop .title.titleEmpty .text_edit_icon {
+	background-color: #F00;
+}
+
 #headerDesktop .subtitle {
 	font-size: 13px;
 	margin-top: 13px;
 	overflow: hidden;
+	overflow-y: auto;
 	font-weight: normal;
 	line-height: 18px;
     word-wrap: break-word;
@@ -84,10 +93,17 @@
 	outline:none;
 }
 
+/* Firefox don't like this - vertical align on top instead */
 @-moz-document url-prefix() { 
 	.rightArea .logo a {
 		position:relative;
 		display: inline-block;
+	}
+	
+	.rightArea .logo a img {
+		bottom: initial;
+		top: initial;
+		margin-top: -10px;
 	}
 }
 
@@ -122,30 +138,77 @@
  * Social sharing
  */
 
+@font-face {
+  font-family: 'storymaps-icons';
+  src: url('../../../../resources/font/storymaps-icons.eot?73880937');
+  src: url('../../../../resources/font/storymaps-icons.eot?73880937#iefix') format('embedded-opentype'),
+       url('../../../../resources/font/storymaps-icons.woff?73880937') format('woff'),
+       url('../../../../resources/font/storymaps-icons.ttf?73880937') format('truetype'),
+       url('../../../../resources/font/storymaps-icons.svg?73880937#storymaps-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'storymaps-icons';
+    src: url('../font/storymaps-icons.svg?73880937#storymaps-icons') format('svg');
+  }
+}
+*/
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "storymaps-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+     
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-link:before { content: '\e802'; } /* '' */
+.icon-twitter-1:before { content: '\e800'; } /* '' */
+.icon-facebook-squared-1:before { content: '\e801'; } /* '' */
+
 .shareIcon {
 	display: inline-block;
-	width: 16px;
-	height: 16px;
 	cursor: pointer;
-	vertical-align: -4px;
-	margin-left: 3px;
+	margin-left: 4px;
+	color: #A6A6A6;
+	vertical-align: 0px;
 }
 
 .shareIcon:hover {
-	opacity: 0.75;
-}
-
-.share_facebook {
-	background: url("../../../../resources/icons/header-social-facebook.png") 0 0;
-}
-
-.share_twitter {
-	background: url("../../../../resources/icons/header-social-twitter.png") 0 0;
+	color: #fff;
 }
 
 .share_bitly {
-	background: url("../../../../resources/icons/header-social-bitly.png") 0 0;
-	width: 19px;
+	vertical-align: 1px;
+	margin-left: 2px;
 }
 
 .social .popover-title {
@@ -205,6 +268,8 @@
 	display: none;
 	background-color:#444;
 	position:fixed;
+	left: 0px;
+	top: 0px;
 	width:100%;
 	z-index: 100;
 }

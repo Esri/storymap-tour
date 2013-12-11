@@ -1,5 +1,13 @@
-define(["dojo/has", "esri/geometry/Point", "dojo/on"], 
-	function(has, Point, on)
+define([
+		"dojo/has", 
+		"esri/geometry/Point", 
+		"dojo/on", 
+		"esri/symbols/PictureMarkerSymbol",
+		"esri/layers/GraphicsLayer",
+		"esri/graphic",
+		"esri/config"
+	], 
+	function(has, Point, on, PictureMarkerSymbol, GraphicsLayer, Graphic, esriConfig)
 	{
 		/**
 		 * MapCommand
@@ -8,13 +16,15 @@ define(["dojo/has", "esri/geometry/Point", "dojo/on"],
 		 * UI component that control the map display with +/home/- buttons and optional location button
 		 * On touch device button are bigger
 		 */
-		return function MapCommand(map, homeClickCallback, locationButtonCallback)
+		return function MapCommand(map, homeClickCallback, locationButtonCallback, locationButtonEnabled)
 		{
 			//
 			// Home/wait button
 			//
 			var tsUpdateStart = 0;
 			var homeButton = $('<div class="esriSimpleSliderIncrementButton"><div class="mapCommandHomeBtn"></div></div>');
+			var locateSymbol = new PictureMarkerSymbol('resources/icons/mapcommand-location-marker.png', 21, 21);
+			var locateLayer = new GraphicsLayer({id: 'locateLayer'});
 			
 			homeButton.fastClick(function(){
 				// Prevent using the home button while it's spinning
@@ -38,16 +48,6 @@ define(["dojo/has", "esri/geometry/Point", "dojo/on"],
 				toggleLoadingStatus(false);
 			});
 			
-			//
-			// Geolocate button
-			//
-			
-			// Display location button if location api and a callback is provided
-			if( navigator && navigator.geolocation && locationButtonCallback && typeof locationButtonCallback == 'function' ) {
-				$(".esriSimpleSlider", map.container).after('<div id="mainMap_zoom_location" class="esriSimpleSlider esriSimpleSliderVertical mapCommandLocation"><div><img src="resources/icons/mapcommand-location.png"></div></div>');
-				$("#mainMap_zoom_location div", map.container).fastClick(getDeviceLocation);
-			}
-			
 			this.setMobile = function(isMobile)
 			{
 				$(".esriSimpleSlider, .mapCommandHomeBtn", map.container).toggleClass("touch", isMobile);
@@ -67,6 +67,11 @@ define(["dojo/has", "esri/geometry/Point", "dojo/on"],
 			this.stopLoading = function()
 			{
 				toggleLoadingStatus(false);
+			};
+			
+			this.enableLocationButton = function(enable)
+			{
+				$(".esriSimpleSlider, .mapCommandHomeBtn", map.container).toggleClass("hidden", ! enable);
 			};
 			
 			function toggleLoadingStatus(start)
@@ -93,16 +98,51 @@ define(["dojo/has", "esri/geometry/Point", "dojo/on"],
 			{
 				navigator.geolocation.getCurrentPosition(
 					function(e) {
-						locationButtonCallback(true, new Point(e.coords.longitude, e.coords.latitude), e);
+						var geom = new Point(e.coords.longitude, e.coords.latitude);
+						
+						// User callback
+						if ( locationButtonCallback && typeof locationButtonCallback == 'function' )
+							locationButtonCallback(true, geom, e);
+						
+						if ( map.spatialReference.wkid != 102100 && map.spatialReference.wkid != 4326 ) {
+							esriConfig.defaults.geometryService.project([geom], map.spatialReference, function(features){
+								if( ! features || ! features[0] )
+									return;
+								
+								displayLocationPin(features[0]);
+							});
+							return;
+						}
+						else
+							displayLocationPin(geom);
 					},
 					getDeviceLocationError,
 					{ timeout: 2000 }
 				);
 			}
 			
+			function displayLocationPin(point)
+			{
+				locateLayer.clear();
+				locateLayer.add(new Graphic( point, locateSymbol ));
+				setTimeout(function(){
+					$('#locateLayer_layer image').fadeOut({
+						duration: 800
+					});
+				}, 10000);
+			}
+			
 			function getDeviceLocationError(error)
 			{
 				locationButtonCallback(false, error);
+			}
+			
+			// Geolocate button
+			if( navigator && navigator.geolocation ) {
+				$(".esriSimpleSlider", map.container).after('<div id="mainMap_zoom_location" class="esriSimpleSlider esriSimpleSliderVertical mapCommandLocation"><div><img src="resources/icons/mapcommand-location.png"></div></div>');
+				$("#mainMap_zoom_location div", map.container).fastClick(getDeviceLocation);
+				this.enableLocationButton(locationButtonEnabled);
+				map.addLayer(locateLayer);
 			}
 			
 			// Use bigger icon on touch devices

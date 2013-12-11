@@ -50,6 +50,8 @@ define(["storymaps/maptour/core/MapTourHelper",
 			var _footer = null;
 			
 			var _data = null;
+			var _albumTitle = null;
+			
 			var _geotagMap = null;
 			var _mapIsReady = false;
 			var _postDisplayCalled = false;
@@ -76,6 +78,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 			{
 				if (params) {
 					_data = params.data;
+					_albumTitle = params.title;
 					showView();
 				}
 				return _container;
@@ -96,6 +99,11 @@ define(["storymaps/maptour/core/MapTourHelper",
 					saveWebmap();
 				
 				return;
+			};
+			
+			this.getTitle = function()
+			{
+				return i18n.viewer.viewGeoTag.title;
 			};
 			
 			//
@@ -201,8 +209,12 @@ define(["storymaps/maptour/core/MapTourHelper",
 						listNonGeo += generatePictureDiv(point, i, -1);
 				});
 				_container.find(".tab-content > div").eq(0).html("<ul>" + listNonGeo + "</ul>");
-				_container.find(".tab-content > div").eq(1).html("<ul>" + listGeo + "</ul>");
+				_container.find(".tab-content > div").eq(1).html(
+					"<div style='margin-top: 4px;'><a class='btn btn-small clearLocation'>" + i18n.viewer.viewGeoTag.clearLoc + "</button></a>"
+					+ "<ul>" + listGeo + "</ul>"
+				);
 				
+				_container.find('.clearLocation').click(clearLocation);
 				_container.find('.clickOrTapInfo').removeClass('stickTop');
 				
 				_geotagMap = new Map(_mapDivId, {
@@ -210,7 +222,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 					autoResize: false,
 					extent: Helper.getWebMapExtentFromItem(app.data.getWebMapItem().item)
 				});
-				
+								
 				on.once(_geotagMap, "load", function() {
 					_geotagMap.disableKeyboardNavigation();
 					
@@ -238,6 +250,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 				_geotagMap.addLayer(_pointsLayer);
 				
 				changeFooterState(_geoTagIndex == _startIndex ? "nodata" : "data");
+				updateClearLocationState();
 			}
 			
 			function generatePictureDiv(point, index, geoTagIndex)
@@ -350,6 +363,21 @@ define(["storymaps/maptour/core/MapTourHelper",
 				_container.find(".tab-content > div").eq(0).find("li").removeClass("clicked");
 			}
 			
+			function clearLocation()
+			{
+				var imgContainers = _container.find(".tab-content > div").eq(1).find("li");
+				imgContainers.find("img").attr("draggable", "false");
+				_container.find(".tab-content > div ul").eq(0).append(imgContainers);
+				
+				_pointsLayer.clear();
+				_geoTagIndex = _startIndex;
+				
+				updateTabName();
+				changeFooterState("nodata");
+				updateClearLocationState();
+				setTimeout(createToLocateClickEvent, 200);
+			}
+			
 			//
 			// Data model
 			//
@@ -372,6 +400,9 @@ define(["storymaps/maptour/core/MapTourHelper",
 				attributes[fieldsName.fieldURL] = point.pic_url;
 				attributes[fieldsName.fieldThumb] = point.thumb_url;
 				
+				if ( app.data.layerHasVideoField() || app.isDirectCreationFirstSave || app.isGalleryCreation )
+					attributes[fieldsName.fieldVideo] = point.is_video;
+				
 				return new Graphic(
 					geom,
 					MapTourHelper.getSymbol(null, geoTagIndex),
@@ -393,7 +424,8 @@ define(["storymaps/maptour/core/MapTourHelper",
 						fieldName: 'name',
 						fieldDescription: 'description',
 						fieldURL: 'pic_url',
-						fieldThumb: 'thumb_url'
+						fieldThumb: 'thumb_url',
+						fieldVideo: 'is_video'
 					};
 			}
 			
@@ -418,6 +450,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 					$("#" + _mapDivId).removeClass('dragover');
 					updateTabName();
 					changeFooterState(_geoTagIndex == _startIndex ? "nodata" : "data");
+					updateClearLocationState();
 					_geotagMap.setMapCursor("default");
 				}
 			}
@@ -448,6 +481,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 				
 				updateTabName();
 				changeFooterState(_geoTagIndex == _startIndex ? "nodata" : "data");
+				updateClearLocationState();
 				setTimeout(createToLocateClickEvent, 200);
 			}
 			
@@ -459,28 +493,44 @@ define(["storymaps/maptour/core/MapTourHelper",
 			{
 				changeFooterState("progress");
 				
+				// Does layer has a is_video field
+				var isVideoField = app.data.electFieldsFromFieldsList(app.data.getSourceLayer().fields).getIsVideoField();
+				
 				setTimeout(function(){
-					_initCompleteDeferred.resolve(getResultFeatureCollection());
+					_initCompleteDeferred.resolve(getResultFeatureCollection(isVideoField));
 				}, 800);
 			}
 			
 			function saveWebmap()
 			{
-				_webmap.itemData.operationalLayers.push(MapTourBuilderHelper.getNewLayerJSON(getResultFeatureCollection()));
+				// Add the new layer
+				_webmap.itemData.operationalLayers.push(MapTourBuilderHelper.getNewLayerJSON(getResultFeatureCollection("is_video")));
+				// Set the extent to the dataset
+				app.data.getWebMapItem().item.extent = Helper.serializeExtentToItem(_geotagMap.extent);
 				
-				WebMapHelper.saveWebmap(_webmap, _portal).then(function(){
+				var saveSucceed = function() {
 					changeFooterState("succeed");
 					setTimeout(function(){
-						_initCompleteDeferred.resolve();
+						_initCompleteDeferred.resolve(_albumTitle);
 					}, 800);
-				});
+				};
+				
+				if( app.isDirectCreationFirstSave || app.isGalleryCreation ) 
+					saveSucceed();
+				else
+					WebMapHelper.saveWebmap(_webmap, _portal).then(saveSucceed);
 			}
 			
-			function getResultFeatureCollection()
+			function getResultFeatureCollection(isVideoField)
 			{
 				var featureCollection = MapTourBuilderHelper.getFeatureCollectionTemplate(true);
 				
 				$.each(_pointsLayer.graphics, function(i, graphic){
+					// Add video field if needed
+					// It is ignored if the layer don't have the field
+					if( isVideoField )
+						graphic.attributes[isVideoField] = graphic.attributes[isVideoField] ? "true" : "false";
+					
 					featureCollection.featureSet.features.push({
 						"geometry": graphic.geometry.toJson(),
 						"attributes": graphic.attributes
@@ -527,6 +577,14 @@ define(["storymaps/maptour/core/MapTourHelper",
 					i18n.viewer.viewGeoTag.leftPanelTab2 
 					+ ' (' + _container.find(".tab-content > div").eq(1).find("img").length + ')'
 				);
+			}
+			
+			function updateClearLocationState()
+			{
+				if ( _container.find(".tab-content > div").eq(1).find("li").length )
+					_container.find('.clearLocation').removeAttr("disabled");
+				else
+					_container.find('.clearLocation').attr("disabled", "disabled");
 			}
 			
 			function changeFooterState(state)

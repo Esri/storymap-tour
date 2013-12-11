@@ -12,14 +12,6 @@
 	/*
 	 *  iPad rules 
 	 */
-	#initPopup, #helpPopup, #importPopup, #organizePopup  {
-		top: 8% !important;
-	}
-	
-	#settingsPopup {
-		top: 5% !important;
-	}
-	
 	#footer {
 		height: 160px;
 	}

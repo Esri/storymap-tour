@@ -1,5 +1,5 @@
-.popupViewFacebook .modal-body {
-	padding-bottom: 5px;
+.popupViewFacebook {
+	margin-bottom: -10px;
 }
 
 .popupViewFacebook .headerContainer {
@@ -68,17 +68,4 @@
 
 .popupViewFacebook .spacer {
 	height: 10px;
-}
-
-/*
- * Location
- */
-
- .popupViewFacebook .useLocation {
- 	text-align: center;
- }
- 
- .popupViewFacebook .useLocation a {
-  	font-weight: normal;
-	text-decoration: underline;
 }

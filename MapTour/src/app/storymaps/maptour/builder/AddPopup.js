@@ -121,7 +121,8 @@ define(["esri/dijit/Geocoder",
 					description: '',
 					color: APPCFG.PIN_DEFAULT_CFG,
 					point: null,
-					_attemptedToSave: false
+					_attemptedToSave: false,
+					isVideo: false
 				};
 				
 				// Clean tabs			
@@ -167,10 +168,10 @@ define(["esri/dijit/Geocoder",
 				$(_container).find(".video input[name=addVideoSrc]").click(function(){
 					var selected = $(_container).find(".video input[name=addVideoSrc]:checked", _container).val();
 					
-					$(_container).find(".video tr").removeClass("fade");
+					//$(_container).find(".video tr").removeClass("fade");
 					$(_container).find(".video input[type=text].type").removeAttr("disabled");
 					
-					$(_container).find(".video tr:not(." + selected + ")").addClass("fade");
+					//$(_container).find(".video tr:not(." + selected + ")").addClass("fade");
 					$(_container).find(".video input[type=text].type:not(." + selected + ")").attr("disabled", "disabled");
 				});
 				
@@ -197,7 +198,8 @@ define(["esri/dijit/Geocoder",
 				$(_container).find('i.vimeo').removeClass("icon-ok icon-exclamation-sign").attr("title", "");
 				
 				// Information tab
-				var nameLength = 254, descrLength = 1000;
+				var nameLength = app.data.sourceIsFS() ? 254 : 1000, 
+					descrLength = 1000;
 				$.each(app.data.getSourceLayer().fields, function(i, field){
 					if( field.name == app.data.getFieldsConfig().getNameField() )
 						nameLength = field.length;
@@ -206,6 +208,17 @@ define(["esri/dijit/Geocoder",
 				});
 				_name.attr("maxlength", nameLength);
 				_description.attr("maxlength", descrLength);
+				
+				// Check textarea maximum length according to character escaping rules
+				// '=' need to be escaped to it will take 2 char, need to adjust maxlength
+				_name.keyup(function(){
+					var nbCharToEscape = ($(this).val().match(/=/g)||[]).length;
+					$(this).attr("maxlength", nameLength - nbCharToEscape);
+				});
+				_description.keyup(function(){
+					var nbCharToEscape = ($(this).val().match(/=/g)||[]).length;
+					$(this).attr("maxlength", descrLength - nbCharToEscape);
+				});
 				
 				// Map tab
 				if( _map ) {
@@ -246,8 +259,8 @@ define(["esri/dijit/Geocoder",
 				// Open Location tab
 				if($(this).index() == 2) {
 					// Prevent the map and the modal background to go crazy on iOS when coming from the second tab with keyboard open
-					if( has("ios")  )
-						$("body").scrollTop(0);
+					//if( has("ios")  )
+						//$("body").scrollTop(0);
 						
 					if( ! _map )
 						startupMap();
@@ -287,11 +300,15 @@ define(["esri/dijit/Geocoder",
 				else {
 					// Picture
 					if( $("html").find('#addImageAttributesTypeChooser li.active').index() === 0 ) {
+						_tempItemData.isVideo = false;
+						
 						if( ! _tempItemData.picUrl )
 							_error.eq(2).append("<li>"+i18n.viewer.addPopupJS.errorInvalidPicUrl+"</li>");
 					}
 					// Video
 					else {
+						_tempItemData.isVideo = true;
+						
 						var selectedType = $(_container).find(".video input[name=addVideoSrc]:checked", _container).val();
 						var videoUrl = $(_container).find(".video input." + selectedType).val();
 						
@@ -302,16 +319,17 @@ define(["esri/dijit/Geocoder",
 						else
 							_tempItemData.picUrl = videoUrl;
 						
-						// Add #isVideo at the end of URL when source is FS 
-						if( app.data.sourceIsFS() && _tempItemData.picUrl.indexOf('#isVideo') == -1 )
-							_tempItemData.picUrl += '#isVideo';
+						
+						// Since 2.2 video need to use the is_video attribute or that URL indicator 
+						if( ! app.data.layerHasVideoField() && _tempItemData.picUrl.indexOf('isVideo') == -1 )
+							_tempItemData.picUrl = MapTourHelper.addIsVideoToURL(_tempItemData.picUrl);
 						
 						_tempItemData.thumbUrl = $(_container).find(".tourPointThumbUrl2").val();
 						
 						if( ! MapTourHelper.validateURL(_tempItemData.picUrl) )
 							_tempItemData.picUrl = '';
 							
-						if( ! MapTourHelper.validateImageURL(_tempItemData.thumbUrl) )
+						if( ! MapTourHelper.validateURL(_tempItemData.thumbUrl) )
 							_tempItemData.thumbUrl = '';
 						
 						if( ! _tempItemData.picUrl )
@@ -387,10 +405,15 @@ define(["esri/dijit/Geocoder",
 						}, 1000);
 					};
 					
-					var addFailCallback = function() {
+					var addFailCallback = function(error) {
+						var errMsg = i18n.viewer.addPopupJS.uploadError;
+						
+						if( error && error.code == 400 && error.details && error.details[0] && error.details[0].split('html content').length >= 2 )
+							errMsg = i18n.viewer.addPopupJS.uploadError2;
+
 						$(".modal-footer .success", _container).html(i18n.viewer.addPopupJS.uploadSuccess).hide();
 						$(".modal-footer .addSpinner", _container).hide();
-						$(".modal-footer .error", _container).html(i18n.viewer.addPopupJS.uploadError).show();
+						$(".modal-footer .error", _container).html(errMsg).show();
 						changeFooterButtons("enabled");
 					};
 					
@@ -402,6 +425,10 @@ define(["esri/dijit/Geocoder",
 					
 					if( _tempItemData.point.spatialReference.wkid == 4326 && app.map.spatialReference.wkid == 102100 )
 						_tempItemData.point = webMercatorUtils.geographicToWebMercator(_tempItemData.point);
+						
+					// Escape special characters
+					_tempItemData.name = MapTourHelper.encodeText(_tempItemData.name);
+					_tempItemData.description = MapTourHelper.encodeText(_tempItemData.description);
 					
 					// Using form
 					if(_modeAttachments) {
@@ -444,6 +471,7 @@ define(["esri/dijit/Geocoder",
 							_tempItemData.color,
 							_tempItemData.picUrl,
 							_tempItemData.thumbUrl,
+							_tempItemData.isVideo,
 							function() {
 								$(".modal-footer .addSpinner", _container).hide();
 								$(".modal-footer .success", _container).html(i18n.viewer.builderHTML.addUploading).hide();
@@ -772,12 +800,12 @@ define(["esri/dijit/Geocoder",
 			
 			_picUrl.change(function()
 			{
-				_tempItemData.picUrl = MapTourHelper.validateImageURL(_picUrl.val()) ? _picUrl.val() : '';
+				_tempItemData.picUrl = MapTourHelper.validateURL(_picUrl.val()) ? _picUrl.val() : '';
 			});
 	
 			_thumbUrl.change(function()
 			{
-				_tempItemData.thumbUrl = MapTourHelper.validateImageURL(_thumbUrl.val()) ? _thumbUrl.val() : '';
+				_tempItemData.thumbUrl = MapTourHelper.validateURL(_thumbUrl.val()) ? _thumbUrl.val() : '';
 			});
 			
 			// iPad keyboard workaround
@@ -812,7 +840,7 @@ define(["esri/dijit/Geocoder",
 			function getYoutubeEmbed(url)
 			{
 				var test = /\?v\=([a-zA-Z0-9_-]{11})/.exec(url);
-				return test && test.length == 2 ? "//www.youtube.com/embed/" + test[1] : "";
+				return test && test.length == 2 ? "//www.youtube.com/embed/" + test[1] + "?wmode=opaque" : "";
 			}
 			
 			function checkVimeoUrl()
@@ -933,36 +961,34 @@ define(["esri/dijit/Geocoder",
 								});
 							}
 						},
-						has("touch") ? zoomToDeviceLocation : null
+						zoomToDeviceLocation,
+						true
 					);
 				});
 	
 				//
 				// Geocoder
 				//
-				$("#locateMap").append("<div id='geocoder'></div>");
-				
-				var params = {
-					map: _map
-				};
-				
-				// If the geocoder service configuration isn't the default, add a custom geocoder 
-				if ( ! (/geocode.arcgis.com\//i).test(configOptions.geocodeServiceUrl) )
-					params = lang.mixin(params, {
-						geocoders: [{
-							name: "myGeocoder",
-							url: configOptions.geocodeServiceUrl
-						}],
-						arcgisGeocoder: false,
-						geocoderMenu: false
-					});
+				var params = lang.mixin(
+					{
+						map: _map
+					},
+					Helper.createGeocoderOptions()
+				);
+
+				if( ! $(".addLocation #geocoder").length )
+					$(".addLocation").append('<div id="geocoder"></div>');
 
 				_geocoder = new Geocoder(params, "geocoder");
 				_geocoder.startup();
 				$("#geocoder_input").attr("placeholder", i18n.viewer.builderHTML.addLocatePlaceholder+"...");
 	
-				on(_geocoder, "find-results", function(){
-					_map.geocodedResult = true;
+				on(_geocoder, "find-results", function(response){
+					if( response.results && response.results.results && response.results.results.length ) {
+						_map.geocodedResult = true;
+						var geom = response.results.results[0].feature.geometry;
+						pointLayer.graphics[0].setGeometry(geom);
+					}
 				});
 				
 				on(_geocoder, "select", function(){
@@ -1035,9 +1061,7 @@ define(["esri/dijit/Geocoder",
 			function zoomToDeviceLocation(success, geom)
 			{
 				if( success ) {
-					if( _map.spatialReference.wkid == 102100 )
-						geom = webMercatorUtils.geographicToWebMercator(geom);
-					else if ( _map.spatialReference.wkid != 4326 ) {
+					if ( _map.spatialReference.wkid != 102100 && _map.spatialReference.wkid != 4326 ) {
 						esriConfig.defaults.geometryService.project([geom], _map.spatialReference, function(features){
 							if( ! features || ! features[0] )
 								return;
@@ -1045,8 +1069,8 @@ define(["esri/dijit/Geocoder",
 							latLongChange(features[0]);
 						});
 					}
-					
-					latLongChange(geom);
+					else					
+						latLongChange(geom);
 				}
 			}
 			

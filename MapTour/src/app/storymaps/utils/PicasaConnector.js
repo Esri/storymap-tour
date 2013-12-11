@@ -67,7 +67,8 @@ define(["dojo/Deferred"],
 							pic_url: picUrl,
 							thumb_url: thumbUrl,
 							lat: '',
-							lng: ''
+							lng: '',
+							is_video: false
 						};
 						
 						if( item["georss$where"] && item["georss$where"]["gml$Point"] 

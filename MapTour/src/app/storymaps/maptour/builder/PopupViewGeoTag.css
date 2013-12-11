@@ -94,6 +94,11 @@
 	display: block;
 }
 
+.popupViewGeoTag .clearLocation {
+	margin-bottom: 4px;
+	font-weight: normal;
+}
+
 /*
  * Map
  */

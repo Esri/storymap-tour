@@ -7,9 +7,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"storymaps/maptour/builder/OrganizePopup",
 		"storymaps/maptour/builder/ImportPopup",
 		"storymaps/maptour/builder/HelpPopup",
+		"storymaps/maptour/builder/SharePopup",
 		"storymaps/ui/multiTips/MultiTips",
 		"storymaps/maptour/core/MapTourHelper",
 		"storymaps/utils/Helper",
+		"esri/dijit/BasemapGallery",
 		"dojo/has",
 		// Settings tab
 		"storymaps/maptour/builder/SettingsPopupTabLayout",
@@ -32,9 +34,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 		OrganizePopup, 
 		ImportPopup,
 		HelpPopup,
+		SharePopup,
 		MultiTips, 
 		MapTourHelper,
 		Helper,
+		BasemapGallery,
 		has,
 		// Settings tab
 		SettingsPopupTabLayout, 
@@ -59,6 +63,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			var _organizePopup = new OrganizePopup($('#organizePopup'));
 			var _importPopup = new ImportPopup($('#importPopup'));
 			var _helpPopup = new HelpPopup($('#helpPopup'));
+			var _sharePopup = new SharePopup($('#sharePopup'));
 			
 			this.init = function(settingsPopup)
 			{
@@ -76,6 +81,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				$("#introRecordButton").click(introRecordClick);
 				
 				initLocalization();
+				
 				_initPopup.initLocalization();
 				_addPopup.initLocalization();
 				_organizePopup.initLocalization();
@@ -88,6 +94,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 				
 				app.builder.setDataWarning = setDataWarning;
 				app.builder.destroyDataWarning = destroyDataWarning;
+				
+				app.builder.setOrganizeWarning = setOrganizeWarning;
+				app.builder.destroyOrganizeWarning = destroyOrganizeWarning;
+				
 				app.builder.showBrowserWarning = showBrowserWarning;
 				app.builder.presentInitPopup = presentInitPopup;
 				app.builder.openFieldsSettingOnStartup = openFieldsSettingOnStartup;
@@ -97,7 +107,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				app.builder.hidePinPopup = hidePinPopup;
 				
 				app.builder.openHelpPopup = openHelpPopup;
-				
+				app.builder.openSharePopup = openSharePopup;
 				app.builder.checkPicturesExtension = checkPicturesExtension;
 			};
 			
@@ -109,6 +119,26 @@ define(["storymaps/maptour/core/WebApplicationData",
 					app.desktopPicturePanel.exitBuilderMode();
 					return;
 				}
+				
+				var basemapGallery = new BasemapGallery(
+					{
+						showArcGISBasemaps: true,
+						map: app.map
+					}, 
+					"basemapGallery"
+				);
+				basemapGallery.startup();
+				
+				$("#basemapChooser .dijitTitlePaneTextNode").html(i18n.viewer.builderJS.switchBM);
+				$("#basemapChooser").show();
+				
+				// Very lame but the title isn't saved in the new map layer
+				basemapGallery.on("selection-change",function(){
+					var basemap = basemapGallery.getSelected(); 
+					app.basemapChangeTitle = basemap.title;
+					topic.publish("BUILDER_INCREMENT_COUNTER", 1);
+					$("#basemapChooser").find('.dijitTitlePaneTitle').click();
+				});
 				
 				if( ! app.data.sourceIsNotFSAttachments() && Helper.browserSupportAttachementUsingFileReader() )
 					new AddButton().init(saveApp);
@@ -165,7 +195,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 					[
 						{
 							name: WebApplicationData.getLayout(),
-							placardUnder: WebApplicationData.getPlacardPosition() === "under"
+							placardUnder: WebApplicationData.getPlacardPosition() === "under",
+							locationButton: WebApplicationData.getZoomLocationButton()
 						},
 						{
 							colors: WebApplicationData.getColors()
@@ -204,6 +235,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			{
 				// Layout
 				WebApplicationData.setLayout(data.settings[0].name, data.settings[0].placardUnder ? "under" : "");
+				WebApplicationData.setZoomLocationButton(data.settings[0].locationButton);
 				
 				// Colors
 				WebApplicationData.setColors(data.settings[1].colors[0], data.settings[1].colors[1], data.settings[1].colors[2]);
@@ -260,9 +292,18 @@ define(["storymaps/maptour/core/WebApplicationData",
 			// Help popup
 			//
 			
-			function openHelpPopup()
+			function openHelpPopup(tabIndex)
 			{
-				_helpPopup.present();
+				_helpPopup.present(tabIndex);
+			}
+			
+			//
+			// Direct creation first save
+			//
+			
+			function openSharePopup(isFirstSave)
+			{
+				_sharePopup.present(isFirstSave);
 			}
 			
 			//
@@ -272,7 +313,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			function presentInitPopup(portal, webmap)
 			{
 				return _initPopup.present({
-					home: {
+					advanced: {
 						portal: portal,
 						webmap: webmap
 					},
@@ -297,6 +338,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 						nbPicturesAuthorized: APPCFG.MAX_ALLOWED_POINTS
 					},
 					Picasa: {
+						nbPicturesMax: APPCFG.MAX_ALLOWED_POINTS,
+						nbPicturesAuthorized: APPCFG.MAX_ALLOWED_POINTS
+					},
+					Youtube: {
 						nbPicturesMax: APPCFG.MAX_ALLOWED_POINTS,
 						nbPicturesAuthorized: APPCFG.MAX_ALLOWED_POINTS
 					},
@@ -390,6 +435,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 						nbPicturesMax: APPCFG.MAX_ALLOWED_POINTS,
 						nbPicturesAuthorized: nbPicturesAuthorized
 					},
+					Youtube: {
+						nbPicturesMax: APPCFG.MAX_ALLOWED_POINTS,
+						nbPicturesAuthorized: nbPicturesAuthorized
+					},
 					geotag: {
 						layer: app.data.getTourLayer(),
 						layerFields: getLayerFieldsNameArray(app.data.getSourceLayer().fields),
@@ -400,7 +449,6 @@ define(["storymaps/maptour/core/WebApplicationData",
 					{
 						$('#importPopup').modal("hide");
 						app.data.importTourPoints(newGraphics);
-						checkPicturesExtension(true);
 					},
 					function()
 					{
@@ -420,11 +468,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 				
 				if( ! graphic )
 					return;
-				
-				if( graphic.attributes.getName() != param.title )
+					
+				if( graphic.attributes.getName() != MapTourHelper.decodeText(param.title) )
 					nbChange++;
 					
-				if( graphic.attributes.getDescription() != param.description )
+				if( graphic.attributes.getDescription() != MapTourHelper.decodeText(param.description) )
 					nbChange++;
 					
 				if (nbChange) {
@@ -458,6 +506,25 @@ define(["storymaps/maptour/core/WebApplicationData",
 			function destroyDataWarning()
 			{
 				$("#builderPanel .builder-help").popover('destroy');
+			}
+			
+			function setOrganizeWarning()
+			{
+				$("#organizeSlidesButton").popover('destroy');
+				$("#organizeSlidesButton").popover({
+					html: true,
+					trigger: 'manual',
+					placement: 'top',
+					content: i18n.viewer.builderHTML.organizeWarning
+								+ '&nbsp;<button type="button" class="btn btn-small" onclick="app.builder.destroyOrganizeWarning()">'+i18n.viewer.builderJS.ok+'</button>'
+				});
+				
+				$("#organizeSlidesButton").popover('show');
+			}
+			
+			function destroyOrganizeWarning()
+			{
+				$("#organizeSlidesButton").popover('destroy');
 			}
 			
 			function showBrowserWarning()
@@ -503,7 +570,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					pointerColor: APPCFG.POPUP_ARROW_COLOR,
 					textColor: "#ffffff",
 					minWidth: (width+15) * MapTourHelper.getSymbolColors().length,
-					offsetTop: 32,
+					offsetTop: app.data.getTourLayer().renderer.getSymbol(graphic).height / 2 + app.data.getTourLayer().renderer.getSymbol(graphic).yoffset,
 					topLeftNotAuthorizedArea: has('touch') ? [40, 173] : [30,143],
 					mapAuthorizedWidth: MapTourHelper.isModernLayout() ? query("#picturePanel").position()[0].x : -1,
 					mapAuthorizedHeight: MapTourHelper.isModernLayout() ? query("#footerDesktop").position()[0].y - query("#header").position()[0].h : -1,
@@ -567,61 +634,13 @@ define(["storymaps/maptour/core/WebApplicationData",
 						false
 					);
 				}
-				else if (! WebApplicationData.getTemplateCreation() || duringImport){
-					var scanResult = app.data.scanDataForPictureWithoutExtension();
-					if ( scanResult ) {
-						app.builder.pictureNoExtensionError = function(act)
-						{
-							if( act == 1 ) 
-								app.data.editPictureWithoutExtension();
-							else 
-								WebApplicationData.setDisableVideo(true);
-							
-							topic.publish("BUILDER_INCREMENT_COUNTER", 1);
-							$('.btn-pic-error').removeAttr('disabled');
-							$('.builder-save').removeAttr('disabled');
-							$('.btn-pic-act').attr('disabled', 'disabled');
-						};
-						
-						var firstPart = '';
-						var closeState = '';
-						if( ! WebApplicationData.getTemplateCreation() ) {
-							firstPart = i18n.viewer.builderHTML.dataPicError0a.replace('%NB%', scanResult)
-										+ ' ' + i18n.viewer.builderHTML.dataPicError1
-										+ '<br /><br />'
-										+ i18n.viewer.builderHTML.dataPicError2;
-							
-							closeState = 'disabled="disabled"';
-							$('.builder-save').attr('disabled', 'disabled');
-						}
-						else 
-							firstPart = i18n.viewer.builderHTML.dataPicError0b.replace('%NB%', scanResult)
-										+ ' ' + i18n.viewer.builderHTML.dataPicError1
-										+ '<br /><br />'
-										+ i18n.viewer.builderHTML.dataPicError9;
-						 
-						app.builder.setDataWarning(
-							firstPart
-							+ '<ul style="margin-left: 25px; margin-top: 5px;">'
-							+ ' <li><b>' + i18n.viewer.builderHTML.dataPicError3 + '</b>: ' + i18n.viewer.builderHTML.dataPicError4 + '</li>'
-							+ ' <li><b>' + i18n.viewer.builderHTML.dataPicError5 + '</b>: ' + i18n.viewer.builderHTML.dataPicError6 + '</li>'
-							+ '</ul>'
-							+ '<div style="text-align: center; margin-top:15px;">'
-							+ ' <button class="btn btn-small btn-pic-act" onclick="app.builder.pictureNoExtensionError(1)">' + i18n.viewer.builderHTML.dataPicError3 + '</button>'
-							+ ' <button class="btn btn-small btn-pic-act" onclick="app.builder.pictureNoExtensionError(2)">' + i18n.viewer.builderHTML.dataPicError5 + '</button>'
-							+ ' <button type="button" class="btn btn-small btn-pic-error" onclick="app.builder.destroyDataWarning()"' + closeState + '>' + i18n.viewer.builderJS.dataWarningClose + '</button>'
-							+ '</div>',
-							false
-						);
-					}
-				}
 			}
 			
 			this.resize = function()
 			{
 				// Bottom panel - button size and reposition
 				if ($("#organizeSlidesButton").width() > 0) {
-					$("#builderPanel2 button").width($("#organizeSlidesButton").width() > $("#addPopupButton").width() ? $("#organizeSlidesButton").width() : $("#addPopupButton").width());
+					$("#builderPanel2 > button").width($("#organizeSlidesButton").width() > $("#addPopupButton").width() ? $("#organizeSlidesButton").width() : $("#addPopupButton").width());
 					$("#builderPanel2").css("margin-left", $("body").width() / 2 - $("#builderPanel2").outerWidth() / 2);
 				}
 			};

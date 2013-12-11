@@ -16,9 +16,9 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 				
 				$("#introPanel").html(
 					'<div class="slide">'
-					+ ' <h2 class="tourPointName">' + feature.attributes.getName() + '</h2>'
+					+ ' <h2 class="tourPointName">' + ($('<div>' + feature.attributes.getName() + '</div>').html()) + '</h2>'
 					+ ' <p class="tourPointDescription">' + feature.attributes.getDescription() + '</p>'
-					+ (MapTourHelper.mediaIsSupportedImg(feature.attributes.getURL()) ? 
+					+ (! feature.attributes.isVideo() && MapTourHelper.mediaIsSupportedImg(feature.attributes.getURL()) ? 
 						'<img class="tourPointImg" src="' + feature.attributes.getURL() + '" />'
 						: '<iframe class="tourPointIframe" src="' + feature.attributes.getURL() + '"></iframe>')
 					+ ' <br /><br />'
@@ -27,6 +27,15 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 				);
 				
 				$("#introPanel").fastClick(function(){
+					topic.publish("PIC_PANEL_NEXT");
+				});
+				
+				var el = document.getElementById('introPanel');
+				/*jshint -W064 */
+				Hammer(el).on("swipeleft", function() {
+					topic.publish("PIC_PANEL_NEXT");
+				});
+				Hammer(el).on("swiperight", function() {
 					topic.publish("PIC_PANEL_NEXT");
 				});
 				

@@ -73,6 +73,7 @@ define(["dojo/has",
 				/*jshint -W055 */
 				iscroll = new iScroll($(selector + ' .carouselWrapper')[0], {
 					hideScrollbar: true,
+					vScroll:false,
 					onBeforeScrollMove: function(e){
 						if( Math.abs(mousePos.onScroll[0] - e.screenX) > 5 || Math.abs(mousePos.onScroll[1] - e.screenY) > 5 )
 							isMoveEvent = true;
@@ -121,7 +122,7 @@ define(["dojo/has",
 					carouselHTML += '<li>';
 					carouselHTML += ' <div class="carousel-item-div">';
 					carouselHTML += '  <span class="' + pinCssClass +'"><img data-src="' + slide.attributes.getThumbURL() + '" onerror="mediaNotFoundHandler(this)"/></span>';
-					carouselHTML += '  <div>' + slide.attributes.getName() + '</div>';
+					carouselHTML += '  <div>' + ($('<div>' + slide.attributes.getName() + '</div>').html()) + '</div>';
 					carouselHTML += ' </div>';
 					carouselHTML += '</li>';
 				});

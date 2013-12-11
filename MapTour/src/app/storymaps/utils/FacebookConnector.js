@@ -19,7 +19,7 @@ define(["dojo/Deferred"],
 			this.getPageAlbums = function(page, noRefine)
 			{
 				var resultDeferred = new Deferred();
-				var rqStr = 'http://graph.facebook.com/' + page + '/albums/?limit=50';
+				var rqStr = document.location.protocol + '//graph.facebook.com/' + page + '/albums/?limit=50';
 				
 				if( ! page ) {
 					resultDeferred.reject();
@@ -40,7 +40,7 @@ define(["dojo/Deferred"],
 			this.getPageAlbum = function(albumId, nbPicturesMax, refineResult)
 			{
 				var resultDeferred = new Deferred();
-				var rqStr = 'http://graph.facebook.com/' + albumId + '/?fields=photos';
+				var rqStr = document.location.protocol + '//graph.facebook.com/' + albumId + '/?fields=photos';
 				
 				if( ! albumId ) {
 					resultDeferred.reject();
@@ -142,7 +142,8 @@ define(["dojo/Deferred"],
 						pic_url: photo.images && photo.images[0] ?  photo.images[0].source : photo.source,
 						thumb_url: photo.picture,
 						lat: photo.place && photo.place.location ? photo.place.location.latitude : '',
-						lng: photo.place && photo.place.location ? photo.place.location.longitude: ''
+						lng: photo.place && photo.place.location ? photo.place.location.longitude: '',
+						is_video: false
 					});
 				});
 				return result;

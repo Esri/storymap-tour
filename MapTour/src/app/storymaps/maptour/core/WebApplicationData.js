@@ -39,6 +39,12 @@ define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"],
 				if( ! data.values.templateCreation )
 					data.values.templateCreation = version;
 				
+				//delete data.values.templateCreation;
+				//delete data.values.disableVideo;
+				
+				//data.values.templateCreation = "2.1";
+				//data.values.disableVideo = "true";
+				
 				data.values.templateVersion = version;
 				
 				return data;
@@ -240,6 +246,18 @@ define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"],
 			getDisableVideo: function()
 			{
 				return _data.values.disableVideo;
+			},
+			getZoomLocationButton: function()
+			{
+				return _data.values.locationButton;
+			},
+			setZoomLocationButton: function(locationButton)
+			{
+				_data.values.locationButton = locationButton;
+			},
+			setWebmap: function(webmap)
+			{
+				_data.values.webmap = webmap;
 			}
 		};
 	}

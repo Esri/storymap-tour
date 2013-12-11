@@ -1,10 +1,12 @@
 define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit", 
 		"storymaps/ui/loadingIndicator/LoadingIndicator", 
+		"storymaps/maptour/core/MapTourHelper",
 		"dojo/topic",
 		"dojo/has"], 
 	function(
 		InlineFieldEdit, 
 		LoadingIndicator, 
+		MapTourHelper,
 		topic,
 		has
 	){
@@ -22,6 +24,9 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			var _container1, _container2;
 			var _img1, _img2;
 			var _iframe1, _iframe2;
+			var _fullScreenBtn;
+			var _fullScreenOpening = false;
+			var _fullScreenPreventOpening = false;
 			
 			// Reference to the current and other media container
 			var _current, _other;
@@ -59,6 +64,17 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			
 			_iframe2 = document.createElement("iframe");
 			
+			// Full screen button
+			_fullScreenBtn = $('<span class="btn-fullscreen disabled"></span>');
+			$(document).bind('cbox_complete', function(){
+				$('#cboxLoadedContent img').click(function(){
+					// Workaround for click delay on touch device 
+					if( _fullScreenOpening ) 
+						return;
+					$.colorbox.close();
+				});
+			});
+			
 			// Placard
 			_placardContainer2 = $("<div id='placard-bg'></div>");
 			_placard = $("<div id='placard'></div>");
@@ -72,10 +88,39 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 		
 			$(_container1).append(_img1).append(_iframe1);
 			$(_container2).append(_img2).append(_iframe2);
-			$(_container).append(_container1).append(_container2).append(_placardContainer);
+			$(_container).append(_container1).append(_container2).append(_fullScreenBtn).append(_placardContainer);
 	
 			$(_img1).load(onImageLoad);
 			$(_img2).load(onImageLoad);
+			
+			// Display full screen and modern button layout on image hover
+			$('.member-image img, .member-image iframe').hover(function(e){ 
+				// Only on the current image
+				if( ! $(e.target).parent().hasClass('current') ) 
+					return;
+				
+				var isHoverPicture = e.type == "mouseenter" 
+					|| $(e.relatedTarget).hasClass('modern-layout-control')
+					|| $(e.relatedTarget).hasClass('btn-fullscreen')
+					|| $(e.relatedTarget).is('#placardContainer')
+					|| $(e.relatedTarget).parents('#placardContainer').length
+					|| $(e.relatedTarget).hasClass('editPictureButtons')
+					|| $(e.relatedTarget).parents('.editPictureButtons').length;
+
+				_fullScreenBtn.toggleClass("hover", !! isHoverPicture);
+				
+				if ( _isModernLayout )
+					$(".modern-layout-control").toggleClass("hover", !! isHoverPicture);
+			});
+			
+			$('#placardContainer').hover(function(e){
+				if ( $(e.relatedTarget).hasClass('modern-layout-control') )
+					return;
+				
+				_fullScreenBtn.toggleClass("hover", e.type != "mouseleave");
+				if ( _isModernLayout )
+					$(".modern-layout-control").toggleClass("hover", e.type != "mouseleave");
+			}); 
 			
 			$(_toggle).fastClick(function() {
 				if ($(_placardContainer2).css('display')=='none'){
@@ -86,6 +131,23 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				}
 				$(_placardContainer2).slideToggle();
 			});
+			
+			// Keybord event up/down arrow to toggle the placard
+			if( ! app.isInBuilderMode ) {
+				$(window).keyup(function(e){
+					if ( $("#placardContainer").hasClass("placardUnder") )
+						return;
+					
+					if( e.keyCode == 40 ) {
+						$(_toggle).html('&#x25B2;');
+						$(_placardContainer2).slideUp();
+					}
+					else if ( e.keyCode == 38 ) {
+						$(_toggle).html('&#x25BC;');
+						$(_placardContainer2).slideDown();
+					}
+				});
+			}
 			
 			_current = _container1;
 			
@@ -120,6 +182,9 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				var mediaEl = $(_current).find(mediaIsImg ? 'img' : 'iframe');
 				$(_current).children().hide();
 				mediaEl.show();
+				
+				if ( ! mediaIsImg )
+					url = MapTourHelper.checkVideoURL(url);
 		
 				if (mediaEl.attr('src') == url) {
 					onImageLoad();
@@ -144,6 +209,8 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				}
 		
 				$("#placardContainer").fadeIn();
+				
+				_fullScreenBtn.unbind('click').click(this.fullScreen);
 			};
 			
 			this.invalidate = function()
@@ -203,8 +270,11 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				
 				$(_current).css("left",(ALLOWABLE_WIDTH - $(_current).width()) / 2);
 				$(_current).css("top",Math.floor((ALLOWABLE_HEIGHT - $(_current).height()) / 2));
-				
+								
 				resizePlacardContainer();
+				
+				_fullScreenBtn.css("right", (ALLOWABLE_WIDTH - $(_current).width()) / 2 + 6);
+				_fullScreenBtn.css("top", parseFloat($("#cfader > .current").first().css("top")) + 5);
 			}
 			
 			function resizePlacardContainer()
@@ -289,22 +359,24 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			
 			function setPlacard(name, text)
 			{			
+				var nameLength = app.data.sourceIsFS() ? 254 : 1000, 
+					descrLength = 1000;
+				
 				if (isInBuilderMode) {
-					var nameLength = 254, descrLength = 1000;
 					$.each(app.data.getSourceLayer().fields, function(i, field){
 						if( field.name == app.data.getFieldsConfig().getNameField() )
-							nameLength = field.length;
+							nameLength = field.length || nameLength;
 						if( field.name == app.data.getFieldsConfig().getDescriptionField() )
-							descrLength = field.length;
+							descrLength = field.length || descrLength;
 					});
 					
 					name = "<div class='text_edit_label'>" + (name || i18n.viewer.headerJS.editMe) + "</div>";
 					name += "<div class='text_edit_icon' title='"+i18n.viewer.crossFaderJS.setPicture+"'></div>";
-					name += "<textarea rows='3' class='text_edit_input' type='text' " + (nameLength ? "maxlength='" + nameLength + "'" : "") + "></textarea>";
+					name += "<textarea rows='3' class='text_edit_input' type='text' " + (nameLength ? "maxlength='" + (nameLength - (name.match(/=/g)||[]).length) + "'" : "") + "></textarea>";
 					
 					text = "<div class='text_edit_label'>" + (text || i18n.viewer.headerJS.editMe) + "</div>";
 					text += "<div class='text_edit_icon' title='"+i18n.viewer.crossFaderJS.setCaption+"'></div>";
-					text += "<textarea rows='6' class='text_edit_input' type='text' " + (descrLength ? "maxlength='" + descrLength + "'" : "") + "></textarea>";
+					text += "<textarea rows='6' class='text_edit_input' type='text' " + (descrLength ? "maxlength='" + (descrLength - (text.match(/=/g)||[]).length) + "'" : "") + "></textarea>";
 				}
 				else { 
 					$(_placardContainer).toggleClass("no-description", text === "");
@@ -316,8 +388,25 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				$(_placard).append("<div class='description'>"+text+"<div/>");
 				
 				if (isInBuilderMode) {
-					new InlineFieldEdit(selector, null, editFieldsCallback);
+					new InlineFieldEdit(
+						selector, 
+						function(){
+							_fullScreenPreventOpening = true;
+						}, 
+						editFieldsCallback
+					);
 					checkBuilderTextarea();
+					
+					// Check textarea maximum length according to character escaping rules
+					// '=' need to be escaped to it will take 2 char, need to adjust maxlength
+					$(_placard).find(".name .text_edit_input").keyup(function(){
+						var nbCharToEscape = ($(this).val().match(/=/g)||[]).length;
+						$(this).attr("maxlength", nameLength - nbCharToEscape);
+					});
+					$(_placard).find(".description .text_edit_input").keyup(function(){
+						var nbCharToEscape = ($(this).val().match(/=/g)||[]).length;
+						$(this).attr("maxlength", descrLength - nbCharToEscape);
+					});
 				}
 			}
 			
@@ -334,12 +423,45 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				}
 			}
 			
+			this.fullScreen = function()
+			{
+				if( _fullScreenPreventOpening )
+					return;
+				
+				_fullScreenOpening = true;
+				
+				if( _mediaIsImg ) {
+					$.colorbox({
+						href: $('.member-image.current img').attr('src'),
+						photo: true,
+						title: _title,
+						scalePhotos: true, 
+						maxWidth: '90%', 
+						maxHeight: '90%'
+					});
+				}
+				else {
+					$.colorbox({
+						href: $('.member-image.current iframe'),
+						inline: true, 
+						title: _title,
+						width: '80%', 
+						height: '80%'
+					});
+				}
+				
+				setTimeout(function(){
+					_fullScreenOpening = false;
+				}, 800);
+			};
+			
 			this.firstDisplayCheck = function()
 			{
 				if (isInBuilderMode)
 					checkBuilderTextarea();
 					
 				resizePlacardContainer();
+				_fullScreenBtn.css("top", parseFloat($("#cfader > .current").first().css("top")) + 5);
 			};
 			
 			this.exitBuilderMode = function()
@@ -357,6 +479,9 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			function editFieldsCallback()
 			{
 				topic.publish("CROSSFADER_DATA_UPDATE");
+				setTimeout(function(){
+					_fullScreenPreventOpening = false;
+				}, 250);
 			}
 			
 			this.invalidate();

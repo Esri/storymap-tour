@@ -2,6 +2,7 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 		"storymaps/maptour/builder/PopupViewFlickr",
 		"storymaps/maptour/builder/PopupViewFacebook",
 		"storymaps/maptour/builder/PopupViewPicasa",
+		"storymaps/maptour/builder/PopupViewYoutube",
 		"storymaps/maptour/builder/PopupViewCSV",
 		"storymaps/maptour/builder/PopupViewGeoTag",
 		"dojo/Deferred"], 
@@ -10,6 +11,7 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 		PopupViewFlickr, 
 		PopupViewFacebook, 
 		PopupViewPicasa, 
+		PopupViewYoutube,
 		PopupViewCSV, 
 		PopupViewGeoTag,
 		Deferred
@@ -21,6 +23,7 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 				Flickr: new PopupViewFlickr(),
 				Facebook: new PopupViewFacebook(),
 				Picasa: new PopupViewPicasa(),
+				Youtube: new PopupViewYoutube(),
 				CSV: new PopupViewCSV(container),
 				geotag: new PopupViewGeoTag(container)
 			};
@@ -50,6 +53,7 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 				_views.Flickr.init(params.Flickr, importCompleteDeferred, footer);
 				_views.Facebook.init(params.Facebook, importCompleteDeferred, footer);
 				_views.Picasa.init(params.Picasa, importCompleteDeferred, footer);
+				_views.Youtube.init(params.Youtube, importCompleteDeferred, footer);
 				_views.geotag.init(params.geotag, importCompleteDeferred, footer);
 				
 				displayView('home');
@@ -75,6 +79,7 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 				else
 					_btnPrev.hide();
 				
+				container.find('h3').html(_views[_currentViewName].getTitle());
 				_viewContainer.html(_views[_currentViewName].getView(params || {}));
 				
 				if( _views[_currentViewName].postDisplayCallback )
@@ -118,9 +123,7 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 			}
 	
 			this.initLocalization = function()
-			{
-				container.find('h3').html(i18n.viewer.importPopup.title);
-				
+			{				
 				$.each(_views, function(i, view){
 					view.initLocalization();
 				});

@@ -82,7 +82,8 @@ define(["dojo/Deferred", "dojo/_base/lang"],
 							pic_url: getPhotoURL(photo, params.photoSize),
 							thumb_url: getPhotoURL(photo, params.thumbSize),
 							lat: photo.latitude || '',
-							lng: photo.longitude || ''
+							lng: photo.longitude || '',
+							is_video: false
 						});
 					});
 					
@@ -100,7 +101,8 @@ define(["dojo/Deferred", "dojo/_base/lang"],
 			
 			function request(method, params)
 			{
-				var url = 'http://api.flickr.com/services/rest/?method=' 
+				var url = document.location.protocol 
+							+ '//api.flickr.com/services/rest/?method=' 
 							+ method 
 							+ '&format=json' 
 							+ '&api_key=' + apiKey 
