@@ -316,6 +316,7 @@ Viewer evolution:
  * Updated social sharing icons
  * Updated previous/next icons of the integrated layout
  * New full screen button hover the picture/video to maximize the media
+ * New keyboard shortcut to navigate the tour (enter key, arrow up/down, page previous/next)
  * Option in bit.ly sharing to ‘Link to the current place’ 
  * Optional 'Locate' button that lets the user see their current position on the map (if the author chooses to include it and if user's browser supports it)
  * Header subtitle display a scrollbar when needed
@@ -330,6 +331,7 @@ Interactive builder evolution:
  * Allow to set theme color using RGB values
  * More documentation for publishing the Tour is available through the Help dialog
  * Geocoder widget support using multiple geocoder services 
+ * Keyboard shortcut CTRL+S to save the Tour
 
 Viewer issues:
  * When using the index URL parameter, the previous button is not active if it need to be
