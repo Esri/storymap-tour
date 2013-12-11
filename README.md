@@ -148,9 +148,6 @@ You can still drag and drop a CSV into the webmap but this is not the recommande
 
 A sample CSV can be downloaded from the interactive builder starting page or [here](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/samples/csv_file__lat_long/Locations.csv) (use right click + "Save as" if the file doesn't download).
 
-![image](https://f.cloud.github.com/assets/994078/1424386/097fe61c-401d-11e3-9a50-6e2cd23fe5cd.png)
-
-
 ### Using an existing Feature Service, Map Service or Shapefile
 
 The application will try to find the expected attributes using a configurable list of possible field name. 
