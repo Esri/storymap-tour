@@ -29,7 +29,8 @@
 		"Spinner": false,
 		"MegaPixImage": false,
 		"Hammer": false,
-		"iScroll": false
+		"iScroll": false,
+		"History": false
 	},
 	
 	"expr": true,
