@@ -342,6 +342,7 @@ Viewer issues:
 Interactive builder issues:
  * Some dialog aren't fully functional on iOS 7, Android or low-resolution desktop browser
  * Only the first webmap and application item tag is kept when the app is saved
+ * Instability of data update when the data source is a  Feature Service that hasn't been created by the builder
  * No detection of html tags error in point name/description
  * Shapefile layer imported in the webmap using a zip file that contains a whitespace aren’t visible in the app (only for layer that aren’t the map tour data source, like a boundary layer)
  * It is impossible to save a name/description containing a html a tag when the url including a ‘=’ sign
