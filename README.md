@@ -159,11 +159,11 @@ By default, the valid fields names are:
 | Fields            		                                | Valid fields names (case insensitive)     |
 | ---------------------------------------------------------	| -----------------------------------------	|
 | Name (mandatory)     		                                | name, title, name-short, name-long 	    |
-| description (mandatory)                                   | caption, description, snippet, comment 	|
+| Description (mandatory)                                   | caption, description, snippet, comment 	|
 | Picture (optional for Feature service with attachments) 	| pic_url, pic, picture, url                |
 | Thumbnail (optional for Feature service with attachments)	| thumb_url, thumb, thumbnail               |
 | Color (optional for viewer, mandatory for builder)        | icon_color, color, style                  |
-| Is Video (optional)        								| is_video, video, isVideo                  |
+| Is video (optional)        								| is_video, video, isVideo                  |
 
 If that doesn't match your data, you can change the possible fields name through the configuration file **app/maptour-config.js**.
 
@@ -195,18 +195,18 @@ Yes, by using Portal for ArcGIS. When deployed on a Portal for ArcGIS instance, 
 The videos workflow has been simplified with version 2.2. If your Tour has been created with version 2.1 (before December 11, 2013), please see the dedicated section below.
 
 When you are using the interactive builder to initialize your Tour from medias already hosted (all initialization options except ArcGIS Online), the data layer include an attribute that specify if the main media is an image or a video. 
-The builder automatically populates that field. If you are editing data outside of the builder you have to take care of editing that attribute (use the string `true` or `false`).
-If you choose to host your data in ArcGIS Online, the builder doesn't support adding video but [this is possible](#can-i-integrate).
+The builder automatically populates that field. If you are editing yourdata outside of the builder you have to take care of editing that attribute (use the string `true` or `false`).
+If you choose to host your data in ArcGIS Online, the builder doesn't support adding video but [this is possible](#can-i-integrate-video-when-using-feature-service-with-attachments).
 If you are initializing the Tour from a CSV, make sure to edit the `is_video` field that is present in the CSV.
 
-Another option instead of using a dedicated attribute to specify if the media is a picture or a video is to add a specific qualifier in the URL. When the `is_video` attribute isn't present or is set to false, all media are considered images except if the url contains isVideo (this can be achived using &isVideo, #isVideo or a folder name).
+Another option instead of using a dedicated attribute to specify if the media is a picture or a video is to add a specific qualifier in the URL. When the `is_video` attribute isn't present or is set to false, all media are considered images except if the url contains `isVideo` (this can be achived using `&isVideo`, `#isVideo` or a folder).
 
 The Map Tour template doesn't include a video player, so you have to use the external video player provided by your favorite video hosting service (find the option to embed the video and copy the URL present in the given code). If you want to host the video yourself, you can create an HTML page that contains a video player like [Video.js](http://www.videojs.com/).
 
 ####Using videos in Tour created with version 2.1
 
-Map Tour created with version 2.1 continue to have the initial behavior even when using next version of the interactive builder. Supported picture format is: **.jpg, .jpeg, .png, .gif and .bmp**. If your media doesn’t end with one of these extension, the Map Tour will consider the media to be a video, except when using a feature service (see below).
-You can force media that doesn't end with one of the supported extension to be treated as images using the URL qualifier `#isImage`.
+Map Tour created with version 2.1 continue to have the 2.1 behavior even when using the latest version of the interactive builder. In that case, the supported picture format are: **.jpg, .jpeg, .png, .gif and .bmp**. If your media doesn’t end with one of these extension, the Map Tour will consider the media to be a video, except when using a feature service (see below).
+You can force a media that doesn't end with one of the supported extension to be treated as image using the URL qualifier `#isImage` that you have to add at the end of the URL.
 
 ### Can I integrate video when using Feature Service with attachments
 
