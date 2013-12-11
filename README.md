@@ -318,6 +318,7 @@ Viewer evolution:
  * New full screen button hover the picture/video to maximize the media
  * Option in bit.ly sharing to ‘Link to the current place’ 
  * Optional 'Locate' button that lets the user see their current position on the map (if the author chooses to include it and if user's browser supports it)
+ * Header subtitle display a scrollbar when needed
  
 Interactive builder evolution:
  * Support authoring a Tour without existing webmap or web application item
@@ -331,18 +332,18 @@ Interactive builder evolution:
  * Geocoder widget support using multiple geocoder services 
 
 Viewer issues:
- * When using the index URL parameter, the previous button was not active if it needed to be
- * Application wasn't functional with Android default browser
- * Desktop carousel weren't clickable on IE9 when point name was containing invalid HTML tags
- * Prevent header title/subtitle to overflow the logo and social sharing links
+ * When using the index URL parameter, the previous button is not active if it need to be
+ * Application isn't usable with Android default browser
+ * Desktop carousel isn't clickable on IE9 when point name contains invalid HTML content
+ * Header title/subtitle can overflow the logo and social sharing links
  
 Interactive builder issues:
- * Some dialog weren't fully functional on iOS 7, Android or low-resolution desktop browser
- * Only the first webmap and application item tag were kept when the app was saved
- * Detection of html tags error in point name/description
- * Shapefile layer imported in the webmap using a zip file that contained a whitespace weren’t visible in the app (only for layer that weren’t the map tour data source, like a boundary layer)
- * It was impossible to save a name/description containing a html a tag when the url including a ‘=’ sign
- * Video added to a newly created application weren't usable until browser was refreshed
+ * Some dialog aren't fully functional on iOS 7, Android or low-resolution desktop browser
+ * Only the first webmap and application item tag is kept when the app is saved
+ * No detection of html tags error in point name/description
+ * Shapefile layer imported in the webmap using a zip file that contains a whitespace aren’t visible in the app (only for layer that aren’t the map tour data source, like a boundary layer)
+ * It is impossible to save a name/description containing a html a tag when the url including a ‘=’ sign
+ * Video added to a newly created application aren't usable until browser is refreshed
  
 Downloadable version evolution:
  * New configuration option to create a non-numbered Map Tour (allow use of a single map markers for all points and turn off all numbering)
