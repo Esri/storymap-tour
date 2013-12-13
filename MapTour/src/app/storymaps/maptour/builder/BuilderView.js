@@ -135,7 +135,32 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// Very lame but the title isn't saved in the new map layer
 				basemapGallery.on("selection-change",function(){
 					var basemap = basemapGallery.getSelected(); 
-					app.basemapChangeTitle = basemap.title;
+					var newBasemapJSON = [];
+					
+					$.each(basemap.layers, function(i, layer){
+						var bmLayerJSON = {
+							id: basemap.id + '_' + i,
+							opacity: 1,
+							visibility: true,
+							url: layer.url
+						};
+						
+						if ( layer.type == "reference" )
+							bmLayerJSON.isReference = true;
+						else if ( layer.type == "OpenStreetMap" ) {
+							delete bmLayerJSON.url;
+							bmLayerJSON.type = "OpenStreetMap";
+						}
+					
+						newBasemapJSON.push(bmLayerJSON);
+					});
+					
+					app.data.getWebMapItem().itemData.baseMap = {
+						baseMapLayers: newBasemapJSON,
+						title: basemap.title
+					};
+					
+					app.basemapChanged = true;
 					topic.publish("BUILDER_INCREMENT_COUNTER", 1);
 					$("#basemapChooser").find('.dijitTitlePaneTitle').click();
 				});

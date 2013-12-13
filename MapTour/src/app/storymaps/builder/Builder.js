@@ -435,7 +435,7 @@ define(["esri/arcgis/Portal",
 		function saveWebmap(nextFunction)
 		{
 			//
-			// TODO: should be replaced by improved WebMapHelper.saveWebmap
+			// TODO: should be replaced by the improved WebMapHelper.saveWebmap
 			//
 			
 			// Look for modified or new points if the tour use an embedded layer
@@ -450,78 +450,6 @@ define(["esri/arcgis/Portal",
 					webmapEmbeddedLayerChange = true;
 			}
 			
-			// Look for basemap change
-			var basemapChanged = false;
-			
-			/*
-			// Doesn't detect change or adding a reference layer
-			var webmapItem = app.data.getWebMapItem();
-			if ( webmapItem && webmapItem.itemData 
-					&& webmapItem.itemData.baseMap && webmapItem.itemData.baseMap.baseMapLayers 
-					&& webmapItem.itemData.baseMap.baseMapLayers[0] 
-					&& app.map.layerIds[0]
-					&& app.map.getLayer(app.map.layerIds[0]) )
-				basemapChanged = webmapItem.itemData.baseMap.baseMapLayers[0].url != app.map.getLayer(app.map.layerIds[0]).url;
-			*/
-			
-			var webmapBMLayers = app.data.getWebMapItem().itemData.baseMap.baseMapLayers;
-			var newBMLayers = [];
-
-			$.each(app.map.layerIds, function(i, layerName){
-				var layer = app.map.getLayer(layerName);
-				if( layer._basemapGalleryLayerType ) {
-					newBMLayers.push({
-						id: layer.id,
-						type: layer._basemapGalleryLayerType,
-						url: layer.url
-					});
-				}
-			});
-			
-			if ( newBMLayers.length != webmapBMLayers.length )
-				basemapChanged = true;
-			else {
-				$.each(newBMLayers, function(i, layer){
-					if ( layer.url != webmapBMLayers[i].url )
-						basemapChanged = true;	
-				});
-			}
-			
-			if( basemapChanged ){
-				var newBMJSON = {
-					/* 
-					 * That's very lame but when the basemap is changed, the expected title isn't present in the layer
-					 * That property is set when the basemap is changed
-					 * Should use that to detect that the BM has changed or ask the JS API ...
-					 * If the webmap fail to save, next save may not save it has the basemap has already been persisted...
-					 */
-					
-					title: app.basemapChangeTitle || "Basemap",
-					baseMapLayers: []
-				};
-				
-				$.each(newBMLayers, function(i, layer){
-					var bmLayerJSON = {
-						id: layer.id,
-						opacity: 1,
-						visibility: true,
-						url: layer.url
-					};
-					
-					if ( layer.type == "reference" )
-						bmLayerJSON.isReference = true;
-					
-					if ( layer.id == "layer_osm" ) {
-						delete bmLayerJSON.url;
-						bmLayerJSON.type = "OpenStreetMap";
-					}
-					
-					newBMJSON.baseMapLayers.push(bmLayerJSON);
-				});
-				
-				app.data.getWebMapItem().itemData.baseMap = newBMJSON;
-			}
-			
 			// If the extent or data has changed 
 			// or it's a direct creation initial save
 			// or the basemap has changed
@@ -529,7 +457,7 @@ define(["esri/arcgis/Portal",
 					|| webmapEmbeddedLayerChange 
 					|| app.isDirectCreationFirstSave 
 					|| app.isGalleryCreation 
-					|| basemapChanged
+					|| app.basemapChanged
 			) {
 				var portalUrl = getPortalURL(),
 					item = lang.clone(app.data.getWebMapItem().item),
@@ -589,6 +517,7 @@ define(["esri/arcgis/Portal",
 						if( app.data.sourceIsFS() ) {
 							FeatureServiceManager.saveFS(
 								function() {
+									app.basemapChanged = true;
 									nextFunction(response);
 								},
 								function(error) {
@@ -605,6 +534,7 @@ define(["esri/arcgis/Portal",
 			else if ( app.data.sourceIsFS() ) {
 				FeatureServiceManager.saveFS(
 					function() {
+						app.basemapChanged = true;
 						nextFunction({success: true});
 					},
 					function(error) {
