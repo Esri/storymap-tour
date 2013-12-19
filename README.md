@@ -287,6 +287,8 @@ The header and picture title/caption can include HTML tags to define formatting 
 For example, this code adds a yellow link:
 
        <a href="http://storymaps.esri.com/" style="color:yellow" target="_blank">StoryMaps Website</a>
+       
+When your data are stored in a Feature Service, the authorized HTML tags may be restricted to [those listed in the following document](http://resources.arcgis.com/en/help/main/10.2/index.html#//0154000005sq000000#ESRI_SECTION1_CE856452327D42ED95044D9EC32E4598).
 
 ### Supporting Layers
 
