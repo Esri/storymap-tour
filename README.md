@@ -143,7 +143,7 @@ consult [FAQ](#which-web-map-layer-will-be-used) to learn more about which web m
 
 ### Using a CSV
 
-The interactive builder support loading a CSV. The builder will give you detailed information if your CSV doesn't match the requirements. 
+The interactive builder support loading a CSV and will give you detailed information if your CSV doesn't match the requirements. To create a Map Tour from a CSV we recommend that you create a blank webmap using ArcGIS Online, publish a Map Tour and use the interactive builder to import the CSV.
 You can still drag and drop a CSV into the webmap but this is not the recommanded way anymore.
 
 A sample CSV can be downloaded from the interactive builder `Advanced options` page or [here](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/samples/csv_file__lat_long/Locations.csv) (use right click + "Save as" if the file doesn't download).
