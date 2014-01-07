@@ -278,7 +278,7 @@ If you experience some difficulties, please let us know. In the meantime, by bui
 
 We recommend landscape orientation photos instead of portrait. Portrait orientation images can be used but on smaller screens like the iPad, a lot of the photo may be obscured by the caption, because text takes up more space when it is displayed in a tall area compared to a wide area. Although images of different sizes, shapes and orientation can be used in one Map Tour, we recommend using the exact same size and shape for all the images. In this way, the user won't be distracted by different sized images as they follow the tour.
 
-The recommended picture size is 1090x725px. The recommended thumbnail size is 140x93px.
+The recommended picture size is 1000x750px. The recommended thumbnail size is 140x93px.
 
 ### Formatting your caption text using HTML tags
 
