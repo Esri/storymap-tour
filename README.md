@@ -302,6 +302,12 @@ There's a limit of 99 points per tour. Most Map Tours will of course be signific
 
 If you want to embed the template in another website through an iframe, adding the optional parameter "&embed" at the end of the URL will remove the header. That mode can also be set in the downloadable version through the configuration file.
 
+Exemple of iframe code that remove the header:
+
+       <iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://esrimedia.maps.arcgis.com/apps/MapTour/index.html?appid=24e56b98a2644beb862db5d55c8ea355&embed"></iframe>
+       <br />
+       <a href="http://esrimedia.maps.arcgis.com/apps/MapTour/index.html?appid=24e56b98a2644beb862db5d55c8ea355" target="_blank">View Larger Map</a>
+
 ### Starting the Map Tour on a specific point
 
 It is possible to open the Map Tour on a specific point and not on the first one by using the URL parameter `index` (from index=1 to index={number of point}).
