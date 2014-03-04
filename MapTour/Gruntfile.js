@@ -6,7 +6,7 @@
 			pkg: grunt.file.readJSON('package.json'),
 			
 			clean: {
-				deploy: ['deploy/'],
+				deploy: ['deploy/*'],
 				css: [
 					'deploy/app/Responsive.css', 
 					'deploy/app/css/', 
@@ -143,6 +143,21 @@
 						src:['*'],
 						dest: 'deploy/resources/bootstrap/'
 					}]
+				},
+				colorboxResources: {
+					files: [{
+						expand: true,
+						cwd: 'src/lib/colorbox/img/',
+						src:['*'],
+						dest: 'deploy/resources/colorbox/'
+					}]
+				},
+				readme: {
+					files: [{
+						expand: true,
+						src:['Readme.pdf', 'Readme.txt'],
+						dest: 'deploy/'
+					}]
 				}
 			},
 			
@@ -167,6 +182,12 @@
 							name: 'Bootstrap images path',
 							search: '../img/',
 							replace: '../resources/bootstrap/',
+							flags: 'g'
+						},
+						{
+							name: 'Colorbox images path',
+							search: 'img/',
+							replace: '../resources/colorbox/',
 							flags: 'g'
 						}
 					]
@@ -207,7 +228,8 @@
 				server: {
 					options: {
 						port: 8080,
-						keepalive: true
+						keepalive: true,
+						hostname: '*'
 					}
 				}
 			},
@@ -277,7 +299,9 @@
 			'copy:config',
 			'copy:commonConfig',
 			'copy:bootstrapResources',
-			'copy:resources'
+			'copy:colorboxResources',
+			'copy:resources',
+			'copy:readme'
 		]);
 	};
 })();

@@ -327,6 +327,7 @@
 				header: "電子メール、あるいは Picasa または Google+ アカウントの ID を入力してください。",
 				userInputLbl: "電子メールまたは ID の入力",
 				signInMsg2: "アカウントが見つかりません",
+				signInMsg3: "パブリック アルバムがありません",
 				howToFind: "Picasa または Google+ アカウントの ID の検索方法",
 				howToFind2: "任意の Picasa または Google+ のページの 1 番目と 2 番目の「/」の間の数字をコピーします。"
 			},
@@ -524,7 +525,10 @@
 				shareA2div1: "次のリンク %LINK1% を保存および再利用するか、<a href='%LINK2%' target='_blank'>アプリケーション アイテム ページ</a>を使用します。",
 				shareA2div2: "アプリケーションの所有者として ArcGIS.com にサイン インした場合、アプリケーションに対話型ビルダを開くボタンが含まれます。",				
 				shareQ3: "データの保存場所は？",
-				shareA3: "ツアーの構成は、<a href='%LINK1%' target='_blank'>この Web アイテム</a>と<a href='%LINK2%' target='_blank'>この Web アプリケーション アイテム</a>に保存されます。Flickr、Picasa、Facebook、または YouTube のインポートを使用した場合、画像とビデオはそのままそこに保存され、ArcGIS Online に複製されることはありません。"
+				shareA3: "ツアーの構成は、<a href='%LINK1%' target='_blank'>この Web アイテム</a>と<a href='%LINK2%' target='_blank'>この Web アプリケーション アイテム</a>に保存されます。Flickr、Picasa、Facebook、または YouTube のインポートを使用した場合、画像とビデオはそのままそこに保存され、ArcGIS Online に複製されることはありません。",
+				shareWarning: "<a href='%LINK%' target='_blank'>Web マップ</a>の所有者でないため、%WITH% の共有は無効化されています。",
+				shareWarningWith1: "パブリック",
+				shareWarningWith2: "パブリックおよび組織"
 			}
         }
     })

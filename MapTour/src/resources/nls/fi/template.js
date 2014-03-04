@@ -154,7 +154,7 @@
 				settingsLogoSocialExplain: "Mukauta ylätunnisteen oikean yläkulman linkki.",
 				settingsLogoSocialText: "Teksti",
 				settingsLogoSocialLink: "Linkki",
-				settingsLogoSocialDisabled: "Järjestelmänvalvoja on poistanut tämän toiminnon käytöstä",
+				settingsLogoSocialDisabled: "Pääkäyttäjä on poistanut tämän toiminnon käytöstä",
 				settingsDataFieldsExplain: "Valitse valokuvan nimi-, seloste- ja värikentät.",
 				settingsDataFieldsError: "Sovellus ei pysty määrittämään sopivaa nimeä, selostetta tai väritietoja. Valitse tässä käytettävät kentät. Näitä asetuksia voi muuttaa myöhemmin.",
 				settingsFieldsLabelName: "Nimi",
@@ -253,7 +253,7 @@
 				popoverUploadingPhoto: "Ladataan kuvaa ja pikkukuvaa palvelimelle",
 				popoverUploadingThumbnail: "Ladataan pikkukuvaa",
 				popoverUploadSuccessful: "Palvelimelle lataus onnistui",
-				popoverUploadError: "Päivitys epäonnistui. Yritä uudelleen myöhemmin",
+				popoverUploadError: "Lataus epäonnistui. Yritä uudelleen myöhemmin",
 				changePicAndThumb: "Vaihda kuva",
 				changeThumb: "Vaihda pikkukuva",
 				selectPic: "Vaihda media",
@@ -280,7 +280,7 @@
 			onlinePhotoSharingCommon: {
 				pictures: "kuvat",
 				videos: "videot",
-				disabled: "Järjestelmänvalvoja on poistanut tämän toiminnon käytöstä",
+				disabled: "Pääkäyttäjä on poistanut tämän toiminnon käytöstä",
 				disabledPortal: "Tämä toiminto on poistettu käytöstä ArcGIS-portaalissa",
 				header1: "Kuvasi on jaettava julkisesti.",
 				header2: "Tuonti rajoitetaan ensimmäisiin %NB1% %MEDIA% -kohteeseen.",
@@ -327,6 +327,7 @@
 				header: "Kirjoita sähköpostiosoitteesi tai Picasa- tai Google+-tilisi tunnus.",
 				userInputLbl: "Kirjoita sähköpostiosoite tai tunnus",
 				signInMsg2: "Tiliä ei löydy",
+				signInMsg3: "Ei julkista albumia",
 				howToFind: "Picasa- tai Google+-tilitunnuksen etsiminen",
 				howToFind2: "Kopioi minkä tahansa Picasa- tai Google+-sivun ensimmäisen ja toisen vinoviivan (/) välissä olevat luvut"
 			},
@@ -392,7 +393,7 @@
 				title1: "Ne ovat jo verkossa",
 				title2: "Minun on ladattava kuvani palveluun",
 				hostedFSTooltip: "Käytä ArcGIS Onlinea kuviesi isännöintiin (ei tue videoita).",
-				hostedFsNA: "Käytettävissä vain henkilöille, joilla on ArcGIS for Organizations -tilin julkaisijan tai järjestelmänvalvojan käyttöoikeudet",
+				hostedFsNA: "Käytettävissä vain henkilöille, joilla on ArcGIS for Organizations -tilin julkaisijan tai pääkäyttäjän käyttöoikeudet",
 				footer1: "Kun olet valmis, muista jakaa karttakierroksesi yleisösi kanssa sovelluskohteen sivulla.",
 				footer3: "Lataa CSV-malli",
 				footer4: "\"Tallenna nimellä\", jos kohde ei lataudu",
@@ -417,7 +418,7 @@
 					div1: "Karttakierrosta luotaessa on tärkeää miettiä, mihin kuvat tallennetaan. Karttakierros voi käyttää tunnetuimpiin valokuvien jakamispalveluihin, web-palvelimiin tai liitteinä kohdepalveluihin tallennettuja kuvia.",
 					div1a: "Lisätietoja tuetuista kuvamuodoista ja videoista on tämän välilehden viimeisessä osassa.",
 					div2: "Interaktiivisen rakentajan avulla voit käsitellä karttakierroksesi kuvia kahdella tavalla:",
-					div3: "<ul><li>Voit käyttää <b>aiemmin verkkoon</b>, kuten Flickrin kaltaiseen valokuvien jakamispalveluun, tallennettuja kuvia tai omaan web-sivustoosi tallennettuja kuvia. Kyseisiin kuviin viitataan karttakierroksella niiden URL-osoitteiden avulla.</li><li>Voit myös <b>ladata valokuvia tietokoneestasi</b> suoraan karttakierroksellesi. Tämä lataustoiminto edellyttää ArcGIS Online -tilausta ja julkaisijan tai järjestelmänvalvojan oikeuksia, koska isännöity kohdepalvelu, johon valokuvasi tallennetaan liitteinä, luodaan automaattisesti puolestasi.</li></ul>",
+					div3: "<ul><li>Voit käyttää <b>aiemmin verkkoon</b>, kuten Flickrin kaltaiseen valokuvien jakamispalveluun, tallennettuja kuvia tai omaan web-sivustoosi tallennettuja kuvia. Kyseisiin kuviin viitataan karttakierroksella niiden URL-osoitteiden avulla.</li><li>Voit myös <b>ladata valokuvia tietokoneestasi</b> suoraan karttakierroksellesi. Tämä lataustoiminto edellyttää ArcGIS Online -tilausta ja julkaisijan tai pääkäyttäjän oikeuksia, koska isännöity kohdepalvelu, johon valokuvasi tallennetaan liitteinä, luodaan automaattisesti puolestasi.</li></ul>",
 					div4: "Pääasialliset käyttötilanteet ovat seuraavat:",
 					div4b: "<b>Valokuviasi ei isännöidä</b> vielä, ja sinulla on ArcGIS Online -tilaus: paras vaihtoehto on käyttää isännöityä kohdepalvelua. Valokuvien jakamispalveluiden tavoin luomme nopeasti latautuvia kuvia optimoimalla ne, ja voit käyttää kaikkia ArcGIS-ympäristön järjestelmänvalvojan ja tietojenhallinnan toimintoja.",
 					div5: "<b>Et ole organisaation jäsen</b>: sinun on ensin ladattava kuvasi valokuvien jakamispalveluun tai omaan web-palvelimeesi. Voit sitten muodostusohjelman avulla käyttää kyseisiä kuvia, jotka ovat edelleen isännöityinä niiden alkuperäisessä sijainnissa.",
@@ -472,7 +473,7 @@
 					div4a: "Kirjoita kierrokselle hyvä alaotsikko",
 					div4b: "Kirjoita kierroksellesi mukaansatempaava alaotsikko. Alaotsikko on hyvä tapa houkutella ihmisiä kierrokselle ja kertoa heille, mihin kohteisiin he kierroksella tutustuvat. Se on myös hyvä paikka kertoa yleisölle, mihin osavaltioon tai maahan kierros sijoittuu. Älä esimerkiksi oleta, että ihmiset tietävät, missä kierroksellasi oleva suurkaupunki tai kaupunki sijaitsee. Voit käyttää selosteen muotoilussa myös HTML-tunnisteita. Voit esimerkiksi sisällyttää linkkejä. Älä kuitenkaan tee selosteesta liian pitkää. Pienemmissä selainikkunoissa tai iPad-laitteessa seloste ei ehkä mahdu kokonaan ja saattaa katketa. Jos et keksi hyvää alaotsikkoa, jätä se tyhjäksi.",
 					div5: "Tukitasot",
-					div6: "Voit lisätä karttakierrokselle kontekstia ylimääräisten tukitasojen avulla. Voit esimerkiksi lisätä karttakierroksen pisteiden lisäksi maantieteellisiä kohteita, kuten tutkimusalueen ja kierroksen pisteet yhdistävän kävely- tai ajoreitin. Karttakierrosmalli näyttää nämä ylimääräiset tukitasot symbolien avulla, jotka olet määrittänyt web-kartalla. Pop-up-ikkunat eivät ole käytettävissä.",
+					div6: "Voit lisätä karttakierrokselle kontekstia ylimääräisten tukitasojen avulla. Voit esimerkiksi lisätä karttakierroksen pisteiden lisäksi maantieteellisiä kohteita, kuten tutkimusalueen ja kierroksen pisteet yhdistävän kävely- tai ajoreitin. Karttakierrosmalli näyttää nämä ylimääräiset tukitasot symbolien avulla, jotka olet määrittänyt web-kartalla. Ponnahdusikkunat eivät ole käytettävissä.",
 					div7: "Pidä kierros lyhyenä ja hauskana",
 					div8: "Kierroksella voi olla enintään 99 pistettä. Useimmat karttakierrokset ovat yleensä tätä rajoitusta huomattavasti lyhyempiä. Yleisösi ei välttämättä halua käydä läpi liian montaa kierroksen pistettä. Kohde on varmasti omasta mielestäsi mielenkiintoinen, mutta älä odota muiden ajattelevan samoin.",
 					div9: "Lisätietoja on <a href='https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Readme.pdf' target='_blank'>yksityiskohtaisessa oppaassa</a>.",
@@ -524,7 +525,10 @@
 				shareA2div1: "Tallenna ja käytä uudelleen seuraavaa linkkiä %LINK1% tai käytä <a href='%LINK2%' target='_blank'>sovelluskohteen sivua</a>.",
 				shareA2div2: "Koska olet sovelluksen omistaja, kun olet kirjautunut ArcGIS.com-sivustoon, sovelluksessa näkyy painike, jolla voita avata vuorovaikutteisen muodostusohjelman:",				
 				shareQ3: "Minne tiedot on tallennettu?",
-				shareA3: "Kierroksen määritykset tallennetaan <a href='%LINK1%' target='_blank'>tähän web-karttakohteeseen</a> ja <a href='%LINK2%' target='_blank'>tähän web-sovelluskohteeseen</a>. Jos olet käyttänyt Flickr-, Picasa-, Facebook- tai YouTube-tuontia, kuvasi ja videosi jäävät kyseiseen palveluun, eikä niitä kopioida ArcGIS Onlineen."
+				shareA3: "Kierroksen määritykset tallennetaan <a href='%LINK1%' target='_blank'>tähän web-karttakohteeseen</a> ja <a href='%LINK2%' target='_blank'>tähän web-sovelluskohteeseen</a>. Jos olet käyttänyt Flickr-, Picasa-, Facebook- tai YouTube-tuontia, kuvasi ja videosi jäävät kyseiseen palveluun, eikä niitä kopioida ArcGIS Onlineen.",
+				shareWarning: "Jakaminen kohteen %WITH% kanssa on poistettu käytöstä, koska et ole <a href='%LINK%' target='_blank'>Web-kartan</a> omistaja.",
+				shareWarningWith1: "julkisesti",
+				shareWarningWith2: "julkisesti ja organisaation kanssa"
 			}
         }
     })

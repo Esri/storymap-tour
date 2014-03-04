@@ -157,7 +157,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				if( ! _fields.getIsVideoField() )
 					return;
 				
-				_attributes[_fields.getIsVideoField()] = isVideo;
+				_attributes[_fields.getIsVideoField()] = "" + isVideo;
 			};
 			
 			this.getOriginalGraphic = function()

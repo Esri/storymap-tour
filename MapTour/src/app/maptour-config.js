@@ -12,7 +12,7 @@ APPCFG = {
 	HEADER_LOGO_TARGET: "http://www.esri.com",
 	// Header top right link
 	HEADER_LINK_TEXT: "A story map",
-	HEADER_LINK_URL: "http://storymaps.esri.com/home/",
+	HEADER_LINK_URL: "http://storymaps.arcgis.com",
 	// Control display of Facebook and Twitter links
 	HEADER_SOCIAL: {
 		facebook: true,

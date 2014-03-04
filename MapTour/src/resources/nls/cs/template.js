@@ -141,7 +141,7 @@
 				settingsLayoutSelected: "Vybrané rozvržení",
 				settingsLayoutSelect: "Zvolit toto rozvržení",
 				settingsLayoutNote: "Při používání videí na bodech bude pod videem vždy poutač, i když tato možnost není zaškrtnuta.",
-				settingsLayoutLocBtn: "Zobrazit tlačítko 'Hledat'",
+				settingsLayoutLocBtn: "Zobrazit tlačítko \'Lokalizovat\'",
 				settingsLayoutLocBtnHelp: "Tato funkcionalita je podporována na většině mobilních zařízení a stolních prohlížečů (Internet Explorer 9).",
 				settingsColorExplain: "Změňte vzhled volbou přednastaveného motivu, nebo si vytvořte svůj vlastní.",
 				settingsLabelColor: "Barvy záhlaví, obsahu a zápatí",
@@ -327,6 +327,7 @@
 				header: "Zadejte svůj e-mail nebo identifikátor pro účet Picasa nebo Google+.",
 				userInputLbl: "Zadat e-mail nebo identifikátor",
 				signInMsg2: "Účet nenalezen",
+				signInMsg3: "Žádné veřejné album",
 				howToFind: "Jak najít identifikátor účtu Picasa nebo Google+",
 				howToFind2: "Zkopírujte číslice mezi prvním a druhým lomítkem (/) libovolné stránky služeb Picasa nebo Google+."
 			},
@@ -493,7 +494,7 @@
 					div3: "Ujistěte se, že prohlídka funguje správně, i když nejste přihlášeni do svého účtu ArcGIS.com. Adresa URL, kterou použijete, by vás neměla přesměrovat na přihlašovací stránku nebo do režimu nástroje pro tvorbu.",
 					div4: "Je dobré vyzkoušet, jak vaše prohlídka mapy vypadá na iPadu při orientaci na šířku, abyste měli jistotu, že se na tomto oblíbeném zařízení zobrazuje správně. Můžete tak zkontrolovat, zda popisky nepřekrývají příliš velkou část obrázků. Také uvidíte, zda je podnadpis vyhovující a zobrazuje se celý.",
 					div5a: "Doporučení pro vyhledávání",
-					div5b: "Abyste lidem pomohli najít vaši prohlídku mapy při vyhledávání v ArcGIS Online, doporučujeme přidat klíčové slovo 'mapa s příběhem', na stránce položek aplikace vaší prohlídky mapy (nikoli na stránce položek vaší webové mapy), spolu s dalšími klíčovými slovy, jako např. název státu nebo provincie, kde je prohlídka umístěna, název země, pokud se nachází mimo USA, a tematická klíčová slova jako např. 'veřejné umění', 'turistický průvodce' nebo 'historická místa'. Tato klíčová slova také pomohou nám ve společnosti Esri najít zajímavé nové příklady prohlídek, které můžeme ukázat v našich galeriích a propagovat přes sociální média. Také doporučujeme, abyste na svou stránku položek aplikace nahráli hezkou grafickou miniaturu, např. malý snímek obrazovky z prohlídky nebo jeden z obrázků, které se v ní nacházejí. Tento obrázek se automaticky použije, pokud bude vaše mapa přidána do galerie ArcGIS Online."
+					div5b: "Abyste lidem pomohli najít vaši prohlídku mapy při vyhledávání v ArcGIS Online, doporučujeme přidat klíčové slovo \'mapa s příběhem\', na stránce položek aplikace vaší prohlídky mapy (nikoli na stránce položek vaší webové mapy), spolu s dalšími klíčovými slovy, jako např. název státu nebo provincie, kde je prohlídka umístěna, název země, pokud se nachází mimo USA, a tematická klíčová slova jako např. \'veřejné umění\', \'turistický průvodce\' nebo \'historická místa\'. Tato klíčová slova také pomohou nám ve společnosti Esri najít zajímavé nové příklady prohlídek, které můžeme ukázat v našich galeriích a propagovat přes sociální média. Také doporučujeme, abyste na svou stránku položek aplikace nahráli hezkou grafickou miniaturu, např. malý snímek obrazovky z prohlídky nebo jeden z obrázků, které se v ní nacházejí. Tento obrázek se automaticky použije, pokud bude vaše mapa přidána do galerie ArcGIS Online."
 				}
 			},
 			share: {
@@ -508,7 +509,7 @@
 				sharePrivateBtn1: "Sdílet veřejně",
 				sharePrivateBtn2: "Sdílet s mou organizací",
 				sharePrivateProgress: "Probíhá sdílení…",
-				sharePrivateErr: "Sdílení selhalo, zkuste to znovu nebo",
+				sharePrivateErr: "Sdílení se nezdařillo, zkuste to znovu nebo",
 				sharePrivateOk: "Sdílení bylo úspěšně aktualizováno, probíhá nahrávání…",
 				sharePreviewAsUser: "Náhled",
 				shareHeader1: "Vaše prohlídka je <strong>veřejně přístupná</strong>.",
@@ -524,7 +525,10 @@
 				shareA2div1: "Uložte si pro budoucí použití tento odkaz %LINK1% nebo použijte <a href='%LINK2%' target='_blank'>stránku položek aplikace</a>.",
 				shareA2div2: "Když jste přihlášeni na webu ArcGIS.com jako majitel aplikace, tak aplikace obsahuje tlačítko pro otevření interaktivního nástroje pro tvorbu:",				
 				shareQ3: "Kde jsou uložena data?",
-				shareA3: "Nastavení prohlídky je uloženo v <a href='%LINK1%' target='_blank'>této položce webové mapy</a> a <a href='%LINK2%' target='_blank'>této položce webové aplikace</a>. Pokud jste použili import z Flickru, Picasa, Facebooku nebo YouTube, zůstávají vaše obrázky a videa uloženy tam a nejsou duplikovány v ArcGIS Online."
+				shareA3: "Nastavení prohlídky je uloženo v <a href='%LINK1%' target='_blank'>této položce webové mapy</a> a <a href='%LINK2%' target='_blank'>této položce webové aplikace</a>. Pokud jste použili import z Flickru, Picasa, Facebooku nebo YouTube, zůstávají vaše obrázky a videa uloženy tam a nejsou duplikovány v ArcGIS Online.",
+				shareWarning: "Sdílení %WITH% bylo zakázáno, protože nejste vlastníkem <a href='%LINK%' target='_blank'>webové mapy</a>.",
+				shareWarningWith1: "veřejně",
+				shareWarningWith2: "veřejně a s organizací"
 			}
         }
     })

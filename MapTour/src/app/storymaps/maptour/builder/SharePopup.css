@@ -73,6 +73,20 @@
 	margin-bottom: 20px;
 }
 
+#sharePopup .share-warning {
+	display: none;
+	margin-top: 20px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold !important;
+	font-size:14px;
+	color:#c43d40 !important;
+}
+
+#sharePopup .share-warning a {
+	color: #C43D40;
+	font-weight:bold;
+}
+
 #sharePopup .footer {
 	margin-top: 30px;
 }

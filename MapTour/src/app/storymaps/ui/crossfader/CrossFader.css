@@ -106,11 +106,14 @@ body.hasTouch .btn-fullscreen{
     word-wrap: break-word;
 }
 
-
-#placard  a {
+#placard a {
 	color:#FFF;
 	font-family:Arial, Helvetica, sans-serif;
 	text-decoration: underline;
+}
+
+#placard ul {
+	padding-left: 40px;
 }
 
 #placard-bg {

@@ -217,6 +217,14 @@ define(["esri/arcgis/Portal",
 					access: 'private'
 				}
 			);
+			
+			// Not sure why but the JS API add those unnecessary properties that WPF runtime doesn't like at all 
+			try {
+				delete webMapItem.itemData.operationalLayers[0].featureCollection.layers[0].id;
+				delete webMapItem.itemData.operationalLayers[0].featureCollection.layers[0].opacity;
+				delete webMapItem.itemData.operationalLayers[0].featureCollection.layers[0].visibility;
+				delete webMapItem.itemData.operationalLayers[0].featureCollection.layers[0].layerObject;
+			} catch(e){ }
 
 			app.portal.signIn().then(
 				function(){ 
@@ -307,6 +315,14 @@ define(["esri/arcgis/Portal",
 			// Save the webmap in the same folder than the app
 			if( app.data.getAppItem().ownerFolder )
 				webMapItem.item.ownerFolder = app.data.getAppItem().ownerFolder;
+				
+			// Not sure why but the JS API add those unnecessary properties that WPF runtime doesn't like at all 
+			try {
+				delete webMapItem.itemData.operationalLayers[0].featureCollection.layers[0].id;
+				delete webMapItem.itemData.operationalLayers[0].featureCollection.layers[0].opacity;
+				delete webMapItem.itemData.operationalLayers[0].featureCollection.layers[0].visibility;
+				delete webMapItem.itemData.operationalLayers[0].featureCollection.layers[0].layerObject;
+			} catch(e){ }
 
 			app.portal.signIn().then(
 				function(){ 
@@ -514,10 +530,10 @@ define(["esri/arcgis/Portal",
 				
 				saveRq.then(
 					function(response){
+						app.basemapChanged = false;
 						if( app.data.sourceIsFS() ) {
 							FeatureServiceManager.saveFS(
 								function() {
-									app.basemapChanged = true;
 									nextFunction(response);
 								},
 								function(error) {
@@ -534,7 +550,6 @@ define(["esri/arcgis/Portal",
 			else if ( app.data.sourceIsFS() ) {
 				FeatureServiceManager.saveFS(
 					function() {
-						app.basemapChanged = true;
 						nextFunction({success: true});
 					},
 					function(error) {
@@ -566,27 +581,29 @@ define(["esri/arcgis/Portal",
 		
 		function shareAppAndWebmap(sharingMode, callback)
 		{
-			// Kind of shitty
 			// Can only be used to add more privilege
-			
+			// Looks like sharing to private imply a unshareItems request first 
+			// => don't use it that code to share private without more test
 			if ( sharingMode != "public" && sharingMode != "account" )
 				sharingMode = "public";
 			
-			// Looks like sharing to private imply a unshareItems request first
-			// Don't use it without more test
-			
+			// Find items to share - only if they aren't already shared to the proper level 
 			var targetItems = [];
 			if( sharingMode == "account" ) {
-				// Need to make sure that the items are not already public 
-				if( app.data.getWebMapItem().item.access != "public" )
+				if( app.data.getWebMapItem().item.access == "private" && app.data.getWebMapItem().item.owner == app.portal.getPortalUser().username )
+					targetItems.push(app.data.getWebMapItem().item.id);
+				if ( app.data.getAppItem().access == "private" )
+					targetItems.push(app.data.getAppItem().id);
+			}
+			else {
+				if( app.data.getWebMapItem().item.access != "public" && app.data.getWebMapItem().item.owner == app.portal.getPortalUser().username )
 					targetItems.push(app.data.getWebMapItem().item.id);
 				if ( app.data.getAppItem().access != "public" )
 					targetItems.push(app.data.getAppItem().id);
 			}
-			else 
-				targetItems = [app.data.getWebMapItem().item.id, app.data.getAppItem().id];
 			
 			// Also update eventual FS if needed
+			// TODO: no check if user is the owner or not
 			if ( app.data.sourceIsFS() && app.data.getFSSourceLayerItemId() ) 
 				targetItems.push(app.data.getFSSourceLayerItemId());
 			

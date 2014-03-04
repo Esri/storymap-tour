@@ -65,18 +65,21 @@ define(["dojo/Deferred"],
 						
 				$.each(data, function(i, video) {
 					var videoURL = video.content ? video.content['5'] : '';
-					// Using /v/ cause issue on Firefox (opaque mode doesn't work - the placard is hidden)
-					videoURL = videoURL.replace('/v/', '/embed/');
 					
-					videos.push({
-						name: video.title || '',
-						description: video.description || '',
-						pic_url: videoURL,
-						thumb_url: video.thumbnail ? video.thumbnail.sqDefault : '',
-						lat: video.geoCoordinates ? video.geoCoordinates.latitude : '',
-						lng: video.geoCoordinates ? video.geoCoordinates.longitude : '',
-						is_video: true
-					});
+					if ( videoURL ) {
+						// Using /v/ cause issue on Firefox (opaque mode doesn't work - the placard is hidden)
+						videoURL = videoURL.replace('/v/', '/embed/');
+						
+						videos.push({
+							name: video.title || '',
+							description: video.description || '',
+							pic_url: videoURL,
+							thumb_url: video.thumbnail ? video.thumbnail.sqDefault : '',
+							lat: video.geoCoordinates ? video.geoCoordinates.latitude : '',
+							lng: video.geoCoordinates ? video.geoCoordinates.longitude : '',
+							is_video: true
+						});
+					}
 				});
 				
 				return videos;

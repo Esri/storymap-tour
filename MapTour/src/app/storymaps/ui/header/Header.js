@@ -180,8 +180,8 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			
 			function shareFacebook()
 			{
-				var options = '&p[title]=' + encodeURIComponent($(selector + ' #headerMobile .title').html())
-								+ '&p[summary]=' + encodeURIComponent($(selector + ' #headerMobile .subtitle').html())
+				var options = '&p[title]=' + encodeURIComponent($(selector + ' #headerMobile .title').text())
+								+ '&p[summary]=' + encodeURIComponent($(selector + ' #headerMobile .subtitle').text())
 								+ '&p[url]=' + encodeURIComponent(document.location.href);
 			
 				var counter = 0;
@@ -205,7 +205,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			
 			function shareTwitter()
 			{
-				var options = 'text=' + encodeURIComponent($(selector + ' #headerMobile .title').html())
+				var options = 'text=' + encodeURIComponent($(selector + ' #headerMobile .title').text())
 								+ '&url=' + encodeURIComponent(document.location.href)
 								+ '&related=EsriStoryMaps'
 								+ '&hashtags=storymap'; 
@@ -258,10 +258,22 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				if( $("#bitlyStartIndex").is(":checked") ) {
 					if( urlParams.index )
 						targetUrl = targetUrl.replace(/index\=[0-9]+/, 'index=' + currentIndex);
-					else if ( ! urlParams || $.isEmptyObject(urlParams) )
-						targetUrl += '?index=' + currentIndex;
 					else
-						targetUrl += '&index=' + currentIndex;
+						targetUrl = document.location.origin 
+									+ document.location.pathname
+									+ (!urlParams || $.isEmptyObject(urlParams) ? '?' : document.location.search + '&')
+									+ 'index=' + currentIndex 
+									+ document.location.hash;
+				}
+				//else {
+					// remove index parameter if any
+					//targetUrl = targetUrl.replace(/index\=[0-9]+/, '');
+				//}	
+				
+				if ( isInBuilderMode ) {
+					targetUrl = targetUrl.replace(/\?edit&/, '?');
+					targetUrl = targetUrl.replace(/\?edit/, '');
+					targetUrl = targetUrl.replace(/\&edit/, '');
 				}
 				
 				_bitlyStartIndexStatus = $("#bitlyStartIndex").is(":checked") ? 'checked' : '';

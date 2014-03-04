@@ -327,6 +327,7 @@
 				header: "Immettere l\'e-mail o l\'ID dell\'account Picasa o Google+.",
 				userInputLbl: "Immettere un\'e-mail o un ID",
 				signInMsg2: "Account non trovato",
+				signInMsg3: "Nessun album pubblico",
 				howToFind: "Come trovare l\'ID di un account Picasa o Google+",
 				howToFind2: "Copiare le cifre tra il primo e il secondo \"/\" di qualsiasi pagina Picasa o G+"
 			},
@@ -478,7 +479,7 @@
 					div9: "Per ulteriori informazioni, consultare <a href='https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Readme.pdf' target='_blank'>la guida dettagliata</a>.",
 					div10: "Modalità Incorpora",
 					div11: "Se si desidera incorporare il modello in un altro sito Web tramite un iframe, aggiungere il parametro facoltativo \"&embed\" alla fine dell\'URL per rimuovere l\'intestazione. È anche possibile impostare tale modalità nella versione scaricabile tramite il file di configurazione.",
-					div12: "Evitare di specificare una larghezza troppo ridotta per l\'iFrame; in caso contrario per il Tour mappa verrà attivato il layout per touch screen piccoli. Per garantire la massima semplicità d'uso, quando si incorpora un Tour mappa, si consiglia di fornire comunque un collegamento accanto al Tour incorporato per consentire agli utenti di avviare il Tour a schermo intero." 
+					div12: "Evitare di specificare una larghezza troppo ridotta per l\'iFrame; in caso contrario per il Tour mappa verrà attivato il layout per touch screen piccoli. Per garantire la massima semplicità d\'uso, quando si incorpora un Tour mappa, si consiglia di fornire comunque un collegamento accanto al Tour incorporato per consentire agli utenti di avviare il Tour a schermo intero." 
 				},
 				tab5: {
 					title: "Pubblicazione",
@@ -524,7 +525,10 @@
 				shareA2div1: "Salvare e riutilizzare il collegamento seguente %LINK1% oppure utilizzare la <a href='%LINK2%' target='_blank'>pagina degli elementi dell\'applicazione</a>.",
 				shareA2div2: "In quanto proprietari dell\'applicazione, all\'accesso in ArcGIS.com, l\'applicazione includerà un pulsante per aprire il generatore interattivo:",				
 				shareQ3: "Dove vengono memorizzati i dati?",
-				shareA3: "La configurazione del Tour viene memorizzata in <a href='%LINK1%' target='_blank'>questo elemento della mappa Web</a> e in <a href='%LINK2%' target='_blank'>questo elemento dell\'applicazione Web</a>. Se è stato utilizzata l\'importazione da Flickr, Picasa, Facebook o YouTube, le immagini e i video rimarranno memorizzati in tale posizione e non verranno duplicati in ArcGIS Online."
+				shareA3: "La configurazione del Tour viene memorizzata in <a href='%LINK1%' target='_blank'>questo elemento della mappa Web</a> e in <a href='%LINK2%' target='_blank'>questo elemento dell\'applicazione Web</a>. Se è stato utilizzata l\'importazione da Flickr, Picasa, Facebook o YouTube, le immagini e i video rimarranno memorizzati in tale posizione e non verranno duplicati in ArcGIS Online.",
+				shareWarning: "La condivisione %WITH% è stata disabilitata perché non si è proprietari della <a href='%LINK%' target='_blank'>mappa Web</a>.",
+				shareWarningWith1: "con il pubblico",
+				shareWarningWith2: "con il pubblico e con l\'organizzazione"
 			}
         }
     })

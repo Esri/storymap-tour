@@ -327,6 +327,7 @@
 				header: "输入您的电子邮件地址或 Picasa 或 Google+ 的帐户 ID。",
 				userInputLbl: "输入电子邮件或 ID",
 				signInMsg2: "未找到帐户",
+				signInMsg3: "无公共图片集",
 				howToFind: "如何查找 Picasa 或 Google+ 帐户 ID",
 				howToFind2: "复制任何 Picasa 或 G+ 页面的第一个和第二个\“/\”之间的数字"
 			},
@@ -524,7 +525,10 @@
 				shareA2div1: "保存并重新使用以下链接 %LINK1%，或使用<a href='%LINK2%' target='_blank'>应用程序项目页面</a>。",
 				shareA2div2: "作为应用程序所有者，当您登录到 ArcGIS.com 后，可使用应用程序中的按钮来打开交互式构建器:",				
 				shareQ3: "数据存储位置在哪?",
-				shareA3: "浏览配置存储在<a href='%LINK1%' target='_blank'>此 webmap 项目</a>和<a href='%LINK2%' target='_blank'>此 web 应用程序项目</a>中。如果使用 Flickr、Picasa、Facebook 或 YouTube 导入，则图像和视频仍将存储在上述位置，并且不会复制到 ArcGIS Online。"
+				shareA3: "浏览配置存储在<a href='%LINK1%' target='_blank'>此 webmap 项目</a>和<a href='%LINK2%' target='_blank'>此 web 应用程序项目</a>中。如果使用 Flickr、Picasa、Facebook 或 YouTube 导入，则图像和视频仍将存储在上述位置，并且不会复制到 ArcGIS Online。",
+				shareWarning: "已禁止共享 %WITH%，因为您不是 <a href='%LINK%' target='_blank'>webmap</a> 的所有者。",
+				shareWarningWith1: "公开",
+				shareWarningWith2: "公开并在组织内共享"
 			}
         }
     })

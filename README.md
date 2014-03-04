@@ -6,10 +6,10 @@ The Map Tour template is designed for presenting geographic information where th
 
 [View it live](http://storymaps.esri.com/stories/maptour-palmsprings/) | 
 [Features](http://arcgis.com/apps/MapTour/preview.html) | 
-[User Download (source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.2.1.zip) | 
+[User Download (source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.2.2.zip) | 
 [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
-**Latest release is version 2.2.1**, if you want to be informed of new releases, we recommend you to watch these repository.
+**Latest release is version 2.2.2**, if you want to be informed of new releases, we recommend you to watch these repository.
 
 
 The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets. 
@@ -81,7 +81,7 @@ Note that the interactive builder is available in the downloadable version but w
 
 ## How to deploy a Map Tour
 
-To use the downloadable version, download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.2.1.zip), it contains the following files:
+To use the downloadable version, download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.2.2.zip), it contains the following files:
 
 | File                	                     | Contains                                                              |
 | ------------------------------------------ | --------------------------------------------------------------------- |
@@ -183,7 +183,7 @@ Yes, web map designed for the previous version should continue to work without a
 ### Can I deploy Map Tour on Portal for ArcGIS?
 Yes, Map Tour is included in Portal for ArcGIS 10.2.1. Note that for technical reason, the Feature Service creation isn't yet available from the interactive builder. If you want to use a Feature Service, please consult [this section](#using-an-existing-feature-service-map-service-or-shapefile).
 
-If you use an older version of Portal, you can [download](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.2.1.zip) and deploy the template in the following folder `ArcGIS\Portal\webapps\arcgis#home\webmap\templates\MapTour`. This folder may already contain a non-functional version of the template. If this is the case, remove the folder's content before copying the new files. Then refer your Portal documentation for instructions on publishing a new web application item and adding it to the web application gallery. If you choose to deploy the template in any other folder, some configuration will be required (see index.html configuration). Also note that the web application gallery preview feature won't be functional and give a 404 error.
+If you use an older version of Portal, you can [download](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.2.2.zip) and deploy the template in the following folder `ArcGIS\Portal\webapps\arcgis#home\webmap\templates\MapTour`. This folder may already contain a non-functional version of the template. If this is the case, remove the folder's content before copying the new files. Then refer your Portal documentation for instructions on publishing a new web application item and adding it to the web application gallery. If you choose to deploy the template in any other folder, some configuration will be required (see index.html configuration). Also note that the web application gallery preview feature won't be functional and give a 404 error.
 
 ### Can the template be used offline?
 Yes, by using Portal for ArcGIS. When deployed on a Portal for ArcGIS instance, the Map Tour doesn't require any external service to function. But by default the template will still include the header social buttons and template publishers are able to import pictures from the some online pictures hosting services. These options can be disabled individually through the configuration file app/maptour-config.js.
@@ -313,6 +313,25 @@ Exemple of iframe code that remove the header:
 It is possible to open the Map Tour on a specific point and not on the first one by using the URL parameter `index` (from index=1 to index={number of point}).
 
 ## What's new?
+
+#### Map Tour 2.2.2 released on 03/04/2013
+
+This is a minor bug-fixes release. Issues fixed in viewer mode aren’t major but we recommend to update existing application.
+
+Viewer issues:
+ * Application doesn’t load in Chrome when cookies are disabled
+ * Facebook and Twitter sharing include HTML tags present in title (and description for Facebook) as non-interpreted HTML code 
+ * The formatting of unordered list (HTML tag`<ul>`) in point caption is incorrect (the bullet isn’t displayed)
+ * Bit.ly link with “Link to current place” enabled may not open the Tour at the expected place if before generation the link, the user has used the mobile view to navigate between the story
+
+Builder issues:
+ * Webmap fail to load in ArcGIS for WPF runtime (issue #6)
+ * In ArcGIS.com Map Viewer, the attribute table of the Map Tour data layer won’t open when the Tour include a video that has been added through Add (Import is ok)
+ * Import may fail for some YouTube account (not supported video type that were included)
+ * Import spin indefinitely for Picasa account that don’t have any album
+
+Developer evolution:
+ * Use ArcGIS API for Javascript 3.9
 
 #### Map Tour 2.2.1 released on 12/13/2013
 
@@ -464,12 +483,13 @@ If you want to change the behavior of one functionality or want to add new one, 
 
 The easiest way to find the id or path to the DOM element that you want to customize is to use your browser developer tool, read documentation for [Chrome](https://developers.google.com/chrome-developer-tools/), [Safari](http://developer.apple.com/library/safari/#documentation/AppleApplications/Conceptual/Safari_Developer_Guide/2SafariDeveloperTools/SafariDeveloperTools.html), [Firefox](https://getfirebug.com/).
 
-Here are some customization examples that have to be included inside a \<style\> element after the \<body\> element like below :
+Here are some customization that can achieved through a `style` tag (look for `/* CUSTOM CSS RULES */` in index.html):
 
       ...
       <body class="claro">
          <style>
-            #element {
+            /* CUSTOM CSS RULES */
+			#element {
                /* changes */
             }
          </style>
@@ -567,7 +587,7 @@ Download and unzip the [Developer download](https://github.com/Esri/map-tour-sto
 | **MapTour/src/**                           | The application source code                                           |
 | **MapTour/deploy/**                        | The ready to be deployed Map Tour application                         |
 | samples/      			                 | Sample data layer to create your webmap                               |
-| Storytelling-MapTour-2.2.1.zip      		 | User download archive	                                             |
+| Storytelling-MapTour-2.2.2.zip      		 | User download archive	                                             |
 | Readme.pdf       		                     | The detailed readme guide                                             |
 | Readme.md                                  | This document                                                         |
 | map-tour-storytelling-template-js.png      | The application screenshot                                            |

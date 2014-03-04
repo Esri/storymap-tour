@@ -327,6 +327,7 @@
 				header: "Typ uw e-mailadres of de ID van uw Picasa- of Google+-account.",
 				userInputLbl: "Typ een e-mailadres of ID",
 				signInMsg2: "Account niet gevonden",
+				signInMsg3: "Geen openbaar album",
 				howToFind: "Zoeken naar een Picasa- of Google+-account-ID",
 				howToFind2: "Kopieer getallen tussen de eerste en tweede \'/\' van een pagina van Picasa of G+"
 			},
@@ -524,7 +525,10 @@
 				shareA2div1: "Sla de volgende koppeling op %LINK1% en gebruik deze opnieuw of gebruik <a href='%LINK2%' target='_blank'>de applicatie-itempagina</a>.",
 				shareA2div2: "Als u bent aangemeld bij ArcGIS.com als de eigenaar van de applicatie, bevat de applicatie een knop om de interactieve builder te openen:",				
 				shareQ3: "Waar zijn de gegevens opgeslagen?",
-				shareA3: "De Tour-configuratie wordt opgeslagen in <a href='%LINK1%' target='_blank'>dit webmap-item</a> en <a href='%LINK2%' target='_blank'>dit webapplicatie-item</a>. Als u importeren van Flickr, Picasa, Facebook of YouTube hebt gebruikt, blijven uw afbeeldingen en video\'s daar opgeslagen en worden deze niet gedupliceerd in ArcGIS Online."
+				shareA3: "De Tour-configuratie wordt opgeslagen in <a href='%LINK1%' target='_blank'>dit webmap-item</a> en <a href='%LINK2%' target='_blank'>dit webapplicatie-item</a>. Als u importeren van Flickr, Picasa, Facebook of YouTube hebt gebruikt, blijven uw afbeeldingen en video\'s daar opgeslagen en worden deze niet gedupliceerd in ArcGIS Online.",
+				shareWarning: "%WITH% delen is uitgeschakeld omdat u niet de eigenaar bent van de <a href='%LINK%' target='_blank'>webmap</a>.",
+				shareWarningWith1: "Openbaar",
+				shareWarningWith2: "Openbaar en met de organisatie"
 			}
         }
     })

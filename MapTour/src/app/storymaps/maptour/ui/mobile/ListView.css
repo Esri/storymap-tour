@@ -23,6 +23,7 @@
 
 /* The scroll bar */
 
+
 body.hasTouch .listWrapper > div:nth-child(2) {
 	display: none;
 }

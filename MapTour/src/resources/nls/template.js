@@ -327,6 +327,7 @@ define({
 				header: "Enter your email address or the ID of your Picasa or Google+ account.",
 				userInputLbl: "Enter an email or ID",
 				signInMsg2: "Account not found",
+				signInMsg3: "No public album",
 				howToFind: "How to find a Picasa or Google+ account ID",
 				howToFind2: "Copy digits between the first and second '/' of any Picasa or G+ page"
 			},
@@ -524,7 +525,10 @@ define({
 				shareA2div1: "Save and reuse the following link %LINK1% or use <a href='%LINK2%' target='_blank'>the application item page</a>.",
 				shareA2div2: "As the owner of the application, when you are signed in on ArcGIS.com, the application includes a button to open the interactive builder:",				
 				shareQ3: "Where is the data stored?",
-				shareA3: "The Tour configuration is stored in <a href='%LINK1%' target='_blank'>this webmap item</a> and <a href='%LINK2%' target='_blank'>this web application item</a>. If you have used Flickr, Picasa, Facebook or YouTube import, your images and videos remains stored there and aren't duplicated in ArcGIS Online."
+				shareA3: "The Tour configuration is stored in <a href='%LINK1%' target='_blank'>this webmap item</a> and <a href='%LINK2%' target='_blank'>this web application item</a>. If you have used Flickr, Picasa, Facebook or YouTube import, your images and videos remains stored there and aren't duplicated in ArcGIS Online.",
+				shareWarning: "Sharing %WITH% has been disabled because you are not the owner of the <a href='%LINK%' target='_blank'>webmap</a>.",
+				shareWarningWith1: "publicly",
+				shareWarningWith2: "publicly and with the Organization"
 			}
         }
     }),
@@ -550,5 +554,7 @@ define({
 	"ro":1,
 	"ru":1,
 	"sv":1,
+	"th": 1,
+	"tr": 1,
 	"zh-cn":1
 });

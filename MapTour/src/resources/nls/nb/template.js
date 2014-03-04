@@ -327,6 +327,7 @@
 				header: "Angi e-postadressen eller ID-en til kontoen din på Picasa eller Google+.",
 				userInputLbl: "Angi en e-postadresse eller ID",
 				signInMsg2: "Finner ikke kontoen",
+				signInMsg3: "Ingen offentlige album",
 				howToFind: "Slik finner du en konto-ID for Picasa eller Google+",
 				howToFind2: "Kopier tallene mellom første og andre/ på en tilfeldig side på Picasa eller G+"
 			},
@@ -524,7 +525,10 @@
 				shareA2div1: "Lagre og bruk følgende kobling på nytt, %LINK1% eller bruk <a href='%LINK2%' target='_blank'>siden for programelementer</a>.",
 				shareA2div2: "Når du har logget på ArcGIS.com som eier av programmet, får du tilgang til en knapp for å åpne det interaktive byggeverktøyet:",				
 				shareQ3: "Hvor lagres dataene?",
-				shareA3: "Konfigurasjonen av Map Tour lagres i <a href='%LINK1%' target='_blank'>dette webkartelementet</a> og <a href='%LINK2%' target='_blank'>dette webprogramelementet</a>. Hvis du har brukt import fra Flickr, Picasa, Facebook eller YouTube, er bildene og videoene fortsatt lagret der og blir ikke duplisert i ArcGIS Online."
+				shareA3: "Konfigurasjonen av Map Tour lagres i <a href='%LINK1%' target='_blank'>dette webkartelementet</a> og <a href='%LINK2%' target='_blank'>dette webprogramelementet</a>. Hvis du har brukt import fra Flickr, Picasa, Facebook eller YouTube, er bildene og videoene fortsatt lagret der og blir ikke duplisert i ArcGIS Online.",
+				shareWarning: "Deling av %WITH% er deaktivert fordi du ikke eier <a href='%LINK%' target='_blank'>webkartet</a>.",
+				shareWarningWith1: "offentlig",
+				shareWarningWith2: "offentlig og med organisasjonen"
 			}
         }
     })

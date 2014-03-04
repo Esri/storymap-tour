@@ -398,7 +398,16 @@ define(["storymaps/maptour/core/WebApplicationData",
 			this.userIsOrgaPublisher = function()
 			{
 				var user = app.portal ? app.portal.getPortalUser() : null;
-				return user && user.orgId && (user.role == 'org_admin' || user.role == 'org_publisher');
+				var hasCorrectRole = user && user.orgId && (user.role == 'org_admin' || user.role == 'org_publisher');
+				
+				if ( ! hasCorrectRole )
+					return false;
+				
+				// Org has custom role
+				if ( user.roleId && user.privileges )
+					return $.inArray("portal:publisher:publishFeatures", user.privileges) != -1;
+				
+				return true;
 			};
 			
 			this.isOrga = function()
@@ -447,7 +456,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				attributes[fields.getIconColorField()] = color;
 				
 				if ( app.data.layerHasVideoField() )
-					attributes[fields.getIsVideoField()] = false;
+					attributes[fields.getIsVideoField()] = "false";
 	
 				var newPoint = new Graphic(point, null, attributes);
 	
@@ -478,7 +487,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				attributes[fields.getThumbField()] = thumbnailUrl;
 				
 				if ( app.data.layerHasVideoField() )
-					attributes[fields.getIsVideoField()] = isVideo;
+					attributes[fields.getIsVideoField()] = "" + isVideo;
 				
 				addTourPointUsingAttributes(point, attributes);
 				
@@ -565,7 +574,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				attributes[fields.getIconColorField()] = color;
 				
 				if ( app.data.layerHasVideoField() )
-					attributes[fields.getIsVideoField()] = false;
+					attributes[fields.getIsVideoField()] = "false";
 	
 				var newPoint = new Graphic(point, null, attributes);
 				

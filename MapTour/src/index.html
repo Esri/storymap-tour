@@ -67,7 +67,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.2.1';
+			var version = '2.2.2';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -94,8 +94,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("//js.arcgis.com/3.8/js/esri/css/esri.css", true);
-			loadCSS("//js.arcgis.com/3.8/js/dojo/dijit/themes/claro/claro.css", true);			
+			loadCSS("//js.arcgis.com/3.9/js/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.9/js/dojo/dijit/themes/claro/claro.css", true);			
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -180,6 +180,9 @@
 		<![endif]-->
 	</head>
 	<body class="claro">
+		<style>
+			/* CUSTOM CSS RULES */
+		</style>
 		<div id="header">
 			<!-- Mobile header -->
 			<div id="headerMobile" class="firstDisplay">
@@ -204,7 +207,7 @@
 				<div class="rightArea">
 					<div class="social">
 						<span class="msLink">
-							<a href="http://storymaps.esri.com" target="_blank"></a>
+							<a href="http://storymaps.arcgis.com" target="_blank"></a>
 						</span>
 						<i class="shareIcon share_facebook icon-facebook-squared-1"></i>
 						<i class="icon-twitter-1 shareIcon share_twitter"></i>
@@ -980,6 +983,7 @@
 							<button class="btn btn-sharePublic"></button>
 							<button class="btn btn-shareOrga"></button>
 						</div>
+						<div class="share-warning"></div>
 						<div class="footer">
 							<a class="btn-learnmore"></a>
 							| <a class="btn-preview"></a>
@@ -1062,7 +1066,7 @@
 		</div>
 		
 		<script type="text/javascript">
-			loadJS('//js.arcgis.com/3.8/init.js', true);
+			loadJS('//js.arcgis.com/3.9/init.js', true);
 			loadJS('app/maptour-config.js');
 			
 			function getUrlVar(name)

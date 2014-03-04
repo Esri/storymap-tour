@@ -88,9 +88,15 @@ define(["storymaps/utils/PicasaConnector", "dojo/Deferred"],
 						$.each(data, function(i, album){
 							outHtml += '<option value="' + album.url + '">' + album.title + '</option>';
 						});
-						_container.find("#picasaListAlbum").html(outHtml);
-						_container.find("#picasaListAlbum").removeAttr("disabled");
-						_container.find(".signInMsg").html("");
+						
+						if (data && data.length) {
+							_container.find("#picasaListAlbum").html(outHtml);
+							_container.find("#picasaListAlbum").removeAttr("disabled");
+							_container.find(".signInMsg").html("");
+						}
+						else {
+							_container.find(".signInMsg").addClass('error').html(i18n.viewer.viewPicasa.signInMsg3);
+						}
 					},
 					function() {
 						_container.find(".signInMsg").addClass('error').html(i18n.viewer.viewFlickr.signInMsg2);

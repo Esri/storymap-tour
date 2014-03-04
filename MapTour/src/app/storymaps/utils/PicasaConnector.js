@@ -21,12 +21,16 @@ define(["dojo/Deferred"],
 				}).then(
 					function(data){
 						var albums = [];
-						$.each(data.feed.entry, function(i, album) {
-							albums.push({
-								url: album.id['$t'],
-								title: album.title['$t'] || ''
+
+						if( data && data.feed && data.feed.entry ) {
+							$.each(data.feed.entry, function(i, album) {
+								albums.push({
+									url: album.id['$t'],
+									title: album.title['$t'] || ''
+								});
 							});
-						});
+						}
+						
 						resultDeferred.resolve(albums);
 					},
 					function(){

@@ -76,7 +76,6 @@ define(["esri/request",
 							features: [],
 							geometryType: layer.geometryType
 						},
-						id: layer.id,
 						layerDefinition: {
 							geometryType: layer.geometryType,
 							objectIdField: layer.objectIdField,
@@ -99,10 +98,7 @@ define(["esri/request",
 							fields: [],
 							types: [],
 							capabilities: layer.capabilities
-						},
-						layerObject: null,
-						opacity: layer.opacity,
-						visibility: visibility
+						}
 					}],
 					showLegend: true
 				};
@@ -123,7 +119,7 @@ define(["esri/request",
 						geometry: graphic.geometry
 					});
 				});
-				
+
 				return featureCollection;
 			},
 			request: function(url, content, post, token)

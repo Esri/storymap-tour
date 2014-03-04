@@ -90,7 +90,7 @@
 				addTabLocation: "Izvietojums",
 				addSelectCaption: "Izvēlieties vai iemetiet bildi",
 				addNoteVideo: "Apskatiet Palīdzību, lai uzzinātu instrukcijas kā izmantot video",		
-				addSelectCaptionNoFileReader: "Izvēlieties bildi",	
+				addSelectCaptionNoFileReader: "Izvēlieties attēlu",	
 				addChangePhoto: "Mainīt bildi un sīkattēlu",
 				addPictureResolutionIntro: "Attēla rezolūcija ir lielāka nekā nepieciešams:",
 				addPictureResolutionOldBrowser: "Attēla rezolūcija ir lielāka nekā nepieciešams. Optimizēt Map Tour pieredzi, norādot zemāku rezolūciju nekā %RECOMMENDED_RES%.",
@@ -327,6 +327,7 @@
 				header: "Ievadiet epastu vai ID no jūsu Picasa vai Google+ konta.",
 				userInputLbl: "Ievadiet epastu vai ID",
 				signInMsg2: "Konts nav atrasts",
+				signInMsg3: "Nav publiska albuma",
 				howToFind: "Kā atrast Picasa vai Google+ konta ID",
 				howToFind2: "Kopēt ciparus starp pirmo un otro \'/\' no jebkura Picasa vai G+ lapa"
 			},
@@ -367,7 +368,7 @@
 			},
 			viewGeoTag: {
 				title: "Izvēlieties un nosakiet izvietojumu jūsu attēliem/video",
-				header: "Lai atrastu, noklikšķiniet vai pieskarieties bildēm, kuras vēlaties importēt.",
+				header: "Lai atrastu, noklikšķiniet vai pieskarieties attēliem, ko vēlaties importēt.",
 				headerMore: "Kāpēc manas bildes/video nav ģeoizvietoti?",
 				headerExplain: "Ja jūsu attēliem ir derīgs izvietojums, tie tiks automātiski izvietoti uz kartes un uzskaitīti otrajā cilnē.<br /><br />Pēc noklusējuma Picasa un Flickr neizmanto bilžu EXIF izvietojuma metadatus, pārbaudiet Flickr/Picasa iestatījumus zem Privacy cilnes, lai iespējotu bildes atrašanās izmantošanu. Jūs varat pilnībā ievest atpakaļ savus attēlus Flickr/Picasa.<br /><br />Priekš Facebook, jums ir jāiet uz katra attēla, jānoklikšķina uz Rediģēt un jāizvēlas izvietojums starp ieteiktajām izvēlēm, kas balstās uz bildes EXIF metadatiem.",
 				leftPanelTab1: "Lai atrastu",
@@ -470,7 +471,7 @@
 					div3: "Formatē jūsu uzrakstu tekstu, izmantojot HTML tagus",
 					div4: "Galvenes un attēla nosaukums/paraksts var ietvert HTML tagus, lai definētu formatējumu un saites. Piemēram, šis kods pievieno dzeltenu saiti:",
 					div4a: "Ierakstiet labu apakšvirsrakstu jūsu tūrei",
-					div4b: "Uzrakstiet tiešām labu apakšvirsrakstu savai tūrei. Apakšvirsraksts ir labs veids kā piesaistīt cilvēkus jūsu tūrei un pastāstīt viņiem ko tie atklās tūrē. Šī ir laba vieta lai pastāstītu auditorijai par valsti un pavalsti kurā atrodas jūsu tūre. Piemēram, neuzskatiet, ka cilvēki zinās jūsu tūres pilsētas vai ciemata izvietojumu. Jūsu virsraksts var tikt formatēts izmantojot HTML tagus, kā piemēram iekļaujot saites. Tomēr nepadariet virsrakstu pārāk garu. Mazākos pārlūku logos vai uz iPad tas var pilnībā nedeŗe't vai var tikt apgriezts. Ja jūs nevarat izdomāt labu apakšvirsrakstu, tad atstājiet to tukšu.",
+					div4b: "Atvēliet laiku, lai uzrakstītu saistošu apakšvirsrakstu savai tūrei. Apakšvirsraksts ir labs paņēmiens, kā piesaistīt cilvēkus tūrei un pastāstīt, ko viņi te uzzinās. Apakšvirsraksts ir arī piemērots, lai pavēstītu mērķauditorijai, kurā valstī izvietota jūsu tūre. Piemēram, neuzskatiet, ka cilvēki zinās jūsu tūres pilsētas vai ciemata izvietojumu. Virsrakstu var formatēt, izmantojot HTML tagus, piemēram, iekļaujot saites. Tomēr nepadariet virsrakstu pārāk garu. Mazākos pārlūkprogrammu logos vai iPad tas var neietilpt vai tikt apgriezts. Ja jūs nevarat izdomāt labu apakšvirsrakstu, tad atstājiet šo vietu tukšu.",
 					div5: "Atbalstot slāņus",
 					div6: "Jūs varat pievienot papildu atbalsta slāņus, lai nodrošinātu kontekstu Map Tour. Šie slāņi var saturēt citus ģeogrāfiskos elementus, kurus jūs vēlaties attēlot kartē paplidus Map Tour punktiem, kā piemēram, studiju areālu, iešanas vai braukšanas maršrutu, kas savieno jūsu maršruta punktus, utt. Map Tour šablons parāda šos papildu atbalsta slāņus, izmantojot jūsu norādīto simboliku šajā web kartē, bet uznirstošie logi nav pieejami.",
 					div7: "Turiet jūsu ceļojumu īsu un saldu",
@@ -524,7 +525,10 @@
 				shareA2div1: "Saglabājiet un izmantojiet atkal sekojošu saiti %LINK1% vai izmantojiet <a href='%LINK2%' target='_blank'>aplikācijas vienības lapu</a>.",
 				shareA2div2: "Kā aplikācijas īpašnieks, kad esat pierakstījies ArcGIS.com, aplikācija satur pogu, lai atvērtu to interaktīvajā veidotājā:",				
 				shareQ3: "Kur tiek glabāti dati?",
-				shareA3: "Tūres konfigurācija tiek glabāta <a href='%LINK1%' target='_blank'>šajā web kartes vienībā</a> un <a href='%LINK2%' target='_blank'>šajā web aplikācijas vienībā</a>. Ja esat izmantojis Flickr, Picasa, Facebook vai YouTube importu, jūsu attēli un video tiek glabāti turpat un netiek dublēti ArcGIS Online."
+				shareA3: "Tūres konfigurācija tiek glabāta <a href='%LINK1%' target='_blank'>šajā web kartes vienībā</a> un <a href='%LINK2%' target='_blank'>šajā web aplikācijas vienībā</a>. Ja esat izmantojis Flickr, Picasa, Facebook vai YouTube importu, jūsu attēli un video tiek glabāti turpat un netiek dublēti ArcGIS Online.",
+				shareWarning: "%WITH% koplietošana ir atspējota, jo jūs neesat <a href='%LINK%' target='_blank'>web kartes</a> īpašnieks.",
+				shareWarningWith1: "publiski",
+				shareWarningWith2: "publiski un organizācijā"
 			}
         }
     })

@@ -327,6 +327,7 @@
 				header: "Introduza o endereço de correio eletrónico ou o ID de uma conta Picasa ou Google+.",
 				userInputLbl: "Introduzir um endereço de correio eletrónico ou ID",
 				signInMsg2: "Conta não encontrada",
+				signInMsg3: "Nenhum álbum público",
 				howToFind: "Como encontrar o ID de uma conta de Picasa ou Google+",
 				howToFind2: "Copiar os dígitos que estão entre a primeira e a segunda barra ( / ) de qualquer página Picasa ou G+"
 			},
@@ -524,7 +525,10 @@
 				shareA2div1: "Guarde e reutilize a seguinte ligação %LINK1% ou utilize <a href='%LINK2%' target='_blank'>a página de detalhes do item</a>.",
 				shareA2div2: "Como proprietário da aplicação, quando inicia sessão no ArcGIS.com, a aplicação incluí um botão para abrir o construtor interativo:",				
 				shareQ3: "Onde estão guardados os dados?",
-				shareA3: "A configuração da Apresentação de Mapa é guardada <a href='%LINK1%' target='_blank'>neste item de mapa web</a> e <a href='%LINK2%' target='_blank'>neste item de aplicação</a>. Se utilizou a importação a partir de Flickr, Picasa, Facebook ou YouTube, as suas imagens e videos mantém-se guardadas nessas localizações e não são duplicadas no ArcGIS Online."
+				shareA3: "A configuração da Apresentação de Mapa é guardada <a href='%LINK1%' target='_blank'>neste item de mapa web</a> e <a href='%LINK2%' target='_blank'>neste item de aplicação</a>. Se utilizou a importação a partir de Flickr, Picasa, Facebook ou YouTube, as suas imagens e videos mantém-se guardadas nessas localizações e não são duplicadas no ArcGIS Online.",
+				shareWarning: "A partilha de %WITH% foi desativado porque não é o proprietário do <a href='%LINK%' target='_blank'>mapa web</a>.",
+				shareWarningWith1: "publicamente",
+				shareWarningWith2: "publicamente e com a Organização"
 			}
         }
     })

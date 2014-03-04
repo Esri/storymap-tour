@@ -318,7 +318,7 @@
 				header: "Autentica con tu cuenta de usuario de Facebook o usa una página pública. Los álbumes se pueden usar para crear recorridos de mapa públicos que no necesiten autenticación con un usuario de Facebook, lo que permite que los comentarios y las etiquetas de \"me gusta\" se mantengan en privado.",
 				leftHeader: "Usuario de Facebook",
 				rightHeader: "Página de Facebook",
-				pageExplain: "Una página de Facebook es una marca/producto público o un famoso como <b>esrigis</b>. Puedes obtener el nombre de la página después de la  primera '/' de la URL de la página.",
+				pageExplain: "Una página de Facebook es una marca/producto público o un famoso como <b>esrigis</b>. Puedes obtener el nombre de la página después de la  primera \'/\' de la URL de la página.",
 				pageInputLbl: "Introduce un nombre de página",
 				lookupMsgError: "No se encontró la página"
 			},
@@ -327,8 +327,9 @@
 				header: "Introduce la dirección de correo electrónico o el ID tu cuenta de Picasa o de Google+.",
 				userInputLbl: "Introduce un correo electrónico o ID",
 				signInMsg2: "Cuenta no encontrada",
+				signInMsg3: "No hay ningún álbum público",
 				howToFind: "Cómo encontrar el ID de una cuenta Picasa or Google+",
-				howToFind2: "Copia los dígitos que hay entre la primera y la segunda '/' de cualquier página de Picasa o G+"
+				howToFind2: "Copia los dígitos que hay entre la primera y la segunda \'/\' de cualquier página de Picasa o G+"
 			},
 			viewCSV: {
 				title: "Importación de CSV",
@@ -493,7 +494,7 @@
 					div3: "Asegúrate de que el recorrido funciona cuando no has iniciado sesión con tu cuenta de ArcGIS.com. La URL que vas a utilizar no debe redirigir a una página de inicio de sesión ni al modo del builder.",
 					div4: "Es recomendable comprobar el aspecto del recorrido del mapa en un iPad con orientación horizontal para comprobar si se ve bien en este dispositivo tan utilizado. Esto te permitirá saber si los títulos cubren gran parte de las imágenes o si el subtítulo cabe y no es demasiado largo para que aparezca cortado.",
 					div5a: "Recomendación para la búsqueda",
-					div5b: "Para ayudar a que los usuarios que realizan búsquedas en ArcGIS Online encuentren tu recorrido del mapa, te recomendamos que agregues la etiqueta 'mapa de historia' ('story map') en la página de elementos de la aplicación del recorrido del mapa (no en la página de elementos del mapa Web), junto con otras etiquetas, como el nombre del estado o la provincia donde se encuentra el recorrido, el nombre del país (si está fuera de Estados Unidos) y etiquetas temáticas como 'arte público, 'guía turística' o 'lugares históricos'. Estas etiquetas también nos permiten en Esri encontrar ejemplos de otros buenos recorridos para mostrarlos en nuestras galerías y promocionarlos en las redes sociales. También te recomendamos que cargues una imagen en miniatura bonita en la página de elementos de la aplicación, como una pequeña captura de pantalla o una imagen del recorrido. Esta es la imagen que se utilizará automáticamente si el recorrido del mapa se agrega a una galería de ArcGIS Online."
+					div5b: "Para ayudar a que los usuarios que realizan búsquedas en ArcGIS Online encuentren tu recorrido del mapa, te recomendamos que agregues la etiqueta \'mapa de historia\' (\'story map\') en la página de elementos de la aplicación del recorrido del mapa (no en la página de elementos del mapa Web), junto con otras etiquetas, como el nombre del estado o la provincia donde se encuentra el recorrido, el nombre del país (si está fuera de Estados Unidos) y etiquetas temáticas como \'arte público\', \'guía turística\' o \'lugares históricos\'. Estas etiquetas también nos permiten en Esri encontrar ejemplos de otros buenos recorridos para mostrarlos en nuestras galerías y promocionarlos en las redes sociales. También te recomendamos que cargues una imagen en miniatura bonita en la página de elementos de la aplicación, como una pequeña captura de pantalla o una imagen del recorrido. Esta es la imagen que se utilizará automáticamente si el recorrido del mapa se agrega a una galería de ArcGIS Online."
 				}
 			},
 			share: {
@@ -524,7 +525,10 @@
 				shareA2div1: "Guarda y vuelve a usar el siguiente vínculo %LINK1% o utiliza la <a href='%LINK2%' target='_blank'>página de elementos de la aplicación</a>.",
 				shareA2div2: "Como propietario de la aplicación, cuando inicias sesión en ArcGIS.com, la aplicación incluye un botón para abrir el builder interactivo:",				
 				shareQ3: "¿Dónde se almacenan los datos?",
-				shareA3: "La configuración de la ruta se almacena en <a href='%LINK1%' target='_blank'>este elemento de mapa web</a> y <a href='%LINK2%' target='_blank'>este elemento de la aplicación web</a>. Si has usado la importación de Flickr, Picasa, Facebook o YouTube, tus imágenes y vídeos seguirán almacenados allí y no se duplican en ArcGIS Online."
+				shareA3: "La configuración de la ruta se almacena en <a href='%LINK1%' target='_blank'>este elemento de mapa web</a> y <a href='%LINK2%' target='_blank'>este elemento de la aplicación web</a>. Si has usado la importación de Flickr, Picasa, Facebook o YouTube, tus imágenes y vídeos seguirán almacenados allí y no se duplican en ArcGIS Online.",
+				shareWarning: "Se ha deshabilitado la opción de compartir %WITH% porque no eres el propietario del <a href='%LINK%' target='_blank'>mapa web</a>.",
+				shareWarningWith1: "públicamente",
+				shareWarningWith2: "públicamente y con la organización"
 			}
         }
     })

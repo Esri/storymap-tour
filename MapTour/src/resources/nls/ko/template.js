@@ -327,6 +327,7 @@
 				header: "이메일 주소나 Picasa 또는 Google+ 계정의 ID를 입력하세요.",
 				userInputLbl: "이메일 또는 ID 입력",
 				signInMsg2: "계정을 찾을 수 없음",
+				signInMsg3: "공개 앨범 없음",
 				howToFind: "Picasa 또는 Google+ 계정 ID를 찾는 방법",
 				howToFind2: "Picasa 또는 G+ 페이지의 첫 번째 '/'와 두 번째 '/' 사이의 숫자 복사"
 			},
@@ -524,7 +525,10 @@
 				shareA2div1: "%LINK1% 링크를 저장하여 다시 사용하거나 <a href='%LINK2%' target='_blank'>응용프로그램 항목 페이지</a>를 사용하세요.",
 				shareA2div2: "응용프로그램의 소유자인 경우 ArcGIS.com에 로그인하면 대화형 빌더를 열 수 있는 버튼이 응용프로그램에 표시됩니다.",				
 				shareQ3: "데이터는 어디에 저장되나요?",
-				shareA3: "Tour 구성은 <a href='%LINK1%' target='_blank'>이 웹 맵 항목</a>과 <a href='%LINK2%' target='_blank'>이 웹 응용프로그램 항목</a>에 저장됩니다. Flickr, Picasa, Facebook 또는 YouTube 가져오기를 사용한 경우 이미지는 해당 위치에 저장된 상태로 유지되고 ArcGIS Online에서 복제되지 않습니다."
+				shareA3: "Tour 구성은 <a href='%LINK1%' target='_blank'>이 웹 맵 항목</a>과 <a href='%LINK2%' target='_blank'>이 웹 응용프로그램 항목</a>에 저장됩니다. Flickr, Picasa, Facebook 또는 YouTube 가져오기를 사용한 경우 이미지는 해당 위치에 저장된 상태로 유지되고 ArcGIS Online에서 복제되지 않습니다.",
+				shareWarning: "<a href='%LINK%' target='_blank'>웹 맵</a>의 소유자가 아니므로 %WITH% 공유를 사용할 수 없습니다.",
+				shareWarningWith1: "공개",
+				shareWarningWith2: "기관에 공개"
 			}
         }
     })

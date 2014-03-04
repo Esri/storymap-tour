@@ -22,7 +22,7 @@ define(["storymaps/utils/Helper"],
 				else {
 					var isPrivate = app.data.getAppItem().access == "private";
 					if ( isPrivate ) 
-						presentSharing(itemUrl, appUrl, function(){
+						presentSharing(itemUrl, appUrl, webmapUrl, function(){
 							presentShared(appUrl, itemUrl, webmapUrl, fsUrl, contentUrl);
 						});
 					else 
@@ -61,7 +61,7 @@ define(["storymaps/utils/Helper"],
 			}
 			
 			// Sharing screen
-			function presentSharing(itemUrl, appUrl, successCallback)
+			function presentSharing(itemUrl, appUrl, webmapUrl, successCallback)
 			{
 				container.find('.share .not-shared .header').html(i18n.viewer.share.sharePrivateHeader);
 				
@@ -78,7 +78,7 @@ define(["storymaps/utils/Helper"],
 						});
 				}
 				else {
-					container.find('.btn-sharePublic').on('click', function() {
+					container.find('.btn-sharePublic').off('click').on('click', function() {
 						share("public", successCallback);
 					});
 				}
@@ -86,12 +86,34 @@ define(["storymaps/utils/Helper"],
 				// Share with organization
 				if( app.portal && app.portal.isOrganization ) {
 					container.find('.not-shared .btn-shareOrga').html(i18n.viewer.share.sharePrivateBtn2);
-					container.find('.btn-shareOrga').on('click', function() {
+					container.find('.btn-shareOrga').off('click').on('click', function() {
 						share("account", successCallback);
 					});
 				}
 				else
 					container.find('.not-shared .btn-shareOrga').remove();
+					
+				// If user is not webmap owner (and he hasn't disabled warning)
+				if ( app.data.getWebMapItem().item.owner != app.portal.getPortalUser().username ) {
+					var sharingStatus = null;
+					
+					if (app.data.getWebMapItem().item.access == "account") {
+						sharingStatus = i18n.viewer.share.shareWarningWith1;
+						container.find('.not-shared .btn-sharePublic').addClass("disabled").off('click');
+					}
+					else if (app.data.getWebMapItem().item.access == "private") {
+						sharingStatus = i18n.viewer.share.shareWarningWith2;
+						container.find('.not-shared .btn-sharePublic, .not-shared .btn-shareOrga').addClass("disabled").off('click');
+					}
+					
+					if( sharingStatus ) {
+						container.find('.share-warning').html(
+							i18n.viewer.share.shareWarning
+								.replace('%WITH%', sharingStatus)
+								.replace('%LINK%', webmapUrl)
+						).show();
+					}
+				}
 					
 				container.find('.modal-footer .error').html(
 					i18n.viewer.share.sharePrivateErr
@@ -99,16 +121,15 @@ define(["storymaps/utils/Helper"],
 					+ i18n.viewer.share.shareA1.toLowerCase()
 						.replace('%shareimg%', '<img src="resources/icons/builder-share-shareBtn.png" style="vertical-align: -5px;"/>')
 						.replace('%link1%', itemUrl)
-					+ '.'
 				);
 				
 				container.find('.not-shared .btn-learnmore').html(i18n.viewer.initPopupHome.footer5);
-				container.find('.btn-learnmore').on('click', function() {
+				container.find('.btn-learnmore').off('click').on('click', function() {
 					app.builder.openHelpPopup(4);
 				});
 				
 				container.find('.not-shared .btn-preview').html(i18n.viewer.share.sharePreviewAsUser);
-				container.find('.btn-preview').on('click', function() {
+				container.find('.btn-preview').off('click').on('click', function() {
 					window.open(appUrl,'_blank');
 				});
 			}
