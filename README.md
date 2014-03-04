@@ -325,7 +325,7 @@ Viewer issues:
  * Bit.ly link with “Link to current place” enabled may not open the Tour at the expected place if before generation the link, the user has used the mobile view to navigate between the story
 
 Builder issues:
- * Webmap fail to load in ArcGIS for WPF runtime (issue #6)
+ * Webmap fail to load in ArcGIS for WPF runtime ([issue #6](https://github.com/Esri/map-tour-storytelling-template-js/issues/6))
  * In ArcGIS.com Map Viewer, the attribute table of the Map Tour data layer won’t open when the Tour include a video that has been added through Add (Import is ok)
  * Import may fail for some YouTube account (not supported video type that were included)
  * Import spin indefinitely for Picasa account that don’t have any album
