@@ -6,7 +6,7 @@ The Map Tour template is designed for presenting geographic information where th
 
 [View it live](http://storymaps.esri.com/stories/maptour-palmsprings/) | 
 [Features](http://arcgis.com/apps/MapTour/preview.html) | 
-[User Download (source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.2.3.zip) | 
+[User Download (source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/releases/download/V2.2.3/Storytelling-MapTour-2.2.3.zip) | 
 [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
 **Latest release is version 2.2.3**, if you want to be informed of new releases, we recommend you to watch these repository.
