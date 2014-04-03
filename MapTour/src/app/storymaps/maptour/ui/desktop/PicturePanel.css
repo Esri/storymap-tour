@@ -2,7 +2,7 @@
 	height:100%;
 	float:left;
 	position:relative;
-	background-color:#797979;
+	background-color:#B4B4B4;
 }
 
 .modern-layout #picturePanel {
@@ -23,14 +23,14 @@
 #arrowPrev {
 	position:absolute;
 	top:0px;
-	left:0px;
+	left:8px;
 	z-index:100;
 }
 
 #arrowNext {
 	position:absolute;
-	right:0px;
 	top:0px;
+	right:8px;
 	z-index:101;
 }
 
@@ -44,25 +44,23 @@
  */
 .modern-layout-control {
 	position: absolute;
-	font-size: 60px;
-	font-weight: 100;
-	line-height: 30px;
-	color: #FFF;
-	text-align: center;
 	cursor: default;
 	opacity: 0;
 	z-index: 402;
 }
 
 .modern-layout-control.click-btn {
-	width: 40px;
-	height: 40px;
-	margin-top: -20px;
-	background: #222;
-	border: 3px solid #FFF;
-	-webkit-border-radius: 23px;
-	-moz-border-radius: 23px;
-	border-radius: 23px;
+	width: 32px;
+	height: 53px;
+	background-repeat: no-repeat;
+}
+
+.modern-layout-control.click-btn.left {
+	background: url(../../../../../resources/icons/picturepanel-left2.png);
+}
+
+.modern-layout-control.click-btn.right {
+	background: url(../../../../../resources/icons/picturepanel-right2.png);
 }
 
 .modern-layout-control.click-bg {
@@ -115,10 +113,6 @@ body.hasTouch .modern-layout-control:not(.disabled){
 	height: 30px;
 }
 
-.editPictureButtons a {
-	font-family: Arial, Helvetica, sans-serif;
-}
-
 .editPictureButtons > div {
 	display: inline-block;
 }
@@ -167,7 +161,6 @@ body.hasTouch .modern-layout-control:not(.disabled){
 
 .attributesWay .error {
 	display: none;
-	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold;
 	font-size:14px;
 	color:#c43d40;

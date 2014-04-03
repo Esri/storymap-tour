@@ -7,6 +7,10 @@
 	display: none;
 }
 
+#header .title {
+	font-family: 'open_sanssemibold', sans-serif;
+}
+
 /*
  * Desktop
  */
@@ -28,9 +32,8 @@
 #headerDesktop .title {
 	height:26px;
 	padding-top: 18px;
-	font-family:Arial, Helvetica, sans-serif;
 	font-size:20px;
-	font-weight:bold;
+	font-weight:normal;
 	text-align:left;
 	overflow: hidden;
 	white-space: nowrap;
@@ -64,6 +67,7 @@
 	line-height: 18px;
     word-wrap: break-word;
 	height: 54px;
+	color: #C5D5D5;
 }
 
 .rightArea {
@@ -80,9 +84,8 @@
 }
 
 .social .msLink, .social .msLink a {
-	color:#fff ;
-	font-family:Arial, Helvetica, sans-serif;
-	font-weight:bold;
+	color: #A6A6A6;
+	font-weight:normal;
 	font-size:13px;
 }
 
@@ -282,7 +285,6 @@
 #headerMobile .title {
 	color:#fff;
 	font-size:22px;
-	font-family:Arial, Helvetica, sans-serif;
 	padding: 10px 10px 0px 10px;
 	margin-bottom: 10px;
     word-wrap: break-word;
@@ -300,7 +302,7 @@
 	padding:0 10px 0 10px;
 	font-weight:normal;
     word-wrap: break-word;
-	max-height: 60px;
+	max-height: 70px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
@@ -313,7 +315,6 @@
 	color:#fff;
 	font-size:12px;
 	font-weight:bold;
-	font-family:Arial, Helvetica, sans-serif;
 	cursor:pointer;
 }
 
@@ -336,7 +337,6 @@
 .navBar {
 	color: #CFCFCF;
 	padding: 9px 0 9px 0;
-	font-family:Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-weight:normal;
 }

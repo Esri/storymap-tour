@@ -236,7 +236,7 @@ define(["storymaps/ui/crossfader/CrossFader",
 	
 				// Arrows position (timeout for IE)
 				setTimeout(function(){
-					var arrowY = $(".member-image.current").position().top + $(".member-image.current").height() / 2 + 15;
+					var arrowY = $(".member-image.current").position().top + $(".member-image.current").height() / 2 - 6;
 					$(".modern-layout-control").css("top", arrowY);
 					
 					$(".modern-layout-control.left").css("left", (panel.width() - $(".member-image.current").width()) / 2 + 2);
@@ -324,10 +324,8 @@ define(["storymaps/ui/crossfader/CrossFader",
 				panel.height(ppHeight);
 	
 				// Arrows position
-				$("#arrowPrev").css("top", (panel.height() / 2) - 40);
-				$("#arrowNext").css("top", (panel.height() / 2) - 40);
-				$("#arrowPrev").css("left", 0);
-				$("#arrowNext").css("right", 0);
+				$("#arrowPrev").css("top", (panel.height() / 2) - 22);
+				$("#arrowNext").css("top", (panel.height() / 2) - 22);
 			}
 	
 			function resizeCommon()

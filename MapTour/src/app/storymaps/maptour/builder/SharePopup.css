@@ -76,7 +76,6 @@
 #sharePopup .share-warning {
 	display: none;
 	margin-top: 20px;
-	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold !important;
 	font-size:14px;
 	color:#c43d40 !important;
@@ -96,7 +95,6 @@
 }
 
 #sharePopup .sharing-status.error a {
-	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold !important;
 	font-size:14px;
 	color:#c43d40 !important;

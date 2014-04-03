@@ -38,7 +38,6 @@
 #addPopup label {
 	font-weight: bold;
 	display: block;
-	font-family: Arial, Helvetica, sans-serif
 }
 
 #addPopup input {
@@ -60,7 +59,6 @@
 }
 
 .errorList{
-	font-family:Arial, Helvetica, sans-serif;
 	font-weight:bold;
 	font-size:14px;
 	color:#c43d40;
@@ -75,9 +73,6 @@
 /*
  * Picture tab - attachments
  */
-.addImage{
-	font-family:Arial, Helvetica, sans-serif;
-}
 
 #addPopup .imageUploadWrapper {
 	color:#FFFFFF;
@@ -94,7 +89,6 @@
 	bottom: 25px;
 	left: 0px;
 	font-size: 14px;
-	font-family: Verdana, Geneva, sans-serif;
 	font-style: italic;
 	width: 100%;
 	color: #000;

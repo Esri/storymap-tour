@@ -80,7 +80,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			_placard = $("<div id='placard'></div>");
 			_placardContainer2.append(_placard);
 			
-			_toggle = $("<div id='toggle'>&#x25BC;</div>");
+			_toggle = $("<div id='toggle'></div>");
 			_placardContainer = $("<div id='placardContainer'></div>");
 			_placardContainer.append(_toggle);
 			
@@ -123,12 +123,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			}); 
 			
 			$(_toggle).fastClick(function() {
-				if ($(_placardContainer2).css('display')=='none'){
-					$(_toggle).html('&#x25BC;');
-				}
-				else{
-					$(_toggle).html('&#x25B2;');
-				}
+				$(_toggle).toggleClass('closed', $(_placardContainer2).css('display') != 'none');
 				$(_placardContainer2).slideToggle();
 			});
 			
@@ -138,14 +133,11 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					if ( $("#placardContainer").hasClass("placardUnder") )
 						return;
 					
-					if( e.keyCode == 40 ) {
-						$(_toggle).html('&#x25B2;');
+					$(_toggle).toggleClass('closed', e.keyCode == 40);
+					if( e.keyCode == 40 )
 						$(_placardContainer2).slideUp();
-					}
-					else if ( e.keyCode == 38 ) {
-						$(_toggle).html('&#x25BC;');
+					else if ( e.keyCode == 38 )
 						$(_placardContainer2).slideDown();
-					}
 				});
 			}
 			
@@ -294,7 +286,6 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 						
 					// Prevent collapsed placard on previous picture 
 					$(_placardContainer).find("#placard-bg").css("display", "block");
-					$(_toggle).html('&#x25BC;');
 					
 					// If placard is taller than the available space or application loading
 					// No margin and constrain it's height

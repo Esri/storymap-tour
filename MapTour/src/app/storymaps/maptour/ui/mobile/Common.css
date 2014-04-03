@@ -56,7 +56,6 @@ body.notNumbered .tpIcon {
 
 .tpName {
 	padding-top: 9px;
-	font-family:Arial, Helvetica, sans-serif;
 	font-size:18px;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -70,7 +69,6 @@ body.notNumbered .tpIcon {
 
 .tpDescription {
 	font-size:14px;
-	margin-top:5px;
 	overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -78,6 +76,8 @@ body.notNumbered .tpIcon {
     -webkit-box-orient: vertical;
 	max-height: 52px;
 	word-wrap: break-word;
+	line-height: 18px;
+	margin-top: 2px;
 }
 
 /*
@@ -85,7 +85,6 @@ body.notNumbered .tpIcon {
  */
 
 .tourPointName {
-	font-family:Arial, Helvetica, sans-serif;
 	font-size: 24px;
 	margin-left: 68px;
 	margin-top: 12px;

@@ -74,7 +74,6 @@
 	width:145px;
 	height:100%;
 	font-size:10px;
-	font-family:Verdana, Geneva, sans-serif;
 }
 
 .modern-layout .carouselScroller li {
@@ -102,6 +101,7 @@
     word-wrap: break-word;
 	width: 140px;
 	overflow: hidden;
+	font-family: 'open_sanssemibold', sans-serif;
 }
 
 /* 
@@ -140,7 +140,6 @@
 	width: 20px;
 	height: 15px;
 	text-align: center;
-	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
 	color:#FFFFFF;
 	padding-right: 1px;
@@ -173,14 +172,14 @@ body.notNumbered .carouselScroller span:before {
 .arrowLeft {
 	position: absolute;
 	top: 52px;
-	left: -32px;
+	left: -28px;
 	cursor: pointer;
 }
 
 .arrowRight {
 	position: absolute;
 	top: 52px;
-	right: -33px;
+	right: -29px;
 	cursor: pointer;
 }
 

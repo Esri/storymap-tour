@@ -85,7 +85,6 @@
 	margin: 1px 0 2px 4px;
 	line-height: 22px;
 	font-weight: normal;
-	font-family:Arial, Helvetica, sans-serif;
 }
 
 #status-bar {
@@ -93,7 +92,6 @@
 	margin-top: 6px;
 	margin-left: 1px;
 	font-size: 12px;
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	color: #999;
 }
 
