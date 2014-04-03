@@ -81,7 +81,7 @@ Note that the interactive builder is available in the downloadable version but w
 
 ## How to deploy a Map Tour
 
-To use the downloadable version, download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.2.3.zip), it contains the following files:
+To use the downloadable version, download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/releases/download/V2.2.3/Storytelling-MapTour-2.2.3.zip), it contains the following files:
 
 | File                	                     | Contains                                                              |
 | ------------------------------------------ | --------------------------------------------------------------------- |
@@ -183,7 +183,7 @@ Yes, web map designed for the previous version should continue to work without a
 ### Can I deploy Map Tour on Portal for ArcGIS?
 Yes, Map Tour is included in Portal for ArcGIS 10.2.1. Note that for technical reason, the Feature Service creation isn't yet available from the interactive builder. If you want to use a Feature Service, please consult [this section](#using-an-existing-feature-service-map-service-or-shapefile).
 
-If you use an older version of Portal, you can [download](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Storytelling-MapTour-2.2.3.zip) and deploy the template in the following folder `ArcGIS\Portal\webapps\arcgis#home\webmap\templates\MapTour`. This folder may already contain a non-functional version of the template. If this is the case, remove the folder's content before copying the new files. Then refer your Portal documentation for instructions on publishing a new web application item and adding it to the web application gallery. If you choose to deploy the template in any other folder, some configuration will be required (see index.html configuration). Also note that the web application gallery preview feature won't be functional and give a 404 error.
+If you use an older version of Portal, you can [download](https://github.com/Esri/map-tour-storytelling-template-js/releases/download/V2.2.3/Storytelling-MapTour-2.2.3.zip) and deploy the template in the following folder `ArcGIS\Portal\webapps\arcgis#home\webmap\templates\MapTour`. This folder may already contain a non-functional version of the template. If this is the case, remove the folder's content before copying the new files. Then refer your Portal documentation for instructions on publishing a new web application item and adding it to the web application gallery. If you choose to deploy the template in any other folder, some configuration will be required (see index.html configuration). Also note that the web application gallery preview feature won't be functional and give a 404 error.
 
 ### Can the template be used offline?
 Yes, by using Portal for ArcGIS. When deployed on a Portal for ArcGIS instance, the Map Tour doesn't require any external service to function. But by default the template will still include the header social buttons and template publishers are able to import pictures from the some online pictures hosting services. These options can be disabled individually through the configuration file app/maptour-config.js.
@@ -314,7 +314,7 @@ It is possible to open the Map Tour on a specific point and not on the first one
 
 ## What's new?
 
-#### Map Tour 2.2.3 released on 04/02/2014
+#### Map Tour 2.2.3 released on 04/03/2014
 
 This is a minor release that implement some visual cosmetic changes:
  * Switch fonts to "Open Sans"
