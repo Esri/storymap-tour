@@ -2,7 +2,7 @@ Map Tour
 ========
 The Map Tour template is designed for presenting geographic information where there is a compelling photographic element to the story you want to tell. This is a new version of the popular map tour template that provide a better experience on smartphone and an interactive builder on ArcGIS Online, see [what's new](#whats-new).
 
-![App](https://raw.github.com/Esri/map-tour-storytelling-template-js/master/map-tour-storytelling-template-js.png)
+![App](https://raw.githubusercontent.com/Esri/map-tour-storytelling-template-js/master/map-tour-storytelling-template-js.png)
 
 [View it live](http://storymaps.esri.com/stories/maptour-palmsprings/) | 
 [Features](http://arcgis.com/apps/MapTour/preview.html) | 
