@@ -490,7 +490,7 @@ Minor version with few bug fixes :
 Most of the look and feel customization can be done using the user download and including the css/html override directly into index.html. 
 If you want to change the behavior of one functionality or want to add new one, you will need to read the developer guide below.
 
-The easiest way to find the id or path to the DOM element that you want to customize is to use your browser developer tool, read documentation for [Chrome](https://developers.google.com/chrome-developer-tools/), [Safari](http://developer.apple.com/library/safari/#documentation/AppleApplications/Conceptual/Safari_Developer_Guide/2SafariDeveloperTools/SafariDeveloperTools.html), [Firefox](https://getfirebug.com/).
+The easiest way to find the id or path to the DOM element that you want to customize is to use your browser developer tool, read documentation for [Chrome](https://developers.google.com/chrome-developer-tools/), [Safari](https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/Introduction/Introduction.html), [Firefox](https://getfirebug.com/).
 
 Here are some customization that can achieved through a `style` tag (look for `/* CUSTOM CSS RULES */` in index.html):
 
