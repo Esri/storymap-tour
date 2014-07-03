@@ -322,6 +322,8 @@ This is a minor maintenance release:
  * Impossible to import picture from Flickr in the builder. [See forum post](http://forums.arcgis.com/threads/114770-Tech-note-Problems-accessing-Flickr-pics-when-creating-or-editing-a-story-map-tour)
  * Adjusted the header link color
  * Impossible to use Facebook sharing button on IE8
+ 
+That release use ArcGIS API for Javascript 3.10.
 
 #### Map Tour 2.2.3 released on 04/03/2014
 
@@ -671,7 +673,6 @@ The main dependencies are:
 ## Feedback
 
 We would love to hear from you!
-* Email us at storymaps@esri.com
 * [StoryMaps Website](http://storymaps.esri.com/home/)
 * [@EsriStoryMaps](http://twitter.com/EsriStoryMaps)
 * [ArcGIS Blog](http://blogs.esri.com/esri/arcgis/)
