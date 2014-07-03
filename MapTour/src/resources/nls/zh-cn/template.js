@@ -410,7 +410,7 @@
 					div1: "地图浏览模板旨在呈现地理信息，为您要讲述的故事提供吸引人的摄影或媒体元素。",
 					div2: "模板可生成具有吸引力且易于使用的 web 应用程序，允许您按编号顺序在地图上显示一小组地点，供用户进行浏览。该模板可在任何设备上的任何 web 浏览器中使用，其中包括智能手机和平板电脑。<br /><br />以下是可创建的应用程序示例 :",
 					div4: "<a href='http://storymaps.esri.com/stories/maptour-palmsprings' target='_blank'>棕榈泉地图浏览</a>。",
-					div42: "要查看其他用户创建的地图浏览示例，<a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>请访问<a href='http://storymaps.esri.com/' target='_blank'>故事地图网站</a>中的图库</a>。您也可以在 Twitter 上关注我们 :<a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>。",
+					div42: "要查看其他用户创建的地图浏览示例，<a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>请访问<a href='http://storymaps.arcgis.com/' target='_blank'>故事地图网站</a>中的图库</a>。您也可以在 Twitter 上关注我们 :<a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>。",
 					div5: "我们非常期待您的参与! 如果您有任何疑问、想要请求新特性或者发现漏洞，请访问<a href='http://links.esri.com/storymaps/forum' target='_blank'>故事地图用户论坛</a>。"
 				},
 				tab2: {
@@ -418,9 +418,9 @@
 					div1: "构建地图浏览时要考虑的主要因素是选择在何处存储图片。地图浏览使用的图片可以存储在主要图片共享服务中、任何 web 服务器上或作为要素服务的附件。",
 					div1a: "有关受支持的图片格式和视频的详细信息，请参阅此选项卡的最后一部分。",
 					div2: "交互式构建器提供两个选项，用于处理您的地图浏览中的影像:",
-					div3: "<ul><li>您可以使用<b>在线照片</b>，例如存储在 Flickr 等照片共享站点的影像或存储在您自己网站上的影像。通过影像的 URL 将其引用到您的地图浏览中。</li><li>还可以<b>通过计算机将照片</b>直接上传到您的地图浏览。该上传选项需要您拥有 ArcGIS Online 订阅，并拥有发布者或管理员权限，因为系统将自动为您创建托管的要素服务，您可将照片作为附件存储在其中。</li></ul>",
+					div3: "<ul><li>您可以使用<b>在线照片</b>，例如存储在 Flickr 等照片共享站点的影像或存储在您自己网站上的影像。通过影像的 URL 将其引用到您的地图浏览中。</li><li>还可以<b>通过计算机将照片</b>直接上传到您的地图浏览。该上传选项需要您拥有 ArcGIS for Organizations 帐户，并拥有发布者或管理员权限，因为系统将自动为您创建托管的要素服务，您可将照片作为附件存储在其中。</li></ul>",
 					div4: "主要用例包括:",
-					div4b: "<b>您的照片尚未托管</b>，且您拥有 ArcGIS Online 订阅: 使用托管的要素服务是您的最佳选择。与公共照片共享服务一样，我们将优化您的图片以创建快速加载影像，您将可以访问 ArcGIS 平台的所有管理和数据管理功能。",
+					div4b: "<b>您的照片尚未托管</b>，且您拥有 ArcGIS for Organizations 帐户: 使用托管的要素服务是您的最佳选择。与公共照片共享服务一样，我们将优化您的图片以创建快速加载影像，您将可以访问 ArcGIS 平台的所有管理和数据管理功能。",
 					div5: "<b>您不是组织成员</b>: 首先，您需要将图片上传到照片共享网站或您自己的 web 服务器上。借助构建器，您将使用这些继续托管在其原始位置的图片。",
 					div6: "<b>您希望重复使用现有要素服务</b>将图片存储为附件或引用外部图片: 请参阅下面的详细描述部分。",
 					div7: "<b>您是先前版本的用户</b>，即上一版地图浏览模板的用户，并且已经拥有引用图片和缩略图的 CSV: 您可以导入该 CSV 并优化数据。构建器仅支持使用纬度/经度字段的 CSV; 可以继续在您的 web 地图中使用基于地址的 CSV (请参阅以下部分)。",
@@ -525,7 +525,7 @@
 				shareA2div1: "保存并重新使用以下链接 %LINK1%，或使用<a href='%LINK2%' target='_blank'>应用程序项目页面</a>。",
 				shareA2div2: "作为应用程序所有者，当您登录到 ArcGIS.com 后，可使用应用程序中的按钮来打开交互式构建器:",				
 				shareQ3: "数据存储位置在哪?",
-				shareA3: "浏览配置存储在<a href='%LINK1%' target='_blank'>此 webmap 项目</a>和<a href='%LINK2%' target='_blank'>此 web 应用程序项目</a>中。如果使用 Flickr、Picasa、Facebook 或 YouTube 导入，则图像和视频仍将存储在上述位置，并且不会复制到 ArcGIS Online。",
+				shareA3: "浏览配置存储在<a href='%LINK1%' target='_blank'>此 web 地图项目</a>和<a href='%LINK2%' target='_blank'>此 web 应用程序项目</a>中。Flickr、Picasa 和 Facebook 图像以及 YouTube 视频仍可分别在其各自网站引用，并且不会复制到 ArcGIS Online。",
 				shareWarning: "已禁止共享 %WITH%，因为您不是 <a href='%LINK%' target='_blank'>webmap</a> 的所有者。",
 				shareWarningWith1: "公开",
 				shareWarningWith2: "公开并在组织内共享"

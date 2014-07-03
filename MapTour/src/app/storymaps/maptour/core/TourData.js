@@ -325,7 +325,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			 */
 			this.sourceIsFS = function()
 			{
-				return _sourceLayer instanceof FeatureLayer && _sourceLayer.url != null;
+				return _sourceLayer instanceof FeatureLayer && _sourceLayer.url != null && ! _sourceLayer.id.match(/^csv_/);
 			};
 	
 			/**
@@ -333,7 +333,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			 */
 			this.sourceIsWebmap = function()
 			{
-				return _sourceLayer instanceof FeatureLayer && _sourceLayer.url == null;
+				return _sourceLayer instanceof FeatureLayer && (_sourceLayer.url == null || (_sourceLayer.updating === false && _sourceLayer.id.match(/^csv_/)) );
 			};
 			
 			this.sourceIsNotFSAttachments = function()

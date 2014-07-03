@@ -198,7 +198,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				
 				window.open(
 					'http://www.facebook.com/sharer.php?s=100' + options, 
-					'Facebook sharing', 
+					'', 
 					'toolbar=0,status=0,width=626,height=436'
 				);
 			}
@@ -212,7 +212,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			
 				window.open(
 					'https://twitter.com/intent/tweet?' + options, 
-					'Tweet', 
+					'', 
 					'toolbar=0,status=0,width=626,height=436'
 				);
 			}

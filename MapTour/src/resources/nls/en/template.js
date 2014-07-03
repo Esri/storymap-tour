@@ -327,6 +327,7 @@ define(
 				header: "Enter your email address or the ID of your Picasa or Google+ account.",
 				userInputLbl: "Enter an email or ID",
 				signInMsg2: "Account not found",
+				signInMsg3: "No public album",
 				howToFind: "How to find a Picasa or Google+ account ID",
 				howToFind2: "Copy digits between the first and second '/' of any Picasa or G+ page"
 			},
@@ -409,7 +410,7 @@ define(
 					div1: "The Map Tour template is designed for presenting geographic information where there is a compelling photographic or media element to the story you want to tell.",
 					div2: "The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets. <br /><br />Here's an example of the sort of application you can create:",
 					div4: "<a href='http://storymaps.esri.com/stories/maptour-palmsprings' target='_blank'>Palm Springs Map Tour</a>.",
-					div42: "To see examples of map tours that other users are creating, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>visit the gallery</a> on the <a href='http://storymaps.esri.com/' target='_blank'>Story Maps website</a>. You can also follow us on Twitter at <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+					div42: "To see examples of map tours that other users are creating, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>visit the gallery</a> on the <a href='http://storymaps.arcgis.com/' target='_blank'>Story Maps website</a>. You can also follow us on Twitter at <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
 					div5: "We would love to hear from you! Whether you have a question, want to request a new feature, or think you've found a bug, please visit the <a href='http://links.esri.com/storymaps/forum' target='_blank'>Story Maps User Forum</a>."
 				},
 				tab2: {
@@ -417,9 +418,9 @@ define(
 					div1: "The main element to consider when building a Map Tour is to choose where your pictures will be stored. A Map Tour can use pictures stored on major photo sharing services, on any web server, or as attachments to a feature service.",
 					div1a: "See the last section of this tab for details about supported picture formats and videos.",
 					div2: "The interactive builder gives you two options for handling the images in your Map Tour:",
-					div3: "<ul><li>You can use <b>photos that are already online</b>, such as images stored in a photo sharing site like Flickr, or images stored on your own website. These images will be referenced in your Map Tour via their URLs.</li><li>You can also <b>upload photos from your computer</b> directly into your Map Tour. This upload option requires that you have an ArcGIS Online subscription and that you have Publisher or Administrator privileges, because a hosted feature service is automatically created for you in which your photos are stored as attachments.</li></ul>",
+					div3: "<ul><li>You can use <b>photos that are already online</b>, such as images stored in a photo sharing site like Flickr, or images stored on your own website. These images will be referenced in your Map Tour via their URLs.</li><li>You can also <b>upload photos from your computer</b> directly into your Map Tour. This upload option requires that you have an ArcGIS for Organizations account and that you have Publisher or Administrator privileges, because a hosted feature service is automatically created for you in which your photos are stored as attachments.</li></ul>",
 					div4: "The main use cases are:",
-					div4b: "<b>Your photos are not hosted</b> yet and you have an ArcGIS Online subscription: Using a hosted feature service is your best choice. Like public photo sharing services, we will optimize your pictures to create fast-loading images and you will have access to all administration and data management capabilities of the ArcGIS platform.",
+					div4b: "<b>Your photos are not hosted</b> yet and you have an ArcGIS for Organizations account: Using a hosted feature service is your best choice. Like public photo sharing services, we will optimize your pictures to create fast-loading images and you will have access to all administration and data management capabilities of the ArcGIS platform.",
 					div5: "<b>You aren't a member of an Organization</b>: You first have to upload your pictures to a photo sharing website or to your own web server. The builder will help you use these pictures that will continue to be hosted at their original location.",
 					div6: "<b>You are looking to reuse an existing Feature Service</b> that stores your pictures as attachments or that references external pictures: See the detailed section below.",
 					div7: "<b>You are a user of a previous version</b> of the Map Tour template and already have your CSV that references your pictures and thumbnails: You will be able to import it and refine your data. The builder only supports CSVs that use lat/long fields; address-based CSVs can continue to be used through your web map (see section below).",
@@ -524,7 +525,10 @@ define(
 				shareA2div1: "Save and reuse the following link %LINK1% or use <a href='%LINK2%' target='_blank'>the application item page</a>.",
 				shareA2div2: "As the owner of the application, when you are signed in on ArcGIS.com, the application includes a button to open the interactive builder:",				
 				shareQ3: "Where is the data stored?",
-				shareA3: "The Tour configuration is stored in <a href='%LINK1%' target='_blank'>this webmap item</a> and <a href='%LINK2%' target='_blank'>this web application item</a>. If you have used Flickr, Picasa, Facebook or YouTube import, your images and videos remains stored there and aren't duplicated in ArcGIS Online."
+				shareA3: "The Tour configuration is stored in <a href='%LINK1%' target='_blank'>this webmap item</a> and <a href='%LINK2%' target='_blank'>this web application item</a>. Flickr, Picasa, and Facebook images and YouTube videos remain referenced at their respective sites and aren't duplicated in ArcGIS Online.",
+				shareWarning: "Sharing %WITH% has been disabled because you are not the owner of the <a href='%LINK%' target='_blank'>webmap</a>.",
+				shareWarningWith1: "publicly",
+				shareWarningWith2: "publicly and with the Organization"
 			}
         }
     })

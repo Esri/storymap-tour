@@ -410,7 +410,7 @@
 					div1: "Map Tour 템플릿은 시선을 사로잡는 사진 또는 미디어 요소가 있는 지리 정보를 통해 원하는 스토리를 전달하도록 디자인되었습니다.",
 					div2: "이 템플릿은 사용자가 찾아볼 수 있도록 숫자가 매겨진 순서대로 소규모 장소 세트를 제공할 수 있는 사용하기 쉽고 멋진 웹 응용프로그램을 생성합니다. 이 템플릿은 스마트폰과 태블릿을 비롯하여 장치에 상관없이 모든 웹 브라우저에서 사용할 수 있도록 디자인되었습니다.<br /><br />예를 들면 다음과 같은 종류의 응용프로그램을 생성할 수 있습니다.",
 					div4: "<a href='http://storymaps.esri.com/stories/maptour-palmsprings' target='_blank'>팜스프링스 Map Tour</a>.",
-					div42: "다른 사용자들이 생성 중인 Map Tour의 예를 보려면 <a href='http://storymaps.esri.com/' target='_blank'>스토리 맵 웹 사이트</a>의 <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>갤러리를 방문</a>하세요. Twitter에서 <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>를 팔로우해도 됩니다.",
+					div42: "다른 사용자들이 생성 중인 Map Tour의 예를 보려면 <a href='http://storymaps.arcgis.com/' target='_blank'>스토리 맵 웹 사이트</a>의 <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>갤러리를 방문</a>하세요. Twitter에서 <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>를 팔로잉할 수도 있습니다.",
 					div5: "여러분의 참여를 기다립니다. 질문이 있거나 새 기능이 필요하거나 버그가 확인된 경우 <a href='http://links.esri.com/storymaps/forum' target='_blank'>스토리 맵 사용자 포럼</a>을 방문해 주세요."
 				},
 				tab2: {
@@ -418,9 +418,9 @@
 					div1: "Map Tour를 생성할 때 고려해야 할 기본 요소는 그림을 저장할 위치를 선택하는 것입니다. Map Tour에서는 주요 사진 공유 서비스, 웹 서버 또는 피처 서비스에 첨부로 저장된 그림을 사용할 수 있습니다.",
 					div1a: "지원되는 그림 형식 및 동영상에 대한 자세한 내용은 이 탭의 마지막 섹션을 참조하세요.",
 					div2: "대화형 빌더에서는 Map Tour에서 이미지를 처리할 수 있는 두 가지 옵션을 제공합니다.",
-					div3: "<ul><li>Flickr와 같은 사진 공유 사이트에 저장된 이미지 또는 자체 웹 사이트에 저장된 이미지처럼 <b>이미 온라인에 있는 사진</b>을 사용할 수 있습니다. 이러한 이미지는 해당 URL을 통해 Map Tour에서 참조됩니다.</li><li>또한 <b>컴퓨터에 있는 사진을 Map Tour에 직접 업로드</b>할 수 있습니다. 이 업로드 옵션을 사용하려면 ArcGIS Online을 구독하고 발행자 또는 관리자 권한(사진이 첨부 파일로 저장되는 호스팅 피처 서비스가 자동으로 생성되기 때문)이 있어야 합니다.</li></ul>",
+					div3: "<ul><li>Flickr와 같은 사진 공유 사이트에 저장된 이미지 또는 자체 웹 사이트에 저장된 이미지처럼 <b>이미 온라인에 있는 사진</b>을 사용할 수 있습니다. 이러한 이미지는 해당 URL을 통해 Map Tour에서 참조됩니다.</li><li>또한 <b>컴퓨터에 있는 사진을 Map Tour에 직접 업로드</b>할 수도 있습니다. 이 업로드 옵션을 사용하려면 ArcGIS for Organizations 계정과 발행자 또는 관리자 권한(사진이 첨부 파일로 저장되는 호스팅 피처 서비스가 자동으로 생성되기 때문)이 있어야 합니다.</li></ul>",
 					div4: "기본 사용 사례는 다음과 같습니다.",
-					div4b: "<b>사진이 아직 호스팅되지 않고</b> ArcGIS Online을 구독하는 경우: 호스팅 피처 서비스를 사용하는 것이 가장 좋습니다. 공용 사진 공유 서비스와 같이 빠르게 로드되는 이미지를 생성하도록 그림이 최적화되며 ArcGIS 플랫폼의 모든 관리 및 데이터 관리 기능에 액세스할 수 있습니다.",
+					div4b: "<b>사진이 아직 호스팅되지 않고</b> ArcGIS for Organizations 계정이 있는 경우, 호스팅 피처 서비스를 사용하는 것이 가장 좋습니다. 공용 사진 공유 서비스와 같이 빠르게 로드되는 이미지를 생성하도록 그림이 최적화되며 ArcGIS 플랫폼의 모든 관리 및 데이터 관리 기능에 액세스할 수 있습니다.",
 					div5: "<b>기관의 구성원이 아닌 경우</b>: 먼저 사진 공유 웹 사이트 또는 자체 웹 서버에 그림을 업로드해야 합니다. 그런 다음 빌더를 사용하여 해당 그림의 원래 위치에서 계속 호스팅되는 그림을 사용할 수 있습니다.",
 					div6: "그림을 첨부 파일로 저장하거나 외부 그림을 참조하는 <b>기존 피처 서비스를 다시 사용하려는 경우</b>: 아래의 세부 섹션을 참조하세요.",
 					div7: "<b>이전 버전의</b> Map Tour 템플릿을 사용하고 있으며 그림 및 미리보기를 참조하는 CSV가 이미 있는 경우: CSV를 가져와서 데이터를 세부적으로 조정할 수 있습니다. 빌더에서는 위도/경도 필드를 사용하는 CSV만 지원하며 주소 기반 CSV는 웹 맵을 통해 계속 사용할 수 있습니다(아래 섹션 참조).",
@@ -525,7 +525,7 @@
 				shareA2div1: "%LINK1% 링크를 저장하여 다시 사용하거나 <a href='%LINK2%' target='_blank'>응용프로그램 항목 페이지</a>를 사용하세요.",
 				shareA2div2: "응용프로그램의 소유자인 경우 ArcGIS.com에 로그인하면 대화형 빌더를 열 수 있는 버튼이 응용프로그램에 표시됩니다.",				
 				shareQ3: "데이터는 어디에 저장되나요?",
-				shareA3: "Tour 구성은 <a href='%LINK1%' target='_blank'>이 웹 맵 항목</a>과 <a href='%LINK2%' target='_blank'>이 웹 응용프로그램 항목</a>에 저장됩니다. Flickr, Picasa, Facebook 또는 YouTube 가져오기를 사용한 경우 이미지는 해당 위치에 저장된 상태로 유지되고 ArcGIS Online에서 복제되지 않습니다.",
+				shareA3: "Tour 구성은 <a href='%LINK1%' target='_blank'>이 웹 맵 항목</a>과 <a href='%LINK2%' target='_blank'>이 웹 응용프로그램 항목</a>에 저장됩니다. Flickr, Picasa 및 Facebook 이미지 및 YouTube 동영상은 각각의 사이트에서 참조된 상태로 유지되고 ArcGIS Online에서 복제되지 않습니다.",
 				shareWarning: "<a href='%LINK%' target='_blank'>웹 맵</a>의 소유자가 아니므로 %WITH% 공유를 사용할 수 없습니다.",
 				shareWarningWith1: "공개",
 				shareWarningWith2: "기관에 공개"

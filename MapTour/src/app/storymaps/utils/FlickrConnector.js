@@ -101,8 +101,9 @@ define(["dojo/Deferred", "dojo/_base/lang"],
 			
 			function request(method, params)
 			{
-				var url = document.location.protocol 
-							+ '//api.flickr.com/services/rest/?method=' 
+				// http://code.flickr.net/2014/04/30/flickr-api-going-ssl-only-on-june-27th-2014/
+				var url = 'https://' /*document.location.protocol*/ 
+							+ 'api.flickr.com/services/rest/?method=' 
 							+ method 
 							+ '&format=json' 
 							+ '&api_key=' + apiKey 
