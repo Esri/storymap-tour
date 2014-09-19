@@ -865,7 +865,7 @@ define(["esri/dijit/Geocoder",
 			function getVimeoThumbnail(url)
 			{
 				var resultDeferred = new Deferred();
-				var test = /vimeo\.com\/([0-9]{8})/.exec(url);
+				var test = /vimeo\.com\/([0-9]+$)/.exec(url);
 				
 				if( ! test || test.length != 2 )
 					resultDeferred.reject();
@@ -893,7 +893,7 @@ define(["esri/dijit/Geocoder",
 			
 			function getVimeoEmbed(url)
 			{
-				var test = /vimeo\.com\/([0-9]{8})/.exec(url);
+				var test = /vimeo\.com\/([0-9]+$)/.exec(url);
 				return test && test.length == 2 ? '//player.vimeo.com/video/' + test[1] : '';
 			}
 			
