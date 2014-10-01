@@ -292,7 +292,7 @@ define(["dojo/cookie",
 			},
 			prependURLHTTP: function(url)
 			{
-				if ( ! url || url === "" )
+				if ( ! url || url === "" || url.match(/^mailto:/) )
 					return url;
 				
 				if ( ! /^(https?:\/\/)|^(\/\/)/i.test(url) )

@@ -411,16 +411,16 @@
 					div2: "Mall loob atraktiivse ja lihtsasti kasutatava veebirakenduse, mille abil saate väikesel hulgal paiku numbrilises järjestuses kaardil esitada. Mall on välja töötatud mistahes tüüpi veebibrauseris või nutiseadmes kasutamiseks. <br /><br />Siin on näide rakendusest, mille sarnast saate ka ise luua:",
 					div4: "<a href='http://storymaps.esri.com/stories/maptour-palmsprings' target='_blank'>Palm Springs kaardituur</a>.",
 					div42: "Kui soovite vaadata näiteid teiste kasutajate loodavatest kaardituuridest, külastage <a href='http://storymaps.arcgis.com/' target='_blank'>kaardilugude veebisaidil</a> asuvat <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>galeriid</a>. Samuti saate meid jälgida Twitteri kanalis <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-					div5: "Ootame tagasisidet!  Kui teil on küsimusi, soovite küsida uusi võimalusi või arvate, et olete leidnud vea, siis palun külastage meid <a href='http://links.esri.com/storymaps/forum' target='_blank'>Kaardilugide kasutajate foorumis</a>."
+					div5: "Ootame Teie tagasisidet!  Kui Teil on küsimusi, soovite küsida uusi võimalusi või arvate, et olete leidnud vea, siis palun külastage meid <a href='http://links.esri.com/storymaps/forum' target='_blank'>kaardilugude kasutajate foorumis</a>."
 				},
 				tab2: {
 					title: "Andmed",
 					div1: "Kaardi tuuri loomisel tuleb eelkõige silmas pidada kohta, kuhu pildid salvestatakse. Kaardi tuuri loomisel saab kasutada pilte, mis asuvad peamistes fotopankades, mistahes veebiserveris või objektiteenuste manustena.",
 					div1a: "Vaata selle vahelehe viimast sektsiooni piltide ja videote toetatud formaatide osas.",
 					div2: "Interaktiivne koostaja käib tuuri piltide haldamisega seoses välja kaks valikut:",
-					div3: "<ul><li>Saate kasutada <b>veebis olevaid fotosid</b> (nt fotojagamissaidil Flickr või teie enda veebilehel talletatavaid pilte). Nendele piltidele viidatakse teie kaardituuril URL-ide kaudu.</li><li>Samuti saate <b>oma arvutist pilte üles laadida</b>. Selle üleslaadimissuvandi kasutamiseks peab teil olema teenuse ArcGIS for Organizations konto ning avaldaja- või administraatoriõigused, kuna teie jaoks luuakse automaatselt majutatav objektiteenus, kus teie fotosid talletatakse manustena.</li></ul>",
+					div3: "<ul><li>Saate kasutada <b>veebis olevaid fotosid</b> (nt fotojagamissaidil Flickr või teie enda veebilehel talletatavaid pilte). Nendele piltidele viidatakse teie kaardituuril URL-ide kaudu.</li><li>Samuti saate <b>oma arvutist pilte üles laadida</b>. Selle üleslaadimissuvandi kasutamiseks peab Teil olema ArcGIS for Organizations konto ning publitseerija või administraatori õigused, kuna Teie jaoks luuakse automaatselt majutatav objektiteenus, kus Teie fotosid talletatakse manustena.</li></ul>",
 					div4: "Peamised kasutusjuhud on:",
-					div4b: "<b>Teie fotosid ei majutata</b> veel ja teil on teenuse ArcGIS for Organizations konto. Kõige mõistlikum oleks kasutada majutatavat objektiteenust. Sarnaselt avalike fotojagamisteenustega optimeeritakse ka siin pildid selliselt, et neid saab kiiresti üles laadida, ning teil on juurdepääs ArcGIS-i platvormi administraatori- ja andmehaldusfunktsioonidele.",
+					div4b: "<b>Teie fotosid ei majutata</b> veel ja Teil on ArcGIS for Organizations konto. Kõige mõistlikum oleks kasutada majutatavat objektiteenust. Sarnaselt avalike fotojagamise teenustega optimeeritakse ka siin pildid selliselt, et neid saab kiiresti üles laadida ja Teil on juurdepääs ArcGIS-i platvormi administraatori- ja andmehalduse funktsioonidele.",
 					div5: "<b>Te ei ole organisatsiooni liige</b>: esmalt pead pildid laadima fotode jagamise keskkonda või enda veebiserverisse. Seejärel aitab Teid tuuri looja, et saaksite kasutada neid pilte, mida jätkuvalt algses asukohas hoitakse.",
 					div6: "<b>Otsid olemasoleva objektiteenuse korduvkasutust,</b> mis hoiaks pilte manustena või viitaks välistele asukohtadele: vaata täpsustavat lõiku allpool.",
 					div7: "<b>Oled varasema versiooni kaardi tuuri malli kasutaja</b> ja seal on juba CSV, mis viitab sinu piltidele ja pisipiltidele: sul on võimalus importida ja täiustada oma andmeid. Tuuri looja toetab vaid CSV faili, mis sisaldab pikkuse ja laiuse veergu, aadressipõhist CSV faili saab samuti kasutada sinu veebikaardi kaudu (vt lõiku allpool).",
@@ -492,7 +492,7 @@
 					div3a: "Kui kasutate kaardi tuuri koostaja kaudu loodud majutatud objektiteenust, haldab rakendus teenuse turvalisust Teie eest ning Teie jääte ainsaks muutmisõigustega kasutajaks (ka juhul, kui teenus on avalik).",
 					div3t2: "Enne oma tuuri jagamist laiema ringiga",
 					div3: "Kontrollige, et tuur toimib kenasti ka siis kui te ei ole ArcGIS.com kontole sisse logitud. URL, mida kavatsete välja jagada, ei tohiks suunata sisselogimise lehele ega rakenduse loomise režiimi.",
-					div4: "Kasulik on vaadata, kuidas kaardi tuur paistab iPadi horisontaalpaigutuses, et olla kindel selle sobilikkuses sellele populaarsele seadmele. Selle kaudu saate parema ülevaate, millal pealkirjad katavad liiga suure osa piltidest. Samuti annab see infot, kas alapealkiri mahub ja ei ole liiga pikk, et ta lõigataks.",
+					div4: "Kasulik on vaadata, kuidas kaardituur paistab iPad horisontaalses paigutuses, et olla kindel selle sobilikkuses sellele populaarsele seadmele. Selle kaudu saate parema ülevaate, millal pealkirjad katavad liiga suure osa piltidest. Samuti annab see infot, kas alapealkiri mahub ega ole liiga pikk, et seda lõigataks.",
 					div5a: "Soovitus otsinguks",
 					div5b: "Et aidata teistel kasutajatel ArcGIS Online otsingu kaudu oma kaardituuri leida, siis me soovitame, et te lisaksite \’Story map\’ märksõna kaardituuri sisu lehele (mitte veebikaardi sisu lehele), koos märksõnadega nagu tuuri asukoht, linn, riik ja temaatilised märksõnad nagu \'avalik kunst\', \'turisti kaart\' ja \'ajaloolised kohad\'. Need märksõnad aitavad ka meid, Esri inimesi, leidmaks lahedaid uusi näiteid tuuridest, mida saame promoda oma galeriides ja sotsiaalmeedias. Samuti soovitame teil laadida üles hea väljanägemisega pisipilt galeriile rakenduse sisu lehelt, nagu näiteks väike ekraanipilt tuurist või üks pilt sellest. Seda pilti kasutatakse automaatselt kui teie kaart lisatakse ArcGIS Online galeriisse."
 				}
@@ -525,10 +525,10 @@
 				shareA2div1: "Salvestage ja taaskasutage järgnevat linki %LINK1% või kasutage <a href='%LINK2%' target='_blank'>rakenduse sisu lehte</a>.",
 				shareA2div2: "Rakenduse omanikuna, ArcGIS.com sisselogituna, sisaldab rakendus nuppu interaktiivse looja avamiseks.",				
 				shareQ3: "Kus on andmed majutatud?",
-				shareA3: "Tuuri konfiguratsioon on salvestatud <a href='%LINK1%' target='_blank'>selle veebikaardi sisus</a> ja <a href='%LINK2%' target='_blank'>selle veebirakenduse sisus</a>. Flickri, Picasa ja Facebooki piltidele ning YouTube'i videotele viidatakse endisel nende vastavatel saitidel ja neid ei kopeerita ArcGIS Online\'i keskkonda.",
-				shareWarning: "%WITH% jagamine on keelatud, kuna te pole <a href='%LINK%' target='_blank'>veebikaardi</a> omanik.",
-				shareWarningWith1: "Avalikult",
-				shareWarningWith2: "Avalikult ja organisatsiooniga"
+				shareA3: "Tuuri konfiguratsioon on salvestatud <a href='%LINK1%' target='_blank'>selle veebikaardi sisus</a> ja <a href='%LINK2%' target='_blank'>selle veebirakenduse sisus</a>. Flickri, Picasa ja Facebooki piltidele ning YouTube videotele viidatakse endisel nende vastavatel saitidel ja neid ei kopeerita ArcGIS Online keskkonda.",
+				shareWarning: "%WITH% jagamine on keelatud, kuna Te ei ole <a href='%LINK%' target='_blank'>veebikaardi</a> omanik.",
+				shareWarningWith1: "avalikult",
+				shareWarningWith2: "avalikult ja organisatsiooniga"
 			}
         }
     })

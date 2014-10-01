@@ -271,7 +271,7 @@
 			},
 			importPopup: {
 				title: "Tuo",
-				prevBtn: "Takaosa",
+				prevBtn: "Takaisin",
 				nextBtn: "Seuraava"
 			},
 			importPopupHome: {
@@ -384,7 +384,7 @@
 			},
 			initPopup: {
 				title: "Tervetuloa Map Tourin rakentamisohjelmaan",
-				prevBtn: "Takaosa",
+				prevBtn: "Takaisin",
 				nextBtn: "Seuraava"
 			},
 			initPopupHome: {

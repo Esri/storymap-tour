@@ -398,7 +398,7 @@
 				footer3: "Download do modelo CSV",
 				footer4: "\"Salvar como\" se não tivesse baixado",
 				footer4bis: "Utilize botão direito + clicar e \"Salvar Como\" se o download não iniciar",
-				footer5: "Obtenha mais informações",
+				footer5: "Mais informações",
 				footerProgress: "Criação em progresso",
 				footerSucceed: "Criação bem sucedida. Carregando..."
 			},
@@ -458,7 +458,7 @@
 					div41: "Você constrói sua apresentação do mapa utilizando o construtor interativo no ambiente hospedado e configura o modelo com o identificador do aplicativo de mapeamento da web. As configurações que você definiu com o construtor interativo serão aplicadas.",
 					div42: "Você constrói seu mapa da web fora do construtor interativo e configura o modelo com o identificador do mapa da web. Você terá que ler a documentação para informações sobre como configurar o modelo.",
 					div43: "Observe que o construtor interativo está disponível na versão para download, mas com algumas restrições técnicas em navegadores como Internet Explorer mais antigos que a versão 10.",
-					div5: "Para efetuar o download da versão mais recente do modelo e obter mais informações sobre como utilizá-lo, visite <a href='https://github.com/Esri/map-tour-storytelling-template-js' target='_blank'>GitHub project page</a>."
+					div5: "Para baixar versão mais recente do modelo e obter mais informações sobre como utilizá-lo, visite <a href='https://github.com/Esri/map-tour-storytelling-template-js' target='_blank'>página de projeto do GitHub</a>."
 				},
 				tab4: {
 					title: "Dicas",

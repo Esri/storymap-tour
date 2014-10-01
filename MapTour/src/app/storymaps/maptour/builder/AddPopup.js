@@ -865,14 +865,14 @@ define(["esri/dijit/Geocoder",
 			function getVimeoThumbnail(url)
 			{
 				var resultDeferred = new Deferred();
-				var test = /vimeo\.com\/([0-9]{8})/.exec(url);
+				var test = /^.*(vimeo\.com\/)((channels\/[A-z]+\/)|(groups\/[A-z]+\/videos\/))?([0-9]+)/.exec(url);
 				
-				if( ! test || test.length != 2 )
+				if( ! test || test.length != 6 )
 					resultDeferred.reject();
 				else
 					$.ajax({
 						type:'GET',
-						url: '//vimeo.com/api/v2/video/' + test[1] + '.json',
+						url: '//vimeo.com/api/v2/video/' + test[5] + '.json',
 						jsonp: 'callback',
 						dataType: 'jsonp',
 						timeout: 4000
@@ -893,8 +893,8 @@ define(["esri/dijit/Geocoder",
 			
 			function getVimeoEmbed(url)
 			{
-				var test = /vimeo\.com\/([0-9]{8})/.exec(url);
-				return test && test.length == 2 ? '//player.vimeo.com/video/' + test[1] : '';
+				var test = /^.*(vimeo\.com\/)((channels\/[A-z]+\/)|(groups\/[A-z]+\/videos\/))?([0-9]+)/.exec(url);
+				return test && test.length == 6 ? '//player.vimeo.com/video/' + test[5] : '';
 			}
 			
 			//
