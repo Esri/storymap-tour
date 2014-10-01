@@ -314,6 +314,15 @@ It is possible to open the Map Tour on a specific point and not on the first one
 
 ## What's new?
 
+#### Map Tour 2.2.5 released on 23/09/2014
+
+This is a minor maintenance release:
+
+ * Can't use mailto in Header configurable links
+ * Adding video from vimeo only works if the id for the video is exactly 8 digits long
+
+That release use ArcGIS API for Javascript 3.11.
+
 #### Map Tour 2.2.4 released on 07/02/2014
 
 This is a minor maintenance release:
