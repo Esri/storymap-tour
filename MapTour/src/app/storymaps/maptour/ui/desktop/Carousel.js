@@ -121,8 +121,8 @@ define(["dojo/has",
 					// The color specification though class is not ideal, but to have that more dynamic all the rest is a pain
 					carouselHTML += '<li>';
 					carouselHTML += ' <div class="carousel-item-div">';
-					carouselHTML += '  <span class="' + pinCssClass +'"><img data-src="' + slide.attributes.getThumbURL() + '" onerror="mediaNotFoundHandler(this)"/></span>';
-					carouselHTML += '  <div>' + ($('<div>' + slide.attributes.getName() + '</div>').html()) + '</div>';
+					carouselHTML += '  <span class="' + pinCssClass +'"><img data-src="' + slide.attributes.getThumbURL() + '" onerror="mediaNotFoundHandler(this)" alt="' + $("<div>" + slide.attributes.getName() + "</div>").text() + '"/></span>';
+					carouselHTML += '  <div tabindex="0">' + ($('<div>' + slide.attributes.getName() + '</div>').html()) + '</div>';
 					carouselHTML += ' </div>';
 					carouselHTML += '</li>';
 				});

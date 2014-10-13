@@ -648,6 +648,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 				app.isFirstUserAction = true;
 				
 				topic.publish("maptour-ready");
+				
+				setTimeout(function(){$("#header .title").focus();}, 0);
 			}
 			
 			//

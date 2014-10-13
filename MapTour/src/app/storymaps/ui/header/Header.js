@@ -53,7 +53,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					new InlineFieldEdit(selector, editFieldsEnterEvent, editFieldsExitEvent);
 				
 				if( ! isInBuilderMode && ! subtitle ) {
-					$(selector + ' #headerDesktop .title').css("padding-top", 40);
+					$(selector + ' #headerDesktop .title').css("margin-top", 40);
 					$(selector + ' #headerDesktop .subtitle').css("height", 32);
 				}
 	
@@ -118,6 +118,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					if (target) {
 						$(selector + ' .logo img').closest("a").css("cursor", "pointer");
 						$(selector + ' .logo img').closest("a").attr("href", target);
+						$(selector + ' .logo img').closest("a").attr("tabindex", "-1");
 					}
 					else 
 						$(selector + ' .logo img').closest("a").css("cursor", "default");
@@ -129,7 +130,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			this.setTopRightLink = function(text, link)
 			{
 				if( link )
-					$(selector + ' .social .msLink').html(text ? '<a href="' + link + '" target="_blank">' + text + '</a>' : '');
+					$(selector + ' .social .msLink').html(text ? '<a href="' + link + '" target="_blank" tabindex="-1">' + text + '</a>' : '');
 				else if ( text )
 					$(selector + ' .social .msLink').html('<span>' + text + '</a>');
 				else 
