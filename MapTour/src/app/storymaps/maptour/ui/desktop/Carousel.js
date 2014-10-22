@@ -98,6 +98,14 @@ define(["dojo/has",
 				
 				$(selector + ' .carouselScroller ul').html(renderItem(slides));
 				
+				$(selector + ' .carousel-item-div').focus(function(e){
+					var selectedIndex = $(selector + ' .carousel-item-div.selected').parents('li').index(),
+						focusIndex = $(this).parents('li').index();
+					
+					if ( selectedIndex != focusIndex) 
+						topic.publish("CAROUSEL_CLICK", focusIndex);
+				})
+				
 				_picDownloadedIndex = 14;
 				$(selector + ' .carouselScroller ul img').slice(0,_picDownloadedIndex).each(function(i, img){ 
 					$(img).attr("src", $(img).data("src"));
@@ -120,9 +128,10 @@ define(["dojo/has",
 					// The first div is necessary for vertical centering and the span around the image for the numbering
 					// The color specification though class is not ideal, but to have that more dynamic all the rest is a pain
 					carouselHTML += '<li>';
-					carouselHTML += ' <div class="carousel-item-div">';
-					carouselHTML += '  <span class="' + pinCssClass +'"><img data-src="' + slide.attributes.getThumbURL() + '" onerror="mediaNotFoundHandler(this)" alt="' + $("<div>" + slide.attributes.getName() + "</div>").text() + '"/></span>';
-					carouselHTML += '  <div tabindex="0">' + ($('<div>' + slide.attributes.getName() + '</div>').html()) + '</div>';
+					carouselHTML += ' <div class="carousel-item-div" tabindex="0">';
+					carouselHTML += '  <span class="' + pinCssClass +'"><img data-src="' + slide.attributes.getThumbURL() + '" onerror="mediaNotFoundHandler(this)" /></span>';
+					carouselHTML += '  <div>' + ($('<div>' + slide.attributes.getName() + '</div>').html()) + '</div>';
+					carouselHTML += '  <div style="height: 0;">' + ($('<div>' + slide.attributes.getDescription() + '</div>').html()) + '</div>';
 					carouselHTML += ' </div>';
 					carouselHTML += '</li>';
 				});
@@ -139,7 +148,7 @@ define(["dojo/has",
 					_missedIndex = index;
 				
 				$(selector + ' .carousel-item-div').removeClass("selected");
-				$(selector + ' .carousel-item-div').eq(index).addClass("selected");
+				$(selector + ' .carousel-item-div').eq(index).addClass("selected").focus();
 				
 				scrollToIndex(index);
 				updateArrows();

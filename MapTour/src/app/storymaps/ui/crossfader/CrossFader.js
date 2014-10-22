@@ -375,8 +375,8 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				}
 				
 				$(_placard).empty();
-				$(_placard).append("<div class='name' tabindex='0'>"+name+"<div/>");	
-				$(_placard).append("<div class='description' tabindex='0'>"+text+"<div/>");
+				$(_placard).append("<div class='name' tabindex='-1'>"+name+"<div/>");	
+				$(_placard).append("<div class='description' tabindex='-1'>"+text+"<div/>");
 				
 				if (isInBuilderMode) {
 					new InlineFieldEdit(

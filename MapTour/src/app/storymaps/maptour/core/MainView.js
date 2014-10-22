@@ -126,13 +126,15 @@ define(["storymaps/maptour/core/WebApplicationData",
 				
 				// Prevent iPad vertical bounce effect
 				// except on few containers that needs that
-				$(document).bind(
-					'touchmove',
-					function(e) {
-						if( ! $(e.target).parents('#helpPopup, #placardContainer, #introPanel, #infoPanel, #popupViewGeoTag').length && ! $(e.target).hasClass('subtitle') )
-							e.preventDefault();
-					}
-				);
+				if ( has("touch") ) {
+					$(document).bind(
+						'touchmove',
+						function(e) {
+							if( ! $(e.target).parents('#helpPopup, #placardContainer, #introPanel, #infoPanel, #popupViewGeoTag').length && ! $(e.target).hasClass('subtitle') )
+								e.preventDefault();
+						}
+					);
+				}
 				
 				if( has("touch") )
 					$("body").addClass("hasTouch");
@@ -648,8 +650,6 @@ define(["storymaps/maptour/core/WebApplicationData",
 				app.isFirstUserAction = true;
 				
 				topic.publish("maptour-ready");
-				
-				setTimeout(function(){$("#header .title").focus();}, 0);
 			}
 			
 			//
