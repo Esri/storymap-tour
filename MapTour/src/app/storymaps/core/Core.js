@@ -562,9 +562,12 @@ define(["esri/map",
 		
 		function displayApp()
 		{
-			app.isLoading = false;
 			$("#loadingOverlay").fadeOut();
 			loadingIndicator.stop();
+			
+			setTimeout(function(){
+				app.isLoading = false;
+			}, 50);
 		}
 		
 		function initError(error, message, noDisplay)

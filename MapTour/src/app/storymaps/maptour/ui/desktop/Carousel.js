@@ -148,7 +148,10 @@ define(["dojo/has",
 					_missedIndex = index;
 				
 				$(selector + ' .carousel-item-div').removeClass("selected");
-				$(selector + ' .carousel-item-div').eq(index).addClass("selected").focus();
+				$(selector + ' .carousel-item-div').eq(index).addClass("selected");
+				
+				if ( ! app.isLoading )
+					$(selector + ' .carousel-item-div').eq(index).focus();
 				
 				scrollToIndex(index);
 				updateArrows();
