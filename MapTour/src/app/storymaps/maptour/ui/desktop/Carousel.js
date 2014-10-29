@@ -104,7 +104,7 @@ define(["dojo/has",
 					
 					if ( selectedIndex != focusIndex) 
 						topic.publish("CAROUSEL_CLICK", focusIndex);
-				})
+				});
 				
 				_picDownloadedIndex = 14;
 				$(selector + ' .carouselScroller ul img').slice(0,_picDownloadedIndex).each(function(i, img){ 
