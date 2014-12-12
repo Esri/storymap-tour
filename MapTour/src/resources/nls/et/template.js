@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "RAKENDUSE LAADIMINE",
@@ -30,7 +30,7 @@
 				noBuilderIE8: "Kaardi tuuri koostaja ei ole toetatud varasemaga, kui Internet Explorer 9 versiooniga.",
 				ie10Win7Explain: "Kaardi tuuri interaktiivne koostaja ei ole toetatud Windows 7 operatsioonisüsteemis kasutatava Internet Explorer 10 brauseriga, kui andmeallikas on manustega objektiteenus. Manustega objektiteenuste kasutamiseks peate <a target='_blank' href='http://msdn.microsoft.com/en-us/library/ie/hh920756(v=vs.85).aspx'>käsitsi muutma dokumendi ülesehitust Internet Explorer 9 standardite alusel</a>, <a target='_blank' href='http://news.softpedia.com/news/How-to-Remove-IE10-and-Get-Back-to-IE9-on-Windows-7-308998.shtml'> Migreeri brauser Internet Explorer 9 versioonile </a> või uuenda operatsioonisüsteem Windows 8 platvormile.",
 				oldBrowserExplain: "Antud brauser ei toeta automaatset pisipiltide koostamist pildiandmetest, mis on laaditud tuuri kirjeldavale kaardile. Teil on võimalik koostada kaart selles brauseris kasutamiseks, kuid peate omistama igale üles laetud pildile asjakohase pisipildi.",
-				oldBrowserExplain2: "Oskuste parendamiseks, <a href='http://browsehappy.com/' target='_blank'>uuendage enda brauserit</a> or <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>Google Chrome Frame for Internet Explorer aktiveerimiseks</a>.",
+				oldBrowserExplain2: "Oskuste parendamiseks, <a href='http://browsehappy.com/' target='_blank'>uuendage oma brauserit</a> või <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>Google Chrome Frame for Internet Explorer aktiveerimiseks</a>.",
 				oldBrowserExplain3: "Kaardi tuuri koostaja ei tööta Windows XP operatsioonisüsteemi Internet Explorer 10 versiooniga.",
 				oldBrowserClose: "Sulge"
 			},
@@ -68,7 +68,7 @@
 				dataPicError1: "Kaardituurile on sobilikud piltide aadressid, mis lõppevad laiendustega: .jp(e)g, .png, .gif või .bmp.",
 				dataPicError2: "Nõue ei mõjuta teie eksisteerivat publitseeritud kaardituuri, kuid interaktiivse looja kasutamiseks peate esmalt lahendama aadressi küsimused, tehes ühte järgnevatest tegevustest:",
 				dataPicError3: "Muuda aadresse",
-				dataPicError4: "See lisab <i>#isImage</i> mitte toetatud piltide aadresside lõppu. Enamik servereid toetab aadressi täiendeid. Kuid peale selle tegevuse sooritamist kontrollige punktide vahel navigeerides, et uuendatud piltide aadressid on funktsioneerivad. Kui kõik pildid laevad ilusti, siis võite salvestada kaardituuri. Kui <b>pildid on katki, ärge salvestage kaardituuri</b>. Selle asemel laadige looja uuesti ning teostage teine tegevus.",
+				dataPicError4: "See lisab <i>#isImage</i> mitte toetatud piltide aadresside lõppu. Enamik servereid toetab aadressi täiendeid. Kuid peale selle tegevuse sooritamist kontrollige punktide vahel navigeerides, et uuendatud piltide aadressid on toimivad. Kui kõik pildid laadivad end kenasti üles, siis võite kaardituuri salvestada. Kui <b>pildid ei ilmu, ärge salvestage kaardituuri</b>. Selle asemel laadige looja uuesti ning tehke teine toiming.",
 				dataPicError5: "Piira tuur piltidele",
 				dataPicError6: "See valik tähendab, et kõiki aadresse käsitletakse piltidena, kuid teil ei ole võimalik lisada videod interaktiivse looja kaudu. See toiming on tagasi võetav kui otsustate lisada videoid tulevikus.",
 				dataPicError7: "Teie kaardituur on piiratud ainult piltidele, videoid ei saa lisada. Kui eemaldate selle piirangu, siis kontrollige, et Teie pildid ikka laevad korrektselt enne kaardituuri salvestamist. Teil on vajadusel võimalik taastada seda piirangut hiljem.",
@@ -196,7 +196,7 @@
 				uploadSuccess: "Laadimine õnnestus",
 				uploadError: "Viga pildi laadimisel",
 				uploadError2: "Viga objekti lisamisel (vigane html tag)",
-				notJpg: "Laadimiseks vali palun jpeg formaadis pilt",
+				notJpg: "Laadimiseks vali palun JPEG-formaadis pilt",
 				errorNoPhoto: "Vali pilt laadimiseks",
 				errorNoThumbnail: "Vali pisipilt laadimiseks",
 				errorInvalidPicUrl: "Sisesta korrektne pilt (algab http(s)://, lõpeb laiendusega jpg, png, gif või bmp). Võite pildi aadressi lõppu lisada '#isImage', mis on eelneva reegli ülene.",
@@ -261,7 +261,7 @@
 				uploadPicAndThumb: "Kehtesta"
 			},
 			headerJS:{
-				editMe: "Muuda mind !",
+				editMe: "Muuda mind!",
 				templateTitle: "Määra mallile pealkiri",
 				templateSubtitle: "Määra mallile alampealkiri"
 			},
@@ -361,7 +361,7 @@
 				header: "Sisesta YouTube kasutajanimi, et leida avalikult jagatud videoid.",
 				pageInputLbl: "Sisesta YouTube kasutajanimi",
 				lookupMsgError: "Kasutajat ei leitud",
-				howToFind: "Kuidas leida YouTube kasutajanime",
+				howToFind: "Kuidas leida YouTube’i kasutajanime",
 				howToFind2: "Kasutajanime kuvatakse videote all",
 				found: "Leitud",
 				noData: "Avalikke videoid ei leitud"
@@ -436,18 +436,18 @@
 					div153: "Pilt",
 					div154: "Pisipilt",
 					div155: "Värv ",
-					div16: "Kui rakendus ei leia objektiteenusest sobivaid veerge, siis vaateaken ei toimi seni, kuni veerud tekivad. CSV ja Shape faili kihi lisamine veebikaardile eeldab kõiki vajalikke veerge, sest vastasel korral rakenduse koostamine ei toimi.",
+					div16: "Kui rakendus ei leia objektiteenusest sobivaid veerge, siis vaateaken ei toimi seni, kuni veerud tekivad. CSV- ja Shape-faili kihi lisamine veebikaardile eeldab kõiki vajalikke veerge, sest vastasel korral rakenduse koostamine ei toimi.",
 					div162: "Kui kasutate manuste hoidmiseks majutusteenust, <b>siis kasutatakse ainult nähtuseid, millel on kaks manust</b>. Esimene manus defineerib peamise pildi ja teine manus pisipildi.",
 					div17: "Pildi ja pisipildi veerud on esmatähtsad manusteta objektiteenuses ja valikulised (aga tungivalt soovitatavad) manustega objektiteenuste korral. Kui teenuses on manused lubatud, lubab koostaja pildid üles laadida manustena. Kui ei, saad muuta vaid pildi ja pisipildi URL-i.",
 					div172: "Pildi ja eelvaate välju kasutatakse alati nende olemasolu korra ja majutusteenuse manuseid ei pärita.",
-					div173: "Näidiskujul CSV ja Shape faili saab alla laadida",
-					div18: "Koostan majutatud objektiteenuse CSV või Shape failist",
-					div19: "Kui lood majutatud objektiteenuse CSV või Shape failist, siis seal ei ole manused vaikimisi toetatud. Selleks saad avada objektiteenuse sisu lehe, klikata väikesele noolekesele ning siis on vastav valik ka nähtav. Jätkab kaardi tuur piltide ja pisipiltide kasutamine, millele oled atribuutide kaudu viidanud. Valikuliselt võib pilte laadida ka objektiteenuse manustena, seda saad teha kahe pildipaneelil asuva nupu abil (\"Muuda pilti\" ja \"Muuda pisipilti\").",
+					div173: "Näidiskujul CSV- ja Shape-faili saab alla laadida",
+					div18: "Koostan majutatud objektiteenuse CSV- või Shape-failist",
+					div19: "Kui lood majutatud objektiteenuse CSV- või Shape failist, siis manused ei ole vaikimisi toetatud. Selleks saad avada objektiteenuse sisu lehe, klikkida väikesel noolekesel ning siis on vastav valik ka nähtav. Jätkub kaardituuri piltide ja pisipiltide kasutamine, millele oled atribuutide kaudu viidanud. Valikuliselt võib pilte laadida ka objektiteenuse manustena, seda saad teha kahe pildipaneelil asuva nupu abil (\"Muuda pilti\" ja \"Muuda pisipilti\").",
 					div20: "Toetatud pildiformaadid ja videod",
-					div21: "Toetatud pildi formaadid on: <b>.jpg, .jpeg, .png, .gif ja .bmp</b>. Kui teie meedia ei lõppe sellise laiendusega, siis kaardituur eeldab, et tegemist on videoga, välja arvatud kui tegemist on majutusteenusega (vt alla).",
+					div21: "Toetatud pildiformaadid on <b>.jpg, .jpeg, .png, .gif ja .bmp</b>. Kui Teie meedia ei lõpe sellise laiendusega, siis kaardituur eeldab, et tegemist on videoga, välja arvatud siis, kui tegemist on majutusteenusega (vt allpool).",
 					div22: "Kaardituuri mall ei sisalda videopleierit, seega peate kasutama välist videopleierit oma videote majutuse teenusest (leidke sealt võimalused video kaasamiseks ja kopeerige vastav aadress antud koodis). Kui soovite majutada oma videoid ise, siis võite luua HTML lehe, mis sisaldab videomängijat nagu näiteks: <a href='http://www.videojs.com/'>Video.js</a>.",
 					div23: "Interaktiivne kaardituuri looja ei paku dialoogi videote lisamiseks majutusteenuse manustena, aga seda on võimalik teostada redigeerides oma andmeid väljaspool interaktiivset loojat. Arcgis.com kaardil võite muuta pildi välja ning suunata väärtused välistele videotele, lisades spetsiaalse parameetri video aadressi lõppu (#isVideo), seejärel käsitletakse seda meediat videona.",
-					div24: "Pange tähele, et vajate kahte sobilikku pildi manust või teie punkte ei kasutata. Videote kasutamine majutusteenuse manustena ei ole võimalik ilma pildi ja eelvaate väljadeta."
+					div24: "Pange tähele, et vajate kaht sobilikku pildimanust või Teie punkte ei kasutata. Videoklipi kasutamine majutusteenuse manustena ei ole võimalik ilma pildi- ja eelvaateväljata."
 				},
 				tab3: {
 					title: "Kohandamine",
@@ -463,7 +463,7 @@
 				tab4: {
 					title: "Vihjed",
 					div0: "Toetatud veebibrauserid",
-					div0a: "Kaardituuri vaataja on toetatud IE8+. Interaktiivne looja on toetatud IE9+. Me testime aktiivselt kõiki enimlevinud veebibrausereid, aga kui Teil esineb tõrkeid, siis soovitame kasutada Chrome veebibrauserit.",
+					div0a: "Kaardituuri vaataja on toetatud IE8+. Interaktiivne looja on toetatud IE9+. Me testime aktiivselt kõiki enimlevinud veebibrausereid, aga kui Teil esineb tõrkeid, siis soovitame kasutada Chrome’i veebibrauserit.",
 					div0b: "Kui Teil esineb tõrkeid, siis andke palun meile teada. Vahepeal proovige CSV malliga oma kaardituuri luua, kuna nii vähendate oma suhtluse interaktiivse looja keskkonnaga minimaalseks.",
 					div1: "Pildid",
 					div2: "Soovitame kasutada horisontaalset paigutust. Kuvasuhtega 4:3 fotod sobivad kõige paremini. Vertikaalpaigutus ei sobi väiksemate ekraanide korral nagu iPad,  pilt võib selgitava teksti varju jääda, sest tekst võtab rohkem ruumi, kui see kuvatakse kitsal ja mitte laial alal. Kuigi erinevate suuruste, kujude ja paigutusega pilte võib ühe ja sama kaardi tuuri loomisel kasutada, soovitame kasutada täpselt sama suurust ja vormi kõigi piltide korral. Sellisel juhul on kasutajal infot lihtsam jälgida.",
@@ -487,7 +487,7 @@
 					div2a: "Tuuri jagamine läbi vastava ehitaja",
 					div2b: "JAGA nupp uuendab rakendust ja veebikaardi sisu. Kui teie andmed on salvestatud objektiteenusena, siis ka see uuendatakse. Kui olete lisanud muid kihte läbi ArcGIS.com kaardirakenduse, siis neid ei uuendata. Selle tulemusena võib kaardi jagatav tulemus näida oodatust teistsugune. Sisu millel on juba piisavalt (või rohkem) õiguseid, ei uuendata.",
 					div2c: "Tuuri jagamine läbi ArcGIS Online keskkonna",
-					div2d: "Kui te jagate rakendust läbi ArcGIS Online keskkonna, siis on vajalik uuendada kõiki sõltuvaid ressursse (veebikaart, objektiteenus, kujunduse kiht), mis ei ole  jagatud samal viisil. Kui kaardituur on avalik ja üks teie ressurssidest ei ole jagatud kõigiga, siis kasutajad suunatakse ArcGIS Online sisselogimise lehele.",
+					div2d: "Kui jagate rakendust ArcGIS Online keskkonna kaudu, siis on vajalik uuendada kõiki sõltuvaid ressursse (veebikaart, objektiteenus, kujunduse kiht), mis ei ole samal viisil jagatud. Kui kaardituur on avalik ja üks teie ressurssidest ei ole kõigiga jagatud, siis suunatakse kasutajad ArcGIS Online’i sisselogimislehele.",
 					div3t: "Objektiteenuse turvalisus",
 					div3a: "Kui kasutate kaardi tuuri koostaja kaudu loodud majutatud objektiteenust, haldab rakendus teenuse turvalisust Teie eest ning Teie jääte ainsaks muutmisõigustega kasutajaks (ka juhul, kui teenus on avalik).",
 					div3t2: "Enne oma tuuri jagamist laiema ringiga",
@@ -525,7 +525,7 @@
 				shareA2div1: "Salvestage ja taaskasutage järgnevat linki %LINK1% või kasutage <a href='%LINK2%' target='_blank'>rakenduse sisu lehte</a>.",
 				shareA2div2: "Rakenduse omanikuna, ArcGIS.com sisselogituna, sisaldab rakendus nuppu interaktiivse looja avamiseks.",				
 				shareQ3: "Kus on andmed majutatud?",
-				shareA3: "Tuuri konfiguratsioon on salvestatud <a href='%LINK1%' target='_blank'>selle veebikaardi sisus</a> ja <a href='%LINK2%' target='_blank'>selle veebirakenduse sisus</a>. Flickri, Picasa ja Facebooki piltidele ning YouTube videotele viidatakse endisel nende vastavatel saitidel ja neid ei kopeerita ArcGIS Online keskkonda.",
+				shareA3: "Tuuri konfiguratsioon on salvestatud <a href='%LINK1%' target='_blank'>selle veebikaardi sisus</a> ja <a href='%LINK2%' target='_blank'>selle veebirakenduse sisus</a>. Flickri, Picasa ja Facebooki piltidele ning YouTube’i videotele viidatakse endiselt nende vastavatel saitidel ja neid ei kopeerita ArcGIS Online’i keskkonda.",
 				shareWarning: "%WITH% jagamine on keelatud, kuna Te ei ole <a href='%LINK%' target='_blank'>veebikaardi</a> omanik.",
 				shareWarningWith1: "avalikult",
 				shareWarningWith2: "avalikult ja organisatsiooniga"

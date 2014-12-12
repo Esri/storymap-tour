@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "CHARGEMENT DE L\’APPLICATION",
@@ -43,7 +43,7 @@
 				introStartBtn: "Démarrer"
 			},
 			desktopHTML: {
-				storymapsText: "Carte de narration",
+				storymapsText: "Une Story Map",
 				builderButton: "Mode de générateur",
 				bitlyTooltip: "Obtenir un lien court vers l\'application",
 				bitlyStartIndex: "Relier au site actuel"
@@ -68,7 +68,7 @@
 				dataPicError1: "Map Tour requiert désormais que l\'URL d\'une image possède une des extensions suivantes : .jp(e)g, .png, .gif ou .bmp.",
 				dataPicError2: "Cela ne concerne pas vos visites cartographiques existantes publiées. Cependant, pour pouvoir utiliser le générateur interactif, vous devez d\'abord résoudre le problème de l\'URL en effectuant l\'une des deux actions suivantes :",
 				dataPicError3: "Modifier les URL",
-				dataPicError4: "Cela ajoutera <i>#isImage</i> à la fin des URL des images non prises en charge. La plupart des serveurs prennent en charge l\'ajout d\'URL. Cependant, une fois que vous avez effectué cette action, vous devez vérifier que les URL des images mises à jour sont fonctionnelles en parcourant vos points. Si chaque image se charge, vous pouvez enregistrer la visite cartographique. Si les <b>images sont endommagées, n\'enregistrez pas la visite cartographique</b>. Rechargez le générateur et effectuez la seconde action.",
+				dataPicError4: "Cela ajoutera <i>#isImage</i> à la fin des URL des images non prises en charge. La plupart des serveurs prennent en charge l\'ajout d\'URL. Cependant, une fois que vous avez effectué cette action, vous devez vérifier que les URL des images mises à jour sont fonctionnelles en parcourant vos points. Si chaque image se charge, vous pouvez enregistrer le Map Tour. Si les <b>images sont endommagées, n\'enregistrez pas le Map Tour</b>. Rechargez le générateur et effectuez la seconde action.",
 				dataPicError5: "Limiter la visite aux images",
 				dataPicError6: "Cette option fait en sorte que toutes les URL soient considérées comme des images, mais vous ne pourrez pas ajouter de vidéos au moyen du générateur interactif. Cette action est réversible, au cas où vous décideriez d\'ajouter des vidéos à l\'avenir.",
 				dataPicError7: "Votre Map Tour est limité aux images, vous ne pouvez pas utiliser de vidéos. Si vous décidez de supprimer cette limitation, vérifiez que vos images se chargent correctement avant d\'enregistrer la visite cartographique. Vous pourrez restaurer cette limitation plus tard le cas échéant.",
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Image",
 				addLabelThumbUrl: "Miniature",
 				addTextPlaceholderUrl: "Saisissez l\'URL d\'une image",
-				addTextPlaceholderUrl2: "Saisissez l\'URL d\'une page Youtube",
+				addTextPlaceholderUrl2: "Saisissez l\'URL d\'une page YouTube",
 				addTextPlaceholderUrl3: "Saisissez l\'URL d\'une page Vimeo",
 				addTextPlaceholderUrl4: "Saisissez l\'URL d\'incorporation d\'une vidéo",
 				addLabelVideo: "Vidéo",
@@ -163,7 +163,7 @@
 				settingsFieldsReset: "Réinitialiser la sélection des champs",
 				settingsExtentExplain: "Définissez l\’étendue initiale de Map Tour au moyen de la carte interactive ci-dessous.",
 				settingsExtentExplainBottom: "L\'étendue que vous définissez modifie l\'étendue initiale de votre carte Web. Notez que cette étendue n\'est pas utilisée si elle ne comprend pas le premier point de la visite. Dans ce cas, la visite est centrée sur le premier point lors de son ouverture.",
-				settingsExtentDateLineError: "L\'étendue ne peut pas traverser le méridien de 180° de longitude",
+				settingsExtentDateLineError: "L\'étendue ne peut pas traverser le méridien de 180° de longitude",
 				settingsExtentDateLineError2: "Erreur de calcul de l\'étendue",
 				settingsExtentDrawBtn: "Tracer une nouvelle étendue",
 				settingsExtentModifyBtn: "Modifier l\’étendue",
@@ -357,11 +357,11 @@
 				footerSucceed: "Importation réussie. Chargement en cours"
 			},
 			viewYoutube: {
-				title: "Importation de Youtube",
+				title: "Importation de YouTube",
 				header: "Saisissez un nom d\'utilisateur YouTube pour chercher des vidéos partagées publiquement.",
-				pageInputLbl: "Entrez un nom d\'utilisateur Youtube",
+				pageInputLbl: "Entrez un nom d\'utilisateur YouTube",
 				lookupMsgError: "Utilisateur introuvable",
-				howToFind: "Comment trouver un nom d\'utilisateur Youtube",
+				howToFind: "Comment trouver un nom d\'utilisateur YouTube",
 				howToFind2: "Le nom d\'utilisateur est affiché sous les vidéos",
 				found: "Trouvés",
 				noData: "Aucune vidéo publique trouvée"
@@ -410,8 +410,8 @@
 					div1: "Le modèle Map Tour est conçu pour présenter des informations géographiques lorsque vous ne disposez pas d\'éléments photographiques ou multimédias intéressants pour agrémenter l\'histoire que vous souhaitez raconter.",
 					div2: "Le modèle produit une application Web attractive et conviviale qui vous permet de présenter un ensemble réduit de lieux sur une carte au sein d\'une séquence numérotée dans laquelle les utilisateurs peuvent naviguer. Ce modèle est destiné à être utilisé dans tous navigateurs Web sur tous périphériques, dont les smartphones et les tablettes. <br /><br />Voici un exemple du genre d\'application que vous pouvez créer :",
 					div4: "<a href='http://storymaps.esri.com/stories/maptour-palmsprings' target='_blank'>Visite cartographique de Palm Springs</a>.",
-					div42: "Pour voir des exemples de visites cartographiques créées par d\'autres utilisateurs, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>consultez la galerie</a> sur le <a href='http://storymaps.arcgis.com/' target='_blank'>site Web des cartes de narration</a>. Vous pouvez également nous suivre sur Twitter à l\'adresse <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-					div5: "Nous aimerions avoir de vos nouvelles ! Pour poser une question, proposer une nouvelle fonctionnalité ou si vous pensez avoir trouvé un bogue, consultez le <a href='http://links.esri.com/storymaps/forum' target='_blank'>forum des utilisateurs des cartes de narration</a>."
+					div42: "Pour voir des exemples de visites cartographiques créées par d\'autres utilisateurs, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>consultez la galerie</a> sur le <a href='http://storymaps.arcgis.com/' target='_blank'>site Web des Story Maps</a>. Vous pouvez également nous suivre sur Twitter à l\'adresse <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+					div5: "Nous aimerions avoir de vos nouvelles ! Pour poser une question, proposer une nouvelle fonctionnalité ou si vous pensez avoir trouvé un bogue, consultez le <a href='http://links.esri.com/storymaps/forum' target='_blank'>forum des utilisateurs des Story Maps</a>."
 				},
 				tab2: {
 					title: "Données",
@@ -442,9 +442,9 @@
 					div172: "Lorsqu\'ils existent, les champs d\'image et de miniature sont toujours utilisés et les pièces jointes au service d\'entités ne sont pas interrogées.",
 					div173: "Vous pouvez télécharger des exemples de fichiers CSV et de fichiers de forme sur le site",
 					div18: "Création de services d\'entités hébergés à partir d\'un CSV ou d\'un fichier de forme",
-					div19: "Lorsque vous créez un service d\'entités hébergé à partir d\'un fichier CSV ou d\'un fichier de forme, les pièces jointes ne sont pas activées par défaut. Pour les activer, ouvrez la page de détails du service d\'entités, cliquez sur la petite flèche dans la section de la couche et vous verrez cette option. Après cela, le Map Tour continuera d\'utiliser les images et les miniatures que vous avez référencées via les attributs. Facultativement, si vous souhaitez charger vos images en tant que pièces jointes du service d\'entités, vous pouvez le faire grâce à deux boutons situés dans le volet d\'image (\"Modifier l\'image\" et \"Modifier la miniature\").",
-					div20: "Vidéos et formats d\'images pris en charge",
-					div21: "Les formats d\'images pris en charge sont les suivants : <b>.jpg, .jpeg, .png, .gif et .bmp</b>. Si votre support ne possède pas cette extension, le Map Tour le considère comme une vidéo, sauf lorsqu\'il utilise un service d\'entités (voir ci-après).",
+					div19: "Lorsque vous créez un service d\'entités hébergé à partir d\'un fichier CSV ou d\'un fichier de formes, les pièces jointes ne sont pas activées par défaut. Pour les activer, ouvrez la page de détails du service d\'entités, cliquez sur la petite flèche dans la section de la couche et vous verrez cette option. Après cela, le Map Tour continuera d\'utiliser les images et les miniatures que vous avez référencées via les attributs. Si vous souhaitez charger vos images en tant que pièces jointes du service d\'entités, vous pouvez le faire grâce à deux boutons situés dans le volet d\'image (\"Modifier l\'image\" et \"Modifier la miniature\").",
+					div20: "Vidéos et formats d\'image pris en charge",
+					div21: "Les formats d\'image pris en charge sont les suivants : <b>.jpg, .jpeg, .png, .gif et .bmp</b>. Si votre support ne possède pas cette extension, le Map Tour le considère comme une vidéo, sauf lorsqu\'il utilise un service d\'entités (voir ci-après).",
 					div22: "Le modèle Map Tour ne comprenant pas de lecteur vidéo, vous devez utiliser le lecteur vidéo externe fourni par votre service d\'hébergement de vidéo favori (trouvez l\'option d\'incorporation de la vidéo et copiez l\'URL présente dans le code donné).Si vous souhaitez héberger la vidéo vous-même, vous pouvez créer une page HTML contenant un lecteur vidéo tel que <a href='http://www.videojs.com/'>Video.js</a>.",
 					div23: "Le générateur interactif ne possède pas de boîte de dialogue permettant d\'inclure de la vidéo lors de l\'utilisation de services d\'entités avec des pièces jointes, mais il est possible de le faire en modifiant vos données en dehors du générateur interactif. Dans la visionneuse de carte arcgis.com, si vous modifiez les champs de l\'image de manière à pointer sur une vidéo externe et que vous ajoutez un paramètre spécial à la fin de votre URL (#isVideo), votre support sera considéré comme une vidéo.",
 					div24: "Notez que vous devez tout de même avoir deux pièces jointes d\'images valides pour que le point soit utilisé. Il est impossible d\'utiliser des vidéos lors de l\'utilisation de pièces jointes de service d\'entités sans les champs d\'image et de miniature."
@@ -494,7 +494,7 @@
 					div3: "Vérifiez que la visite fonctionne lorsque vous n\'êtes pas connecté avec votre compte ArcGIS.com. L\'URL que vous allez utiliser ne doit pas rediriger vers une page de connexion ou vers le mode de générateur.",
 					div4: "Il est judicieux de vérifier l\'aspect de votre visite cartographique sur un iPad en orientation Paysage. Cela vous permet de voir si vos légendes couvrent une trop grande surface des images. Vous pouvez ainsi également vérifier que la longueur de votre sous-titre est adaptée et qu\'il n\'est pas coupé.",
 					div5a: "Recommandation pour la recherche",
-					div5b: "Pour aider les utilisateurs à trouver votre visite cartographique s\'ils parcourent ArcGIS Online, nous vous recommandons d\'ajouter la balise \"carte de narration\" sur la page des éléments de l\'application Map Tour (pas sur la page des éléments de votre carte Web), ainsi que des balises, telles que le nom de la région où se situe la visite, le nom du pays s\'il ne s\'agit pas des Etats-Unis, ainsi que des balises thématiques comme \"art public\", \"guide touristique\" ou \"lieux historiques\". Ces balises nous aident également chez Esri à trouver de nouveaux exemples attrayants de visites que nous pouvons mettre en évidence dans nos galeries et promouvoir sur les réseaux sociaux. Nous vous recommandons également d\'ajouter une miniature attirante sur la page des éléments de votre application, telle qu\'une petite capture d\'écran de la visite ou une des images qui la composent. Cette image est utilisée automatiquement si votre visite cartographique est ajoutée dans une galerie ArcGIS Online."
+					div5b: "Pour aider les utilisateurs à trouver votre visite cartographique s\'ils parcourent ArcGIS Online, nous vous recommandons d\'ajouter la balise \"Story Map\" sur la page des éléments de l\'application Map Tour (pas sur la page des éléments de votre carte Web), ainsi que des balises, telles que le nom de la région où se situe la visite, le nom du pays s\'il ne s\'agit pas des Etats-Unis, ainsi que des balises thématiques comme \"art public\", \"guide touristique\" ou \"lieux historiques\". Ces balises nous aident également chez Esri à trouver de nouveaux exemples attrayants de visites que nous pouvons mettre en évidence dans nos galeries et promouvoir sur les réseaux sociaux. Nous vous recommandons également d\'ajouter une miniature attirante sur la page des éléments de votre application, telle qu\'une petite capture d\'écran de la visite ou une des images qui la composent. Cette image est utilisée automatiquement si votre visite cartographique est ajoutée dans une galerie ArcGIS Online."
 				}
 			},
 			share: {

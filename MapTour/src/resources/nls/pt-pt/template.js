@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "A CARREGAR A APLICAÇÃO...",
@@ -68,7 +68,7 @@
 				dataPicError1: "A Apresentação de Mapa requer agora que um URL de uma imagem termine com uma das seguintes extensões: .jp(e)g, .png, .gif ou .bmp.",
 				dataPicError2: "Este requisito não afeta a sua Apresentação de Mapa já publicada. No entanto, a fim de usar o builder interativo, deve primeiro resolver o problema do  URL através da realização de uma das duas ações:",
 				dataPicError3: "Editar URLs",
-				dataPicError4: "Isto irá adicionar <i>#isPicture</i> no final dos URLs de imagem não suportados. A maioria dos servidores suporta o fato de acrescentar informação a URLs. Contudo, uma vez que tenha efetuado essa ação, deverá verificar se os URLs atualizados estão funcionais através da navegação nos seus pontos. Se cada imagem é carregada, pode agora guardar o Mapa Tour. Se <b>as ligações para as imagens não estão a funcionar, não guarde o Mapa Tour</b>. Em vez disso, carregue novamente o builder e efetue a segunda ação.",
+				dataPicError4: "Isto irá adicionar <i>#isImage</i> no final dos URLs de imagem não suportados. A maioria dos servidores suporta o fato de acrescentar informação a URLs. Contudo, uma vez que tenha efetuado essa ação, deverá verificar se os URLs de imagem atualizados estão funcionais navegando através dos seus pontos. Se cada imagem for carregada, pode agora guardar a Apresentação de Mapa. Se <b>as imagens não estão a funcionar, não guarde a Apresentação de Mapa</b>. Em vez disso, carregue novamente o builder e efetue a segunda ação.",
 				dataPicError5: "Limitar a apresentação às imagens",
 				dataPicError6: "Esta opção faz com que todos os URLs sejam considerados como imagens, mas não conseguirá adicionar vídeos utilizando o builder interativo. Esta ação é reversível, caso decida no futuro adicionar vídeos.",
 				dataPicError7: "A sua Apresentação de Mapa foi limitada a imagens, não podem ser utilizados vídeos. Se escolher remover esta limitação, verifique que as suas imagens carregam corretamente antes de guardar a Apresentação de Mapa. Poderá restaura essa limitação mais tarde caso necessite.",
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Imagem",
 				addLabelThumbUrl: "Miniatura",
 				addTextPlaceholderUrl: "Introduzir um URL para imagem",
-				addTextPlaceholderUrl2: "Introduzir um URL para página Youtube",
+				addTextPlaceholderUrl2: "Introduzir um URL para uma página do Youtube",
 				addTextPlaceholderUrl3: "Introduzir um URL para página Vimeo",
 				addTextPlaceholderUrl4: "Introduzir um URL para vídeo incorporado",
 				addLabelVideo: "Vídeo",
@@ -163,7 +163,7 @@
 				settingsFieldsReset: "Restaurar padrão da seleção de campos",
 				settingsExtentExplain: "Defina a extensão inicial da Apresentação de Mapa através do mapa interativo abaixo.",
 				settingsExtentExplainBottom: "Essa extensão é utilizada apenas se incluir o primeiro ponto da apresentação. O valor permanece através da extensão inicial do mapa web.",
-				settingsExtentDateLineError: "A extensão não pode ser ao longo do meridiano de180° de longitude",
+				settingsExtentDateLineError: "A extensão não pode ser ao longo do meridiano de 180° de longitude",
 				settingsExtentDateLineError2: "Erro ao calcular extensão",
 				settingsExtentDrawBtn: "Desenhar uma nova extensão",
 				settingsExtentModifyBtn: "Editar a extensão atual",
@@ -261,7 +261,7 @@
 				uploadPicAndThumb: "Aplicar"
 			},
 			headerJS:{
-				editMe: "Editar-me!",
+				editMe: "Edite-me!",
 				templateTitle: "Definir título do modelo",
 				templateSubtitle: "Definir subtítulo do modelo"
 			},
@@ -357,11 +357,11 @@
 				footerSucceed: "A importação foi bem sucedida. A carregar"
 			},
 			viewYoutube: {
-				title: "Importar Youtube",
+				title: "Importação do YouTube",
 				header: "Introduza um nome de utilizador do YouTube para encontrar videos partilhados publicamente.",
 				pageInputLbl: "Insira um nome de utilizador do YouTube",
 				lookupMsgError: "Utilizador não encontrado",
-				howToFind: "Como encontrar um nome de utilizador do Youtube",
+				howToFind: "Como encontrar um nome de utilizador do YouTube",
 				howToFind2: "Nome de utilizador é exibido nos vídeos",
 				found: "Encontrado",
 				noData: "Não há vídeos públicos encontrados"
@@ -442,12 +442,12 @@
 					div172: "Quando presentes, os campos de imagem e de miniaturas serão sempre utilizados e os anexos do serviço de elementos não serão consultados.",
 					div173: "Ficheiros CSVs e shapefiles podem ser descarregados a partir de",
 					div18: "Criar um Serviço de Elementos alojado a partir de um ficheiro CSV ou Shapefile",
-					div19: "Quando cria um Serviço de Elementos alojado a partir de um ficheiro CSV ou Shapefile, os anexos não são ativados por predefinição. Para ativar os anexos, abra a página de itens do Serviço de Elementos, clique na seta pequena na secção de camadas e essa opção aparece. Depois disso, a Apresentação de Mapa continuará a utilizar as imagens e miniaturas referenciadas através de atributos. Opcionalmente, se pretender carregar as imagens como anexos de Serviço de Elementos, poderá fazê-lo utilizando dois botões no painel da imagem (Alterar imagem e Alterar miniatura).",
-					div20: "Formatos suportados de imagem e vídeo.",
-					div21: "Os formatos de imagem suportados são: <b> jpg, jpeg, png, gif e bmp </ b>...... Se os media não terminarem com essa extensão, a apresentação de mapa vai considerá-lo como sendo um vídeo, exceto quando é utilizado um serviço de elementos (ver abaixo).",
+					div19: "Quando cria um Serviço de Elementos alojado a partir de um ficheiro CSV ou Shapefile, os anexos não são ativados por defeito. Para ativar os anexos, abra a página de detalhes do Serviço de Elementos, clique na seta pequena na secção de camadas e essa opção aparecerá. A Apresentação de Mapa continuará a utilizar as imagens e miniaturas que referenciou, através de atributos. Opcionalmente, se pretender carregar as imagens como anexos de serviço de elementos, poderá fazê-lo utilizando dois botões no painel da imagem (\Alterar Imagem\ e \Alterar Miniatura\).",
+					div20: "Formatos de imagem e vídeo suportados.",
+					div21: "Os formatos de imagem suportados são: <b> .jpg, .jpeg, .png, .gif e .bmp</ b>. Se o seu media não terminar com uma  dessas extensões, a Apresentação de Mapa vai considerá-lo como sendo um vídeo, exceto quando é utilizado um serviço de elementos (ver abaixo).",
 					div22: "O modelo de Apresentação de Mapa não inclui um player de vídeo, logo, você tem que usar o player de vídeo externo fornecido pelo seu serviço de alojamento de vídeos favorito (encontrar a opção de incorporar o vídeo e copie a URL presente no código dado). Se quiser alojar o vídeo, pode criar uma página HTML que contém um player de vídeo como <a href='http://www.videojs.com/'> Video.js </ a>.",
 					div23: "O builder interativo não fornece uma caixa de diálogo para incluir vídeo ao usar os serviços de elementos com anexos, mas é possível fazê-lo editando os seus dados fora do builder interativo. No visualizador de mapa do arcgis.com, se modificar os campos de imagem para apontarem para um vídeo externo e adicionar um parâmetro especial no final do seu URL (# isVideo), os seus media serão considerados um vídeo.",
-					div24: "Note que ainda precisa ter dois  anexos válidos de imagem ou o ponto não será usado. Não é possível a utilização de vídeos, quando são utilizados anexos de serviços de elementos sem os campos de imagem e miniatura."
+					div24: "Note que ainda precisa de ter dois  anexos de imagem válidos ou o ponto não será utilizado. Não é possível utilizar vídeos quando são utilizados anexos de serviços de elementos sem os campos de imagem e miniatura."
 				},
 				tab3: {
 					title: "Personalização",
@@ -487,7 +487,7 @@
 					div2a: "Partilhar a Apresentação através do construtor",
 					div2b: "O botão PARTILHAR atualizará os itens da aplicação e do mapa web. Se os dados da sua Apresentação residem num serviço de elementos, esse item também será atualizado. Se adicionou outras camadas através do visualizador de mapas do ArcGIS.com, elas não serão atualizadas. Isto resultará em que a Apresentação não será partilhada como está à espera. Itens que já possuem os privilégios necessários (ou mais)não serão atualizados.",
 					div2c: "Partilhar a Apresentação através do ArcGIS Online",
-					div2d: "Quando partilha a aplicação através do ArcGIS Online, poderá, se necessário, pedir-lhe que atualize quaisquer recursos associados (mapa web, serviço de elementos, camada decorativa) que não estão partilhados da mesma forma. Se a Apresentação de Mapa é pública e um dos seus recursos não o é, os utilizadores serão encaminhados para a página de início de sessão do ArcGIS Online.",
+					div2d: "Quando partilha a aplicação através do ArcGIS Online, este irá, se necessário, pedir-lhe que atualize quaisquer recursos associados (mapa web, serviço de elementos, camada decorativa) que não estão partilhados da mesma forma. Se a Apresentação de Mapa for pública e um dos seus recursos não estiver a ser partilhado com o seu público, os utilizadores serão redirecionados para a página de início de sessão do ArcGIS Online.",
 					div3t: "Segurança do Serviço de Elementos",
 					div3a: "Se estiver a utilizar um Serviço de Elementos alojado criado através do builder de Apresentação de Mapa, a aplicação gere a segurança do serviço por si e você continuará a ser o único com privilégios de edição, mesmo que partilhe o serviço publicamente.",
 					div3t2: "Antes de partilhar a sua Apresentação com a sua audiência",

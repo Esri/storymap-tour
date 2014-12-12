@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "UYGULAMA YÜKLENİYOR",
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Resim",
 				addLabelThumbUrl: "Küçük Resim",
 				addTextPlaceholderUrl: "Görüntü URL\'si girin",
-				addTextPlaceholderUrl2: "Youtube sayfa URL\'si girin",
+				addTextPlaceholderUrl2: "YouTube sayfa URL\'si girin",
 				addTextPlaceholderUrl3: "Vimeo sayfa URL\'si girin",
 				addTextPlaceholderUrl4: "Video katıştırma URL\'si girin",
 				addLabelVideo: "Video",
@@ -163,7 +163,7 @@
 				settingsFieldsReset: "Alan seçimini sıfırla",
 				settingsExtentExplain: "Harita Turu ilk yayılımını aşağıdaki etkileşimli haritayla ayarlayın.",
 				settingsExtentExplainBottom: "Tanımladığınız yayılım web haritanızın ilk yayılımını değiştirecek. İlk tur noktasını içermiyorsa, bu yayılımın kullanılmadığına dikkat edin. Bu durumda tur ilk noktayı merkez alarak başlar.",
-				settingsExtentDateLineError: "Yayılım 180° boylam meridyeninden geçemez",
+				settingsExtentDateLineError: "Yayılım 180Â° boylam meridyeninden geçemez",
 				settingsExtentDateLineError2: "Yayılımı hesaplanırken hata oluştu",
 				settingsExtentDrawBtn: "Yeni bir yayılım çiz",
 				settingsExtentModifyBtn: "Yayılımı düzenle",
@@ -261,7 +261,7 @@
 				uploadPicAndThumb: "Uygula"
 			},
 			headerJS:{
-				editMe: "Beni düzenle !",
+				editMe: "Beni düzenle!",
 				templateTitle: "Şablon başlığını ayarla",
 				templateSubtitle: "Şablon altyazısını ayarla"
 			},
@@ -357,11 +357,11 @@
 				footerSucceed: "İçe aktarma başarılı. Yükleniyor"
 			},
 			viewYoutube: {
-				title: "Youtube içe aktarma",
+				title: "YouTube içe aktarma",
 				header: "Herkesle paylaşılan videolar bulmak için bir YouTube kullanıcı adı girin.",
-				pageInputLbl: "Youtube kullanıcı adı girin",
+				pageInputLbl: "YouTube kullanıcı adı girin",
 				lookupMsgError: "Kullanıcı bulunamadı",
-				howToFind: "Youtube kullanıcı adı nasıl bulunur",
+				howToFind: "YouTube kullanıcı adı bulma",
 				howToFind2: "Kullanıcı adı bu videoların altında gösterilir",
 				found: "Bulundu",
 				noData: "Hiçbir genel video bulunamadı"
@@ -442,9 +442,9 @@
 					div172: "Mevcut olduğunda resim ve küçük resim alanları her zaman kullanılır ve detay servisi ekleri sorgulanmaz.",
 					div173: "Örnek CSV\'ler ve shapefile\'lar şuradan indirilebilir:",
 					div18: "CSV\'den veya shapefile\'dan barındırılan bir Detay Servisi oluşturma",
-					div19: "CSV\'den veya shapefile\'dan barındırılan bir detay servisi oluşturduğunuzda, ekler varsayılan olarak etkinleştirilmez. Bunları etkinleştirmek için detay servisinin sayfasını açıp katman bölümündeki küçük oka tıklarsanız, bu seçeneği görürsünüz. Harita Turu öznitelikler yoluyla başvurduğunuz resimleri ve küçük resimleri kullanmaya devam eder. Resimlerinizi detay servisi ekleri olarak karşıya yüklemek isterseniz, resim panelindeki iki düğme (\"Resmi Değiştir\" ve \"Küçük Resmi Değiştir\") yoluyla bunu yapabilirsiniz.",
+					div19: "CSV veya shapefile dosyasından barındırılan bir detay servisi oluşturduğunuzda, ekler varsayılan olarak etkinleştirilmez. Bunları etkinleştirmek için detay servisinin sayfasını açıp katman bölümündeki küçük oka tıklarsanız, bu seçeneği görürsünüz. Harita Turu öznitelikler yoluyla başvurduğunuz resimleri ve küçük resimleri kullanmaya devam eder. Resimlerinizi detay servisi ekleri olarak karşıya yüklemek isterseniz, resim panelindeki iki düğme (\"Resmi Değiştir\" ve \"Küçük Resmi Değiştir\") yoluyla bunu yapabilirsiniz.",
 					div20: "Desteklenen resim formatları ve videolar",
-					div21: "Desteklenen resim formatları şunlardır: <b>.jpg, .jpeg, .png, .gif ve .bmp</b>. Medyanız bu uzantıyla bitmiyorsa, Harita Turu bunu, bir detay servisi kullandığı durumlar dışında bir video olarak kabul eder (aşağıya bakın).",
+					div21: "Desteklenen resim formatları şunlardır: <b>.jpg, .jpeg, .png, .gif ve .bmp</b>. Medyanız bu uzantıyla bitmiyorsa, Harita Turu bunu, bir detay servisi kullandığı durumlar dışında video olarak kabul eder (aşağıya bakın).",
 					div22: "Harita Turu şablonu bir video oynatıcısı içermez, bu yüzden favori video barındırma servisinizin sağladığı harici video oynatıcısını kullanmanız gerekir. (Videoyu katıştırma seçeneğini bulun ve verili koddaki URL\'yi kopyalayın.) Videoyu kendiniz barındırmak isterseniz, <a href='http://www.videojs.com/'>Video.js</a> gibi bir video oynatıcı içeren bir HTML sayfası oluşturabilirsiniz.",
 					div23: "Ekleri olan detay servisleri kullanılırken etkileşimli derleyici video dahil etmek için bir iletişim kutusu sunmaz, ancak verilerinizi etkileşimli derleyicinin dışında düzenleyerek bunu yapabilirsiniz. Arcgis.com harita görüntüleyicisinde, resim alanlarını harici bir videoya işaret edecek şekilde değiştirir ve URL\'nizin sonuna özel bir parametre (#isVideo) eklerseniz, medyanızın bir video olduğu kabul edilir.",
 					div24: "İki geçerli resim ekiniz olması gerektiğine, aksi halde noktanın kullanılamayacağına dikkat edin. Resim ve küçük resim alanları olmadan, detay servisi ekleri kullanılırken video kullanmak mümkün değildir."
@@ -487,7 +487,7 @@
 					div2a: "Turu derleyici üzerinden paylaşma",
 					div2b: "PAYLAŞ düğmesi uygulamayı ve web haritası öğelerini günceller. Tur verileriniz bir Detay Servisi öğesinde depolanıyorsa, o da güncellenir. ArcGIS.com harita görüntüleyici yoluyla başka katmanlar eklediyseniz, bunlar güncellenmez. Bu, Tur\'un beklediğiniz gibi paylaşılmamasıyla sonuçlanabilir. Gerekli (veya daha fazla) ayrıcalıklara zaten sahip olan öğeler güncellenmez.",
 					div2c: "Turu ArcGIS Online yoluyla paylaşma",
-					div2d: "ArcGIS Online, uygulama bu site üzerinden paylaşırken gerekirse sizden varsa aynı şekilde paylaşılmayan bağımlı kaynakları (web haritası, detay servisi, dekorasyon katmanı) güncellemenizi ister. Harita Turu herkese açıksa ve kaynaklarınızdan biri kitlenizle paylaşılmıyorsa, kullanıcılar ArcGIS Online oturum açma sayfasına yönlendirilir.",
+					div2d: "Uygulamayı ArcGIS Online sitesi üzerinden paylaştığınızda, sizden gerekirse aynı şekilde paylaşılmayan bağımlı kaynakları (web haritası, detay servisi, dekorasyon katmanı) güncellemenizi ister. Harita Turu herkese açıksa ve kaynaklarınızdan biri kitlenizle paylaşılmıyorsa, kullanıcılar ArcGIS Online oturum açma sayfasına yönlendirilir.",
 					div3t: "Detay Servisi güvenliği",
 					div3a: "Harita Turu derleyicisi ile oluşturulmuş barındırılan bir detay servisi kullanıyorsanız, uygulama sizin için servis güvenliğini yönetir ve servisi herkesle paylaşsanız bile düzenleme ayrıcalıklarına sahip tek kişi olmayı sürdürürsünüz.",
 					div3t2: "Turunuzu izleyici kitlenizle paylaşmadan önce",

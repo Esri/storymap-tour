@@ -1,16 +1,17 @@
-Map Tour
-========
-The Map Tour template is designed for presenting geographic information where there is a compelling photographic element to the story you want to tell. This is a new version of the popular map tour template that provide a better experience on smartphone and an interactive builder on ArcGIS Online, see [what's new](#whats-new).
+Story Map Tour
+==============
+
+The Story Map Tour app is ideal when you want to present a linear, place-based narrative featuring images or videos. Each "story point" in the narrative is geo-located. Users have the option of clicking sequentially through the narrative, or they can browse by interacting with the map or using the thumbnail carousel.
 
 ![App](https://raw.githubusercontent.com/Esri/map-tour-storytelling-template-js/master/map-tour-storytelling-template-js.png)
 
 [View it live](http://storymaps.esri.com/stories/maptour-palmsprings/) | 
 [Features](http://arcgis.com/apps/MapTour/preview.html) | 
-[User Download (source code not included)](https://github.com/Esri/map-tour-storytelling-template-js/releases/download/V2.2.5/Storytelling-MapTour-2.2.5.zip) | 
+[User Download (source code not included)](http://links.esri.com/storymaps/map_tour_template_zip) | 
 [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
-**Latest release is version 2.2.5**, if you want to be informed of new releases, we recommend you to watch these repository.
-
+**Latest release is version 2.2.6**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
+See the [release page](https://github.com/Esri/map-tour-storytelling-template-js/releases) for release notes.
 
 The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets. 
 If you are not familiar with ArcGIS Online or StoryMaps concepts, [that document](http://storymaps.esri.com/downloads/Building%20Story%20Maps.pdf) describe general workflows and best practices.
@@ -26,7 +27,6 @@ Help content:
  * [Data storage options](#data-storage-options)
  * [FAQ](#faq)
  * [Tips](#tips)
- * [What's new](#whats-new)
  * [Customize the look and feel](#customize-the-look-and-feel)
  * [Developer guide](#developer-guide)
  * [Feedback](#feedback)
@@ -81,7 +81,7 @@ Note that the interactive builder is available in the downloadable version but w
 
 ## How to deploy a Map Tour
 
-To use the downloadable version, download the [User Download archive](https://github.com/Esri/map-tour-storytelling-template-js/releases/download/V2.2.5/Storytelling-MapTour-2.2.5.zip), it contains the following files:
+To use the downloadable version, download the [User Download archive](http://links.esri.com/storymaps/map_tour_template_zip), it contains the following files:
 
 | File                	                     | Contains                                                              |
 | ------------------------------------------ | --------------------------------------------------------------------- |
@@ -183,7 +183,7 @@ Yes, web map designed for the previous version should continue to work without a
 ### Can I deploy Map Tour on Portal for ArcGIS?
 Yes, Map Tour is included in Portal for ArcGIS 10.2.1. Note that for technical reason, the Feature Service creation isn't yet available from the interactive builder. If you want to use a Feature Service, please consult [this section](#using-an-existing-feature-service-map-service-or-shapefile).
 
-If you use an older version of Portal, you can [download](https://github.com/Esri/map-tour-storytelling-template-js/releases/download/V2.2.5/Storytelling-MapTour-2.2.5.zip) and deploy the template in the following folder `ArcGIS\Portal\webapps\arcgis#home\webmap\templates\MapTour`. This folder may already contain a non-functional version of the template. If this is the case, remove the folder's content before copying the new files. Then refer your Portal documentation for instructions on publishing a new web application item and adding it to the web application gallery. If you choose to deploy the template in any other folder, some configuration will be required (see index.html configuration). Also note that the web application gallery preview feature won't be functional and give a 404 error.
+If you use an older version of Portal, you can [download](http://links.esri.com/storymaps/map_tour_template_zip) and deploy the template in the following folder `ArcGIS\Portal\webapps\arcgis#home\webmap\templates\MapTour`. This folder may already contain a non-functional version of the template. If this is the case, remove the folder's content before copying the new files. Then refer your Portal documentation for instructions on publishing a new web application item and adding it to the web application gallery. If you choose to deploy the template in any other folder, some configuration will be required (see index.html configuration). Also note that the web application gallery preview feature won't be functional and give a 404 error.
 
 ### Can the template be used offline?
 Yes, by using Portal for ArcGIS. When deployed on a Portal for ArcGIS instance, the Map Tour doesn't require any external service to function. But by default the template will still include the header social buttons and template publishers are able to import pictures from the some online pictures hosting services. These options can be disabled individually through the configuration file app/maptour-config.js.
@@ -311,200 +311,6 @@ Exemple of iframe code that remove the header:
 ### Starting the Map Tour on a specific point
 
 It is possible to open the Map Tour on a specific point and not on the first one by using the URL parameter `index` (from index=1 to index={number of point}).
-
-## What's new?
-
-#### Map Tour 2.2.5 released on 23/09/2014
-
-This is a minor maintenance release:
-
- * Can't use mailto in Header configurable links
- * Adding video from vimeo only works if the id for the video is exactly 8 digits long
-
-That release use ArcGIS API for Javascript 3.11.
-
-#### Map Tour 2.2.4 released on 07/02/2014
-
-This is a minor maintenance release:
- * Map becomes blank when navigating between far away point at a large scale zoom level
- * Impossible to use CSV referenced by URL. [See forum post](http://forums.arcgis.com/threads/108537-Hosting-map-tour-data?p=385626&posted=1#post385626)
- * Impossible to import picture from Flickr in the builder. [See forum post](http://forums.arcgis.com/threads/114770-Tech-note-Problems-accessing-Flickr-pics-when-creating-or-editing-a-story-map-tour)
- * Adjusted the header link color
- * Impossible to use Facebook sharing button on IE8
- 
-That release use ArcGIS API for Javascript 3.10.
-
-#### Map Tour 2.2.3 released on 04/03/2014
-
-This is a minor release that implement some visual cosmetic changes:
- * Switch fonts to "Open Sans"
- * Header subtitle and "A Story Map" are greyer
- * Lightened up the background tints for the main picture panel
- * Made the pointers thinner throughout
- * Adjusted the caption panel control, and moved it to the right so it doesn't interfere with other controls
-
-#### Map Tour 2.2.2 released on 03/04/2014
-
-This is a minor bug-fixes release. Issues fixed in viewer mode aren’t major but we recommend to update existing application.
-
-Viewer issues:
- * Application doesn’t load in Chrome when cookies are disabled
- * Facebook and Twitter sharing include HTML tags present in title (and description for Facebook) as non-interpreted HTML code 
- * The formatting of unordered list (HTML tag`<ul>`) in point caption is incorrect (the bullet isn’t displayed)
- * Bit.ly link with “Link to current place” enabled may not open the Tour at the expected place if before generation the link, the user has used the mobile view to navigate between the story
-
-Builder issues:
- * Webmap fail to load in ArcGIS for WPF runtime ([issue #6](https://github.com/Esri/map-tour-storytelling-template-js/issues/6))
- * In ArcGIS.com Map Viewer, the attribute table of the Map Tour data layer won’t open when the Tour include a video that has been added through Add (Import is ok)
- * Import may fail for some YouTube account (not supported video type that were included)
- * Import spin indefinitely for Picasa account that don’t have any album
-
-Developer evolution:
- * Use ArcGIS API for Javascript 3.9
-
-#### Map Tour 2.2.1 released on 12/13/2013
-
-Minor bug-fixes release:
- * Interactive builder corrupt webmaps that uses Bing Maps basemaps
-
-There is no need to upgrade existing application if you are not affected by that specific issue.
-
-#### Map Tour 2.2 released on 12/10/2013
-
-Major changes:
- * Simplified the workflow for integrating video (see [FAQ](#how-to-use-videos))
- * Interactive builder overall user experience improvement (see below)
- 
-Viewer evolution:
- * Updated social sharing icons
- * Updated previous/next icons of the integrated layout
- * New full screen button hover the picture/video to maximize the media
- * New keyboard shortcut to navigate the tour (enter key, arrow up/down, page previous/next)
- * Option in bit.ly sharing to ‘Link to the current place’ 
- * Optional 'Locate' button that lets the user see their current position on the map (if the author chooses to include it and if user's browser supports it)
- * Header subtitle display a scrollbar when needed
- 
-Interactive builder evolution:
- * Support authoring a Tour without existing webmap or web application item
- * New share dialog that allow to share the Tour publicly (or within author's Organization)
- * Improved user experience of the builder top button bar, initialization and import dialog
- * New basemap selector
- * New YouTube import dialog
- * Option to include a ‘Locate button’ (Settings->Layout)
- * Allow to set theme color using RGB values
- * More documentation for publishing the Tour is available through the Help dialog
- * Geocoder widget support using multiple geocoder services 
- * Keyboard shortcut CTRL+S to save the Tour
-
-Viewer issues:
- * When using the index URL parameter, the previous button is not active if it need to be
- * Application isn't usable with Android default browser
- * Desktop carousel isn't clickable on IE9 when point name contains invalid HTML content
- * Header title/subtitle can overflow the logo and social sharing links
- 
-Interactive builder issues:
- * Some dialog aren't fully functional on iOS 7, Android or low-resolution desktop browser
- * Only the first webmap and application item tag is kept when the app is saved
- * Instability of data update when the data source is a  Feature Service that hasn't been created by the builder
- * No detection of html tags error in point name/description
- * Shapefile layer imported in the webmap using a zip file that contains a whitespace aren’t visible in the app (only for layer that aren’t the map tour data source, like a boundary layer)
- * It is impossible to save a name/description containing a html a tag when the url including a ‘=’ sign
- * Video added to a newly created application aren't usable until browser is refreshed
- 
-Downloadable version evolution:
- * New configuration option to create a non-numbered Map Tour (allow use of a single map markers for all points and turn off all numbering)
- * New configuration option to include a ‘Locate button’
- 
-Developer evolution:
- * Use ArcGIS API for Javascript 3.8
-
-#### Map Tour 2.1.1 released on 10/17/2013
-
-Minor bug-fixes release:
- * Interactive builder doesn't open when the application is deployed on Portal for ArcGIS (depending on the Portal configuration)
- * Issues building application from the source code
-
-There is no need to upgrade existing application if you are not affected by these two specific issues.
- 
-#### Map Tour 2.1 released on 09/18/2013
-
-Major changes:
- * Support of video in place of the main picture in existing and new Map Tour
- * Interactive builder overall stability improvement
- * Support of Portal for ArcGIS (see [FAQ](#can-i-deploy-map-tour-on-portal-for-arcgis))
- * Fixed application loading and UI glitches on IE8
- * Performance improvement 
-
-Viewer evolution:
- * Better Facebook and Twitter sharing and new bit.ly button
- * Smoother transition between points
- * Better vertical centering of the header logo (appear centered whatever it’s size)
- * Don't show the media title and description if they are empty
- * Don't show the Map popup or tooltip if the point title is empty
- * New embed mode that remove the header (see [tips](#tips))
- * New URL option to specify the starting point by index (see [tips](#tips)) 
- * When using Feature Service attachments, attachments that are png, bmp or jpg file with upper case extension aren’t ignored anymore (jpg continues to be the only type supported by the interactive builder for Feature Service with attachments)
-
-Interactive builder evolution:
- * New button to open the Web Application item page
- * Better support of dynamic CSV (CSV content is downloaded at application runtime, allowing for dynamic data source without using Feature Service)
- * When using pictures referenced by URL, support gif, png and bmp
- * New reset button in Organize to reset order and hidden points
- * New reset button in the Settings Data tab to reset the selected fields
- * New button in the Settings extent tab to use the current map extent 
-
-Interactive builder issues:
- * When editing a description through the picture panel, the description can be loss if it contains a `<p>` or `<div>`
- * On Ipad, when entering text with the virtual keyboard, the layout is often broken after the keyboard close
- * Multiple issues in the geotag screen (after Flickr/Picasa/Facebook import) when removing pictures already geolocated
- * Using change picture/thumbnail on the introduction slide put the interactive builder in invalid state until application reload
-
-Downloadable/Portal version evolution:
- * Be able to specify the application ID to be use (this allow to reuse the settings defined using the interactive builder in ArcGIS.com and so to have less manual configuration to perform)
- * Added new configuration option and moved some to a new file (see [settings](#what-are-the-configuration-settings))
-
-Developer evolution:
- * Use ArcGIS API for Javascript 3.7
- * The build script isn’t limited to Windows environment anymore through grunt
- * The application fire some events to allow customization with lose integration
- * Embedded jQuery and removed sharethis dependency
-
-#### Map Tour 2.0 released on 07/03/2013
-Major version with the following new functionalities:
- * The hosted version is available to all ArcGIS Online account levels including the free Public account
- * The interactive builder offer to import photos from Flickr, Facebook, Picasa and a CSV
- * The interactive builder can use CSV added through ArcGIS Online web map viewer
- * Serveral UI and productivity improvements for the hosted interactive builder
- * Improved loading time
- * Support of non mercator data
- * Picture panel respond to swipe and keyboard event
- * Mobile introduction view include a start button
- * Mobile view images are clipped instead of cropped
- * The Map popup can now customized through the configuration file
- 
-Bug fixes :
- * Application loading issues when using Internet Explorer
- * Application loading issues when using Bing Maps basemap
- * Interactive builder enforce description maximum length
-
-#### Map Tour 1.2 released on 05/31/2013
-Minor version with few bug fixes :
- * Optimize application loading process  which should result in improved load times especially on slower connections like 3G mobile connections 
- * Improve header's UI when the subtitle is wrapped on three lines
-
-#### Map Tour 1.1 released on 05/09/2013
-Minor version with few bug fixes :
- * Fix some map navigation issues in the three panel layout after important browser width resize (pan impossible on some part of the map)
- * Add the map Esri logo on the three-layout panel
- * Prevent closed black popup to reappear after a map zoom
-
-#### Map Tour 1.0 released on 04/26/2013
- * Responsive web design that offer a new user experience on Smartphone
- * Localized in 20 languages: Arabic, Brazilian Portuguese, Chinese, Danish, Dutch, French, English, German, Hebrew, Italian, Japanese, Korean, Lithuanian, Norwegian, Polish, Portuguese, Romanian, Russian, Spanish and Swedish.
- * Support of Feature Service
- * New layout option: picture float on the right of the map
- * The thumbnail carousel is more interactive (support touch on tablet device, support scrolling on desktop)
-
 
 ## Customize the look and feel
 Most of the look and feel customization can be done using the user download and including the css/html override directly into index.html. 

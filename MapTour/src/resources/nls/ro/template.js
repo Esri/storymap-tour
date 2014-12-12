@@ -1,12 +1,12 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "SE ÎNCARCĂ APLICAŢIA",
 				step2: "SE ÎNCARCĂ DATELE",
 				step3: "SE INIŢIALIZEAZĂ TURUL",
 				loadBuilder: "SE COMUTĂ LA MODUL INSTRUMENT DE CĂUTARE",
-				redirectSignIn: "REDIRECȚIONARE LA PAGINA DE AUTENTIFICARE",
+				redirectSignIn: "REDIRECŢIONARE LA PAGINA DE AUTENTIFICARE",
 				redirectSignIn2: "(veţi fi redirecţionat aici după autentificare)",
 				fail: "Ne pare rău, nu s-a reuşit încărcarea turului hărţii",
 				failButton: "Reîncercare"
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Fotografie",
 				addLabelThumbUrl: "Miniatură",
 				addTextPlaceholderUrl: "Introducere URL imagine",
-				addTextPlaceholderUrl2: "Introducere URL de pagină Youtube",
+				addTextPlaceholderUrl2: "Introducere URL de pagină YouTube",
 				addTextPlaceholderUrl3: "Introducere URL de pagină Vimeo",
 				addTextPlaceholderUrl4: "Introducere URL de încorporare video",
 				addLabelVideo: "Video",
@@ -163,7 +163,7 @@
 				settingsFieldsReset: "Resetare selecţie câmpuri",
 				settingsExtentExplain: "Setaţi extinderea iniţială a Turului hărţii cu ajutorul hărţii interactive de mai jos.",
 				settingsExtentExplainBottom: "Extinderea pe care o definiţi va modifica extinderea iniţială a hărţii dvs. web. Reţineţi că această extensie nu este utilizată dacă nu include primul punct al turului. În acest caz, turul se va deschide centrat pe primul punct.",
-				settingsExtentDateLineError: "Extinderea nu poate traversa meridianul cu longitudinea 180°",
+				settingsExtentDateLineError: "Extinderea nu poate traversa meridianul cu longitudinea 180Â°",
 				settingsExtentDateLineError2: "Eroare la calculul extinderii",
 				settingsExtentDrawBtn: "Trasare extindere nouă",
 				settingsExtentModifyBtn: "Editare extindere",
@@ -357,11 +357,11 @@
 				footerSucceed: "Importul a reuşit. Se încarcă"
 			},
 			viewYoutube: {
-				title: "Import Youtube",
+				title: "Import YouTube",
 				header: "Introduceţi un nume de utilizator YouTube pentru a găsi clipuri video partajate în mod public.",
-				pageInputLbl: "Introduceţi un nume de utilizator Youtube",
+				pageInputLbl: "Introduceţi un nume de utilizator YouTube",
 				lookupMsgError: "Utilizator negăsit",
-				howToFind: "Cum se găseşte un nume de utilizator Youtube",
+				howToFind: "Cum găsiţi un nume de utilizator YouTube",
 				howToFind2: "Numele de utilizator este afişat sub videoclipuri",
 				found: "Găsit",
 				noData: "Nu a fost găsit niciun videoclip public"

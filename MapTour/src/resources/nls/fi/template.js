@@ -1,9 +1,9 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "LADATAAN SOVELLUSTA",
-				step2: "LADATAAN DATAA",
+				step2: "LADATAAN AINEISTOA",
 				step3: "ALUSTETAAN KIERROSTA",
 				loadBuilder: "VAIHDETAAN RAKENNUSTILAAN",
 				redirectSignIn: "OHJATAAN SISÄÄNKIRJAUTUMISSIVULLE",
@@ -19,7 +19,7 @@
 				invalidConfigNoWebmap: "Vakava virhe: virheellinen kokoonpano (web-karttaa tai sovelluksen tunnistetta ei ole määritetty index.html-tiedostoon)",
 				createMap: "Karttaa ei voi luoda",
 				invalidApp: "Vakava virhe: sovellusta ei voi ladata",
-				noLayer: "Web-kartta ei sisällä kelvollista datatasoa karttakierrokselle.",
+				noLayer: "Web-kartta ei sisällä kelvollista aineistotasoa karttakierrokselle.",
 				noLayerMobile: "Tervetuloa Karttakierros-Web-sovellukseen. Sovellusta ei ole määritetty. Karttakierroksen muodostusohjelmaa ei tueta mobiililaitteissa.",
 				noLayerView: "Tervetuloa Karttakierros-Web-sovellukseen.<br />Sovellusta ei ole vielä määritetty.",
 				appSave: "Virhe tallennettaessa Web-sovellusta",
@@ -60,8 +60,8 @@
 				buttonAdd: "Lisää",
 				buttonImport: "Tuo",
 				buttonImportDisabled: "Tuonti ei ole käytettävissä käytettäessä liitteitä sisältävää kohdepalvelua",
-				dataEditionDisabled: "Tietojen muokkaus on poistettu käytöstä CSV-tietolähteessä",
-				dataSourceWarning: "Karttakierroksen datatasoa on muutettu. Jos kohteiden tunnukset eivät ole samat, nollaa järjestys ja piilotetut kentät <b>Järjestä</b>-valikon avulla. Jos kenttien nimet eivät täsmää, nollaa kenttien asetukset <b>Asetukset-näytön datavälilehdessä</b>.",
+				dataEditionDisabled: "Aineiston muokkaus on poistettu käytöstä CSV-aineistolähteessä",
+				dataSourceWarning: "Karttakierroksen aineistokarttatasoa on muutettu. Jos kohteiden tunnukset eivät ole samat, nollaa järjestys ja piilotetut kentät <b>Järjestä</b>-valikon avulla. Jos kenttien nimet eivät täsmää, nollaa kenttien asetukset <b>Asetukset-näytön datavälilehdessä</b>.",
 				organizeWarning: "Ainakin yksi vuorovaikutteisen luontitoiminnon ulkopuolelle lisätty piste on piilotettu.",
 				dataPicError0a: "Tämä kierros sisältää <b>%NB%</b> yhteensopimatonta kuvan URL-osoitetta.",
 				dataPicError0b: "Tämä kierros saattaa sisältää <b>%NB%</b> yhteensopimatonta kuvan URL-osoitetta.",
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Kuva",
 				addLabelThumbUrl: "Pikkukuva",
 				addTextPlaceholderUrl: "Anna kuvan URL-osoite",
-				addTextPlaceholderUrl2: "Anna Youtube-sivun URL-osoite",
+				addTextPlaceholderUrl2: "Anna YouTube-sivun URL-osoite",
 				addTextPlaceholderUrl3: "Anna Vimeo-sivun URL-osoite",
 				addTextPlaceholderUrl4: "Anna upotetun videon URL-osoite",
 				addLabelVideo: "Video",
@@ -132,7 +132,7 @@
 				settingsTabLayout: "Asettelu",
 				settingsTabColor: "Värit",
 				settingsTabLogo: "Ylätunniste",
-				settingsTabFields: "Data",
+				settingsTabFields: "Aineisto",
 				settingsTabExtent: "Laajuus",
 				settingsTabZoom: "Zoomaustaso",
 				settingsLayoutExplain: "Valitse haluamasi sovelluksen asettelu.",
@@ -163,7 +163,7 @@
 				settingsFieldsReset: "Nollaa kenttien valinta",
 				settingsExtentExplain: "Määritä karttakierroksen alkuperäinen laajuus alla olevan vuorovaikutteisen kartan avulla.",
 				settingsExtentExplainBottom: "Määrittämäsi laajuus määrittää web-kartan alkuperäisen laajuuden. Huomaa, että tätä laajuutta käytetään vain, jos se sisältää kierroksen ensimmäisen pisteen. Muussa tapauksessa kierros avautuu ensimmäiseen pisteeseen kohdistettuna.",
-				settingsExtentDateLineError: "Laajuus ei saa ylittää 180° pituusasteen meridiaania",
+				settingsExtentDateLineError: "Laajuus ei saa ylittää 180Â° pituusasteen meridiaania",
 				settingsExtentDateLineError2: "Virhe laajuuden laskennassa",
 				settingsExtentDrawBtn: "Piirrä uusi laajuus",
 				settingsExtentModifyBtn: "Muokkaa laajuutta",
@@ -228,7 +228,7 @@
 				saveError2: "Tallennus epäonnistui nimen tai kuvauksen virheellisen HTML-tunnisteen takia",
 				saveError3: "Otsikko ei voi olla tyhjä",
 				dragColorPicker: "Siirrä minua<br />tai vaihda värini",
-				dataWarningExtent: "Sinulla on tietoja Web-kartan laajuuden ulkopuolelta. Näitä tietoja ei käytetä kierrospisteinämme. Vaihda kartan laajuutta, jos haluat käyttää niitä.",
+				dataWarningExtent: "Sinulla on aineistoja Web-kartan laajuuden ulkopuolelta. Näitä tietoja ei käytetä kierrospisteinämme. Vaihda kartan laajuutta, jos haluat käyttää niitä.",
 				dataWarningVisibi: "Karttakierros-karttatasosi ei näy nykyisessä Web-kartan laajuudessa. Vahvista, että Karttakierros-karttatasosi näkyy %MAPSIZE% -koon kartassa.",
 				dataWarningEdit: "Muokkaa Web-karttaa",
 				dataWarningClose: "Sulje",
@@ -357,11 +357,11 @@
 				footerSucceed: "Tuonti onnistui. Ladataan"
 			},
 			viewYoutube: {
-				title: "Youtube-tuonti",
+				title: "YouTube-tuonti",
 				header: "Etsi julkisesti jaettuja videoita käyttämällä YouTube-käyttäjätunnusta.",
-				pageInputLbl: "Anna Youtube-käyttäjätunnus",
+				pageInputLbl: "Anna YouTube-käyttäjätunnus",
 				lookupMsgError: "Käyttäjää ei löydy",
-				howToFind: "Youtube-käyttäjätunnuksen etsiminen",
+				howToFind: "YouTube-käyttäjätunnuksen etsiminen",
 				howToFind2: "Käyttäjätunnus näkyy videoissa",
 				found: "Löytyi",
 				noData: "Yhtään julkista videota ei löytynyt"
@@ -414,7 +414,7 @@
 					div5: "Haluamme kuulla sinusta! Jos sinulla on kysymyksiä, ehdottaa uutta toimintoa tai luulet löytäneesi virheen, vieraile <a href='http://links.esri.com/storymaps/forum' target='_blank'>Story Maps -käyttäjäfoorumissa</a>."
 				},
 				tab2: {
-					title: "Data",
+					title: "Aineisto",
 					div1: "Karttakierrosta luotaessa on tärkeää miettiä, mihin kuvat tallennetaan. Karttakierros voi käyttää tunnetuimpiin valokuvien jakamispalveluihin, web-palvelimiin tai liitteinä kohdepalveluihin tallennettuja kuvia.",
 					div1a: "Lisätietoja tuetuista kuvamuodoista ja videoista on tämän välilehden viimeisessä osassa.",
 					div2: "Interaktiivisen rakentajan avulla voit käsitellä karttakierroksesi kuvia kahdella tavalla:",
@@ -444,7 +444,7 @@
 					div18: "Isännöityjen kohdepalvelujen luominen CSV- tai shapefile-tiedostosta",
 					div19: "Kun luot isännöidyn kohdepalvelun CSV- tai shapefile-tiedostosta, liitteet eivät ole käytössä oletusarvon mukaan. Voit ottaa ne käyttöön avaamalla kohdepalvelun tietosivun ja napsauttamalla taso-osassa olevaa pientä nuolta, jolloin kyseinen vaihtoehto tulee näkyviin. Karttakierros käyttää uudelleen kuvia ja pikkukuvia, joihin olet viitannut määritteiden avulla. Voit vaihtoehtoisesti ladata kuvasi kohdepalvelun liitteinä kuvaruudun kahden painikkeen avulla (\"Vaihda kuva\" ja \"Vaihda pikkukuva\").",
 					div20: "Tuetut  kuvamuodot ja videot",
-					div21: "Seuraavia kuvamuotoja tuetaan: <b>.jpg, .jpeg, .png, .gif ja .bmp</b>. Jos mediasi ei pääty johonkin näistä tunnisteista, karttakierros tulkitsee sen videoksi kaikissa muissa tilanteissa paitsi käytettäessä kohdepalvelua (lisätietoja on alla).",
+					div21: "Seuraavia kuvamuotoja tuetaan: <b>.jpg, .jpeg, .png, .gif ja .bmp</b>. Jos mediatiedostosi ei pääty johonkin näistä tunnisteista, karttakierros tulkitsee sen videoksi kaikissa muissa tilanteissa paitsi käytettäessä kohdepalvelua (lisätietoja on alla).",
 					div22: "Karttakierrosmalli ei sisällä videosoitinta, joten sinun on käytettävä ulkoista videosoitinta (etsi videon upottamisasetus ja kopioi annetussa koodissa oleva URL-osoite). Jos haluat isännöidä videota itse, voit luoda videosoittimen, kuten <a href='http://www.videojs.com/'>Video.js</a>, sisältävän HTML-sivun.",
 					div23: "Interaktiivinen muodostusohjelma ei sisällä videon sisällyttämisen valintaikkunaa käytettäessä liitteitä sisältäviä kohdepalveluita. Voit kuitenkin sisällyttää videon muokkaamalla tietojasi interaktiivisen muodostusohjelman ulkopuolella. Jos muokkaat kuvakenttiä arcgis.com-palvelun karttojen katseluohjelmassa niin, että ne osoittavat ulkoiseen videoon ja lisäät URL-osoitteen loppuun parametrin #isVideo, mediasi tulkitaan videoksi.",
 					div24: "Huomaa, ettei pistettä käytetä, ellei sinulla ole kahta kelvollista kuvaliitettä. Videoita ei voi käyttää, kun kohdepalvelun liitteitä käytetään ilman kuva- ja pikkukuvakenttiä."
@@ -524,7 +524,7 @@
 				shareQ2bis: "Miten palaan sisällönluonnin käyttöliittymään?",
 				shareA2div1: "Tallenna ja käytä uudelleen seuraavaa linkkiä %LINK1% tai käytä <a href='%LINK2%' target='_blank'>sovelluskohteen sivua</a>.",
 				shareA2div2: "Koska olet sovelluksen omistaja, kun olet kirjautunut ArcGIS.com-sivustoon, sovelluksessa näkyy painike, jolla voita avata vuorovaikutteisen muodostusohjelman:",				
-				shareQ3: "Minne tiedot on tallennettu?",
+				shareQ3: "Minne aineistot on tallennettu?",
 				shareA3: "Kierroksen määritykset tallennetaan <a href='%LINK1%' target='_blank'>tähän web-karttakohteeseen</a> ja <a href='%LINK2%' target='_blank'>tähän web-sovelluskohteeseen</a>. Flickr-, Picasa- ja Facebook-kuvien tai YouTube-videoiden sivustoviittaukset jäävät voimaan, eikä niitä kopioida ArcGIS Onlineen.",
 				shareWarning: "Jakaminen kohteen %WITH% kanssa on poistettu käytöstä, koska et ole <a href='%LINK%' target='_blank'>Web-kartan</a> omistaja.",
 				shareWarningWith1: "julkisesti",

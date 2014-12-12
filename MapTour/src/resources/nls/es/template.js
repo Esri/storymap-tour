@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "CARGANDO APLICACIÓN",
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Imagen",
 				addLabelThumbUrl: "Miniatura",
 				addTextPlaceholderUrl: "Introduce la URL de una imagen",
-				addTextPlaceholderUrl2: "Introduce la URL de una página de Youtube",
+				addTextPlaceholderUrl2: "Introduce la URL de una página de YouTube",
 				addTextPlaceholderUrl3: "Introduce la URL de una página de Vimeo",
 				addTextPlaceholderUrl4: "Introduce la URL de un vídeo integrado",
 				addLabelVideo: "Vídeo",
@@ -163,7 +163,7 @@
 				settingsFieldsReset: "Restablece la selección de campos",
 				settingsExtentExplain: "Define la extensión inicial de la ruta de mapa mediante el mapa interactivo siguiente.",
 				settingsExtentExplainBottom: "La extensión que definas modificará la extensión inicial de tu mapa web. Ten en cuenta que esta extensión no se utiliza si no incluye el primer punto del recorrido. En ese caso, el recorrido se abrirá centrándose en el primer punto.",
-				settingsExtentDateLineError: "La extensión no puede atravesar el meridiano de longitud 180º",
+				settingsExtentDateLineError: "La extensión no puede atravesar el meridiano de longitud 180°",
 				settingsExtentDateLineError2: "Error al calcular la extensión",
 				settingsExtentDrawBtn: "Dibuja una nueva extensión",
 				settingsExtentModifyBtn: "Edita la extensión",
@@ -318,7 +318,7 @@
 				header: "Autentica con tu cuenta de usuario de Facebook o usa una página pública. Los álbumes se pueden usar para crear recorridos de mapa públicos que no necesiten autenticación con un usuario de Facebook, lo que permite que los comentarios y las etiquetas de \"me gusta\" se mantengan en privado.",
 				leftHeader: "Usuario de Facebook",
 				rightHeader: "Página de Facebook",
-				pageExplain: "Una página de Facebook es una marca/producto público o un famoso como <b>esrigis</b>. Puedes obtener el nombre de la página después de la  primera \'/\' de la URL de la página.",
+				pageExplain: "Una página de Facebook es una marca/producto público o famoso como <b>esrigis</b>. Puedes obtener el nombre de la página después de la  primera \'/\' de la URL de la página.",
 				pageInputLbl: "Introduce un nombre de página",
 				lookupMsgError: "No se encontró la página"
 			},
@@ -357,11 +357,11 @@
 				footerSucceed: "Importación correcta. Cargando"
 			},
 			viewYoutube: {
-				title: "Importación de Youtube",
+				title: "Importación de YouTube",
 				header: "Introduce un nombre de usuario de YouTube para buscar vídeos que se hayan compartido públicamente.",
-				pageInputLbl: "Introduce un nombre de usuario de Youtube",
+				pageInputLbl: "Introduce un nombre de usuario de YouTube",
 				lookupMsgError: "Usuario no encontrado",
-				howToFind: "Cómo encontrar un nombre de usuario de Youtube",
+				howToFind: "Cómo encontrar un nombre de usuario de YouTube",
 				howToFind2: "El nombre de usuario se muestra bajo los vídeos",
 				found: "Encontrados",
 				noData: "No se han encontrado vídeos públicos"
@@ -442,12 +442,12 @@
 					div172: "Si están presentes, siempre se utilizarán los campos de imagen y miniatura, y no se consultarán los adjuntos del servicio de entidades.",
 					div173: "Puedes descargar archivos Shapefile y CSV de ejemplo en:",
 					div18: "Creación de servicios de entidades alojados desde archivos CSV o Shapefile",
-					div19: "Al crear un servicio de entidades alojado a partir de un archivo CSV o Shapefile, los adjuntos no se habilitan de forma predeterminada. Para habilitarlos, abre la página de detalles del servicio de entidades, haz clic en la flecha pequeña de la sección de capas y podrás ver dicha opción. La ruta de mapa seguirá utilizando las imágenes y las miniaturas a las que se hace referencia mediante atributos. De forma opcional, si deseas cargar las imágenes como adjuntos de servicios de entidades, podrás hacerlo mediante dos botones en el panel de imágenes (\"Cambiar imagen\" y \"Cambiar vista en miniatura\").",
+					div19: "Al crear un servicio de entidades alojado a partir de un archivo CSV o Shapefile, los adjuntos no se habilitan de forma predeterminada. Para habilitarlos, abre la página de detalles del servicio de entidades, haz clic en la flecha pequeña de la sección de capas y podrás ver dicha opción. La ruta de mapa seguirá utilizando las imágenes y las miniaturas a las que se hace referencia mediante atributos. De forma opcional, si deseas cargar las imágenes como adjuntos del servicio de entidades, podrás hacerlo mediante dos botones en el panel de imágenes (\"Cambiar imagen\" y \"Cambiar vista en miniatura\").",
 					div20: "Vídeos y formatos de imagen compatibles",
 					div21: "Los formatos de imágenes compatibles son los siguientes: <b>.jpg, .jpeg, .png, .gif y .bmp</b>. Si los medios no acaban con dichas extensiones, la ruta de mapa considerará que es un vídeo, excepto al utilizar un servicio de entidades (consulta a continuación).",
 					div22: "La plantilla de ruta de mapa no incluye un reproductor de vídeos, por lo que deberás utilizar el reproductor de vídeos externo ofrecido por tu servicio de alojamiento de vídeos favorito (busca la opción para integrar el vídeo y copia de la dirección URL presente en un código determinado). Si deseas alojar un vídeo tú mismo, puedes crear una página HTML que contenga un reproductor de vídeos como <a href='http://www.videojs.com/'>Video.js</a>.",
 					div23: "El builder interactivo no ofrece ningún cuadro de diálogo para incluir vídeos al utilizar servicios de entidades con adjuntos, pero es posible hacerlo mediante la edición de datos fuera del builder interactivo. En el visor de mapas de arcgis.com, si modificas los campos de imágenes para que señalen a un vídeo externo y agregas un parámetro especial al final de la dirección URL (#isVideo), se considerará que el medio es un vídeo.",
-					div24: "Ten en cuenta que seguirás necesitando dos adjuntos de imágenes válidos o no se utilizará el punto. No se puede utilizar vídeos al emplear adjuntos de servicios de entidades sin los campos de imágenes y vistas en miniatura."
+					div24: "Ten en cuenta que seguirás necesitando dos adjuntos de imágenes válidos o no se utilizará el punto. No se puede utilizar vídeos al emplear adjuntos del servicio de entidades sin los campos de imágenes y vistas en miniatura."
 				},
 				tab3: {
 					title: "Personalización",

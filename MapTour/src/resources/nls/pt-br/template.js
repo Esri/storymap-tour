@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "CARREGANDO APLICATIVO",
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Figura",
 				addLabelThumbUrl: "Miniatura",
 				addTextPlaceholderUrl: "Insira uma URL da imagem",
-				addTextPlaceholderUrl2: "Insira uma URL da página do Youtube",
+				addTextPlaceholderUrl2: "Insira uma URL da página do YouTube",
 				addTextPlaceholderUrl3: "Insira uma URL da página do Vimeo",
 				addTextPlaceholderUrl4: "Insira uma URL do vídeo embutido",
 				addLabelVideo: "Vídeo",
@@ -163,7 +163,7 @@
 				settingsFieldsReset: "Redefinir seleção de campos",
 				settingsExtentExplain: "Configure a extensão inicial de Apresentação do Mapa pelo mapa interativo abaixo.",
 				settingsExtentExplainBottom: "A extensão que você definir modificará a extensão inicial do seu mapa da web. Observe que esta extensão não será utilizada se não incluir o primeiro ponto do percurso. Neste caso, o percurso abrirá centrado no primeiro ponto.",
-				settingsExtentDateLineError: "A extensão não pode cruzar o meridiano de longitude de 180°",
+				settingsExtentDateLineError: "A extensão não pode cruzar o meridiano de longitude de 180Â°",
 				settingsExtentDateLineError2: "Erro ao calcular a extensão",
 				settingsExtentDrawBtn: "Desenhar uma nova extensão",
 				settingsExtentModifyBtn: "Editar a extensão",
@@ -261,7 +261,7 @@
 				uploadPicAndThumb: "Aplicar"
 			},
 			headerJS:{
-				editMe: "Editar-me !",
+				editMe: "Editar-me!",
 				templateTitle: "Configurar título do modelo",
 				templateSubtitle: "Configurar subtítulo do modelo"
 			},
@@ -357,11 +357,11 @@
 				footerSucceed: "Importação bem sucedida. Carregando"
 			},
 			viewYoutube: {
-				title: "Importar do Youtube",
+				title: "Importar do YouTube",
 				header: "Insira um nome de usuário do YouTube para localizar vídeos compartilhados publicamente.",
-				pageInputLbl: "Insira um nome de usuário do Youtube",
+				pageInputLbl: "Insira um nome de usuário do YouTube",
 				lookupMsgError: "Usuário não encontrado",
-				howToFind: "Coma localizar um nome de usuário do Youtube",
+				howToFind: "Como encontrar um nome de usuário do YouTube",
 				howToFind2: "O nome de usuário é exibido abaixo dos vídeos",
 				found: "Localizado",
 				noData: "Nenhum vídeo público localizado"
@@ -410,7 +410,7 @@
 					div1: "O modelo de Apresentação do Mapa é projetado para apresentar informações geográficas onde há um elemento fotográfico narrativo para a história que você deseja contar.",
 					div2: "O modelo produz um aplicativo da web, atraente e de fácil uso que permite a você apresentar um pequeno conjunto de lugares em um mapa em uma sequência numerada pela qual os usuários podem procurar. O modelo é projetado para ser utilizado em qualquer navegador da web em qualquer dispositivo, inclusive smartphones e tablets. <br /><br />Aqui está um exemplo da classificação de aplicativo que você pode criar:",
 					div4: "<a href='http://storymaps.esri.com/stories/maptour-palmsprings' target='_blank'>Apresentar Mapa de Palm Springs</a>.",
-					div42: "Para consultar os exemplos de apresentação do mapa que outros usuários estão criando, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>visite a galeria</a> no <a href='http://storymaps.arcgis.com/' target='_blank'>site da web Story Maps</a>. Você também pode nos seguir no Twitter em <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+					div42: "Para visualizar os exemplos de apresentação do mapa que outros usuários estão criando, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>visite a galeria</a> no <a href='http://storymaps.arcgis.com/' target='_blank'>site da web Story Maps</a>. Você também pode nos seguir no Twitter em <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
 					div5: "Nós adoraríamos ouvir sua opinião! Se você tem uma pergunta, deseja solicitar uma nova feição ou se você localizou um erro, visite <a href='http://links.esri.com/storymaps/forum' target='_blank'>Story Maps User Forum</a>."
 				},
 				tab2: {
@@ -442,7 +442,7 @@
 					div172: "Quando presentes, os campos de figura e miniatura serão sempre utilizados e os anexos de serviço da feição não serão exigidos.",
 					div173: "Exemplos de CSVs e shapefiles podem ser baixados de",
 					div18: "Criando um Serviço da Feição hospedado de um Shapefile ou CSV",
-					div19: "Quando você cria um serviço da feição hospedado de shapefile ou CSV, os anexos não são habilitados  por padrão. Para habilitá-los, abra a página de detalhes do serviço da feição, clique na seta pequena na seção da camada e você visualizará esta opção. A Apresentação do Mapa continuará a utilizar as figuras e miniaturas que você referenciou pelos atributos. Opcionalmente, se você desejar carregar suas figuras como anexos de serviço da feição, você poderá fazer isto por dois botões no painel da figura (\"Alterar Figura\" e \"Alterar Miniatura\").",
+					div19: "Quando você cria um serviço da feição hospedado a partir de um shapefile ou CSV, os anexos não são habilitados por padrão. Para habilitá-los, abra a página de detalhes do serviço da feição, clique na seta pequena na seção da camada e você visualizará esta opção. A Apresentação do Mapa continuará a utilizar as figuras e miniaturas que você referenciou pelos atributos. Opcionalmente, se você desejar carregar suas figuras como anexos de serviço da feição, você poderá fazer isto por dois botões no painel da figura (\"Alterar Figura\" e \"Alterar Miniatura\").",
 					div20: "Formatos de figura e vídeos suportados",
 					div21: "Os formatos de figura suportados são: <b>.jpg, .jpeg, .png, .gif e .bmp</b>. Se a mídia não finalizar com esta extensão, a Apresentação do Mapa irá considerá-la para ser um vídeo, exceto quando utilizar um serviço da feição (veja abaixo).",
 					div22: "O modelo Apresentação do Mapa não inclui uma reprodução de vídeo, então você tem que utilizar uma reprodução de vídeo externa fornecida pelo seu serviço de hospedagem de vídeo favorito (encontre a opção para embutir o vídeo e copie a URL atual no código fornecido). Se desejar hospedar o vídeo você mesmo, é possível criar uma página HTML que contém uma reprodução de vídeo como <a href='http://www.videojs.com/'>Video.js</a>.",
@@ -487,7 +487,7 @@
 					div2a: "Compartilhando a Apresentação pelo construtor",
 					div2b: "O botão COMPARTILHAR atualizará o aplicativo e itens do mapa da web. Se seus dados de Apresentação são armazenados no item do Serviço de Feição, também será atualizado. Se você adicionar outras camadas pelo visualizador de mapa ArcGIS.com, eles não serão atualizados. Isto pode resultar na Apresentação não sendo compartilhada da forma espera. Os itens que já têm os privilégios exigidos (ou mais) não serão atualizado.",
 					div2c: "Compartilhando a Tour através do ArcGIS Online",
-					div2d: "Ao compartilhar o aplicativo pelo ArcGIS Online, se necessário, ele pergunta a você para atualizar quaisquer recursos dependentes (mapa da web, serviço de feição, camada de decoração) que não são compartilhados da mesma maneira. Se a Apresentação do Mapa for pública e um de seus recursos não está compartilhado com seu público, os usuários serão redirecionados na página de login do ArcGIS Online.",
+					div2d: "Ao compartilhar o aplicativo pelo ArcGIS Online, se necessário, ele pergunta a você para atualizar quaisquer recursos dependentes (mapa da web, serviço de feição, camada de decoração) que não são compartilhados da mesma maneira. Se a Apresentação do Mapa for pública e um de seus recursos não estiver compartilhado com seu público, os usuários serão redirecionados na página de login do ArcGIS Online.",
 					div3t: "Segurança de Serviço de Feição",
 					div3a: "Se você estiver utilizando um serviço da feição hospedado criado pelo construtor de Apresentação do Mapa, o aplicativo gerenciará a segurança do serviço para você e você permanecerá como o único com privilégios de edição, mesmo se você compartilhar o serviço publicamente.",
 					div3t2: "Antes de compartilhar sua Apresentação com seu público",

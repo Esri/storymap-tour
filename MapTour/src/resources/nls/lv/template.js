@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "IELĀDĒ APLIKĀCIJU",
@@ -68,7 +68,7 @@
 				dataPicError1: "Map Tour tagad pieprasa, lai attēla URL beidzas ar vienu no sekojošiem paplašinājumiem: .jp(e)g, .png, .gif vai .bmp.",
 				dataPicError2: "Šī prasība neietekmēs jau eksistējošās publicētās Map Tour. Lai gan, lai izmantotu inerkatīvo veidotāju, jums jāatrisina URL jautājums, veicot vienu no divām darbībām:",
 				dataPicError3: "Rediģēt URL",
-				dataPicError4: "Tas pievienos <i>#isImage</i> neatbalstītā URL galā. Lielākā daļa serveru atbalsta URL pielikumus. Lai gan, līdzko jūs esat veikuši šo darbību, jums jāpārliecinās, ka koriģētā attēla URL funkcionē, naviģējot caur punktiem. Ja katrs attēls ielādējas, jūs varat saglabāt Map Tour. Ja <b>ja attēli neielādējas, nesaglabājiet Map Tour</b>. Tā vietā pārlādējiet veidotāju un veiciet otru darbību.",
+				dataPicError4: "Tas pievienos <i>#isImage</i> neatbalstītā URL galā. Lielākā daļa serveru atbalsta URL pielikumus. Lai gan, līdzko jūs esat veikuši šo darbību, jums jāpārliecinās, ka koriģētā attēla URL funkcionē, naviģējot caur punktiem. Ja katrs attēls ielādējas, jūs varat saglabāt Map Tour. Ja <b>attēli neielādējas, nesaglabājiet Map Tour</b>. Tā vietā pārlādējiet veidotāju un veiciet otru darbību.",
 				dataPicError5: "Limitēt tūri uz attēliem",
 				dataPicError6: "Ši izvēlne liks uzkatīt visus URL par attēliem, bet nebūs iespējams pievienot video izmantojot interaktīvo veidotāju. Ši darbība ir atgriezeniska, ja jūs izlemsiet pievienot video nākotnē.",
 				dataPicError7: "Map Tour ir ierobežots lietot attēlus, video nevar tikt izmantots. Ja izvēlaties noņemt šo ierobežojumu, pārbaudiet vai attēli ielādējas korekti pirms saglabāt Map Tour. Jus varēsiet atjaunot šo ierobežojumu vēlāk, ja tas būs nepieciešams.",
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Bilde",
 				addLabelThumbUrl: "Sīktēls",
 				addTextPlaceholderUrl: "Ievadiet attēla URL",
-				addTextPlaceholderUrl2: "Ievadiet Youtube lapas URL",
+				addTextPlaceholderUrl2: "Ievadiet YouTube lapas URL",
 				addTextPlaceholderUrl3: "Ievadiet Vimeo lapas URL",
 				addTextPlaceholderUrl4: "Ievadiet iedarinātā video URL",
 				addLabelVideo: "Video",
@@ -163,7 +163,7 @@
 				settingsFieldsReset: "Atiestātīt lauku atlasi",
 				settingsExtentExplain: "Iestatīt Map Tour sākotnējo pārklājumu, izmantojot interaktīvo karti zemāk.",
 				settingsExtentExplainBottom: "Pārklājums, kas tiek definēts, modificēs jūsu web kartes sākotnējo pārklājumu. Ņemiet vērā, ka šis pārklājums netiks izmantots, ja ras nesatur pirmo tūres punktu. Šajā gadījumā tūre atvērsies iecentrēta uz pirmo punktu.",
-				settingsExtentDateLineError: "Pārklājums nevar būt pāri 180° meridiāna garumam.",
+				settingsExtentDateLineError: "Pārklājums nevar būt pāri 180Â° meridiāna garumam.",
 				settingsExtentDateLineError2: "Kļūda aprēķinot pārklājumu",
 				settingsExtentDrawBtn: "Zīmēt jaunu pārklājumu",
 				settingsExtentModifyBtn: "Rediģēt pārklājumu",
@@ -261,7 +261,7 @@
 				uploadPicAndThumb: "Lietot"
 			},
 			headerJS:{
-				editMe: "Rediģē mani !",
+				editMe: "Rediģē mani!",
 				templateTitle: "Iestatīt šablona virsrakstu",
 				templateSubtitle: "Iestatīt šablona apakšvirsrakstu"
 			},
@@ -359,9 +359,9 @@
 			viewYoutube: {
 				title: "YouTube imports",
 				header: "Ievadiet YouTube lietotāja vārdu, lai atrastu publiski koplietotus video.",
-				pageInputLbl: "Ievadiet Youtube lietotāja vārdu",
+				pageInputLbl: "Ievadiet YouTube lietotāja vārdu",
 				lookupMsgError: "Lietotājs nav atrasts",
-				howToFind: "Kā atrast Youtube lietotāja vārdu",
+				howToFind: "Kā atrast YouTube lietotāja vārdu",
 				howToFind2: "Lietotāja vārds ir attēlots zem video",
 				found: "Atrasts",
 				noData: "Nav atrasti publiski video"
@@ -443,8 +443,8 @@
 					div173: "Piemēra CSV un shape faili var tikt lejupielādēti no",
 					div18: "Rada viesotu elementu servisu no CSV vai shape faila",
 					div19: "Kad jūs izveidojat elementu servisu no CSV vai shape faila, piesaistes nav iespējotas pēc noklusējuma. Lai tās iespējotu, atveriet elementu servisa detaļu lapu, noklikšķiniet uz nelielas bultiņas slāņa sadaļā, un jūs redzēsiet šo opciju. Pēc tam Map Tour turpinās izmantot attēlus un sīktēlus, uz ko jūs atsaucaties caur atribūtiem. Pēc izvēles, ja jūs vēlaties augšupielādēt savas bildes kā elementu servisa piesaistes, jums būs iespēja to darīt caur divām pogām uz bildes paneļa (\"Mainīt attēlu\" un \"Mainīt sīkattēlu\").",
-					div20: "Atbalstītie bilžu un video formāti",
-					div21: "Atbalstītie attēla formāti: <b>.jpg, .jpeg, .png, .gif un .bmp</b>. Ja jūsu medijs nebeidzas ar šādu paplašinājumu, Map Tour uzksatīs to par video, izņemot gadījumu, ja izmanto elementu servisu (skatīt zemāk).",
+					div20: "Atbalstītie attēlu un video formāti",
+					div21: "Atbalstītie attēlu formāti: <b>.jpg, .jpeg, .png, .gif un .bmp</b>. Ja jūsu medijs nebeidzas ar šādu paplašinājumu, Map Tour uzskatīs to par video, izņemot gadījumu, ja izmanto elementu servisu (skatīt zemāk).",
 					div22: "Map Tour šablons nesatur videopleijeri, tādēļ jāizmanto ārējs videopleijers, ko nodrošina video viesošanas serviss (atrodiet opciju lai iedarinātu video un iekopētu doto URL dotajā kodā) Ja vēlaties viesot video pats, jūs varat izveidot HTML lapu, kas satur videopleijeri, piemēram, <a href='http://www.videojs.com/'>Video.js</a>.",
 					div23: "Ineraktīvais veidotājs nenodrošina dialogu, lai iekļautu video, gadījumos kad izmanto elementu servisu ar piesaistēm, bet ir iespējams to izdarīt rediģējot datus ārpus inerkatīvā veidotāja. Arcgis.com kartes pārlūkā, ja modificējat attēla laukus, lai norādītu ārēju video, un pievienojat speciālu parametru URL beigās (#isVideo), jūsu medijs tiks uzkatīs par video.",
 					div24: "Atcerieties, ka jums nepieciešami divas derīgas attēla piesaistes vai punkts netiks izmantots. Nav iespējams izmantoto video, izmantojot elementu servisa piesaistes bez attēla un sīkattēla laukiem."

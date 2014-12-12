@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "CARICAMENTO APPLICAZIONE",
@@ -443,7 +443,7 @@
 					div173: "È possibile scaricare CSV e shapefile di esempio da",
 					div18: "Creazione di un feature service ospitato da CSV o shapefile",
 					div19: "Quando si crea un feature service ospitato da un CSV o shapefile, per impostazione predefinita gli allegati non sono abilitati. Per abilitarli, aprire la pagina dei dettagli del feature service e fare clic sulla piccola freccia sulla sezione Layer per visualizzare l\'opzione. Dopo aver effettuato quest\'operazione, Tour mappa continuerà a utilizzare le immagini e le anteprime a cui si è fatto riferimento mediante gli attributi. Facoltativamente, se si desidera caricare le immagini come allegati di feature service, utilizzare i due pulsanti sul pannello immagini (\"Cambia immagine\" e \"Cambia anteprima\").",
-					div20: "Formati di immagini e video supportati",
+					div20: "Formati immagine e video supportati",
 					div21: "I formati immagine supportati sono: <b>.jpg, .jpeg, .png, .gif e .bmp</b>. Se il file non termina con tale estensione, verrà considerato come video nel Tour mappa, ad eccezione dei casi in cui si utilizza un feature service (vedere sotto).",
 					div22: "Il modello Tour mappa non include un lettore video, pertanto è necessario utilizzare il lettore esterno fornito dal servizio di hosting video preferito (individuare l\'opzione per incorporare il video e copiare l\'URL presente nel codice specificato). Se si desidera ospitare il video, è possibile creare una pagina HTML che contiene un lettore video, ad esempio <a href='http://www.videojs.com/'>Video.js</a>.",
 					div23: "Il generatore interattivo non prevede una finestra di dialogo per includere i video quando si utilizzano feature service senza allegati, ma è possibile effettuare questa operazione modificando i dati all\'esterno del generatore interattivo. Se in Arcgis.com Map Viewer si modificano i campi delle immagini in modo che puntino a un video esterno e si aggiunge un parametro speciale alla fine dell\'URL (#isVideo), il file multimediale verrà considerato come video.",

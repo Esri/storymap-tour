@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "LÄSER IN PROGRAM",
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Bild",
 				addLabelThumbUrl: "Miniatyrbild",
 				addTextPlaceholderUrl: "Ange en bild-URL",
-				addTextPlaceholderUrl2: "Ange en URL för en Youtube-sida",
+				addTextPlaceholderUrl2: "Ange en URL för en YouTube-sida",
 				addTextPlaceholderUrl3: "Ange en URL för en Vimeo-sida",
 				addTextPlaceholderUrl4: "Ange en inbäddad URL för ett videoklipp",
 				addLabelVideo: "Video",
@@ -359,9 +359,9 @@
 			viewYoutube: {
 				title: "YouTube-import",
 				header: "Ange ett YouTube-användarnamn för att söka efter videoklipp som delas offentligt.",
-				pageInputLbl: "Ange ett Youtube-användarnamn",
+				pageInputLbl: "Ange ett YouTube-användarnamn",
 				lookupMsgError: "Det gick inte att hitta användaren",
-				howToFind: "Så här hittar du ett Youtube-användarnamn",
+				howToFind: "Så här hittar du ett YouTube-användarnamn",
 				howToFind2: "Användarnamnet visas under videoklippen",
 				found: "Hittade",
 				noData: "Inga offentliga videoklipp hittades"
@@ -442,12 +442,12 @@
 					div172: "Om fälten Bild och Miniatyrbild har fyllts i kommer de alltid att användas, och geoobjekttjänstens bilagor anropas inte.",
 					div173: "Exempel på CSV-filer och shapefiler kan hämtas från",
 					div18: "Skapa en driftad geoobjekttjänst av en CSV-fil eller shapefil",
-					div19: "När du skapar en driftad geoobjekttjänst av en CSV-fil eller shapefil är bilagorna inte aktiverade som standard. Du aktiverar dem genom att öppna geoobjekttjänstens informationssida och klicka på den lilla pilen i lageravsnittet så visas det alternativet. De bilder och miniatyrbilder som du har refererat till i attributen fortsätter att användas. Om du i stället vill ladda upp bilderna som geoobjekttjänstbilagor kan du göra det med hjälp av de två knapparna på bildpanelen (Byt bild och Byt miniatyrbild).",
+					div19: "När du skapar en driftad geoobjektstjänst av en CSV-fil eller shapefil är bilagorna inte aktiverade som standard. Du aktiverar dem genom att öppna geoobjektstjänstens informationssida och klicka på den lilla pilen i lageravsnittet, då visas det alternativet. De bilder och miniatyrbilder som du har refererat till i attributen fortsätter att användas i kartturen. Om du i stället vill ladda upp bilderna som geoobjektstjänstbilagor kan du göra det med hjälp av de två knapparna på bildpanelen (Byt bild och Byt miniatyrbild).",
 					div20: "Bild- och videoformat som stöds",
-					div21: "De bildformat som stöds är: <b>JPG, JPEG, PNG, GIF och BMP</b>. Om filen inte har något av de filnamnstilläggen behandlas den som ett videoklipp i Map Tour, utom när du använder en geoobjekttjänst (se nedan).",
+					div21: "De bildformat som stöds är: <b>JPG, JPEG, PNG, GIF och BMP</b>. Om filen inte har något av de filnamnstilläggen behandlas den som ett videoklipp i kartturen, utom när du använder en geoobjektstjänst (se nedan).",
 					div22: "Map Tour-mallen innehåller inte någon videospelare. Du måste använda en extern videospelare från den videotjänst du använder (leta upp alternativet för att bädda in videoklippet och kopiera den URL som finns i koden). Om du vill drifta videoklippen själv kan du skapa en HTML-sida som innehåller en videospelare, till exempel <a href='http://www.videojs.com/'>Video.js</a>.",
 					div23: "Det interaktiva byggverktyget innehåller ingen dialogruta för att ta med videoklipp när du använder geoobjekttjänster med bilagor, men det går att ta med videoklipp genom att redigera data utanför det interaktiva byggverktyget. I kartvisningsfönstret på ArcGIS.com kan du till exempel ändra bildfälten så att de pekar på ett externt videoklipp och lägga till en särskild parameter i slutet av webbadressen (#isVideo). Då behandlas filerna som videoklipp.",
-					div24: "Du måste dock fortfarande ha två giltiga bildbilagor, annars används inte punkten. Det går inte att använda videoklipp när du använder geoobjekttjänstbilagor utan fälten Bild och Miniatyrbild."
+					div24: "Du måste dock fortfarande ha två giltiga bildbilagor, annars används inte punkten. Det går inte att använda videoklipp när du använder geoobjektstjänstbilagor utan fälten Bild och Miniatyrbild."
 				},
 				tab3: {
 					title: "Anpassning",
@@ -487,7 +487,7 @@
 					div2a: "Dela kartturen via byggverktyget",
 					div2b: "När du klickar på delningsknappen uppdateras objekten i applikationen och webbkartan. Om dina karttursdata finns sparade i ett geoobjekttjänstobjekt, uppdateras även detta. Eventuella andra lager som du har lagt till via kartvisningsprogrammet på ArcGIS.com uppdateras inte. Det kan leda till att kartturen inte delas på det sätt du tänkt. Objekt som redan har minst den behörighet som krävs uppdateras inte.",
 					div2c: "Dela kartturen via ArcGIS Online",
-					div2d: "När du delar applikationen via ArcGIS Online ombeds du vid behov att uppdatera eventuella beroende resurser (webbkarta, geoobjekttjänst) dekorationslager) som inte delas på samma sätt. Om kartturen är offentlig och någon av dina resurser inte delas med mottagarna omdirigeras användarna till inloggningssidan för ArcGIS Online.",
+					div2d: "När du delar applikationen via ArcGIS Online ombeds du vid behov att uppdatera eventuella beroende resurser (webbkarta, geoobjektstjänst, dekorationslager) som inte delas på samma sätt. Om kartturen är offentlig och någon av dina resurser inte delas med mottagarna omdirigeras användarna till inloggningssidan för ArcGIS Online.",
 					div3t: "Säkerhet för geoobjekttjänst",
 					div3a: "Om du använder en driftad geoobjekttjänst som har skapats med Map Tour-byggverktyget sköts säkerheten för tjänsten automatiskt och du är den enda som har redigeringsbehörighet även om tjänsten delas offentligt.",
 					div3t2: "Innan du delar en karttur med mottagarna",

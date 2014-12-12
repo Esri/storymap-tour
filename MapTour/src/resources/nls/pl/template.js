@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "WCZYTYWANIE APLIKACJI",
@@ -68,7 +68,7 @@
 				dataPicError1: "Mapa wycieczki wymaga obecnie, aby adres URL obrazu kończył się jednym z następujących rozszerzeń: .jp(e)g, .png, .gif lub .bmp.",
 				dataPicError2: "Wymaganie to nie dotyczy opublikowanej już mapy wycieczki. W celu korzystania z interaktywnego kreatora należy jednak rozwiązać najpierw problem z adresami URL, wykonując jedną z dwóch operacji:",
 				dataPicError3: "Edytuj adresy URL",
-				dataPicError4: "Spowoduje to dodanie parametru <i>#isImage</i> do końca nieobsługiwanego adresu URL obrazu. Większość serwerów obsługuje parametry adresów URL. Po wykonaniu tej czynności należy jednak sprawdzić, czy zaktualizowane adresy URL obrazów są funkcjonalne poprzez nawigację po punktach. Jeżeli każdy obraz zostanie wczytany, można zapisać mapę wycieczki. Jeżeli <b>obrazy nie działają, nie zapisuj mapy wycieczki</b>. W takim przypadku uruchom ponownie kreator i wykonaj drugą operację.",
+				dataPicError4: "Spowoduje to dodanie parametru <i>#isImage</i> do końca nieobsługiwanego adresu URL obrazu. Większość serwerów obsługuje parametry adresów URL. Po wykonaniu tej czynności należy jednak sprawdzić, czy zaktualizowane adresy URL obrazów funkcjonują prawidłowo podczas nawigacji po punktach. Jeżeli każdy obraz zostanie wczytany, można zapisać mapę wycieczki. Jeżeli <b>obrazy nie działają, nie zapisuj mapy wycieczki</b>. W takim przypadku uruchom ponownie kreator i wykonaj drugą operację.",
 				dataPicError5: "Ogranicz wycieczkę do obrazów",
 				dataPicError6: "Ta opcja spowoduje traktowanie wszystkich adresów URL jako adresów obrazów. Nie będzie można wtedy jednak dodawać plików wideo przy użyciu interaktywnego kreatora. Aby dodać w przyszłości pliki wideo, tę opcję można zmienić.",
 				dataPicError7: "Mapa wycieczki została ograniczona do obrazów. Nie można stosować plików wideo. Jeżeli zdecydujesz się usunąć to ograniczenie, sprawdź przed zapisaniem mapy wycieczki, czy obrazy nadal wczytują się prawidłowo. W razie potrzeby będzie można później zmienić to ograniczenie.",
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Obraz",
 				addLabelThumbUrl: "Miniatura",
 				addTextPlaceholderUrl: "Wprowadź adres URL obrazu",
-				addTextPlaceholderUrl2: "Wprowadź adres URL strony w serwisie Youtube",
+				addTextPlaceholderUrl2: "Wprowadź adres URL strony w serwisie YouTube",
 				addTextPlaceholderUrl3: "Wprowadź adres URL strony w serwisie Vimeo",
 				addTextPlaceholderUrl4: "Wprowadź adres URL umożliwiający osadzenie materiału wideo",
 				addLabelVideo: "Wideo",
@@ -163,7 +163,7 @@
 				settingsFieldsReset: "Resetuj wybrane pola",
 				settingsExtentExplain: "Ustaw początkowy zasięg Mapy wycieczki za pomocą poniższej interaktywnej mapy.",
 				settingsExtentExplainBottom: "Zdefiniowany zasięg zostanie użyty do modyfikacji początkowego zasięgu mapy internetowej. Prosimy pamiętać, że zasięg ten nie jest używany, jeśli nie obejmuje pierwszego punktu wycieczki. W takim przypadku wycieczka zostanie rozpoczęta od punktu pierwszego.",
-				settingsExtentDateLineError: "Zasięg nie może przebiegać przez południk 180°",
+				settingsExtentDateLineError: "Zasięg nie może przebiegać przez południk 180Â°",
 				settingsExtentDateLineError2: "Błąd w obliczaniu zasięgu",
 				settingsExtentDrawBtn: "Określ nowy zasięg",
 				settingsExtentModifyBtn: "Zmień zasięg",
@@ -359,9 +359,9 @@
 			viewYoutube: {
 				title: "Import z serwisu YouTube",
 				header: "Wprowadź nazwę użytkownika serwisu YouTube, aby znaleźć filmy wideo udostępnione publicznie.",
-				pageInputLbl: "Wpisz nazwę użytkownika serwisu Youtube",
+				pageInputLbl: "Wpisz nazwę użytkownika serwisu YouTube",
 				lookupMsgError: "Nie odnaleziono użytkownika",
-				howToFind: "Jak znaleźć nazwę użytkownika serwisu Youtube?",
+				howToFind: "W jaki sposób wyszukać nazwę użytkownika serwisu YouTube",
 				howToFind2: "Nazwa użytkownika jest wyświetlana pod każdym filmem",
 				found: "Znaleziono",
 				noData: "Nie znaleziono żadnych filmów publicznych"
@@ -442,12 +442,12 @@
 					div172: "Jeżeli pola obrazu i załącznika są dostępne, będą zawsze używane, a zapytania dotyczące załączników w usłudze obiektowej nie będą wysyłane.",
 					div173: "Przykładowe pliki CSV i shape można pobrać z",
 					div18: "Tworzenie hostowanej usługi obiektowej z pliku CSV lub shape",
-					div19: "Gdy tworzysz hostowaną usługę obiektową z pliku CSV lub shape, obsługa załączników nie jest domyślnie włączona. Aby ją włączyć, otwórz stronę szczegółów usługi obiektowej, kliknij małą strzałkę w sekcji warstw, co spowoduje wyświetlenie odpowiedniej opcji. Wówczas mapa wycieczki nadal będzie używać obrazów i miniatury, do których utworzono odnośniki za pomocą atrybutów. Ewentualnie, jeśli chcesz wczytać obrazy jako załączniki do usługi obiektowej, można użyć w tym celu dwóch przycisków na panelu obrazów (\"Zmień obraz\" i \"Zmień miniaturę\").",
+					div19: "Gdy tworzysz hostowaną usługę obiektową z pliku CSV lub shape, obsługa załączników nie jest domyślnie włączona. Aby ją włączyć, otwórz stronę szczegółów usługi obiektowej, kliknij małą strzałkę w sekcji warstw, co spowoduje wyświetlenie odpowiedniej opcji. Wówczas mapa wycieczki nadal będzie używać obrazów i miniatur, do których utworzono odnośniki za pomocą atrybutów. Ewentualnie, jeśli chcesz wczytać obrazy jako załączniki do usługi obiektowej, możesz użyć w tym celu dwóch przycisków w panelu obrazów (\"Zmień obraz\" i \"Zmień miniaturę\").",
 					div20: "Obsługiwane materiały wideo i formaty obrazów",
 					div21: "Obsługiwane formaty obrazów to: <b>.jpg, .jpeg, .png, .gif i .bmp</b>. Jeżeli pliki multimedialne nie będą mieć takiego rozszerzenia, mapa wycieczki będzie traktować je jako pliki wideo, z wyjątkiem sytuacji, w których używane są usługi obiektowe (patrz poniżej).",
 					div22: "Szablon mapy wycieczki nie zawiera odtwarzacza wideo, dlatego należy użyć zewnętrznego odtwarzacza wideo z ulubionej usługi hostowania plików wideo (znajdź opcję osadzania wideo i skopiuj adres URL z podanego kodu). Jeżeli chcesz hostować wideo samodzielnie, możesz utworzyć stronę HTML zawierającą odtwarzacz wideo taki jak <a href='http://www.videojs.com/'>Video.js</a>.",
 					div23: "Interaktywny kreator nie udostępnia okna dialogowego do dodawania wideo podczas korzystania z usług obiektowych z załącznikami. Można jednak w tym celu edytować dane poza interaktywnym kreatorem. Pliki multimedialne będą traktowane jak wideo, jeżeli w przeglądarce map ArcGIS.com zmodyfikujesz pola obrazów tak, by wskazywały zewnętrzne wideo i dodasz specjalny parametr na końcu adresu URL (#isVideo).",
-					div24: "Nadal wymagane będą dwa prawidłowe załączniki obrazów — w przeciwnym razie punkt nie będzie używany. Bez pól obrazu i miniatury nie można korzystać z wideo, kiedy w usłudze obiektowej używane są załączniki."
+					div24: "Nadal wymagane będą dwa prawidłowe załączniki obrazów — w przeciwnym razie punkt nie będzie używany. Bez pól obrazu i miniatury nie można korzystać z wideo, gdy w usłudze obiektowej używane są załączniki."
 				},
 				tab3: {
 					title: "Dostosowanie",

@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "INDLÆSER APPLIKATION",
@@ -68,7 +68,7 @@
 				dataPicError1: "Map Tour kræver nu, at billed-URL\'er slutter med ét af følgende filtypenavne: .jp(e)g, .png, .gif eller .bmp.",
 				dataPicError2: "Dette krav vil ikke få nogen indflydelse på din eksisterende publicerede Map Tour. Men for at kunne bruge det interaktive builder-program skal du først løse URL-problemet ved at udføre én af følgende to handlinger:",
 				dataPicError3: "Redigér URL\'er",
-				dataPicError4: "Dette vil føje <i>#isPicture</i> til slutningen af ikke-understøttede billed-URL\'er. De fleste servere understøtter URL-tilknytninger. Men når du har udført denne handling, skal du kontrollere, at de opdaterede billed-URL\'er fungerer ved at navigere gennem dine punkter. Hvis alle billeder indlæses, kan du gemme din Map Tour. Hvis <b>billederne er ødelagte, skal du ikke gemme din Map Tour</b>. Genindlæs i stedet builder-programmet, og udfør den anden handling.",
+				dataPicError4: "Dette vil føje <i>#isImage</i> til slutningen af ikke-understøttede billed-URL\'er. De fleste servere understøtter URL-tilknytninger. Men når du har udført denne handling, skal du kontrollere, at de opdaterede billed-URL\'er fungerer ved at navigere gennem dine punkter. Hvis alle billeder indlæses, kan du gemme din Map Tour. Hvis <b>billederne er ødelagte, skal du ikke gemme din Map Tour</b>. Genindlæs i stedet builder-programmet, og udfør den anden handling.",
 				dataPicError5: "Begræns turen til billeder",
 				dataPicError6: "Denne indstiling medfører, at alle URLér bliver betragtet som billeder, men du vil ikke kunne tilføje videoer med det interaktive builder-program. Denne handling kan fortrydes, hvis du på et tidspunkt i fremtiden beslutter at tilføje videoer.",
 				dataPicError7: "Din Map Tour er begrænset til billeder, videoer kan ikke benyttes. Hvis du vælger at fjerne denne begrænsning, skal du kontrollere, at dine billeder fortsat indlæses korrekt, før du gemmer din Map Tour. Du kan gendanne denne begrænsning på et senere tidspunkt, hvis det bliver nødvendigt.",
@@ -361,7 +361,7 @@
 				header: "Angiv et YouTube-brugernavn for at finde offentligt delte videoer.",
 				pageInputLbl: "Indtast et Youtube-brugernavn",
 				lookupMsgError: "Bruger ikke fundet",
-				howToFind: "Sådan finder du et Youtube-brugernavn",
+				howToFind: "Sådan finder du et YouTube-brugernavn",
 				howToFind2: "Brugernavnet vises under videoer",
 				found: "Fundet",
 				noData: "Ingen offentlige videoer fundet"
@@ -442,7 +442,7 @@
 					div172: "Billed- og miniaturefelterne vil, når de findes, altid blive brugt, og der vil ikke blive anmodet om featuretjenestens vedhæftninger.",
 					div173: "Eksempel-CSV-filer og shapefiler kan overføres fra",
 					div18: "Opretter en \"hosted\" featuretjeneste ud fra en CSV- eller shapefil",
-					div19: "Når du opretter en \"hosted\" featuretjeneste på basis af en CSV- eller shapefil, er vedhæftninger ikke aktiveret som standard. Hvis du vil aktivere dem, skal du åbne featuretjenestens oplysningsside og klikke på den lille pil på lagsektionen for at få indstillingen vist. Map Tour\'en vil fortsat bruge de billeder og miniaturer, du har refereret til via attributter. Hvis du vil overføre dine billeder som  featuretjeneste-vedhæftninger, kan du gøre det vha. to knapper på billedpanelet (\"Redigér billede\" og \"Redigér miniature\").",
+					div19: "Når du opretter en \"hosted\" featuretjeneste på basis af en CSV- eller shapefil, er vedhæftninger ikke aktiveret som standard. Hvis du vil aktivere dem, skal du åbne featuretjenestens oplysningsside og klikke på den lille pil på lagsektionen for at få indstillingen vist. Map Tour\'en vil fortsat bruge de billeder og miniaturer, du har refereret til via attributter. Hvis du vil overføre dine billeder som featuretjeneste-vedhæftninger, kan du gøre det vha. to knapper på billedpanelet (\"Redigér billede\" og \"Redigér miniature\").",
 					div20: "Understøttede billedformater og videoer",
 					div21: "Understøttede billedformater er: <b>.jpg, .jpeg, .png, .gif og .bmp</b>. Hvis dit medie ikke slutter med en af disse filtypenavne, vil Map Tour betragte mediet som en video, undtagen når du bruger en featuretjeneste (se nedenfor).",
 					div22: "Map Tour-skabelonen indeholder ikke en videoafspiller, så du skal bruge den eksterne videoafspiller, som leveres af din foretrukne værtstjeneste for videoindhold (find indstillingen til indlejring af videoen, og kopiér den URL, der findes i den givne kode). Hvis du selv ønsker at \"hoste\" videoen, kan du oprette en HTML-side, der indeholder en videoafspiller som f.eks. <a href='http://www.videojs.com/'>Video.js</a>.",

@@ -419,9 +419,36 @@ define(["esri/arcgis/Portal",
 			delete appItem.numViews;
 			delete appItem.size;
 			
+			//
+			// Add/edit the typeKeyword property to be able to identify the app and the layout
+			//
+			
+			if ( ! appItem.typeKeywords )
+				appItem.typeKeywords = [];
+			
+			// App not created through the builder fromScratch mode don't get those keywords
+			appItem.typeKeywords = appItem.typeKeywords.concat(APPCFG.WEBAPP_KEYWORD_APP);
+			
+			// Those should only be necessary to be able to convert an appid that wasn't already selfConfigured
+			appItem.typeKeywords = appItem.typeKeywords.concat(APPCFG.WEBAPP_KEYWORD_GENERIC);
+			
+			// Layout
+			var layouts = $.map(['integrated', 'three-panel'], function(layout){ return "layout-" + layout; });
+			// Filter previous layout keyword
+			appItem.typeKeywords = $.grep(appItem.typeKeywords, function(keyword) {
+				return $.inArray(keyword, layouts) == -1; 
+			});
+			// Add actual layout keyword
+			appItem.typeKeywords.push("layout-" + (app.data.getWebAppData().values.layout || "three-panel"));
+			
+			// Make the typeKeywords array unique
+			appItem.typeKeywords = $.grep(appItem.typeKeywords, function(keyword, index) {
+				return index == $.inArray(keyword, appItem.typeKeywords);
+			});
+			
 			// Transform arrays
 			appItem.tags = appItem.tags ? appItem.tags.join(',') : '';
-			appItem.typeKeywords = appItem.typeKeywords ? appItem.typeKeywords.join(',') : '';
+			appItem.typeKeywords = appItem.typeKeywords.join(',');
 
 			appItem = lang.mixin(appItem, {
 				f: "json",

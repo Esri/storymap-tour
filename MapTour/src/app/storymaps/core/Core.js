@@ -162,17 +162,6 @@ define(["esri/map",
 			if ( ! _mainView.init(this) )
 				return;
 			
-			// Automatic login in development mode
-			if ( !isProd() ) {
-				on(IdentityManager, 'dialog-create', function(){
-					on(IdentityManager.dialog, 'show', function(){
-						IdentityManager.dialog.txtUser_.set('value', 'guest');
-						IdentityManager.dialog.txtPwd_.set('value', 'guest');
-						IdentityManager.dialog.btnSubmit_.onClick();
-					});
-				});
-			}
-			
 			startLoadingTimeout();
 
 			// Sharing URL

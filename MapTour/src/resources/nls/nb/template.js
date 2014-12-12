@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "LASTER INN PROGRAM",
@@ -68,7 +68,7 @@
 				dataPicError1: "Map Tour krever nå at en bilde-URL slutter med en av de følgende etternavnene: .jp(e)g, .png, .gif eller .bmp.",
 				dataPicError2: "Dette kravet påvirker ikke Map Tours som allerede er publisert. For å bruke den interaktive byggeren må du imidlertid først løse URL-problemet ved å gjøre ett av følgende:",
 				dataPicError3: "Rediger URLer",
-				dataPicError4: "Dette legger til <i>#isImage</i> helt til slutt i bilde-URL-er som ikke støttes. De fleste servere støtter tillegg til URL-er, men så fort du har utført denne handlingen, bør du kontrollere at de oppdaterte bilde-URL-ene fungerer ved å navigere gjennom punktene. Hvis hvert bilde lastes inn, kan du nå lagre Map Tour.Hvis <b>bildene er ødelagt, lagrer du ikke Map Tour</b>. Da laster du inn byggeren på nytt og utfører den andre handlingen.",
+				dataPicError4: "Dette legger til <i>#isImage</i> helt til slutt i bilde-URL-adresser som ikke støttes. De fleste servere støtter tillegg til URL-adresser, men så fort du har utført denne handlingen, bør du kontrollere at de oppdaterte bilde-URL-adressene fungerer, ved å navigere gjennom punktene dine. Hvis alle bildene lastes inn, kan du nå lagre kartomvisningen din. Hvis <b>bilder er ødelagt, lagrer du ikke kartomvisningen</b>. Da laster du i stedet inn byggeverktøyet på nytt og utfører den andre handlingen.",
 				dataPicError5: "Begrens omvisningen til bilder",
 				dataPicError6: "Dette alternativet gjør at alle URLene regnes som bilder, men du kan ikke legge til videoen med den interaktive byggeren. Denne handlingen kan angres hvis du bestemmer deg for å legge til video i fremtiden.",
 				dataPicError7: "Din Map Tour er begrenset til bilder, videoer kan ikke brukes. Hvis du bestemmer deg for å fjerne den begrensningen, kontrollerer du at bildene fortsatt lastes inn korrekt før du lagrer Map Tour. Du kan gjenopprette begrensningen senere hvis du har behov for det.",
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Bilde",
 				addLabelThumbUrl: "Miniatyrbilde",
 				addTextPlaceholderUrl: "Angi en bilde-URL",
-				addTextPlaceholderUrl2: "Angi URL for en YouTube-side",
+				addTextPlaceholderUrl2: "Angi URL-adresse for en YouTube-side",
 				addTextPlaceholderUrl3: "Angi URL for Vimeo-side",
 				addTextPlaceholderUrl4: "Angi URL for innebygging av video",
 				addLabelVideo: "Video",
@@ -357,7 +357,7 @@
 				footerSucceed: "Import fullført. Laster inn"
 			},
 			viewYoutube: {
-				title: "Youtube-import",
+				title: "YouTube-import",
 				header: "Oppgi et brukernavn på YouTube for å finne videoer som er delt offentlig.",
 				pageInputLbl: "Angi et YouTube-brukernavn",
 				lookupMsgError: "Finner ikke bruker",
@@ -442,12 +442,12 @@
 					div172: "Når de er til stede, brukes bilde- og minatyrbildefeltene alltid, og geoobjekttjenestetilleggene blir ikke søkt opp.",
 					div173: "Eksempel-CSV- og shapefiler kan lastes ned fra",
 					div18: "Opprette en vertsbasert geoobjektstjeneste fra CSV eller shapefil",
-					div19: "Når du oppretter en vertsbasert geoobjektstjeneste fra en CSV- eller shapefil, er vedlegg som standard ikke aktivert. Du kan aktivere dem ved å åpne siden for geoobjektstjenesteelementer og klikke på den lille pilen i lagdelen for å vise alternativet. Map Tour vil deretter fortsette å bruke de bildene og miniatyrbildene som du har referert til ved attributter. Hvis du heller vil laste opp bildene som vedlegg til en geoobjektstjeneste, kan du gjøre det ved hjelp av to knapper på bildepanelet (\"Bytt bilde\" og \"Bytt miniatyrbilde\").",
-					div20: "Støttede bildeformater og videoer",
-					div21: "Støttede bildeformater er: <b>.jpg, .jpeg, .png, .gif og .bmp</b>. Hvis mediene dine ikke slutter med dette etternavnet, regner Map Tpur med at det er en video, bortsett fra når du bruker en geoobjektstjeneste (se nedenfor).",
+					div19: "Når du oppretter en hostet geoobjektstjeneste fra en CSV- eller shapefil, er vedlegg som standard ikke aktivert. Du kan aktivere dem ved å åpne detaljsiden for geoobjektstjenester og klikke på den lille pilen i lagdelen for å vise alternativet. Kartomvisningen fortsetter å bruke de bildene og miniatyrbildene som du har referert til gjennom attributter. Hvis du heller vil laste opp bildene som vedlegg til en geoobjektstjeneste, kan du gjøre det ved hjelp av to knapper på bildepanelet (Endre bilde og Endre miniatyrbilde).",
+					div20: "Bildeformater og videoer som støttes",
+					div21: "Bildeformater som støttes: <b>.jpg, .jpeg, .png, .gif og .bmp</b>. Hvis mediene dine ikke slutter med dette filnavnet, regner kartomvisningen med at det er en video, bortsett fra når du bruker en geoobjektstjeneste (se nedenfor).",
 					div22: "Map Tour-malen inkluderer ingen videospiller, så du må bruke den eksterne videospilleren fra favorittvideovertstjenesten din (finn alternativet for å bygge inn videoen, og kopier URLen som gis i den koden som oppgis). Hvis du vil drifte videoen selv, kan du opprette en HTML-side som inneholder en videospiller som <a href='http://www.videojs.com/'>Video.js</a>.",
 					div23: "Den interaktive byggeren har ingen dialog for å ta med video ved bruk av geoobjektstjenester med vedlegg, men det er mulig å gjøre det ved å redigere dataene utenfor den interaktive byggeren. I arcgis.com-kartvisningen kan du endre bildefeltene slik at de peker mot en ekstern video og legge til en egen parameter til slutt i URLen (#isVideo), slik at mediene dine regnes som en video.",
-					div24: "Merk at du fortsatt må ha to gyldige bildevedlegg, eller blir ikke punktet brukt. Det er ikke mulig å bruke videoer med geoobjektstjenestevedlegg uten bilde- og miniatyrbildefeltene."
+					div24: "Merk at du fortsatt må ha to gyldige bildevedlegg, ellers blir ikke punktet brukt. Det er ikke mulig å bruke videoer når du bruker geoobjektstjenestevedlegg, uten bilde- og miniatyrbildefeltene."
 				},
 				tab3: {
 					title: "Tilpasning",
@@ -487,7 +487,7 @@
 					div2a: "Dele Map Tour via byggeverktøyet",
 					div2b: "DEL-knappen vil oppdatere programmet og webkartelementene. Hvis du har lagret Map Tour-dataene i et element i geoobjektstjenesten, blir de også oppdatert. Hvis du har lagt til andre lag via kartvisningsprogrammet på ArcGIS.com, oppdateres de ikke. Dette kan føre til at omvisningen ikke deles som forventet. Elementer som allerede har de obligatoriske rettighetene (eller flere), oppdateres ikke.",
 					div2c: "Dele Map Tour via ArcGIS Online",
-					div2d: "Når du deler programmet via ArcGIS Online, vil det om nødvendig be deg om å oppdatere eventuelle tilknyttede ressurser (webkart, geoobjektstjeneste, dekorasjonslag) som ikke blir delt på samme måte. Hvis Map Tour er offentlig og en av ressursene dine ikke deles med publikum, blir brukerne videresendt til påloggingssiden for ArcGIS Online.",
+					div2d: "Når du deler programmet via ArcGIS Online, vil det om nødvendig be deg om å oppdatere eventuelle tilknyttede ressurser (webkart, geoobjektstjeneste, dekorasjonslag) som ikke blir delt på samme måte. Hvis kartomvisningen er offentlig og én av ressursene dine ikke deles med publikum, blir brukerne videresendt til påloggingssiden for ArcGIS Online.",
 					div3t: "Sikkerhet for geoobjektstjenester",
 					div3a: "Hvis du bruker en vertsbasert geoobjektstjeneste som er opprettet med byggeverktøyet for Map Tour, tar programmet hånd om sikkerheten til tjenesten, og du vil fortsatt være den eneste med redigeringsrettigheter, selv om du har delt tjenesten offentlig.",
 					div3t2: "Før du deler Map Tour med publikum",

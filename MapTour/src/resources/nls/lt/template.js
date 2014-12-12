@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "ĮKELIAMA APLIKACIJA",
@@ -68,7 +68,7 @@
 				dataPicError1: "Žemėlapio turui dabar privaloma, kad vaizdo URL baigtųsi vienu iš šių plėtinių: .jp(e)g, .png, .gif arba .bmp.",
 				dataPicError2: "Reikalavimas neįtakos jūsų esamo publikuoto žemėlapio turo. Tačiau, kad galėtumėt naudoti interaktyvų kūrėją, jums pirmiausiai reikia išspręsti URL klausimą atliekant vieną iš šių dviejų veiksmų:",
 				dataPicError3: "Redaguoti URL",
-				dataPicError4: "Tai pridės <i>#isImage</i> į nepalaikomo vaizdo URL pabaigą. Dauguma serverių palaiko URL plėtinius. Tačiau, kai tik atliksite šį veiksmą, turite užtikrinti, kad atnaujinti nuotraukų URL veikia, naviguodami per taškus. Jei pakraunama kiekviena nuotrauka, galite išsaugoti žemėlapio turą. Jei <b>nuotraukos yra pažeistos, nesaugokite žemėlapio turo</b>. Vietoje to, perkraukite kūrėją ir atlikite antrą veiksmą.",
+				dataPicError4: "Tai pridės <i>#isImage</i> į nepalaikomo vaizdo URL pabaigą. Dauguma serverių palaiko URL plėtinius. Tačiau, kai tik atliksite šį veiksmą, naviguodami per taškus turite įsitikinti, kad veikia atnaujinti nuotraukų URL. Jei kiekviena nuotrauka įkeliama, galite išsaugoti žemėlapio turą. Jei <b>nuotraukos yra nerodomos, nesaugokite žemėlapio turo</b>. Vietoje to, įkelkite kūrėją iš naujo ir atlikite antrą veiksmą.",
 				dataPicError5: "Apribokite turą iki nuotraukų",
 				dataPicError6: "Šis pasirinkimas lems tai, kad visi URL bus laikomi nuotraukomis, tačiau tuomet negalėsite pridėti video naudodami interaktyvų kūrėją. Šis veiksmas yra grįžtamas, jei nuspręstumėt pridėti video ateityje.",
 				dataPicError7: "Jūsų žemėlapio turas buvo apribotas iki nuotraukų, video negali būti naudojami. Jei pasirinksite pašalinti šį ribojimą, prieš išsaugodami žemėlapio turą patikrinkite ar jūsų nuotraukos dar vis užkraunamos. Jei reikės, jūs galėsite atkurti šį apribojimą.",
@@ -104,7 +104,7 @@
 				addLabelPicUrl: "Nuotrauka",
 				addLabelThumbUrl: "Miniatiūra",
 				addTextPlaceholderUrl: "Įveskite vaizdo URL",
-				addTextPlaceholderUrl2: "Įveskite Youtube puslapio URL",
+				addTextPlaceholderUrl2: "Įveskite YouTube puslapio URL",
 				addTextPlaceholderUrl3: "Įveskite Vimeo puslapio URL",
 				addTextPlaceholderUrl4: "Įveskite video nuorodos URL",
 				addLabelVideo: "Video",
@@ -261,7 +261,7 @@
 				uploadPicAndThumb: "Vykdyti"
 			},
 			headerJS:{
-				editMe: "Redaguok !",
+				editMe: "Redaguok!",
 				templateTitle: "Nustatyti šablono antraštę",
 				templateSubtitle: "Nustatyti šablono paantraštę"
 			},
@@ -357,11 +357,11 @@
 				footerSucceed: "Importavimas pavyko. Kraunama"
 			},
 			viewYoutube: {
-				title: "Youtube importas",
+				title: "YouTube importas",
 				header: "Įveskite YouTube vartotojo vardą ir raskite viešai bendrinamų video.",
-				pageInputLbl: "Įveskite Youtube vartotojo vardą",
+				pageInputLbl: "Įveskite YouTube vartotojo vardą",
 				lookupMsgError: "Vartotojas nerastas",
-				howToFind: "Kaip rasti Youtube vartotojo vardą",
+				howToFind: "Kaip rasti YouTube vartotojo vardą",
 				howToFind2: "Vartotojo vardas rodomas po video",
 				found: "Surasta",
 				noData: "Nerasta viešų video"
@@ -442,12 +442,12 @@
 					div172: "Kai jie yra, nuotraukos ir miniatiūros laukai visada bus naudojami, o elementų paslaugų priedus galima bus naudoti užklausomis.",
 					div173: "CSV ir Shape failų pavyzdžių galima parsisiųsti iš",
 					div18: "Talpinamų elementų paslaugų kūrimas iš CSV ar Shape failo",
-					div19: "Kai kuriate talpinamą elementų paslaugą iš CSV ar Shape failo, pagal nutylėjimą priedai nėra įgalinti. Kad juos įgalintumėt, atverkite elementų paslaugos elementų puslapį, spustelkite nedidelę rodyklę ties sluoksnio pasirinkimu ir pamatysite šį nustatymą. Tai atlikus Žemėlapio turas ir toliau naudos nuotraukas bei miniatiūrą, kuriuos nurodėte per atributus. Pasirinktinai, jei norite talpinti nuotraukas kaip elementų paslaugų priedus, jūs galite tai padaryti dviem mygtukais nuotraukos panelėje (\"Pakeisti nuotrauką\" ir \"Pakeisti miniatiūrą\").",
-					div20: "Palaikomi paveikslų formatai ir video",
-					div21: "Palaikomi nuotraukų formatai yra: <b>.jpg, .jpeg, .png, .gif and .bmp</b>. Jei jūsų medija nesibaigia vienu šių plėtinių, žemėlapio turas laikys ją video, išskyrus tuos atvejus kai naudojama elementų paslauga (žiūrėti žemiau).",
+					div19: "Kai kuriate talpinamą elementų paslaugą iš CSV ar Shape failo, priedai nėra įjungti. Kad juos įjungtumėte, atverkite elementų paslaugos elementų puslapį, spustelkite nedidelę rodyklę ties sluoksnio pasirinkimu ir pamatysite šį nustatymą. Tai atlikus Žemėlapio turas ir toliau naudos nuotraukas bei miniatiūras, kurias nurodėte per atributus. Pasirinktinai, jei norite talpinti nuotraukas kaip elementų paslaugų priedus, galite tai padaryti dviem mygtukais nuotraukų skyde (\"Pakeisti nuotrauką\" ir \"Pakeisti miniatiūrą\").",
+					div20: "Palaikomi nuotraukų formatai ir video",
+					div21: "Palaikomi nuotraukų formatai yra: <b>.jpg, .jpeg, .png, .gif and .bmp</b>. Jei jūsų medija nesibaigia vienu šių plėtinių, žemėlapio turas laikys ją video, išskyrus tuos atvejus, kai naudojama elementų paslauga (žiūrėti žemiau).",
 					div22: "Žemėlapio turo šablone nėra vaizdo grotuvo, todėl turite naudoti išorinį vaizdo grotuvą, kurį pateikia jūsų mėgstamas vaizdo talpinimo paslaugų teikėjas (pasirinkite sprendimus vaizdui talpinti ir nukopijuokite URL, esantį duotame kode). Jei norite talpinti vaizdą patys, galite sukurti HTML puslapį, turintį grotuvą, tokį kaip <a href='http://www.videojs.com/'>Video.js</a>.",
 					div23: "Interaktyvus vedlys nesuteikia dialogo video pridėjimui, naudojant elementų paslaugas su priedais, bet tai galima padaryti redaguojant jūsų duomenys už interaktyvaus vedlio ribų. Arcgis.com žemėlapių peržiūros aplikacijoje, jei pakeičiate nuotraukos laukus taip, kad jie nurodytų į išorinius video ir pridėtumėt specialų parametrą URL pabaigoje (#isVideo), jūsų medija bus laikoma video.",
-					div24: "Atkreipkite dėmesį, kad jums vis dar reikia turėti du veikiančius nuotraukų priedus arba taškas nebus naudojamas. Neįmanoma naudoti video naudojant elementų paslaugos priedus ir miniatiūrų laukus."
+					div24: "Atkreipkite dėmesį, kad jums reikalingi du tinkami nuotraukų priedai arba taškas nebus naudojamas. Naudojant elementų paslaugą naudoti video priedų be nuotraukų ir miniatiūrų laukų negalima."
 				},
 				tab3: {
 					title: "Adaptavimas",
@@ -487,7 +487,7 @@
 					div2a: "Turas bendrinamas per kūrėją.",
 					div2b: "BENDRINTI mygtukas atnaujins aplikacijos ir internetinio žemėlapio elementus. Jei jūsų turo duomenys saugomi elementų paslaugoje, jie taip pat bus atnaujinti. Jei pridėjote kitų sluoksnius per ArcGIS.com žemėlapių peržiūros aplikaciją, jie nebus atnaujinti. Tai gali lemti tai, kad turas nebus bendrintas taip kaip norėjote. Elementai, jau turintys reikiamas (ar didesnes) teises nebus atnaujinti.",
 					div2c: "Turas bendrinamas per ArcGIS Online",
-					div2d: "Kai bendrinsite aplikaciją per ArcGIS Online, jei reikės, jūsų bus prašoma atnaujinti susijusius šaltinius (internetinį žemėlapį, elementų paslaugą, dekoravimo sluoksnį), kurie nėra bendrinami tuo pačiu būdu. Jei žemėlapio turas yra viešas ir vienas iš jūsų resursų nėra bendrintas su auditorija, vartotojai bus nukreipiami į ArcGIS Online prisijungimo puslapį.",
+					div2d: "Kai bendrinsite aplikaciją per ArcGIS Online, jei reikės, jūsų bus prašoma bendrinti susijusius šaltinius (internetinį žemėlapį, elementų paslaugą, žymėjimų sluoksnį), kurie dar nėra bendrinti. Jei žemėlapio turas yra viešas ir vienas iš jūsų išteklių nėra bendrintas su auditorija, vartotojai bus nukreipiami į ArcGIS Online prisijungimo puslapį.",
 					div3t: "Elementų paslaugos saugumas",
 					div3a: "Jei naudojate talpinamą elementų paslaugą, sukurta žemėlapių turo vedlio pagalba, aplikacija už jus sutvarkys paslaugos saugumą, ir jūs išliksite vienintelis vartotojas, turintis redagavimo teises, net jei bendrinsite viešai.",
 					div3t2: "Prieš bendrindami turą su auditoriją",

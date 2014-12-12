@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "ANWENDUNG WIRD GELADEN",
@@ -163,7 +163,7 @@
 				settingsFieldsReset: "Feldauswahl zurücksetzen",
 				settingsExtentExplain: "Die Anfangsausdehnung von Map Tour über die nachstehende interaktive Karte festlegen.",
 				settingsExtentExplainBottom: "Die definierte Ausdehnung ändert die Anfangsausdehnung Ihrer Webkarte. Beachten Sie, dass diese Ausdehnung nicht verwendet wird, wenn sie nicht den ersten Tour-Punkt umfasst. In diesem Fall wird die Tour mit Zentrierung auf den ersten Punkt geöffnet.",
-				settingsExtentDateLineError: "Die Ausdehnung darf nicht über den Meridian von 180° Längengrad hinausreichen",
+				settingsExtentDateLineError: "Die Ausdehnung darf nicht über den Meridian von 180Â° Längengrad hinausreichen",
 				settingsExtentDateLineError2: "Fehler beim Berechnen der Ausdehnung",
 				settingsExtentDrawBtn: "Eine neue Ausdehnung darstellen",
 				settingsExtentModifyBtn: "Ausdehnung bearbeiten",
@@ -261,7 +261,7 @@
 				uploadPicAndThumb: "Übernehmen"
 			},
 			headerJS:{
-				editMe: "Bearbeiten!",
+				editMe: "Edit me!",
 				templateTitle: "Vorlagentitel festlegen",
 				templateSubtitle: "Untertitel der Vorlage festlegen"
 			},
@@ -357,11 +357,11 @@
 				footerSucceed: "Import erfolgreich. Wird geladen"
 			},
 			viewYoutube: {
-				title: "Import über Youtube",
+				title: "Import über YouTube",
 				header: "Geben Sie einen YouTube-Benutzernamen ein, um nach öffentlich freigegebenen Videos zu suchen.",
-				pageInputLbl: "Youtube-Benutzername eingeben",
+				pageInputLbl: "YouTube-Benutzername eingeben",
 				lookupMsgError: "Benutzer nicht gefunden",
-				howToFind: "So finden Sie einen Youtube-Benutzernamen",
+				howToFind: "How to find a YouTube user name",
 				howToFind2: "Benutzername wird unter Videos angezeigt",
 				found: "Gefunden",
 				noData: "Keine öffentlichen Videos gefunden"

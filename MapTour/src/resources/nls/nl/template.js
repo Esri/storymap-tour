@@ -1,5 +1,5 @@
 ﻿define(
-({
+	 ({
 		viewer: {
 			loading: {
 				step1: "APPLICATIE LADEN",
@@ -361,7 +361,7 @@
 				header: "Voer een YouTube-gebruikersnaam in om te zoeken naar openbaar gedeelde video\'s.",
 				pageInputLbl: "Voer een Youtube-gebruikersnaam in",
 				lookupMsgError: "Gebruiker niet gevonden",
-				howToFind: "Hoe een Youtube-gebruikersnaam vinden",
+				howToFind: "Hoe een YouTube-gebruikersnaam vinden",
 				howToFind2: "Gebruikersnaam wordt weergegeven onder video\'s",
 				found: "Gevonden",
 				noData: "Geen openbare video\'s gevonden"
@@ -487,7 +487,7 @@
 					div2a: "De tour delen via de builder",
 					div2b: "De knop DELEN zal de applicatie- en webmapitems bijwerken. Als uw tourgegevens zijn opgeslagen in een featureservice-item, wordt dit ook bijgewerkt. Als u andere kaartlagen hebt toegevoegd via de ArcGIS.com-map viewer, worden deze niet bijgewerkt. Dit kan ertoe leiden dat de tour niet wordt gedeeld zoals u het verwachtte. Items die al over de vereiste machtigingen (of meer) beschikken, worden niet bijgewerkt.",
 					div2c: "De tour delen via ArcGIS Online",
-					div2d: "Wanneer u de applicatie deelt via ArcGIS Online, wordt u indien nodig gevraagd om eventuele afhankelijke bronnen (webmap, featureservice, decoratielaag) bij te werken die niet op dezelfde manier worden gedeeld. Als de Kaart tour openbaar is en een van uw bronnen wordt niet gedeeld met het publiek, worden gebruikers omgeleid naar de ArcGIS Online-aanmeldingspagina.",
+					div2d: "Wanneer u de applicatie deelt via ArcGIS Online, wordt u indien nodig gevraagd om eventuele afhankelijke bronnen (webmap, featureservice, decoratielaag) bij te werken die niet op dezelfde manier worden gedeeld. Als de Kaarttour openbaar is en een van uw bronnen wordt niet gedeeld met het publiek, worden gebruikers omgeleid naar de ArcGIS Online-aanmeldpagina.",
 					div3t: "Featureservicebeveiliging",
 					div3a: "Als u een gehoste featureservice gebruikt die met de Kaarttour-builder is gemaakt, beheert de applicatie de beveiliging van de service voor u en behoudt u als enige de bewerkingsrechten, ook als u de service openbaar deelt.",
 					div3t2: "Voordat u uw tour deelt met uw publiek",
