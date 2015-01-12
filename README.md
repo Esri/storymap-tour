@@ -185,6 +185,8 @@ Yes, Map Tour is included in Portal for ArcGIS 10.2.1. Note that for technical r
 
 If you use an older version of Portal, you can [download](http://links.esri.com/storymaps/map_tour_template_zip) and deploy the template in the following folder `ArcGIS\Portal\webapps\arcgis#home\webmap\templates\MapTour`. This folder may already contain a non-functional version of the template. If this is the case, remove the folder's content before copying the new files. Then refer your Portal documentation for instructions on publishing a new web application item and adding it to the web application gallery. If you choose to deploy the template in any other folder, some configuration will be required (see index.html configuration). Also note that the web application gallery preview feature won't be functional and give a 404 error.
 
+Please note that the most recent version of Map Tour may not be compatible with older version of Portal for ArcGIS. If you experience issues, please try to deploy older version of Map Tour like [2.2.3](https://github.com/Esri/map-tour-storytelling-template-js/releases/tag/V2.2.3).
+
 ### Can the template be used offline?
 Yes, by using Portal for ArcGIS. When deployed on a Portal for ArcGIS instance, the Map Tour doesn't require any external service to function. But by default the template will still include the header social buttons and template publishers are able to import pictures from the some online pictures hosting services. These options can be disabled individually through the configuration file app/maptour-config.js.
 
