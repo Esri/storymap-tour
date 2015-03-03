@@ -272,7 +272,7 @@
 			importPopup: {
 				title: "Nhập",
 				prevBtn: "Quay lại",
-				nextBtn: "Tiếp"
+				nextBtn: "Tiếp theo"
 			},
 			importPopupHome: {
 				header: "Ảnh của bạn được lưu ở đâu ?"
@@ -385,7 +385,7 @@
 			initPopup: {
 				title: "Chào mừng bạn đến Bộ thiết lập Map Tour",
 				prevBtn: "Quay lại",
-				nextBtn: "Tiếp"
+				nextBtn: "Tiếp theo"
 			},
 			initPopupHome: {
 				header1: "Ảnh hoặc video của bạn ở đâu?",

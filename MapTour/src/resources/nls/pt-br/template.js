@@ -131,7 +131,7 @@
 				settingsHeader: "Configurações do aplicativo",
 				settingsTabLayout: "Layout",
 				settingsTabColor: "Cores",
-				settingsTabLogo: "Logo",
+				settingsTabLogo: "Cabeçalho",
 				settingsTabFields: "Dados",
 				settingsTabExtent: "Extensão",
 				settingsTabZoom: "Nível de Zoom",

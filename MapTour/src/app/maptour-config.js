@@ -124,6 +124,9 @@ APPCFG = {
 	//
 	// Builder
 	//
+	
+	HELP_URL: "http://links.esri.com/storymaps/map_tour_template",
+	HELP_URL_PORTAL: "http://links.esri.com/storymaps/map_tour_template",
 
 	// Control the authorized data source (for initialization and import screen)
 	AUTHORIZED_IMPORT_SOURCE: {
@@ -143,6 +146,11 @@ APPCFG = {
 	// To use Facebook import on Portal for ArcGIS, create your own ID at https://developers.facebook.com/ 
 	// or set AUTHORIZED_IMPORT_SOURCE.facebook to false
 	FACEBOOK_APP_ID: "471023926309627",
+	// This Youtube key is valid for application running on arcgis.com and esri.com domains
+	// If the application is deployed on Portal for ArcGIS or your own server, the Youtube api call 
+	//  won't be perfomed until you set the following flag and provide your own key
+	YOUTUBE_DISABLE_ON_PORTAL: true,
+	YOUTUBE_API_KEY: "AIzaSyDevTFP16nz6sA-akiOVi6wWXiplJnQ4qw",
 	
 	COLOR_SCHEMES:  [
 		// COLORS is added as the first item at runtime

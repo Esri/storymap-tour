@@ -43,7 +43,7 @@
 				introStartBtn: "Avvia"
 			},
 			desktopHTML: {
-				storymapsText: "Mappa collegata a una storia",
+				storymapsText: "Una story map",
 				builderButton: "Passa a modalità generatore",
 				bitlyTooltip: "Ottieni un collegamento breve all\'applicazione",
 				bitlyStartIndex: "Collegamento alla posizione corrente"
@@ -154,7 +154,7 @@
 				settingsLogoSocialExplain: "Personalizzare il collegamento in alto a destra nell\'intestazione.",
 				settingsLogoSocialText: "Testo",
 				settingsLogoSocialLink: "Collegamento",
-				settingsLogoSocialDisabled: "Questa feature è stata disabilitata dall\'Amministratore",
+				settingsLogoSocialDisabled: "Questa feature è stata disabilitata dall\'amministratore",
 				settingsDataFieldsExplain: "Selezionare i campi per nome foto, didascalia e colore.",
 				settingsDataFieldsError: "L\'applicazione non è in grado di determinare i dati appropriati relativi a nome, didascalia o colore. Selezionare qui i campi da utilizzare. Queste impostazioni possono essere modificate in un secondo momento.",
 				settingsFieldsLabelName: "Nome",
@@ -280,7 +280,7 @@
 			onlinePhotoSharingCommon: {
 				pictures: "immagini",
 				videos: "video",
-				disabled: "Questa feature è stata disabilitata dall\'Amministratore",
+				disabled: "Questa feature è stata disabilitata dall\'amministratore",
 				disabledPortal: "Questa funzionalità è disabilitata in Portal for ArcGIS",
 				header1: "Le immagini devono essere condivise pubblicamente.",
 				header2: "L\'importazione sarà limitata ai primi %NB1% %MEDIA%.",
@@ -318,7 +318,7 @@
 				header: "È possibile effettuare l\'autenticazione con il account utente Facebook o utilizzare una pagina pubblica. Gli album privati possono essere utilizzati per creare Tour mappa pubblici che non richiedono l\'autenticazione dell\'utente Facebook, consentendo di mantenere privati commenti e apprezzamenti.",
 				leftHeader: "Utente Facebook",
 				rightHeader: "Pagina Facebook",
-				pageExplain: "Una pagina Facebook è un marchio/prodotto pubblico o un personaggio pubblico come <b>esrigis</b>. È possibile ottenere il nome della pagina dopo il primo \"/\" nell\'URL della pagina.",
+				pageExplain: "Una pagina Facebook è un marchio/prodotto pubblico o un personaggio pubblico come <b>esrigis</b>. È possibile ottenere il nome della pagina dopo il primo \'/\' nell\'URL della pagina.",
 				pageInputLbl: "Immettere un nome di pagina",
 				lookupMsgError: "Pagina non trovata"
 			},
@@ -329,7 +329,7 @@
 				signInMsg2: "Account non trovato",
 				signInMsg3: "Nessun album pubblico",
 				howToFind: "Come trovare l\'ID di un account Picasa o Google+",
-				howToFind2: "Copiare le cifre tra il primo e il secondo \"/\" di qualsiasi pagina Picasa o G+"
+				howToFind2: "Copiare le cifre tra il primo e il secondo \'/\' di qualsiasi pagina Picasa o G+"
 			},
 			viewCSV: {
 				title: "Importazione da CSV",

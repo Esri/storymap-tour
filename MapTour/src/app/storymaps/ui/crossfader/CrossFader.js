@@ -374,9 +374,18 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					$(_placardContainer).toggleClass("force-hidden", name === "" && text === "");
 				}
 				
+				// Picture panel is not in the tab list except if there is an intro record
+				var tabOrder = "tabindex='-1' aria-hidden='true'";
+				
+				if ( app.isLoading && app.data.hasIntroRecord() )
+					tabOrder = "tabindex='0'";
+				
 				$(_placard).empty();
-				$(_placard).append("<div class='name'>"+name+"<div/>");	
-				$(_placard).append("<div class='description'>"+text+"<div/>");
+				$(_placard).append("<div class='name' " + tabOrder + ">"+name+"<div/>");	
+				$(_placard).append("<div class='description' " + tabOrder + "'>"+text+"<div/>");
+				
+				// Remove user generated content links from the tab navigation
+				$(_placard).find("a").attr("tabindex", "-1");
 				
 				if (isInBuilderMode) {
 					new InlineFieldEdit(

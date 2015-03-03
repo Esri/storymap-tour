@@ -124,7 +124,7 @@ define(["dojo/dom-style",
 					settings.visible = true;
 		
 				array.forEach(settings.pointArray, function(pt, i) {
-					domConstruct.place("<div id='arrow"+i+"' class='mtArrow'></div><div id='multiTip"+i+"' class='multiTip'></div>", mapDiv, "last");
+					domConstruct.place("<div id='arrow"+i+"' class='mtArrow'></div><div id='multiTip"+i+"' tabindex='-1' class='multiTip'></div>", mapDiv, "last");
 					query('#multiTip'+i)[0].innerHTML = settings.content;
 					
 					domStyle.set('multiTip' + i, {

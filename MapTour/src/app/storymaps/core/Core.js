@@ -425,6 +425,14 @@ define(["esri/map",
 		{
 			console.log("maptour.core.Core - loadWebMap - webmapId:", webmapIdOrJSON);
 			
+			// Fix a Chrome freeze when map have a large initial extent (level 16 and up)
+			// Set the zoomDuration to 50ms, set back to default in see MainView.displayApp
+			// Using a value of 0ms create tile loading issue for all app life, it
+			//  looks like the API would not load all zoom level but resample lower level
+			if( has("chrome") ) {
+				esriConfig.defaults.map.zoomDuration = 50;
+			}
+			
 			arcgisUtils.createMap(webmapIdOrJSON, "mainMap", {
 				mapOptions: {
 					slider: true,
@@ -551,9 +559,12 @@ define(["esri/map",
 		
 		function displayApp()
 		{
-			app.isLoading = false;
 			$("#loadingOverlay").fadeOut();
 			loadingIndicator.stop();
+			
+			setTimeout(function(){
+				app.isLoading = false;
+			}, 50);
 		}
 		
 		function initError(error, message, noDisplay)
@@ -737,7 +748,7 @@ define(["esri/map",
 		
 		function showTemplatePreview()
 		{
-			window.location.replace('preview.html');
+			window.location = app.isPortal && APPCFG.HELP_URL_PORTAL ? APPCFG.HELP_URL_PORTAL : APPCFG.HELP_URL;
 		}
 		
 		function redirectToSignIn()

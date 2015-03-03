@@ -23,6 +23,9 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 				initEvents(slides);
 				
 				topic.subscribe("CORE_SELECTED_TOURPOINT_UPDATE", updateSlide);
+				
+				if ( ! $("body").hasClass("hasTouch") )
+					$(selector).addClass("hasDesktopBtn");
 			};
 			
 			this.update = function(slides, bgColor)
@@ -49,6 +52,15 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 				}
 				else
 					_preventNextRefresh = false;
+
+				$(selector).find(".embed-btn-left").toggleClass(
+					"disabled", 
+					! tourPointIndex
+				);
+				$(selector).find(".embed-btn-right").toggleClass(
+					"disabled", 
+					tourPointIndex === _carousel.options.numberOfPages - 1
+				);
 			};
 			
 			function render(slides)
@@ -56,7 +68,7 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 				_carousel = new SwipeView(selector + ' .carousel', {
 					numberOfPages: slides.length
 				});
-	
+				
 				// Load initial data
 				var nbSlides = Math.min(3, Math.max(3, slides.length));
 				for (var i=0; i<nbSlides; i++) {
@@ -94,14 +106,14 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 	
 					var nameEl = document.createElement('h4');
 					nameEl.className = "tpName";
-					nameEl.innerHTML = attr.getName();
+					nameEl.innerHTML = disableTabIndex(attr.getName());
 					textPane.appendChild(nameEl);
 	
 					var descriptionEl = document.createElement('p');
 					descriptionEl.className = "tpDescription previewDescription";
-					descriptionEl.innerHTML = attr.getDescription();
+					descriptionEl.innerHTML = disableTabIndex(attr.getDescription());
 					textPane.appendChild(descriptionEl);
-	
+					
 					_carousel.masterPages[i].appendChild(mainEl);
 				}
 			}
@@ -138,16 +150,26 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 							iconEl.src = MapTourHelper.getSymbolUrl(attr.getColor(), parseInt(upcoming, 10) + 1);
 		
 							var nameEl = page.querySelector('.tpName');
-							nameEl.innerHTML = attr.getName();
+							nameEl.innerHTML = disableTabIndex(attr.getName());
 							
 							var descriptionEl = page.querySelector('.tpDescription');
-							descriptionEl.innerHTML = attr.getDescription();
+							descriptionEl.innerHTML = disableTabIndex(attr.getDescription());
 						}
 					}
 					
 					if (app.data.getCurrentIndex() != -1 && app.data.getCurrentIndex() != _carousel.pageIndex) {
 						_preventNextRefresh = true;
 						topic.publish("CAROUSEL_SWIPE", _carousel.pageIndex);
+					}
+				});
+				
+				$(selector).find(".embed-btn").off('click').click(function(){
+					var btnContainer = $(this).parent();
+					if ( ! btnContainer.hasClass("disabled") ) {
+						if ( btnContainer.hasClass("embed-btn-left") )
+							topic.publish("PIC_PANEL_PREV", null);
+						else
+							topic.publish("PIC_PANEL_NEXT", null);
 					}
 				});
 			}
@@ -164,6 +186,14 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 			{
 				$(selector + ' .carousel').css("background-color", bgColor);
 				$(selector + ' .builderMobile').css("background-color", bgColor);
+			}
+			
+			// As carousel don't play well with
+			function disableTabIndex(str)
+			{
+				var str2 = $('<div>' + str + '</div>');
+				str2.find('a').attr("tabindex", "-1");
+				return str2.html();	
 			}
 		};
 	}

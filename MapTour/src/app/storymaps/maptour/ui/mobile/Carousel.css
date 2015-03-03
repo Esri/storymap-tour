@@ -37,3 +37,65 @@
 	right: 5px;
 	z-index: 499;
 }
+
+/*
+ * Desktop navigation
+ */
+ 
+#footerMobile.hasDesktopBtn .carousel {
+	margin: 0 53px;
+}
+ 
+#footerMobile .embed-btn-container {
+	display: none;
+}
+
+#footerMobile.hasDesktopBtn .embed-btn-container {
+	position: absolute;
+	top: 14px;
+	display: block;
+	width: 51px;
+	height: 100%;
+	z-index: 1;
+	opacity: 0.8;
+	padding-top: 14px;
+}
+
+#footerMobile .embed-btn-container.disabled {
+	opacity: 0.2;
+	cursor: default;	
+}
+ 
+#footerMobile .embed-btn {
+	width: 42px;
+	height: 42px;
+	background: url(../../../../../resources/icons/embed-arrows.png);
+}
+
+#footerMobile .embed-btn-container:not(.disabled):hover {
+	opacity: 1.0;
+	cursor: pointer;
+}
+
+/* Left button */
+#footerMobile .embed-btn-left {
+	left: 0;
+	padding-left: 9px;
+}
+
+#footerMobile .embed-btn-left.disabled .embed-btn {
+	background-position: 42px 0;
+}
+
+/* Right button */
+#footerMobile .embed-btn-right {
+	right: 0;
+}
+
+#footerMobile .embed-btn-right .embed-btn {
+	background-position: 0 -42px;
+}
+
+#footerMobile .embed-btn-right.disabled .embed-btn {
+	background-position: 42px -42px;
+}

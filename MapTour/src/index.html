@@ -19,7 +19,8 @@
 		<meta name="description" content="This story map was created with the Esri Map Tour application in ArcGIS Online.">
 		
 		<!-- Facebook sharing -->
-		<meta property="og:title" content="Map Tour"/>
+		<meta property="og:type" content="article"/>
+		<meta property="og:title" content="Story Map Tour"/>
 		<meta property="og:description" content="This story map was created with the Esri Map Tour application in ArcGIS Online."/>
 		<meta property="og:image" content="resources/icons/esri-globe.png"/>
 
@@ -67,7 +68,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.2.6';
+			var version = '2.2.7';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -94,8 +95,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("//js.arcgis.com/3.12/esri/css/esri.css", true);
-			loadCSS("//js.arcgis.com/3.12/dijit/themes/claro/claro.css", true);			
+			loadCSS("//js.arcgis.com/3.13/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.13/dijit/themes/claro/claro.css", true);			
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -200,26 +201,26 @@
 			<div id="openHeaderMobile"></div>
 			<!-- Desktop header -->
 			<div id="headerDesktop">
-				<div class="textArea">
-					<h1 class="title"></h1>
-					<h2 class="subtitle"></h2>
-				</div>
 				<div class="rightArea">
 					<div class="social">
 						<span class="msLink">
-							<a href="http://storymaps.arcgis.com" target="_blank"></a>
+							<a href="http://storymaps.arcgis.com" target="_blank" tabindex="-1"></a>
 						</span>
-						<i class="shareIcon share_facebook icon-facebook-squared-1"></i>
-						<i class="icon-twitter-1 shareIcon share_twitter"></i>
-						<i class="icon-link shareIcon share_bitly"></i>
+						<i class="shareIcon share_facebook icon-facebook-squared-1" title="Share on Facebook"></i>
+						<i class="icon-twitter-1 shareIcon share_twitter" title="Share on Twitter"></i>
+						<i class="icon-link shareIcon share_bitly" title="Share a short link"></i>
 					</div>
 					<div class="logo">
 						<a target="_blank">
-							<img alt="Esri - Home" class="headerLogoImg"/>
+							<img alt="Map Tour logo" class="headerLogoImg"/>
 						</a>
 					</div>
 				</div>
-				<button type="button" class="switchBuilder btn"></button>
+				<div class="textArea">
+					<h1 class="title" tabindex="0"></h1>
+					<h2 class="subtitle" tabindex="0"></h2>
+				</div>
+				<button type="button" class="switchBuilder btn" tabindex="-1"></button>
 				<!-- Builder top panel -->
 				<div id="builderPanel">
 					<h4></h4>
@@ -253,10 +254,10 @@
 			</div>
 			<!-- Picture panel -->
 			<div id="picturePanel">
-				<img id="arrowPrev" class="arrow disabled" />
+				<img id="arrowPrev" class="arrow disabled" alt="Previous point"/>
 				<div id="cfader"></div>
 				<div id="pictureLoadingIndicator" style="visibility:hidden;"></div>
-				<img id="arrowNext" class="arrow disabled" />
+				<img id="arrowNext" class="arrow disabled" alt="Next point"/>
 				
 				<a class="modern-layout-control left click-btn"></a>
 				<a class="modern-layout-control right click-btn"></a>
@@ -317,13 +318,13 @@
 			<!-- Desktop footer -->
 			<div id="footerDesktop">
 				<div class="carousel">
-					<img class="arrowLeft" />
+					<img class="arrowLeft" aria-hidden="true" alt="Navigate carousel backward"/>
 					<div class="carouselWrapper">
 						<div class="carouselScroller">
-							<ul></ul>
+							<ul aria-hidden="true"></ul>
 						</div>
 					</div>
-					<img class="arrowRight" />
+					<img class="arrowRight" aria-hidden="true" alt="Navigate carousel forward"/>
 				</div>
 			</div>
 			<!-- Mobile footer -->
@@ -335,14 +336,20 @@
 						</form>
 					</span>
 				</div>
+				<div class="embed-btn-container embed-btn-left disabled">
+					<div class="embed-btn"></div>
+				</div>
 				<div class="carousel"></div>
+				<div class="embed-btn-container embed-btn-right">
+					<div class="embed-btn"></div>
+				</div>
 			</div>
 		</div>
 
 		<!-- Loading indicator -->
 		<div id="loadingOverlay"></div>
 		<div id="loadingIndicator"></div>
-		<div id="loadingMessage"></div>
+		<div id="loadingMessage" aria-hidden="true"></div>
 
 		<!-- Organize popup -->
 		<div class="modal hide" id="organizePopup" data-backdrop="static" tabindex="-1">
@@ -1053,9 +1060,9 @@
 		<div id="fatalError">
 			<table border="0">
 				<tr>
-					<td width="70px" align="center" id="fatalError-icon"></td>
+					<td id="fatalError-icon" style="width:70px; text-align: center"></td>
 					<td>
-						<b class="error-title"></b>
+						<strong class="error-title"></strong>
 						<p class="error-msg"></p>
 					</td>
 				</tr>
@@ -1063,7 +1070,7 @@
 		</div>
 		
 		<script type="text/javascript">
-			loadJS('//js.arcgis.com/3.12/init.js', true);
+			loadJS('//js.arcgis.com/3.13/init.js', true);
 			loadJS('app/maptour-config.js');
 			
 			function getUrlVar(name)

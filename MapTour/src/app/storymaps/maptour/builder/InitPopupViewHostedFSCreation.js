@@ -457,7 +457,9 @@ define([
 			
 			function getAdminUrl(url)
 			{
-				return url.replace("rest/services","admin/services").replace("/FeatureServer",".FeatureServer");
+				return url.replace("http://", window.location.protocol + "//")
+						.replace("rest/services","admin/services")
+						.replace("/FeatureServer",".FeatureServer");
 			}
 			
 			//

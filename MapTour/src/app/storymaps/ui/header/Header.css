@@ -31,7 +31,8 @@
 
 #headerDesktop .title {
 	height:26px;
-	padding-top: 18px;
+	margin-top: 14px;
+	padding-top: 4px;
 	font-size:20px;
 	font-weight:normal;
 	text-align:left;

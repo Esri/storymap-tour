@@ -126,13 +126,68 @@ define(["storymaps/maptour/core/WebApplicationData",
 				
 				// Prevent iPad vertical bounce effect
 				// except on few containers that needs that
-				$(document).bind(
-					'touchmove',
-					function(e) {
-						if( ! $(e.target).parents('#helpPopup, #placardContainer, #introPanel, #infoPanel, #popupViewGeoTag').length && ! $(e.target).hasClass('subtitle') )
-							e.preventDefault();
+				if ( has("touch") ) {
+					$(document).bind(
+						'touchmove',
+						function(e) {
+							if( ! $(e.target).parents('#helpPopup, #placardContainer, #introPanel, #infoPanel, #popupViewGeoTag').length && ! $(e.target).hasClass('subtitle') )
+								e.preventDefault();
+						}
+					);
+				}
+				
+				// Prevent focus on mousedown but allow it with keyboard
+				$("body").on("mousedown", "*", function(e) {
+					if (($(this).is(":focus") || $(this).is(e.target)) && $(this).css("outline-style") == "none") {
+						$(this).css("outline", "none").on("blur", function() {
+							$(this).off("blur").css("outline", "");
+						});
 					}
-				);
+				});
+				
+				// Detect focus on the title to avoid losing the current point if 
+				//  the app has previously navigated using the mouse
+				/*
+				var preventTitleFocusAction = false;
+				$("#headerDesktop .title").click(function(){
+					preventTitleFocusAction = true;
+				});
+				
+				$("#headerDesktop .title").focusin(function(e){
+					setTimeout(function(){
+						if ( ! preventTitleFocusAction ) {
+							if ( app.data.getCurrentIndex() > 0 ) { //  && ! e.relatedTarget
+								if ( app.data.getCurrentIndex() < app.data.getNbPoints() - 1 )
+									topic.publish("CAROUSEL_CLICK", app.data.getCurrentIndex() + 1);
+							}
+						}
+						
+						preventTitleFocusAction = false;
+					}, 300);
+				});
+				*/
+				
+				/*
+				$(document).on('keydown', function(e){
+					if( e.keyCode === 9 ) {
+						var focusElem = $(":focus");
+						
+						if ( ! focusElem.length ) {
+							setTimeout(function(){
+								if ( ! e.shiftKey  ) {
+									if ( app.data.getCurrentIndex() < app.data.getNbPoints() - 1 )
+										topic.publish("CAROUSEL_CLICK", app.data.getCurrentIndex() + 1);
+								}
+								else {
+									if ( app.data.getCurrentIndex() > 0 )
+										topic.publish("CAROUSEL_CLICK", app.data.getCurrentIndex() - 1);
+								}
+							}, 50);
+							
+						}
+					}
+				});
+				*/
 				
 				if( has("touch") )
 					$("body").addClass("hasTouch");
@@ -637,6 +692,23 @@ define(["storymaps/maptour/core/WebApplicationData",
 			 */
 			function displayApp()
 			{
+				// Fix a Chrome freeze when map have a large initial extent (level 16 and up)
+				// Set back the zoomDuration to 500ms
+				if( has("chrome") ) {
+					if ( app.map.getLevel() > 0 ) {
+						app.map.setZoom(app.map.getLevel() - 1).then(function(){
+							// For the map command +/- buttons to behave well 
+							esriConfig.defaults.map.zoomDuration = 50;
+							app.map.setZoom(app.map.getLevel() + 1).then(function(){
+								esriConfig.defaults.map.zoomDuration = 500;
+							});
+						});
+					}
+					else {
+						esriConfig.defaults.map.zoomDuration = 500;
+					}
+				}
+				
 				// If intro record, display mobile intro view
 				if ( app.data.getIntroData() && app.data.getCurrentIndex() == null && (! has("ie") || has("ie") > 8) ) 
 					app.mobileIntroView.init(app.data.getIntroData(), WebApplicationData.getColors()[2]);

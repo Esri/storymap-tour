@@ -20,6 +20,18 @@ define(["storymaps/maptour/core/WebApplicationData", "dojo/has"],
 			this.getView = function()
 			{				
 				_footer.find('.btnNext').attr("disabled", "disabled").html(i18n.viewer.onlinePhotoSharingCommon.select);
+				
+				if ( app.isPortal && APPCFG.YOUTUBE_DISABLE_ON_PORTAL ) { 
+					_container.find('.btn-select-youtube').addClass("disabled").unbind('click');
+					_container.find('.btn-select-youtube').popover('destroy').popover({
+						trigger: 'hover',
+						placement: 'top',
+						html: true,
+						content: i18n.viewer.onlinePhotoSharingCommon.disabled,
+						container: '.popover-import'
+					});
+				}
+				
 				return _container;
 			};
 			

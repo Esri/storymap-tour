@@ -8,7 +8,7 @@
 				loadBuilder: "PŘEPÍNÁNÍ DO REŽIMU TVORBY",
 				redirectSignIn: "PROBÍHÁ PŘESMĚROVÁNÍ NA PŘIHLAŠOVACÍ STRÁNKU",
 				redirectSignIn2: "(budete sem přesměrováni po přihlášení)",
-				fail: "Je nám líto, ale nepodařilo se načíst prohlídku mapy.",
+				fail: "Nepodařilo se bohužel načíst prohlídku mapy.",
 				failButton: "Zkusit znovu"
 			},
 			errors: {
@@ -186,7 +186,7 @@
 				dataBtnSave: "Vytvořit službu",
 				dataFooterProgress: "Služba se vytváří",
 				dataFooterSucceed: "Vytvoření se podařilo. Načítání",
-				dataFooterError: "Vytvoření se nezdařilo. Zkuste to prosím znovu.",
+				dataFooterError: "Vytvoření se nezdařilo. Zkuste to znovu.",
 				tabError: "Zkontrolujte prosím, nejsou-li v záložkách chyby.",
 				introRecordBtn: "Úvod",
 				introRecordActivate: "Použít první bod jako úvod (nezobrazuje se v karuselu)"
@@ -224,7 +224,7 @@
 				gotIt: "OK",
 				savingApplication: "Ukládání aplikace",
 				saveSuccess: "Aplikace byla úspěšně uložena.",
-				saveError: "Uložení se nezdařilo, zkuste to prosím znovu.",
+				saveError: "Uložení se nezdařilo, zkuste to znovu.",
 				saveError2: "Ukládání selhalo kvůli neplatnému HTML tagu v názvu nebo popisu.",
 				saveError3: "Název nesmí být prázdný",
 				dragColorPicker: "Přesuň<br />nebo změň  barvu.",
@@ -253,7 +253,7 @@
 				popoverUploadingPhoto: "Nahrávání obrázku a miniatury",
 				popoverUploadingThumbnail: "Nahrávání miniatury",
 				popoverUploadSuccessful: "Nahrání proběhlo úspěšně.",
-				popoverUploadError: "Nahrání se nezdařilo, zkuste to prosím znovu.",
+				popoverUploadError: "Nahrání se nezdařilo, zkuste to znovu.",
 				changePicAndThumb: "Změnit obrázek",
 				changeThumb: "Změnit miniaturu",
 				selectPic: "Změnit média",
