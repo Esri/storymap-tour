@@ -10,7 +10,7 @@ The Story Map Tour app is ideal when you want to present a linear, place-based n
 [User Download (source code not included)](http://links.esri.com/storymaps/map_tour_template_zip) | 
 [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
-**Latest release is version 2.2.7**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
+**Latest release is version 2.2.8**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
 See the [release page](https://github.com/Esri/map-tour-storytelling-template-js/releases) for release notes.
 
 The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets. 
