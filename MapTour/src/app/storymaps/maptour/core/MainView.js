@@ -143,6 +143,22 @@ define(["storymaps/maptour/core/WebApplicationData",
 							$(this).off("blur").css("outline", "");
 						});
 					}
+					
+					if ( $(this).parents("#placard > div").length ) {
+						$(this).parents("#placard > div").css("outline", "none").on("blur", function() {
+							$(this).off("blur").css("outline", "");
+						});
+					}
+					else if ( $(this).parents("#headerDesktop .title").length ) {
+						$(this).parents("#headerDesktop .title").css("outline", "none").on("blur", function() {
+							$(this).off("blur").css("outline", "");
+						});
+					}
+					else if ( $(this).parents("#headerDesktop .subtitle").length ) {
+						$(this).parents("#headerDesktop .subtitle").css("outline", "none").on("blur", function() {
+							$(this).off("blur").css("outline", "");
+						});
+					}
 				});
 				
 				// Detect focus on the title to avoid losing the current point if 
@@ -1281,6 +1297,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 					}
 					else if (! visibleMapContains(geom)) 
 						_this.centerMap(geom);
+				}
+				else {
+					$("#mapPanel .mapLocationMsg").html("Location not available"); // TODO i18n
+					$("#mapPanel .mapLocationError").fadeIn();
+					
+					setTimeout(function(){
+						$("#mapPanel .mapLocationError").fadeOut();
+					}, 5000);
 				}
 			};
 			

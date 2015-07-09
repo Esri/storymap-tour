@@ -46,7 +46,7 @@ define(["storymaps/utils/ResamplePicture"],
 				
 				var pointName = prompt(i18n.viewer.builderHTML.addMobileName + ':');
 				if( pointName ) {
-					loadingIndicator.start();
+					$("#loadingIndicator").show();		
 					loadingIndicator.setMessage(i18n.viewer.builderHTML.addMobileUploading);
 					
 					// Resample main picture using an IMG tag to avoid bug in iOS 
@@ -93,14 +93,14 @@ define(["storymaps/utils/ResamplePicture"],
 							function(){
 								_saveApp();
 								$('.builderMobile form').get(0).reset();
-								loadingIndicator.stop();
+								$("#loadingIndicator").hide();
 							},
 							function() {
 								$('.builderMobile form').get(0).reset();
-								loadingIndicator.stop();
+								$("#loadingIndicator").hide();
 								loadingIndicator.setMessage(i18n.viewer.builderHTML.addMobileError);
 								setTimeout(function(){
-									loadingIndicator.stop();
+									$("#loadingIndicator").hide();
 								}, 2500);
 							}
 						);

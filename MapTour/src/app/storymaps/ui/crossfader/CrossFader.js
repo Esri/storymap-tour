@@ -183,7 +183,8 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				} 
 				else {
 					mediaEl.attr('src', url);
-					_loadingIndicator.start();
+					if ( ! app.isLoading )
+						_loadingIndicator.start();
 				}
 				
 				if( ! _mediaIsImg ) {

@@ -8,7 +8,7 @@ define(["storymaps/utils/Helper"],
 			var _badLogo = false;
 	
 			$(_logoInput).keydown(onLogoInputEnter);
-			$(_logoInput).blur(loadCustomLogo);
+			$(_logoInput).focusout(loadCustomLogo);
 			$(_logoTargetInput).keydown(onTargetInputEnter);
 	
 			$("input[type=radio]", contentContainer).click(onLogoRadioClick);

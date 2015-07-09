@@ -126,7 +126,7 @@ APPCFG = {
 	//
 	
 	HELP_URL: "http://links.esri.com/storymaps/map_tour_template",
-	HELP_URL_PORTAL: "http://links.esri.com/storymaps/map_tour_template",
+	HELP_URL_PORTAL: "#/Story_Map_Tour/0193000000w0000000/",
 
 	// Control the authorized data source (for initialization and import screen)
 	AUTHORIZED_IMPORT_SOURCE: {

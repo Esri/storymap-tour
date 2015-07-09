@@ -3,6 +3,7 @@ define(["storymaps/utils/Helper",
 		"storymaps/maptour/builder/MapTourBuilderHelper", 
 		"storymaps/maptour/core/MapTourHelper",
 		"dojo/_base/lang",
+		"dojox/data/CsvStore",
 		"esri/map",
 		"esri/layers/FeatureLayer",
 		"esri/geometry/Point",
@@ -18,6 +19,7 @@ define(["storymaps/utils/Helper",
 		MapTourBuilderHelper, 
 		MapTourHelper, 
 		lang, 
+		CsvStore,
 		Map,
 		FeatureLayer,
 		Point,
@@ -150,7 +152,7 @@ define(["storymaps/utils/Helper",
 				var separator = getSeparator(firstLine);
 				
 				// Initialize a Dojo CsvStore
-				var csvStore = new dojox.data.CsvStore({
+				var csvStore = new CsvStore({
 					data: data,
 					separator: separator
 				});

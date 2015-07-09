@@ -35,6 +35,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 			// Web map and Web application JSON
 			var _webmapItem = null;
 			var _appItem = null;
+			// App proxies
+			var _appProxies = null;
 	
 			// Reference to the map layer created through arcgisUtils.createMap
 			// This layer is hidden and only used to save data
@@ -97,6 +99,16 @@ define(["storymaps/maptour/core/WebApplicationData",
 			this.setAppItem = function(appItem)
 			{
 				_appItem = appItem;
+			};
+			
+			this.getAppProxies = function()
+			{
+				return _appProxies;
+			};
+			
+			this.setAppProxies = function(appProxies)
+			{
+				_appProxies = appProxies;
 			};
 	
 			this.getSourceLayer = function()
@@ -391,8 +403,16 @@ define(["storymaps/maptour/core/WebApplicationData",
 			
 			this.userIsAppOwner = function()
 			{
-				return  (app.portal && app.portal.getPortalUser() && app.portal.getPortalUser().username == this.getAppItem().owner)
-						|| (Helper.getPortalUser() != null && Helper.getPortalUser() == this.getAppItem().owner);
+				var portalUser = app.portal ? app.portal.getPortalUser() : null;
+				
+				return  (portalUser && portalUser.username == this.getAppItem().owner)
+						|| (Helper.getPortalUser() != null && Helper.getPortalUser() == this.getAppItem().owner)
+						// Admin
+						|| (portalUser && portalUser.role == "org_admin")
+						// Admin privilege through a role
+						|| (portalUser && portalUser.privileges && $.inArray("portal:admin:updateItems", portalUser.privileges) > -1 )
+						// Group with shared ownership
+						|| this.getAppItem().itemControl == "update";
 			};
 	
 			this.userIsOrgaPublisher = function()

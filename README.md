@@ -10,7 +10,7 @@ The Story Map Tour app is ideal when you want to present a linear, place-based n
 [User Download (source code not included)](http://links.esri.com/storymaps/map_tour_template_zip) | 
 [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
-**Latest release is version 2.2.8**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
+**Latest release is version 2.2.9**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
 See the [release page](https://github.com/Esri/map-tour-storytelling-template-js/releases) for release notes.
 
 The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets. 
@@ -132,7 +132,7 @@ If you prefer to build your webmap without the interactive builder:
  * Optionally remove samples folder and Readme.pdf
  * Copy files to your web server root or in a specific folder
 
-*If you are using Portal for ArcGIS, please follow the instructions at the end of `app/maptour-config.js` to configure the application. Optionally you can also configure the application to use the ArcGIS API for JavaScript included on your Portal by replacing in `index.html` the 3 urls containing `//jsdev.arcgis.com/3.14/` with the following   `//webadaptor.domain.com/arcgis/jsapi/jsapi/` where arcgis is the name of your Web Adaptor.*
+*If you are using Portal for ArcGIS, please follow the instructions at the end of `app/maptour-config.js` to configure the application. Optionally you can also configure the application to use the ArcGIS API for JavaScript included on your Portal by replacing in `index.html` the 4 urls containing `//js.arcgis.com/3.14/` with the following   `//webadaptor.domain.com/arcgis/jsapi/jsapi/` where arcgis is the name of your Web Adaptor.*
 
 It is crucial for the application performance that your tour points have well-defined thumbnail images. Thumbnail images are used on the bottom carousel and on mobile device. If you choose to host the pictures yourself, you will have to manually create thumbnails of your pictures. Using the full resolution pictures for the thumbnail will result in poor performance. For that reason we strongly recommend that you use an online photo sharing services or a Feature Service in conjunction with the interactive builder that will do that for you. The recommended thumbnail size is 140x93px.
 

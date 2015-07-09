@@ -489,7 +489,7 @@ define(["storymaps/ui/crossfader/CrossFader",
 										trigger: 'hover', \
 										placement: 'bottom', \
 										html: true, \
-										content: '<div style=\"font-size: 14px; margin-bottom: 2px;\">" + (i18n.viewer.builderHTML.addMediaVideoHelpTooltip4.replace("\'", "\\'", 'g')) + "</div><img src=\"resources/icons/builder-picturepanel-tooltip-youtube.png\" width=\"245px\" />'});"
+										content: '<div style=\"font-size: 14px; margin-bottom: 2px;\">" + (i18n.viewer.builderHTML.addMediaVideoHelpTooltip4.replace(/'/g, "\\'")) + "</div><img src=\"resources/icons/builder-picturepanel-tooltip-youtube.png\" width=\"245px\" />'});"
 								+ '</script>'
 				});
 				

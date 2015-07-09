@@ -58,11 +58,11 @@
 
 /* FS/CSV/SHP layers will be hidden until explicitly set visible */
 #mainMap svg > g {
-	visibility: hidden;
+	/*visibility: hidden;*/
 }
 
 #mainMap svg g#mainMap_graphics_layer {
-	visibility: visible;
+	/*visibility: visible;*/
 }
 
 #hoverInfo {
@@ -89,4 +89,8 @@
 /* Override Map Marker link color */
 .multiTip a {
 	color: #FFF;
+}
+
+audio {
+	max-width: 100%;
 }
