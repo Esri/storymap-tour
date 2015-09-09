@@ -38,11 +38,11 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					$(selector).addClass('isBuilder');
 					title =  "<div class='text_edit_label'>" + (title || i18n.viewer.headerJS.editMe) + "</div>";
 					title += "<div class='text_edit_icon' title='"+i18n.viewer.headerJS.templateTitle+"'></div>";
-					title += "<textarea rows='1' class='text_edit_input' type='text'></textarea>";
+					title += "<textarea rows='1' class='text_edit_input' type='text' spellcheck='true'></textarea>";
 	
 					subtitle =  "<span class='text_edit_label'>" + (subtitle || i18n.viewer.headerJS.editMe) + "</span>";
 					subtitle += "<div class='text_edit_icon' title='"+i18n.viewer.headerJS.templateSubtitle+"'></div>";
-					subtitle += "<textarea rows='2' class='text_edit_input' type='text'></textarea>";
+					subtitle += "<textarea rows='2' class='text_edit_input' type='text' spellcheck='true'></textarea>";
 				}
 	
 				$(selector + ' #headerDesktop .title').html(title);
@@ -363,6 +363,8 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				//Desktop
 				$(selector + ' .msLink').html(i18n.viewer.desktopHTML.storymapsText);
 				$(selector + ' .switchBuilder').html('<div><img src="resources/icons/builder-edit-fields.png" /></div>' + i18n.viewer.desktopHTML.builderButton);
+				$(selector + ' .share_facebook').attr("title", i18n.viewer.desktopHTML.facebookTooltip);
+				$(selector + ' .share_twitter').attr("title", i18n.viewer.desktopHTML.twitterTooltip);
 				$(selector + ' .share_bitly').attr("title", i18n.viewer.desktopHTML.bitlyTooltip);
 			};
 		};

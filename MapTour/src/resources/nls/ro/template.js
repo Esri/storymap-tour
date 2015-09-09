@@ -45,7 +45,9 @@
 			desktopHTML: {
 				storymapsText: "O hartă informativă",
 				builderButton: "Comutare la modul builder",
-				bitlyTooltip: "Obţinere link scurt către aplicaţie",
+				facebookTooltip: "Partajare pe Facebook",
+				twitterTooltip: "Partajare pe Twitter",
+				bitlyTooltip: "Obţinere link scurt",
 				bitlyStartIndex: "Link către locul curent"
 			},
 			builderHTML: {

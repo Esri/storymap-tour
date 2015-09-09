@@ -28,7 +28,7 @@
 				notAuthorized: "Neturite teisių pasiekti šią aplikaciją",
 				oldBrowserTitle: "Naršyklė nėra pilnai palaikoma",
 				noBuilderIE8: "Kelionės žemėlapyje kūrimo įrankis nepalaikomas versijose žemesnėse nei Internet Explorer 9.",
-				ie10Win7Explain: "Kelionės žemėlapyje kūrimo būsena nepalaikoma naudojant Internet Explorer 10 su Windows 7. Turite <a target='_blank' href='http://msdn.microsoft.com/en-us/library/ie/hh920756(v=vs.85).aspx'>rankiniu būdu nustatyti naudotis Internet Explorer 9 standartu</a>, <a target='_blank' href='http://news.softpedia.com/news/How-to-Remove-IE10-and-Get-Back-to-IE9-on-Windows-7-308998.shtml'>pažeminti į Internet Explorer 9 versiją</a> arba atsinaujinti į Windows 8.",
+				ie10Win7Explain: "Kelionės žemėlapyje kūrimas nepalaikomas naudojant Internet Explorer 10 su Windows 7 kai duomenų šaltinis yra Elementų servisas su priedais. Norėdami naudoti Elementų servisą su priedais, turite <a target=\'_blank\' href=\'http://msdn.microsoft.com/en-us/library/ie/hh920756(v=vs.85).aspx\'>rankiniu būdu nustatyti naudotis Internet Explorer 9 standartu</a>, <a target=\'_blank\' href=\'http://news.softpedia.com/news/How-to-Remove-IE10-and-Get-Back-to-IE9-on-Windows-7-308998.shtml\'>pažeminti į Internet Explorer 9 versiją</a> arba atsinaujinti į Windows 8.",
 				oldBrowserExplain: "Ši naršyklė nepalaiko automatinio miniatiūrų iš į kelionės žemėlapyje įkeltų paveikslėlių kūrimo. Galite kurti kelionę žemėlapyje naudojant šią naršyklę, tačiau turėsite kiekvienam įkeltam paveikslėliui nurodyti atskirą miniatiūros paveikslėlį.",
 				oldBrowserExplain2: "Naršymo pagerinimui, <a href='http://browsehappy.com/' target='_blank'>atnaujinkite savo naršyklę</a> arba <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>aktyvinkite Google Chrome Frame skirtą Internet Explorer</a>.",
 				oldBrowserExplain3: "Kelionės žemėlapyje kūrėjas neveikia naudojant Internet Explorer 10 su Windows XP.",
@@ -45,7 +45,9 @@
 			desktopHTML: {
 				storymapsText: "Pristatomasis žemėlapis",
 				builderButton: "Perjungti į kūrimo būseną",
-				bitlyTooltip: "Gauti sutrumpintą aplikacijos nuorodą",
+				facebookTooltip: "Dalintis Facebook",
+				twitterTooltip: "Dalintis Twitter",
+				bitlyTooltip: "Gauti trumpą nuorodą",
 				bitlyStartIndex: "Nuoroda į esamą vietą"
 			},
 			builderHTML: {
@@ -61,7 +63,7 @@
 				buttonImport: "Importuoti",
 				buttonImportDisabled: "Importavimas neįmanomas naudojant elementų paslaugą su priedais",
 				dataEditionDisabled: "Duomenų redagavimas neleistas CSV duomenų šaltinyje",
-				dataSourceWarning: "Žemėlapio duro duomenų sluoksnis pasikeitė. Tačiau jei elementų ID ne tas pats, turite perkrauti tvarką ir paslėptus taškus <b>Organizuoti</b>. Jei skiriasi lauko pavadinimas, turite perkrauti laukų nustatymus <b>duomenų skiltyje nustatymuose</b>.",
+				dataSourceWarning: "Žemėlapio turo duomenų sluoksnis pasikeitė. Tačiau jei elementų ID ne tas pats, turite perkrauti tvarką ir paslėptus taškus <b>Organizuoti</b>. Jei skiriasi lauko pavadinimas, turite perkrauti laukų nustatymus <b>duomenų skiltyje nustatymuose</b>.",
 				organizeWarning: "Vienas ar keli taškai, pridėti už interaktyvaus kūrėjo ribų, yra paslėpti.",
 				dataPicError0a: "Šiame ture yra <b>%NB%</b> neatitinkančių vaizdų URL.",
 				dataPicError0b: "Šiame ture gali būti <b>%NB%</b> neatitinkančių vaizdų URL.",
@@ -75,7 +77,7 @@
 				dataPicError8: "Pašalinti nuotraukų apribojimą",
 				dataPicError9: "Jei šie URL nurodo į video, galite ignoruoti šį įspėjimą. Jei jie nurodo nuotrauką, galite atlikti vieną iš šių dviejų veiksmų:",
 				modalCancel: "Atšaukti",
-				modalApply: "Vykdyti",
+				modalApply: "Taikyti",
 				organizeHeader: "Tvarkyti kelionę",
 				organizeGeneralCaption: "Kelionės taškų rikiavimui, pertempkite juos",
 				organizeDelete: "Pašalinti",
@@ -258,7 +260,7 @@
 				changeThumb: "Keisti miniatiūrą",
 				selectPic: "Pakeisti mediją",
 				selectThumb: "Keisti miniatiūrą",
-				uploadPicAndThumb: "Vykdyti"
+				uploadPicAndThumb: "Taikyti"
 			},
 			headerJS:{
 				editMe: "Redaguok!",
@@ -315,7 +317,7 @@
 			},
 			viewFacebook: {
 				title: "Facebook importas",
-				header: "Autentifikuokitės su Facebook vartotojo paskyra arba naudokite viešą puslapį. Asmeniniai albumai gali būti naudojami kuriant viešą žemėlapio turą, kuriam nereikalinga Facebook autentifikacija, leidžianti komentarus ir patikimus išlikti privatiems.",
+				header: "Autentikuokitės su Facebook vartotojo paskyra arba naudokite viešą puslapį. Asmeniniai albumai gali būti naudojami kuriant viešą žemėlapio turą, kuriam nereikalinga Facebook autentifikacija, leidžianti komentarus ir patikimus išlikti privatiems.",
 				leftHeader: "Facebook vartotojas",
 				rightHeader: "Facebook puslapis",
 				pageExplain: "Facebook puslapis yra viešas prekės ženklas, produktas ar įžymybė kaip <b>esrigis</b>. Jūs galite pamatyti puslapio pavadinimą po pirmo \'/\' puslapio URL.",
@@ -338,7 +340,7 @@
 				resultHeaderSuccess: "Sėkmingai užkrauta %NB_POINTS% taškų",
 				resultHasBeenLimited: "Importavimas buvo apribotas iki pirmų %VAL1% taškų iš %VAL2%, kad atitiktų %VAL3% taškų vienoje kelionėje apribojimą",
 				browserSupport: "Jūsų naršyklė nepalaikoma. Norėdami naudoti CSV, jūs turite <a href='http://browsehappy.com/' target='_blank'>atnaujinti naršyklę</a> arba naudoti ArcGIS.com internetinę žemėlapių peržiūros aplikaciją (žr. Pagalbą).",
-				errorLatLng: "Platumos ir ilgumos laukai nesurasti. Galimos reikšmės platumai yra: <i>%LAT%</i>, o ilgumai: <i>%LONG%</i>.",
+				errorLatLng: "Platumos ir ilgumos laukai nerasti. Galimos reikšmės platumai yra: <i>%LAT%</i>, o ilgumai: <i>%LONG%</i>.",
 				errorFieldsExplain: "Įkrovimas nepavyko, kadangi nebuvo rasti šie būtini laukai",
 				errorFieldsName: "<b>Name</b> galimos reikšmės yra: %VAL%",
 				errorFieldsDesc: "<b>Description</b> galimos reikšmės yra: %VAL%",

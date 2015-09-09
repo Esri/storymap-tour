@@ -45,7 +45,9 @@ define({
 			desktopHTML: {
 				storymapsText: "A story map",
 				builderButton: "Switch to builder mode",
-				bitlyTooltip: "Get a short link to the application",
+				facebookTooltip: "Share on Facebook",
+				twitterTooltip: "Share on Twitter",
+				bitlyTooltip: "Get a short link",
 				bitlyStartIndex: "Link to current place"
 			},
 			builderHTML: {

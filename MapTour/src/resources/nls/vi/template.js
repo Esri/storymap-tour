@@ -45,7 +45,9 @@
 			desktopHTML: {
 				storymapsText: "Story map",
 				builderButton: "Chuyển sang chế độ thiết lập",
-				bitlyTooltip: "Tải liên kết ngắn đến ứng dụng",
+				facebookTooltip: "Chia sẻ trên Facebook",
+				twitterTooltip: "Chia sẻ trên Twitter",
+				bitlyTooltip: "Tải liên kết ngắn",
 				bitlyStartIndex: "Liên kết đến địa điểm hiện tại"
 			},
 			builderHTML: {

@@ -45,7 +45,9 @@
 			desktopHTML: {
 				storymapsText: "Ένα story map",
 				builderButton: "Μετάβαση στη λειτουργία εργαλείου δημιουργίας",
-				bitlyTooltip: "Λήψη ενός σύντομου συνδέσμου της εφαρμογή",
+				facebookTooltip: "Κοινοποίηση στο Facebook",
+				twitterTooltip: "Κοινοποίηση στο Twitter",
+				bitlyTooltip: "Λήψη σύντομου συνδέσμου",
 				bitlyStartIndex: "Σύνδεσμος για το τρέχον σημείο"
 			},
 			builderHTML: {

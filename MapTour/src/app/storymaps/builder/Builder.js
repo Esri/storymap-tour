@@ -495,6 +495,9 @@ define(["esri/arcgis/Portal",
 			// TODO: should be replaced by the improved WebMapHelper.saveWebmap
 			//
 			
+			// Store data when the map tour data layer is a feature collection saved as an item
+			var fcItem = null;
+			
 			// Look for modified or new points if the tour use an embedded layer
 			var webmapEmbeddedLayerChange = false;
 			if( app.data.sourceIsWebmap() ) {
@@ -531,9 +534,28 @@ define(["esri/arcgis/Portal",
 							layerIndex = i;
 					});
 					
-					// Serialize the layer to the webmap definition
-					if( layerIndex != -1 )
-						itemData.operationalLayers[layerIndex].featureCollection = serializeMapTourGraphicsLayerToFeatureCollection(app.data.getTourLayer(), app.data.getAllFeatures(), app.data.getSourceLayer());	
+					var layer = itemData.operationalLayers[layerIndex],
+						data = serializeMapTourGraphicsLayerToFeatureCollection(
+								app.data.getTourLayer(), app.data.getAllFeatures(), 
+								app.data.getSourceLayer()
+						);
+					
+					// If the map tour data layer is a feature collection saved as an item
+					if ( layer.itemId ){
+						fcItem = {
+							id: layer.itemId,
+							data: data
+						};
+						
+						if ( layer.featureCollection ) {
+							delete layer.featureCollection;
+						}
+					}
+					else {
+						// Serialize the layer to the webmap definition
+						if( layerIndex != -1 )
+							layer.featureCollection = data;
+					}
 				}
 				
 				// Cleanup item data
@@ -604,8 +626,55 @@ define(["esri/arcgis/Portal",
 								}
 							);
 						}
-						else
-							nextFunction(response);
+						else {
+							// If the map tour data layer is a feature collection saved as an item
+							if ( fcItem ) {
+								// Need an extra request to get the item to know if the item is in a folder
+								arcgisUtils.getItem(fcItem.id).then(
+									function(responseItem)
+									{
+										if ( ! responseItem || ! responseItem.item ) {
+											appSaveFailed();
+											return;
+										}
+										
+										var ownerFolder = responseItem.item.ownerFolder;
+										
+										var rqData = {
+											f: 'json',
+											text: JSON.stringify(fcItem.data),
+											overwrite: true,
+											token: token
+										};
+										
+										var url = portalUrl + "/sharing/content/users/" + uid + (ownerFolder ? ("/" + ownerFolder) : "") + "/items/" + fcItem.id + "/update";
+										// Need to know the folder because for some reason, the following request don't works
+										//var url = portalUrl + "/sharing/rest/content/items/" + fcItem.id + "/update"; 
+										var saveRq = esriRequest(
+											{
+												url: url,
+												handleAs: 'json',
+												content: rqData
+											},
+											{
+												usePost: true
+											}
+										);
+										
+										saveRq.then(
+											function(){
+												nextFunction(response);
+											},
+											appSaveFailed
+										);
+									},
+									appSaveFailed
+								);
+							}
+							else {
+								nextFunction(response);
+							}
+						}
 					},
 					appSaveFailed
 				);

@@ -184,7 +184,7 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 			
 			function setColor(bgColor)
 			{
-				$(selector + ' .carousel').css("background-color", bgColor);
+				$(selector).css("background-color", bgColor);
 				$(selector + ' .builderMobile').css("background-color", bgColor);
 			}
 			

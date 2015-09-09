@@ -69,7 +69,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.2.9';
+			var version = '2.3.0';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -162,7 +162,7 @@
 				parseOnLoad: true,
 				isDebug: false,
 				useDeferredInstrumentation: true,
-				cacheBust: ! isProduction,
+				//cacheBust: ! isProduction,
 				packages: [
 					{
 						name: 'storymaps',
@@ -207,9 +207,9 @@
 						<span class="msLink">
 							<a href="http://storymaps.arcgis.com" target="_blank" tabindex="-1"></a>
 						</span>
-						<i class="shareIcon share_facebook icon-facebook-squared-1" title="Share on Facebook"></i>
-						<i class="icon-twitter-1 shareIcon share_twitter" title="Share on Twitter"></i>
-						<i class="icon-link shareIcon share_bitly" title="Share a short link"></i>
+						<i class="shareIcon share_facebook icon-facebook-squared-1"></i>
+						<i class="icon-twitter-1 shareIcon share_twitter"></i>
+						<i class="icon-link shareIcon share_bitly"></i>
 					</div>
 					<div class="logo">
 						<a target="_blank">
@@ -542,9 +542,9 @@
 				<div class="addText tab-content">
 					<div>
 						<label></label>
-						<input class="tourPointNameField clearVal" type="text" placeholder="" />
+						<input class="tourPointNameField clearVal" type="text" spellcheck="true" placeholder="" />
 						<label></label>
-						<textarea rows="4" class="tourPointDescr clearVal" placeholder=""></textarea>
+						<textarea rows="4" class="tourPointDescr clearVal" spellcheck="true" placeholder=""></textarea>
 					</div>
 					<ul class="errorList"></ul>
 				</div>
@@ -948,7 +948,7 @@
 							<div class="control-group">
 								<label class="control-label" for="selectSocialText"></label>
 								<div class="controls">
-									<input id="selectSocialText" type="text" />
+									<input id="selectSocialText" type="text" spellcheck="true" />
 								</div>
 							</div>
 							<div class="control-group">

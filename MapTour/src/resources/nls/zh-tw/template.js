@@ -45,7 +45,9 @@
 			desktopHTML: {
 				storymapsText: "故事地圖",
 				builderButton: "切換到建構器模式",
-				bitlyTooltip: "取得應用程式的短連結",
+				facebookTooltip: "在 Facebook 上分享",
+				twitterTooltip: "在 Twitter 上分享",
+				bitlyTooltip: "取得短連結",
 				bitlyStartIndex: "到目前地點的連結"
 			},
 			builderHTML: {
@@ -141,7 +143,7 @@
 				settingsLayoutSelected: "選取的版面設定",
 				settingsLayoutSelect: "選擇此版面設定",
 				settingsLayoutNote: "請注意，在使用影片的位置，即使未勾選該選項，標語牌也始終位於影片下方。",
-				settingsLayoutLocBtn: "顯示\\“定位\\”按鈕",
+				settingsLayoutLocBtn: "顯示\“定位\”按鈕",
 				settingsLayoutLocBtnHelp: "大多數行動裝置和桌面瀏覽器(Internet Explorer 9)均支援該功能。",
 				settingsColorExplain: "透過選擇預定義的主題或建立自訂主題變更外觀。",
 				settingsLabelColor: "頁眉、內容和頁腳顏色",
@@ -337,7 +339,7 @@
 				resultHeaderEmpty: "CSV 為空",
 				resultHeaderSuccess: "已成功載入 %NB_POINTS% 個點",
 				resultHasBeenLimited: "匯入已限制為 %VAL2% 個點的前 %VAL1% 個點，以符合每次瀏覽 %VAL3% 個點的限制",
-				browserSupport: "您的瀏覽器不受支援，若要使用 CSV，必須<a href='http://browsehappy.com/' target='_blank'>升級瀏覽器</a>或使用 ArcGIS.com web 地圖檢視器 (請參閱\\“說明\\”)。",
+				browserSupport: "您的瀏覽器不受支援，若要使用 CSV，必須<a href='http://browsehappy.com/' target='_blank'>升級瀏覽器</a>或使用 ArcGIS.com web 地圖檢視器 (請參閱\“說明\”)。",
 				errorLatLng: "未找到緯度和經度欄位。可能的緯度值為: <i>%LAT%</i>，經度值為: <i>%LONG%</i>。",
 				errorFieldsExplain: "未找到以下必填欄位，所以載入失敗",
 				errorFieldsName: "<b>名稱</b>可能值為: %VAL%",
@@ -370,7 +372,7 @@
 				title: "選擇並定位您的圖像/影片",
 				header: "按一下或點觸想匯入的圖片，以將其定位。",
 				headerMore: "為什麼我的圖像/影片沒有地理定位?",
-				headerExplain: "如果您的圖片具有效的地理位置，它們將自動在地圖上定位並在第二個索引標籤中列出。<br /><br />預設情況下，Picasa 和 Flickr 在您匯入圖片時不會儲存地理位置 EXIF 元資料。請勾選 Picasa/Flickr 隱私設置以啟用外部應用程式的圖片地理位置匯入與供使用。可能需要針對要使用的 EXIF 地理位置將現有圖片重新匯入到 Flickr/Picasa。<br /><br />在 Facebook 中，需要勾選每個圖片，按一下\\“編輯\\”並選擇位置。",
+				headerExplain: "如果您的圖片具有效的地理位置，它們將自動在地圖上定位並在第二個索引標籤中列出。<br /><br />預設情況下，Picasa 和 Flickr 在您匯入圖片時不會儲存地理位置 EXIF 元資料。請勾選 Picasa/Flickr 隱私設置以啟用外部應用程式的圖片地理位置匯入與供使用。可能需要針對要使用的 EXIF 地理位置將現有圖片重新匯入到 Flickr/Picasa。<br /><br />在 Facebook 中，需要勾選每個圖片，按一下\“編輯\”並選擇位置。",
 				leftPanelTab1: "定位",
 				leftPanelTab2: "已定位",
 				clickOrTap: "按一下或輕觸要定位的地圖",
@@ -425,7 +427,7 @@
 					div6: "<b>您希望重複使用現有圖徵服務</b>將圖片儲存為附件或引用外部圖片: 請參閱下面的詳細描述部分。",
 					div7: "<b>您是上一版 Map Tour </b>範本的使用者，且已經擁有引用圖片和縮圖的 CSV: 您可以匯入該 CSV 並最佳化資料。建構器僅支援使用緯度/經度欄位的 CSV; 以地址為基礎的 CSV 可以繼續在您的 web 地圖中使用 (請參閱以下部分)。",
 					div8: "從線上照片分享服務中匯入",
-					div9: "匯入操作透過在 web 地圖圖徵集中儲存其 URL 來引用已託管的圖片。圖片並未儲存在 ArcGIS Online 中。如果無法存取託管的圖片，則無法在 Map Tour 中使用，您將看到\\“圖片不可用\\”的圖像。依您的照片服務提供者而定，Map Tour 可能不會匯入圖片的名稱、描述和位置。這些屬性儲存在 web 地圖中，對在線上服務進行的任何編輯都不會反映在 Map Tour 中。",
+					div9: "匯入操作透過在 web 地圖圖徵集中儲存其 URL 來引用已託管的圖片。圖片並未儲存在 ArcGIS Online 中。如果無法存取託管的圖片，則無法在 Map Tour 中使用，您將看到\“圖片不可用\”的圖像。依您的照片服務提供者而定，Map Tour 可能不會匯入圖片的名稱、描述和位置。這些屬性儲存在 web 地圖中，對在線上服務進行的任何編輯都不會反映在 Map Tour 中。",
 					div10: "在 web 伺服器上儲存圖片",
 					div11: "如果選擇自己託管圖片，則需要手動建立圖片的縮圖。使用全解析度的圖片建立縮圖將導致效能不佳。因此，強烈建議您使用線上照片分享服務或圖徵服務來進行此操作。",
 					div12: "使用現有圖徵服務或 Shapefile",
@@ -451,7 +453,7 @@
 				},
 				tab3: {
 					title: "自訂",
-					div1: "建構器提供幾個自訂選項，可以透過頂部面板中的\\“設定\\”按鈕進行存取。如果沒有找到所需的選項，我們還提供一個可下載版本，您可以在 web 伺服器上進行部署，並可強化以符合您的需求。",
+					div1: "建構器提供幾個自訂選項，可以透過頂部面板中的\“設定\”按鈕進行存取。如果沒有找到所需的選項，我們還提供一個可下載版本，您可以在 web 伺服器上進行部署，並可強化以符合您的需求。",
 					div2: "建議您使用託管的版本，除非:",
 					div3: "<li>它不提供您想要的 UI 自訂，例如使用標題背景圖像。</li><li>您是開發者，並且希望增強應用程式。</li>",
 					div4: "可透過 web 地圖或 web 製圖應用程式識別碼設定可下載版本。主要用例有:",
@@ -483,9 +485,9 @@
 				},
 				tab5: {
 					title: "發佈",
-					div1: "完成操作後，不要忘記透過 ArcGIS Online 中的\\“分享\\”按鈕或應用程式項目頁面分享您的 Map Tour 。",
+					div1: "完成操作後，不要忘記透過 ArcGIS Online 中的\“分享\”按鈕或應用程式項目頁面分享您的 Map Tour 。",
 					div2a: "透過建構器分享導覽",
-					div2b: "透過\\“分享\\”按鈕可更新應用程式和 web 地圖項目。如果您的導覽資料儲存在圖徵服務項目中，也會更新。如果透過 ArcGIS.com 地圖檢視器新增其他圖層，則這些圖層將不會進行更新。這可能導致導覽不會按預期進行分享。具有必要 (或更多) 權限的項目將不會更新。",
+					div2b: "透過\“分享\”按鈕可更新應用程式和 web 地圖項目。如果您的導覽資料儲存在圖徵服務項目中，也會更新。如果透過 ArcGIS.com 地圖檢視器新增其他圖層，則這些圖層將不會進行更新。這可能導致導覽不會按預期進行分享。具有必要 (或更多) 權限的項目將不會更新。",
 					div2c: "透過 ArcGIS Online 分享導覽",
 					div2d: "透過 ArcGIS Online 分享應用程式時，系統將在必要時要求您更新非以相同方式分享的所有相關資源(web 地圖、圖徵服務和裝飾圖層)。如果 Map Tour 處於公開狀態，且其中一個資源並沒有分享給觀眾，則使用者將被重新導向至 ArcGIS Online 登錄頁面。",
 					div3t: "圖徵服務安全性",
@@ -494,7 +496,7 @@
 					div3: "請確保在未使用 ArcGIS.com 帳戶登錄時，導覽也可正常運作。要使用的 URL 不應重新導向至登錄頁面或建構器模式。",
 					div4: "最好查看 iPad 上以橫向儲存的 Map Tour 的外觀，以確保在這種普遍的裝置上看起來美觀。這有助於瞭解文字說明是否覆蓋了圖片太多。還可以使您瞭解子標題是否合適，以及是否因過長而被裁剪。",
 					div5a: "搜尋建議",
-					div5b: "要協助大家在搜尋 ArcGIS Online 時找到您的 Map Tour，我們建議在您的 Map Tour 應用程式項目頁面 (而並非 web 地圖的項目頁面) 中新增\\“故事地圖\\”標記以及其他標記，例如該導覽所在的州或省名稱、美國以外的國家名稱，以及諸如\\“公開藝術\\”、\\“遊客指南\\”或\\“歷史名勝\\”的主題標記。這些標記還可以協助我們在 Esri 中找到有趣的新導覽範例，我們可以在圖庫中展示這些範例，並在社交媒體上進行宣傳。同時建議您在應用程式項目頁面中上傳美觀的縮圖，例如導覽的小型螢幕截圖或其中一張圖片。將 Map Tour 新增到 ArcGIS Online 圖庫後，將自動使用該圖片。"
+					div5b: "要協助大家在搜尋 ArcGIS Online 時找到您的 Map Tour，我們建議在您的 Map Tour 應用程式項目頁面 (而並非 web 地圖的項目頁面) 中新增\“故事地圖\”標記以及其他標記，例如該導覽所在的州或省名稱、美國以外的國家名稱，以及諸如\“公開藝術\”、\“遊客指南\”或\“歷史名勝\”的主題標記。這些標記還可以協助我們在 Esri 中找到有趣的新導覽範例，我們可以在圖庫中展示這些範例，並在社交媒體上進行宣傳。同時建議您在應用程式項目頁面中上傳美觀的縮圖，例如導覽的小型螢幕截圖或其中一張圖片。將 Map Tour 新增到 ArcGIS Online 圖庫後，將自動使用該圖片。"
 				}
 			},
 			share: {
@@ -503,7 +505,7 @@
 				firstSaveA1: "如果您不熟悉 ArcGIS Online，或需要存取創作介面的捷徑，可以儲存以下連結: %LINK1%",
 				firstSaveA1bis: "也可以在您的 <a href='%LINK2%' target='_blank'>ArcGIS Online 內容文件夾</a>中找到該導覽。",
 				firstSaveQ2: "我的導覽是否已分享?",
-				firstSaveA2: "您的導覽目前並未分享。若要分享，請使用\\“分享\\”按鈕。",
+				firstSaveA2: "您的導覽目前並未分享。若要分享，請使用\“分享\”按鈕。",
 				shareTitle: "分享您的導覽",
 				sharePrivateHeader: "您的導覽尚未分享，是否要分享?",
 				sharePrivateBtn1: "公開分享",

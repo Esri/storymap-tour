@@ -59,6 +59,16 @@ define(["dojo/has",
 				updateArrows();
 			};
 			
+			this.iefix = function()
+			{
+				setTimeout(function(){ 
+					$(selector).width('100%'); 
+					setTimeout(function(){  
+						$(selector).css('width', 'inherit'); 
+					}, 500); 
+				}, 0);
+			};
+			
 			function render(slides)
 			{
 				_picDownloadedIndex = -1;

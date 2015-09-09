@@ -45,7 +45,9 @@
 			desktopHTML: {
 				storymapsText: "Et fortellingskart",
 				builderButton: "Gå over til byggermodus",
-				bitlyTooltip: "Få en kort kobling til applikasjonen",
+				facebookTooltip: "Del på Facebook",
+				twitterTooltip: "Del på Twitter",
+				bitlyTooltip: "Få en kort kobling",
 				bitlyStartIndex: "Kobling til gjeldende sted"
 			},
 			builderHTML: {

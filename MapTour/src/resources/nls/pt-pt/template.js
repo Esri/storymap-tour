@@ -45,7 +45,9 @@
 			desktopHTML: {
 				storymapsText: "Um mapa de história",
 				builderButton: "Mudar para modo de construtor",
-				bitlyTooltip: "Obter uma pequena ligação para a aplicação",
+				facebookTooltip: "Partilhar no Facebook",
+				twitterTooltip: "Partilhar no Twitter",
+				bitlyTooltip: "Obter uma ligação curta",
 				bitlyStartIndex: "Ligação para a localização atual"
 			},
 			builderHTML: {

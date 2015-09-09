@@ -45,7 +45,9 @@
 			desktopHTML: {
 				storymapsText: "Tarinakartta",
 				builderButton: "Vaihda muodostusohjelman tilaan",
-				bitlyTooltip: "Hanki lyhyt linkki sovellukseen",
+				facebookTooltip: "Jaa Facebookissa",
+				twitterTooltip: "Jaa Twitterissä",
+				bitlyTooltip: "Hanki lyhyt linkki",
 				bitlyStartIndex: "Linkki nykyiseen paikkaan"
 			},
 			builderHTML: {

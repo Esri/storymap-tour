@@ -255,7 +255,7 @@ define(["esri/map",
 				// Disable feature service creation as Portal for ArcGIS 10.2 doesn't support that yet
 				if( response.isPortal && APPCFG && APPCFG.AUTHORIZED_IMPORT_SOURCE )
 					APPCFG.AUTHORIZED_IMPORT_SOURCE.featureService = false;
-
+				
 				// Default basemap
 				if ( response.defaultBasemap ) {
 					var basemap = lang.clone(response.defaultBasemap);
