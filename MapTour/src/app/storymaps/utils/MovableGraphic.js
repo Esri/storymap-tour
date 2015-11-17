@@ -13,6 +13,7 @@ define(["dojo/has", "dojo/touch", "dojo/on", "dojo/_base/array", "dojo/_base/con
 		{
 			var _editPointLayer = false;
 			var _events = [];
+			var _isEdge = !! navigator.userAgent.match(/Edge\/\d+/);
 	
 			init();
 	
@@ -41,7 +42,7 @@ define(["dojo/has", "dojo/touch", "dojo/on", "dojo/_base/array", "dojo/_base/con
 	
 				var event3 = on(layer._div.rawNode, touch.press, function(event) {
 					// Prevent using another point as a start location on desktop - does not work on touch
-					if (event.graphic == graphic || has("touch") || has("ie") == 10 || has("trident") == 7) {
+					if (event.graphic == graphic || has("touch") || has("ie") == 10 || has("trident") == 7 || _isEdge) {
 						map.disablePan();
 						
 						_editPointLayer = true;
@@ -55,8 +56,8 @@ define(["dojo/has", "dojo/touch", "dojo/on", "dojo/_base/array", "dojo/_base/con
 					if( onMoveEndCallback && graphic.hasBeenMoved )
 						onMoveEndCallback(graphic);
 				});
-	
-				var event5 = has("touch") || has("ie") >= 10 || has("trident") == 7 ? 
+				
+				var event5 = has("touch") || has("ie") >= 10 || has("trident") == 7 || _isEdge ? 
 						// Using the layer decrease too much the performance ...
 						touch.move(map.__container, moveGraphic) 
 						: connect.connect(map, "onMouseDrag", moveGraphic);

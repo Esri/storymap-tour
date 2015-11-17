@@ -92,7 +92,21 @@ define(["storymaps/ui/crossfader/CrossFader",
 					if( ! target.is('img') || ! target.parent().hasClass('current') )
 						return;
 					
-					crossfader.fullScreen();
+					topic.publish("PIC_PANEL_NEXT", null);
+					
+					/*
+					var imgWidth = $(e.currentTarget).find('.member-image.current').width(),
+						imgPos = $(e.currentTarget).find('.member-image.current').position().left || 0;
+					
+					if ( imgWidth && e.gesture && e.gesture.center && e.gesture.center.pageX ) {
+						if ( e.gesture.center.pageX - imgPos - 45 > imgWidth / 2 )
+							topic.publish("PIC_PANEL_NEXT", null);
+						else
+							topic.publish("PIC_PANEL_PREV", null);
+					}
+					*/
+					
+					//crossfader.fullScreen();
 				});
 	
 				if( isInBuilderMode )
@@ -183,6 +197,8 @@ define(["storymaps/ui/crossfader/CrossFader",
 				}
 				
 				$(".btn-fullscreen", panel).removeClass("disabled");
+				
+				$(".member-image", panel).css("cursor", buttonStatus.right ? "pointer" : "default");
 			}
 	
 			/**
@@ -630,8 +646,8 @@ define(["storymaps/ui/crossfader/CrossFader",
 					pictureReaderAsImg.onloadend = function()
 					{
 						var pictureData = this.result;
-						_changeMemoryImg.attr("src", pictureData);
-						_changeMemoryImg.load(function(e){
+						
+						_changeMemoryImg.off('load').load(function(e){
 							ResamplePicture.resample(
 								_changeMemoryCanvas.get(0),
 								_changeMemoryImg,
@@ -641,6 +657,7 @@ define(["storymaps/ui/crossfader/CrossFader",
 								app.config.thumbnailMaxHeight,
 								window.orientation
 							);
+							
 							app.data.changeCurrentPointPicAndThumbUsingData(
 								pictureData,
 								_changeMemoryCanvas.get(0).toDataURL("image/jpeg"),
@@ -660,6 +677,8 @@ define(["storymaps/ui/crossfader/CrossFader",
 							);
 							clearPictureInput();
 						});
+						
+						_changeMemoryImg.attr("src", pictureData);
 					};
 	
 					pictureReaderAsImg.readAsDataURL(file);

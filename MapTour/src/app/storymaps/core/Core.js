@@ -225,6 +225,20 @@ define(["esri/map",
 			}).then(lang.hitch(this, function(response){
 				var geometryServiceURL, geocodeServices;
 				
+				var trustedHost;
+				if(response.authorizedCrossOriginDomains && response.authorizedCrossOriginDomains.length > 0) {
+					for(var i = 0; i < response.authorizedCrossOriginDomains.length; i++) {
+						trustedHost = response.authorizedCrossOriginDomains[i];
+						// add if trusted host is not null, undefined, or empty string
+						if(esri.isDefined(trustedHost) && trustedHost.length > 0) {
+							esriConfig.defaults.io.corsEnabledServers.push({
+								host: trustedHost,
+								withCredentials: true
+							});
+						}
+					}
+				}
+				
 				if (commonConfig && commonConfig.helperServices) {
 					if (commonConfig.helperServices.geometry && commonConfig.helperServices.geometry) 
 						geometryServiceURL = location.protocol + commonConfig.helperServices.geometry.url;
@@ -252,9 +266,16 @@ define(["esri/map",
 				if( response.bingKey )
 					commonConfig.bingMapsKey = response.bingKey;
 				
-				// Disable feature service creation as Portal for ArcGIS 10.2 doesn't support that yet
-				if( response.isPortal && APPCFG && APPCFG.AUTHORIZED_IMPORT_SOURCE )
+				// Disable feature service creation on Portal that don't have the required capabilities
+				//  - looking at supportsSceneServices let us know if the Portal is using an ArcGIS Data Store has a managed DB
+				//  - ArcGIS Data Store allow to create scalable Feature Service ; Portal configured against another DB don't support the same Feature Service creation API
+				//  - the Feature Service creation API is only supported starting at Portal 10.4 but there is no way to know what version of Portal
+				if( response.isPortal && ! response.supportsSceneServices )
 					APPCFG.AUTHORIZED_IMPORT_SOURCE.featureService = false;
+				
+				// Disable feature service creation as Portal for ArcGIS 10.2 doesn't support that yet
+				//if( response.isPortal && APPCFG && APPCFG.AUTHORIZED_IMPORT_SOURCE )
+					//APPCFG.AUTHORIZED_IMPORT_SOURCE.featureService = false;
 				
 				// Default basemap
 				if ( response.defaultBasemap ) {
@@ -275,6 +296,12 @@ define(["esri/map",
 					});
 					
 					app.defaultBasemap = basemap;
+					
+					if ( window.location.protocol == "https:" ) {
+						if ( app.defaultBasemap && app.defaultBasemap.baseMapLayers && app.defaultBasemap.baseMapLayers.length ) {
+							app.defaultBasemap.baseMapLayers[0].url = app.defaultBasemap.baseMapLayers[0].url.replace('http://', 'https://'); 
+						}
+					} 
 				}
 				
 				app.isPortal = !! response.isPortal;
@@ -411,6 +438,21 @@ define(["esri/map",
 					return;
 				}
 				
+				if( configOptions.authorizedOwners && configOptions.authorizedOwners.length > 0 && configOptions.authorizedOwners[0] ) {
+					var ownerFound = false;
+					
+					if( itemRq.results[0].owner ) 
+						ownerFound = $.inArray(itemRq.results[0].owner, configOptions.authorizedOwners) != -1;
+					
+					if ( ! ownerFound && configOptions.authorizedOwners[0] == "*" )
+						ownerFound = true;
+					
+					if (!ownerFound) {
+						initError("invalidConfigOwner");
+						return;
+					}
+				}
+				
 				// App proxies
 				if (itemRq.results[0] && itemRq.results[0].appProxies) {
 					var layerMixins = array.map(itemRq.results[0].appProxies, function (p) {
@@ -519,6 +561,9 @@ define(["esri/map",
 				
 				if( response.itemInfo.item.owner ) 
 					ownerFound = $.inArray(response.itemInfo.item.owner, configOptions.authorizedOwners) != -1;
+				
+				if ( ! ownerFound && configOptions.authorizedOwners[0] == "*" )
+					ownerFound = true;
 				
 				if (!ownerFound) {
 					initError("invalidConfigOwner");

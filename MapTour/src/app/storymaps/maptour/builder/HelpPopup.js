@@ -48,7 +48,6 @@ define([],
 				container.find('#help-tab1').html(
 					i18n.viewer.helpPopup.tab1.div1 + '<br /><br />'
 					+ i18n.viewer.helpPopup.tab1.div2
-					+ ' ' + i18n.viewer.helpPopup.tab1.div4 + '<br /><br />'
 					+ i18n.viewer.helpPopup.tab1.div42 + '<br /><br />'
 					+ i18n.viewer.helpPopup.tab1.div5 + '<br />'
 				);
@@ -126,9 +125,7 @@ define([],
 					+ i18n.viewer.helpPopup.tab4.div8 + '<br /><br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab4.div10 + '</b><br />'
 					+ i18n.viewer.helpPopup.tab4.div11 
-					+ ' ' + i18n.viewer.helpPopup.tab4.div12 + '<br /><br />'
-					+ i18n.viewer.helpPopup.tab4.div9
-					
+					+ ' ' + i18n.viewer.helpPopup.tab4.div12
 				);
 				
 				container.find('.tab').eq(4).html(i18n.viewer.helpPopup.tab5.title);

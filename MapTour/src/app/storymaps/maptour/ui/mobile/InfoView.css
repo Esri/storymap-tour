@@ -28,3 +28,19 @@
 	width:32px;
 	margin:10px 5% 5px 5%;
 }
+
+#infoPanel .embed-btn-container {
+	display: none;
+	position: absolute;
+    bottom: 0;
+    margin: 20px;
+}
+
+#infoPanel.hasDesktopBtn .embed-btn-container {
+	display: block;
+}
+
+#infoPanel .embed-btn-container.disabled {
+	opacity: 0.2;
+	cursor: default;	
+}

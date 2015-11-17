@@ -71,6 +71,22 @@
 	opacity: 0.3;
 }
 
+#initPopupViewHome .btn-select-hostedFS.disabled {
+	opacity: 1.0;
+}
+
+#initPopupViewHome .btn-select-hostedFS.disabled img {
+	opacity: 0.3;
+}
+
+#initPopupViewHome .btn-select-hostedFS.disabled .hostedFsNote {
+	color: grey;
+}
+
+#initPopupViewHome .btn-select-hostedFS.disabled .hostedFsNote a {
+	cursor: pointer !important;
+}
+
 #initPopupViewHome .notAvailable {
 	display: none;
 	margin-top: 10px;

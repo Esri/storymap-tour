@@ -546,7 +546,7 @@ define(["esri/dijit/Geocoder",
 						var photoDataURL = this.result;
 						_preImg.attr("src", photoDataURL);
 						_tempItemData.pictureData = photoDataURL;
-						_preImg.load(function(e){
+						_preImg.off('load').load(function(e){
 							var width = e.currentTarget.naturalWidth;
 							var height = e.currentTarget.naturalHeight;
 							
@@ -991,10 +991,15 @@ define(["esri/dijit/Geocoder",
 					}
 				});
 				
-				on(_geocoder, "select", function(){
+				on(_geocoder, "select", function(response){
 					// Close the IOS keyboard
 					if( has("ios") )
 						document.activeElement.blur();
+					
+					if( response && response.result && response.result.feature && response.result.feature.geometry ) {
+						_map.geocodedResult = true;
+						pointLayer.graphics[0].setGeometry(response.result.feature.geometry);
+					}
 				});
 	
 				on(_map, "extent-change", function(){

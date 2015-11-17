@@ -433,7 +433,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 			{	
 				if (pointIndex != null && event) {
 					var point = _data[pointIndex];
-					var geom = _geotagMap.toMap(new Point(event.layerX, event.layerY));
+					var geom = _geotagMap.toMap(event.screenPoint ? event.screenPoint : new Point(event.layerX, event.layerY));
 					var graphic = getGraphic(geom, _startIndex + _pointsLayer.graphics.length, pointIndex, point);
 					
 					graphic.geoTagIndex = _startIndex + _pointsLayer.graphics.length;

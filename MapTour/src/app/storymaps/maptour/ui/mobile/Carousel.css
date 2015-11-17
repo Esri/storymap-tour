@@ -65,37 +65,42 @@
 	opacity: 0.2;
 	cursor: default;	
 }
+
+/*
+ * Generic rules
+ * Shared with info panel
+ */
  
-#footerMobile .embed-btn {
+.embed-btn {
 	width: 42px;
 	height: 42px;
 	background: url(../../../../../resources/icons/embed-arrows.png);
 }
 
-#footerMobile .embed-btn-container:not(.disabled):hover {
+.embed-btn-container:not(.disabled):hover {
 	opacity: 1.0;
 	cursor: pointer;
 }
 
 /* Left button */
-#footerMobile .embed-btn-left {
+.embed-btn-left {
 	left: 0;
 	padding-left: 9px;
 }
 
-#footerMobile .embed-btn-left.disabled .embed-btn {
+.embed-btn-left.disabled .embed-btn {
 	background-position: 42px 0;
 }
 
 /* Right button */
-#footerMobile .embed-btn-right {
+.embed-btn-right {
 	right: 0;
 }
 
-#footerMobile .embed-btn-right .embed-btn {
+.embed-btn-right .embed-btn {
 	background-position: 0 -42px;
 }
 
-#footerMobile .embed-btn-right.disabled .embed-btn {
+.embed-btn-right.disabled .embed-btn {
 	background-position: 42px -42px;
 }

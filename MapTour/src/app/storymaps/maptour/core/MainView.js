@@ -930,7 +930,23 @@ define(["storymaps/maptour/core/WebApplicationData",
 							if( appZoomLevel > app.map.getMaxZoom() )
 								appZoomLevel = app.map.getMaxZoom();
 							
+							/*
+							// Prevent freeze in Chrome
+							if ( has("chrome") ) {
+								esriConfig.defaults.map.zoomDuration = 0;
+							}
+							*/
+							
 							_this.centerMap(graphic.geometry, appZoomLevel);
+							
+							/*
+							setTimeout(function(){
+								if ( has("chrome") ) {
+									esriConfig.defaults.map.zoomDuration = 500;
+								}
+							}, 100);
+							*/
+							
 							on.once(app.map, "extent-change", function() {
 								setCurrentGraphicIcon(graphic);
 							});
@@ -1315,7 +1331,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 						_this.centerMap(geom);
 				}
 				else {
-					$("#mapPanel .mapLocationMsg").html("Location not available"); // TODO i18n
+					$("#mapPanel .mapLocationMsg").html(i18n.viewer.locator.error);
 					$("#mapPanel .mapLocationError").fadeIn();
 					
 					setTimeout(function(){

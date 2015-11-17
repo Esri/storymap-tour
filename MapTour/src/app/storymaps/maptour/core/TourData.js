@@ -418,18 +418,19 @@ define(["storymaps/maptour/core/WebApplicationData",
 			this.userIsOrgaPublisher = function()
 			{
 				var user = app.portal ? app.portal.getPortalUser() : null;
-				var hasCorrectRole = user && user.orgId && (user.role == 'org_admin' || user.role == 'org_publisher');
 				
-				if ( ! hasCorrectRole )
+				if ( ! user || ! user.orgId ) {
 					return false;
+				}
 				
-				// Org has custom role
-				if ( user.roleId && user.privileges )
-					return $.inArray("portal:publisher:publishFeatures", user.privileges) != -1;
+				if ( $.inArray("portal:publisher:publishFeatures", user.privileges) != -1 
+						&& $.inArray("portal:user:createItem", user.privileges) != -1 ) {
+					return true;
+				}
 				
-				return true;
+				return false;
 			};
-			
+				
 			this.isOrga = function()
 			{
 				if ( ! app.portal || ! app.portal.getPortalUser() )

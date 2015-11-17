@@ -260,7 +260,7 @@ define(["esri/request", "dojo/_base/lang"],
 							//attachmentIds.push(attachment.id);
 							if( errorDuringDelete )
 								return;
-	
+							
 							app.data.getSourceLayer().deleteAttachments(
 								objectId,
 								[attachment.id],

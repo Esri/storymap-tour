@@ -9,8 +9,8 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-		<link type="image/ico" rel="shortcut icon" href="//resources.esri.com/favicon.ico">
-		<link type="image/ico" rel="icon"  href="//resources.esri.com/favicon.ico">
+		<link type="image/ico" rel="shortcut icon" href="resources/icons/favicon.ico">
+		<link type="image/ico" rel="icon"  href="resources/icons/favicon.ico">
 		
 		<!-- 
 			To correctly reference your Map Tour in search engine:
@@ -46,6 +46,7 @@
 				appid: "",
 				// Optional list of authorized application or web map owners
 				// Has to be specified when using appid or webmap url parameters (e.g. ["user1"], ["user1", "user2"])
+				// To authorize all users you can use ["*"]
 				authorizedOwners: [""],
 				// Select the application layout between "three-panel" and "integrated"
 				layout: "three-panel",
@@ -69,7 +70,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.3.0';
+			var version = '2.4.0';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -96,8 +97,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("//js.arcgis.com/3.14/esri/css/esri.css", true);
-			loadCSS("//js.arcgis.com/3.14/dijit/themes/claro/claro.css", true);			
+			loadCSS("//js.arcgis.com/3.15/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.15/dijit/themes/claro/claro.css", true);			
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -176,6 +177,10 @@
 					}
 				]
 			};
+			
+			if (location.search.match(/locale=([\w\-]+)/)) {
+				dojoConfig.locale = RegExp.$1;
+			}
 		</script>
 		<!--[if IE 7]>
 			<link rel="stylesheet" href="resources/font/storymaps-icons-ie7.css">
@@ -314,6 +319,12 @@
 		</div>
 		<div id="infoPanel" class="mobileView">
 			<div id="infoCarousel"></div>
+			<div class="embed-btn-container embed-btn-left disabled">
+				<div class="embed-btn"></div>
+			</div>
+			<div class="embed-btn-container embed-btn-right">
+				<div class="embed-btn"></div>
+			</div>
 		</div>
 		<div id="introPanel" class="mobileView"></div>
 
@@ -1128,7 +1139,7 @@
 		</div>
 		
 		<script type="text/javascript">
-			loadJS('//js.arcgis.com/3.14/init.js', true);
+			loadJS('//js.arcgis.com/3.15/init.js', true);
 			loadJS('app/maptour-config.js');
 			
 			function getUrlVar(name)

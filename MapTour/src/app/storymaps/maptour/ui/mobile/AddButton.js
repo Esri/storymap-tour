@@ -60,7 +60,7 @@ define(["storymaps/utils/ResamplePicture"],
 						}
 					);
 					
-					_addMobileThumbnailImg.load(function(e){
+					_addMobileThumbnailImg.off('load').load(function(e){
 						// Resample main picture
 						ResamplePicture.resample(
 							_addMobileMainCanvas.get(0),

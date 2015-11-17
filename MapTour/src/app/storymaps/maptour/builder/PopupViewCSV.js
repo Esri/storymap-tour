@@ -407,7 +407,8 @@ define(["storymaps/utils/Helper",
 					
 				fieldsHtml += "<ul>";
 				$.each(featureFields, function(i, field) {
-					if ( field == "__OBJECTID" ) return;
+					if ( field == "__OBJECTID" || field == "icon_color" ) 
+						return;
 					fieldsHtml += "<li>" + field + "</li>";
 				});
 				fieldsHtml += "</ul>";

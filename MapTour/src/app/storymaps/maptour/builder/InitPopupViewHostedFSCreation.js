@@ -288,6 +288,11 @@ define([
 				initEmptyFolderList();
 				cleanUI();
 				_portal.getPortalUser().getFolders().then(buildFolderList);
+				
+				var webmapItem = app.data.getWebMapItem();
+				if ( webmapItem && webmapItem.item && webmapItem.item.title ) {
+					_nameField.val(webmapItem.item.title);
+				}
 			};
 			
 			this.getView = function()
@@ -594,6 +599,13 @@ define([
 				_nameField.val("");
 				cleanErrors();
 				changeFooterState("orginal");
+				
+				var explain = i18n.viewer.builderHTML.dataExplain;
+				if ( app.isPortal ) {
+					explain += "<br /><br />";
+					explain += i18n.viewer.builderHTML.dataExplainPortal;
+				}
+				$('.dataExplain', container).html(explain);
 			}
 			
 			function cleanErrors()
@@ -604,7 +616,6 @@ define([
 	
 			this.initLocalization = function()
 			{
-				$('.dataExplain', container).html(i18n.viewer.builderHTML.dataExplain);
 				$('.dataNameLbl', container).html(i18n.viewer.builderHTML.dataNameLbl + ':');
 				$('.dataFolderListLbl', container).html(i18n.viewer.builderHTML.dataFolderListLbl + ':');
 			};

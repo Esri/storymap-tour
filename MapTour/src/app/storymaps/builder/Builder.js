@@ -13,7 +13,9 @@ define(["esri/arcgis/Portal",
 		"esri/arcgis/utils",
 		"esri/IdentityManager",
 		"esri/request",
-		"dojo/topic"],
+		"esri/geometry/Multipoint",
+		"dojo/topic"
+	],
 	function(
 		esriPortal, 
 		WebApplicationData, 
@@ -30,8 +32,9 @@ define(["esri/arcgis/Portal",
 		arcgisUtils,
 		IdentityManager, 
 		esriRequest,
-		topic)
-	{
+		Multipoint,
+		topic
+	) {
 		var _core = null;
 		var _builderView = null;
 		
@@ -454,7 +457,26 @@ define(["esri/arcgis/Portal",
 			
 			// App proxies
 			appItem.serviceProxyParams = JSON.stringify(appItem.serviceProxyParams);
-
+			
+			// Story extent
+			if ( app.data.getTourLayer() && app.data.getTourLayer().graphics && app.data.getTourLayer().graphics.length ) {
+				try {
+					var sr = app.data.getTourLayer().graphics[0].geometry.spatialReference;
+					
+					if ( sr && (sr.wkid == 102100 || sr.wkid == 4326) ) {
+						var mp = new Multipoint(sr); 
+						
+						$.each(app.data.getTourLayer().graphics, function(i, g){ 
+							mp.addPoint(g.geometry); 
+						}); 
+						
+						// TODO: serializeExtentToItem only support WGS and Mercator
+						appItem.extent = JSON.stringify(Helper.serializeExtentToItem(mp.getExtent()));
+					}
+					
+				} catch( e ) { }
+			}
+			
 			appItem = lang.mixin(appItem, {
 				f: "json",
 				token: token,
@@ -722,7 +744,7 @@ define(["esri/arcgis/Portal",
 			// Find items to share - only if they aren't already shared to the proper level 
 			var targetItems = [];
 			if( sharingMode == "account" ) {
-				if( app.data.getWebMapItem().item.access == "private" && app.data.getWebMapItem().item.owner == app.portal.getPortalUser().username )
+				if( (app.data.getWebMapItem().item.access == "private"||!app.data.getWebMapItem().item.access) && app.data.getWebMapItem().item.owner == app.portal.getPortalUser().username )
 					targetItems.push(app.data.getWebMapItem().item.id);
 				if ( app.data.getAppItem().access == "private" )
 					targetItems.push(app.data.getAppItem().id);
