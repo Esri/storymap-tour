@@ -119,12 +119,23 @@ define(["storymaps/maptour/core/WebApplicationData",
 					app.desktopPicturePanel.exitBuilderMode();
 					return;
 				}
-				
+
+				var galleryConfig = {
+					map: app.map
+				};
+				if (app.portal.basemapGalleryGroupQuery) {
+					galleryConfig.basemapsGroup = app.portal.basemapGalleryGroupQuery;
+				} else {
+					galleryConfig.showArcGISBasemaps = true;
+				}
+				// If our group is not on arcgis.com, then we also need to specify the Portal server
+				// If we are on arcgis.com, setting portalUrl causes the Gallery to ignore the basemapsGroups
+				if (app.portal.url.indexOf("www.arcgis.com") == -1) {
+					galleryConfig.portalUrl = app.portal.url;  //or app.portal.portalHostname; app.portal.portalUrl doesn't work
+				}
+
 				var basemapGallery = new BasemapGallery(
-					{
-						showArcGISBasemaps: true,
-						map: app.map
-					}, 
+					galleryConfig,
 					"basemapGallery"
 				);
 				basemapGallery.startup();
