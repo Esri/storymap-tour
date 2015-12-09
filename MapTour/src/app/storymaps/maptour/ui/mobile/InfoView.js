@@ -19,6 +19,9 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 				initEvents(slides);
 				
 				topic.subscribe("CORE_SELECTED_TOURPOINT_UPDATE", updateSlide);
+				
+				if ( ! $("body").hasClass("hasTouch") )
+					$(selector).parent().addClass("hasDesktopBtn");
 			};
 			
 			this.update = function(slides, bgColor)
@@ -168,11 +171,34 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 					$("body").scrollTop(0);
 					checkViewSize();
 					topic.publish("MOBILE_INFO_SWIPE", _carousel.pageIndex);
+					
+					$(selector).parent().find(".embed-btn-left").toggleClass(
+						"disabled", 
+						! _carousel.pageIndex
+					);
+					
+					$(selector).parent().find(".embed-btn-right").toggleClass(
+						"disabled", 
+						_carousel.pageIndex === slides.length - 1
+					);
 				});
 	
 				_carousel.onMoveOut(function () {
 					clearTimeout(_carousel.delayedFlipEvent);
 					app.header.hideMobileBanner();
+				});
+				
+				$(selector).parent().find(".embed-btn").off('click').click(function(){
+					var btnContainer = $(this).parent();
+					if ( ! btnContainer.hasClass("disabled") ) {
+						if ( btnContainer.hasClass("embed-btn-left") )
+							topic.publish("PIC_PANEL_PREV", null);
+						else
+							topic.publish("PIC_PANEL_NEXT", null);
+						
+						_carousel.refreshSize();
+						_carousel.goToPage(btnContainer.hasClass("embed-btn-left") ? _carousel.pageIndex - 1 : _carousel.pageIndex + 1);
+					}
 				});
 				
 				checkViewSize();

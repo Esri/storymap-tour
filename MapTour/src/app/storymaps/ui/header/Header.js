@@ -1,12 +1,15 @@
 define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 		"storymaps/utils/Helper",
 		"dojo/has", 
-		"dojo/topic"], 
+		"dojo/topic",
+		"esri/urlUtils"
+	], 
 	function(
 		InlineFieldEdit,
 		Helper, 
 		has, 
-		topic
+		topic,
+		urlUtils
 	){
 		/**
 		 * Header
@@ -38,11 +41,11 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					$(selector).addClass('isBuilder');
 					title =  "<div class='text_edit_label'>" + (title || i18n.viewer.headerJS.editMe) + "</div>";
 					title += "<div class='text_edit_icon' title='"+i18n.viewer.headerJS.templateTitle+"'></div>";
-					title += "<textarea rows='1' class='text_edit_input' type='text'></textarea>";
+					title += "<textarea rows='1' class='text_edit_input' type='text' spellcheck='true'></textarea>";
 	
 					subtitle =  "<span class='text_edit_label'>" + (subtitle || i18n.viewer.headerJS.editMe) + "</span>";
 					subtitle += "<div class='text_edit_icon' title='"+i18n.viewer.headerJS.templateSubtitle+"'></div>";
-					subtitle += "<textarea rows='2' class='text_edit_input' type='text'></textarea>";
+					subtitle += "<textarea rows='2' class='text_edit_input' type='text' spellcheck='true'></textarea>";
 				}
 	
 				$(selector + ' #headerDesktop .title').html(title);
@@ -193,7 +196,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			{
 				var options = '&p[title]=' + encodeURIComponent($(selector + ' #headerMobile .title').text())
 								+ '&p[summary]=' + encodeURIComponent($(selector + ' #headerMobile .subtitle').text())
-								+ '&p[url]=' + encodeURIComponent(document.location.href);
+								+ '&p[url]=' + cleanURL(document.location.href);
 			
 				var counter = 0;
 				// TODO: make multiple images works 
@@ -217,7 +220,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			function shareTwitter()
 			{
 				var options = 'text=' + encodeURIComponent($(selector + ' #headerMobile .title').text())
-								+ '&url=' + encodeURIComponent(document.location.href)
+								+ '&url=' + cleanURL(document.location.href)
 								+ '&related=EsriStoryMaps'
 								+ '&hashtags=storymap'; 
 			
@@ -281,12 +284,6 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					//targetUrl = targetUrl.replace(/index\=[0-9]+/, '');
 				//}	
 				
-				if ( isInBuilderMode ) {
-					targetUrl = targetUrl.replace(/\?edit&/, '?');
-					targetUrl = targetUrl.replace(/\?edit/, '');
-					targetUrl = targetUrl.replace(/\&edit/, '');
-				}
-				
 				_bitlyStartIndexStatus = $("#bitlyStartIndex").is(":checked") ? 'checked' : '';
 				
 				$.getJSON(
@@ -295,7 +292,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 						"format": "json",
 						"apiKey": APPCFG.HEADER_SOCIAL.bitly.key,
 						"login": APPCFG.HEADER_SOCIAL.bitly.login,
-						"longUrl": targetUrl
+						"longUrl": cleanURL(targetUrl, true)
 					},
 					function(response)
 					{
@@ -308,6 +305,32 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 						$("#bitlyInput").select();
 					}
 				);
+			}
+			
+			function cleanURL(url, noEncoding)
+			{
+				var urlParams = urlUtils.urlToObject(url);
+				var newUrl = urlParams.path;
+				
+				if ( urlParams.query ) {
+					delete urlParams.query.edit;
+					delete urlParams.query.locale;
+					delete urlParams.query.folderId;
+					delete urlParams.query.webmap;
+					
+					$.each(Object.keys(urlParams.query), function(i, k){ 
+						if ( i === 0 ){
+							newUrl += '?';
+						}
+						else {
+							newUrl += '&';
+						}
+						
+						newUrl += k + '=' + urlParams.query[k];
+					});
+				}
+				
+				return noEncoding ? newUrl : encodeURIComponent(newUrl);
 			}
 	
 			function showMobileHeader(immediate)
@@ -363,6 +386,8 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				//Desktop
 				$(selector + ' .msLink').html(i18n.viewer.desktopHTML.storymapsText);
 				$(selector + ' .switchBuilder').html('<div><img src="resources/icons/builder-edit-fields.png" /></div>' + i18n.viewer.desktopHTML.builderButton);
+				$(selector + ' .share_facebook').attr("title", i18n.viewer.desktopHTML.facebookTooltip);
+				$(selector + ' .share_twitter').attr("title", i18n.viewer.desktopHTML.twitterTooltip);
 				$(selector + ' .share_bitly').attr("title", i18n.viewer.desktopHTML.bitlyTooltip);
 			};
 		};

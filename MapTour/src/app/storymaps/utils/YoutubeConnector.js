@@ -13,9 +13,10 @@ define(["dojo/Deferred"],
 					return resultDeferred;
 				}
 				
-				var userRqStr = 'https://www.googleapis.com/youtube/v3/channels' 
+				var userRqStr = 'https://www.googleapis.com/youtube/v3/search' 
 					+ '?part=id'
-					+ '&forUsername=' + userId.replace(' ','')
+					+ '&q=' + userId
+					+ '&type=channel'
 					+ '&key=' + APPCFG.YOUTUBE_API_KEY;
 				
 				$.ajax({
@@ -25,8 +26,8 @@ define(["dojo/Deferred"],
 					function(userRqResponse){
 						var channelId = null;
 						
-						if ( userRqResponse && userRqResponse.items && userRqResponse.items.length ) {
-							channelId = userRqResponse.items[0].id;
+						if ( userRqResponse && userRqResponse.items && userRqResponse.items.length && userRqResponse.items[0].id ) {
+							channelId = userRqResponse.items[0].id.channelId;
 						}
 						
 						// Youtube queries are limited to 50 results

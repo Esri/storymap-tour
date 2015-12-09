@@ -38,7 +38,7 @@ define(["dojo/dom"],
 				! spinner && this.init();
 	
 				if( ! this.itemCount ) {
-					spinner.spin(spinnerNode);
+					//spinner.spin(spinnerNode);
 					spinnerNode.style.visibility = "visible";
 				}
 				// Alternative to allow multiple simultaneous task to share the same spinner
@@ -50,7 +50,7 @@ define(["dojo/dom"],
 			{
 				itemCount--;
 				if( itemCount <= 0 ){
-					spinner.stop();
+					//spinner.stop();
 					spinnerNode.style.visibility = "hidden";
 					itemCount = 0;
 				}
@@ -61,7 +61,7 @@ define(["dojo/dom"],
 			
 			this.setMessage = function(message, isFail)
 			{
-				spinnerNode.style.display = "block";
+				//spinnerNode.style.display = "block";
 					
 				if( messageNode ) {
 					if( isFail )

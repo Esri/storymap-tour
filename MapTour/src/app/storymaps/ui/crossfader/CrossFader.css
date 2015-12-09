@@ -4,10 +4,15 @@
 	left: 0px;
 	margin:auto;
 	display:block;
+	height: 100px;
+	width: 100px;
 }
+
 
 #pictureLoadingIndicator .spinner {
 	z-index: 400 !important;
+	margin-left: 50px;
+	margin-top: 48px;
 }
 
 .member-image {

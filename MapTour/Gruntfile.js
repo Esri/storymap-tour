@@ -151,13 +151,6 @@
 						src:['*'],
 						dest: 'deploy/resources/colorbox/'
 					}]
-				},
-				readme: {
-					files: [{
-						expand: true,
-						src:['Readme.pdf', 'Readme.txt'],
-						dest: 'deploy/'
-					}]
 				}
 			},
 			
@@ -300,8 +293,7 @@
 			'copy:commonConfig',
 			'copy:bootstrapResources',
 			'copy:colorboxResources',
-			'copy:resources',
-			'copy:readme'
+			'copy:resources'
 		]);
 	};
 })();

@@ -126,7 +126,7 @@ APPCFG = {
 	//
 	
 	HELP_URL: "http://links.esri.com/storymaps/map_tour_template",
-	HELP_URL_PORTAL: "http://links.esri.com/storymaps/map_tour_template",
+	HELP_URL_PORTAL: "#/Story_Map_Tour/0193000000w0000000/",
 
 	// Control the authorized data source (for initialization and import screen)
 	AUTHORIZED_IMPORT_SOURCE: {
@@ -162,7 +162,7 @@ APPCFG = {
 	WEBAPP_KEYWORD_GENERIC: ["JavaScript", "Map", "Mapping Site", "Online Map", "Ready To Use", "selfConfigured", "Web Map"],
 	WEBAPP_KEYWORD_APP: ["Story Map", "Story Maps", "Map Tour", "MapTour"],
 	
-	// Optional array of server that will leverage CORS (for developement or specific cross domain deployment)
+	// Optional array of server that will leverage CORS (for development or specific cross domain deployment)
 	CORS_SERVER: [],
 	
 	// Edit those to set a custom sharing or proxy URL

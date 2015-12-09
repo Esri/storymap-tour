@@ -8,11 +8,14 @@ define(["esri/arcgis/Portal",
 		"storymaps/utils/Helper",
 		"storymaps/utils/WebMapHelper",
 		"dojo/_base/lang",
+		"dojo/_base/array",
 		"dojo/has",
 		"esri/arcgis/utils",
 		"esri/IdentityManager",
 		"esri/request",
-		"dojo/topic"],
+		"esri/geometry/Multipoint",
+		"dojo/topic"
+	],
 	function(
 		esriPortal, 
 		WebApplicationData, 
@@ -24,12 +27,14 @@ define(["esri/arcgis/Portal",
 		Helper, 
 		WebMapHelper, 
 		lang, 
+		array,
 		has, 
 		arcgisUtils,
 		IdentityManager, 
 		esriRequest,
-		topic)
-	{
+		Multipoint,
+		topic
+	) {
 		var _core = null;
 		var _builderView = null;
 		
@@ -407,9 +412,9 @@ define(["esri/arcgis/Portal",
 		function saveApp(nextFunction)
 		{
 			var portalUrl = getPortalURL(),
-				uid = IdentityManager.findCredential(portalUrl).userId,
-				token  = IdentityManager.findCredential(portalUrl).token,
-				appItem = lang.clone(app.data.getAppItem());
+				appItem = lang.clone(app.data.getAppItem()),	
+				uid = appItem.owner || IdentityManager.findCredential(portalUrl).userId,
+				token  = IdentityManager.findCredential(portalUrl).token;
 
 			// Remove properties that don't have to be committed
 			delete appItem.avgRating;
@@ -449,7 +454,29 @@ define(["esri/arcgis/Portal",
 			// Transform arrays
 			appItem.tags = appItem.tags ? appItem.tags.join(',') : '';
 			appItem.typeKeywords = appItem.typeKeywords.join(',');
-
+			
+			// App proxies
+			appItem.serviceProxyParams = JSON.stringify(appItem.serviceProxyParams);
+			
+			// Story extent
+			if ( app.data.getTourLayer() && app.data.getTourLayer().graphics && app.data.getTourLayer().graphics.length ) {
+				try {
+					var sr = app.data.getTourLayer().graphics[0].geometry.spatialReference;
+					
+					if ( sr && (sr.wkid == 102100 || sr.wkid == 4326) ) {
+						var mp = new Multipoint(sr); 
+						
+						$.each(app.data.getTourLayer().graphics, function(i, g){ 
+							mp.addPoint(g.geometry); 
+						}); 
+						
+						// TODO: serializeExtentToItem only support WGS and Mercator
+						appItem.extent = JSON.stringify(Helper.serializeExtentToItem(mp.getExtent()));
+					}
+					
+				} catch( e ) { }
+			}
+			
 			appItem = lang.mixin(appItem, {
 				f: "json",
 				token: token,
@@ -457,9 +484,18 @@ define(["esri/arcgis/Portal",
 				text: JSON.stringify(WebApplicationData.get())
 			});
 			
+			var url = portalUrl + "/sharing/content/users/" + uid + (appItem.ownerFolder ? ("/" + appItem.ownerFolder) : ""); 
+			
+			// Updating
+			if ( appItem.id )
+				url += "/items/" + appItem.id + "/update";
+			// creating
+			else
+				url += "/addItem";
+			
 			var saveRq = esriRequest(
 				{
-					url: portalUrl + "/sharing/content/users/" + uid + (appItem.ownerFolder ? ("/" + appItem.ownerFolder) : "") + "/addItem",
+					url: url,
 					handleAs: 'json',
 					content: appItem
 				},
@@ -480,6 +516,9 @@ define(["esri/arcgis/Portal",
 			//
 			// TODO: should be replaced by the improved WebMapHelper.saveWebmap
 			//
+			
+			// Store data when the map tour data layer is a feature collection saved as an item
+			var fcItem = null;
 			
 			// Look for modified or new points if the tour use an embedded layer
 			var webmapEmbeddedLayerChange = false;
@@ -505,7 +544,7 @@ define(["esri/arcgis/Portal",
 				var portalUrl = getPortalURL(),
 					item = lang.clone(app.data.getWebMapItem().item),
 					itemData = app.data.getWebMapItem().itemData,
-					uid = IdentityManager.findCredential(portalUrl).userId,
+					uid = item.owner || IdentityManager.findCredential(portalUrl).userId,
 					token  = IdentityManager.findCredential(portalUrl).token;
 				
 				// Data change
@@ -517,9 +556,28 @@ define(["esri/arcgis/Portal",
 							layerIndex = i;
 					});
 					
-					// Serialize the layer to the webmap definition
-					if( layerIndex != -1 )
-						itemData.operationalLayers[layerIndex].featureCollection = serializeMapTourGraphicsLayerToFeatureCollection(app.data.getTourLayer(), app.data.getAllFeatures(), app.data.getSourceLayer());	
+					var layer = itemData.operationalLayers[layerIndex],
+						data = serializeMapTourGraphicsLayerToFeatureCollection(
+								app.data.getTourLayer(), app.data.getAllFeatures(), 
+								app.data.getSourceLayer()
+						);
+					
+					// If the map tour data layer is a feature collection saved as an item
+					if ( layer.itemId ){
+						fcItem = {
+							id: layer.itemId,
+							data: data
+						};
+						
+						if ( layer.featureCollection ) {
+							delete layer.featureCollection;
+						}
+					}
+					else {
+						// Serialize the layer to the webmap definition
+						if( layerIndex != -1 )
+							layer.featureCollection = data;
+					}
 				}
 				
 				// Cleanup item data
@@ -528,6 +586,19 @@ define(["esri/arcgis/Portal",
 				// Transform arrays
 				item.tags = item.tags ? item.tags.join(',') : '';
 				item.typeKeywords = item.typeKeywords ? item.typeKeywords.join(',') : '';
+				
+				// Check layers for app proxies URL
+				var layersToCheck = itemData.baseMap.baseMapLayers.concat(itemData.operationalLayers);
+				$.each(layersToCheck, function(i, layer){
+					if ( layer.url ) {
+						var matchingAppProxiesLayer = $.grep(app.data.getAppProxies() || [], function(l){ 
+							return l && l.mixin && l.mixin.url == layer.url; 
+						});
+						
+						if ( matchingAppProxiesLayer.length )
+							layer.url = matchingAppProxiesLayer[0].url;
+					}
+				});
 				
 				var rqData = {
 					f: 'json',
@@ -543,10 +614,19 @@ define(["esri/arcgis/Portal",
 					thumbnailURL: item.thumbnailURL,
 					token: token
 				};
-
+				
+				var url = portalUrl + "/sharing/content/users/" + uid + (item.ownerFolder ? ("/" + item.ownerFolder) : ""); 
+				
+				// Updating
+				if ( item.id )
+					url += "/items/" + item.id + "/update";
+				// creating
+				else
+					url += "/addItem";
+				
 				var saveRq = esriRequest(
 					{
-						url: portalUrl + "/sharing/content/users/" + uid + (item.ownerFolder ? ("/" + item.ownerFolder) : "") + "/addItem",
+						url: url,
 						handleAs: 'json',
 						content: rqData
 					},
@@ -568,8 +648,55 @@ define(["esri/arcgis/Portal",
 								}
 							);
 						}
-						else
-							nextFunction(response);
+						else {
+							// If the map tour data layer is a feature collection saved as an item
+							if ( fcItem ) {
+								// Need an extra request to get the item to know if the item is in a folder
+								arcgisUtils.getItem(fcItem.id).then(
+									function(responseItem)
+									{
+										if ( ! responseItem || ! responseItem.item ) {
+											appSaveFailed();
+											return;
+										}
+										
+										var ownerFolder = responseItem.item.ownerFolder;
+										
+										var rqData = {
+											f: 'json',
+											text: JSON.stringify(fcItem.data),
+											overwrite: true,
+											token: token
+										};
+										
+										var url = portalUrl + "/sharing/content/users/" + uid + (ownerFolder ? ("/" + ownerFolder) : "") + "/items/" + fcItem.id + "/update";
+										// Need to know the folder because for some reason, the following request don't works
+										//var url = portalUrl + "/sharing/rest/content/items/" + fcItem.id + "/update"; 
+										var saveRq = esriRequest(
+											{
+												url: url,
+												handleAs: 'json',
+												content: rqData
+											},
+											{
+												usePost: true
+											}
+										);
+										
+										saveRq.then(
+											function(){
+												nextFunction(response);
+											},
+											appSaveFailed
+										);
+									},
+									appSaveFailed
+								);
+							}
+							else {
+								nextFunction(response);
+							}
+						}
 					},
 					appSaveFailed
 				);
@@ -617,7 +744,7 @@ define(["esri/arcgis/Portal",
 			// Find items to share - only if they aren't already shared to the proper level 
 			var targetItems = [];
 			if( sharingMode == "account" ) {
-				if( app.data.getWebMapItem().item.access == "private" && app.data.getWebMapItem().item.owner == app.portal.getPortalUser().username )
+				if( (app.data.getWebMapItem().item.access == "private"||!app.data.getWebMapItem().item.access) && app.data.getWebMapItem().item.owner == app.portal.getPortalUser().username )
 					targetItems.push(app.data.getWebMapItem().item.id);
 				if ( app.data.getAppItem().access == "private" )
 					targetItems.push(app.data.getAppItem().id);

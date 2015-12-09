@@ -63,16 +63,6 @@ textarea {
 	display: none;
 }
 
-#loadingOverlay {
-	position: absolute;
-	z-index: 500;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	background-color: #E5E5E5;
-}
-
 a {
 	color:#555;
 	font-weight:bold;

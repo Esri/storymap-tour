@@ -132,7 +132,7 @@
 	display: inline-block;
 }
 
-.carouselScroller span:before {
+.carouselScroller .carousel-item-div > span:before {
 	position: absolute;
 	display: inline-block;
 	content: counter(item);

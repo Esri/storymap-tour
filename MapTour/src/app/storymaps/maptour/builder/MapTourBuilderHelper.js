@@ -1,5 +1,5 @@
-define([], 
-	function(){
+define(["dojo/_base/lang"], 
+	function(lang){
 		/**
 		 * MapTourBuilderHelper
 		 * @class MapTourBuilderHelper
@@ -213,15 +213,7 @@ define([],
 					},
 					itemData: {
 						"operationalLayers": [],
-						"baseMap": {
-							"baseMapLayers": [{
-								"id": "defaultBasemap",
-								"opacity": 1,
-								"visibility": true,
-								"url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer"
-							}],
-							"title": "Topographic"
-						},
+						"baseMap": lang.clone(app.defaultBasemap),
 						"version": "1.9"
 					}
 				};

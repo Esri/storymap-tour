@@ -10,7 +10,7 @@ The Story Map Tour app is ideal when you want to present a linear, place-based n
 [User Download (source code not included)](http://links.esri.com/storymaps/map_tour_template_zip) | 
 [Developer Download](https://github.com/Esri/map-tour-storytelling-template-js/archive/master.zip) 
 
-**Latest release is version 2.2.7**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
+**Latest release is version 2.4.0**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
 See the [release page](https://github.com/Esri/map-tour-storytelling-template-js/releases) for release notes.
 
 The template produces an attractive, easy-to-use web application that lets you present a small set of places on a map in a numbered sequence through which users can browse. The template is designed to be used in any web browser on any device, including smartphones and tablets. 
@@ -89,8 +89,7 @@ To use the downloadable version, download the [User Download archive](http://lin
 | resources/                                 | Resources (markers, icons, translation)                               |
 | **samples/**      			             | Sample data layer to create your webmap                               |
 | **index.html**         		             | Application html file (to be edited with web map id)                  |
-| license.txt        		             | Application license                  |
-| **Readme.pdf**       		                 | Detailed readme guide                                                 |
+| license.txt        		             	 | Application license                  |
 
 Map Tour rely on a web map (or a web mapping application) identifier to get the data. 
 
@@ -98,8 +97,6 @@ There is multiple ways to build a web map for Map Tour:
  * Create a blank webmap using ArcGIS Online, publish a Map Tour and use the interactive builder to create your data source. This will allow you to import photos from Flickr, Facebook, Picasa, create a Feature Service hosted in ArcGIS Online or load data from a CSV
  * Use an existing Feature Service, see the chapter below
  * Build a CSV and add it as a web map layer using ArcGIS Online web map viewer. That is not the recommended way to proceed anymore. [This ArcWatch article](http://www.esri.com/esri-news/arcwatch/0513/make-a-map-tour-story-map) provides step-by-step instructions
-
-For detailed instructions and recommendations, please refer to the **[Readme document](https://github.com/Esri/map-tour-storytelling-template-js/raw/master/Readme.pdf)**.
 
 For quick start, there is two typical ways of configuring a Map Tour: 
  * You build your map tour using the interactive builder in the hosted environment and configure the template with the web mapping application identifier. All the settings you have defined with the interactive builder will be applied and you will have minimal configuration to perform.
@@ -117,7 +114,7 @@ To build a Map Tour using the interactive viewer:
  * Open **index.html** with a text file editor
  * Locate the configuration section at the beginning of the file
  * Edit the line **appid:""** to **include your application id** between the quotes (the application id is the string emphasized in this hosted Map Tour URL apps/MapTour/index.html?appid=`12348616c3984f91bc3fdc517e119999`&webmap=1234fdc2c21847c7b5b13f68c5d9999)
- * Optionally remove samples folder and Readme.pdf 
+ * Optionally remove samples folder
  * Copy files to your web server root or in a specific folder
 
 If you prefer to build your webmap without the interactive builder:
@@ -129,8 +126,10 @@ If you prefer to build your webmap without the interactive builder:
  * Open **index.html** with a text file editor
  * Locate the configuration section at the beginning of the file
  * Edit the line **webmap:""** to **include your web map id** between the quotes (the webmap id is the string emphasized in this hosted Map Tour URL apps/MapTour/index.html?appid=12348616c3984f91bc3fdc517e119999&webmap=`1234fdc2c21847c7b5b13f68c5d9999`)
- * Optionally remove samples folder and Readme.pdf
+ * Optionally remove samples folder
  * Copy files to your web server root or in a specific folder
+
+*If you are using Portal for ArcGIS, please follow the instructions at the end of `app/maptour-config.js` to configure the application. Optionally you can also configure the application to use the ArcGIS API for JavaScript included on your Portal by replacing in `index.html` the 4 urls containing `//js.arcgis.com/3.14/` with the following   `//webadaptor.domain.com/arcgis/jsapi/jsapi/` where arcgis is the name of your Web Adaptor.*
 
 It is crucial for the application performance that your tour points have well-defined thumbnail images. Thumbnail images are used on the bottom carousel and on mobile device. If you choose to host the pictures yourself, you will have to manually create thumbnails of your pictures. Using the full resolution pictures for the thumbnail will result in poor performance. For that reason we strongly recommend that you use an online photo sharing services or a Feature Service in conjunction with the interactive builder that will do that for you. The recommended thumbnail size is 140x93px.
 
@@ -424,7 +423,6 @@ Download and unzip the [Developer download](https://github.com/Esri/map-tour-sto
 | **MapTour/src/**                           | The application source code                                           |
 | **MapTour/deploy/**                        | The ready to be deployed Map Tour application                         |
 | samples/      			                 | Sample data layer to create your webmap                               |
-| Readme.pdf       		                     | The detailed readme guide                                             |
 | Readme.md                                  | This document                                                         |
 | map-tour-storytelling-template-js.png      | The application screenshot                                            |
 | license.txt                                | The application license                                               |

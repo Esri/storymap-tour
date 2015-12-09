@@ -15,7 +15,6 @@ define([
 	) {
 		var mapTourFSJson = {
 			"service": {
-				"currentVersion": 10.1,
 				"serviceDescription": "",
 				"hasVersionedData": false,
 				"supportsDisconnectedEditing": true,
@@ -65,7 +64,6 @@ define([
 				"enableZDefaults": false
 			},
 			"layers": [{
-				"currentVersion": 10.1,
 				"id": 0,
 				"name": "arcgis.arcgis.MAP_TOUR",
 				"type": "Feature Layer",
@@ -290,6 +288,11 @@ define([
 				initEmptyFolderList();
 				cleanUI();
 				_portal.getPortalUser().getFolders().then(buildFolderList);
+				
+				var webmapItem = app.data.getWebMapItem();
+				if ( webmapItem && webmapItem.item && webmapItem.item.title ) {
+					_nameField.val(webmapItem.item.title);
+				}
 			};
 			
 			this.getView = function()
@@ -405,12 +408,12 @@ define([
 				
 				var serviceRqData = {
 					createParameters: JSON.stringify(serviceJSON.service),
-					targetType: "featureService"
+					outputType: "featureService"
 				};
 				
 				WebMapHelper.request(serviceRqUrl, serviceRqData, true).then(
 					function(serviceRqResponse) {
-						var layersRqUrl = getAdminUrl(serviceRqResponse.serviceurl) + "/AddToDefinition";
+						var layersRqUrl = getAdminUrl(serviceRqResponse.serviceurl) + "/addToDefinition";
 						var layersRqData = { addToDefinition: JSON.stringify({layers: serviceJSON.layers}) };
 						// Force reuse of the portal token as
 						// ArcGIS For Orga hosted FS are on on a different domain than the portal api
@@ -458,8 +461,7 @@ define([
 			function getAdminUrl(url)
 			{
 				return url.replace("http://", window.location.protocol + "//")
-						.replace("rest/services","admin/services")
-						.replace("/FeatureServer",".FeatureServer");
+						.replace("rest/services","rest/admin/services");
 			}
 			
 			//
@@ -597,6 +599,13 @@ define([
 				_nameField.val("");
 				cleanErrors();
 				changeFooterState("orginal");
+				
+				var explain = i18n.viewer.builderHTML.dataExplain;
+				if ( app.isPortal ) {
+					explain += "<br /><br />";
+					explain += i18n.viewer.builderHTML.dataExplainPortal;
+				}
+				$('.dataExplain', container).html(explain);
 			}
 			
 			function cleanErrors()
@@ -607,7 +616,6 @@ define([
 	
 			this.initLocalization = function()
 			{
-				$('.dataExplain', container).html(i18n.viewer.builderHTML.dataExplain);
 				$('.dataNameLbl', container).html(i18n.viewer.builderHTML.dataNameLbl + ':');
 				$('.dataFolderListLbl', container).html(i18n.viewer.builderHTML.dataFolderListLbl + ':');
 			};

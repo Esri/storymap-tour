@@ -19,7 +19,7 @@ define(["dojo/Deferred"],
 			this.getPageAlbums = function(page, noRefine)
 			{
 				var resultDeferred = new Deferred();
-				var rqStr = document.location.protocol + '//graph.facebook.com/' + page + '/albums/?limit=50';
+				var rqStr = '/' + page + '/albums/?limit=50';
 				
 				if( ! page ) {
 					resultDeferred.reject();
@@ -28,10 +28,8 @@ define(["dojo/Deferred"],
 				
 				rqStr += noRefine ? '' : '&fields=name,count,privacy,type';
 				
-				$.getJSON(rqStr, function(data){
-					resultDeferred.resolve(data.data);
-				}).fail(function(){
-					resultDeferred.reject();
+				FB.api(rqStr, function(r) {
+					resultDeferred.resolve(r.data);
 				});
 				
 				return resultDeferred;
@@ -40,7 +38,7 @@ define(["dojo/Deferred"],
 			this.getPageAlbum = function(albumId, nbPicturesMax, refineResult)
 			{
 				var resultDeferred = new Deferred();
-				var rqStr = document.location.protocol + '//graph.facebook.com/' + albumId + '/?fields=photos';
+				var rqStr = '/' + albumId + '/?fields=photos';
 				
 				if( ! albumId ) {
 					resultDeferred.reject();
@@ -50,7 +48,7 @@ define(["dojo/Deferred"],
 				rqStr += refineResult ? '.fields(name,images,picture,source,place)' : '';
 				rqStr += nbPicturesMax ? '&limit=' + nbPicturesMax : '';
 				
-				$.getJSON(rqStr, function(r){
+				FB.api(rqStr, function(r) {
 					var photos = r && r.photos && r.photos.data ? r.photos.data : [];
 					if( refineResult ) 
 						resultDeferred.resolve(refineAlbumData(photos));

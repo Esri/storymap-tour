@@ -5,11 +5,12 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 		
+		<meta name="fragment" content="!">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-		<link type="image/ico" rel="shortcut icon" href="//resources.esri.com/favicon.ico">
-		<link type="image/ico" rel="icon"  href="//resources.esri.com/favicon.ico">
+		<link type="image/ico" rel="shortcut icon" href="resources/icons/favicon.ico">
+		<link type="image/ico" rel="icon"  href="resources/icons/favicon.ico">
 		
 		<!-- 
 			To correctly reference your Map Tour in search engine:
@@ -21,8 +22,8 @@
 		<!-- Facebook sharing -->
 		<meta property="og:type" content="article"/>
 		<meta property="og:title" content="Story Map Tour"/>
-		<meta property="og:description" content="This story map was created with the Esri Map Tour application in ArcGIS Online."/>
-		<meta property="og:image" content="resources/icons/esri-globe.png"/>
+		<meta property="og:description" content="This story map was created with the Story Map Tour application in ArcGIS Online."/>
+		<meta property="og:image" content="http://www.arcgis.com/apps/MapTour/resources/icons/esri-globe.png"/>
 
 		<!-- 
 			This template is released under the Apache License V2.0 by Esri http://www.esri.com/
@@ -45,6 +46,7 @@
 				appid: "",
 				// Optional list of authorized application or web map owners
 				// Has to be specified when using appid or webmap url parameters (e.g. ["user1"], ["user1", "user2"])
+				// To authorize all users you can use ["*"]
 				authorizedOwners: [""],
 				// Select the application layout between "three-panel" and "integrated"
 				layout: "three-panel",
@@ -68,7 +70,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.2.7';
+			var version = '2.4.0';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -95,8 +97,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("//js.arcgis.com/3.13/esri/css/esri.css", true);
-			loadCSS("//js.arcgis.com/3.13/dijit/themes/claro/claro.css", true);			
+			loadCSS("//js.arcgis.com/3.15/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.15/dijit/themes/claro/claro.css", true);			
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -161,7 +163,7 @@
 				parseOnLoad: true,
 				isDebug: false,
 				useDeferredInstrumentation: true,
-				cacheBust: ! isProduction,
+				//cacheBust: ! isProduction,
 				packages: [
 					{
 						name: 'storymaps',
@@ -175,6 +177,10 @@
 					}
 				]
 			};
+			
+			if (location.search.match(/locale=([\w\-]+)/)) {
+				dojoConfig.locale = RegExp.$1;
+			}
 		</script>
 		<!--[if IE 7]>
 			<link rel="stylesheet" href="resources/font/storymaps-icons-ie7.css">
@@ -206,9 +212,9 @@
 						<span class="msLink">
 							<a href="http://storymaps.arcgis.com" target="_blank" tabindex="-1"></a>
 						</span>
-						<i class="shareIcon share_facebook icon-facebook-squared-1" title="Share on Facebook"></i>
-						<i class="icon-twitter-1 shareIcon share_twitter" title="Share on Twitter"></i>
-						<i class="icon-link shareIcon share_bitly" title="Share a short link"></i>
+						<i class="shareIcon share_facebook icon-facebook-squared-1"></i>
+						<i class="icon-twitter-1 shareIcon share_twitter"></i>
+						<i class="icon-link shareIcon share_bitly"></i>
 					</div>
 					<div class="logo">
 						<a target="_blank">
@@ -250,6 +256,9 @@
 					<div data-dojo-type="dijit/layout/ContentPane" style="width:380px; height:280px; overflow:auto;">
 						<div id="basemapGallery" ></div></div>
 					</div>
+				</div>
+				<div class="mapLocationError">
+					<div class="mapLocationMsg"></div>
 				</div>
 			</div>
 			<!-- Picture panel -->
@@ -310,6 +319,12 @@
 		</div>
 		<div id="infoPanel" class="mobileView">
 			<div id="infoCarousel"></div>
+			<div class="embed-btn-container embed-btn-left disabled">
+				<div class="embed-btn"></div>
+			</div>
+			<div class="embed-btn-container embed-btn-right">
+				<div class="embed-btn"></div>
+			</div>
 		</div>
 		<div id="introPanel" class="mobileView"></div>
 
@@ -348,8 +363,62 @@
 
 		<!-- Loading indicator -->
 		<div id="loadingOverlay"></div>
-		<div id="loadingIndicator"></div>
+		<div id="loadingIndicator" class="loadingIndicator">
+			<img src="resources/icons/loading-light.gif" />
+		</div>
 		<div id="loadingMessage" aria-hidden="true"></div>
+		
+		<!-- Loading -->
+		<style>
+			#loadingOverlay {
+				position: absolute; 
+				top: 0; 
+				left: 0; 
+				z-index: 500; 
+				width: 100%; 
+				height: 100%; 
+				overflow: hidden; 
+				background-color: #E5E5E5; 
+				-webkit-box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3); 
+				-moz-box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3); 
+				box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3);
+			}
+			
+			@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+			@-moz-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+			@-webkit-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+			@-ms-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+			@-o-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+			
+			@keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
+			@-moz-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
+			@-webkit-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
+			@-ms-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
+			@-o-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
+			
+			#loadingOverlay.fadeOut {
+				-webkit-animation: fadeout 1.1s;
+				-moz-animation: fadeout 1.1s;
+				-ms-animation: fadeout 1.1s;
+				-o-animation: fadeout 1.1s;
+				animation: fadeout 1.1s;
+				-webkit-animation-fill-mode:forwards;
+				-moz-animation-fill-mode:forwards;
+				animation-fill-mode:forwards;
+			}
+			
+			#loadingIndicator {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				z-index: 700;
+			}
+			
+			.loadingIndicator {
+				margin-left: -17px;
+				margin-top: -35px;
+			}
+		</style>
 
 		<!-- Organize popup -->
 		<div class="modal hide" id="organizePopup" data-backdrop="static" tabindex="-1">
@@ -484,9 +553,9 @@
 				<div class="addText tab-content">
 					<div>
 						<label></label>
-						<input class="tourPointNameField clearVal" type="text" placeholder="" />
+						<input class="tourPointNameField clearVal" type="text" spellcheck="true" placeholder="" />
 						<label></label>
-						<textarea rows="4" class="tourPointDescr clearVal" placeholder=""></textarea>
+						<textarea rows="4" class="tourPointDescr clearVal" spellcheck="true" placeholder=""></textarea>
 					</div>
 					<ul class="errorList"></ul>
 				</div>
@@ -890,7 +959,7 @@
 							<div class="control-group">
 								<label class="control-label" for="selectSocialText"></label>
 								<div class="controls">
-									<input id="selectSocialText" type="text" />
+									<input id="selectSocialText" type="text" spellcheck="true" />
 								</div>
 							</div>
 							<div class="control-group">
@@ -1070,7 +1139,7 @@
 		</div>
 		
 		<script type="text/javascript">
-			loadJS('//js.arcgis.com/3.13/init.js', true);
+			loadJS('//js.arcgis.com/3.15/init.js', true);
 			loadJS('app/maptour-config.js');
 			
 			function getUrlVar(name)
@@ -1154,8 +1223,7 @@
 							urlUtils
 						){
 							i18n = _i18n;
-							loadingIndicator = new LoadingIndicator("loadingIndicator", "loadingMessage");
-					 		loadingIndicator.init();
+							loadingIndicator = new LoadingIndicator("", "loadingMessage");
 							loadingIndicator.setMessage(i18n.viewer.loading.step1);
 							
 						 	require(["storymaps/core/Core", "storymaps/maptour/core/MainView", "storymaps/utils/Helper"], function(Core, MainView, Helper){

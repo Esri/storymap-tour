@@ -23,6 +23,7 @@ define(["esri/map",
 		"dojo/topic",
 		"dojo/on",
 		"dojo/_base/lang",
+		"dojo/_base/array",
 		"dojo/Deferred",
 		"dojo/DeferredList",
 		"dojo/query",
@@ -49,6 +50,7 @@ define(["esri/map",
 		topic,
 		on,
 		lang,
+		array,
 		Deferred,
 		DeferredList,
 		query,
@@ -223,6 +225,20 @@ define(["esri/map",
 			}).then(lang.hitch(this, function(response){
 				var geometryServiceURL, geocodeServices;
 				
+				var trustedHost;
+				if(response.authorizedCrossOriginDomains && response.authorizedCrossOriginDomains.length > 0) {
+					for(var i = 0; i < response.authorizedCrossOriginDomains.length; i++) {
+						trustedHost = response.authorizedCrossOriginDomains[i];
+						// add if trusted host is not null, undefined, or empty string
+						if(esri.isDefined(trustedHost) && trustedHost.length > 0) {
+							esriConfig.defaults.io.corsEnabledServers.push({
+								host: trustedHost,
+								withCredentials: true
+							});
+						}
+					}
+				}
+				
 				if (commonConfig && commonConfig.helperServices) {
 					if (commonConfig.helperServices.geometry && commonConfig.helperServices.geometry) 
 						geometryServiceURL = location.protocol + commonConfig.helperServices.geometry.url;
@@ -250,11 +266,57 @@ define(["esri/map",
 				if( response.bingKey )
 					commonConfig.bingMapsKey = response.bingKey;
 				
-				// Disable feature service creation as Portal for ArcGIS 10.2 doesn't support that yet
-				if( response.isPortal && APPCFG && APPCFG.AUTHORIZED_IMPORT_SOURCE )
+				// Disable feature service creation on Portal that don't have the required capabilities
+				//  - looking at supportsSceneServices let us know if the Portal is using an ArcGIS Data Store has a managed DB
+				//  - ArcGIS Data Store allow to create scalable Feature Service ; Portal configured against another DB don't support the same Feature Service creation API
+				//  - the Feature Service creation API is only supported starting at Portal 10.4 but there is no way to know what version of Portal
+				if( response.isPortal && ! response.supportsSceneServices )
 					APPCFG.AUTHORIZED_IMPORT_SOURCE.featureService = false;
-
+				
+				// Disable feature service creation as Portal for ArcGIS 10.2 doesn't support that yet
+				//if( response.isPortal && APPCFG && APPCFG.AUTHORIZED_IMPORT_SOURCE )
+					//APPCFG.AUTHORIZED_IMPORT_SOURCE.featureService = false;
+				
+				// Default basemap
+				if ( response.defaultBasemap ) {
+					var basemap = lang.clone(response.defaultBasemap);
+					delete basemap.id;
+					delete basemap.operationalLayers;
+					$.each(basemap.baseMapLayers, function(i, layer){
+						delete layer.resourceInfo;
+						
+						if ( ! layer.id )
+							layer.id = "defaultBasemap";
+						if ( ! layer.layerType )
+							layer.layerType = "ArcGISTiledMapServiceLayer";
+						if ( ! layer. opacity )
+							layer.opacity = 1;
+						if ( layer.visibility === undefined )
+							layer.visibility = true;
+					});
+					
+					app.defaultBasemap = basemap;
+					
+					if ( window.location.protocol == "https:" ) {
+						if ( app.defaultBasemap && app.defaultBasemap.baseMapLayers && app.defaultBasemap.baseMapLayers.length ) {
+							app.defaultBasemap.baseMapLayers[0].url = app.defaultBasemap.baseMapLayers[0].url.replace('http://', 'https://'); 
+						}
+					} 
+				}
+				
 				app.isPortal = !! response.isPortal;
+				
+				// Help URL on Portal for ArcGIS
+				if ( app.isPortal && response.helpBase && response.portalHostname ) {
+					// APPCFG.HELP_URL_PORTAL contains the page in the help doc 
+					// response.helpBase contains the path to the home of help
+					// response.helpBase should always be relative to the hostname and include the optional portal instance name
+					// response.portalHostname also include the portal instance name so we remove it first
+					
+					var portalHost = response.portalHostname.split('/')[0];
+					
+					APPCFG.HELP_URL_PORTAL = '//' + portalHost + response.helpBase + APPCFG.HELP_URL_PORTAL;
+				}
 
 				initStep3();
 			}), function(){
@@ -376,6 +438,34 @@ define(["esri/map",
 					return;
 				}
 				
+				if( configOptions.authorizedOwners && configOptions.authorizedOwners.length > 0 && configOptions.authorizedOwners[0] ) {
+					var ownerFound = false;
+					
+					if( itemRq.results[0].owner ) 
+						ownerFound = $.inArray(itemRq.results[0].owner, configOptions.authorizedOwners) != -1;
+					
+					if ( ! ownerFound && configOptions.authorizedOwners[0] == "*" )
+						ownerFound = true;
+					
+					if (!ownerFound) {
+						initError("invalidConfigOwner");
+						return;
+					}
+				}
+				
+				// App proxies
+				if (itemRq.results[0] && itemRq.results[0].appProxies) {
+					var layerMixins = array.map(itemRq.results[0].appProxies, function (p) {
+						return {
+							"url": p.sourceUrl,
+							"mixin": {
+								"url": p.proxyUrl
+							}
+						};
+					});
+					app.data.setAppProxies(layerMixins);
+				}
+				
 				// If in builder, check that user is app owner or org admin
 				if (app.isInBuilderMode && isProd() && !app.data.userIsAppOwner()) {
 					initError("notAuthorized");
@@ -430,7 +520,7 @@ define(["esri/map",
 			// Using a value of 0ms create tile loading issue for all app life, it
 			//  looks like the API would not load all zoom level but resample lower level
 			if( has("chrome") ) {
-				esriConfig.defaults.map.zoomDuration = 50;
+				esriConfig.defaults.map.zoomDuration = 5;
 			}
 			
 			arcgisUtils.createMap(webmapIdOrJSON, "mainMap", {
@@ -450,7 +540,8 @@ define(["esri/map",
 					showAttribution: true
 				},
 				ignorePopups: true,
-				bingMapsKey: commonConfig.bingMapsKey
+				bingMapsKey: commonConfig.bingMapsKey,
+				layerMixins: app.data.getAppProxies()
 			}).then(
 				lang.hitch(this, function(response){
 					webMapInitCallback(response);
@@ -470,6 +561,9 @@ define(["esri/map",
 				
 				if( response.itemInfo.item.owner ) 
 					ownerFound = $.inArray(response.itemInfo.item.owner, configOptions.authorizedOwners) != -1;
+				
+				if ( ! ownerFound && configOptions.authorizedOwners[0] == "*" )
+					ownerFound = true;
 				
 				if (!ownerFound) {
 					initError("invalidConfigOwner");
@@ -559,8 +653,7 @@ define(["esri/map",
 		
 		function displayApp()
 		{
-			$("#loadingOverlay").fadeOut();
-			loadingIndicator.stop();
+			$("#loadingOverlay, #loadingIndicator, #loadingMessage").fadeOut();
 			
 			setTimeout(function(){
 				app.isLoading = false;
@@ -571,14 +664,14 @@ define(["esri/map",
 		{	
 			hideUI();
 			cleanLoadingTimeout();
-			loadingIndicator.stop();
+			$("#loadingIndicator, #loadingMessage").hide();
 			
 			if( error == "noLayerView" ) {
 				loadingIndicator.setMessage(i18n.viewer.errors[error], true);
 				return;
 			}
-			else if ( error != "initMobile" )
-				loadingIndicator.forceHide();
+			//else if ( error != "initMobile" )
+				//loadingIndicator.forceHide();
 			
 			$("#fatalError .error-msg").html(i18n.viewer.errors[error]);
 			if( ! noDisplay ) 
@@ -738,8 +831,7 @@ define(["esri/map",
 			$("#fatalError").css("display", "none");
 			$("#loadingOverlay").css("top", "0px");
 			
-			loadingIndicator.start();
-			
+			$("#loadingIndicator").show();			
 			loadingIndicator.setMessage(i18n.viewer.loading.step2);
 			startLoadingTimeout();
 			
@@ -822,7 +914,7 @@ define(["esri/map",
 				return;
 			}
 			
-			loadingIndicator.stop();
+			$("#loadingIndicator, #loadingMessage").hide();
 			loadingIndicator.setMessage(i18n.viewer.loading.fail + '<br /><button type="button" class="btn btn-medium btn-info" style="margin-top: 5px;" onclick="document.location.reload()">' + i18n.viewer.loading.failButton + '</button>', true);
 			app.map && app.map.destroy();
 		}

@@ -151,15 +151,15 @@ define(["dojo/cookie",
 			cloneLayer: function(layer)
 			{
 				if( layer.url && layer.url.match(/virtualearth\./) )
-					return new ArcGISTiledMapServiceLayer("http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer");
+					return new ArcGISTiledMapServiceLayer("//services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer");
 				else if(layer instanceof ArcGISTiledMapServiceLayer)
 					return new ArcGISTiledMapServiceLayer(layer.url);
 				else if (layer instanceof ArcGISDynamicMapServiceLayer)
 					return new ArcGISDynamicMapServiceLayer(layer.url);
-				else if (layer.id == "OpenStreetMap")
+				else if (layer.id == "OpenStreetMap" || layer.id == "layer_osm" )
 					return new OpenStreetMapLayer();
 				
-				return new ArcGISTiledMapServiceLayer("http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer");
+				return new ArcGISTiledMapServiceLayer("//services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer");
 			},
 			extentToPolygon: function(extent)
 			{

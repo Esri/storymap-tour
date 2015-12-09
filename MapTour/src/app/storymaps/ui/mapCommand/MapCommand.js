@@ -96,8 +96,22 @@ define([
 			
 			function getDeviceLocation()
 			{
+				console.log("getDeviceLocation");
+				
+				var timeout = 10000,
+					hasResultOrError = false;
+				
+				// Wait to display the loading indicator so it don't flash if result is super fast	
+				setTimeout(function(){
+					if ( ! hasResultOrError )
+						$(map.container).find('.mapCommandLocation').addClass('loading');
+				}, 300);
+				
 				navigator.geolocation.getCurrentPosition(
 					function(e) {
+						hasResultOrError = true;
+						$(map.container).find('.mapCommandLocation').removeClass('loading');
+						
 						var geom = new Point(e.coords.longitude, e.coords.latitude);
 						
 						// User callback
@@ -116,9 +130,21 @@ define([
 						else
 							displayLocationPin(geom);
 					},
-					getDeviceLocationError,
-					{ timeout: 2000 }
+					function(error){ 
+						hasResultOrError = true; 
+						getDeviceLocationError(error); 
+					},
+					{
+						enableHighAccuracy: true, 
+						maximumAge: 60000 * 2, // 2mn 
+						timeout: timeout
+					}
 				);
+				
+				setTimeout(function(){
+					if ( ! hasResultOrError )
+						getDeviceLocationError();
+				}, timeout);
 			}
 			
 			function displayLocationPin(point)
@@ -134,7 +160,10 @@ define([
 			
 			function getDeviceLocationError(error)
 			{
-				locationButtonCallback(false, error);
+				console.log("getDeviceLocationError", error);
+				
+				$(map.container).find('.mapCommandLocation').removeClass('loading');
+				locationButtonCallback(false, null);
 			}
 			
 			// Geolocate button

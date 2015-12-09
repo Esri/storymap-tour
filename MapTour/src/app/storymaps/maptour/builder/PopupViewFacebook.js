@@ -118,13 +118,28 @@ define(["storymaps/utils/FacebookConnector", "dojo/Deferred"],
 					});
 				};
 				
+				var disablePageInputs = function()
+				{
+					// Disable page inputs until signed-in
+					_container.find('.selectPageName, .btn-pageLookup').attr("disabled", "disabled");
+					_container.find('.selectPageName').attr('title', 'Please Log in to activate this feature');
+				};
+				
+				disablePageInputs();
+				
 				_facebook.loadApi().then(function(){
 					_facebook.onLogout().then(function(){
 						_container.find("#facebookListAlbum1").html("");
 						_container.find("#facebookListAlbum1").attr("disabled", "disabled");
 						loadUserAlbums();
+						disablePageInputs();
 					});
+					
 					loadAlbums();
+					
+					// Enable page inputs
+					_container.find('.selectPageName, .btn-pageLookup').removeAttr("disabled");
+					_container.find('.selectPageName').attr('title', '');
 				});
 			}
 			

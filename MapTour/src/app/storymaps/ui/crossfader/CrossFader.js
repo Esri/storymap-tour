@@ -183,7 +183,8 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				} 
 				else {
 					mediaEl.attr('src', url);
-					_loadingIndicator.start();
+					if ( ! app.isLoading )
+						_loadingIndicator.start();
 				}
 				
 				if( ! _mediaIsImg ) {
@@ -363,11 +364,11 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					
 					name = "<div class='text_edit_label'>" + (name || i18n.viewer.headerJS.editMe) + "</div>";
 					name += "<div class='text_edit_icon' title='"+i18n.viewer.crossFaderJS.setPicture+"'></div>";
-					name += "<textarea rows='3' class='text_edit_input' type='text' " + (nameLength ? "maxlength='" + (nameLength - (name.match(/=/g)||[]).length) + "'" : "") + "></textarea>";
+					name += "<textarea rows='3' class='text_edit_input' type='text' spellcheck='true'" + (nameLength ? "maxlength='" + (nameLength - (name.match(/=/g)||[]).length) + "'" : "") + "></textarea>";
 					
 					text = "<div class='text_edit_label'>" + (text || i18n.viewer.headerJS.editMe) + "</div>";
 					text += "<div class='text_edit_icon' title='"+i18n.viewer.crossFaderJS.setCaption+"'></div>";
-					text += "<textarea rows='6' class='text_edit_input' type='text' " + (descrLength ? "maxlength='" + (descrLength - (text.match(/=/g)||[]).length) + "'" : "") + "></textarea>";
+					text += "<textarea rows='6' class='text_edit_input' type='text' spellcheck='true'" + (descrLength ? "maxlength='" + (descrLength - (text.match(/=/g)||[]).length) + "'" : "") + "></textarea>";
 				}
 				else { 
 					$(_placardContainer).toggleClass("no-description", text === "");
@@ -385,7 +386,9 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				$(_placard).append("<div class='description' " + tabOrder + "'>"+text+"<div/>");
 				
 				// Remove user generated content links from the tab navigation
-				$(_placard).find("a").attr("tabindex", "-1");
+				if ( ! app.isInBuilderMode ) {
+					$(_placard).find("a").attr("tabindex", "-1");
+				}
 				
 				if (isInBuilderMode) {
 					new InlineFieldEdit(

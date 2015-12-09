@@ -143,6 +143,22 @@ define(["storymaps/maptour/core/WebApplicationData",
 							$(this).off("blur").css("outline", "");
 						});
 					}
+					
+					if ( $(this).parents("#placard > div").length ) {
+						$(this).parents("#placard > div").css("outline", "none").on("blur", function() {
+							$(this).off("blur").css("outline", "");
+						});
+					}
+					else if ( $(this).parents("#headerDesktop .title").length ) {
+						$(this).parents("#headerDesktop .title").css("outline", "none").on("blur", function() {
+							$(this).off("blur").css("outline", "");
+						});
+					}
+					else if ( $(this).parents("#headerDesktop .subtitle").length ) {
+						$(this).parents("#headerDesktop .subtitle").css("outline", "none").on("blur", function() {
+							$(this).off("blur").css("outline", "");
+						});
+					}
 				});
 				
 				// Detect focus on the title to avoid losing the current point if 
@@ -331,9 +347,21 @@ define(["storymaps/maptour/core/WebApplicationData",
 					if( has("ie") > 0 && has("ie") < 9 )
 						setTimeout(layerLoaded, 1000);
 					else {
-						on.once(app.map, 'update-end', function(){
-							layerLoaded();
-						});
+						// Seems to be needed for FS created from My Content in AGOL
+						if ( app.data.getSourceLayer().objectIdField == "FID" && app.map.loaded ) {
+							on(app.data.getSourceLayer(), 'update-end', layerLoaded);
+							
+							// If the map extent is not set right now, the layer won't query for data
+							// If remove the extent defined when creating the map the query is performed,
+							//   it looks like hosted FS doesn't like the world extent used there
+							// The proper extent is set after
+							_this.setMapExtent(app.data.getSourceLayer().fullExtent);							
+						}
+						else {
+							on.once(app.map, 'update-end', function(){
+								layerLoaded();
+							});
+						}
 					}
 				}
 				// Webmap layer (shp, csv)
@@ -553,6 +581,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// See forced call to selectedPointChange_after before
 				if( ! app.data.getTourPoints().length )
 					selectedPointChange_afterStep2();
+				
+				if ( has('ie') || has('trident') ) { 
+					app.desktopCarousel.iefix();
+				} 
 			};
 			
 			function initUI()
@@ -898,7 +930,23 @@ define(["storymaps/maptour/core/WebApplicationData",
 							if( appZoomLevel > app.map.getMaxZoom() )
 								appZoomLevel = app.map.getMaxZoom();
 							
+							/*
+							// Prevent freeze in Chrome
+							if ( has("chrome") ) {
+								esriConfig.defaults.map.zoomDuration = 0;
+							}
+							*/
+							
 							_this.centerMap(graphic.geometry, appZoomLevel);
+							
+							/*
+							setTimeout(function(){
+								if ( has("chrome") ) {
+									esriConfig.defaults.map.zoomDuration = 500;
+								}
+							}, 100);
+							*/
+							
 							on.once(app.map, "extent-change", function() {
 								setCurrentGraphicIcon(graphic);
 							});
@@ -1281,6 +1329,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 					}
 					else if (! visibleMapContains(geom)) 
 						_this.centerMap(geom);
+				}
+				else {
+					$("#mapPanel .mapLocationMsg").html(i18n.viewer.locator.error);
+					$("#mapPanel .mapLocationError").fadeIn();
+					
+					setTimeout(function(){
+						$("#mapPanel .mapLocationError").fadeOut();
+					}, 5000);
 				}
 			};
 			
