@@ -128,14 +128,6 @@
 						dest: 'deploy/'
 					}]
 				},
-				commonConfig: {
-					files: [{
-						expand: true,
-						cwd: 'src/app',
-						src:['commonConfig.js'],
-						dest: 'deploy/app'
-					}]
-				},
 				bootstrapResources: {
 					files: [{
 						expand: true,
@@ -290,7 +282,6 @@
 			'copy:html',
 			'regex-replace:index',
 			'copy:config',
-			'copy:commonConfig',
 			'copy:bootstrapResources',
 			'copy:colorboxResources',
 			'copy:resources'

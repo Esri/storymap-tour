@@ -37,7 +37,11 @@ define([],
 					&& APPCFG.FLICKR_API_KEY
 					&& APPCFG.FACEBOOK_APP_ID
 					&& APPCFG.YOUTUBE_DISABLE_ON_PORTAL !== undefined
-					&& APPCFG.YOUTUBE_API_KEY;
+					&& APPCFG.YOUTUBE_API_KEY
+					&& APPCFG.BING_MAPS_KEY !== undefined
+					&& APPCFG.HELPER_SERVICES !== undefined
+					&& APPCFG.HELPER_SERVICES.geometry !== undefined
+					&& APPCFG.HELPER_SERVICES.geocode !== undefined;
 			}
 		};
 	}

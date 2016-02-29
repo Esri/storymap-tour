@@ -53,7 +53,7 @@ define(["dojo/has"],
 					
 			this.getView = function()
 			{
-				if( ! app.data.userIsOrgaPublisher() || (! app.data.userIsAppOwner() && ! app.isDirectCreation) ){
+				if( ! app.data.userIsOrgaPublisher() || (! app.userCanEdit && ! app.isDirectCreation) ){
 					$(".btn-select-hostedFS").addClass("disabled");
 					$(".notAvailable").css("display", "block");
 				}

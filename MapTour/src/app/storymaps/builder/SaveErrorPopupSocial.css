@@ -1,0 +1,36 @@
+.saveErrorPopupSocial .modal-body {
+	overflow-y: visible;
+}
+
+.saveErrorPopupSocial .tooltip.in {
+	opacity: 1.0;
+}
+
+.saveErrorPopupSocial .panel1 .tooltip-inner {
+	max-width: 266px !important;
+	width: 266px;
+	padding-bottom: 8px;
+}
+
+.saveErrorPopupSocial .panel2 {
+	margin-top: 10px;
+}
+
+.saveErrorPopupSocial .panel3 {
+	margin-top: 25px;
+}
+
+.saveErrorPopupSocial .panel2 .form-group {
+	margin-left: 10px;
+}
+
+.saveErrorPopupSocial .stop-asking {
+	float: left;
+	margin-top: 5px;
+    margin-left: 10px;
+}
+
+.saveErrorPopupSocial .stop-asking label.disabled {
+	color: #CCC;
+	cursor: not-allowed;
+}

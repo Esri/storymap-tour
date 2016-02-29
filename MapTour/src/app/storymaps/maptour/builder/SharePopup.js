@@ -9,24 +9,22 @@ define(["storymaps/utils/Helper"],
 				
 				var appUrl = document.location.protocol + '//' + document.location.host + document.location.pathname + '?appid=' + app.data.getAppItem().id,
 					itemUrl = Helper.getItemURL(configOptions.sharingurl, app.data.getAppItem().id),
-					webmapUrl = Helper.getItemURL(configOptions.sharingurl, app.data.getWebMapItem().item.id),
-					fsUrl = Helper.getItemURL(configOptions.sharingurl, app.data.getFSSourceLayerItemId()),
-					contentUrl = Helper.getMyContentURL(configOptions.sharingurl);
+					webmapUrl = Helper.getItemURL(configOptions.sharingurl, app.data.getWebMapItem().item.id);
 				
 				// Clean UI
 				container.find('.share, .first-save, .not-shared').addClass('hide');
 				container.find('.modal-footer .success, .modal-footer .error').hide();
 				
 				if (isFirstSave) 
-					presentFirstSave(appUrl, contentUrl);
+					presentFirstSave();
 				else {
-					var isPrivate = app.data.getAppItem().access == "private";
+					var isPrivate = app.data.getAppItem().access == "private" || app.data.getAppItem().access == "shared";
 					if ( isPrivate ) 
 						presentSharing(itemUrl, appUrl, webmapUrl, function(){
-							presentShared(appUrl, itemUrl, webmapUrl, fsUrl, contentUrl);
+							presentShared(appUrl);
 						});
 					else 
-						presentShared(appUrl, itemUrl, webmapUrl, fsUrl, contentUrl);
+						presentShared(appUrl);
 						
 					container.find('h3').html(i18n.viewer.share.shareTitle);
 					displayShareDialog(isPrivate);
@@ -39,25 +37,16 @@ define(["storymaps/utils/Helper"],
 			};
 			
 			// First save in from scratch mode: dialog with the admin link
-			function presentFirstSave(appUrl, contentUrl)
+			function presentFirstSave()
 			{	
 				container.find('h3').html(i18n.viewer.share.firstSaveTitle);
-				container.find('.first-save .header').html(i18n.viewer.share.firstSaveHeader);
-				container.find('.first-save .question1').html(i18n.viewer.share.shareQ2bis);
-				container.find('.first-save .answer1').html(
-					i18n.viewer.share.firstSaveA1
-						.replace('%LINK1%', '<div style="text-align: center; margin-top: 8px; margin-bottom: 8px;"><input type="text" id="firstSavebitly2" value="' + appUrl + '&edit' + '" style="width: 210px; margin-bottom: 0px; height: 20px; text-align: center; font-weight: bold; font-size: 22px;"/></div>')
-					+ i18n.viewer.share.firstSaveA1bis
-						.replace('%LINK2%', contentUrl)
+				var myStoriesUrl = app.isPortal ? Helper.getMyStoriesURL() : "//storymaps.arcgis.com/en/my-stories/";
+				container.find('.saved-tip').html(
+					i18n.viewer.share.manageStoryA1
+						.replace('%LINK1%', '<a href="' + myStoriesUrl + '" target="_blank">' + i18n.viewer.share.manageStoryA1V1 + '</a>')
+						.replace('%LINK2%', '<a href="http://links.esri.com/storymaps/my_stories_blog_posts" target="_blank">' + i18n.viewer.share.manageStoryA1V2 + '</a>')
 				);
-				container.find('.first-save .question2').html(i18n.viewer.share.firstSaveQ2);
-				container.find('.first-save .answer2').html(i18n.viewer.share.firstSaveA2);
 				container.find('.first-save').removeClass('hide');
-				
-				if (APPCFG.HEADER_SOCIAL && APPCFG.HEADER_SOCIAL.bitly && APPCFG.HEADER_SOCIAL.bitly.enable)
-					getBitLy(appUrl + '&edit', '#firstSavebitly2');
-				else
-					setTimeout(function(){ $("#firstSavebitly2").select(); }, 100);
 			}
 			
 			// Sharing screen
@@ -101,7 +90,7 @@ define(["storymaps/utils/Helper"],
 						sharingStatus = i18n.viewer.share.shareWarningWith1;
 						container.find('.not-shared .btn-sharePublic').addClass("disabled").off('click');
 					}
-					else if (app.data.getWebMapItem().item.access == "private") {
+					else if (app.data.getWebMapItem().item.access == "private" || app.data.getWebMapItem().item.access == "shared") {
 						sharingStatus = i18n.viewer.share.shareWarningWith2;
 						container.find('.not-shared .btn-sharePublic, .not-shared .btn-shareOrga').addClass("disabled").off('click');
 					}
@@ -135,7 +124,7 @@ define(["storymaps/utils/Helper"],
 			}
 			
 			// Alrady shared screen
-			function presentShared(appUrl, itemUrl, webmapUrl, fsUrl, contentUrl)
+			function presentShared(appUrl)
 			{
 				// Header
 				container.find('.shared-dialog .header').html(
@@ -153,54 +142,11 @@ define(["storymaps/utils/Helper"],
 					+ '</div>'
 				);
 				
-				// Question 1
-				container.find('.shared-question1')
-					.html(
-						'<strong>' 
-						+(app.data.isOrga() ?
-							i18n.viewer.share.shareQ1Opt1
-							: i18n.viewer.share.shareQ1Opt2)
-						+ '</strong>'
-					).on('click', function() { 
-						container.find('.shared-answer1').collapse('toggle');
-					});
-					
-				container.find('.shared-answer1').html(i18n.viewer.share.shareA1
-					.replace('%SHAREIMG%', '<img src="resources/icons/builder-share-shareBtn.png" style="vertical-align: -5px;"/>')
-					.replace('%LINK1%', itemUrl)
-					.replace('%LINK2%', webmapUrl)
-					+ (app.data.sourceIsFS() && app.data.getFSSourceLayerItemId() ? ' ' + i18n.viewer.share.shareA1bis.replace('%LINK1%', fsUrl) : '')
-				);
-				
-				// Question 2
-				container.find('.shared-question2')
-					.html(
-						'<strong>' 
-						+ i18n.viewer.share.shareQ2bis
-						+ '</strong>'
-					).on('click', function() { 
-						container.find('.shared-answer2').collapse('toggle');
-					});
-				container.find('.shared-answer2').html(i18n.viewer.share.shareA2div1
-					.replace('%LINK1%', '<input type="text" id="firstSavebitly3" value="' + appUrl + '&edit' + '" style="width: 138px; margin-bottom: 0px; height: 14px; text-align: center; font-weight: bold;"/>')
-					.replace('%LINK2%', itemUrl)
-					+ '<div style="margin-top: 3px">' + i18n.viewer.share.shareA2div2 + '</div>'
-					+ '<div class="imgContainer"><img src="resources/icons/builder-share-switch.png" /></div>'
-				);
-				
-				// Question 3
-				container.find('.shared-question3')
-					.html(
-						'<strong>' 
-						+ i18n.viewer.share.shareQ3
-						+ '</strong>'
-					).on('click', function() { 
-						container.find('.shared-answer3').collapse('toggle');
-					});
-				container.find('.shared-answer3').html(i18n.viewer.share.shareA3
-					.replace('%LINK1%', webmapUrl)
-					.replace('%LINK2%', itemUrl)
-					.replace('%LINK3%', contentUrl)
+				var myStoriesUrl = app.isPortal ? Helper.getMyStoriesURL() : "//storymaps.arcgis.com/en/my-stories/";
+				container.find('.shared-tip').html(
+					i18n.viewer.share.manageStoryA1
+						.replace('%LINK1%', '<a href="' + myStoriesUrl + '" target="_blank">' + i18n.viewer.share.manageStoryA1V1 + '</a>')
+						.replace('%LINK2%', '<a href="http://links.esri.com/storymaps/my_stories_blog_posts" target="_blank">' + i18n.viewer.share.manageStoryA1V2 + '</a>')
 				);
 				
 				if (APPCFG.HEADER_SOCIAL && APPCFG.HEADER_SOCIAL.bitly && APPCFG.HEADER_SOCIAL.bitly.enable) {

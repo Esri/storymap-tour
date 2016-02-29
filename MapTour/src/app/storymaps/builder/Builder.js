@@ -98,6 +98,35 @@ define(["esri/arcgis/Portal",
 		
 		function appInitComplete()
 		{
+			var storyTitle = "",
+				itemTitle = "";
+			
+			if ( WebApplicationData.getTitle() ) {
+				storyTitle = WebApplicationData.getTitle().trim();
+			}
+			
+			if ( app.data.getAppItem() && app.data.getAppItem().title ) {
+				itemTitle = app.data.getAppItem().title.trim();
+			}
+			
+			// The title may be inherited from the app or web map
+			if ( ! storyTitle ) {
+				storyTitle = itemTitle;
+				
+				if ( ! storyTitle ) {
+					if ( app.data.getWebMapItem() && app.data.getWebMapItem().item && app.data.getWebMapItem().item.title ) {
+						storyTitle = app.data.getWebMapItem().item.title.trim();
+					}
+				}
+			}
+			
+			app.builder.titleMatchOnLoad = itemTitle == storyTitle;
+			
+			// Handle reusing image/webmap title in fromScratch
+			if ( app.isDirectCreation || app.isGalleryCreation ) {
+				app.builder.titleMatchOnLoad = true;
+			}
+			
 			_builderPanel.updateSharingStatus();
 			_builderView.appInitComplete(saveApp);
 		}
@@ -152,7 +181,7 @@ define(["esri/arcgis/Portal",
 		// Save
 		//
 		
-		function saveAppThenWebmap()
+		function saveAppThenWebmap(doNotOverwriteTitle)
 		{			
 			if ( ! app.portal ) {
 				console.error("Fatal error - not signed in");
@@ -162,7 +191,7 @@ define(["esri/arcgis/Portal",
 			
 			app.portal.signIn().then(
 				function(){ 
-					saveApp(function(response){
+					saveApp(doNotOverwriteTitle, function(response){
 						if (!response || !response.success) {
 							appSaveFailed("APP");
 							return;
@@ -253,11 +282,15 @@ define(["esri/arcgis/Portal",
 						);
 						
 						// Save the app
-						saveApp(function(response2){
+						saveApp(true, function(response2){
 							if (!response2 || !response2.success) {
 								appSaveFailed("APP");
 								return;
 							}
+							
+							var baseUrl = document.location.protocol + '//' + document.location.host + document.location.pathname;
+							if ( ! baseUrl.match(/index\.html$/) )
+								baseUrl += "index.html";
 							
 							// Update the app item
 							app.data.setAppItem(
@@ -266,13 +299,13 @@ define(["esri/arcgis/Portal",
 									{
 										id: response2.id,
 										item: response2.item,
-										url: document.location.protocol + '//' + document.location.host + document.location.pathname + '?appid=' + response2.id
+										url: baseUrl + '?appid=' + response2.id
 									}
 								)
 							);
 														
 							// Save the app a second time
-							saveApp(function(response3){
+							saveApp(false, function(response3){
 								if (!response3 || !response3.success) {
 									appSaveFailed("APP");
 									return;
@@ -284,7 +317,7 @@ define(["esri/arcgis/Portal",
 								app.isDirectCreationFirstSave = false;
 								_builderPanel.updateSharingStatus();
 							
-								History.replaceState({}, "", "?appid=" + response3.id + "&edit");
+								History.replaceState({}, "", "index.html?appid=" + response3.id + "&edit");
 							});
 						});
 					});
@@ -351,7 +384,7 @@ define(["esri/arcgis/Portal",
 						);
 						
 						// Save the app
-						saveApp(function(response2){
+						saveApp(false, function(response2){
 							if (!response2 || !response2.success) {
 								appSaveFailed("APP");
 								return;
@@ -364,7 +397,7 @@ define(["esri/arcgis/Portal",
 								app.isGalleryCreation = false;
 								_builderPanel.updateSharingStatus();
 						
-								History.replaceState({}, "", "?appid=" + response2.id + "&edit");
+								History.replaceState({}, "", "index.html?appid=" + response2.id + "&edit");
 							};
 							
 							// Share the webmap and eventual FS if the app isn't private
@@ -409,7 +442,7 @@ define(["esri/arcgis/Portal",
 		// Web mapping application save
 		//
 
-		function saveApp(nextFunction)
+		function saveApp(doNotOverwriteTitle, nextFunction)
 		{
 			var portalUrl = getPortalURL(),
 				appItem = lang.clone(app.data.getAppItem()),	
@@ -475,6 +508,20 @@ define(["esri/arcgis/Portal",
 					}
 					
 				} catch( e ) { }
+			}
+			
+			// Title
+			if ( ! doNotOverwriteTitle ) {
+				appItem.title = WebApplicationData.getTitle();
+			}
+
+			if ( appItem.properties ) { 
+				appItem.properties = JSON.stringify(appItem.properties);
+			}
+			
+			// Edit URL of hosted apps to always include index.html
+			if ( appItem.url && appItem.url.match(/apps\/[a-zA-Z]+\/\?appid=/) ) {
+				appItem.url = appItem.url.replace('/?appid=', '/index.html?appid=');
 			}
 			
 			appItem = lang.mixin(appItem, {
@@ -744,9 +791,9 @@ define(["esri/arcgis/Portal",
 			// Find items to share - only if they aren't already shared to the proper level 
 			var targetItems = [];
 			if( sharingMode == "account" ) {
-				if( (app.data.getWebMapItem().item.access == "private"||!app.data.getWebMapItem().item.access) && app.data.getWebMapItem().item.owner == app.portal.getPortalUser().username )
+				if( (app.data.getWebMapItem().item.access == "private"||app.data.getWebMapItem().item.access == "shared"||!app.data.getWebMapItem().item.access) && app.data.getWebMapItem().item.owner == app.portal.getPortalUser().username )
 					targetItems.push(app.data.getWebMapItem().item.id);
-				if ( app.data.getAppItem().access == "private" )
+				if ( app.data.getAppItem().access == "private" || app.data.getAppItem().access == "shared" )
 					targetItems.push(app.data.getAppItem().id);
 			}
 			else {

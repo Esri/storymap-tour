@@ -105,6 +105,11 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 			function login()
 			{
 				var userName = _container.find(".selectUserName").val(); 
+				
+				if ( userName ) {
+					userName = userName.trim();
+				}
+				
 				_container.find(".signInMsg").removeClass('error').html(i18n.viewer.onlinePhotoSharingCommon.userLookingup + ' <img src="resources/icons/loader-upload.gif" />');
 				disableLists();
 				disableNextBtn();

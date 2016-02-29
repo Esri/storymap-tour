@@ -192,11 +192,29 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				}
 			};
 			
+			this.enableAutoplay = function()
+			{
+				$(selector + " .shareIcon").attr("title", "");
+				
+				$(selector + " .shareIcon")
+					.toggleClass("disabled", true)
+					.popover({
+						trigger: 'hover',
+						content: '<div style="font-size: 12px">' + i18n.viewer.desktopHTML.tooltipAutoplayDisabled + '</div>',
+						placement: 'bottom',
+						html: true
+					});
+			};
+			
 			function shareFacebook()
 			{
 				var options = '&p[title]=' + encodeURIComponent($(selector + ' #headerMobile .title').text())
 								+ '&p[summary]=' + encodeURIComponent($(selector + ' #headerMobile .subtitle').text())
 								+ '&p[url]=' + cleanURL(document.location.href);
+				
+				if ( $(this).hasClass("disabled") ) {
+					return;
+				}
 			
 				var counter = 0;
 				// TODO: make multiple images works 
@@ -223,6 +241,10 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 								+ '&url=' + cleanURL(document.location.href)
 								+ '&related=EsriStoryMaps'
 								+ '&hashtags=storymap'; 
+				
+				if ( $(this).hasClass("disabled") ) {
+					return;
+				}
 			
 				window.open(
 					'https://twitter.com/intent/tweet?' + options, 
@@ -233,12 +255,16 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			
 			function shareBitly()
 			{
+				if ( $(this).hasClass("disabled") ) {
+					return;
+				}
+				
 				$(selector).find(".share_bitly").popover({
 					trigger: 'manual',
 					placement: 'left',
 					html: true,
 					content: 
-						'<div style="width:150px; min-height: 50px; text-align: center">'
+						'<div style="width:150px; min-height: 60px; text-align: center">'
 						+ ' <div id="bitlyLoad" style="position:absolute; top: 16px; left: 24px; width:130px; text-align:center;">'
 						+ '  <img src="resources/icons/loader-upload.gif" alt="Loading" />'
 						+ ' </div>'
@@ -247,12 +273,28 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 						+ '  <input id="bitlyStartIndex" type="checkbox" style="width: 10px; vertical-align: -2px;" ' + _bitlyStartIndexStatus + '/> ' 
 						+    i18n.viewer.desktopHTML.bitlyStartIndex
 						+ ' </div>'
+						+ ' <div class="autoplay-container" style="font-size: 0.8em; margin-top: 2px; margin-bottom: -1px; position: absolute; top: 57px; width: 100%; left: 0px; text-align: center;">'
+						+ '   <input type="checkbox" class="autoplay-checkbox" value="autoplay" style="width: 10px; vertical-align: -2px;" /> '
+						+    i18n.viewer.desktopHTML.autoplayLabel
+						+ '  <a class="autoplay-help"><img src="resources/icons/builder-help.png" style="vertical-align: -4px;"/></a>'
+						+ ' </div>'
 						+ '</div>'
 						+ '<script>'
 						+ ' $(document).on("click touchstart", function(src) { if( ! src || ! src.target || ! $(src.target).parents(".popover").length ){ $(".share_bitly").popover("hide"); $(document).off("click"); } });'
 						+ ' $("#bitlyStartIndex").change(app.requestBitly); '
 						+ '</script>'
 				}).popover('toggle');
+				
+				$(selector).find(".autoplay-help").popover({
+					content: "<div style='width: 150px'>"
+						+ i18n.viewer.desktopHTML.autoplayExplain1
+						+ "<br /><br />"
+						+ i18n.viewer.desktopHTML.autoplayExplain2,
+					placement: 'bottom',
+					html: true
+				});
+				
+				$(selector).find('.autoplay-checkbox').change(requestBitly);
 				
 				requestBitly();
 			}
@@ -279,6 +321,15 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 									+ 'index=' + currentIndex 
 									+ document.location.hash;
 				}
+				
+				targetUrl = cleanURL(targetUrl, true);
+				
+				// Autoplay
+				if( $(".autoplay-checkbox").is(":checked") ) {
+					targetUrl += targetUrl.match(/\?/) ? '&' : '?';
+					targetUrl += 'autoplay';
+				}
+				
 				//else {
 					// remove index parameter if any
 					//targetUrl = targetUrl.replace(/index\=[0-9]+/, '');
@@ -292,7 +343,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 						"format": "json",
 						"apiKey": APPCFG.HEADER_SOCIAL.bitly.key,
 						"login": APPCFG.HEADER_SOCIAL.bitly.login,
-						"longUrl": cleanURL(targetUrl, true)
+						"longUrl": targetUrl
 					},
 					function(response)
 					{
@@ -317,6 +368,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					delete urlParams.query.locale;
 					delete urlParams.query.folderId;
 					delete urlParams.query.webmap;
+					delete urlParams.query.autoplay;
 					
 					$.each(Object.keys(urlParams.query), function(i, k){ 
 						if ( i === 0 ){
@@ -326,7 +378,12 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 							newUrl += '&';
 						}
 						
-						newUrl += k + '=' + urlParams.query[k];
+						if ( urlParams.query[k] !== undefined && urlParams.query[k] !== "" ) {
+							newUrl += k + '=' + urlParams.query[k];
+						}
+						else {
+							newUrl += k;
+						}
 					});
 				}
 				
@@ -368,11 +425,11 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			this.switchToBuilder = function() 
 			{
 				if( document.location.search.match(/appid/) )
-					document.location = document.location.protocol + '//' + document.location.host + document.location.pathname + document.location.search + "&edit" + document.location.hash;
+					document.location = cleanURL(document.location.protocol + '//' + document.location.host + document.location.pathname + document.location.search, true) + "&edit" + document.location.hash;
 				else if ( document.location.search.slice(-1) == '?' )
-					document.location = document.location.protocol + '//' + document.location.host + document.location.pathname + "edit"  + document.location.hash;
+					document.location = cleanURL(document.location.protocol + '//' + document.location.host + document.location.pathname, true) + "?edit"  + document.location.hash;
 				else
-					document.location = document.location.protocol + '//' + document.location.host + document.location.pathname + "?edit"  + document.location.hash;
+					document.location = cleanURL(document.location.protocol + '//' + document.location.host + document.location.pathname, true) + "?edit"  + document.location.hash;
 			};
 			
 			this.initLocalization = function()

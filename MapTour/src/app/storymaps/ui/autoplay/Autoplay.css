@@ -1,0 +1,65 @@
+body.mobile-view .autoplay {
+	display: none !important;	
+}
+
+.autoplay {
+   -webkit-transition: opacity 0.5s linear;
+      -moz-transition: opacity 0.5s linear;
+       -ms-transition: opacity 0.5s linear;
+        -o-transition: opacity 0.5s linear;
+           transition: opacity 0.5s linear;
+}
+
+.autoplay .autoplay-container {
+	position: relative;
+	width: 180px;
+	margin: 0 -100px;
+	text-align: center;
+	padding: 10px 10px 0px 10px;
+	background-color: #AAA;
+	border-radius: 4px;
+	border: 1px solid #FFF;
+}
+
+.autoplay .backdrop {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0.8;
+	border-radius: 4px;
+}
+
+.autoplay .btn-play-container {
+	display: inline-block;
+	width: 40px;
+	height: 42px;
+	font-size: 30px;
+	cursor: pointer;
+	vertical-align: middle;
+	color: #FFF;
+	margin-top: -5px;
+}
+
+.autoplay.theme-white2 .btn-play-container {
+	color: #000;
+}
+
+.autoplay .slider-container {
+	display: inline-block;
+	width: 125px;
+	height: 42px;
+	margin-left: 9px;
+	vertical-align: middle;
+	padding-top: 8px;
+}
+
+.autoplay .slider {
+	width: 120px !important;
+}
+
+.autoplay .slider input {
+	display: none !important;
+}

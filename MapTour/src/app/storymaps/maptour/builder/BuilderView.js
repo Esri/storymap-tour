@@ -12,6 +12,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"storymaps/maptour/core/MapTourHelper",
 		"storymaps/utils/Helper",
 		"esri/dijit/BasemapGallery",
+		"esri/arcgis/utils",
 		"dojo/has",
 		// Settings tab
 		"storymaps/maptour/builder/SettingsPopupTabLayout",
@@ -39,6 +40,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		MapTourHelper,
 		Helper,
 		BasemapGallery,
+		arcgisUtils,
 		has,
 		// Settings tab
 		SettingsPopupTabLayout, 
@@ -120,11 +122,20 @@ define(["storymaps/maptour/core/WebApplicationData",
 					return;
 				}
 				
+				var galleryConfig = {
+					map: app.map,
+					portalUrl: arcgisUtils.arcgisUrl.split('/sharing/')[0]
+				};
+				
+				if (app.portal.basemapGalleryGroupQuery) {
+					galleryConfig.basemapsGroup = app.portal.basemapGalleryGroupQuery;
+				} 
+				else {
+					galleryConfig.showArcGISBasemaps = true;
+				}
+				
 				var basemapGallery = new BasemapGallery(
-					{
-						showArcGISBasemaps: true,
-						map: app.map
-					}, 
+					galleryConfig,
 					"basemapGallery"
 				);
 				basemapGallery.startup();
@@ -151,6 +162,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 							delete bmLayerJSON.url;
 							bmLayerJSON.type = "OpenStreetMap";
 						}
+						else if ( layer.type == "VectorTileLayer" ) {
+							delete bmLayerJSON.url;
+							bmLayerJSON.type = "VectorTileLayer";
+							bmLayerJSON.layerType = "VectorTileLayer";
+							bmLayerJSON.title = basemap.title;
+							bmLayerJSON.styleUrl = layer.styleUrl;
+							bmLayerJSON.itemId = basemap.itemId;
+						} 
 					
 						newBasemapJSON.push(bmLayerJSON);
 					});

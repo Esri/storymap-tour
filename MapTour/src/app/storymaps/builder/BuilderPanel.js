@@ -1,10 +1,11 @@
-define([], 
-	function () {
+define(["./SaveErrorPopupSocial", "storymaps/maptour/core/WebApplicationData"], 
+	function (SaveErrorPopupSocial, WebApplicationData) {
 		return function BuilderPanel(container, builderSave, builderDirectCreationFirstSave, builderGalleryCreationFirstSave) 
 		{
 			var _this = this;
 			var _displayBuilderSaveIntro = true;
 			var _builderView = null;
+			var _saveErrorPopupSocial = null;
 
 			this.init = function(builderView) 
 			{	
@@ -23,6 +24,8 @@ define([],
 				});
 				container.find('.builder-settings').click(showSettingsPopup);
 				container.find('.builder-help').click(showHelpPopup);
+				
+				_saveErrorPopupSocial = new SaveErrorPopupSocial($("#saveErrorPopupSocial"));
 				
 				$(window).bind('keydown', function(event) {
 					if (event.ctrlKey || event.metaKey) {
@@ -76,10 +79,52 @@ define([],
 					builderGalleryCreationFirstSave();
 				}
 				else {
-					// Save the app 
-					// If OK and needed call save webmap 
-					// If OK call appSaveSucceeded
-					builderSave();
+					// Save of an existing app
+					
+					var storyTitle = "",
+						itemTitle = "";
+					
+					if ( WebApplicationData.getTitle() ) {
+						storyTitle = WebApplicationData.getTitle().trim();
+					}
+					
+					if ( app.data.getAppItem() && app.data.getAppItem().title ) {
+						itemTitle = app.data.getAppItem().title.trim();
+					}
+					
+					// if item and story title don't match
+					//  and user hasn't chose to not be warned about it
+					//  and story is public
+					if ( ! app.builder.titleMatchOnLoad 
+							&& ! WebApplicationData.getDoNotWarnTitle() 
+							&& app.data.getAppItem().access == "public"
+							// Extra check that title actually differs - don't show the dialog it title where not matching but user fixed it
+							&& storyTitle != itemTitle
+					) {
+						// If the warning dialog has already been displayed in the session, skip it and reuse the choice
+						if ( app.builder.titleMatchDialogDisplayed ) {
+							builderSave(app.builder.titleFromItem);
+						}
+						// Show the warning dialog
+						else {
+							app.builder.titleMatchDialogDisplayed = true;
+							
+							_saveErrorPopupSocial.present().then(
+								function(p) {
+									app.builder.titleFromItem = p && p.choice == 'item';
+									builderSave(app.builder.titleFromItem);
+								}
+							);
+						}
+					}
+					else {
+						// Save the app 
+						// If OK and needed call save webmap 
+						// If OK call appSaveSucceeded
+						var keepItemTitle = WebApplicationData.getDoNotWarnTitle() 
+							|| (app.data.getAppItem().access != "public" && ! app.builder.titleMatchOnLoad);
+						builderSave(keepItemTitle);
+					}
 				}
 			}
 			

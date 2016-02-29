@@ -94,3 +94,15 @@
 audio {
 	max-width: 100%;
 }
+
+/*
+ * Autoplay
+ */
+ 
+#autoplay {
+	display: none;
+    position: absolute;
+    bottom: 10px;
+    z-index: 31;
+    left: 50%;
+}

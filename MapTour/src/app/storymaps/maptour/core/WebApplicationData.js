@@ -94,6 +94,15 @@ define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"],
 			{
 				_originalData = lang.clone(_data);
 			},
+			getDoNotWarnTitle: function()
+			{
+				return _data.values.doNotWarnTitle || false;
+			},
+			
+			setDoNotWarnTitle: function(value)
+			{
+				_data.values.doNotWarnTitle = value;
+			},
 			getWebmap: function()
 			{
 				return _data.values.webmap;

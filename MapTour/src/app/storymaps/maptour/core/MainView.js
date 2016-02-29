@@ -6,6 +6,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"storymaps/ui/multiTips/MultiTips",
 		"storymaps/maptour/ui/desktop/Carousel",
 		"storymaps/maptour/ui/desktop/PicturePanel",
+		"storymaps/ui/autoplay/Autoplay",
 		// Mobile UI
 		"storymaps/maptour/ui/mobile/IntroView",
 		"storymaps/maptour/ui/mobile/ListView",
@@ -36,6 +37,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		MultiTips,
 		DesktopCarousel,
 		PicturePanel,
+		Autoplay,
 		IntroView,
 		ListView,
 		InfoView,
@@ -97,6 +99,47 @@ define(["storymaps/maptour/core/WebApplicationData",
 				app.mobileListView = new ListView("#listPanel");
 				app.mobileInfoView = new InfoView("#infoCarousel");
 				app.mobileCarousel = new MobileCarousel("#footerMobile", app.isInBuilderMode);
+				
+				/*
+				 * Autoplay in viewer mode
+				 */ 
+				if ( ! app.isInBuilderMode && urlParams.autoplay !== undefined && urlParams.autoplay !== "false" ) {
+					app.autoplay = new Autoplay(
+						$("#autoplay"),
+						// Callback that navigate to the next section
+						function() {
+							var nextIndex = 0;
+							
+							if( app.data.getCurrentIndex() != app.data.getNbPoints() -1 ) {
+								nextIndex = app.data.getCurrentIndex() + 1;
+							}
+							
+							// Intro record
+							if ( app.data.getCurrentIndex() === null && app.data.getNbPoints() >= 1 ) {
+								nextIndex = 0;
+							}
+							
+							// Delay the event so Autoplay has received the updated index before the event is fired
+							setTimeout(function(){
+								loadPictureAtIndex(nextIndex);
+							}, 50);
+							
+							return nextIndex;
+						}
+					);
+					
+					// Start when app is ready
+					topic.subscribe("maptour-ready", function(){
+						if ( ! $("body").hasClass("mobile-view") ) {
+							app.autoplay.start();
+						}
+					});
+					
+					// Inform autoplay of story navigation events
+					topic.subscribe("maptour-point-change-after", function(index) {
+						app.autoplay.onNavigationEvent(index);
+					});
+				}
 				
 				addMapTourBusinessToEsriGraphic();
 				
@@ -390,7 +433,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				}
 				// No data in view mode
 				else if( Helper.getAppID(_core.isProd()) ) {
-					if( app.data.userIsAppOwner() ){
+					if( app.userCanEdit ){
 						loadingIndicator.setMessage(i18n.viewer.loading.loadBuilder);
 						setTimeout(function(){
 							app.header.switchToBuilder();
@@ -585,6 +628,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 				if ( has('ie') || has('trident') ) { 
 					app.desktopCarousel.iefix();
 				} 
+				
+				if ( app.autoplay ) {
+					app.header.enableAutoplay();
+				}
 			};
 			
 			function initUI()
@@ -604,6 +651,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 					app.mobileInfoView.init(app.data.getTourPoints(), appColors[2]);
 					topic.subscribe("OPEN_MOBILE_INFO", showMobileViewInfo);
 					topic.subscribe("MOBILE_INFO_SWIPE", loadPictureAtIndex);
+				}
+				
+				if ( app.autoplay ) {
+					app.autoplay.init({
+						color: appColors[2],
+						themeMajor: 'white2',
+						useBackdrop: false
+					});
 				}
 			}
 			
@@ -665,6 +720,19 @@ define(["storymaps/maptour/core/WebApplicationData",
 				
 				if (! cfg.isMobileView)
 					app.desktopCarousel.checkItemIsVisible(app.data.getCurrentIndex());
+				
+				// Autoplay placement
+				if ( MapTourHelper.isModernLayout() ) {
+					$("#autoplay").css({
+						left: "25%",
+						bottom: 160
+					});
+				}
+				
+				// Stop autoplay in mobile view
+				if ( cfg.isMobileView && app.autoplay ) {
+					app.autoplay.stop();
+				}
 			};
 			
 			//
@@ -673,10 +741,30 @@ define(["storymaps/maptour/core/WebApplicationData",
 			
 			this.showInitPopup = function()
 			{
+				var errMsg = "noLayerMobile";
+				
 				_core.cleanLoadingTimeout();
 				app.isInitializing = true;
 				app.initScreenIsOpen = true;
-				_core.initError("noLayerMobile", null, true);
+				
+				// Touch device 
+				if ( has("touch") && Helper.isMobile() ) {
+					// in portrait mode with enough room in landscape for builder
+					if ( window.innerHeight > window.innerWidth ) {
+						if ( window.innerHeight > 768 ) {
+							errMsg = "noLayerMobile2";
+						}
+					}
+					// in landscape mode with enough room to fit builder but prepare in case of orientation change
+					else {
+						if ( window.innerWidth > 768 ) {
+							errMsg = "noLayerMobile2";
+						}
+					}
+				}
+				
+				
+				_core.initError(errMsg, null, true);
 				_core.handleWindowResize();
 				
 				var resultDeferred = app.builder.presentInitPopup(app.portal, app.data.getWebMapItem());

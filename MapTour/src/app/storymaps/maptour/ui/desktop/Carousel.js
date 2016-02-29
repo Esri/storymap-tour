@@ -128,6 +128,11 @@ define(["dojo/has",
 					
 					if( e.keyCode === 9 && ! event.shiftKey ) {
 						if ( selectedIndex == focusIndex && selectedIndex == $('.carousel-item-div').length - 1) {
+							// Focus out when embedded
+							if (window != window.top) {
+								return true;
+							}
+							
 							// TODO should not be done here
 							// TODO should also support tab+shift from there 
 							

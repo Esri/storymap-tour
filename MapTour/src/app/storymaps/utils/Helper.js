@@ -1,5 +1,6 @@
 define(["dojo/cookie", 
 		"dojo/has", 
+		"esri/arcgis/utils",
 		"esri/urlUtils",
 		"esri/geometry/webMercatorUtils",
 		"esri/geometry/Point",
@@ -11,6 +12,7 @@ define(["dojo/cookie",
 	function(
 		cookie, 
 		has, 
+		arcgisUtils,
 		urlUtils,
 		webMercatorUtils,
 		Point,
@@ -225,6 +227,15 @@ define(["dojo/cookie",
 				
 				return esriCookie ? esriCookie.role : null;
 			},
+			getMyStoriesURL: function()
+			{
+				if ( app.isPortal ){
+					return arcgisUtils.arcgisUrl.split('/sharing/')[0] + '/apps/MyStories/';
+				}
+				else {
+					return '//storymaps.arcgis.com/en/my-stories/';
+				}
+			},
 			getWebmapViewerLinkFromSharingURL: function(sharingUrl)
 			{
 				var portalUrl = sharingUrl.split('/sharing/')[0];
@@ -299,68 +310,6 @@ define(["dojo/cookie",
 					return 'http://' + url;
 				
 				return url;
-			},
-			createGeocoderOptions: function() 
-			{
-				var hasEsri = false,
-					geocoders = dojo.clone(configOptions.geocodeServices);
-				
-				dojo.forEach(geocoders, function (geocoder) {
-					if (geocoder.url.indexOf(".arcgis.com/arcgis/rest/services/World/GeocodeServer") > -1) {
-						hasEsri = true;
-						geocoder.name = "Esri World Geocoder";
-						geocoder.outFields = "Match_addr, stAddr, City";
-						geocoder.singleLineFieldName = "SingleLine";
-						//geocoder.placeholder = (configOptions.placefinder.placeholder === "") ? i18n.tools.search.title : configOptions.placefinder.placeholder;
-						geocoder.esri = geocoder.placefinding = true;
-						/*if (configOptions.placefinder.currentExtent || configOptions.searchextent) {
-							geocoder.searchExtent = app.mainMap.extent;
-						}
-						if (configOptions.placefinder.countryCode !== "") {
-							geocoder.sourceCountry = configOptions.placefinder.countryCode;
-						}*/
-					}
-				});
-				
-				//only use geocoders with a singleLineFieldName that allow placefinding
-				geocoders = dojo.filter(geocoders, function (geocoder) {
-					return (esri.isDefined(geocoder.singleLineFieldName) && esri.isDefined(geocoder.placefinding) && geocoder.placefinding);
-				});
-				
-				var esriIdx;
-				if (hasEsri) {
-					for (var i = 0; i < geocoders.length; i++) {
-						if (esri.isDefined(geocoders[i].esri) && geocoders[i].esri === true) {
-							esriIdx = i;
-							break;
-						}
-					}
-				}
-				
-				var options = {
-					autoNavigate: true, /* changed from false */
-					autoComplete: hasEsri,
-					theme: "simpleGeocoder"
-				};
-				
-				if(hasEsri){
-					options.minCharacters = 0;
-					options.maxLocations = 5;
-					options.searchDelay = 100;
-				}
-				
-				//If the World geocoder is primary enable auto complete 
-				if (hasEsri && esriIdx === 0) {
-					options.arcgisGeocoder = geocoders.splice(0, 1)[0]; //geocoders[0];
-					if (geocoders.length > 0) {
-						options.geocoders = geocoders;
-					}
-				} else {
-					options.arcgisGeocoder = false;
-					options.geocoders = geocoders;
-				}
-						
-				return options;	
 			}
 		};
 	}

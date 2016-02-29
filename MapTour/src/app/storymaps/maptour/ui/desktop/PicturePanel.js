@@ -72,13 +72,13 @@ define(["storymaps/ui/crossfader/CrossFader",
 				// Swipe event on picture panel	
 				var el = document.getElementById('picturePanel');
 				/*jshint -W064 */
-				Hammer(el).on("swipeleft", function() {
+				Hammer(el).off("swipeleft").on("swipeleft", function() {
 					topic.publish("PIC_PANEL_NEXT", null);
 				});
-				Hammer(el).on("swiperight", function() {
+				Hammer(el).off("swiperight").on("swiperight", function() {
 					topic.publish("PIC_PANEL_PREV", null);
 				});
-				Hammer(el).on("tap", function(e) {
+				Hammer(el).off("tap").on("tap", function(e) {
 					if( ! e || ! e.target )
 						return;
 

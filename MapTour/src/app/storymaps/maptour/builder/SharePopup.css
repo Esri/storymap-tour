@@ -53,6 +53,10 @@
 	text-decoration: underline;	
 }
 
+#sharePopup .share-link ::-ms-clear {
+	display: none;
+}
+
 #sharePopup .share-link > div {
 	text-align: center;
 	margin-bottom: 15px;

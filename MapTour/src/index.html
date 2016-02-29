@@ -64,13 +64,12 @@
 			};
 			// Optionally sharing and proxy URLs can be configured in app/maptour-config.js. This is only required  
 			//  when the webmap is not hosted on ArcGIS Online or a Portal for ArcGIS instance and the template isn't deployed as /home/MapTour/ or /apps/MapTour/. 
-			// Optionally Bing Maps key, Geometry and Geocode service's URLs can be configured in app/commonConfig.js. This is only required 
-			//  if the Organization or Portal for ArcGIS instance default configuration has to be overwritten. If the application is deployed 
-			//  on Portal for ArcGIS as /home/MapTour/ or /apps/MapTour/, that configuration is available in ../commonConfig.js
+			// Optionally Bing Maps key, Geometry and Geocode service's URLs can be configured in app/maptour-config.js. This is only required
+			//  if the Organization or Portal for ArcGIS instance default configuration has to be overwritten.
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.4.0';
+			var version = '2.5.0';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -97,8 +96,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("//js.arcgis.com/3.15/esri/css/esri.css", true);
-			loadCSS("//js.arcgis.com/3.15/dijit/themes/claro/claro.css", true);			
+			loadCSS("//js.arcgis.com/3.16/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.16/dijit/themes/claro/claro.css", true);			
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -107,6 +106,7 @@
 				loadCSS("lib/bootstrap/css/bootstrap.min.css");
 				loadCSS("lib/spectrum/spectrum.css");
 				loadCSS("lib/colorbox/colorbox.css");
+				loadCSS("lib/bootstrap-slider/css/slider.css");
 
 				loadCSS("app/storymaps/ui/crossfader/CrossFader.css");
 				loadCSS("app/storymaps/ui/multiTips/MultiTips.css");
@@ -119,9 +119,11 @@
 				loadCSS("app/storymaps/ui/mapCommand/MapCommand.css");
 				loadCSS("app/storymaps/maptour/ui/desktop/Carousel.css");
 				loadCSS("app/storymaps/maptour/ui/desktop/PicturePanel.css");
+				loadCSS("app/storymaps/ui/autoplay/Autoplay.css");
 				
 				loadCSS("app/storymaps/builder/Builder.css");
 				loadCSS("app/storymaps/builder/BuilderPanel.css");
+				loadCSS("app/storymaps/builder/SaveErrorPopupSocial.css");
 				
 				loadCSS("app/storymaps/builder/SettingsPopup.css");
 				loadCSS("app/storymaps/maptour/builder/SettingsPopupTabLayout.css");
@@ -158,7 +160,6 @@
 				loadCSS("app/storymaps/maptour/ui/Responsive.css");
 			}
 
-			var path_location = location.pathname.replace(/\/[^/]+$/, '');
 			var dojoConfig = {
 				parseOnLoad: true,
 				isDebug: false,
@@ -168,12 +169,6 @@
 					{
 						name: 'storymaps',
 						location: location.pathname.replace(/\/[^/]+$/, '/') + 'app/storymaps'
-					},
-					{
-						name: "templateConfig",
-						// If the template is deployed on a Portal (apps path contains /apps/MapTour/ or /home/MapTour/)
-						// commonConfig.js is loaded from the parent folder, otherwise it's loaded from the app folder
-						location: /(\/apps\/|\/home\/)(MapTour\/)/.test(document.location.pathname) ? path_location.substr(0,path_location.lastIndexOf('/MapTour')) : path_location.replace(/\/+$/, '') + '/app'
 					}
 				]
 			};
@@ -183,7 +178,7 @@
 			}
 		</script>
 		<!--[if IE 7]>
-			<link rel="stylesheet" href="resources/font/storymaps-icons-ie7.css">
+			<link rel="stylesheet" href="resources/font/sharing/storymaps-icons-ie7.css">
 		<![endif]-->
 	</head>
 	<body class="claro">
@@ -212,8 +207,8 @@
 						<span class="msLink">
 							<a href="http://storymaps.arcgis.com" target="_blank" tabindex="-1"></a>
 						</span>
-						<i class="shareIcon share_facebook icon-facebook-squared-1"></i>
-						<i class="icon-twitter-1 shareIcon share_twitter"></i>
+						<i class="shareIcon share_facebook icon-facebook-squared"></i>
+						<i class="icon-twitter shareIcon share_twitter"></i>
 						<i class="icon-link shareIcon share_bitly"></i>
 					</div>
 					<div class="logo">
@@ -259,6 +254,17 @@
 				</div>
 				<div class="mapLocationError">
 					<div class="mapLocationMsg"></div>
+				</div>
+				<div id="autoplay" class="autoplay">
+					<div class="autoplay-container">
+						<div class="backdrop"></div>
+						<div class="btn-play-container status-pause">
+							<span class="btn-play autoplay-icon-play"></span>
+						</div>
+						<div class="slider-container ">
+							<input type="text" class="span2" value="" />
+						</div>
+					</div>
 				</div>
 			</div>
 			<!-- Picture panel -->
@@ -1044,10 +1050,7 @@
 			<div class="modal-body">
 				<div class="first-save hide">
 					<div class="header"></div>
-					<div class="question question1"></div>
-					<div class="answer answer1"></div>
-					<div class="question question2"></div>
-					<div class="answer answer2"></div>
+					<div class="saved-tip"></div>
 				</div>
 				<div class="share">
 					<div class="not-shared hide">
@@ -1065,15 +1068,7 @@
 					<div class="shared-dialog">
 						<div class="header"></div>
 						<div class="share-link"></div>
-						
-						<div class="question shared-question1"></div>
-						<div class="collapse answer shared-answer1"></div>
-						
-						<div class="question shared-question2"></div>
-						<div class="collapse answer shared-answer2"></div>
-						
-						<div class="question shared-question3"></div>
-						<div class="collapse answer shared-answer3"></div>
+						<div class="shared-tip"></div>
 					</div>
 				</div>
 			</div>
@@ -1109,6 +1104,56 @@
 			</div>
 		</div>
 		
+		<div class="modal hide saveErrorPopupSocial" id="saveErrorPopupSocial" data-backdrop="static" tabindex="-1">
+			<div class="modal-header">
+				<h3 class="modal-title"></h3>
+			</div>
+	
+			<div class="modal-body">
+				<div class="panel1">
+					<span class="panel1lbl"></span>
+					<a href="#" class="help" data-toggle="tooltip">
+						<img style="vertical-align: -5px;"/>
+					</a>
+				</div>
+				<div class="panel2">
+					<div class="panel2lbl"></div>
+					<div class="form-group">
+						<div class="radio">
+							<label>
+								<input type="radio" name="optErrorSocial" value="story" checked>
+								<span>
+									<span class="panel2q1lbl"></span>
+									<a href="#" class="help" data-toggle="tooltip">
+										<img style="vertical-align: -5px;"/>
+									</a>
+								</span>
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="optErrorSocial" value="item">
+								<span class="panel2q2lbl"></span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="panel3"></div>
+			</div>
+	
+			<div class="modal-footer">
+				<div class="stop-asking">
+					<div class="checkbox">
+						<label class="disabled">
+							<input type="checkbox" value="" disabled>
+							<span class="panel4lbl"></span>
+						</label>
+					</div>
+				</div>
+				<button type="button" class="btn btn-primary"></button>
+			</div>
+		</div>
+		
 		<!-- Browser popup -->
 		<div class="modal hide" id="browserPopup" data-backdrop="static" tabindex="-1">
 			<div class="modal-header">
@@ -1139,7 +1184,7 @@
 		</div>
 		
 		<script type="text/javascript">
-			loadJS('//js.arcgis.com/3.15/init.js', true);
+			loadJS('//js.arcgis.com/3.16/init.js', true);
 			loadJS('app/maptour-config.js');
 			
 			function getUrlVar(name)
@@ -1179,6 +1224,7 @@
 				loadJS('lib/spectrum/spectrum.js');
 				loadJS('lib/bootstrap.file-input.js');
 				loadJS('lib/colorbox/jquery.colorbox-min.js');
+				loadJS('lib/bootstrap-slider/js/bootstrap-slider.js');
 			}
 		</script>
 		
@@ -1214,7 +1260,6 @@
 							"dojo/i18n!./resources/nls/template.js?v=" + version, 
 							"storymaps/ui/loadingIndicator/LoadingIndicator", 
 							"esri/urlUtils", 
-							"templateConfig/commonConfig.js?v=" + version,
 							"dojo/domReady!", 
 							"dojo/ready"
 						], function(

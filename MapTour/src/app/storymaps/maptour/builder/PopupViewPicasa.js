@@ -77,6 +77,11 @@ define(["storymaps/utils/PicasaConnector", "dojo/Deferred"],
 			function lookup()
 			{
 				var userName = _container.find(".selectUserName").val(); 
+				
+				if ( userName ) {
+					userName = userName.trim();
+				}
+				
 				_container.find(".signInMsg").removeClass('error').html(i18n.viewer.onlinePhotoSharingCommon.userLookingup + ' <img src="resources/icons/loader-upload.gif" />');
 				disableList();
 				disableNextBtn();

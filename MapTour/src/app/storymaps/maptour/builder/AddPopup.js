@@ -1,4 +1,7 @@
-define(["esri/dijit/Geocoder", 
+define(["esri/dijit/Search",
+        "esri/tasks/locator",
+		"esri/request",
+		"dojo/DeferredList",
 		"storymaps/utils/MovableGraphic", 
 		"storymaps/utils/ResamplePicture",
 		"storymaps/maptour/core/MapTourHelper",
@@ -16,10 +19,12 @@ define(["esri/dijit/Geocoder",
 		"dojo/topic",
 		"dojo/on",
 		"dojo/query",
-		"dojo/dom-attr",
-		"dojo/_base/lang"], 
+		"dojo/dom-attr"], 
 	function (
-		Geocoder, 
+		Search, 
+		Locator,
+		esriRequest,
+		DeferredList,
 		MovableGraphic, 
 		ResamplePicture, 
 		MapTourHelper, 
@@ -37,8 +42,7 @@ define(["esri/dijit/Geocoder",
 		topic,
 		on,
 		query,
-		domAttr,
-		lang)
+		domAttr)
 	{			
 		return function AddPopup(container)
 		{		
@@ -969,49 +973,79 @@ define(["esri/dijit/Geocoder",
 				//
 				// Geocoder
 				//
-				var params = lang.mixin(
-					{
-						map: _map
-					},
-					Helper.createGeocoderOptions()
-				);
-
 				if( ! $(".addLocation #geocoder").length )
 					$(".addLocation").append('<div id="geocoder"></div>');
 
-				_geocoder = new Geocoder(params, "geocoder");
-				_geocoder.startup();
-				$("#geocoder_input").attr("placeholder", i18n.viewer.builderHTML.addLocatePlaceholder+"...");
-	
-				on(_geocoder, "find-results", function(response){
-					if( response.results && response.results.results && response.results.results.length ) {
-						_map.geocodedResult = true;
-						var geom = response.results.results[0].feature.geometry;
-						pointLayer.graphics[0].setGeometry(geom);
-					}
-				});
-				
-				on(_geocoder, "select", function(response){
-					// Close the IOS keyboard
-					if( has("ios") )
-						document.activeElement.blur();
+				if(APPCFG.HELPER_SERVICES.geocode.length){
+					// Query each geocode service to configure the search widget
+					var requests = [];
+					$.each(APPCFG.HELPER_SERVICES.geocode, function(index, geocoder){
+						var geocodeRequest = esriRequest({
+							url: geocoder.url,
+							content: { f: 'json' },
+							handleAs: 'json',
+							callbackParamName: 'callback'
+						});
+						requests.push(geocodeRequest);
+					});
 					
-					if( response && response.result && response.result.feature && response.result.feature.geometry ) {
-						_map.geocodedResult = true;
-						pointLayer.graphics[0].setGeometry(response.result.feature.geometry);
-					}
-				});
-	
-				on(_map, "extent-change", function(){
-					if(_map.geocodedResult){
-						_map.geocodedResult = false;
-						pointLayer.graphics[0].setGeometry(_map.extent.getCenter());
-						latLongChange(_map.extent.getCenter());
-					}
-				});
-				
-				// iPad keyboard workaround
-				$("#locateMap #geocoder_input").blur(function(){ $(window).scrollTop(0); });
+					var requestList = new DeferredList(requests);
+					requestList.then(
+						function(responses){
+							var sources = [];
+							$.each(responses, function(index, response){
+								if(! response[0]) {
+									return;
+								}
+								
+								if(! response[1] || ! response[1].singleLineAddressField) {
+									return;
+								}
+								
+								var newSource = {};
+								newSource.singleLineFieldName = response[1].singleLineAddressField.name;
+								
+								var newLocator = new Locator(APPCFG.HELPER_SERVICES.geocode[index].url);
+								newSource.name = APPCFG.HELPER_SERVICES.geocode[index].name ? APPCFG.HELPER_SERVICES.geocode[index].name : response[1].name;
+								newSource.locator = newLocator;
+								
+								sources.push(newSource);
+							});
+
+							if(sources.length){
+								var search = new Search({
+									map: app.mainMap,
+									sources: [],
+									allPlaceHolder: i18n.viewer.builderHTML.addLocatePlaceholder + "..."
+								}, "geocoder");
+								
+								var searchSources = search.get("sources");
+								$.each(sources, function(index, source){
+									searchSources.push(source);
+								});
+								search.set("sources", searchSources);
+								
+								search.startup();
+								
+								_geocoder = search;
+								
+								on(_geocoder, "select-result", function(response){
+									// Close the IOS keyboard
+									if( has("ios") )
+										document.activeElement.blur();
+									
+									if( response && response.result && response.result.feature && response.result.feature.geometry ) {
+										pointLayer.graphics[0].setGeometry(response.result.feature.geometry);
+										latLongChange(response.result.feature.geometry);
+									}
+								});
+								
+								// iPad keyboard workaround
+								$("#geocoder #geocoder_input").blur(function(){ $(window).scrollTop(0); });
+							}
+						}
+					);
+				}
 			}
 			
 			_lat.change(latLongChange);
