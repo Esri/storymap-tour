@@ -6,7 +6,7 @@ The Story Map Tour app is ideal when you want to present a linear, place-based n
 ![App](https://raw.githubusercontent.com/Esri/map-tour-storytelling-template-js/master/map-tour-storytelling-template-js.png)
 
 [View it live](http://storymaps.esri.com/stories/maptour-palmsprings/) | 
-[Features](http://arcgis.com/apps/MapTour/preview.html) | 
+[Map Tour page on Esri Story Maps website](http://storymaps.arcgis.com/en/app-list/map-tour/) | 
 [Download](http://links.esri.com/storymaps/map_tour_template_zip) 
 
 **Latest release is version 2.5.0**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
