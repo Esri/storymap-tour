@@ -50,7 +50,7 @@ Applications produced by both versions provides the same capabilities, only the 
 
 To use the hosted Map Tour template, you start by making a web map and publishing it with the Map Tour template.
 Your webmap doesn't need to contains any layer. In the **Share dialog available from ArcGIS Online web map viewer**, choose the **'Make a Web Application'** option and then choose the Map Tour template from the gallery of templates that appears, and continue with the steps that you see. When you configure the application, the interactive builder will open automatically.
-[This article (require an ArcGIS developer account)](https://developers.arcgis.com/en/tools/web-mapping-templates/) provides generic step-by-step instructions on how to publish a template. 
+[This article](http://doc.arcgis.com/en/arcgis-online/create-maps/make-your-first-app.htm) provides step-by-step instructions on how to create a story. 
 
 The interactive builder gives you two options for handling the images in your Map Tour:
  * You can use **photos that are already online**, such as images stored in a photo sharing site like Flickr or images stored on your own website. These images will be referenced in your Map Tour via their URLs
