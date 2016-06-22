@@ -208,28 +208,14 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			
 			function shareFacebook()
 			{
-				var options = '&p[title]=' + encodeURIComponent($(selector + ' #headerMobile .title').text())
-								+ '&p[summary]=' + encodeURIComponent($(selector + ' #headerMobile .subtitle').text())
-								+ '&p[url]=' + cleanURL(document.location.href);
+				var url = cleanURL(document.location.href);
 				
 				if ( $(this).hasClass("disabled") ) {
 					return;
 				}
-			
-				var counter = 0;
-				// TODO: make multiple images works 
-				/*if ($("meta[property='og:image']").attr("content")) {
-					options += '&p[images][' + counter + ']=' + encodeURIComponent($("meta[property='og:image']").attr("content"));
-					counter++;
-				}*/
-				
-				$(".carousel-item-div img").slice(0, 1).each(function(i, img){
-					options += '&p[images][' + counter + ']=' + encodeURIComponent($(img).attr('src'));
-					counter++;
-				});
 				
 				window.open(
-					'http://www.facebook.com/sharer.php?s=100' + options, 
+					'http://www.facebook.com/sharer/sharer.php?u=' + url, 
 					'', 
 					'toolbar=0,status=0,width=626,height=436'
 				);

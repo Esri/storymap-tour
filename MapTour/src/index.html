@@ -16,6 +16,7 @@
 			To correctly reference your Map Tour in search engine:
 			 - create and fill out extensively an ArcGIS.com item that link to your final application
 			 - edit the following four tags as well as the upper title tag on line 4
+			 - see https://developerscorner.storymaps.arcgis.com/grow-your-story-maps-audience-with-open-graph-tags-b7639cb65d5c
 		-->
 		<meta name="description" content="This story map was created with the Esri Map Tour application in ArcGIS Online.">
 		
@@ -69,7 +70,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.5.0';
+			var version = '2.5.1';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -96,8 +97,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("//js.arcgis.com/3.16/esri/css/esri.css", true);
-			loadCSS("//js.arcgis.com/3.16/dijit/themes/claro/claro.css", true);			
+			loadCSS("//js.arcgis.com/3.17/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.17/dijit/themes/claro/claro.css", true);			
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -1184,7 +1185,7 @@
 		</div>
 		
 		<script type="text/javascript">
-			loadJS('//js.arcgis.com/3.16/init.js', true);
+			loadJS('//js.arcgis.com/3.17/init.js', true);
 			loadJS('app/maptour-config.js');
 			
 			function getUrlVar(name)
