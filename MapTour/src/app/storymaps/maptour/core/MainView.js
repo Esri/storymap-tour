@@ -282,7 +282,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 							layerId = layerId.split('_').slice(0,1).join('_');	
 						
 						// Exclude map notes and not point layers
-						if( layerId.match(/^mapNotes_/) || layer.geometryType != "esriGeometryPoint" )
+						// changed code to support Polygon
+//						if( layerId.match(/^mapNotes_/) || layer.geometryType != "esriGeometryPoint" )
+						if( layerId.match(/^mapNotes_/) || (layer.geometryType != "esriGeometryPoint" && layer.geometryType != "esriGeometryPolygon") )
 							continue;
 						
 						// Loop through webmap layers to see if title match
