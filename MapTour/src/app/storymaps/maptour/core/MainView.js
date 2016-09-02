@@ -19,6 +19,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"esri/renderers/UniqueValueRenderer",
 		"esri/graphic",
 		"esri/geometry/Point",
+		"esri/geometry/Polygon",
 		"esri/geometry/Extent",
 		"esri/config",
 		"esri/geometry/webMercatorUtils",
@@ -49,6 +50,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		UniqueValueRenderer,
 		Graphic,
 		Point,
+		Polygon,
 		Extent,
 		esriConfig,
 		webMercatorUtils,
@@ -302,9 +304,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 						layer = app.map._layers[layerName];
 						
 						// Catch visible FS and webmap embedded point layers
+						// added code to support Polygon
 						if( (layer.visible || layer.visible === undefined) 
 								&& (layer.type == "Feature Layer" || layer._collection) 
-								&& layer.geometryType == "esriGeometryPoint" 
+								&& (layer.geometryType == "esriGeometryPoint" || layer.geometryType == "esriGeometryPolygon")
+//								&& layer.geometryType == "esriGeometryPoint" 
 								&& ! layerName.match(/^mapNotes_/) )
 						{
 							// If it's a webmap layer check that all mandatory fields are present to allow additional decoration layer
@@ -413,11 +417,21 @@ define(["storymaps/maptour/core/WebApplicationData",
 					
 					var graphics = [];
 					$(app.data.getSourceLayer().graphics).each(function(i, graphic) {
-						graphics.push(new Graphic(
-							new Point(graphic.geometry.x, graphic.geometry.y, graphic.geometry.spatialReference),
-							null,
-							new TourPointAttributes(graphic, null, null, true)
-						));
+						//added code here to support point & polygon (in case csv may contain polygon info)
+						if(graphic.geometry.type == "point") {
+							graphics.push(new Graphic(
+								new Point(graphic.geometry.x, graphic.geometry.y, graphic.geometry.spatialReference),
+								null,
+								new TourPointAttributes(graphic, null, null, true)
+							));
+						}
+						else if(graphic.geometry.type == "polygon") {
+							graphics.push(new Graphic(
+								new Point(graphic.geometry.getCentroid()),
+								null,
+								new TourPointAttributes(graphic, null, null, true)
+							));
+						}						
 					});
 	
 					tourPointLayerLoaded({ graphics: graphics });
