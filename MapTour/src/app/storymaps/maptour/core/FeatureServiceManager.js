@@ -2,12 +2,14 @@ define(["storymaps/maptour/core/TourPointAttributes",
 		"storymaps/maptour/core/MapTourHelper",
 		"esri/graphic",
 		"esri/geometry/Point",
+		"esri/geometry/Polygon",
 		"dojo/topic"], 
 	function (
 		TourPointAttributes, 
 		MapTourHelper, 
 		Graphic, 
 		Point, 
+		Polygon,
 		topic
 	) {
 		return function FeatureServiceManager()
@@ -31,16 +33,29 @@ define(["storymaps/maptour/core/TourPointAttributes",
 				if( isFSWithURLFields  || ! featureLayer.hasAttachments ) {
 					for (i = 0; i < featureLayer.graphics.length; i++) {
 						var feature = featureLayer.graphics[i];
-						var graphic = new Graphic(
-							new Point(
-								feature.geometry.x,
-								feature.geometry.y,
-								feature.geometry.spatialReference
-							),
-							null,
-							new TourPointAttributes(feature)
-						);
-						graphics.push(graphic);
+						//added code here to support point & polygon
+						if(feature.geometry.type == "point") {
+							var graphic = new Graphic(
+								new Point(
+									feature.geometry.x,
+									feature.geometry.y,
+									feature.geometry.spatialReference
+								),
+								null,
+								new TourPointAttributes(feature)
+							);
+							graphics.push(graphic);
+						}
+						else if(feature.geometry.type == "polygon") {
+						//get the centroid when the feature is polygon
+							var graphic = new Graphic(
+								new Point( feature.geometry.getCentroid() ),
+								null,
+								new TourPointAttributes(feature)
+							);
+							graphics.push(graphic);
+						}
+//						graphics.push(graphic);
 					}
 					publishCompleteEvent();
 				}
@@ -80,21 +95,38 @@ define(["storymaps/maptour/core/TourPointAttributes",
 					
 					// Check the type of attachment
 					if( MapTourHelper.isSupportedImgExt(pict.name) && MapTourHelper.isSupportedImgExt(thumb.name) ) {
-						var graphic = new Graphic(
-							new Point(
-								feature.geometry.x,
-								feature.geometry.y,
-								feature.geometry.spatialReference
-							),
-							null,
-							new TourPointAttributes(
-								feature, 
-								pict.url, 
-								thumb.url
-							)
-						);
+						//added code here to support point & polygon
+						if(feature.geometry.type == "point") {
+							var graphic = new Graphic(
+								new Point(
+									feature.geometry.x,
+									feature.geometry.y,
+									feature.geometry.spatialReference
+								),
+								null,
+								new TourPointAttributes(
+									feature, 
+									pict.url, 
+									thumb.url
+								)
+							);
+							graphics.push(graphic);
+						}
+						else if(feature.geometry.type == "polygon") {
+						//get the centroid when the feature is polygon
+							var graphic = new Graphic(
+								new Point( feature.geometry.getCentroid() ),
+								null,
+								new TourPointAttributes(
+									feature, 
+									pict.url, 
+									thumb.url
+								)
+							);
+							graphics.push(graphic);
+						}
 						
-						graphics.push(graphic);
+//						graphics.push(graphic);
 					}
 				}
 				
