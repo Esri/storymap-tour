@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Finner ikke siden"
     },
     "viewPicasa": {
-      "title": "Import fra Picasa/Google+",
-      "header": "Angi e-postadressen eller ID-en til kontoen din på Picasa eller Google+.",
-      "userInputLbl": "Angi en e-postadresse eller ID",
+      "title": "Picasa-import",
+      "header": "Skriv inn e-postadressen din eller Picasa-IDen",
+      "userInputLbl": "E-post eller Picasa-ID",
       "signInMsg2": "Finner ikke kontoen",
       "signInMsg3": "Ingen offentlige album",
-      "howToFind": "Slik finner du en konto-ID for Picasa eller Google+",
-      "howToFind2": "Kopier tallene mellom første og andre/ på en tilfeldig side på Picasa eller G+"
+      "howToFind": "Slik finner du en Picasa-ID",
+      "howToFind2": "Kopier tallene mellom første og andre / på en tilfeldig side på Picasa"
     },
     "viewCSV": {
       "title": "CSV-import",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Du prøver å gjenbruke en eksisterende featuretjeneste</b> der bildene dine er lagret som vedlegg, eller som refererer til eksterne bilder: Les det mer utfyllende avsnittet nedenfor.",
         "div7": "<b>Du bruker en tidligere versjon av</b> Map Tour-malen og har allerede en CSV som refererer til bildene og miniatyrbildene dine: Du kan importere den og forbedre dataene. Byggeren støtter bare CSV som bruker attributter for bredde- og lengdegrader; adressebasert CSV kan fortsatt brukes gjennom webkartet (se avsnitt nedenfor).",
         "div8": "Importere fra bildedelingstjenester online",
+        "div9a": "Facebook-støtte har blitt avviklet, ${learn}.",
+        "learn": "få mer informasjon",
         "div9": "Importoperasjonen refererer til bilder som allerede er vertsbaserte, ved å lagre URL-adressene i en samling av webkartfunksjoner. Bildene lagres ikke i ArcGIS Online. Hvis driftingen av bildene avbrytes, blir de ikke lenger tilgjengelige i kartomvisningen og et \"Bilde ikke tilgjengelig\"-bilde blir brukt. Det avhenger av tjenesteleverandøren om kartomvisningen importerer bildenes navn, beskrivelse og plassering, eller ikke. De attributttene er lagret i webkartet, og eventuelle redigeringer av online-tjenestene gjenspeiles ikke i kartomvisningen.",
         "div10": "Lagre bildene på en webserver",
         "div11": "Hvis du velger å drifte bildene selv, må du opprette miniatyrer av bildene manuelt. Hvis du bruker bilder med maksimal oppløsning til miniatyrene, reduseres ytelsen. Derfor anbefaler vi på det sterkeste å bruke en online bildedelingstjeneste eller en featuretjeneste til dette.",

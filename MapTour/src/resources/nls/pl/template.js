@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Nie znaleziono strony"
     },
     "viewPicasa": {
-      "title": "Import z serwisu Picasa/Google+",
-      "header": "Wprowadź adres e-mail lub identyfikator powiązany z Twoim kontem Picasa bądź Google+.",
-      "userInputLbl": "Wprowadź adres e-mail lub identyfikator",
+      "title": "Import z serwisu Picasa",
+      "header": "Podaj swój adres e-mail lub identyfikator Picasa.",
+      "userInputLbl": "Adres e-mail lub identyfikator z serwisu Picasa",
       "signInMsg2": "Nie odnaleziono konta",
       "signInMsg3": "Brak albumów publicznych",
-      "howToFind": "Jak znaleźć identyfikator konta Picasa lub Google+",
-      "howToFind2": "Skopiuj cyfry znajdujące się między pierwszym a drugim znakiem „/” dowolnej strony Picasa lub G+"
+      "howToFind": "Jak znaleźć identyfikator Picasa",
+      "howToFind2": "Skopiuj cyfry znajdujące się między pierwszym a drugim znakiem „/” dowolnej strony Picasa"
     },
     "viewCSV": {
       "title": "Import z pliku CSV",
@@ -398,12 +398,12 @@ define({
     },
     "initPopupHome": {
       "header1": "Gdzie znajdują się Twoje zdjęcia lub filmy wideo?",
-      "header2": "Ten kreator pomoże Ci zbudować mapę wycieczki z multimediów przechowywanych online lub zaimportuje te elementy na Twoje konto w usłudze ArcGIS Online dla instytucji.",
+      "header2": "Ten kreator pomoże Ci zbudować mapę wycieczki z multimediów przechowywanych online lub zaimportuje te elementy na Twoje konto w ArcGIS Online dla instytucji.",
       "title1": "Są już online",
       "title2": "Potrzebuję przesłać obrazy",
       "hostedFSTooltip": "Prześlij obrazy i zapisz je razem z warstwą mapy wycieczki (pliki wideo nie są obsługiwane).",
       "hostedFsNA": "Do publikowania hostowanych warstw obiektów konieczna jest rola Publikującego lub inna rola z odpowiednimi uprawnieniami. Skontaktuj się z administratorem oprogramowania ArcGIS.",
-      "hostedFsNA2": "Dostępne tylko w ramach subskrypcji usługi ArcGIS Online. <a href='%LINK%'>Zarejestruj się w celu uzyskania bezpłatnej wersji próbnej</a>",
+      "hostedFsNA2": "Dostępne tylko w ramach subskrypcji ArcGIS Online. <a href='%LINK%'>Zarejestruj się w celu uzyskania bezpłatnej wersji próbnej</a>",
       "footer1": "Po zakończeniu wprowadzania zmian nie zapomnij udostępnić mapy wycieczki odbiorcom za pomocą strony szczegółów aplikacji.",
       "footer3": "Pobierz szablon CSV",
       "footer4": "Zapisz, jakby element nie był pobrany z sieci",
@@ -434,7 +434,9 @@ define({
         "div6": "<b>Chcesz ponownie użyć istniejącej już usługi obiektowej</b> przechowującej obrazy w postaci załączników lub zawierającej odnośniki do obrazów zewnętrznych. Szczegółowe informacje znajdują się w poniższej sekcji.",
         "div7": "<b>Jesteś użytkownikiem poprzedniej wersji</b> szablonu mapy wycieczki i masz już plik CSV zawierający odnośniki do obrazów i miniatury. Będziesz mieć możliwość zaimportowania go i dopracowania danych. Kreator obsługuje jedynie pliki CSV korzystające z szerokości/długości geograficznej. Plików CSV bazujących na danych adresowych można nadal używać za pomocą mapy internetowej (patrz poniższa sekcja).",
         "div8": "Importowanie z internetowych serwisów udostępniających zdjęcia",
-        "div9": "Operacja importowania tworzy odnośniki do już hostowanych obrazów poprzez zapisanie ich adresów URL w zbiorze obiektów mapy internetowej. Obrazy te nie są przechowywane w usłudze ArcGIS Online. Jeśli nie można uzyskać dostępu do hostowanych obrazów, nie będą one dostępne na mapie wycieczki i wyświetlany będzie obrazek zastępczy „Obraz niedostępny”. W zależności od dostawcy używanego serwisu udostępniania zdjęć dostępna lub niedostępna może być funkcja importowania do mapy wycieczki nazwy, opisu i lokalizacji obrazów. Te atrybuty są przechowywane na mapie internetowej, dlatego zmiany dokonywane w usługach internetowych nie będą widoczne na mapie wycieczki.",
+        "div9a": "Facebook nie jest już obsługiwany, ${learn}.",
+        "learn": "więcej informacji",
+        "div9": "Operacja importowania tworzy odnośniki do już hostowanych obrazów poprzez zapisanie ich adresów URL w zbiorze obiektów mapy internetowej. Obrazy te nie są przechowywane w ArcGIS Online. Jeśli nie można uzyskać dostępu do hostowanych obrazów, nie będą one dostępne na mapie wycieczki i wyświetlany będzie obrazek zastępczy „Obraz niedostępny”. W zależności od dostawcy używanego serwisu udostępniania zdjęć dostępna lub niedostępna może być funkcja importowania do mapy wycieczki nazwy, opisu i lokalizacji obrazów. Te atrybuty są przechowywane na mapie internetowej, dlatego zmiany dokonywane w usługach internetowych nie będą widoczne na mapie wycieczki.",
         "div10": "Przechowywanie obrazów na serwerze WWW",
         "div11": "Jeśli zdecydujesz się na samodzielne hostowanie obrazów, konieczne będzie ręczne utworzenie ich miniatur. Używanie obrazów w pełnej rozdzielczości jako miniatur powoduje zmniejszenie wydajności. Z tego powodu zalecane jest korzystanie z internetowych serwisów udostępniających zdjęcia lub usług obiektowych, które są hostowane.",
         "div12": "Korzystanie z istniejącej usługi obiektowej lub pliku shape",
@@ -491,18 +493,18 @@ define({
       },
       "tab5": {
         "title": "Publikacja",
-        "div1": "Po zakończeniu wszystkich czynności nie zapomnij udostępnić mapy wycieczki odbiorcom za pomocą przycisku UDOSTĘPNIJ lub strony elementu aplikacji w usłudze ArcGIS Online.",
+        "div1": "Po zakończeniu wszystkich czynności nie zapomnij udostępnić mapy wycieczki odbiorcom za pomocą przycisku UDOSTĘPNIJ lub strony elementu aplikacji w ArcGIS Online.",
         "div2a": "Udostępnianie wycieczki przy pomocy kreatora",
         "div2b": "Przycisk UDOSTĘPNIJ zaktualizuje aplikację i elementy mapy internetowej. Jeśli dane wycieczki przechowywane są w elemencie Usługi obiektowej, zostaną one również zaktualizowane. Jeśli dodane zostały inne warstwy przy pomocy przeglądarki map ArcGIS.com, nie zostaną one zaktualizowane. Może to sprawić, że wycieczka nie będzie udostępniana w oczekiwany sposób. Nie będą aktualizowane elementy, które posiadają już wymagane (lub wyższe) uprawnienia.",
-        "div2c": "Udostępnianie wycieczki w usłudze ArcGIS Online",
-        "div2d": "Podczas udostępniania aplikacji za pośrednictwem usługi ArcGIS Online, w razie potrzeby, system poprosi o uaktualnienie zasobów zależnych (mapy internetowej, usługi obiektowej, warstwy dekoracyjnej), które nie są udostępnione w ten sam sposób. Jeśli mapa wycieczki jest publicznie dostępna, ale jeden z zasobów nie został udostępniony wszystkim odbiorcom, użytkownicy zostaną przekierowani do strony logowania usługi ArcGIS Online.",
+        "div2c": "Udostępnianie wycieczki w ArcGIS Online",
+        "div2d": "Podczas udostępniania aplikacji za pośrednictwem ArcGIS Online, w razie potrzeby, system poprosi o uaktualnienie zasobów zależnych (mapy internetowej, usługi obiektowej, warstwy dekoracyjnej), które nie są udostępnione w ten sam sposób. Jeśli mapa wycieczki jest publicznie dostępna, ale jeden z zasobów nie został udostępniony wszystkim odbiorcom, użytkownicy zostaną przekierowani do strony logowania usługi ArcGIS Online.",
         "div3t": "Zabezpieczenia Usług obiektowych",
         "div3a": "Jeśli korzystasz z hostowanej usługi obiektowej utworzonej za pomocą kreatora mapy wycieczki, aplikacja zarządza bezpieczeństwem usługi, dlatego pozostajesz jedyną osobą, która ma uprawnienia do edycji, nawet jeśli udostępnisz usługę publicznie.",
         "div3t2": "Zanim podzielisz się swoją wycieczką z odbiorcami",
         "div3": "Upewnij się, że wycieczka działa poprawnie bez konieczności logowania się na konto ArcGIS.com. Adres URL, który będzie używany, nie powinien przekierowywać do strony logowania ani do trybu kreatora.",
         "div4": "Warto sprawdzić wygląd mapy wycieczki wyświetlanej za pomocą urządzenia iPad trzymanego w orientacji poziomej, aby upewnić się, że będzie ona poprawnie wyświetlać się na tym popularnym urządzeniu. Umożliwia to sprawdzenie, czy podpisy nie zajmują zbyt dużej części obrazów. Można także w ten sposób sprawdzić czy napisy są odpowiednio dopasowane (w przypadku, jeśli są one zbyt długie, zostaną one obcięte).",
         "div5a": "Rekomendacje dotyczące wyszukiwania",
-        "div5b": "Aby pomóc osobom wyszukującym w usłudze ArcGIS Online znaleźć mapę wycieczki, zalecamy dodanie znacznika „story map” na stronie elementu aplikacji mapy wycieczki (nie zaś na stronie elementu mapy internetowej), a także znaczników zawierających nazwę stanu, regionu lub województwa, dla którego utworzono wycieczkę, nazwę kraju (jeśli jest ona położona poza USA) oraz znaczników tematycznych, takich jak „sztuka publiczna”, „przewodnik turystyczny”, czy „miejsca historyczne”. Znaczniki te również pomagają pracownikom firmy Esri w znajdowaniu nowych, ciekawych przykładów wycieczek do prezentowania w galeriach oraz promowania w mediach społecznościowych. Najlepiej przesyłać także estetyczne miniatury na swoją stronę elementu aplikacji, takie jak miniatury zrzutów ekranu wycieczki lub jedno ze zdjęć w niej umieszczonych. Obraz ten zostanie automatycznie użyty, jeśli mapa wycieczki zostanie dodana do galerii usługi ArcGIS Online."
+        "div5b": "Aby pomóc osobom wyszukującym w ArcGIS Online znaleźć mapę wycieczki, zalecamy dodanie znacznika „story map” na stronie elementu aplikacji mapy wycieczki (nie zaś na stronie elementu mapy internetowej), a także znaczników zawierających nazwę stanu, regionu lub województwa, dla którego utworzono wycieczkę, nazwę kraju (jeśli jest ona położona poza USA) oraz znaczników tematycznych, takich jak „sztuka publiczna”, „przewodnik turystyczny”, czy „miejsca historyczne”. Znaczniki te również pomagają pracownikom firmy Esri w znajdowaniu nowych, ciekawych przykładów wycieczek do prezentowania w galeriach oraz promowania w mediach społecznościowych. Najlepiej przesyłać także estetyczne miniatury na swoją stronę elementu aplikacji, takie jak miniatury zrzutów ekranu wycieczki lub jedno ze zdjęć w niej umieszczonych. Obraz ten zostanie automatycznie użyty, jeśli mapa wycieczki zostanie dodana do galerii ArcGIS Online."
       }
     },
     "share": {

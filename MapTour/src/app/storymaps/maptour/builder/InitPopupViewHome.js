@@ -7,7 +7,6 @@ define(["dojo/has"],
 			var _footer = null;
 
 			_container.find('.btn-select-flickr').click(function(){ select("Flickr", this); });
-			_container.find('.btn-select-fb').click(function(){ select("Facebook", this); });
 			_container.find('.btn-select-picasa').click(function(){ select("Picasa", this); });
 			_container.find('.btn-select-youtube').click(function(){ select("Youtube", this); });
 			_container.find('.btn-select-advanced').click(function(){ select("advanced", this); });
@@ -102,7 +101,6 @@ define(["dojo/has"],
 				_container.find('.footer').append("<a data-href='#' onClick='app.builder.openHelpPopup(1)'>" + i18n.viewer.initPopupHome.footer5 + "</a>");
 				
 				_container.find('.btn-select-flickr img').attr('src', 'resources/icons/builder-import-flickr.png');
-				_container.find('.btn-select-fb img').attr('src', 'resources/icons/builder-import-facebook.png');
 				_container.find('.btn-select-picasa img').attr('src', 'resources/icons/builder-import-picasa.png');
 				_container.find('.btn-select-youtube img').attr('src', 'resources/icons/builder-import-youtube.png');
 				_container.find('.btn-select-advanced img').attr('src', 'resources/icons/builder-import-scratch.png');
@@ -110,8 +108,6 @@ define(["dojo/has"],
 				
 				if (!APPCFG.AUTHORIZED_IMPORT_SOURCE.flickr)
 					_container.find('.btn-select-flickr').addClass("disabled").unbind('click');
-				if (!APPCFG.AUTHORIZED_IMPORT_SOURCE.facebook) 
-					_container.find('.btn-select-fb').addClass("disabled").unbind('click');
 				if (!APPCFG.AUTHORIZED_IMPORT_SOURCE.picasa)
 					_container.find('.btn-select-picasa').addClass("disabled").unbind('click');
 				if (!APPCFG.AUTHORIZED_IMPORT_SOURCE.youtube) 
@@ -123,16 +119,6 @@ define(["dojo/has"],
 						placement: 'top',
 						html: true,
 						content: APPCFG.AUTHORIZED_IMPORT_SOURCE.flickr ? 'Flickr' : i18n.viewer.onlinePhotoSharingCommon.disabled,
-						container: '.popover-init'
-					});
-				}
-				
-				if (!has("touch") || !APPCFG.AUTHORIZED_IMPORT_SOURCE.facebook) {
-					_container.find('.btn-select-fb').popover({
-						trigger: 'hover',
-						placement: 'top',
-						html: true,
-						content: APPCFG.AUTHORIZED_IMPORT_SOURCE.facebook ? 'Facebook' : i18n.viewer.onlinePhotoSharingCommon.disabled,
 						container: '.popover-init'
 					});
 				}

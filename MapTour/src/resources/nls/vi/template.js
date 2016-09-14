@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Không tìm thấy trang"
     },
     "viewPicasa": {
-      "title": "Nhập từ Picasa/Google+",
-      "header": "Nhập địa chỉ email của bạn hoặc ID tài khoản Picasa hoặc Google+ của bạn.",
-      "userInputLbl": "Nhập email hoặc ID",
+      "title": "Nhập từ Picasa",
+      "header": "Nhập địa chỉ email của bạn hoặc id Picasa.",
+      "userInputLbl": "Email hoặc id Picasa",
       "signInMsg2": "Không tìm thấy tài khoản",
       "signInMsg3": "Không có album công khai nào",
-      "howToFind": "Cách tìm ID tài khoản Picasa hoặc Google+",
-      "howToFind2": "Sao chép chữ số giữa '/' đầu tiên và thứ hai của bất kỳ trang Picasa hoặc G+ nào"
+      "howToFind": "Cách tìm id Picasa",
+      "howToFind2": "Sao chép chữ số giữa '/' đầu tiên và thứ hai của bất kỳ trang Picasa nào"
     },
     "viewCSV": {
       "title": "Nhập từ CSV",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Bạn đang muốn sử dụng lại một Dịch vụ Đối tượng hiện có</b> lưu trữ hình ảnh của bạn dưới dạng tệp đính kèm hoặc tham chiếu ảnh bên ngoài: Xem phần chi tiết dưới đây.",
         "div7": "<b>Bạn là một người dùng phiên bản mẫu Map Tour trước</b> và đã có CSV tham chiếu ảnh và hình thu nhỏ của bạn: Bạn có thể nhập nó và tinh chỉnh dữ liệu của bạn. Bộ dựng chỉ hỗ trợ các CSV sử dụng các trường kinh độ/vĩ độ; CSV theo địa chỉ có thể tiếp tục được sử dụng thông qua bản đồ web của bạn (xem phần dưới đây).",
         "div8": "Nhập từ các dịch vụ chia sẻ hình ảnh trực tuyến",
+        "div9a": "Hỗ trợ Facebook đã bị chấm dứt, ${learn}.",
+        "learn": "tìm hiểu thêm",
         "div9": "Thao tác nhập tham chiếu ảnh đã được lưu trữ bằng cách lưu trữ các URL của chúng vào một bộ sưu tập tính năng bản đồ web. Các ảnh không được lưu trữ trong ArcGIS Online. Nếu không thể truy cập vào ảnh được lưu trữ, chúng sẽ không có trong Map Tour và bạn sẽ thấy một hình ảnh 'Ảnh không khả dụng'. Tùy thuộc vào nhà cung cấp dịch vụ hình ảnh, Map Tour có thể không nhập tên, mô tả và vị trí ảnh. Những thuộc tính đó được lưu trữ trong bản đồ web và bất kỳ sửa đổi dịch vụ trực tuyến nào sẽ không được phản ánh trong Map Tour.",
         "div10": "Lưu trữ các ảnh trên một máy chủ web",
         "div11": "Nếu bạn chọn tự lưu trữ ảnh, bạn sẽ phải tạo hình thu nhỏ ảnh của bạn thủ công. Sử dụng các hình ảnh độ phân giải đầy đủ cho hình thu nhỏ sẽ dẫn đến hiệu quả kém. Vì lý do đó, chúng tôi khuyên bạn nên sử dụng một dịch vụ chia sẻ ảnh trực tuyến hoặc dịch vụ đối tượng giúp bạn làm điều đó.",

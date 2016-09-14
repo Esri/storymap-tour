@@ -3,7 +3,6 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 		"storymaps/maptour/builder/InitPopupViewAdvanced",
 		"storymaps/maptour/builder/PopupViewCSV",
 		"storymaps/maptour/builder/PopupViewFlickr",
-		"storymaps/maptour/builder/PopupViewFacebook",
 		"storymaps/maptour/builder/PopupViewPicasa",
 		"storymaps/maptour/builder/PopupViewYoutube",
 		"storymaps/maptour/builder/PopupViewGeoTag",
@@ -14,7 +13,6 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 			InitPopupViewAdvanced,
 			PopupViewCSV,
 			PopupViewFlickr,
-			PopupViewFacebook,
 			PopupViewPicasa,
 			PopupViewYoutube,
 			PopupViewGeoTag,
@@ -27,7 +25,6 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 				hostedFS: new InitPopupViewHostedFSCreation($('#initPopupViewHostedFSCreation')),
 				advanced: new InitPopupViewAdvanced(),
 				Flickr: new PopupViewFlickr(),
-				Facebook: new PopupViewFacebook(),
 				Picasa: new PopupViewPicasa(),
 				CSV: new PopupViewCSV(container),
 				Youtube: new PopupViewYoutube(container),
@@ -57,7 +54,6 @@ define(["storymaps/maptour/builder/InitPopupViewHome",
 				_views.advanced.init(params.advanced, initCompleteDeferred, footer);
 				_views.CSV.init(params.CSV, initCompleteDeferred, footer);
 				_views.Flickr.init(params.Flickr, null, footer);
-				_views.Facebook.init(params.Facebook, null, footer);
 				_views.Picasa.init(params.Picasa, null, footer);
 				_views.Youtube.init(params.Youtube, null, footer);
 				_views.geotag.init(params.geotag, initCompleteDeferred, footer);

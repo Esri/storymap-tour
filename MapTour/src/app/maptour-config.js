@@ -141,11 +141,6 @@ APPCFG = {
 	
 	// Online photo sharing services connection parameters
 	FLICKR_API_KEY: "750b36a2ac65a72e03cf9cef06d79f45",
-	// The Facebook ID is only valid on arcgis.com domain
-	// If used on another domain, user will have an error in the Facebook popup after login
-	// To use Facebook import on Portal for ArcGIS, create your own ID at https://developers.facebook.com/ 
-	// or set AUTHORIZED_IMPORT_SOURCE.facebook to false
-	FACEBOOK_APP_ID: "471023926309627",
 	// This Youtube key is valid for application running on arcgis.com and esri.com domains
 	// If the application is deployed on Portal for ArcGIS or your own server, the Youtube api call 
 	//  won't be perfomed until you set the following flag and provide your own key

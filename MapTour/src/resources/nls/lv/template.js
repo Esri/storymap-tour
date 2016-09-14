@@ -318,12 +318,12 @@ define({
       "userInputLbl": "Ievadiet Lietotāja vārdu",
       "signInMsg2": "Lietotājs nav atrasts",
       "selectSet": "Izvēlieties Foto iestatījumu",
-      "selectTag": "vai izvēlieties Tagu",
-      "footerImportTag": "Importēt izvēlēto Tagu",
+      "selectTag": "vai izvēlieties atslēgas vārdu",
+      "footerImportTag": "Importēt izvēlēto atslēgas vārdu",
       "footerImportSet": "Importēt izvēlēto iestatījumu"
     },
     "viewFacebook": {
-      "title": "Facebook impots",
+      "title": "Facebook imports",
       "header": "Autentificējaties ar savu Facebook lietotāja kontu vai izmantojat publisko lapu. Privātos albumus var izmantot, lai radītu publisko Map Tour, kas neprasīs Facebook lietotāja autentifikāciju un kas ļaus komentāriem un patīk palikt privātiem.",
       "leftHeader": "Facebook Lietotājs",
       "rightHeader": "Facebook Lapa",
@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Lapa nav atrasta"
     },
     "viewPicasa": {
-      "title": "Picasa/Google+ imports",
-      "header": "Ievadiet epastu vai ID no jūsu Picasa vai Google+ konta.",
-      "userInputLbl": "Ievadiet epastu vai ID",
+      "title": "Picasa imports",
+      "header": "Ievadiet savu e-pasta adresi vai Picasa ID",
+      "userInputLbl": "E-pasts vai Picasa ID",
       "signInMsg2": "Konts nav atrasts",
       "signInMsg3": "Nav publiska albuma",
-      "howToFind": "Kā atrast Picasa vai Google+ konta ID",
-      "howToFind2": "Kopēt ciparus starp pirmo un otro '/' no jebkura Picasa vai G+ lapa"
+      "howToFind": "Picasa ID atrašana",
+      "howToFind2": "Iekopējiet ciparus starp jebkuras Picasa lapas pirmo un otro '/'"
     },
     "viewCSV": {
       "title": "CSV imports",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Jūs meklējat, lai atkārtoti lietotu esošo Feature Service</b> kas glabā jūsu bildes kā piesaistes, vai kas atsaucas uz ārējām bildēm: skatiet detalizētāku nodaļu apakšā.",
         "div7": "<b>Jūs esat iepriekšējās versijas lietotājs</b> Map Tour šablonam un jau ir jūsu CSV, kas atsaucas jūsu bildēm un sīktēliem: jums būs iespēja importēt un uzlabot savus datus. Veidotājs atbalsta tikai CSV, kas lieto plat/gar laukus; uz adresēm balstīts CSV var tikt turpināts lietot caur jūsu web karti (skatīt nodaļu zemāk).",
         "div8": "Importē no tiešsaistes foto koplietošanas servisu",
+        "div9a": "Facebook atbalsts ir pārtraukts, ${learn}.",
+        "learn": "uzzināt vairāk",
         "div9": "Importa operācijas atsaucas uz attēliem, kas tiek viesoti, saglabājot to URL web kartes elementu kolekcijā. Attēli netiek saglabāti ArcGIS Online. Ja viesotiem attēliem nevar piekļūt, tie nebūs pieejami Map Tour un jūs redzēsiet 'Attēls nav pieejams' attēlu. Atkarībā no attēlu servisu sniedzēja, Map Tour tiks vai netiks importēts nosaukums, apraksts un attēla izvietojums. Šie atribūti tiek glabāti web kartē un jebkādi labojumi uz tiešsaistes servisiem netiks atspoguļoti Map Tour.",
         "div10": "Uzglabā bildes uz web servera",
         "div11": "Ja vēlaties viesot bildes pats, jums būs manuāli jāizveido sīktēli jūsu attēliem. Izmantojot pilnas rezolūcijas bildes priekš sīktēliem radīs sliktu sniegumu. Šī iemesla dēļ mēs noteikti iesakām, ka jūs izmantojat tiešsaistes foto koplietošanas servisus vai elementu servisu, kas to veiks jūsu vietā.",
@@ -445,7 +447,7 @@ define({
         "div153": "Bilde",
         "div154": "Sīktēls",
         "div155": "Krāsa ",
-        "div16": "Ja aplikācija neatrod atbilstošus laukus lietojot elementu servisu, skatītājs nestrādās, līdz jūs konfigurēsiet laukus lietošanai caur veidotāju. CSV un shape failu slāņiem, kas pievienoti web kartei, jābūt visiem nepieciešamajiem laukiem, pretējā gadījumā veidotājs nestrādās.",
+        "div16": "Ja lietotne neatrod atbilstošus laukus lietojot elementu servisu, skatītājs nestrādās, līdz jūs konfigurēsiet laukus lietošanai caur veidotāju. CSV un shape failu slāņiem, kas pievienoti web kartei, jābūt visiem nepieciešamajiem laukiem, pretējā gadījumā veidotājs nestrādās.",
         "div162": "Izmantojot elementu servisu kas glabā attēlus kā piesaistes, <b>tiks izmantoti tikai tie elementi kuriem ir divas piesaistes</b>. Pirmā piesaiste definē galveno attēlu, otrā definē sīkattēlu.",
         "div17": "Attēlu un sīktēlu lauki ir obligāti elementu servisam bez piesaistēm un pēc izvēles (bet ļoti ieteicami) elementu servisam ar piesaistēm. Ja jūsu servisam ir iespējotas piesaistes, veidotājs ļaus jums augšupielādēt bildes kā piesaistes. Ja nē, jums būs tikai iespēja rediģēt bilžu un sīktēlu URL.",
         "div172": "Ja tādi būs, vienmēr tiks izmantoti attēlu un sīkattēlu lauki un elemetu servisa piesaistes netiks pieprasītas.",
@@ -454,7 +456,7 @@ define({
         "div19": "Kad jūs izveidojat elementu servisu no CSV vai shape faila, piesaistes nav iespējotas pēc noklusējuma. Lai tās iespējotu, atveriet elementu servisa detaļu lapu, noklikšķiniet uz nelielas bultiņas slāņa sadaļā, un jūs redzēsiet šo opciju. Pēc tam Map Tour turpinās izmantot attēlus un sīktēlus, uz ko jūs atsaucaties caur atribūtiem. Pēc izvēles, ja jūs vēlaties augšupielādēt savas bildes kā elementu servisa piesaistes, jums būs iespēja to darīt caur divām pogām uz bildes paneļa (\"Mainīt attēlu\" un \"Mainīt sīkattēlu\").",
         "div20": "Atbalstītie attēlu un video formāti",
         "div21": "Atbalstītie attēlu formāti: <b>.jpg, .jpeg, .png, .gif un .bmp</b>. Ja jūsu medijs nebeidzas ar šādu paplašinājumu, Map Tour uzskatīs to par video, izņemot gadījumu, ja izmanto elementu servisu (skatīt zemāk).",
-        "div22": "Map Tour šablons nesatur videopleijeri, tādēļ jāizmanto ārējs videopleijers, ko nodrošina video viesošanas serviss (atrodiet opciju lai iedarinātu video un iekopētu doto URL dotajā kodā) Ja vēlaties viesot video pats, jūs varat izveidot HTML lapu, kas satur videopleijeri, piemēram, <a href='http://www.videojs.com/'>Video.js</a>.",
+        "div22": "Map Tour veidne nesatur videopleijeri, tādēļ jāizmanto ārējs videopleijers, ko nodrošina video viesošanas serviss (atrodiet opciju lai iedarinātu video un iekopētu doto URL dotajā kodā) Ja vēlaties viesot video pats, jūs varat izveidot HTML lapu, kas satur videopleijeri, piemēram, <a href='http://www.videojs.com/'>Video.js</a>.",
         "div23": "Ineraktīvais veidotājs nenodrošina dialogu, lai iekļautu video, gadījumos kad izmanto elementu servisu ar piesaistēm, bet ir iespējams to izdarīt rediģējot datus ārpus inerkatīvā veidotāja. Arcgis.com kartes pārlūkā, ja modificējat attēla laukus, lai norādītu ārēju video, un pievienojat speciālu parametru URL beigās (#isVideo), jūsu medijs tiks uzkatīs par video.",
         "div24": "Atcerieties, ka jums nepieciešami divas derīgas attēla piesaistes vai punkts netiks izmantots. Nav iespējams izmantoto video, izmantojot elementu servisa piesaistes bez attēla un sīkattēla laukiem."
       },
@@ -510,7 +512,7 @@ define({
       "manageStory": "Pārvaldiet savu stāstu",
       "manageStoryA1": "Padoms. Varat izmantot %LINK1%, lai pārbaudītu, vai stāstā nav kļūdu, un mainītu komponentu koplietošanas veidu. Sadaļā Mani stāsti ir pieejama arī palīdzība, lai noformētu pievilcīgu stāsta izskatu, kad to koplietosiet sociālajos tīklos. Plašāku informāciju par sadaļas Mani stāsti funkcijām varat iegūt šeit: %LINK2%.",
       "manageStoryA1V1": "Mani stāsti",
-      "manageStoryA1V2": "emuāra ziņas",
+      "manageStoryA1V2": "bloga ziņas",
       "shareTitle": "Koplietot jūsu tūri",
       "sharePrivateHeader": "Jūsu tūre nav koplietota, vai vēlaties to koplietot?",
       "sharePrivateBtn1": "Koplietot publiski",

@@ -1,7 +1,7 @@
 define({
   "viewer": {
     "loading": {
-      "step1": "A CARREGAR A HISTÓRIA",
+      "step1": "A CARREGAR HISTÓRIA",
       "step2": "A CARREGAR DADOS...",
       "step3": "A INICIAR A APRESENTAÇÃO...",
       "loadBuilder": "A MUDAR PARA O MODO DE BUILDER...",
@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Página não encontrada"
     },
     "viewPicasa": {
-      "title": "Importar Picasa/Google+",
-      "header": "Introduza o endereço de correio eletrónico ou o ID de uma conta Picasa ou Google+.",
-      "userInputLbl": "Introduzir um endereço de correio eletrónico ou ID",
+      "title": "Importado do Picasa",
+      "header": "Introduza o seu endereço de correio eletrónico ou a sia id do Picasa.",
+      "userInputLbl": "Email ou id do Picasa",
       "signInMsg2": "Conta não encontrada",
       "signInMsg3": "Nenhum álbum público",
-      "howToFind": "Como encontrar o ID de uma conta de Picasa ou Google+",
-      "howToFind2": "Copiar os dígitos que estão entre a primeira e a segunda barra ( / ) de qualquer página Picasa ou G+"
+      "howToFind": "Como encontrar a id do Picasa",
+      "howToFind2": "Copiar os dígitos que estão entre a primeira e a segunda  '/'  de qualquer página do Picasa"
     },
     "viewCSV": {
       "title": "Importar CSV",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Pretende reutilizar um Serviço de Elementos existente</b> que guarda as suas imagens como anexos ou que referencia imagens externas: consulte a secção detalhada abaixo",
         "div7": "<b>É um utilizador de uma versão anterior</b> do modelo de Apresentação de Mapa e já tem um ficheiro CSV que referencia imagens e miniaturas: poderá importar o modelo e ajustar os seus dados. O assistente só suporta ficheiros CSV que utilizem atributos de latitude/longitude; é possível continuar a utilizar um ficheiro CSV baseado em endereços através do mapa web (consulte a secção abaixo)",
         "div8": "Importar de serviços de partilha de fotografias online",
+        "div9a": "O suporte para Facebook foi descontinuado, ${learn}.",
+        "learn": "saber mais",
         "div9": "A referência da operação de importação já alojou imagens guardando os URLs das imagens numa coleção de elementos de mapa web. As imagens não são guardadas no ArcGIS Online. Se as imagens alojadas não forem válidas, não estarão disponíveis na Apresentação de Mapa e será utilizada uma imagem com a mensagem “Imagem não disponível”. Dependendo do fornecedor de serviços, a Apresentação de Mapa poderá ou não importar o nome, a descrição e a localização das imagens. Esses atributos são guardados no mapa web e quaisquer edições efetuadas nos serviços online não serão aplicadas na Apresentação de Mapa.",
         "div10": "Guardar as imagens num servidor web",
         "div11": "Se optar por alojar as imagens num servidor próprio, terá de criar as miniaturas das imagens manualmente. A utilização de imagens de resolução total para a miniatura irá prejudicar o desempenho. Por esse motivo, é aconselhável utilizar um serviço de partilha de fotografias online ou um Serviço de Elementos que faça esse trabalho por si.",

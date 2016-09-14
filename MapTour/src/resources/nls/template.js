@@ -333,13 +333,13 @@ define({
 				lookupMsgError: "Page not found"
 			},
 			viewPicasa: {
-				title: "Picasa/Google+ import",
-				header: "Enter your email address or the ID of your Picasa or Google+ account.",
-				userInputLbl: "Enter an email or ID",
+				title: "Picasa import",
+				header: "Enter your email address or your Picasa id.",
+				userInputLbl: "Email or Picasa id",
 				signInMsg2: "Account not found",
 				signInMsg3: "No public album",
-				howToFind: "How to find a Picasa or Google+ account ID",
-				howToFind2: "Copy digits between the first and second '/' of any Picasa or G+ page"
+				howToFind: "How to find a Picasa id",
+				howToFind2: "Copy digits between the first and second '/' of any Picasa page"
 			},
 			viewCSV: {
 				title: "CSV import",
@@ -435,6 +435,8 @@ define({
 					div6: "<b>You are looking to reuse an existing Feature Service</b> that stores your pictures as attachments or that references external pictures: See the detailed section below.",
 					div7: "<b>You are a user of a previous version</b> of the Map Tour template and already have your CSV that references your pictures and thumbnails: You will be able to import it and refine your data. The builder only supports CSVs that use lat/long fields; address-based CSVs can continue to be used through your web map (see section below).",
 					div8: "Importing from online photo sharing services",
+					div9a: "Facebook support has been discontinued, ${learn}.",
+					learn: "learn more",
 					div9: "The import operation references pictures that are already hosted by storing their URLs in a web map feature collection. The pictures are not stored in ArcGIS Online. If the hosted pictures can't be accessed, they won't be available in the Map Tour and you'll see a 'Picture not available' image. Depending on your photo service provider, the Map Tour may not import the name, description, and location of the pictures. Those attributes are stored in the web map and any edits to the online services won't be reflected in the Map Tour.",
 					div10: "Storing the pictures on a web server",
 					div11: "If you choose to host the pictures yourself, you will have to manually create thumbnails of your pictures. Using the full resolution pictures for the thumbnail will result in poor performance. For that reason, we strongly recommend that you use an online photo sharing services or a feature service that will do that for you.",

@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Pagină negăsită"
     },
     "viewPicasa": {
-      "title": "Import Picasa/Google+",
-      "header": "Introduceţi adresa e-mail sau ID-ul contului dvs. Picasa sau Google+.",
-      "userInputLbl": "Introducere e-mail sau ID",
+      "title": "Import Picasa",
+      "header": "Introduceţi adresa dvs. de e-mail sau ID-ul dvs. Picasa.",
+      "userInputLbl": "E-mail sau ID Picasa",
       "signInMsg2": "Cont negăsit",
       "signInMsg3": "Niciun album public",
-      "howToFind": "Găsirea unui ID de cont Picasa sau Google+",
-      "howToFind2": "Copiaţi cifrele dintre primul şi al doilea caracter „/” a unei pagini Picasa sau G+"
+      "howToFind": "Găsirea unui ID Picasa",
+      "howToFind2": "Copiaţi cifrele dintre primul şi al doilea caracter „/” al oricărei pagini Picasa"
     },
     "viewCSV": {
       "title": "Import CSV",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Doriţi să reutilizaţi un serviciu de obiecte spaţiale existent</b>, în care fotografiile dvs. sunt stocate ca ataşări sau în care există referinţe către fotografii externe: consultaţi capitolul detaliat de mai jos.",
         "div7": "<b>Utilizaţi o versiune anterioară</b> a şablonului Turul hărţii şi aveţi propriul dvs. CSV în care aveţi referinţe la fotografii şi miniaturi: îl veţi putea importa şi vă veţi putea rafina datele. Instrumentul de creare suportă numai formatul CSV care utilizează câmpuri lat/long; utilizarea fişierului CSV bazat pe adrese poate continua în harta web (consultaţi capitolul de mai jos).",
         "div8": "Importul din servicii online de partajare a fotografiilor",
+        "div9a": "Asistenţa Facebook a fost suspendată, ${learn}.",
+        "learn": "aflaţi mai multe",
         "div9": "Operaţia de import conţine referinţe la fotografii deja găzduite, prin stocarea URL-urilor acestora într-o colecţie de obiecte spaţiale de hartă web. Fotografiile nu sunt stocate în ArcGIS Online.Dacă imaginile găzduite nu pot fi accesate, ele nu vor fi disponibile în Turul hărţii, iar dvs. veţi vedea o imagine cu textul „Imagine indisponibilă”. În funcţie de furnizorul de servicii fotografice, este posibil ca Turul hărţii să nu importe numele, descrierile şi locaţiile imaginilor. Aceste informaţii sunt stocate în harta web şi nicio editare a serviciilor online nu se va reflecta în Turul hărţii.",
         "div10": "Stocarea imaginilor pe un server web",
         "div11": "Dacă alegeţi să vă găzduiţi singuri fotografiile, va trebui să creaţi manual miniaturi ale fotografiilor. Utilizarea fotografiilor la rezoluţia maximă pentru miniaturi va conduce la performanţe slabe. Din acest motiv, vă recomandăm să utilizaţi un serviciu online de partajare a fotografiilor sau un serviciu de obiecte spaţiale care va face acest lucru pentru dvs.",

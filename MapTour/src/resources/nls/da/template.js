@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Side ikke fundet"
     },
     "viewPicasa": {
-      "title": "Picasa-/Google+ import",
-      "header": "Indtast din e-mail-adresse eller ID for din Picasa eller Google+-konto.",
-      "userInputLbl": "Indtast e-mail eller ID",
+      "title": "Picasa-import",
+      "header": "Angiv din e-mailadresse eller dit Picasa-id.",
+      "userInputLbl": "E-mail eller Picasa-id",
       "signInMsg2": "Kontoen kunne ikke findes",
       "signInMsg3": "Intet offentligt album",
-      "howToFind": "Sådan findes et Picasa- eller Google+ konto-ID",
-      "howToFind2": "Kopier tal mellem første og anden '/' på Picasa eller en G+-side"
+      "howToFind": "Sådan finder du et Picasa-id",
+      "howToFind2": "Kopiér tal mellem første og anden '/' på en vilkårlig Picasa-side"
     },
     "viewCSV": {
       "title": "CSV-import",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Du vil gerne genbruge en eksisterende featuretjeneste,</b> som gemmer dine billeder som vedhæftede filer, eller som henviser til eksterne billeder: Se afsnittet med detaljerede oplysninger nedenfor.",
         "div7": "<b>Du bruger en tidligere version</b> af Map Tour-skabelonen og har allerede en CSV-fil, der henviser til dine billeder og miniaturer: Du kan importere den og forfine dine data. Builder-programmet understøtter kun CSV-filer, der benytter længde- og breddegradsfelter. Adressebaserede CSV-filer kan fortsat benyttes via dit webkort (se nedenfor).",
         "div8": "Import fra online fotodelingstjenester",
+        "div9a": "Facebook-understøttelse er blevet standset, ${learn}.",
+        "learn": "lær mere",
         "div9": "Denne import-handling henviser til billeder, der allerede er \"hosted\" ved at gemme deres URL'er i en samling af webkorttjenester. Billederne gemmes ikke på ArcGIS Online. Hvis du ikke kan få adgang til de \"hostede\" billeder, vil de ikke være tilgængelige i din Map Tour, og du får vist et billede med teksten 'Billedet er ikke tilgængeligt'. Det afhænger af tjenesteudbyderen, om din Map Tour importerer navn, beskrivelse og placering for billederne. Disse attributter gemmes i webkortet, og eventuelle redigeringer af online-tjenesten vises ikke i Map Tour.",
         "div10": "Lagring af billeder på en web-server",
         "div11": "Hvis du vælger selv at \"hoste\" billederne, skal du manuelt oprette miniaturebilleder til dine billeder. Hvis du bruger billeder med fuld opløsning til miniaturebillederne, bliver de ikke gode. Vi anbefaler derfor, at du bruger en online fotodelingstjeneste eller en featuretjeneste til dette.",

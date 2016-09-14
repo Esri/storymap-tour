@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Puslapis nerastas"
     },
     "viewPicasa": {
-      "title": "Picasa/Google+ importas",
-      "header": "Įveskite Picasa ar Google+ paskyros elektroninį paštą arba ID.",
-      "userInputLbl": "Įveskite elektroninį paštą arba ID",
+      "title": "Picasa importavimas",
+      "header": "Įveskite el. pašto adresą arba savo Picasa ID.",
+      "userInputLbl": "El. pašto adresas arba Picasa ID",
       "signInMsg2": "Paskyra nerasta",
       "signInMsg3": "Viešųjų albumų nėra",
-      "howToFind": "Kaip surasti Picasa arba Google+ paskyros ID",
-      "howToFind2": "Nukopijuokite skaičius tarp pirmo ir antro '/' bet kuriame Picasa ar G+ puslapyje"
+      "howToFind": "Kaip surasti Picasa ID",
+      "howToFind2": "Nukopijuokite skaičius tarp pirmo ir antro „/“ bet kuriame Picasa puslapyje"
     },
     "viewCSV": {
       "title": "CSV importas",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Jūs norite pernaudoti esamą elementų paslaugą</b>, kurioje saugomos jūsų nuotraukos kaip priedai arba kurios nukreipia į išorines nuotraukas: žiūrėkite detalų aprašymą žemiau.",
         "div7": "<b>Esate ankstesnės žemėlapio turo šablono versijos naudotojas</b> ir jau turite CSV, kuris nukreipia į nuotraukas ir miniatiūras: jūs galėsite importuoti ir pakeisti duomenis. Vedlys palaiko tik CSV, naudojančius ilgumos/platumos laukus, adresais paremti CSV gali būti naudojami internetiniame žemėlapyje (žiūrėkite aprašymą žemiau).",
         "div8": "Importuojama iš internetinių nuotraukų bendrinimo paslaugų",
+        "div9a": "Facebook palaikymas nutrauktas, ${learn}.",
+        "learn": "sužinokite daugiau",
         "div9": "Importavimo veiksmas nurodo jau talpinamas nuotraukas, saugodamas jų URL internetinių žemėlapio elementų rinkinyje. Šios nuotraukos netalpinamos ArcGIS Online. Jei nuotraukų talpinimas sutrinka, jos nebus matomos žemėlapio ture ir vietoje jų bus naudojamas “Nuotraukos nepasiekiamos” vaizdas. Priklausomai nuo interneto tiekėjo, žemėlapio turas importuos arba neimportuos vaizdų pavadinimo, aprašo ir vietos. Šie atributai saugomi internetiniame žemėlapyje ir bet koks internetinių paslaugų redagavimas neatsispindės žemėlapio ture.",
         "div10": "Nuotraukų saugojimas internetiniame serveryje",
         "div11": "Jei pasirinkote patys talpinti nuotraukas, turėsite rankiniu būdu sukurti nuotraukų miniatiūras. Naudojant pilnos raiškos nuotraukas kaip miniatiūras neigiamai paveiks greitaveiką. Dėl šios priežasties primygtinai rekomenduojame naudoti internetines nuotraukų talpinimo paslaugas arba elementų paslaugas, kurios tai padarys už jus.",

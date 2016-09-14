@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Página não encontrada"
     },
     "viewPicasa": {
-      "title": "Importar do Picasa/Google+",
-      "header": "Insira o e-mail ou ID de uma conta do Picasa ou Google+.",
-      "userInputLbl": "Insira um e-mail ou ID",
+      "title": "Importação do Picasa",
+      "header": "Digite seu endereço de e-mail ou seu ID do Picasa.",
+      "userInputLbl": "E-mail ou ID do Picasa",
       "signInMsg2": "Conta não encontrada",
       "signInMsg3": "Nenhum álbum público",
-      "howToFind": "Como encontrar um ID de conta do Picasa ou Google+",
-      "howToFind2": "Copie dígitos entre o primeiro e segundo '/' de qualquer página do Picasa ou G+"
+      "howToFind": "Como encontrar um ID do Picasa",
+      "howToFind2": "Copie dígitos entre a primeira e segunda '/' de qualquer página do Picasa"
     },
     "viewCSV": {
       "title": "Importar CSV",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Você está pensando em reutilizar um Serviço da Feição existente</b> que armazena suas figuras como anexos ou que referencia as figuras externas: Consulte a seção detalhada abaixo.",
         "div7": "<b>Você é usuário de uma versão anterior</b> do modelo de Apresentação do Mapa e já tem seu CSV que referencia suas figuras e miniaturas: Você poderá importá-lo e refinar seus dados. O construtor oferece suporte somente para CSVs que utilizam campos de lat/long; o endereço baseado em CSVs pode continuar a ser utilizado por seu mapa da web (consultar seção abaixo)",
         "div8": "Importando de serviços de compartilhamento de fotos online",
+        "div9a": "O suporte do Facebook foi descontinuado, ${learn}.",
+        "learn": "mais informações",
         "div9": "A operação de importação referencia figuras que já estão hospedadas pelo armazenando de suas URLs em uma coleção da feição de mapa da web. As figuras não são armazenadas no ArcGIS Online. Se as figuras hospedadas não puderem ser acessadas, elas não ficarão disponíveis na Apresentação do Mapa e você visualizará uma imagem \"Figura não disponível\". Dependendo do provedor de serviços da foto, a Apresentação do Mapa pode não importar o nome, descrição, e local das figuras. Estes atributos são armazenados no mapa da web e quaisquer edições nos serviços online não serão refletidas na Apresentação do Mapa.",
         "div10": "Armazenando as figuras em um servidor da web",
         "div11": "Se você escolher para hospedar as figuras você mesmo, você terá que criar manualmente as miniaturas das suas figuras. Utilizar as figuras de máxima resolução para a miniatura resultará em um desempenho ruim. Por isso, recomendamos fortemente que você utilize serviços de compartilhamento de fotos online ou um serviço da feição que fará isto para você.",

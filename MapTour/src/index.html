@@ -70,7 +70,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.5.1';
+			var version = '2.5.2';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -97,8 +97,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("//js.arcgis.com/3.17/esri/css/esri.css", true);
-			loadCSS("//js.arcgis.com/3.17/dijit/themes/claro/claro.css", true);			
+			loadCSS("//js.arcgis.com/3.18/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.18/dijit/themes/claro/claro.css", true);			
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -142,7 +142,6 @@
 				
 				loadCSS("app/storymaps/maptour/builder/PopupViewCSV.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewFlickr.css");
-				loadCSS("app/storymaps/maptour/builder/PopupViewFacebook.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewPicasa.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewYoutube.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewGeoTag.css");
@@ -633,9 +632,6 @@
 							<td class="btn-select-flickr">
 								<a><img style="width: 50px"/></a>
 							</td>
-							<td class="btn-select-fb">
-								<a><img style="height: 46px"/></a>
-							</td>
 							<td class="btn-select-picasa">
 								<a><img style="width: 50px"/></a>
 							</td>
@@ -711,9 +707,6 @@
 						<td class="btn-select-flickr">
 							<img style="width: 50px"/>
 						</td>
-						<td class="btn-select-fb">
-							<img style="height: 46px"/>
-						</td>
 						<td class="btn-select-picasa">
 							<img style="width: 50px"/>
 						</td>
@@ -773,44 +766,6 @@
 									<select id="flickrListTag"></select>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="popupViewFacebook" class="popupViewFacebook">
-				<div class="headerContainer">
-					<span class="header"></span>
-					<span class="commonHeader"></span>
-				</div>
-				<div>
-					<div class="selectContainer">
-						<div class="control-group">
-							<div class="sideHeader"></div>
-							<div class="facebookLogin">
-								<fb:login-button size="small" show-faces="true" width="200" max-rows="1" scope="user_photos" autologoutlink="true"></fb:login-button>
-							</div>
-							<label class="control-label" for="facebookListAlbum1"></label>
-							<div class="controls">
-								<div class="btn-group">
-									<select id="facebookListAlbum1"></select>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="selectContainer">
-						<div class="control-group">
-							<div class="sideHeader"></div>
-							<input class="selectPageName" type="text" value=""/>
-							<button class="btn btn-pageLookup"><i class="icon-search"></i></button>
-							<div class="spacer">&nbsp;</div>
-
-							<label class="control-label" for="facebookListAlbum2"></label>
-							<div class="controls">
-								<div class="btn-group">
-									<select id="facebookListAlbum2"></select>
-								</div>
-							</div>
-							<div class="lookingUpMsg"></div>
 						</div>
 					</div>
 				</div>
@@ -959,7 +914,7 @@
 							</label>
 							<label class="checkbox">
 								<input type="checkbox" class="enableBitly" />
-								<span>Bitly</span>
+								<span class="header-share-label"></span>
 							</label>
 						</div>
 						<div>
@@ -1185,7 +1140,7 @@
 		</div>
 		
 		<script type="text/javascript">
-			loadJS('//js.arcgis.com/3.17/init.js', true);
+			loadJS('//js.arcgis.com/3.18/init.js', true);
 			loadJS('app/maptour-config.js');
 			
 			function getUrlVar(name)

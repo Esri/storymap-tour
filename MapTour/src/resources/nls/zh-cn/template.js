@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "未找到页面"
     },
     "viewPicasa": {
-      "title": "Picasa/Google+ 导入",
-      "header": "输入您的电子邮件地址或 Picasa 或 Google+ 的帐户 ID。",
-      "userInputLbl": "输入电子邮件或 ID",
+      "title": "Picasa 导入",
+      "header": "请输入您的电子邮件地址或 Picasa ID",
+      "userInputLbl": "电子邮件或 Picasa ID",
       "signInMsg2": "未找到帐户",
       "signInMsg3": "无公共图片集",
-      "howToFind": "如何查找 Picasa 或 Google+ 帐户 ID",
-      "howToFind2": "复制任何 Picasa 或 G+ 页面的第一个和第二个“/”之间的数字"
+      "howToFind": "如何查找 Picasa ID",
+      "howToFind2": "复制任何 Picasa 页面的第一个和第二个 '/' 之间的数字"
     },
     "viewCSV": {
       "title": "CSV 导入",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>您希望重复使用现有要素服务</b>将图片存储为附件或引用外部图片: 请参阅下面的详细描述部分。",
         "div7": "<b>您是先前版本的用户</b>，即上一版地图浏览模板的用户，并且已经拥有引用图片和缩略图的 CSV: 您可以导入该 CSV 并优化数据。构建器仅支持使用纬度/经度字段的 CSV; 可以继续在您的 web 地图中使用基于地址的 CSV (请参阅以下部分)。",
         "div8": "从在线照片共享服务中导入",
+        "div9a": "已停止对 Facebook 的支持，${learn}。",
+        "learn": "了解详细信息",
         "div9": "导入操作通过在 web 地图要素集中存储图片的 URL 来引用已托管的图片。图片未存储在 ArcGIS Online 中。如果托管的图片无法访问，则图片在地图浏览中将不可用，您将看到“图片不可用”的图像。地图浏览可能不会导入图片的名称、描述和位置，这取决于照片服务的提供者。这些属性存储在 web 地图中，对在线服务进行的任何编辑都不会反映在地图浏览中。",
         "div10": "在 web 服务器上存储图片",
         "div11": "如果选择自己托管图片，则需要手动创建图片的缩略图。使用全分辨率的图片创建缩略图将导致性能下降。因此，强烈建议您使用在线照片共享服务或要素服务来进行此操作。",

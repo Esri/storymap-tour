@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Sayfa bulunamadı"
     },
     "viewPicasa": {
-      "title": "Picasa/Google+ içe aktarma",
-      "header": "E-posta adresinizi veya Picasa ya da Google+ hesabınızın kimliğini girin.",
-      "userInputLbl": "E-posta veya kimlik girin",
+      "title": "Picasa aktarımı",
+      "header": "E-posta adresinizi veya Picasa kimliğinizi girin.",
+      "userInputLbl": "E-posta veya Picasa kimliği",
       "signInMsg2": "Hesap bulunamadı",
       "signInMsg3": "Genel albüm yok",
-      "howToFind": "Picasa ya da Google+ hesabı kimliği nasıl bulunur",
-      "howToFind2": "Herhangi bir Picasa ya da G+ sayfasının ilk ve ikinci '/' karakterleri arasındaki rakamları kopyalayın"
+      "howToFind": "Picasa kimliğini bulma",
+      "howToFind2": "Herhangi bir Picasa sayfasının ilk ve ikinci '/' karakteri arasındaki rakamları kopyalayın"
     },
     "viewCSV": {
       "title": "CSV içe aktarma",
@@ -434,6 +434,8 @@ define({
         "div6": "Resimlerinizi ekler olarak depolayan veya harici resimlere başvuran <b>mevcut bir Detay Servisi'ni tekrar kullanmanın yollarını arıyorsunuzdur</b>: Aşağıdaki ayrıntılı bölüme bakın.",
         "div7": "Harita Turu şablonunun <b>önceki bir sürümünün kullanıcısısınızdır</b> ve zaten resimlerinize ve küçük resimlerinize başvuran bir CSV'niz vardır: Bu dosyayı içe aktarıp verilerinizi ayrıntılandırabilirsiniz. Derleyici yalnızca enlem/boylam alanlarını kullanan CSV'leri destekler; adres tabanlı CSV'ler web haritanız yoluyla kullanılmaya devam edebilir. (Aşağıdaki bölüme bakın.)",
         "div8": "Çevrimiçi fotoğraf paylaşma servislerinden içe aktarma",
+        "div9a": "Facebook desteği artık verilmemektedir, ${learn}.",
+        "learn": "daha fazla bilgi",
         "div9": "İçe aktarma işlemi zaten barındırılmakta olan resimlere bunların URL'lerini bir web haritası detay koleksiyonda depolayarak başvurur. Resimler ArcGIS Online'da depolanamaz. Barındırılan resimlere erişilemiyorsa, bunlar Harita Turu'nda kullanılamaz ve bir 'Resim kullanılamıyor' görüntüsü görürsünüz. Fotoğraf servisi sağlayıcınıza bağlı olarak Harita Turu resimlerini adını, açıklamasını ve konumunu içe aktaramayabilir. Bu öznitelikler web haritasında depolanır ve çevrimiçi servislerde yapılan düzenlemelerin hiçbiri Harita Turuna yansımaz.",
         "div10": "Resimleri bir web sunucusunda depolama",
         "div11": "Resimleri kendiniz barındırmayı seçerseniz, resimlerinizin küçük resimlerini el ile oluşturmanız gerekir. Küçük resim için tam çözünürlüklü resimleri kullanmak yetersiz performansla sonuçlanır. Bu nedenle bunu sizin için yapacak çevrimiçi bir fotoğraf paylaşma servisi veya bir detay servisi kullanmanızı öneririz.",

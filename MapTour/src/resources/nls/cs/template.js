@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Stránka nenalezena"
     },
     "viewPicasa": {
-      "title": "Import z Picasa/Google+",
-      "header": "Zadejte svůj e-mail nebo identifikátor pro účet Picasa nebo Google+.",
-      "userInputLbl": "Zadat e-mail nebo identifikátor",
+      "title": "Import Picasa",
+      "header": "Zadejte svou e-mailovou adresu nebo identifikátor služby Picasa.",
+      "userInputLbl": "E-mail nebo identifikátor služby Picasa",
       "signInMsg2": "Účet nenalezen",
       "signInMsg3": "Žádné veřejné album",
-      "howToFind": "Jak najít identifikátor účtu Picasa nebo Google+",
-      "howToFind2": "Zkopírujte číslice mezi prvním a druhým lomítkem (/) libovolné stránky služeb Picasa nebo Google+."
+      "howToFind": "Jak zjistit identifikátor služby Picasa",
+      "howToFind2": "Zkopírujte čísla mezi prvním a druhým znakem „/“ na libovolné stránce služby Picasa"
     },
     "viewCSV": {
       "title": "Import CSV",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Chcete znovu využít stávající Feature Service</b>, ve které jsou obrázky uloženy jako přílohy nebo která odkazuje na externě uložené obrázky. Podrobný návod najdete v příslušné části níže.",
         "div7": "<b>Využíváte předchozí verzi</b> šablony prohlídky mapy a již máte soubor CSV, který odkazuje na příslušné obrázky a miniatury. Budete moci importovat a doplnit data. Nástroj pro tvorbu podporuje pouze soubory CSV, které využívají pole zeměpisné šířky a délky. Soubory CSV využívající adresy je mohou nadále používat prostřednictvím webové mapy (viz příslušná část níže).",
         "div8": "Import ze služeb pro online sdílení fotografií",
+        "div9a": "Podpora Facebooku byla ukončena, ${learn}.",
+        "learn": "další informace",
         "div9": "Operace importu odkazuje na hostované obrázky uložením jejich URL adresy ve sbírce prvků webové mapy. Obrázky nejsou uloženy ve službě ArcGIS Online. Pokud hostované obrázky nejsou přístupné, nebudou se v prohlídce mapy zobrazovat. Místo nich se zobrazí zpráva „Obrázek není k dispozici“. V závislosti na poskytovateli služeb obrázků nemusí prohlídka mapy importovat název, popis a umístění obrázků. Tyto atributy jsou uloženy ve webové mapě a případné úpravy online služeb se v prohlídce mapy nijak neprojeví.",
         "div10": "Obrázky uložené na webovém serveru",
         "div11": "Rozhodnete-li se hostovat si obrázky sami, bude nutné manuálně vytvořit jejich miniatury. Použijete-li jako miniatury obrázky v plném rozlišení, výrazně tím snížíte výkon. Z tohoto důvodu důrazně doporučujeme využívat služby pro online sdílení fotografií nebo feature service, které to provedou za vás.",

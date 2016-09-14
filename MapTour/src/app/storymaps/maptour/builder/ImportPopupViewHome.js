@@ -7,7 +7,6 @@ define(["storymaps/maptour/core/WebApplicationData", "dojo/has"],
 			var _selectedView = null;
 			
 			_container.find('.btn-select-flickr').click(function(){ select("Flickr"); });
-			_container.find('.btn-select-fb').click(function(){ select("Facebook"); });
 			_container.find('.btn-select-picasa').click(function(){ select("Picasa"); });
 			_container.find('.btn-select-youtube').click(function(){ select("Youtube"); });
 			_container.find('.btn-select-csv').click(function(){ select("CSV"); });
@@ -61,7 +60,6 @@ define(["storymaps/maptour/core/WebApplicationData", "dojo/has"],
 				);
 				
 				_container.find('.btn-select-flickr img').attr('src', 'resources/icons/builder-import-flickr.png');
-				_container.find('.btn-select-fb img').attr('src', 'resources/icons/builder-import-facebook.png');
 				_container.find('.btn-select-picasa img').attr('src', 'resources/icons/builder-import-picasa.png');
 				_container.find('.btn-select-youtube img').attr('src', 'resources/icons/builder-import-youtube.png');
 				_container.find('.btn-select-csv img').attr('src', 'resources/icons/builder-import-csv.png');
@@ -70,8 +68,6 @@ define(["storymaps/maptour/core/WebApplicationData", "dojo/has"],
 				
 				if (!APPCFG.AUTHORIZED_IMPORT_SOURCE.flickr)
 					_container.find('.btn-select-flickr').addClass("disabled").unbind('click');
-				if (!APPCFG.AUTHORIZED_IMPORT_SOURCE.facebook)
-					_container.find('.btn-select-fb').addClass("disabled").unbind('click');
 				if (!APPCFG.AUTHORIZED_IMPORT_SOURCE.picasa)
 					_container.find('.btn-select-picasa').addClass("disabled").unbind('click');
 				if ( disableYoutube )
@@ -83,16 +79,6 @@ define(["storymaps/maptour/core/WebApplicationData", "dojo/has"],
 						placement: 'top',
 						html: true,
 						content: APPCFG.AUTHORIZED_IMPORT_SOURCE.flickr ? 'Flickr' : i18n.viewer.onlinePhotoSharingCommon.disabled,
-						container: '.popover-import'
-					});
-				}
-				
-				if (!has("touch") || !APPCFG.AUTHORIZED_IMPORT_SOURCE.facebook) {
-					_container.find('.btn-select-fb').popover({
-						trigger: 'hover',
-						placement: 'top',
-						html: true,
-						content: APPCFG.AUTHORIZED_IMPORT_SOURCE.facebook ? 'Facebook' : i18n.viewer.onlinePhotoSharingCommon.disabled,
 						container: '.popover-import'
 					});
 				}

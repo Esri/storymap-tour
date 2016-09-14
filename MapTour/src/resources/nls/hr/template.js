@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Stranica nije pronađena"
     },
     "viewPicasa": {
-      "title": "Uvoz s Picasa/Google+",
-      "header": "Unesite adresu e-pošte ili ID vašeg računa za Picasa ili Google+.",
-      "userInputLbl": "Unesite e-poštu ili ID",
+      "title": "Uvoz na Picasu",
+      "header": "Unesite svoju adresu e-pošte ili ID za Picasu.",
+      "userInputLbl": "ID za e-poštu ili Picasu",
       "signInMsg2": "Račun nije pronađen",
       "signInMsg3": "Nema javnog albuma",
-      "howToFind": "Kako pronaći ID računa za Picasu ili Google+",
-      "howToFind2": "Kopirajte znamenke između prvog i posljednjeg '/' bilo koje stranice Picasa ili G+"
+      "howToFind": "Kako pronaći ID za Picasu",
+      "howToFind2": "Kopirajte znamenke između prvog i posljednjeg znaka „/” bilo koje stranice Picasa"
     },
     "viewCSV": {
       "title": "Uvoz CSV-a",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Želite ponovno upotrijebiti postojeću uslugu geoobjekata</b> koja pohranjuje vaše slike i privitke ili koja referencira vanjske slike: potražite odjeljak s pojedinostima u nastavku.",
         "div7": "<b>Korisnik ste prethodne verzije</b> predloška Map Toura i već imate CSV koji referencira vaše slike i sličice: moći ćete ga uvesti i pročistiti svoje podatke. Sastavljač podupire samo CSV-ove koji upotrebljavaju polja geografske širine/dužine. CSV-ovi koji se temelje na adresama mogu se nastaviti upotrebljavati putem web-karte (vidi odjeljak u nastavku).",
         "div8": "Uvoz sa servisa za dijeljenje fotografija",
+        "div9a": "Prekinuta je podrška za Facebook, ${learn}.",
+        "learn": "saznaj više",
         "div9": "Operacija uvoza referencira slike koje su već hostirane tako da pohranjuje njihove URL-ove u kolekciji geoobjekata web-karte. Slike nisu pohranjene na programu ArcGIS Online. Ako se hostiranim slikama ne može pristupiti, neće biti dostupne u Map Touru i vidjet ćete obavijest 'Slika nije dostupna'. Ovisno o pružatelju usluga za fotografije, Map Tour možda neće uvesti naziv, opis i lokaciju slika. Ovi su atributi pohranjeni u web-karti i sva uređivanja usluga na mreži neće se odraziti u Map Touru.",
         "div10": "Pohranjivanje slika na web-poslužitelju",
         "div11": "Ako odaberete sami hostirati slike, morat ćete ručno stvoriti sličice svojih slika. Korištenjem slika s punom razlučivošću za sličice, rezultirati će lošijim performansama. Iz tog razloga preporučujemo da upotrebljavate servise za dijeljenje fotografija na mreži ili uslugu geoobjekata koja će to raditi za vas.",

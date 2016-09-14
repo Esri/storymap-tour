@@ -12,13 +12,13 @@ define({
     },
     "errors": {
       "boxTitle": "Ein Fehler ist aufgetreten",
-      "portalSelf": "Schwerwiegender Fehler: Die Portalkonfiguration konnte nicht abgerufen werden",
+      "portalSelf": "Schwerwiegender Fehler: Die Portalkonfiguration konnte nicht abgerufen werden.",
       "invalidConfig": "Schwerwiegender Fehler: Ungültige Konfiguration",
       "invalidConfigOwner": "Schwerwiegender Fehler: Ungültige Konfiguration (autorisierter Benutzer erforderlich)",
       "invalidConfigNoWebmap": "Schwerwiegender Fehler: Ungültige Konfiguration (Webkarte oder Anwendungskennung nicht in \"index.html\" angegeben)",
       "invalidConfigNoAppDev": "In den URL-Parametern (?appid= oder ?webmap=) ist keine Kennung einer Web Mapping-Anwendung und keine Webkarte angegeben. Im Entwicklungsmodus wird die appid- und webmap-Konfiguration in der Datei index.html ignoriert.",
       "createMap": "Karte kann nicht erstellt werden",
-      "invalidApp": "Schwerwiegender Fahler: Die Story kann nicht geladen werden",
+      "invalidApp": "Schwerwiegender Fehler: Die Story kann nicht geladen werden.",
       "noLayer": "Die Webkarte enthält keinen gültigen Daten-Layer für Map Tour.",
       "noLayerMobile": "Der Map Tour Builder wird bei dieser Anzeigegröße nicht unterstützt. Ändern Sie nach Möglichkeit die Browser-Größe, um auf den Builder zuzugreifen, oder erstellen Sie Ihre Story auf einem Gerät mit größerem Bildschirm.",
       "noLayerMobile2": "Halten Sie das Gerät im Querformat, wenn Sie den Map Tour Builder verwenden.",
@@ -270,7 +270,7 @@ define({
       "uploadPicAndThumb": "Übernehmen"
     },
     "headerJS": {
-      "editMe": "Edit me!",
+      "editMe": "Bearbeiten!",
       "templateTitle": "Vorlagentitel festlegen",
       "templateSubtitle": "Untertitel der Vorlage festlegen"
     },
@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Seite nicht gefunden"
     },
     "viewPicasa": {
-      "title": "Import über Picasa/Google+",
-      "header": "Geben Sie die E-Mail-Adresse oder die ID Ihres Picasa- oder Google+-Kontos ein.",
-      "userInputLbl": "E-Mail-Adresse oder ID eingeben",
+      "title": "Picasa-Import",
+      "header": "Geben Sie Ihre E-Mail-Adresse oder Picasa-ID ein.",
+      "userInputLbl": "E-Mail oder Picasa-ID",
       "signInMsg2": "Konto nicht gefunden",
       "signInMsg3": "Kein öffentliches Album",
-      "howToFind": "So finden Sie eine Picasa- oder Google+-Konto-ID",
-      "howToFind2": "Kopieren Sie die Ziffern zwischen dem ersten und zweiten Schrägstrich ('/') einer Picasa- oder G+-Seite"
+      "howToFind": "Eine Picasa-ID suchen",
+      "howToFind2": "Ziffern zwischen dem ersten und zweiten '/' einer beliebigen Picasa-Seite kopieren"
     },
     "viewCSV": {
       "title": "CSV-Import",
@@ -370,7 +370,7 @@ define({
       "header": "Geben Sie einen YouTube-Benutzernamen ein, um nach öffentlich freigegebenen Videos zu suchen.",
       "pageInputLbl": "YouTube-Benutzername eingeben",
       "lookupMsgError": "Benutzer nicht gefunden",
-      "howToFind": "How to find a YouTube user name",
+      "howToFind": "So finden Sie einen YouTube-Benutzernamen",
       "howToFind2": "Benutzername wird unter Videos angezeigt",
       "found": "Gefunden",
       "noData": "Keine öffentlichen Videos gefunden"
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Sie möchten einen vorhandenen Feature-Service verwenden</b>, in dem Ihre Bilder als Anlagen gespeichert werden oder auf externe Bilder verwiesen wird: Lesen Sie die ausführlichen Informationen im Abschnitt unten.",
         "div7": "<b>Sie verwenden eine frühere Version</b> der Map Tour-Vorlage und verfügen bereits über eine CSV-Datei mit Verweis auf Ihre Bilder und Miniaturansichten: Sie können diese Vorlage importieren und die Daten optimieren. Der Builder unterstützt nur CSV-Dateien mit Verwendung von Längen-/Breitengradfeldern; eine adressbasierte CSV-Datei kann weiter durch Ihre Webkarte verwendet werden (siehe Abschnitt unten).",
         "div8": "Importieren aus Online-Fotofreigabe-Services",
+        "div9a": "Facebook wird nicht mehr unterstützt, ${learn}.",
+        "learn": "Weitere Informationen",
         "div9": "Beim Importvorgang wird auf bereits gehostete Bilder verwiesen, indem die URLs in einer Webkarten-Feature-Sammlung gespeichert werden. Die Bilder werden nicht in ArcGIS Online gespeichert. Wenn auf die gehosteten Bilder nicht zugegriffen werden kann, sind sie nicht in der Map Tour verfügbar, stattdessen wird \"Bild nicht verfügbar\" angezeigt. Abhängig vom Service-Provider werden Name, Beschreibung und Position der Bilder nicht in die Map Tour importiert. Diese Attribute werden in der Webkarte gespeichert, Änderungen in den Online-Services werden nicht in die Map Tour übernommen.",
         "div10": "Speichern der Bilder auf einem Webserver",
         "div11": "Wenn Sie die Bilder selbst hosten, müssen Sie manuell Miniaturansichten der Bilder erstellen. Wenn für die Miniaturansichten die Bilder in voller Auflösung verwendet werden, wirkt sich dies negativ auf die Performance aus. Aus diesem Grund empfiehlt es sich, einen Online-Fotofreigabe-Service oder einen Feature-Service zu verwenden, der dies für Sie übernimmt.",
@@ -508,8 +510,8 @@ define({
     "share": {
       "firstSaveTitle": "Tour gespeichert",
       "manageStory": "Ihre Story verwalten",
-      "manageStoryA1": "Tipp: Mithilfe von %LINK1% können Sie Ihre Story auf Fehler überprüfen und die Freigabe der einzelnen Komponenten ändern. My Stories hilft Ihnen außerdem dabei, die Darstellung Ihrer Story in sozialen Netzwerken zu optimieren. Informationen zu weiteren nützlichen Features von My Stories finden Sie in diesen %LINK2%.",
-      "manageStoryA1V1": "My Stories",
+      "manageStoryA1": "Tipp: Mithilfe von %LINK1% können Sie Ihre Story auf Fehler überprüfen und die Freigabe der einzelnen Komponenten ändern.\" Eigene Storys\"  hilft Ihnen außerdem dabei, die Darstellung Ihrer Story in sozialen Netzwerken zu optimieren. Informationen zu weiteren nützlichen Features von \" Eigene Storys\"  finden Sie in diesen %LINK2%.",
+      "manageStoryA1V1": "Eigene Storys",
       "manageStoryA1V2": "Blog-Postings",
       "shareTitle": "Freigeben Ihrer Tour",
       "sharePrivateHeader": "Ihre Tour ist nicht freigegeben. Möchten Sie sie freigeben?",
@@ -541,7 +543,7 @@ define({
       "panel2q2": "Elementtitel",
       "panel3": "Wenn Sie das Aussehen Ihrer Story in den Social Media zusätzlich verbessern möchten, fügen Sie mithilfe von ${MYSTORIES} eine Zusammenfassung und eine Miniaturansicht hinzu.",
       "panel4": "Für diese Story keine Warnmeldung mehr anzeigen",
-      "mystories": "My Stories",
+      "mystories": "Eigene Storys",
       "btnSave": "Speichern"
     }
   }

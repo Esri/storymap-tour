@@ -376,11 +376,6 @@ define(["storymaps/maptour/core/WebApplicationData",
 						nbPicturesMax: APPCFG.MAX_ALLOWED_POINTS,
 						nbPicturesAuthorized: APPCFG.MAX_ALLOWED_POINTS
 					},
-					Facebook: {
-						appId: APPCFG.FACEBOOK_APP_ID,
-						nbPicturesMax: APPCFG.MAX_ALLOWED_POINTS,
-						nbPicturesAuthorized: APPCFG.MAX_ALLOWED_POINTS
-					},
 					Picasa: {
 						nbPicturesMax: APPCFG.MAX_ALLOWED_POINTS,
 						nbPicturesAuthorized: APPCFG.MAX_ALLOWED_POINTS
@@ -467,11 +462,6 @@ define(["storymaps/maptour/core/WebApplicationData",
 					},
 					Flickr: {
 						apiKey: APPCFG.FLICKR_API_KEY,
-						nbPicturesMax: APPCFG.MAX_ALLOWED_POINTS,
-						nbPicturesAuthorized: nbPicturesAuthorized
-					},
-					Facebook: {
-						appId: APPCFG.FACEBOOK_APP_ID,
 						nbPicturesMax: APPCFG.MAX_ALLOWED_POINTS,
 						nbPicturesAuthorized: nbPicturesAuthorized
 					},

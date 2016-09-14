@@ -90,6 +90,7 @@ define(["dojo/has"],
 				label.parent().parent().removeClass("isEditing");
 				label.html(value);
 				label.show();
+				label.find('a:not([target])').attr('target', '_blank');
 				input.hide();
 				icon.css("display", "inline-block");
 				

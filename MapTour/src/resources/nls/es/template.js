@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "No se encontró la página"
     },
     "viewPicasa": {
-      "title": "Importación de Picasa/Google+",
-      "header": "Introduce la dirección de correo electrónico o el ID tu cuenta de Picasa o de Google+.",
-      "userInputLbl": "Introduce un correo electrónico o ID",
+      "title": "Importación de Picasa",
+      "header": "Introduzca su dirección de correo electrónico o su Id. de Picasa",
+      "userInputLbl": "Dirección de correo electrónico o Id. de Picasa",
       "signInMsg2": "Cuenta no encontrada",
       "signInMsg3": "No hay ningún álbum público",
-      "howToFind": "Cómo encontrar el ID de una cuenta Picasa or Google+",
-      "howToFind2": "Copia los dígitos que hay entre la primera y la segunda '/' de cualquier página de Picasa o G+"
+      "howToFind": "Cómo encontrar un Id. de Picasa",
+      "howToFind2": "Copie los dígitos que hay entre la primera y la segunda '/' de cualquier página de Picasa"
     },
     "viewCSV": {
       "title": "Importación de CSV",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Deseas volver a utilizar un servicio de entidades existente</b> que almacena las imágenes como adjuntos o que hace referencia a imágenes externas: consulta la siguiente sección detallada.",
         "div7": "<b>Eres usuario de una versión anterior</b> de la plantilla de ruta de mapa y ya posees un archivo CSV que hace referencia a las imágenes y miniaturas: puedes importarlo y refinar los datos. El builder solo es compatible con los archivos CSV que utilicen campos lat./long.; puedes seguir utilizando los archivos CSV basados en direcciones mediante el mapa web (consulta la siguiente sección).",
         "div8": "Importando de los servicios de intercambio de fotos en línea",
+        "div9a": "Facebook ya no se admite, ${learn}.",
+        "learn": "más información",
         "div9": "La operación de importación hace referencia a imágenes que ya se encuentran alojadas mediante el almacenamiento de las direcciones URL en una recopilación de entidades de mapas web. Las imágenes no se almacenan en ArcGIS Online. Si no se puede acceder a las imágenes alojadas, no estarán disponibles en la ruta de mapa y aparecerá la imagen 'Imagen no disponible'. En función del proveedor de servicios fotográficos, la ruta de mapa podría no importar el nombre, la descripción ni la ubicación de las imágenes. Estos atributos se almacenan en el mapa web y las modificaciones de los servicios en línea no aparecerán reflejadas en la ruta de mapa.",
         "div10": "Almacenando las imágenes en un servidor web",
         "div11": "Si decides alojar las imágenes tú mismo, deberás crear manualmente las miniaturas de las imágenes. Al utilizar las imágenes con resolución completa para la miniatura, el rendimiento se vería afectado de forma negativa. Por ese motivo, te recomendamos encarecidamente que utilices servicios de uso compartido de fotos en línea o servicios de entidades que lo hagan por ti.",

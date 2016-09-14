@@ -390,21 +390,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 					if( has("ie") > 0 && has("ie") < 9 )
 						setTimeout(layerLoaded, 1000);
 					else {
-						// Seems to be needed for FS created from My Content in AGOL
-						if ( app.data.getSourceLayer().objectIdField == "FID" && app.map.loaded ) {
-							on(app.data.getSourceLayer(), 'update-end', layerLoaded);
-							
-							// If the map extent is not set right now, the layer won't query for data
-							// If remove the extent defined when creating the map the query is performed,
-							//   it looks like hosted FS doesn't like the world extent used there
-							// The proper extent is set after
-							_this.setMapExtent(app.data.getSourceLayer().fullExtent);							
-						}
-						else {
-							on.once(app.map, 'update-end', function(){
-								layerLoaded();
-							});
-						}
+						on.once(app.map, 'update-end', function(){
+							layerLoaded();
+						});
 					}
 				}
 				// Webmap layer (shp, csv)

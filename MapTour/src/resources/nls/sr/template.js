@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Stranica nije pronađena"
     },
     "viewPicasa": {
-      "title": "Uvoz sa Picasa/Google+",
-      "header": "Unesite adresu e-pošte ili ID svog Picasa ili Google+ naloga.",
-      "userInputLbl": "Unesite e-poštu ili ID",
+      "title": "Picasa uvoz",
+      "header": "Unesite svoju adresu e-pošte ili ID naloga za stranicu Picasa.",
+      "userInputLbl": "E-pošta ili ID naloga za stranicu Picasa",
       "signInMsg2": "Nalog nije pronađen",
       "signInMsg3": "Nema javnog albuma",
-      "howToFind": "Kako da pronađete ID naloga za stranicu Picasa ili Google+",
-      "howToFind2": "Kopirajte cifre između prvog i drugog ‘/’ na Picasa ili Google+ stranici"
+      "howToFind": "Kako da pronađete ID naloga za stranicu Picasa",
+      "howToFind2": "Kopirajte cifre između prvog i drugog znaka „/” na bilo kojoj Picasa stranici"
     },
     "viewCSV": {
       "title": "Uvoz iz CSV",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Želite da ponovo koristite postojeći servis geoobjekata</b> koji skladišti fotografije kao priloge ili koji se odnosi na spoljne slike: pogledajte odeljak sa više detalja ispod.",
         "div7": "<b>Korisnik ste prethodne verzije</b> šablona ture mape i već imate CSV datoteku koja je povezana sa slikama i sličicama: moći ćete da uvozite i suzite obim podataka. Alatka za izradu podržava samo CSV datoteke koje koriste polja geografske širine/dužine; CSV datoteke zasnovane na adresi mogu da se koriste putem veb mape (pogledajte odeljak ispod).",
         "div8": "Uvoz sa servisa za deljenje fotografija na mreži",
+        "div9a": "Podrška za Facebook je ukinuta, ${learn}.",
+        "learn": "saznajte više",
         "div9": "Operacija uvoza odnosi se samo na slike koje su već hostovane skladištenjem njihovih URL adresa u kolekciji geoobjekata na veb mapi. Slike nisu uskladištene na ArcGIS Online platformi. Ako nije moguć pristup hostovanim slikama, one neće biti dostupne na turi mape i videćete snimak „Slika nije dostupna“. U zavisnosti od dobavljača servisa fotografija, tura mape može da ne uvozi ime, opis i lokaciju slika. Ti atributi se skladište na veb mapi i bilo koje izmene na servisima na mreži neće biti prikazane na turi mape.",
         "div10": "Skladištenje slika na veb serveru",
         "div11": "Ako odaberete da samo hostujete slike, moraćete ručno da kreirate sličice slika. Korišćenje pune rezolucije slika za sličice će rezultirati lošim učinkom. Iz tog razloga, izričito preporučujemo korišćenje servisa za deljenje fotografija na mreži ili servisa geoobjekta koji će to uraditi za vas.",

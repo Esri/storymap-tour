@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Page introuvable"
     },
     "viewPicasa": {
-      "title": "Importation de Picasa/Google+",
-      "header": "Saisissez votre adresse de messagerie ou l'ID de votre compte Picasa ou Google+.",
-      "userInputLbl": "Saisissez un e-mail ou un ID",
+      "title": "Importation Picasa",
+      "header": "Saisissez votre adresse électronique ou votre identifiant Picasa.",
+      "userInputLbl": "Adresse électronique ou identifiant Picasa",
       "signInMsg2": "Compte introuvable",
       "signInMsg3": "Pas d'album public",
-      "howToFind": "Comment trouver un ID de compte Picasa ou Google+",
-      "howToFind2": "Copiez les chiffres compris entre la première et la deuxième barre oblique inverse '/' d'une page Picasa ou G+"
+      "howToFind": "Comment trouver un identifiant Picasa",
+      "howToFind2": "Copier les chiffres situés entre le premier et le deuxième '/' d'une page Picasa"
     },
     "viewCSV": {
       "title": "Importation de CSV",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Vous envisagez de réutiliser un service d'entités existant</b>qui stocke vos images sous la forme de pièces jointes ou qui référence des images externes : reportez-vous à la section détaillée ci-après.",
         "div7": "<b>Vous êtes un utilisateur d'une version précédente</b> du modèle de Map Tour et vous possédez déjà votre fichier CSV qui référence vos images et miniatures : vous pourrez l'importer et peaufiner vos données. Le générateur prend en charge uniquement des CSV utilisant des champs de latitude/longitude, mais vous pouvez continuer à utiliser des CSV basés sur des adresses via votre carte Web (voir la section ci-après).",
         "div8": "Importation à partir de services de partage de photos en ligne",
+        "div9a": "La prise en charge de Facebook a été interrompue, ${learn}.",
+        "learn": "en savoir plus",
         "div9": "L'opération d'importation référence les images déjà hébergées en stockant leurs URL dans une collection d'entités de cartes Web. Les images ne sont pas stockées sur ArcGIS Online. Si les images hébergées sont inaccessibles, elles ne sont pas disponibles dans le Map Tour et une image « Photo non disponible » est utilisée. Selon le fournisseur de services de photos, le Map Tour peut ne pas importer le nom, la description et l'emplacement des images. Ces attributs sont stockés dans la carte Web et les modifications apportées aux services en ligne ne seront pas répercutées dans le Map Tour.",
         "div10": "Stockage des images sur un serveur Web",
         "div11": "Si vous décidez d'héberger les images vous-même, vous devez créer manuellement les miniatures de vos photos. L'utilisation d'images à résolution maximale en tant que miniatures donnera des performances médiocres. Nous vous conseillons par conséquent d'utiliser des services de partage de photos en ligne ou un service d'entités, qui créent les miniatures.",

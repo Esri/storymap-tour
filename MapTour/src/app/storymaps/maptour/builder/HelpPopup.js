@@ -63,6 +63,10 @@ define([],
 					+ '<li>' + i18n.viewer.helpPopup.tab2.div6 + '</li>'
 					+ '<li>' + i18n.viewer.helpPopup.tab2.div7 + '</li></ul><br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab2.div8 + '</b><br />'
+					+ i18n.viewer.helpPopup.tab2.div9a.replace(
+						'${learn}',
+						'<a href="http://links.esri.com/storymaps/facebook_support" target="_blank">' + i18n.viewer.helpPopup.tab2.learn + '</a>'
+					) + ' '
 					+ i18n.viewer.helpPopup.tab2.div9 + '<br /><br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab2.div10 + '</b><br />'
 					+ i18n.viewer.helpPopup.tab2.div11 + '<br /><br />'

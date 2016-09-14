@@ -94,7 +94,7 @@ define(["dojo/Deferred", "dojo/_base/lang"],
 			
 			function getPhotoURL(photo, size)
 			{
-				return 'http://farm' + photo.farm + '.static.flickr.com/' 
+				return 'https://farm' + photo.farm + '.static.flickr.com/' 
 							+ photo.server + '/' + photo.id + '_' + photo.secret 
 							+ '_' + size + '.jpg';
 			}

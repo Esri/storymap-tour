@@ -1,6 +1,5 @@
 define(["storymaps/maptour/builder/ImportPopupViewHome",
 		"storymaps/maptour/builder/PopupViewFlickr",
-		"storymaps/maptour/builder/PopupViewFacebook",
 		"storymaps/maptour/builder/PopupViewPicasa",
 		"storymaps/maptour/builder/PopupViewYoutube",
 		"storymaps/maptour/builder/PopupViewCSV",
@@ -9,7 +8,6 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 	function (
 		ImportPopupViewHome, 
 		PopupViewFlickr, 
-		PopupViewFacebook, 
 		PopupViewPicasa, 
 		PopupViewYoutube,
 		PopupViewCSV, 
@@ -21,7 +19,6 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 			var _views = {
 				home: new ImportPopupViewHome(),
 				Flickr: new PopupViewFlickr(),
-				Facebook: new PopupViewFacebook(),
 				Picasa: new PopupViewPicasa(),
 				Youtube: new PopupViewYoutube(),
 				CSV: new PopupViewCSV(container),
@@ -51,7 +48,6 @@ define(["storymaps/maptour/builder/ImportPopupViewHome",
 				_views.home.init(footer);
 				_views.CSV.init(params.CSV, importCompleteDeferred, footer);
 				_views.Flickr.init(params.Flickr, importCompleteDeferred, footer);
-				_views.Facebook.init(params.Facebook, importCompleteDeferred, footer);
 				_views.Picasa.init(params.Picasa, importCompleteDeferred, footer);
 				_views.Youtube.init(params.Youtube, importCompleteDeferred, footer);
 				_views.geotag.init(params.geotag, importCompleteDeferred, footer);

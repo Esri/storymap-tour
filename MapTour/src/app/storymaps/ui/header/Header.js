@@ -33,8 +33,12 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					$(selector).addClass('hideDesktop');
 	
 				// Mobile
-				$(selector + ' #headerMobile .title').html(title);
-				$(selector + ' #headerMobile .subtitle').html(subtitle);
+				$(selector + ' #headerMobile .title')
+					.html(title)
+					.find('a:not([target])').attr('target', '_blank');
+				$(selector + ' #headerMobile .subtitle')
+					.html(subtitle)
+					.find('a:not([target])').attr('target', '_blank');
 	
 				// Desktop builder
 				if( isInBuilderMode ) {
@@ -48,8 +52,12 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					subtitle += "<textarea rows='2' class='text_edit_input' type='text' spellcheck='true'></textarea>";
 				}
 	
-				$(selector + ' #headerDesktop .title').html(title);
-				$(selector + ' #headerDesktop .subtitle').html(subtitle);
+				$(selector + ' #headerDesktop .title')
+					.html(title)
+					.find('a:not([target])').attr('target', '_blank');
+				$(selector + ' #headerDesktop .subtitle')
+					.html(subtitle)
+					.find('a:not([target])').attr('target', '_blank');
 	
 				// Desktop builder
 				if( isInBuilderMode )

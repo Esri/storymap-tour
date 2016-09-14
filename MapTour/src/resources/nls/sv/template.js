@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Det gick inte att hitta sidan"
     },
     "viewPicasa": {
-      "title": "Picasa/Google+-import",
-      "header": "Ange e-postadress eller ID för ditt Picasa- eller Google+-konto.",
-      "userInputLbl": "Ange e-postadress eller ID",
+      "title": "Picasa-import",
+      "header": "Ange din e-postadress eller ditt Picasa-ID.",
+      "userInputLbl": "E-postadress eller ID för Picasa",
       "signInMsg2": "Det gick inte att hitta kontot",
       "signInMsg3": "Inget offentligt album",
-      "howToFind": "Så här hittar du ett konto-ID för Picasa eller Google+",
-      "howToFind2": "Kopiera siffrorna mellan det första och andra '/'-tecknet på en Picasa- eller G+-sida"
+      "howToFind": "Hitta ett Picasa-ID",
+      "howToFind2": "Kopiera siffrorna mellan det första och andra \"/\"-tecknet på en Picasa-sida"
     },
     "viewCSV": {
       "title": "CSV-import",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Du vill återanvända en befintlig geoobjekttjänst</b> som lagrar bilderna som bilagor eller refererar till externa bilder: Mer information finns nedan.",
         "div7": "<b>Du använder en tidigare version</b> av Map Tour-mallen och har redan en CSV-fil som refererar till bilderna och miniatyrbilderna: Du kommer att kunna importera den och justera dina data. Det går bara att använda CSV-filer med lat-/long-fält i byggverktyget. Adressbaserade CSV-filer kan även fortsättningsvis användas i webbkartan (mer information finns i avsnittet nedan).",
         "div8": "Importera från onlinefotodelningstjänster",
+        "div9a": "Facebook-stödet har avslutats, ${learn}.",
+        "learn": "läs mer",
         "div9": "Importen refererar till redan driftade bilder genom att lagra webbadresserna till dem i en geoobjektsamling för webbkartor. Bilderna lagras inte i ArcGIS Online. Om de driftade bilderna inte kan nås så blir de inte tillgängliga i kartturen och en bild med ett felmeddelande visas istället. Namn, beskrivning och plats för bilderna kanske inte importeras beroende på vilken tjänsteleverantör du använder. De attributen lagras i webbkartan och de ändringar du gör i onlinetjänsterna återspeglas inte i kartturen.",
         "div10": "Lagra bilderna på en webbserver",
         "div11": "Om du väljer att drifta bilderna själv måste du manuellt skapa miniatyrbilder för bilderna. Om du använder bilder med full upplösning för miniatyrbilderna blir prestandan sämre. Därför rekommenderar vi starkt att du använder en fotodelningstjänst online eller en geoobjekttjänst som gör det åt dig.",

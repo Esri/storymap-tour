@@ -332,13 +332,13 @@ define({
       "lookupMsgError": "Lehte ei leitud"
     },
     "viewPicasa": {
-      "title": "Picasa/Google+ import",
-      "header": "Sisesta e-mail või oma Picasa ID või Google+ konto.",
-      "userInputLbl": "Sisesta e-mail või ID",
+      "title": "Picasast importimine",
+      "header": "Sisestage oma e-posti aadress või Picasa ID.",
+      "userInputLbl": "E-post või Picasa ID",
       "signInMsg2": "Kontot ei leitud",
       "signInMsg3": "Avalikku albumit pole",
-      "howToFind": "Kuidas leida Picasa või Google+ konto ID-d",
-      "howToFind2": "Kopeeri numbrikohad esimese ja teise '/' vahelt Picasa või G+ lehelt"
+      "howToFind": "Kuidas leida Picasa ID-d?",
+      "howToFind2": "Kopeerige mis tahes Picasa lehe esimese ja teise kaldkriipsu vahel asuvad numbrikohad"
     },
     "viewCSV": {
       "title": "CSV import",
@@ -434,6 +434,8 @@ define({
         "div6": "<b>Otsid olemasoleva objektiteenuse korduvkasutust,</b> mis hoiaks pilte manustena või viitaks välistele asukohtadele: vaata täpsustavat lõiku allpool.",
         "div7": "<b>Oled varasema versiooni kaardi tuuri malli kasutaja</b> ja seal on juba CSV, mis viitab sinu piltidele ja pisipiltidele: sul on võimalus importida ja täiustada oma andmeid. Tuuri looja toetab vaid CSV faili, mis sisaldab pikkuse ja laiuse veergu, aadressipõhist CSV faili saab samuti kasutada sinu veebikaardi kaudu (vt lõiku allpool).",
         "div8": "Impordin veebipõhisest fotode jagamise teenustest",
+        "div9a": "Facebooki tuge ei pakuta enam, ${learn}.",
+        "learn": "lisateave",
         "div9": "Importimise toiming viitab juba majutatud piltidele, mis on salvestatud nende URL-ide veebikaardi objektide kollektsioonis. Pilte ei hoita ArcGIS Online all. Kui piltide lingid on vigased, ei kuvata neid ka kaardi tuuri aknas ja kuvatakse teadet \"Pilt ei ole kättesaadav\". Sõltuvalt fototeenuse pakkujast, kaardi tuur ei pruugi importida piltide nime, kirjeldust ja asukohta. Neid atribuute hoitakse veebikaardil ning tehtavad muudatused ei kajastu kaardi tuuri sisus.",
         "div10": "Haldan pilte veebiserveris",
         "div11": "Kui soovid pilte ise majutada, pead käsitsi looma ka pisipildid. Kui kasutad pisipiltide loomiseks piltide täisresolutsiooni, siis tulemus kõige parem ei tule. Seetõttu soovitame kasutada veebipõhiseid fotode jagamise teenuseid või objektiteenuseid.",
