@@ -290,7 +290,7 @@ define({
       "pictures": "obrázky",
       "videos": "videa",
       "disabled": "Tato funkce byla zakázána administrátorem.",
-      "disabledPortal": "Tento prvek vyžaduje, aby Portal měl jako spravovanou databázi nastaven ArcGIS Data Store. Obraťte se na svého správce Portal for ArcGIS.",
+      "disabledPortal": "Tato součást vyžaduje, aby měl portál hostující server. Obraťte se na svého správce pro Portal for ArcGIS.",
       "header1": "Vaše obrázky musí být sdíleny veřejně.",
       "header2": "Import bude omezen na prvních %NB1% %MEDIA%.",
       "emptyDataset": "Chyba: nebyly nalezeny žádné obrázky",

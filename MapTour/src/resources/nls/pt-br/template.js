@@ -290,7 +290,7 @@ define({
       "pictures": "figuras",
       "videos": "vídeos",
       "disabled": "Este recurso foi desabilitado pelo Administrador",
-      "disabledPortal": "Este recurso exige que o Portal tenha ArcGIS Data Store configurado como o Banco de Dados gerenciado. Entre em contato com seu Administrador do Portal for ArcGIS.",
+      "disabledPortal": "Este recurso exige que o portal tenha um servidor de hospedagem. Entre em contato com seu Administrador do Portal for ArcGIS.",
       "header1": "Suas figuras devem ser compartilhadas publicamente.",
       "header2": "A importação será limitada à primeira %NB1% %MEDIA%.",
       "emptyDataset": "Erro, nenhuma figura encontrada",

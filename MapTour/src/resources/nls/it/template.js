@@ -290,7 +290,7 @@ define({
       "pictures": "immagini",
       "videos": "video",
       "disabled": "Questa feature è stata disabilitata dall'amministratore",
-      "disabledPortal": "Questa feature richiede che nel portale sia configurato un ArcGIS Data Store come database gestito. Contattare l'amministratore di Portal for ArcGIS.",
+      "disabledPortal": "Questa feature richiede che il portale disponga di un server di hosting. Contattare l'amministratore di Portal for ArcGIS.",
       "header1": "Le immagini devono essere condivise pubblicamente.",
       "header2": "L'importazione sarà limitata ai primi %NB1% %MEDIA%.",
       "emptyDataset": "Errore, nessun'immagine trovata",

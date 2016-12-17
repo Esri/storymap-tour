@@ -98,8 +98,8 @@ define({
 				addTabInformation: "Information",
 				addTabLocation: "Location",
 				addSelectCaption: "Select or drop picture",
-				addNoteVideo: "Consult Help for instructions on using videos",		
-				addSelectCaptionNoFileReader: "Select picture",	
+				addNoteVideo: "Consult Help for instructions on using videos",
+				addSelectCaptionNoFileReader: "Select picture",
 				addChangePhoto: "Change picture and thumbnail",
 				addPictureResolutionIntro: "The picture resolution is higher than required:",
 				addPictureResolutionOldBrowser: "The picture resolution is higher than required. Optimize the Map Tour experience by specifying a resolution lower than %RECOMMENDED_RES%.",
@@ -291,7 +291,7 @@ define({
 				pictures: "pictures",
 				videos: "videos",
 				disabled: "This feature has been disabled by the Administrator",
-				disabledPortal: "This feature require the Portal to have an ArcGIS Data Store configured as the managed Database. Please contact your Portal for ArcGIS Administrator.",
+				disabledPortal: "This feature requires the portal to have a hosting server. Please contact your Portal for ArcGIS Administrator.",
 				header1: "Your pictures must be shared publicly.",
 				header2: "The import will be limited to the first %NB1% %MEDIA%.",
 				emptyDataset: "Error, no pictures found",
@@ -490,7 +490,7 @@ define({
 					div8: "There's a limit of 99 points per tour. Most Map Tours will of course be significantly shorter than this. Don't expect your audience to want to step through too many tour points. You might find your subject fascinating, but don't assume they will, too!",
 					div10: "Embed mode",
 					div11: "If you want to embed the template in another website through an iframe, adding the optional parameter \"&embed\" at the end of the URL will remove the header. That mode can also be set in the downloadable version through the configuration file.",
-					div12: "Avoid using a narrow iFrame width that causes the map tour to switch to its responsive small screen touch-based layout. To maximize ease of use. When you embed a map tour, we always recommend still providing a link next to the embedded tour so that users can launch the tour full-screen." 
+					div12: "Avoid using a narrow iFrame width that causes the map tour to switch to its responsive small screen touch-based layout. To maximize ease of use. When you embed a map tour, we always recommend still providing a link next to the embedded tour so that users can launch the tour full-screen."
 				},
 				tab5: {
 					title: "Publishing",
@@ -550,6 +550,7 @@ define({
         }
     }),
 	"ar": 1,
+	"bs": 1,
 	"cs": 1,
 	"da": 1,
 	"de": 1,
@@ -559,7 +560,8 @@ define({
 	"fi": 1,
 	"fr": 1,
 	"he": 1,
-	"hr": 1, 
+	"hr": 1,
+	"id": 1,
 	"it": 1,
 	"ja": 1,
 	"ko": 1,
@@ -578,6 +580,6 @@ define({
 	"tr": 1,
 	"vi": 1,
 	"zh-cn": 1,
-	"zh-hk": 1, 
-	"zh-tw": 1 
+	"zh-hk": 1,
+	"zh-tw": 1
 });

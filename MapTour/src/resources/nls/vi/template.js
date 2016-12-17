@@ -290,7 +290,7 @@ define({
       "pictures": "ảnh",
       "videos": "video",
       "disabled": "Người quản trị đã vô hiệu hóa tính năng này",
-      "disabledPortal": "Tính năng này yêu cầu Portal phải có ArcGIS Data Store được cấu hình làm Cơ sở dữ liệu được quản lý. Vui lòng liên hệ Người quản trị Portal for ArcGIS của bạn.",
+      "disabledPortal": "Đối tượng này yêu cầu cổng thông tin phải có máy chủ lưu trữ. Vui lòng liên hệ với người quản trị Portal for ArcGIS của bạn.",
       "header1": "Ảnh của bạn phải được chia sẻ công khai.",
       "header2": "Việc nhập sẽ bị giới hạn đối với %NB1% %MEDIA% đầu tiên.",
       "emptyDataset": "Lỗi, không tìm thấy ảnh",

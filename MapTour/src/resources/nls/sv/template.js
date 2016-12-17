@@ -290,7 +290,7 @@ define({
       "pictures": "bilder",
       "videos": "videoklippen",
       "disabled": "Den här funktionen har inaktiverats av administratören",
-      "disabledPortal": "Detta geoobjekt kräver att portalen har konfigurerats med en ArcGIS-datakälla som administrerad databas. Kontakta din administratör för Portal for ArcGIS.",
+      "disabledPortal": "Detta geoobjekt kräver att portalen har en driftande server. Kontakta din administratör för Portal for ArcGIS.",
       "header1": "Dina bilder måste delas offentligt.",
       "header2": "Importen begränsas till de första %NB1% %MEDIA%.",
       "emptyDataset": "Fel, inga bilder hittades",

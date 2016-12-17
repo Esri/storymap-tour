@@ -4,29 +4,29 @@
 		<title></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-		
+
 		<meta name="fragment" content="!">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 		<link type="image/ico" rel="shortcut icon" href="resources/icons/favicon.ico">
 		<link type="image/ico" rel="icon"  href="resources/icons/favicon.ico">
-		
-		<!-- 
+
+		<!--
 			To correctly reference your Map Tour in search engine:
 			 - create and fill out extensively an ArcGIS.com item that link to your final application
 			 - edit the following four tags as well as the upper title tag on line 4
 			 - see https://developerscorner.storymaps.arcgis.com/grow-your-story-maps-audience-with-open-graph-tags-b7639cb65d5c
 		-->
 		<meta name="description" content="This story map was created with the Esri Map Tour application in ArcGIS Online.">
-		
+
 		<!-- Facebook sharing -->
 		<meta property="og:type" content="article"/>
 		<meta property="og:title" content="Story Map Tour"/>
 		<meta property="og:description" content="This story map was created with the Story Map Tour application in ArcGIS Online."/>
 		<meta property="og:image" content="http://www.arcgis.com/apps/MapTour/resources/icons/esri-globe.png"/>
 
-		<!-- 
+		<!--
 			This template is released under the Apache License V2.0 by Esri http://www.esri.com/
 			Checkout the project repository on GitHub to access source code, latest revision, developer documentation, FAQ and tips
 			https://github.com/Esri/map-tour-storytelling-template-js
@@ -38,9 +38,9 @@
 			//----------------------------------------------------
 			configOptions = {
 				// Enter either a web map ID or a web application ID
-				// - Using a Map Tour application ID created through the interactive builder in ArcGIS.com allow to reuse 
+				// - Using a Map Tour application ID created through the interactive builder in ArcGIS.com allow to reuse
 				//   the settings like the header configuration without having to edit any configuration here
-				// - Web map and application can be dynamically specified through url parameters (webmap and appid) 
+				// - Web map and application can be dynamically specified through url parameters (webmap and appid)
 				//   if the authorizedOwners property is specified (see below)
 				// - If an application id is specified, the webmap configuration isn't used
 				webmap: "",
@@ -63,14 +63,15 @@
 				// Optional zoom level to be applied for the story points following introduction (can be overridden through URL) (e.g: 0 to 16 for Gray Canvas, 0 to 19 for Street Map, -1 to disable)
 				zoomLevel: -1
 			};
-			// Optionally sharing and proxy URLs can be configured in app/maptour-config.js. This is only required  
-			//  when the webmap is not hosted on ArcGIS Online or a Portal for ArcGIS instance and the template isn't deployed as /home/MapTour/ or /apps/MapTour/. 
+			// Optionally sharing and proxy URLs can be configured in app/maptour-config.js. This is only required
+			//  when the webmap is not hosted on ArcGIS Online or a Portal for ArcGIS instance and the template isn't deployed as /home/MapTour/ or /apps/MapTour/.
+			//  If the template is deployed on a web server that is not a Portal, do NOT use /apps/ or /home/ in the URL.
 			// Optionally Bing Maps key, Geometry and Geocode service's URLs can be configured in app/maptour-config.js. This is only required
 			//  if the Organization or Portal for ArcGIS instance default configuration has to be overwritten.
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.5.2';
+			var version = '2.6.1';
 			var isProduction = false;
 
 			function loadJS(url, isExternal)
@@ -79,17 +80,21 @@
 					url = document.location.protocol == 'file:' ? 'http:' + url : url;
 				else
 					url += '?v=' + version + (!isProduction ? '&_=' + new Date().getTime() : '');
-					
-				document.write("<script language='javascript' type='text/javascript' src='" + url + "'><\/script>");
+
+				var ref = window.document.getElementsByTagName('script')[0];
+				var script = window.document.createElement('script');
+				script.src = url;
+				script.async = false;
+				ref.parentNode.insertBefore(script, ref);
 			}
 
 			function loadCSS(url, isExternal)
 			{
-				if( isExternal ) 
+				if( isExternal )
 					url = document.location.protocol == 'file:' ? 'http:' + url : url;
 				else
 					url += '?v=' + version + (!isProduction ? '&_=' + new Date().getTime() : '');
-					
+
 				var el = document.createElement("link");
 				el.setAttribute("rel", "stylesheet");
 				el.setAttribute("type", "text/css");
@@ -97,8 +102,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("//js.arcgis.com/3.18/esri/css/esri.css", true);
-			loadCSS("//js.arcgis.com/3.18/dijit/themes/claro/claro.css", true);			
+			loadCSS("//js.arcgis.com/3.19/esri/css/esri.css", true);
+			loadCSS("//js.arcgis.com/3.19/dijit/themes/claro/claro.css", true);
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -121,11 +126,11 @@
 				loadCSS("app/storymaps/maptour/ui/desktop/Carousel.css");
 				loadCSS("app/storymaps/maptour/ui/desktop/PicturePanel.css");
 				loadCSS("app/storymaps/ui/autoplay/Autoplay.css");
-				
+
 				loadCSS("app/storymaps/builder/Builder.css");
 				loadCSS("app/storymaps/builder/BuilderPanel.css");
 				loadCSS("app/storymaps/builder/SaveErrorPopupSocial.css");
-				
+
 				loadCSS("app/storymaps/builder/SettingsPopup.css");
 				loadCSS("app/storymaps/maptour/builder/SettingsPopupTabLayout.css");
 				loadCSS("app/storymaps/builder/SettingsPopupTabColors.css");
@@ -133,25 +138,25 @@
 				loadCSS("app/storymaps/maptour/builder/SettingsPopupTabFields.css");
 				loadCSS("app/storymaps/builder/SettingsPopupTabExtent.css");
 				loadCSS("app/storymaps/maptour/builder/SettingsPopupTabZoom.css");
-				
+
 				loadCSS("app/storymaps/maptour/builder/InitPopup.css");
 				loadCSS("app/storymaps/maptour/builder/InitPopupViewHome.css");
 				loadCSS("app/storymaps/maptour/builder/InitPopupViewHostedFSCreation.css");
 				loadCSS("app/storymaps/maptour/builder/InitPopupViewAdvanced.css");
 				loadCSS("app/storymaps/maptour/builder/ImportPopupViewHome.css");
-				
+
 				loadCSS("app/storymaps/maptour/builder/PopupViewCSV.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewFlickr.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewPicasa.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewYoutube.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewGeoTag.css");
-				
+
 				loadCSS("app/storymaps/maptour/builder/BuilderView.css");
 				loadCSS("app/storymaps/maptour/builder/OrganizePopup.css");
 				loadCSS("app/storymaps/maptour/builder/AddPopup.css");
 				loadCSS("app/storymaps/maptour/builder/HelpPopup.css");
 				loadCSS("app/storymaps/maptour/builder/SharePopup.css");
-				
+
 				loadCSS("app/storymaps/maptour/ui/mobile/Common.css");
 				loadCSS("app/storymaps/maptour/ui/mobile/Carousel.css");
 				loadCSS("app/storymaps/maptour/ui/mobile/IntroView.css");
@@ -172,7 +177,7 @@
 					}
 				]
 			};
-			
+
 			if (location.search.match(/locale=([\w\-]+)/)) {
 				dojoConfig.locale = RegExp.$1;
 			}
@@ -246,7 +251,7 @@
 				</div>
 				<!-- Builder switch basemap -->
 				<div id="basemapChooser">
-					<div data-dojo-type="dijit/TitlePane" 
+					<div data-dojo-type="dijit/TitlePane"
 						 data-dojo-props="closable:false, open:false">
 					<div data-dojo-type="dijit/layout/ContentPane" style="width:380px; height:280px; overflow:auto;">
 						<div id="basemapGallery" ></div></div>
@@ -273,10 +278,10 @@
 				<div id="cfader"></div>
 				<div id="pictureLoadingIndicator" style="visibility:hidden;"></div>
 				<img id="arrowNext" class="arrow disabled" alt="Next point"/>
-				
+
 				<a class="modern-layout-control left click-btn"></a>
 				<a class="modern-layout-control right click-btn"></a>
-				
+
 				<!-- Builder picture panel buttons -->
 				<div class="editPictureButtons">
 					<div>
@@ -304,7 +309,7 @@
 					</div>
 				</div>
 			</div>
-		
+
 			<!-- Builder bottom panel -->
 			<div id="builderPanel3">
 				<button id="introRecordButton" type="button" class="btn"></button>
@@ -373,35 +378,35 @@
 			<img src="resources/icons/loading-light.gif" />
 		</div>
 		<div id="loadingMessage" aria-hidden="true"></div>
-		
+
 		<!-- Loading -->
 		<style>
 			#loadingOverlay {
-				position: absolute; 
-				top: 0; 
-				left: 0; 
-				z-index: 500; 
-				width: 100%; 
-				height: 100%; 
-				overflow: hidden; 
-				background-color: #E5E5E5; 
-				-webkit-box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3); 
-				-moz-box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3); 
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 500;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				background-color: #E5E5E5;
+				-webkit-box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3);
+				-moz-box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3);
 				box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3);
 			}
-			
+
 			@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
 			@-moz-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
 			@-webkit-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
 			@-ms-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
 			@-o-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-			
+
 			@keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
 			@-moz-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
 			@-webkit-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
 			@-ms-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
 			@-o-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
-			
+
 			#loadingOverlay.fadeOut {
 				-webkit-animation: fadeout 1.1s;
 				-moz-animation: fadeout 1.1s;
@@ -412,14 +417,14 @@
 				-moz-animation-fill-mode:forwards;
 				animation-fill-mode:forwards;
 			}
-			
+
 			#loadingIndicator {
 				position: fixed;
 				top: 50%;
 				left: 50%;
 				z-index: 700;
 			}
-			
+
 			.loadingIndicator {
 				margin-left: -17px;
 				margin-top: -35px;
@@ -505,21 +510,21 @@
 						</div>
 					</div>
 				</div>
-				<!-- Picture tab for embedded layer --> 
+				<!-- Picture tab for embedded layer -->
 				<div class="addImageAttributes tab-content">
 					<form>
 						<div>
 							<ul id="addImageAttributesTypeChooser" class="nav nav-pills">
 							</ul>
 						</div>
-						
+
 						<div class="type-container">
 							<label></label>
 							<input class="tourPointPicUrl clearVal" type="text" placeholder=""/>
 							<label></label>
 							<input class="tourPointThumbUrl clearVal" type="text" placeholder=""/>
 						</div>
-						
+
 						<div class="type-container video">
 							<label></label>
 							<table>
@@ -589,7 +594,7 @@
 				<button class="btnClose btn" data-dismiss="modal" aria-hidden="true"></button>
 			</div>
 		</div>
-		
+
 		<!-- Init popup -->
 		<div class="modal hide" id="initPopup" data-backdrop="static">
 			<div class="modal-header">
@@ -604,7 +609,7 @@
 				<button class="btnPrev btn"></button>
 			</div>
 		</div>
-		
+
 		<!-- Import popup -->
 		<div class="modal hide" id="importPopup" data-backdrop="static" tabindex="-1">
 			<div class="modal-header">
@@ -620,7 +625,7 @@
 				<button class="btnPrev btn"></button>
 			</div>
 		</div>
-		
+
 		<div id="init-import-views">
 			<!-- Init specific -->
 			<div id="initPopupViewHome">
@@ -646,7 +651,7 @@
 								<a><img style="width: 44px"/></a>
 							</td>
 						</tr>
-						
+
 					</table>
 				</div>
 				<div class="sideContainer">
@@ -659,12 +664,12 @@
 							</td>
 						</tr>
 					</table>
-					
+
 				</div>
 				<div class="footer"></div>
 				<div class="popover-init"></div>
 			</div>
-			
+
 			<div id="initPopupViewHostedFSCreation">
 				<p class="dataExplain"></p>
 				<form class="form-horizontal">
@@ -685,7 +690,7 @@
 				</form>
 				<ul class="dataError"></ul>
 			</div>
-			
+
 			<div id="initPopupViewAdvanced">
 				<div class="header"></div>
 				<div class="options">
@@ -698,7 +703,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Import specific -->
 			<div id="importPopupViewHome">
 				<h3 class="header"></h3>
@@ -721,7 +726,7 @@
 				<div class="footer"></div>
 				<div class="popover-import"></div>
 			</div>
-			
+
 			<!-- Common -->
 			<div id="popupViewCSV" class="popupViewCSV">
 				<div class="popupViewCSVView popupViewCSV-home">
@@ -779,7 +784,7 @@
 					<input class="selectUserName" type="text" value=""/>
 					<button class="btn btn-userLogin"></button>
 					<span class="signInMsg"></span>
-					
+
 					<label class="control-label" for="picasaListAlbum"></label>
 					<div class="controls">
 						<div class="btn-group">
@@ -826,7 +831,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- Settings popup -->
 		<div class="modal hide" id="settingsPopup" data-backdrop="static" tabindex="-1">
 			<div class="modal-header">
@@ -996,7 +1001,7 @@
 				<button class="btnClose btn" data-dismiss="modal" aria-hidden="true"></button>
 			</div>
 		</div>
-		
+
 		<!-- Share popup -->
 		<div class="modal hide" id="sharePopup" data-backdrop="static" tabindex="-1">
 			<div class="modal-header">
@@ -1034,7 +1039,7 @@
 				<button class="btnClose btn" data-dismiss="modal" aria-hidden="true"></button>
 			</div>
 		</div>
-		
+
 		<!-- Help popup -->
 		<div class="modal hide" id="helpPopup" data-backdrop="static" tabindex="-1">
 			<div class="modal-header">
@@ -1059,12 +1064,12 @@
 				<button class="btnClose btn" data-dismiss="modal" aria-hidden="true"></button>
 			</div>
 		</div>
-		
+
 		<div class="modal hide saveErrorPopupSocial" id="saveErrorPopupSocial" data-backdrop="static" tabindex="-1">
 			<div class="modal-header">
 				<h3 class="modal-title"></h3>
 			</div>
-	
+
 			<div class="modal-body">
 				<div class="panel1">
 					<span class="panel1lbl"></span>
@@ -1096,7 +1101,7 @@
 				</div>
 				<div class="panel3"></div>
 			</div>
-	
+
 			<div class="modal-footer">
 				<div class="stop-asking">
 					<div class="checkbox">
@@ -1109,7 +1114,7 @@
 				<button type="button" class="btn btn-primary"></button>
 			</div>
 		</div>
-		
+
 		<!-- Browser popup -->
 		<div class="modal hide" id="browserPopup" data-backdrop="static" tabindex="-1">
 			<div class="modal-header">
@@ -1125,7 +1130,7 @@
 				<button class="btnClose btn btn-primary" data-dismiss="modal"></button>
 			</div>
 		</div>
-		
+
 		<!-- Fatal error box -->
 		<div id="fatalError">
 			<table border="0">
@@ -1138,16 +1143,16 @@
 				</tr>
 			</table>
 		</div>
-		
+
+		<script src="https://js.arcgis.com/3.19/init.js"></script>
 		<script type="text/javascript">
-			loadJS('//js.arcgis.com/3.18/init.js', true);
 			loadJS('app/maptour-config.js');
-			
+
 			function getUrlVar(name)
 			{
 			    var vars = [], hash;
 			   	if( window.location.href.indexOf('?') == -1 ) return null;
-		
+
 			    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
 			    for(var i = 0; i < hashes.length; i++){
 			        hash = hashes[i].split('=');
@@ -1157,8 +1162,9 @@
 			    }
 			    return vars[name];
 			}
-			
+
 			if( isProduction ) {
+				loadJS('app/main-app.js');
 				if( getUrlVar('edit') || getUrlVar('fromScratch') || getUrlVar('fromscratch') || getUrlVar('fromGallery') )
 					loadJS('app/maptour-builder-min.js');
 				else
@@ -1181,9 +1187,10 @@
 				loadJS('lib/bootstrap.file-input.js');
 				loadJS('lib/colorbox/jquery.colorbox-min.js');
 				loadJS('lib/bootstrap-slider/js/bootstrap-slider.js');
+				loadJS('app/main-app.js');
 			}
 		</script>
-		
+
 		<!-- Enable Google Analytics on storymaps.esri.com -->
 		<script type="text/javascript">
 			if (window.location.href.toLowerCase().indexOf("storymaps.esri.com") >= 0) {
@@ -1197,53 +1204,6 @@
 					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 				})();
 			}
-		</script>
-		
-		<script type="text/javascript">
-			var loadingIndicator = {};
-			var i18n = null;
-			
-			if (document.location.protocol == "file:") {
-				$(document).ready(function() {
-					$("#fatalError .error-title").html("Application loading failed");
-					$("#fatalError .error-msg").html("The application has to be accessed through a web server. Consult user guide for detail.");
-					$("#fatalError").show();
-				});
-			}
-			else {
-			 	dojo.addOnLoad(function() {
-					require([
-							"dojo/i18n!./resources/nls/template.js?v=" + version, 
-							"storymaps/ui/loadingIndicator/LoadingIndicator", 
-							"esri/urlUtils", 
-							"dojo/domReady!", 
-							"dojo/ready"
-						], function(
-							_i18n, 
-							LoadingIndicator, 
-							urlUtils
-						){
-							i18n = _i18n;
-							loadingIndicator = new LoadingIndicator("", "loadingMessage");
-							loadingIndicator.setMessage(i18n.viewer.loading.step1);
-							
-						 	require(["storymaps/core/Core", "storymaps/maptour/core/MainView", "storymaps/utils/Helper"], function(Core, MainView, Helper){
-						 		var urlParams = Helper.getUrlParams();
-						 		var isInBuilderMode = urlParams.edit != null || urlParams.fromScratch != null || urlParams.fromscratch != null || urlParams.fromGallery != null;
-								
-						 		if (isInBuilderMode) {
-						 			require(["storymaps/builder/Builder", "storymaps/maptour/builder/BuilderView"], function(Builder, BuilderView) {
-						 				Core.init(new MainView(), Builder);
-						 				Builder.init(Core, new BuilderView());
-						 			});
-						 		}
-						 		else
-						 			Core.init(new MainView());
-						 	});
-				 		}
-					);
-				});
-			 }
 		</script>
 	</body>
 </html>

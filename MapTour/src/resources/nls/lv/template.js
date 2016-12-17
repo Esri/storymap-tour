@@ -290,7 +290,7 @@ define({
       "pictures": "attēli",
       "videos": "video",
       "disabled": "Administrators ir atspējojis šo iezīmi",
-      "disabledPortal": "Lai lietotu šo elementu, ArcGIS datu krātuvei portālā ir jābūt konfigurētai kā pārvaldītajai datu bāzei. Sazinieties ar savu Portal for ArcGIS administratoru.",
+      "disabledPortal": "Šim līdzeklim nepieciešams, lai portālam būtu viesošanas serveris. Sazinieties ar portāla ArcGIS administratoru.",
       "header1": "Jūsu attēliem jābūt publiski koplietotiem.",
       "header2": "Imports būs limitēts uz pirmajiem %NB1% %MEDIA%.",
       "emptyDataset": "Kļūda, nav atrastas bildes",

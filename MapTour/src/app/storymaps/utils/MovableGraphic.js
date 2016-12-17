@@ -1,4 +1,4 @@
-define(["dojo/has", "dojo/touch", "dojo/on", "dojo/_base/array", "dojo/_base/connect"], 
+define(["dojo/has", "dojo/touch", "dojo/on", "dojo/_base/array", "dojo/_base/connect"],
 	function(has, touch, on, array, connect)
 	{
 		/**
@@ -14,9 +14,9 @@ define(["dojo/has", "dojo/touch", "dojo/on", "dojo/_base/array", "dojo/_base/con
 			var _editPointLayer = false;
 			var _events = [];
 			var _isEdge = !! navigator.userAgent.match(/Edge\/\d+/);
-	
+
 			init();
-	
+
 			/**
 			 * Restore original graphic behavior
 			 * @param {Object} events
@@ -27,52 +27,52 @@ define(["dojo/has", "dojo/touch", "dojo/on", "dojo/_base/array", "dojo/_base/con
 					connect.disconnect(event);
 				});
 			};
-	
+
 			function init()
 			{
 				var event1 = connect.connect(layer, "onMouseOver", function(event){
 					if(event.graphic == graphic)
 						map.setMapCursor("move");
 				});
-	
+
 				var event2 = connect.connect(layer, "onMouseOut", function(event){
 					if(event.graphic == graphic)
 						map.setMapCursor("default");
 				});
-	
+
 				var event3 = on(layer._div.rawNode, touch.press, function(event) {
 					// Prevent using another point as a start location on desktop - does not work on touch
-					if (event.graphic == graphic || has("touch") || has("ie") == 10 || has("trident") == 7 || _isEdge) {
+					if (event.graphic == graphic || event.target.e_graphic || has("touch") || has("ie") == 10 || has("trident") == 7 || _isEdge) {
 						map.disablePan();
-						
+
 						_editPointLayer = true;
 						graphic.hasBeenMoved = false;
 					}
 				});
-	
+
 				var event4 = touch.release(layer._div.rawNode, function(){
 					map.enablePan();
 					_editPointLayer = false;
 					if( onMoveEndCallback && graphic.hasBeenMoved )
 						onMoveEndCallback(graphic);
 				});
-				
-				var event5 = has("touch") || has("ie") >= 10 || has("trident") == 7 || _isEdge ? 
+
+				var event5 = has("touch") || has("ie") >= 10 || has("trident") == 7 || _isEdge ?
 						// Using the layer decrease too much the performance ...
-						touch.move(map.__container, moveGraphic) 
+						touch.move(map.__container, moveGraphic)
 						: connect.connect(map, "onMouseDrag", moveGraphic);
-	
+
 				_events = [event1, event2, event3, event4, event5];
 			}
-			
+
 			function moveGraphic(event)
 			{
 				if (_editPointLayer && event.mapPoint) {
 					graphic.setGeometry(event.mapPoint);
-					
+
 					if( onMoveStartCallback && ! graphic.hasBeenMoved )
 						onMoveStartCallback(graphic);
-						
+
 					graphic.hasBeenMoved = true;
 				}
 			}

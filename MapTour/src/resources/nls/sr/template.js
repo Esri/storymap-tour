@@ -290,7 +290,7 @@ define({
       "pictures": "slike",
       "videos": "video zapisi",
       "disabled": "Ova funkcija je onemogućena od strane administratora",
-      "disabledPortal": "Ova funkcija zahteva da portal ima ArcGIS Data Store konfigurisan kao bazu podataka za upravljanje. Kontaktirajte administratora portala Portal for ArcGIS.",
+      "disabledPortal": "Ova funkcija zahteva da portal ima server za hostovanje. Kontaktirajte Portal for ArcGIS administratora.",
       "header1": "Vaše slike moraju da budu javno podeljene.",
       "header2": "Uvoz će da bude ograničen na prvih %NB1% %MEDIA%.",
       "emptyDataset": "Greška, slike nisu nađene",

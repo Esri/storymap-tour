@@ -290,7 +290,7 @@ define({
       "pictures": "图片",
       "videos": "视频",
       "disabled": "此功能已被管理员禁用",
-      "disabledPortal": "此要素要求 Portal 将一个 ArcGIS Data Store 配置为托管数据库。请联系您的 Portal for ArcGIS 管理员。",
+      "disabledPortal": "此功能需要门户拥有托管服务器。请联系您的 Portal for ArcGIS 管理员。",
       "header1": "您的图片必须公开共享。",
       "header2": "导入将限制为前 %NB1% 个 %MEDIA%。",
       "emptyDataset": "发生错误，未找到图片",

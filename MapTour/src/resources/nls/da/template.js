@@ -290,7 +290,7 @@ define({
       "pictures": "billeder",
       "videos": "videoer",
       "disabled": "Dette objekt er blevet deaktiveret af administratoren",
-      "disabledPortal": "Dette objekt kræver, at Portal har en ArcGIS Data Store konfigureret som den administrerede database. Kontakt din Portal for ArcGIS-administrator.",
+      "disabledPortal": "Dette objekt kræver, at portalen har en værtsserver. Kontakt din Portal for ArcGIS-administrator.",
       "header1": "Dine billeder skal være delt offentligt.",
       "header2": "Importen begrænses til det første %NB1%%MEDIA%.",
       "emptyDataset": "Fejl, der blev ikke fundet nogen billeder",

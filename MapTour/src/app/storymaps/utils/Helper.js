@@ -84,6 +84,16 @@ define(["dojo/cookie",
 				if( configOptions.authorizedOwners && configOptions.authorizedOwners.length > 0 && configOptions.authorizedOwners[0] )
 					return urlParams.appid;
 			},
+			getSharingHost: function() {
+				var urlParams = this.getUrlParams();
+				
+				if (urlParams.sharinghost) {
+					return '//' + urlParams.sharinghost;
+				}
+				else {
+					return '';
+				}
+			},
 			getGraphicsLayerByName: function(map, name)
 			{
 				var layer;

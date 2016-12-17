@@ -290,7 +290,7 @@ define({
       "pictures": "kuvat",
       "videos": "videot",
       "disabled": "Pääkäyttäjä on poistanut tämän toiminnon käytöstä",
-      "disabledPortal": "Tämä ominaisuus edellyttää, että ArcGIS Data Store on määritetty portaalissa hallinnoiduksi tietokannaksi. Ota yhteys Portal for ArcGIS -pääkäyttäjääsi.",
+      "disabledPortal": "Tämä ominaisuus edellyttää, että portaalissa on isännöintipalvelu. Ota yhteys Portal for ArcGIS -pääkäyttäjääsi.",
       "header1": "Kuvasi on jaettava julkisesti.",
       "header2": "Tuonti rajoitetaan ensimmäisiin %NB1% %MEDIA% -kohteeseen.",
       "emptyDataset": "Virhe. Kuvia ei löydy",

@@ -2,7 +2,7 @@
 	"browser": true,
 	"dojo": true,
 	"jquery": true,
-	
+
 	"globals": {
 		"console": false,
 		"alert": false,
@@ -18,9 +18,9 @@
 		"configOptions": true,
 		"commonConfig": true,
 		"version": false,
-		"i18n": false,
+		"i18n": true,
 		"app": true,
-		"loadingIndicator": false,
+		"loadingIndicator": true,
 		"mediaNotFoundHandler": false,
 
 		"FB": false,
@@ -32,7 +32,7 @@
 		"iScroll": false,
 		"History": false
 	},
-	
+
 	"expr": true,
 	"laxbreak": true,
 	"eqnull": true,
