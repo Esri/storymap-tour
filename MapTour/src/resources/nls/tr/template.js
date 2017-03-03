@@ -290,7 +290,7 @@ define({
       "pictures": "resimler",
       "videos": "videolar",
       "disabled": "Bu özellik Yönetici tarafından devre dışı bırakıldı",
-      "disabledPortal": "Bu detay, portalın bir barındırma sunucusuna sahip olmasını gerektirir. Portal for ArcGIS Yöneticinize başvurun.",
+      "disabledPortal": "Bu detay, ArcGIS Data Store uygulamasının Portalda yönetilen Veri Tabanı olarak yapılandırılmış olmasını gerektirir. Portal for ArcGIS Yöneticinize başvurun.",
       "header1": "Resimlerinizin herkes ile paylaşılması gerekiyor.",
       "header2": "Bu içe aktarma ilk %NB1% %MEDIA% ile sınırlanacak.",
       "emptyDataset": "Hata, hiçbir resim bulunamadı",

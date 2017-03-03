@@ -290,7 +290,7 @@ define({
       "pictures": "obrazy",
       "videos": "wideo",
       "disabled": "Opcja ta została wyłączona przez Administratora",
-      "disabledPortal": "Ta funkcja wymaga, aby portal miał serwer hostujący. Skontaktuj się z administratorem witryny Portal for ArcGIS.",
+      "disabledPortal": "Aby korzystać z tej funkcji w witrynie Portal, jako zarządzaną bazę danych należy skonfigurować magazyn ArcGIS Data Store. Skontaktuj się z administratorem witryny Portal for ArcGIS.",
       "header1": "Obrazy muszą być udostępnione publicznie.",
       "header2": "Import zostanie ograniczony do pierwszych %NB1% %MEDIA%.",
       "emptyDataset": "Błąd, nie znaleziono obrazów",

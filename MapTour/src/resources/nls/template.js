@@ -35,7 +35,10 @@ define({
 				oldBrowserExplain: "This browser doesn't support automatic thumbnail generation from the images you upload into your map tour. You can create a map tour using this browser, but you will have to provide a separate thumbnail image for each of the images you upload.",
 				oldBrowserExplain2: "To improve your experience, <a href='http://browsehappy.com/' target='_blank'>upgrade your browser</a> or <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>activate Google Chrome Frame for Internet Explorer</a>.",
 				oldBrowserExplain3: "The Map Tour builder doesn't work with Internet Explorer 10 on Windows XP.",
-				oldBrowserClose: "Close"
+				oldBrowserClose: "Close",
+				noViewerIE2: "You are attempting to view this story using an older, unsupported browser. There may be features that do not work or other unexpected issues. We suggest you upgrade to Internet Explorer 11 or use another browser, such as Chrome.",
+ 				noViewerIE3: "In late 2017, this story will no longer load on this browser. At that time, you must use a supported browser to view this story.",
+				attention: "Attention!"
 			},
 			mobileHTML: {
 				showIntro: "SHOW TITLE",
@@ -560,6 +563,7 @@ define({
 	"fi": 1,
 	"fr": 1,
 	"he": 1,
+	"hi": 1,
 	"hr": 1,
 	"id": 1,
 	"it": 1,

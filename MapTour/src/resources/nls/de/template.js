@@ -290,7 +290,7 @@ define({
       "pictures": "Bilder",
       "videos": "Videos",
       "disabled": "Diese Funktion wurde vom Administrator deaktiviert",
-      "disabledPortal": "Für dieses Feature muss das Portal über einen Hosting-Server verfügen. Wenden Sie sich an Ihren Portal for ArcGIS-Administrator.",
+      "disabledPortal": "Für dieses Feature muss im Portal ein ArcGIS Data Store als verwaltete Datenbank konfiguriert sein. Wenden Sie sich an den Portal for ArcGIS-Administrator.",
       "header1": "Ihre Bilder müssen öffentlich freigegeben werden.",
       "header2": "Der Import wird auf die ersten %NB1% %MEDIA% begrenzt.",
       "emptyDataset": "Fehler, keine Bilder gefunden",

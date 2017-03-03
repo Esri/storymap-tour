@@ -290,7 +290,7 @@ define({
       "pictures": "imágenes",
       "videos": "vídeos",
       "disabled": "El administrador ha deshabilitado esta entidad",
-      "disabledPortal": "Esta entidad requiere que el portal tenga un servidor host. Póngase en contacto con el administrador de Portal for ArcGIS.",
+      "disabledPortal": "Esta entidad requiere que el portal tenga configurado un ArcGIS Data Store como base de datos gestionada. Contacta con tu administrador de Portal for ArcGIS.",
       "header1": "Tus imágenes deben compartirse públicamente.",
       "header2": "La importación se limitará a los primeros %NB1% %MEDIA%.",
       "emptyDataset": "Error, no se han encontrado imágenes",

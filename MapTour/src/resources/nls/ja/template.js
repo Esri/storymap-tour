@@ -290,7 +290,7 @@ define({
       "pictures": "写真",
       "videos": "ビデオ",
       "disabled": "この機能は、管理者によって無効にされています",
-      "disabledPortal": "この機能を使用するには、ポータルにホスティング サーバーが存在する必要があります。Portal for ArcGIS 管理者に問い合わせてください。",
+      "disabledPortal": "ArcGIS Data Store を管理されたデータベースとして構成するために、この機能は Portal for ArcGIS を必要とします。Portal for ArcGIS 管理者に連絡してください。",
       "header1": "写真はパブリックに共有する必要があります。",
       "header2": "インポートは最初の %NB1% %MEDIA% に制限されます。",
       "emptyDataset": "写真が見つかりませんでした",

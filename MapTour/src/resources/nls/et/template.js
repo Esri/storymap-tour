@@ -290,7 +290,7 @@ define({
       "pictures": "pildid",
       "videos": "videod",
       "disabled": "See funktsioon on administraatori poolt välja lülitatud",
-      "disabledPortal": "Selle funktsiooni kasutamiseks on nõutav, et portaalil oleks majutusserver. Võtke ühendust Portal for ArcGIS-i administraatoriga.",
+      "disabledPortal": "Selle funktsiooni kasutamiseks on nõutav, et ArcGIS Data Store oleks konfigureeritud portaali andmebaasiks. Võtke ühendust Portal for ArcGIS-i administraatoriga.",
       "header1": "Teie pildid peavad olema jagatud avalikult.",
       "header2": "Importimine on limiteeritud esimeste %NB1% %MEDIA%.",
       "emptyDataset": "Viga, pilte ei leitud",

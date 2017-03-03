@@ -290,7 +290,7 @@ define({
       "pictures": "fotografii",
       "videos": "videoclipuri",
       "disabled": "Acest obiect spaţial a fost dezactivat de administrator",
-      "disabledPortal": "Această caracteristică are nevoie ca portalul să aibă un server de găzduire. Contactaţi administratorul Portal for ArcGIS.",
+      "disabledPortal": "Această caracteristică are nevoie ca portalul să aibă configurat un ArcGIS Data Store sub formă de bază de date administrată. Contactaţi administratorul Portal for ArcGIS.",
       "header1": "Imaginile dvs. trebuie partajate public.",
       "header2": "Importul va fi limitat la primele %NB1% %MEDIA%.",
       "emptyDataset": "Eroare, nu a fost găsită nicio imagine",

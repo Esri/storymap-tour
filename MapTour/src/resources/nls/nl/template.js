@@ -290,7 +290,7 @@ define({
       "pictures": "afbeeldingen",
       "videos": "video's",
       "disabled": "Deze functie is uitgeschakeld door de beheerder",
-      "disabledPortal": "Voor deze functie moet het portaal een hosting server hebben. Neem contact op met uw Portal for ArcGIS beheerder.",
+      "disabledPortal": "Voor deze functie moet het portaal een ArcGIS Data Store hebben  als managed Database. Neem contact op met uw Portal for ArcGIS beheerder.",
       "header1": "Uw afbeeldingen moeten openbaar worden gedeeld.",
       "header2": "Het importeren wordt beperkt tot de eerste %NB1% %MEDIA%.",
       "emptyDataset": "Fout, geen afbeeldingen gevonden",

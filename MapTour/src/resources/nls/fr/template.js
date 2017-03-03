@@ -290,7 +290,7 @@ define({
       "pictures": "images",
       "videos": "vidéos",
       "disabled": "Cette entité a été désactivée par l'administrateur",
-      "disabledPortal": "Cette entité requiert un serveur d'hébergement sur le portail. Contactez votre administrateur Portal for ArcGIS.",
+      "disabledPortal": "Pour utiliser cette fonctionnalité, une instance ArcGIS Data Store doit être configurée dans Portal for ArcGIS en tant que base de données gérée. Contactez l'administrateur de votre instance Portal for ArcGIS.",
       "header1": "Vos images doivent être partagées publiquement.",
       "header2": "L'importation sera limitée aux %NB1% premiers %MEDIA%.",
       "emptyDataset": "Erreur, aucune image trouvée",

@@ -290,7 +290,7 @@ define({
       "pictures": "nuotraukos",
       "videos": "vaizdo įrašų medžiagą",
       "disabled": "Šią funkciją išjungė Administratorius",
-      "disabledPortal": "Šiam elementui reikia, kad portalas turėtų talpinimo serverį. Kreipkitės į savo ArcGIS portalo administratorių.",
+      "disabledPortal": "Šiai funkcijai būtina, kad Portal skirta ArcGIS duomenų talpykla būtų sukonfigūruota kaip valdoma duomenų bazė. Susisiekite su savo Portal for ArcGIS administratoriumi.",
       "header1": "Jūsų nuotraukos turi būti bendrinamos viešai.",
       "header2": "Importavimas bus apribotas iki %NB1% %MEDIA%.",
       "emptyDataset": "Klaida, paveikslų nerasta",

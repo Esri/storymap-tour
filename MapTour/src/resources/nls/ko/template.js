@@ -290,7 +290,7 @@ define({
       "pictures": "그림",
       "videos": "동영상",
       "disabled": "이 기능은 관리자가 사용하지 않도록 설정했습니다.",
-      "disabledPortal": "이 기능을 사용하려면 포털에 호스팅 서버가 있어야 합니다. Portal for ArcGiS 관리자에게 문의하세요.",
+      "disabledPortal": "이 피처를 사용하려면 Portal에서 ArcGIS Data Store를 관리되는 데이터베이스로 구성해야 합니다. Portal for ArcGIS 관리자에게 문의하세요.",
       "header1": "그림을 공개적으로 공유해야 합니다.",
       "header2": "가져오기는 처음 %NB1%개의 %MEDIA%(으)로 제한됩니다.",
       "emptyDataset": "오류입니다. 그림이 없습니다.",

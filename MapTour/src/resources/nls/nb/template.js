@@ -290,7 +290,7 @@ define({
       "pictures": "bilder",
       "videos": "videoer",
       "disabled": "Administratoren har deaktivert denne funksjonen",
-      "disabledPortal": "Dette geoobjektet krever at portalen har en hostserver. Kontakt administratoren for Portal for ArcGIS.",
+      "disabledPortal": "Dette geoobjektet krever at portalen har et ArcGIS Data Store konfigurert som den administrerte databasen. Kontakt administratoren din for Portal for ArcGIS.",
       "header1": "Bildene må deles offentlig.",
       "header2": "Importen blir begrenset til første %NB1% %MEDIA%.",
       "emptyDataset": "Feil; ingen bilder funnet",

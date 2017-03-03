@@ -290,7 +290,7 @@ define({
       "pictures": "imagens",
       "videos": "vídeos",
       "disabled": "Esta funcionalidade foi desativada pelo Admnistrador",
-      "disabledPortal": "Esta funcionalidade requer que o portal possua um servidor de alojamento. Por favor, contacte o seu Administrador Portal for ArcGIS.",
+      "disabledPortal": "Esta funcionalidade requer que o Portal tenha um Armazenamento de Dados ArcGIS configurado como Base de Dados gerida. Contacte o seu administrador Portal for ArcGIS.",
       "header1": "As suas imagens têm que estar partilhadas publicamente.",
       "header2": "A importação será limitada à primeira %NB1% %NB2%.",
       "emptyDataset": "Erro, não foram encontradas imagens",

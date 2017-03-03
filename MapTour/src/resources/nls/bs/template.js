@@ -290,7 +290,7 @@ define({
       "pictures": "slike",
       "videos": "videozapisi",
       "disabled": "Administrator je onemogućio ovu značajku.",
-      "disabledPortal": "Za ovu je značajku potrebno da Portal ima konfiguriran ArcGIS Data Store kao nadgledanu bazu podataka. Obratite se administratoru za Portal for ArcGIS.",
+      "disabledPortal": "Za ovu je značajku potrebno da portal ima poslužitelj domaćin. Obratite se administratoru za Portal for ArcGIS.",
       "header1": "Slike se moraju javno podijeliti.",
       "header2": "Uvoz će biti ograničen na prvi %NB1% %MEDIA%.",
       "emptyDataset": "Pogreška, nema slika",
