@@ -170,6 +170,16 @@ define(["storymaps/maptour/core/WebApplicationData",
 							bmLayerJSON.styleUrl = layer.styleUrl;
 							bmLayerJSON.itemId = basemap.itemId;
 						} 
+						else if (layer.type == "WebTiledLayer" ) {
+							delete bmLayerJSON.url;
+							bmLayerJSON.templateUrl = layer.templateUrl;
+							bmLayerJSON.copyright = layer.copyright;
+							bmLayerJSON.fullExtent = layer.fullExtent;
+							bmLayerJSON.subDomains = layer.subDomains;
+							bmLayerJSON.title = basemap.title;
+							bmLayerJSON.type = "WebTiledLayer";
+							bmLayerJSON.layerType = "WebTiledLayer";
+						}
 					
 						newBasemapJSON.push(bmLayerJSON);
 					});
