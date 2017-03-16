@@ -9,7 +9,7 @@ The Story Map Tour app is ideal when you want to present a linear, place-based n
 [Map Tour page on Esri Story Maps website](http://storymaps.arcgis.com/en/app-list/map-tour/) |
 [Download](http://links.esri.com/storymaps/map_tour_template_zip)
 
-**Latest release is version 2.6.1**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
+**Latest release is version 2.7.0**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
 See the [release page](https://github.com/Esri/map-tour-storytelling-template-js/releases) for release notes.
 
 For more infomation about using and customizing Esri's Storytelling Apps follow the [Story Maps Developers' Corner](https://developerscorner.storymaps.arcgis.com).
@@ -280,7 +280,7 @@ If you experience some difficulties, please let us know. In the meantime, by bui
 
 We recommend landscape orientation photos instead of portrait. Portrait orientation images can be used but on smaller screens like the iPad, a lot of the photo may be obscured by the caption, because text takes up more space when it is displayed in a tall area compared to a wide area. Although images of different sizes, shapes and orientation can be used in one Map Tour, we recommend using the exact same size and shape for all the images. In this way, the user won't be distracted by different sized images as they follow the tour.
 
-The recommended picture size is 1000x750px. The recommended thumbnail size is 140x93px.
+The recommended picture size is 1000x750px. The recommended thumbnail size is 250x166px.  [More info] (http://storymaps.arcgis.com/en/faq/#question30)
 
 ### Formatting your caption text using HTML tags
 
