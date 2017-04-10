@@ -8,6 +8,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"esri/layers/FeatureLayer",
 		"esri/graphic",
 		"esri/geometry/Point",
+		"esri/geometry/Polygon",
 		"dojo/topic"],
 	function(
 		WebApplicationData, 
@@ -20,6 +21,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		FeatureLayer,
 		Graphic,
 		Point,
+		Polygon,
 		topic
 	){
 		/**
@@ -533,7 +535,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var nbPointsBeforeImport = this.getTourPoints(false).length;
 				
 				$.each(featureCollection.featureSet.features, function(i, feature){
-					addTourPointUsingAttributes(new Point(feature.geometry), feature.attributes);
+					//added code here to support point & polygon
+					if(feature.geometry.type == "point") {
+						addTourPointUsingAttributes(new Point(feature.geometry), feature.attributes);
+					}
+					else if(feature.geometry.type == "polygon") {
+						addTourPointUsingAttributes(new Point(feature.geometry.getCentroid()), feature.attributes);
+					}
+//					addTourPointUsingAttributes(new Point(feature.geometry), feature.attributes);
 				});
 				
 				processPointsOrder( computeTourPointOrderFromConfig() );
