@@ -202,7 +202,7 @@ Another option instead of using a dedicated attribute to specify if the media is
 
 The Map Tour template doesn't include a video player, so you have to use the external video player provided by your favorite video hosting service (find the option to embed the video and copy the URL present in the given code). If you want to host the video yourself, you can create an HTML page that contains a video player like [Video.js](http://www.videojs.com/).
 
-####Using videos in Tour created with version 2.1
+#### Using videos in Tour created with version 2.1
 
 Map Tour created with version 2.1 continue to have the 2.1 behavior even when using the latest version of the interactive builder. In that case, the supported picture format are: **.jpg, .jpeg, .png, .gif and .bmp**. If your media doesn’t end with one of these extension, the Map Tour will consider the media to be a video, except when using a feature service (see below).
 You can force a media that doesn't end with one of the supported extension to be treated as image using the URL qualifier `#isImage` that you have to add at the end of the URL.
