@@ -9,7 +9,7 @@ The Story Map Tour app is ideal when you want to present a linear, place-based n
 [Map Tour page on Esri Story Maps website](http://storymaps.arcgis.com/en/app-list/map-tour/) |
 [Download](http://links.esri.com/storymaps/map_tour_template_zip)
 
-**Latest release is version 2.7.0**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
+**Latest release is version 2.7.1**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
 See the [release page](https://github.com/Esri/map-tour-storytelling-template-js/releases) for release notes.
 
 For more infomation about using and customizing Esri's Storytelling Apps follow the [Story Maps Developers' Corner](https://developerscorner.storymaps.arcgis.com).
@@ -516,7 +516,3 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 A copy of the license is available in the repository's [license.txt](license.txt) file.
-
-
-[](Esri Tags: Storytelling MapTour ArcGIS-Online Template Map Tour Picture)
-[](Esri Language: JavaScript)
