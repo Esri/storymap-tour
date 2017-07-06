@@ -1,39 +1,39 @@
-define(["dojo/has", 
-		"storymaps/utils/Helper", 
+define(["dojo/has",
+		"storymaps/utils/Helper",
 		"storymaps/maptour/core/MapTourHelper",
-		"dojo/topic"], 
+		"dojo/topic"],
 	function(has, Helper, MapTourHelper, topic)
 	{
 		/**
 		 * Carousel
 		 * @class Carousel
-		 * 
+		 *
 		 * UI component that display a picture carousel
 		 * The image loading strategy is :
-		 *  - load the first 14 images when the carousel is created 
+		 *  - load the first 14 images when the carousel is created
 		 *  - load the next 10 images each time the carousel move forward
 		 */
 		return function Carousel(selector)
 		{
 			var _this = this;
 			var ITEM_WIDTH = 161; // old layout: 161, modern layout: 156
-	
+
 			// Reference to the iScroll div
 			var iscroll = null;
 
 			// Index of the last thumbnail loaded
 			var _picDownloadedIndex = -1;
-			
+
 			// If try to set the selected index before the DOM is ready
 			var _missedIndex = null;
-			
+
 			// Does the last click/move/touch event was catched as a move event by iScroll
 			var isMoveEvent = false;
 			var mousePos = {
 				onMove: [-1,-1],
 				onScroll: [-1,-1]
 			};
-			
+
 			var _navigationFromTab = false;
 
 			this.init = function(slides, bgColor, hoverColor)
@@ -41,47 +41,47 @@ define(["dojo/has",
 				setColor(bgColor, hoverColor);
 				render(slides);
 				initEvents();
-				
+
 				// Add a no-touch css class to the carousel if we are not on a touch device
 				if ( ! has('touch') )
 					$(selector + ' .carouselScroller').addClass('no-touch');
 			};
-			
+
 			this.update = function(slides, bgColor, hoverColor)
 			{
 				setColor(bgColor, hoverColor);
 				iscroll.destroy();
 				render(slides);
 			};
-			
+
 			this.resize = function()
 			{
 				updateArrows();
 			};
-			
+
 			this.iefix = function()
 			{
-				setTimeout(function(){ 
-					$(selector).width('100%'); 
-					setTimeout(function(){  
-						$(selector).css('width', 'inherit'); 
-					}, 500); 
+				setTimeout(function(){
+					$(selector).width('100%');
+					setTimeout(function(){
+						$(selector).css('width', 'inherit');
+					}, 500);
 				}, 0);
 			};
-			
+
 			function render(slides)
 			{
 				_picDownloadedIndex = -1;
-				
+
 				ITEM_WIDTH = MapTourHelper.isModernLayout() ? 156 : 161;
-				
+
 				$(selector + ' .carouselScroller').css('width', (slides.length * ITEM_WIDTH) + 'px');
-				
+
 				$(selector + ' .carouselWrapper').mousemove(function(e){
 					mousePos.onMove[0] = e.screenX;
 					mousePos.onMove[1] = e.screenY;
-				}); 
-				
+				});
+
 				/*jshint -W055 */
 				iscroll = new iScroll($(selector + ' .carouselWrapper')[0], {
 					hideScrollbar: true,
@@ -93,7 +93,7 @@ define(["dojo/has",
 						loadCarouselImages();
 					},
 					onScrollStart: function(){
-						mousePos.onScroll = [mousePos.onMove[0], mousePos.onMove[1]]; 
+						mousePos.onScroll = [mousePos.onMove[0], mousePos.onMove[1]];
 					},
 					onBeforeScrollEnd: function(){
 						if( has("touch") )
@@ -105,41 +105,41 @@ define(["dojo/has",
 						loadCarouselImages();
 					}
 				});
-				
+
 				updateArrows();
-				
+
 				$(selector + ' .carouselScroller ul').html(renderItem(slides)).removeAttr("aria-hidden");
-				
+
 				// When navigation with tab also navigate to the point (refresh picture panel and map)
 				$(selector + ' .carousel-item-div').focus(function(e){
 					var selectedIndex = $(selector + ' .carousel-item-div.selected').parents('li').index(),
 						focusIndex = $(this).parents('li').index();
-					
+
 					if ( selectedIndex != focusIndex) {
 						topic.publish("CAROUSEL_CLICK", focusIndex);
 						_navigationFromTab = true;
 					}
 				});
-				
-				// Logic to navigate away after the last point 
+
+				// Logic to navigate away after the last point
 				$(selector + ' .carousel-item-div').on('keydown', function(e){
 					var selectedIndex = $(selector + ' .carousel-item-div.selected').parents('li').index(),
 						focusIndex = $(this).parents('li').index();
-					
+
 					if( e.keyCode === 9 && ! event.shiftKey ) {
 						if ( selectedIndex == focusIndex && selectedIndex == $('.carousel-item-div').length - 1) {
 							// Focus out when embedded
 							if (window != window.top) {
 								return true;
 							}
-							
+
 							// TODO should not be done here
-							// TODO should also support tab+shift from there 
-							
+							// TODO should also support tab+shift from there
+
 							// Add tabindex to the header righ area
 							// This need to be done dynamically to only navigate to them after the carousel
 							$("#headerDesktop .msLink *, #headerDesktop .shareIcon").attr("tabindex", "0");
-							
+
 							if ( $("#headerDesktop .msLink a").length )
 								$("#headerDesktop .msLink a")[0].focus();
 							else if ( $("#headerDesktop .msLink span").length )
@@ -148,30 +148,35 @@ define(["dojo/has",
 								$("#headerDesktop .shareIcon")[0].focus();
 							else
 								$("#headerDesktop .title")[0].focus();
-							
+
 							return false;
 						}
 					}
 				});
-				
+
 				_picDownloadedIndex = 14;
-				$(selector + ' .carouselScroller ul img').slice(0,_picDownloadedIndex).each(function(i, img){ 
-					$(img).attr("src", $(img).data("src"));
-				});
 				
+				$(selector + ' .carouselScroller ul img').slice(0,_picDownloadedIndex).each(function(i, img){
+					if(app.org && app.org.allSSL && app.data.isFSWithURLFields() && $(img).data("src").slice(0,5) != 'https'){
+						$(img).attr("src", 'https:' + $(img).data("src").slice(5));
+					}else{
+						$(img).attr("src", $(img).data("src"));
+					}
+				});
+
 				if( _missedIndex != null ) {
 					_this.setSelectedIndex(_missedIndex);
 					_missedIndex = null;
 				}
 			}
-			
+
 			function renderItem(items)
 			{
 				var carouselHTML = "";
-				
+
 				$(items).each(function(i, slide){
 					var pinCssClass = MapTourHelper.getSymbolCss(slide.attributes.getColor());
-	
+
 					// Numbering is done through CSS (require IE8+)
 					// The first div is necessary for vertical centering and the span around the image for the numbering
 					// The color specification though class is not ideal, but to have that more dynamic all the rest is a pain
@@ -180,61 +185,61 @@ define(["dojo/has",
 					carouselHTML += '  <span class="' + pinCssClass +'"><img data-src="' + slide.attributes.getThumbURL() + '" onerror="mediaNotFoundHandler(this)" /></span>';
 					carouselHTML += '  <div>' + ($('<div>' + slide.attributes.getName() + '</div>').html()) + '</div>';
 					// Insert a hidden description for text2speech so that the description immediately follow the point title
-					// Use two hidden divs as a way to create a large pause between title and description 
+					// Use two hidden divs as a way to create a large pause between title and description
 					carouselHTML += '  <div style="height: 0;">.</div><div style="height: 0;">.</div>';
 					carouselHTML += '  <div style="height: 0;">' + ($('<div>' + slide.attributes.getDescription() + '</div>').text()) + '</div>'; // "." for chromevox to break
 					carouselHTML += ' </div>';
 					carouselHTML += '</li>';
 				});
-				
+
 				return carouselHTML;
 			}
-			
+
 			this.setSelectedIndex = function(index)
 			{
 				if( index == null || index == -1 )
 					return;
-				
+
 				if( ! $('.carousel-item-div').length )
 					_missedIndex = index;
-				
+
 				$(selector + ' .carousel-item-div').removeClass("selected");
 				$(selector + ' .carousel-item-div').eq(index).addClass("selected");
-				
+
 				// Focus new carousel active item
 				if ( ! app.isLoading ) {
 					// Does carousel already has focus (through tab navigation)
 					var carouselHasFocus = !! $(":focus").parents("#footerDesktop").length;
-					
+
 					$(":focus").blur();
-					
+
 					if ( _navigationFromTab || carouselHasFocus )
 						$(selector + ' .carousel-item-div').eq(index).focus();
-					
+
 					_navigationFromTab = false;
 				}
-				
+
 				scrollToIndex(index);
 				updateArrows();
 			};
-			
+
 			this.checkItemIsVisible = function(index)
 			{
 				if(! iscroll) return;
 				scrollToIndex(index);
 			};
-			
+
 			function initEvents()
 			{
 				$(selector).click(onUserClick);
 				topic.subscribe("CORE_SELECTED_TOURPOINT_UPDATE", updateSlide);
 			}
-			
+
 			function onUserClick(e)
 			{
 				if( ! e || ! e.target )
 					return;
-				
+
 				if( e.target.className == "arrowLeft" )
 					onArrowClick(-1);
 				else if( e.target.className == "arrowRight" )
@@ -243,65 +248,65 @@ define(["dojo/has",
 					// Process the event with a delay to be sure that isMoveEvent has been correctly set
 					setTimeout(function(){ onUserClickTimed(e); } , 50);
 			}
-			
+
 			function onUserClickTimed(e)
 			{
 				var index = $(e.target).closest("li").index();
 				// If it's a real click, publish CAROUSEL_CLICK
 				if( ! isMoveEvent && index != -1 )
 					topic.publish("CAROUSEL_CLICK", index);
-				
+
 				isMoveEvent = false;
 			}
-			
+
 			function updateArrows()
 			{
 				if( ! iscroll )
 					return;
-				
+
 				if( iscroll.x == iscroll.maxScrollX || iscroll.x === 0 )
 					isMoveEvent = false;
-				
+
 				if( iscroll.x > - 25 )
 					$(selector + ' .arrowLeft').addClass("disabled");
 				else
 					$(selector + ' .arrowLeft').removeClass("disabled").attr("src", "resources/icons/carousel-left.png");
-					
+
 				if( iscroll.scrollerW + iscroll.x - iscroll.wrapperW < 25 )
 					$(selector + ' .arrowRight').addClass("disabled");
 				else
 					$(selector + ' .arrowRight').removeClass("disabled").attr("src", "resources/icons/carousel-right.png");
 			}
-			
+
 			function updateSlide(param)
 			{
 				var node = $(selector + ' .carouselScroller li:nth-child(' + (param.index+1) + ')');
 				node.find(".carousel-item-div > div").html(param.name);
 				node.find(".carousel-item-div > span").attr('class', MapTourHelper.getSymbolCss(param.color));
 			}
-			
+
 			function onArrowClick(direction)
 			{
 				var nbItemVisible =  Math.floor(iscroll.wrapperW / ITEM_WIDTH) + 1;
 				scroll(iscroll.x - direction * nbItemVisible * ITEM_WIDTH, nbItemVisible);
 			}
-			
+
 			function scrollToIndex(index)
 			{
 				if(! iscroll || index == null)
 					return;
-					
+
 				loadCarouselImages();
-				
+
 				// Get the first and last visible item index from the carousel position
 				var firstVisibleItemIndex = Math.ceil(Math.abs(iscroll.x / ITEM_WIDTH)) + 1;
 				var lastVisibleItemIndex = Math.floor(Math.abs((iscroll.x - iscroll.wrapperW - 15) / ITEM_WIDTH));
-							
+
 				// Do not slide if the item is already visible
 				if( (index+1) >= firstVisibleItemIndex && (index+1) <= lastVisibleItemIndex )
 					return;
-				
-				// If RWD switch from mobile to desktop, need to delay and disable animation 
+
+				// If RWD switch from mobile to desktop, need to delay and disable animation
 				if( firstVisibleItemIndex == 1 && lastVisibleItemIndex === 0 ) {
 					$(selector + ' .carousel-item-div').css("visibility", "hidden");
 					setTimeout(function(){
@@ -312,25 +317,25 @@ define(["dojo/has",
 				else
 					scroll(Math.max(- index * ITEM_WIDTH), Math.abs(firstVisibleItemIndex - index));
 			}
-			
+
 			function loadCarouselImages()
 			{
 				var lastVisibleItemIndex = Math.floor(Math.abs((iscroll.x - iscroll.wrapperW - 15) / ITEM_WIDTH));
 				var indexToLoad = lastVisibleItemIndex + 10;
-				
+
 				if( _picDownloadedIndex >= indexToLoad )
 					return;
-				
-				$(selector + ' .carouselScroller ul img').slice(_picDownloadedIndex, indexToLoad).each(function(i, img){ 
+
+				$(selector + ' .carouselScroller ul img').slice(_picDownloadedIndex, indexToLoad).each(function(i, img){
 					img = $(img);
 					img.attr("src", img.data("src"));
 				});
-				
+
 				_picDownloadedIndex = indexToLoad;
 			}
-			
+
 			/**
-			 * Scroll of nbItem to be at the x position 
+			 * Scroll of nbItem to be at the x position
 			 * @param {Object} targetX
 			 * @param {Object} nbItem
 			 * @param {Object} noAnnimation
@@ -348,7 +353,7 @@ define(["dojo/has",
 				// Scroll at the speed of 150ms / item with a minimum time of 500ms and a maximum of 2000ms
 				iscroll.scrollTo(newTarget, 0, noAnnimation ? 0 : Math.min(2000, Math.max(500, nbItem * 150)));
 			}
-			
+
 			function setColor(bgColor, hoverColor)
 			{
 				$("#footer, #builderPanel2, #builderPanel3").css("background-color", Helper.hex2rgba(bgColor, MapTourHelper.isModernLayout() ? 0.85 : 1));

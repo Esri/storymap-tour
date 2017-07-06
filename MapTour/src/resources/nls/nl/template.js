@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Deze browser biedt geen ondersteuning voor de automatische generatie van miniaturen vanaf afbeeldingen die u in uw kaart tour uploadt. U kunt een kaart tour maken met behulp van deze browser, maar u moet een afzonderlijke miniatuurafbeelding opgeven voor elk van de afbeeldingen die u uploadt.",
       "oldBrowserExplain2": "Voor een betere ervaring voert u een <a href='http://browsehappy.com/' target='_blank'>upgrade van uw browser</a> uit of <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>activeert u Google Chrome Frame voor Internet Explorer</a>.",
       "oldBrowserExplain3": "De Kaart Tour builder werkt niet met Internet Explorer 10 op Windows XP.",
-      "oldBrowserClose": "Sluiten"
+      "oldBrowserClose": "Sluiten",
+      "noViewerIE2": "U probeert dit verhaal te bekijken met behulp van een oudere, niet-ondersteunde browser. Er kunnen functies niet werken of er kunnen andere onverwachte problemen ontstaan. Wij raden u aan te upgraden naar Internet Explorer 11 of een andere browser te gebruiken, zoals Chrome.",
+      "noViewerIE3": "In het najaar van 2017 zal dit verhaal niet meer laden op deze browser. Vanaf dat moment moet u een ondersteunde browser gebruiken om dit verhaal te bekijken.",
+      "attention": "Let op!"
     },
     "mobileHTML": {
       "showIntro": "TITEL WEERGEVEN",
@@ -152,7 +155,7 @@ define({
       "settingsLayoutLocBtn": "Een knop Locatie weergeven",
       "settingsLayoutLocBtnHelp": "Deze functionaliteit wordt ondersteund op de meeste mobiele apparaten en desktopbrowsers (Internet Explorer 9).",
       "settingsColorExplain": "Verander het uiterlijk door een vooraf gedefinieerd thema te kiezen of door uw eigen thema te kiezen.",
-      "settingsLabelColor": "Kleuren van koptekst, inhoud en voettekst",
+      "settingsLabelColor": "Kleuren van koptekst, content en voettekst",
       "settingsLogoExplain": "Pas het logo van de koptekst aan (het maximum is 250 x 50px).",
       "settingsLogoEsri": "Esri-logo",
       "settingsLogoNone": "Geen logo",
@@ -290,7 +293,7 @@ define({
       "pictures": "afbeeldingen",
       "videos": "video's",
       "disabled": "Deze functie is uitgeschakeld door de beheerder",
-      "disabledPortal": "Voor deze functie moet het portaal een ArcGIS Data Store hebben  als managed Database. Neem contact op met uw Portal for ArcGIS beheerder.",
+      "disabledPortal": "Voor deze functie moet het portaal een hosting server hebben. Neem contact op met uw Portal for ArcGIS beheerder.",
       "header1": "Uw afbeeldingen moeten openbaar worden gedeeld.",
       "header2": "Het importeren wordt beperkt tot de eerste %NB1% %MEDIA%.",
       "emptyDataset": "Fout, geen afbeeldingen gevonden",

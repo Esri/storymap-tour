@@ -3,7 +3,6 @@
 	<head>
 		<title></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
 		<meta name="fragment" content="!">
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -71,7 +70,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.7.1';
+			var version = '2.8.1';
 			var isProduction = false;
 			// IE 9 and below are not compatible with script async attribute.
 			var canUseAsyncAttr = true;
@@ -113,8 +112,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("//js.arcgis.com/3.20/esri/css/esri.css", true);
-			loadCSS("//js.arcgis.com/3.20/dijit/themes/claro/claro.css", true);
+			loadCSS("https://js.arcgis.com/3.21/esri/css/esri.css", true);
+			loadCSS("https://js.arcgis.com/3.21/dijit/themes/claro/claro.css", true);
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -1155,7 +1154,7 @@
 			</table>
 		</div>
 
-		<script src="https://js.arcgis.com/3.20/init.js"></script>
+		<script src="https://js.arcgis.com/3.21/init.js"></script>
 		<script type="text/javascript">
 			loadJS('app/maptour-config.js');
 

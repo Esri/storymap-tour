@@ -1,19 +1,20 @@
-define(["dojo/_base/lang"], 
+define(["dojo/_base/lang"],
 	function(lang){
 		/**
 		 * MapTourBuilderHelper
 		 * @class MapTourBuilderHelper
-		 * 
+		 *
 		 * Collection of helper functions specific the Builder UI of Map Tour
 		 */
 		return {
 			getNewLayerJSON: function(featureCollection)
-			{			
+			{
 				return {
 					id: "maptour-layer" + new Date().getTime(),
 					title: "Map Tour layer",
 					visibility: true,
 					opacity: 1,
+					layerType: "ArcGISFeatureLayer",
 					featureCollection: {
 						layers: [
 							featureCollection
@@ -31,7 +32,7 @@ define(["dojo/_base/lang"],
 						"geometryType": "esriGeometryPoint"
 					}
 				};
-				
+
 				featureCollection.layerDefinition = {
 					"geometryType": "esriGeometryPoint",
 					"objectIdField": "__OBJECTID",
@@ -61,7 +62,7 @@ define(["dojo/_base/lang"],
 					"types": [],
 					"capabilities": "Query"
 				};
-				
+
 				if( withDefaultFields ) {
 					featureCollection.layerDefinition.fields = [
 						{
@@ -132,7 +133,7 @@ define(["dojo/_base/lang"],
 						}
 					];
 				}
-				
+
 				return featureCollection;
 			},
 			getBlankAppJSON: function()
@@ -174,6 +175,15 @@ define(["dojo/_base/lang"],
 			},
 			getBlankWebmapJSON: function()
 			{
+				var spatialReference = {
+					"latestWkid": 3857,
+					"wkid": 102100
+				};
+
+				if (app.map && app.map.spatialReference) {
+					spatialReference = app.map.spatialReference;
+				}
+
 				return {
 					item: {
 						"id": "",
@@ -214,7 +224,8 @@ define(["dojo/_base/lang"],
 					itemData: {
 						"operationalLayers": [],
 						"baseMap": lang.clone(app.defaultBasemap),
-						"version": "1.9"
+						"spatialReference": spatialReference,
+						"version": "2.9"
 					}
 				};
 			}

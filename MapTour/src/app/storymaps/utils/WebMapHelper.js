@@ -1,10 +1,10 @@
 define(["esri/request",
-		"esri/renderers/jsonUtils", 
+		"esri/renderers/jsonUtils",
 		"dojo/Deferred",
 		"dojo/_base/lang",
-		"dojo/_base/array"], 
+		"dojo/_base/array"],
 	function(
-		esriRequest, 
+		esriRequest,
 		jsonUtils,
 		Deferred,
 		lang,
@@ -14,33 +14,33 @@ define(["esri/request",
 			findLayerTypeById: function(webmapData, id)
 			{
 				var type = "";
-				
+
 				array.forEach(webmapData.operationalLayers, function(layer){
 					if( layer.id == id )
 						type = layer.type;
 				});
-				
+
 				return type;
 			},
 			saveWebmap: function(webmap, portal)
 			{
 				var resultDeferred = new Deferred();
-				
+
 				this.prepareWebmapItemForCloning(webmap);
-				
+
 				var item = lang.clone(webmap.item);
 				var data = lang.clone(webmap.itemData);
-				
+
 				// Transform arrays
 				item.tags = item.tags ? item.tags.join(',') : '';
 				item.typeKeywords = item.typeKeywords ? item.typeKeywords.join(',') : '';
-				
+
 				var user = portal.getPortalUser();
-				var rqUrl = this.getSharingURL(portal) 
-								+ "content/users/" + user.credential.userId 
-								+ (item.ownerFolder ? ("/" + item.ownerFolder) : "") 
+				var rqUrl = this.getSharingURL(portal)
+								+ "content/users/" + user.credential.userId
+								+ (item.ownerFolder ? ("/" + item.ownerFolder) : "")
 								+ "/addItem";
-				
+
 				var rqData = {
 					item: item.item,
 					title: item.title,
@@ -52,7 +52,7 @@ define(["esri/request",
 					overwrite: true,
 					thumbnailURL: item.thumbnailURL
 				};
-				
+
 				this.request(rqUrl, rqData, true).then(
 					function(){
 						resultDeferred.resolve();
@@ -61,13 +61,13 @@ define(["esri/request",
 						resultDeferred.reject();
 					}
 				);
-				
+
 				return resultDeferred;
 			},
 			serializeGraphicsLayerToFeatureCollection: function(layer)
 			{
 				return this._serializeGraphicsLayerToFeatureCollection(layer, layer.visible, layer.graphics);
-			},		
+			},
 			_serializeGraphicsLayerToFeatureCollection: function(layer, visibility, graphics)
 			{
 				var featureCollection = {
@@ -102,7 +102,7 @@ define(["esri/request",
 					}],
 					showLegend: true
 				};
-				
+
 				$.each(layer.fields, function(i, field){
 					featureCollection.layers[0].layerDefinition.fields.push({
 						name: field.name,
@@ -112,7 +112,7 @@ define(["esri/request",
 						domain: null
 					});
 				});
-				
+
 				$.each(graphics, function(i, graphic){
 					featureCollection.layers[0].featureSet.features.push({
 						attributes: graphic.attributes,
@@ -127,7 +127,7 @@ define(["esri/request",
 				var usePost = post || false;
 				content = content || {};
 				token = token || '';
-				
+
 				return esriRequest(
 					{
 						url: url,
@@ -146,24 +146,53 @@ define(["esri/request",
 			 */
 			prepareWebmapItemForCloning: function(webmap)
 			{
+
+				var spatialReference = {
+					"latestWkid": 3857,
+					"wkid": 102100
+				};
+
+				if (app.map && app.map.spatialReference) {
+					spatialReference = app.map.spatialReference;
+				}
+
+				if (!webmap.itemData.spatialReference) {
+					webmap.itemData.spatialReference = spatialReference;
+				}
+
+				webmap.itemData.authoringApp = "StoryMapTour";
+				webmap.itemData.authoringAppVersion = version;
+
+				if (parseFloat(webmap.itemData.version) < 2.9) {
+					webmap.itemData.version = "2.9";
+				}
+
+				delete webmap.itemData._ssl;
+
 				array.forEach(webmap.itemData.baseMap.baseMapLayers, function(layer){
 					delete layer.errors;
 					delete layer.layerObject;
 					delete layer.resourceInfo;
+					delete layer.firstLayer;
+					delete layer.baseMapLayer;
 				});
-				
+
 				array.forEach(webmap.itemData.operationalLayers, function(layer){
 					delete layer.errors;
 					delete layer.layerObject;
 					delete layer.resourceInfo;
-					
+
+					if (layer.id.indexOf("maptour-layer") >= 0 && !layer.layerType) {
+						layer.layerType = "ArcGISFeatureLayer";
+					}
+
 					// Graphics layer
 					if( layer.featureCollection && layer.featureCollection.layers ) {
 						array.forEach(layer.featureCollection.layers, function(fc){
 							delete fc.layerObject;
 						});
 					}
-					
+
 					// Graphics layer
 					if( layer.featureCollection && layer.featureCollection.featureSet && layer.featureCollection.featureSet.features ) {
 						array.forEach(layer.featureCollection.featureSet.features, function(f){
@@ -171,19 +200,19 @@ define(["esri/request",
 							delete f._graphicsLayer;
 						});
 					}
-					
+
 					// Dynamic CSV
 					if( layer.type == "CSV" && layer.featureCollection )
 						delete layer.featureCollection;
-					
+
 					// Map Service
 					array.forEach(layer.layers, function(subLayer){
 						delete subLayer.drawingInfo;
-						
+
 						if( subLayer.layerDefinition && subLayer.layerDefinition.drawingInfo && subLayer.layerDefinition.drawingInfo.renderer )
 							subLayer.layerDefinition.drawingInfo.renderer = jsonUtils.fromJson(subLayer.layerDefinition.drawingInfo.renderer).toJson();
 					});
-					
+
 					// Feature Servuce
 					if( layer.layerDefinition && layer.layerDefinition.drawingInfo && layer.layerDefinition.drawingInfo.renderer )
 						layer.layerDefinition.drawingInfo.renderer = jsonUtils.fromJson(layer.layerDefinition.drawingInfo.renderer).toJson();
@@ -192,16 +221,16 @@ define(["esri/request",
 			getSharingURL: function(portal)
 			{
 				var sharingUrl = portal.portalUrl;
-				
+
 				if( sharingUrl.match('/sharing/rest/$') )
 					sharingUrl = sharingUrl.split('/').slice(0,-2).join('/') + '/';
 				else if ( sharingUrl.match('/sharing/rest$') )
 					sharingUrl = sharingUrl.split('/').slice(0,-1).join('/') + '/';
 				else if ( sharingUrl.match('/sharing$') )
 					sharingUrl = sharingUrl + '/';
-				
+
 				return sharingUrl;
 			}
 		};
 	}
-);			
+);

@@ -124,11 +124,28 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 				var galleryConfig = {
 					map: app.map,
-					portalUrl: arcgisUtils.arcgisUrl.split('/sharing/')[0]
+					portalUrl: arcgisUtils.arcgisUrl.split('/sharing/')[0],
+					bingMapsKey: app.portal.bingKey
 				};
 
-				if (app.portal.basemapGalleryGroupQuery) {
-					galleryConfig.basemapsGroup = app.portal.basemapGalleryGroupQuery;
+				// If it has the useVectorBasemaps property and its true then use the
+				// vectorBasemapGalleryGroupQuery otherwise use the default
+				var basemapGalleryGroupQuery = app.portal.basemapGalleryGroupQuery;
+				if (app.portal.hasOwnProperty("useVectorBasemaps") && app.portal.useVectorBasemaps === true && app.portal.vectorBasemapGalleryGroupQuery) {
+					basemapGalleryGroupQuery = app.portal.vectorBasemapGalleryGroupQuery;
+				}
+
+				var q = parseQuery(basemapGalleryGroupQuery);
+					galleryConfig.basemapsGroup = null;
+				if (q.id) {
+					galleryConfig.basemapsGroup = {
+						id: q.id
+					};
+				} else if (q.title && q.owner) {
+					galleryConfig.basemapsGroup = {
+						title: q.title,
+						owner: q.owner
+					};
 				}
 				else {
 					galleryConfig.showArcGISBasemaps = true;
@@ -197,6 +214,24 @@ define(["storymaps/maptour/core/WebApplicationData",
 				if( ! app.data.sourceIsNotFSAttachments() && Helper.browserSupportAttachementUsingFileReader() )
 					new AddButton().init(saveApp);
 			};
+
+			function parseQuery(queryString)
+			{
+				var regex = /(AND|OR)?\W*([a-z]+):/ig,
+				fields = {},
+				fieldName,
+				fieldIndex,
+				result = regex.exec(queryString);
+				while (result) {
+					fieldName = result && result[2];
+					fieldIndex = result ? (result.index + result[0].length) : -1;
+
+					result = regex.exec(queryString);
+
+					fields[fieldName] = queryString.substring(fieldIndex, result ? result.index : queryString.length).replace(/^\s+|\s+$/g, "").replace(/\"/g, ""); //remove extra quotes in title
+				}
+				return fields;
+			}
 
 			function updateBuilderMoveable(graphic)
 			{

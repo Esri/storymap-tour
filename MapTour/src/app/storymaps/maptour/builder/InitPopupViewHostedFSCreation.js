@@ -1,13 +1,13 @@
 define([
-	"storymaps/utils/Helper", 
-	"storymaps/utils/WebMapHelper", 
+	"storymaps/utils/Helper",
+	"storymaps/utils/WebMapHelper",
 	"esri/geometry/Extent",
 	"dojo/_base/lang",
 	"dojo/Deferred",
-	"dojo/json"], 
+	"dojo/json"],
 	function (
-		Helper, 
-		WebMapHelper, 
+		Helper,
+		WebMapHelper,
 		Extent,
 		lang,
 		Deferred,
@@ -195,7 +195,7 @@ define([
 				}
 			}]
 		};
-		
+
 		var mapTourWebmapLayerJson = {
 			"visibility": true,
 			"opacity": 1,
@@ -256,22 +256,22 @@ define([
 				"mediaInfos": []
 			}
 		};
-		
+
 		return function InitPopupViewHostedFSCreation(container)
 		{
 			var _container = container;
-			
+
 			var _portal = null;
 			var _initCompleteDeferred = null;
 			var _webmap = null;
-			
+
 			var _nameField  = $('#dataNameInput', _container);
 			var _folderList = $('#dataFolderListInput', _container);
 			var _errorList  = $('.dataError', _container);
 			var _btnPrev = null;
 			var _btnNext = null;
 			var _footerText = null;
-	
+
 			this.init = function(params, initCompleteDeferred, footer)
 			{
 				_portal = params.portal;
@@ -280,39 +280,39 @@ define([
 				_btnPrev = footer.find('.btnPrev');
 				_btnNext = footer.find('.btnNext');
 				_footerText = footer.find('.dataFooterText');
-				
+
 				if( ! _portal || ! _webmap )
 					return;
-				
+
 				// Init UI
 				initEmptyFolderList();
 				cleanUI();
 				_portal.getPortalUser().getFolders().then(buildFolderList);
-				
+
 				var webmapItem = app.data.getWebMapItem();
 				if ( webmapItem && webmapItem.item && webmapItem.item.title ) {
 					_nameField.val(webmapItem.item.title);
 				}
 			};
-			
+
 			this.getView = function()
 			{
 				_btnNext.html(i18n.viewer.builderHTML.dataBtnSave);
 				_btnNext.unbind('click');
 				_btnNext.click(createService);
-				
+
 				return _container;
 			};
-			
+
 			this.getTitle = function()
 			{
 				return i18n.viewer.builderHTML.dataTitle;
 			};
-			
+
 			//
 			// Events
 			//
-			
+
 			function createService()
 			{
 				cleanErrors();
@@ -321,12 +321,12 @@ define([
 					showErrors(errorList);
 					return false;
 				}
-				
+
 				changeFooterState("progress");
-						
+
 				var name = _nameField.val().replace(/ /g, '_');
 				var folder = getSelectedFolderId();
-				
+
 				isNameAvailable(name).then(function()
 					{
 						createFS(mapTourFSJson, name, folder, _portal.getPortalUser())
@@ -336,27 +336,27 @@ define([
 					},
 					createServiceFail
 				);
-				
+
 				return false;
 			}
-			
+
 			function createServiceSuccess()
 			{
 				// If it fail with a timeout, success is call
 				if( _footerText.html() == i18n.viewer.builderHTML.dataFooterError )
-					return; 
-					
+					return;
+
 				// Set the extent to the portal default
 				if ( app.portal && app.portal.defaultExtent )
 					app.data.getWebMapItem().item.extent = Helper.serializeExtentToItem(new Extent(app.portal.defaultExtent));
-				
+
 				changeFooterState("succeed");
-				
+
 				setTimeout(function(){
 					_initCompleteDeferred.resolve();
 				}, 800);
 			}
-			
+
 			function createServiceFail(error)
 			{
 				if( error == "NAME_NOT_AVAILABLE" ) {
@@ -367,19 +367,19 @@ define([
 					changeFooterState("error");
 				}
 			}
-			
+
 			//
 			// FS creation
 			//
-			
+
 			function createFS(_serviceJSON, name, folder, user)
 			{
 				var serviceJSON = lang.clone(_serviceJSON);
 				var resultDeferred = new Deferred();
-				
+
 				/*
 				// Alternative code to use the base map extent for the FS extent
-				// The JSON use the StreetMap basemap extent 
+				// The JSON use the StreetMap basemap extent
 				var baseMapExtent = app.data.getWebMapItem().itemData
 									&& app.data.getWebMapItem().itemData.baseMap
 									&& app.data.getWebMapItem().itemData.baseMap.baseMapLayers
@@ -388,7 +388,7 @@ define([
 									&& app.data.getWebMapItem().itemData.baseMap.baseMapLayers[0].layerObject
 									? lang.clone(app.data.getWebMapItem().itemData.baseMap.baseMapLayers[0].layerObject.fullExtent)
 									: null;
-				
+
 				if( baseMapExtent ) {
 					delete baseMapExtent.type;
 					serviceJSON.service.initialExtent = baseMapExtent;
@@ -396,21 +396,21 @@ define([
 					serviceJSON.layers[0].extent = baseMapExtent;
 				}
 				*/
-				
+
 				// Add the service name
 				lang.mixin(serviceJSON.service, {'name': name});
-	
+
 				// Service creation request
-				var serviceRqUrl = WebMapHelper.getSharingURL(_portal) 
-						+ "content/users/" + user.credential.userId 
-						+ "/" + (folder ? folder + '/' : '') 
+				var serviceRqUrl = WebMapHelper.getSharingURL(_portal)
+						+ "content/users/" + user.credential.userId
+						+ "/" + (folder ? folder + '/' : '')
 						+ "createService";
-				
+
 				var serviceRqData = {
 					createParameters: JSON.stringify(serviceJSON.service),
 					outputType: "featureService"
 				};
-				
+
 				WebMapHelper.request(serviceRqUrl, serviceRqData, true).then(
 					function(serviceRqResponse) {
 						var layersRqUrl = getAdminUrl(serviceRqResponse.serviceurl) + "/addToDefinition";
@@ -431,21 +431,21 @@ define([
 						resultDeferred.reject();
 					}
 				);
-					
+
 				return resultDeferred;
 			}
-			
+
 			function shareItem(item)
 			{
 				var resultDeferred = new Deferred();
-				var user = _portal.getPortalUser(); 
+				var user = _portal.getPortalUser();
 				var rqUrl = WebMapHelper.getSharingURL(_portal) + "content/users/" + user.credential.userId + "/shareItems";
 				var rqData = lang.mixin(item, {
 					f: "json",
 					everyone: false,
 					items: item.itemId
 				});
-				
+
 				WebMapHelper.request(rqUrl, rqData, true).then(
 					function(){
 						resultDeferred.resolve(item);
@@ -454,20 +454,20 @@ define([
 						resultDeferred.reject();
 					}
 				);
-				
+
 				return resultDeferred;
 			}
-			
+
 			function getAdminUrl(url)
 			{
 				return url.replace("http://", window.location.protocol + "//")
 						.replace("rest/services","rest/admin/services");
 			}
-			
+
 			//
 			// Webmap edit
 			//
-			
+
 			function addFSToWebmap(fsItem)
 			{
 				// Add the FS layer
@@ -476,34 +476,35 @@ define([
 						id: "maptour-layer" + new Date().getTime(),
 						title: "Map Tour layer",
 						url: fsItem.serviceurl + '/0',
-						itemId: fsItem.itemId
+						itemId: fsItem.itemId,
+						layerType: "ArcGISFeatureLayer"
 					},
 					lang.clone(mapTourWebmapLayerJson)
 				);
-				
+
 				_webmap.itemData.operationalLayers.push(layer);
-				
-				if( app.isDirectCreationFirstSave || app.isGalleryCreation ) 
+
+				if( app.isDirectCreationFirstSave || app.isGalleryCreation )
 					return new Deferred().resolve();
 				else
 					return WebMapHelper.saveWebmap(_webmap, _portal);
 			}
-			
+
 			//
 			// Utils
 			//
-			
+
 			function isNameAvailable(name)
 			{
 				var resultDeferred = new Deferred();
-				
+
 				var rqUrl = WebMapHelper.getSharingURL(_portal) + "portals/" + _portal.id + "/isServiceNameAvailable";
 				var rqData = {
 					f: "json",
 					type: "Feature Service",
 					name: name
 				};
-				
+
 				WebMapHelper.request(rqUrl, rqData, true).then(
 					function(result){
 						if(result && result.available)
@@ -515,19 +516,19 @@ define([
 						resultDeferred.reject();
 					}
 				);
-				
+
 				return resultDeferred;
 			}
-			
+
 			//
 			// UI
 			//
-			
+
 			function initEmptyFolderList()
 			{
 				_folderList.append('<option data-id="-1">' + i18n.viewer.builderHTML.dataFolderListFetching + '</option>');
 			}
-			
+
 			function buildFolderList(folders)
 			{
 				_folderList.empty();
@@ -536,28 +537,28 @@ define([
 					_folderList.append('<option data-id="' + folder.id + '">' + folder.title + '</option>');
 				});
 			}
-			
+
 			function getSelectedFolderId()
 			{
 				return _folderList.find('option:selected').data('id');
 			}
-			
+
 			function verifyForm()
 			{
 				var errors = [];
 				if( ! _nameField.val() )
 					errors.push(i18n.viewer.builderHTML.dataNameError);
-					
+
 				else if( _nameField.val().match(/[-<>#%:"?&+\/\\]/) )
 					errors.push(i18n.viewer.builderHTML.dataSrcContainsInvalidChar);
-				
+
 				var folderId = getSelectedFolderId();
 				if( folderId == "-1" || (folderId.length !== 32 && folderId.length !== 0) )
 					errors.push(i18n.viewer.builderHTML.dataFolderError);
-				
+
 				return errors;
 			}
-			
+
 			function changeFooterState(state)
 			{
 				if( state == "progress" ) {
@@ -585,7 +586,7 @@ define([
 					_footerText.addClass("error");
 				}
 			}
-			
+
 			function showErrors(errors)
 			{
 				cleanErrors();
@@ -593,13 +594,13 @@ define([
 					_errorList.append("<li>" + error + "</li>");
 				});
 			}
-			
+
 			function cleanUI()
 			{
 				_nameField.val("");
 				cleanErrors();
 				changeFooterState("orginal");
-				
+
 				var explain = i18n.viewer.builderHTML.dataExplain;
 				if ( app.isPortal ) {
 					explain += "<br /><br />";
@@ -607,13 +608,13 @@ define([
 				}
 				$('.dataExplain', container).html(explain);
 			}
-			
+
 			function cleanErrors()
 			{
 				_errorList.empty();
 				_footerText.removeClass("error");
 			}
-	
+
 			this.initLocalization = function()
 			{
 				$('.dataNameLbl', container).html(i18n.viewer.builderHTML.dataNameLbl + ':');
