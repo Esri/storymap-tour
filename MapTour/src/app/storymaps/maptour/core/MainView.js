@@ -1040,6 +1040,12 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// Update the mobile carousel
 				app.mobileCarousel.setSelectedPoint(index);
 
+				if(!/iPhone|iPad|iPod/i.test(navigator.userAgent)){
+					$('#tourPoint' + $('.swipeview-active').children()[0].id.slice(9)).css('height', $('#infoPanel').height() - 40);
+				}
+
+				$('#tourPoint' + $('.swipeview-active').children()[0].id.slice(9)).scrollTop();
+
 				// Update the map command
 				app.mapCommand.stopLoading();
 

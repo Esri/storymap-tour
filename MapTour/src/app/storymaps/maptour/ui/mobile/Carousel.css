@@ -41,11 +41,11 @@
 /*
  * Desktop navigation
  */
- 
+
 #footerMobile.hasDesktopBtn .carousel {
 	margin: 0 53px;
 }
- 
+
 #footerMobile .embed-btn-container {
 	display: none;
 }
@@ -63,14 +63,14 @@
 
 #footerMobile .embed-btn-container.disabled {
 	opacity: 0.2;
-	cursor: default;	
+	cursor: default;
 }
 
 /*
  * Generic rules
  * Shared with info panel
  */
- 
+
 .embed-btn {
 	width: 42px;
 	height: 42px;
@@ -90,6 +90,11 @@
 
 .embed-btn-left.disabled .embed-btn {
 	background-position: 42px 0;
+}
+
+#infoPanel .embed-btn-left {
+	left: -7px;
+	padding-left: 0;
 }
 
 /* Right button */
