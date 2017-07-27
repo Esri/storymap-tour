@@ -17,6 +17,7 @@ define(["esri/map",
 		// Utils
 		"dojo/has",
 		"esri/IdentityManager",
+		"esri/arcgis/OAuthInfo",
 		"esri/config",
 		"esri/tasks/GeometryService",
 		"esri/request",
@@ -45,6 +46,7 @@ define(["esri/map",
 		MapTourBuilderHelper,
 		has,
 		IdentityManager,
+		ArcGISOAuthInfo,
 		esriConfig,
 		GeometryService,
 		esriRequest,
@@ -122,6 +124,7 @@ define(["esri/map",
 			if( Helper.isArcGISHosted() || ! isProd() )
 				configOptions = {
 					proxyurl: configOptions.proxyurl,
+                    oAuthAppId: configOptions.oAuthAppId,
 					sharingurl: configOptions.sharingurl
 				};
 
@@ -222,39 +225,60 @@ define(["esri/map",
 			// Fix for multiple twitter bootstrap popup to be open simultaneously
 			$.fn.modal.Constructor.prototype.enforceFocus = function () {};
 
-			// Run the app when jQuery is ready
-			$(document).ready( lang.hitch(this, initStep2) );
+			// Basic styling in case something isn't public
+			on(IdentityManager, "dialog-create", styleIdentityManager);
+
+			// Load the Portal
+			app.portal = new arcgisPortal.Portal(configOptions.sharingurl.split('/sharing/')[0]);
+			app.portal.on("load", function(response){
+				app.isPortal = !! response.isPortal;
+
+				definePortalConfig();
+
+				// If app is configured to use OAuth
+				if ( configOptions.oAuthAppId ) {
+					var info = new ArcGISOAuthInfo({
+						appId: configOptions.oAuthAppId,
+						popup: false,
+						portalUrl: 'https:' + configOptions.sharingurl.split('/sharing/')[0]
+					});
+
+					IdentityManager.registerOAuthInfos([info]);
+
+					IdentityManager.checkSignInStatus(info.portalUrl).then(
+						function() {
+							// User has signed-in using oAuth
+							if ( ! builder )
+								portalLogin().then(initStep3);
+							else
+								portalLogin().then(initStep3);
+						},
+						function() {
+							// Not signed-in, redirecting to OAuth sign-in page if builder
+							if (!builder){
+								initStep3();
+							} else {
+								portalLogin().then(initStep3);
+							}
+						}
+					);
+				}
+				else
+					initStep3();
+			});
 		}
 
-		function initStep2()
+		function definePortalConfig()
 		{
-			console.log("maptour.core.Core - initStep2");
+			console.log("common.core.Core - parsePortalConfig");
 
-			// Get portal info and configure the app
-
-			esriRequest({
-				url: arcgisUtils.arcgisUrl.split('/sharing/')[0] + "/sharing/rest/portals/self",
-				content: {"f": "json"},
-				callbackParamName: "callback"
-			}).then(lang.hitch(this, function(response){
-				var trustedHost;
-				if(response.authorizedCrossOriginDomains && response.authorizedCrossOriginDomains.length > 0) {
-					for(var i = 0; i < response.authorizedCrossOriginDomains.length; i++) {
-						trustedHost = response.authorizedCrossOriginDomains[i];
-						// add if trusted host is not null, undefined, or empty string
-						if(esri.isDefined(trustedHost) && trustedHost.length > 0) {
-							esriConfig.defaults.io.corsEnabledServers.push({
-								host: trustedHost,
-								withCredentials: true
-							});
-						}
-					}
-				}
+			if ( ! app.portal )
+				return;
 
 				// Use geocode service from the portal if none declared in config
-				if (!APPCFG.HELPER_SERVICES.geocode.length && response.helperServices) {
-					if (response.helperServices.geocode && response.helperServices.geocode.length && response.helperServices.geocode[0].url) {
-						$.each(response.helperServices.geocode, function (index, geocoder){
+				if (! APPCFG.HELPER_SERVICES.geocode.length && app.portal.helperServices) {
+					if (app.portal.helperServices.geocode && app.portal.helperServices.geocode.length && app.portal.helperServices.geocode[0].url) {
+						$.each(app.portal.helperServices.geocode, function (index, geocoder){
 							APPCFG.HELPER_SERVICES.geocode.push(geocoder);
 						});
 					}
@@ -265,21 +289,21 @@ define(["esri/map",
 				if (APPCFG.HELPER_SERVICES.geometry && APPCFG.HELPER_SERVICES.geometry.url) {
 					geometryServiceURL = APPCFG.HELPER_SERVICES.geometry.url;
 				}
-				else if (response.helperServices.geometry && response.helperServices.geometry.url) {
-					geometryServiceURL = response.helperServices.geometry.url;
+				else if (app.portal.helperServices.geometry && app.portal.helperServices.geometry.url) {
+					geometryServiceURL = app.portal.helperServices.geometry.url;
 				}
 				esriConfig.defaults.geometryService = new GeometryService(geometryServiceURL);
 
 				// Use bing key from the portal if none declared in config
-				if( ! APPCFG.BING_MAPS_KEY && response.bingKey ) {
-					APPCFG.BING_MAPS_KEY = response.bingKey;
+				if( ! APPCFG.BING_MAPS_KEY && app.portal.bingKey ) {
+					APPCFG.BING_MAPS_KEY = app.portal.bingKey;
 				}
 
 				// Disable feature service creation on Portal that don't have the required capabilities
 				//  - looking at supportsSceneServices let us know if the Portal is using an ArcGIS Data Store has a managed DB
 				//  - ArcGIS Data Store allow to create scalable Feature Service ; Portal configured against another DB don't support the same Feature Service creation API
 				//  - the Feature Service creation API is only supported starting at Portal 10.4 but there is no way to know what version of Portal
-				if( response.isPortal && ! response.supportsSceneServices )
+				if( app.portal.isPortal && ! app.portal.supportsSceneServices )
 					APPCFG.AUTHORIZED_IMPORT_SOURCE.featureService = false;
 
 				// Disable feature service creation as Portal for ArcGIS 10.2 doesn't support that yet
@@ -287,8 +311,8 @@ define(["esri/map",
 					//APPCFG.AUTHORIZED_IMPORT_SOURCE.featureService = false;
 
 				// Default basemap
-				if ( response.defaultBasemap ) {
-					var basemap = lang.clone(response.defaultBasemap);
+				if ( app.portal.defaultBasemap ) {
+					var basemap = lang.clone(app.portal.defaultBasemap);
 					delete basemap.id;
 					delete basemap.operationalLayers;
 					$.each(basemap.baseMapLayers, function(i, layer){
@@ -315,24 +339,21 @@ define(["esri/map",
 					}
 				}
 
-				app.isPortal = !! response.isPortal;
+				app.isPortal = !! app.portal.isPortal;
 
 				// Help URL on Portal for ArcGIS
-				if ( app.isPortal && response.helpBase && response.portalHostname ) {
+				if ( app.isPortal && app.portal.helpBase && app.portal.portalHostname ) {
 					// APPCFG.HELP_URL_PORTAL contains the page in the help doc
-					// response.helpBase contains the path to the home of help
-					// response.helpBase should always be relative to the hostname and include the optional portal instance name
-					// response.portalHostname also include the portal instance name so we remove it first
+					// app.portal.helpBase contains the path to the home of help
+					// app.portal.helpBase should always be relative to the hostname and include the optional portal instance name
+					// app.portal.portalHostname also include the portal instance name so we remove it first
 
-					var portalHost = response.portalHostname.split('/')[0];
-
-					APPCFG.HELP_URL_PORTAL = '//' + portalHost + response.helpBase + APPCFG.HELP_URL_PORTAL;
+					// Skip if the URL is already a full path
+					if ( ! APPCFG.HELP_URL_PORTAL.match('^//') ) {
+						var portalHost = app.portal.portalHostname.split('/')[0];
+						APPCFG.HELP_URL_PORTAL = '//' + portalHost + app.portal.helpBase + APPCFG.HELP_URL_PORTAL;
+						}
 				}
-
-				initStep3();
-			}), function(){
-				initError("portalSelf");
-			});
 		}
 
 		function initStep3()
@@ -353,9 +374,6 @@ define(["esri/map",
 				if (e.keyCode == 13)
 					return false;
 			});
-
-			// Basic styling in case something isn't public
-			on(IdentityManager, "dialog-create", styleIdentityManager);
 
 			topic.subscribe("CORE_UPDATE_UI", updateUI);
 			topic.subscribe("CORE_RESIZE", handleWindowResize);
@@ -526,12 +544,9 @@ define(["esri/map",
 		function portalLogin()
 		{
 			var resultDeferred = new Deferred();
-			var portalUrl = configOptions.sharingurl.split('/sharing/')[0];
-			app.portal = new arcgisPortal.Portal(portalUrl);
 
 			on(IdentityManager, "dialog-create", styleIdentityManagerForLoad);
 
-			app.portal.on("load", function(){
 				app.portal.signIn().then(
 					function() {
 						// If in builder, check that user is user can create/edit item
@@ -547,13 +562,13 @@ define(["esri/map",
 
 						app.userCanEdit = app.data.userIsAppOwner();
 
+                        definePortalConfig();
 						resultDeferred.resolve();
 					},
 					function() {
 						resultDeferred.reject();
 					}
 				);
-			});
 
 			return resultDeferred;
 		}
