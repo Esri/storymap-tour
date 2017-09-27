@@ -154,7 +154,7 @@ define({
 				settingsLayoutSelect: "Select this layout",
 				settingsLayoutNote: "Note that on points using videos, the placard will always be placed under the video even if that option is unchecked.",
 				settingsLayoutLocBtn: "Display a 'Locate' button",
-				settingsLayoutLocBtnHelp: "That functionality is supported on most mobile device and desktop browsers (Internet Explorer 9).",
+				settingsLayoutLocBtnHelp: "Supported on most browsers. Only appears when story map accessed over HTTPS. Does not appear if the story is embedded.",
 				settingsColorExplain: "Change appearance by choosing a pre-defined theme, or create your own.",
 				settingsLabelColor: "Header, content and footer colors",
 				settingsLogoExplain: "Customize the header logo (maximum is 250 x 50px).",

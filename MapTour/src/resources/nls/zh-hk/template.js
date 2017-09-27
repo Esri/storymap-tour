@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "此瀏覽器不支援從上傳到 Map Tour 的圖像所自動生成縮圖。可使用此瀏覽器建立一個 Map Tour，但需要為每個上傳的圖像分別提供縮圖。",
       "oldBrowserExplain2": "為了提昇體驗，請<a href='http://browsehappy.com/' target='_blank'>升級瀏覽器</a>或<a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>啟動用於 Internet Explore 的 Google Chrome Frame</a>。",
       "oldBrowserExplain3": "Map Tour 建構器不適用於 Windows XP 上的 Internet Explorer 10。",
-      "oldBrowserClose": "關閉"
+      "oldBrowserClose": "關閉",
+      "noViewerIE2": "您正在嘗試使用較舊、不支援的瀏覽器來檢視此故事。可能有未運作的圖徵或發生其他非預期的問題。我們建議您升級至 Internet Explorer 11 或使用其他瀏覽器，例如 Chrome。",
+      "noViewerIE3": "在 2017 年末，無法再於此瀏覽器上載入此故事。到時您必須使用支援的瀏覽器來檢視此故事。",
+      "attention": "注意!"
     },
     "mobileHTML": {
       "showIntro": "顯示標題",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "選擇此版面設定",
       "settingsLayoutNote": "請注意，在使用影片的位置，即使未勾選該選項，標語牌也始終位於影片下方。",
       "settingsLayoutLocBtn": "顯示“定位”按鈕",
-      "settingsLayoutLocBtnHelp": "大多數行動裝置和桌面瀏覽器(Internet Explorer 9)均支援該功能。",
+      "settingsLayoutLocBtnHelp": "大多數瀏覽器皆支援。只有在透過 HTTPS 存取故事地圖時才會出現。若內嵌地圖則不會出現。",
       "settingsColorExplain": "透過選擇預定義的主題或建立自訂主題變更外觀。",
       "settingsLabelColor": "頁眉、內容和頁腳顏色",
       "settingsLogoExplain": "自訂頁眉標誌(不超過 250 x 50px)。",
@@ -290,7 +293,7 @@ define({
       "pictures": "圖片",
       "videos": "影片",
       "disabled": "管理員已停用此功能",
-      "disabledPortal": "此圖徵需要入口網站將 ArcGIS Data Store 設定為受管理資料庫。請聯絡您的 Portal for ArcGIS 管理員。",
+      "disabledPortal": "此功能需要入口網站具有託管伺服器。請聯絡您的 Portal for ArcGIS 管理員。",
       "header1": "您的圖片必須公開分享。",
       "header2": "匯入將限制為前 %NB1% 個 %MEDIA%。",
       "emptyDataset": "發生錯誤，未找到圖片",

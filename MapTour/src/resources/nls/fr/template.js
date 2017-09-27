@@ -34,14 +34,17 @@ define({
       "oldBrowserExplain": "Ce navigateur ne prend pas en charge la génération automatique des miniatures à partir d’images que vous ajoutez dans votre visite cartographique. Vous pouvez créer une visite cartographique avec ce navigateur, mais vous devez fournir une image miniature distincte pour chacune des images que vous ajoutez.",
       "oldBrowserExplain2": "Pour profiter pleinement de l’application, <a href='http://browsehappy.com/' target='_blank'>mettez votre navigateur à niveau</a> ou <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>activez Google Chrome Frame pour Internet Explorer</a>.",
       "oldBrowserExplain3": "Le générateur Map Tour ne fonctionne pas avec Internet Explorer 10 sous Windows XP.",
-      "oldBrowserClose": "Fermer"
+      "oldBrowserClose": "Fermer",
+      "noViewerIE2": "Vous tentez d’afficher ce récit dans un navigateur plus ancien, non pris en charge. Certaines fonctionnalités peuvent ne pas fonctionner ou d’autres problèmes peuvent survenir. Nous vous suggérons d'utiliser Internet Explorer 11 ou un autre navigateur, comme Chrome.",
+      "noViewerIE3": "Fin 2017, ce récit ne se chargera plus dans ce navigateur. Vous devrez alors utiliser un navigateur pris en charge pour afficher ce récit.",
+      "attention": "Attention !"
     },
     "mobileHTML": {
       "showIntro": "AFFICHER LE TITRE",
       "hideIntro": "MASQUER LE TITRE",
       "navList": "Liste",
       "navMap": "Carte",
-      "navInfo": "Elément multimédia",
+      "navInfo": "Multimédia",
       "introStartBtn": "Démarrer"
     },
     "desktopHTML": {
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Sélectionner cette mise en page",
       "settingsLayoutNote": "Notez que sur les points qui utilisent des vidéos, le message est toujours placé sous la vidéo même si cette option est désélectionnée.",
       "settingsLayoutLocBtn": "Afficher un bouton de localisation",
-      "settingsLayoutLocBtnHelp": "Cette fonctionnalité est prise en charge sur la plupart des navigateurs pour appareils mobiles et ordinateurs de bureau (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Fonctionnalité prise en charge sur la plupart des navigateurs. Apparaît uniquement en cas d’accès à la Story Map via HTTPS. Non visible si le récit est incorporé.",
       "settingsColorExplain": "Modifiez l’apparence en choisissant un thème prédéfini ou créez le vôtre.",
       "settingsLabelColor": "Couleurs d’en-tête, de contenu et de pied de page",
       "settingsLogoExplain": "Personnalisez le logo d’en-tête (250 x 50 px au maximum).",
@@ -290,7 +293,7 @@ define({
       "pictures": "images",
       "videos": "vidéos",
       "disabled": "Cette entité a été désactivée par l'administrateur",
-      "disabledPortal": "Pour utiliser cette fonctionnalité, une instance ArcGIS Data Store doit être configurée dans Portal for ArcGIS en tant que base de données gérée. Contactez l'administrateur de votre instance Portal for ArcGIS.",
+      "disabledPortal": "Cette entité requiert un serveur d'hébergement sur le portail. Contactez votre administrateur Portal for ArcGIS.",
       "header1": "Vos images doivent être partagées publiquement.",
       "header2": "L'importation sera limitée aux %NB1% premiers %MEDIA%.",
       "emptyDataset": "Erreur, aucune image trouvée",

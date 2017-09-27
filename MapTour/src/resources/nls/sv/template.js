@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Denna webbläsare stöder inte automatisk generering av miniatyrbilder från bilderna som du överför till din karttur. Du kan skapa en karttur med den här webbläsaren, men du måste lägga till en separat miniatyrbild för varje bild som du överför.",
       "oldBrowserExplain2": "För att förbättra upplevelsen kan du <a href='http://browsehappy.com/' target='_blank'>uppgradera webbläsaren</a> eller <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>aktivera Google Chrome Frame for Internet Explorer</a>.",
       "oldBrowserExplain3": "Map Tour byggverktyget går inte att använda med Internet Explorer 10 i Windows XP.",
-      "oldBrowserClose": "Stäng"
+      "oldBrowserClose": "Stäng",
+      "noViewerIE2": "Du försöker visa denna berättelse med en äldre webbläsare som inte stöds. Det kan röra sig om funktioner som inte fungerar eller andra oväntade problem. Vi rekommenderar dig att uppgradera till Internet Explorer 11 eller använda en annan webbläsare, till exempel Chrome.",
+      "noViewerIE3": "I slutet av 2017 kommer denna berättelse inte längre att kunna läsas in av denna webbläsare. Då måste du använda en webbläsare som stöds om du vill kunna visa den här berättelsen.",
+      "attention": "Obs!"
     },
     "mobileHTML": {
       "showIntro": "VISA TITEL",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Markera denna layout",
       "settingsLayoutNote": "För punkter som använder videoklipp kommer plakatet alltid att placeras under videoklippet, även om alternativet inte har markerats.",
       "settingsLayoutLocBtn": "Visa en sökknapp",
-      "settingsLayoutLocBtnHelp": "Den här funktionen stöds på de flesta mobila enheter och skrivbordswebbläsare (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Stöds för de flesta webbläsare. Visas endast vid åtkomst till berättelsekartan via HTTPS. Visas inte om berättelsen är inbäddad.",
       "settingsColorExplain": "Ändra utseende genom att välja ett fördefinierat tema, eller skapa ett eget.",
       "settingsLabelColor": "Färger på rubrik, innehåll och sidfot",
       "settingsLogoExplain": "Anpassa rubriklogotypen (maxstorlek är 250 x 50 px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "bilder",
       "videos": "videoklippen",
       "disabled": "Den här funktionen har inaktiverats av administratören",
-      "disabledPortal": "Detta geoobjekt kräver att portalen har konfigurerats med en ArcGIS-datakälla som administrerad databas. Kontakta din administratör för Portal for ArcGIS.",
+      "disabledPortal": "Detta geoobjekt kräver att portalen har en driftande server. Kontakta din administratör för Portal for ArcGIS.",
       "header1": "Dina bilder måste delas offentligt.",
       "header2": "Importen begränsas till de första %NB1% %MEDIA%.",
       "emptyDataset": "Fel, inga bilder hittades",

@@ -279,7 +279,7 @@ define(["esri/map",
 				//  - looking at supportsSceneServices let us know if the Portal is using an ArcGIS Data Store has a managed DB
 				//  - ArcGIS Data Store allow to create scalable Feature Service ; Portal configured against another DB don't support the same Feature Service creation API
 				//  - the Feature Service creation API is only supported starting at Portal 10.4 but there is no way to know what version of Portal
-				if( response.isPortal && ! response.supportsSceneServices )
+				if( response.isPortal && ! response.supportsSceneServices && ! response.supportsHostedServices)
 					APPCFG.AUTHORIZED_IMPORT_SOURCE.featureService = false;
 
 				// Disable feature service creation as Portal for ArcGIS 10.2 doesn't support that yet
@@ -401,6 +401,9 @@ define(["esri/map",
 			app.org.on("load", function(response){
 				app.isPortal = !! response.isPortal;
 			});
+
+			// Pass cookie onto API to avoid infinite redirects
+			IdentityManager.checkSignInStatus(app.org.url);
 
 			// If forceLogin parameter in URL OR builder
 			if ( forceLogin || app.isInBuilderMode )

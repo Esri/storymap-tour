@@ -1,12 +1,12 @@
 #footerDesktop {
 	position: relative;
 	height: 150px;
-	padding-top: 10px; 
+	padding-top: 10px;
 }
 
 .modern-layout #footerDesktop {
 	height: 140px;
-	padding-top: 0px; 
+	padding-top: 0px;
 }
 
 #footerDesktop .carousel {
@@ -23,7 +23,7 @@
 }
 
 .carouselWrapper {
-	position:absolute; 
+	position:absolute;
 	z-index:1;
 	top: 12px;
 	bottom:0px;
@@ -104,7 +104,7 @@
 	font-family: 'open_sanssemibold', sans-serif;
 }
 
-/* 
+/*
  * :hover is an issue on touch device
  * A no-touch class is added by JS if we are not on a touch device
  */

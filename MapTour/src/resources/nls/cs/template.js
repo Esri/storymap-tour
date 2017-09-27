@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Váš prohlížeč nepodporuje automatickou tvorbu miniatur z obrázků nahraných do prohlídky mapy. Prohlídku mapy lze v prohlížeči vytvořit, bude však nutné ke každému nahranému obrázku dodat samostatnou miniaturu.",
       "oldBrowserExplain2": "Pro plynulejší chod <a href='http://browsehappy.com/' target='_blank'>stáhněte jiný prohlížeč</a> nebo <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>nainstalujte Google Chrome Frame pro Internet Explorer</a>.",
       "oldBrowserExplain3": "Nástroj pro tvorbu prohlídek map nefunguje v prohlížeči Internet Explorer 10 ve Windows XP.",
-      "oldBrowserClose": "Zavřít"
+      "oldBrowserClose": "Zavřít",
+      "noViewerIE2": "Pokoušíte se tento příběh prohlížet pomocí staršího, nepodporovaného prohlížeče. Některé funkce nemusí fungovat nebo se mohou vyskytnout jiné nečekané problémy. Doporučujeme přejít na Internet Explorer 11 nebo použít jiný prohlížeč, například Chrome.",
+      "noViewerIE3": "Koncem roku 2017 se tento příběh v tomto prohlížeči již nenačte. K jeho prohlížení bude nutné použít podporovaný prohlížeč.",
+      "attention": "Upozornění!"
     },
     "mobileHTML": {
       "showIntro": "ZOBRAZIT NADPIS",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Zvolit toto rozvržení",
       "settingsLayoutNote": "Při používání videí na bodech bude pod videem vždy poutač, i když tato možnost není zaškrtnuta.",
       "settingsLayoutLocBtn": "Zobrazit tlačítko 'Lokalizovat'",
-      "settingsLayoutLocBtnHelp": "Tato funkcionalita je podporována na většině mobilních zařízení a stolních prohlížečů (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Podporováno většinou prohlížečů. Zobrazuje se pouze, pokud se k mapě s příběhem přistupuje přes HTTPS. Nezobrazuje se, pokud je příběh vložený.",
       "settingsColorExplain": "Změňte vzhled volbou přednastaveného motivu, nebo si vytvořte svůj vlastní.",
       "settingsLabelColor": "Barvy záhlaví, obsahu a zápatí",
       "settingsLogoExplain": "Přizpůsobte logo v záhlaví (maximum je 250 × 50 px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "obrázky",
       "videos": "videa",
       "disabled": "Tato funkce byla zakázána administrátorem.",
-      "disabledPortal": "Tento prvek vyžaduje, aby Portal měl jako spravovanou databázi nastaven ArcGIS Data Store. Obraťte se na svého správce Portal for ArcGIS.",
+      "disabledPortal": "Tato součást vyžaduje, aby měl portál hostující server. Obraťte se na svého správce pro Portal for ArcGIS.",
       "header1": "Vaše obrázky musí být sdíleny veřejně.",
       "header2": "Import bude omezen na prvních %NB1% %MEDIA%.",
       "emptyDataset": "Chyba: nebyly nalezeny žádné obrázky",

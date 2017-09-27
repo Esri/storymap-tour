@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "דפדפן זה לא תומך ביצירת תמונה ממוזערת אוטומטית מתוך התמונות שטענת למפת הסיור. באפשרותך ליצור מפת סיור על ידי דפדפן זה, אך תצטרך לספק תמונה ממוזערת בנפרד לכל אחת מהתמונות שתעלה.",
       "oldBrowserExplain2": "בכדי לשפר את ההתנסות שלך, <a href='http://browsehappy.com/' target='_blank'>שדרג את הדפדפן שלך</a>או  <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>הפעל Google Chrome Frame for Internet Explorer</a>.",
       "oldBrowserExplain3": "כלי בניית מפת הסיור לא עובד עם אינטרנט אקספלורר 10 על Windows XP.",
-      "oldBrowserClose": "סגור"
+      "oldBrowserClose": "סגור",
+      "noViewerIE2": "אתה מנסה להציג את הסיפור באמצעות דפדפן ישן שאינו נתמך. ייתכן כי חלק מהישויות לא יפעלו או שיתרחשו בעיות בלתי צפויות אחרות. מומלץ לשדרג ל-Internet Explorer 11 או להשתמש בדפדפן אחר, כגון Chrome.",
+      "noViewerIE3": "בסוף שנת 2017, לא תוכל עוד לטעון את הסיפור בדפדפן זה. משלב זה ואילך תצטרך להשתמש בדפדפן נתמך כדי להציג את הסיפור.",
+      "attention": "שים לב!"
     },
     "mobileHTML": {
       "showIntro": "הצג כותרת",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "בחר תצוגה זו",
       "settingsLayoutNote": "שים לב כי בנקןדות עם קטעי וידאו הכותרת תהיה תמיד ממוקמת מתחת לוידאו, גם אם האפשרות הזו אינה מסומנת.",
       "settingsLayoutLocBtn": "הצג לחצן 'איתור'",
-      "settingsLayoutLocBtnHelp": "פונקציונליות זו נתמכת ברוב המכשירים הניידים ובדפדפנים השולחניים (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "נתמך ברוב הדפדפנים. מופיע רק כאשר הגישה למפות סיפור נעשית דרך HTTPS. לא מופיע אם הסיפור מוטמע.",
       "settingsColorExplain": "שנה ניראות על ידי בחירת נושא מוגדר מראש או צור מראה משלך.",
       "settingsLabelColor": "צבעים של כותרת עליונה, תוכן וכותרת תחתונה",
       "settingsLogoExplain": "התאם את הלוגו של הכותרת העליונה (המקסימום הוא 250 x 50 פיקסלים)",
@@ -290,7 +293,7 @@ define({
       "pictures": "תמונות",
       "videos": "סרטונים",
       "disabled": "תכונה זו הוגדרה כלא זמינה על ידי המנהל",
-      "disabledPortal": "ישות זו דורשת שהפורטל יכלול שמירת נתונים של ArcGIS המוגדרת כמסד הנתונים המנוהל. צור קשר עם מנהל הפורטל שלך עבור ArcGIS.",
+      "disabledPortal": "תכונה זו מחייבת שרת אירוח בפורטל. צור קשר עם מנהל המערכת Portal for ArcGIS",
       "header1": "חייב להיות שיתוף ציבורי לתמונות שלך.",
       "header2": "הייבוא יוגבל ל- ‎%NB1% ‏%MEDIA% ראשונים.",
       "emptyDataset": "שגיאה, לא נמצאו תמונות",

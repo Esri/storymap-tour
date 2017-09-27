@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Przeglądarka nie obsługuje automatycznego generowania miniatur obrazów przesyłanych do mapy wycieczki. Możesz utworzyć mapę wycieczki w tej przeglądarce, ale konieczne będzie pojedyncze wprowadzanie miniatur dla każdego wczytanego obrazu.",
       "oldBrowserExplain2": "Aby poprawić jakość użytkowania, <a href='http://browsehappy.com/' target='_blank'>zaktualizuj przeglądarkę</a> lub <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>włącz dodatek Google Chrome Frame dla przeglądarki Internet Explorer</a>.",
       "oldBrowserExplain3": "Kreator aplikacji Mapa wycieczki nie współpracuje z przeglądarką Internet Explorer 10 w systemie Windows XP.",
-      "oldBrowserClose": "Zamknij"
+      "oldBrowserClose": "Zamknij",
+      "noViewerIE2": "Próbujesz wyświetlić tę narrację za pomocą starszej, nieobsługiwanej przeglądarki. Niektóre funkcje mogą nie działać lub mogą wystąpić inne nieoczekiwane problemy. Zalecamy zaktualizowanie przeglądarki do programu Internet Explorer 11 lub użycie innej przeglądarki, na przykład Chrome.",
+      "noViewerIE3": "Pod koniec 2017 roku ta narracja nie będzie się już wczytywała w tej przeglądarce. Do jej wyświetlenia konieczne będzie użycie obsługiwanej przeglądarki.",
+      "attention": "Uwaga!"
     },
     "mobileHTML": {
       "showIntro": "POKAŻ TYTUŁ",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Wybierz ten układ",
       "settingsLayoutNote": "Należy pamiętać, że w przypadku punktów, w ramach których wykorzystywane są materiały wideo, plakietka będzie zawsze znajdowała się pod materiałem wideo nawet, jeśli opcja ta nie jest zaznaczona.",
       "settingsLayoutLocBtn": "Wyświetl przycisk Lokalizuj",
-      "settingsLayoutLocBtnHelp": "Funkcjonalność ta jest obsługiwana przez większość przeglądarek na urządzeniach mobilnych i stacjonarnych (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Funkcja obsługiwana w większości przeglądarek. Wyświetlana tylko wtedy, gdy dostęp do mapy narracyjnej jest uzyskiwany za pomocą protokołu HTTPS. Nie pojawia się, gdy narracja jest osadzona.",
       "settingsColorExplain": "Zmień wygląd aplikacji, wybierając gotowy motyw lub tworząc własny.",
       "settingsLabelColor": "Kolory nagłówka, zawartości i stopki",
       "settingsLogoExplain": "Dostosuj logo w nagłówku (maksymalny rozmiar to 250 x 50 pikseli).",
@@ -290,7 +293,7 @@ define({
       "pictures": "obrazy",
       "videos": "wideo",
       "disabled": "Opcja ta została wyłączona przez Administratora",
-      "disabledPortal": "Aby korzystać z tej funkcji w witrynie Portal, jako zarządzaną bazę danych należy skonfigurować magazyn ArcGIS Data Store. Skontaktuj się z administratorem witryny Portal for ArcGIS.",
+      "disabledPortal": "Ta funkcja wymaga, aby portal miał serwer hostujący. Skontaktuj się z administratorem witryny Portal for ArcGIS.",
       "header1": "Obrazy muszą być udostępnione publicznie.",
       "header2": "Import zostanie ograniczony do pierwszych %NB1% %MEDIA%.",
       "emptyDataset": "Błąd, nie znaleziono obrazów",

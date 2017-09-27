@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Browser ini tidak mendukung pembuatan gambar mini otomatis dari gambar yang Anda unggah pada tur peta. Anda dapat membuat tur peta menggunakan browser ini, tetapi diharuskan untuk menyiapkan gambar tampilan mini terpisah untuk setiap gambar yang Anda unggah.",
       "oldBrowserExplain2": "Untuk meningkatkan pengalaman Anda, <a href='http://browsehappy.com/' target='_blank'> tingkatkan browser Anda</a> atau <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>aktifkan Bingkai Google Chrome untuk Internet Explorer</a>.",
       "oldBrowserExplain3": "Penyusun Tur Peta tidak berfungsi pada Internet Explorer 10 di Windows XP.",
-      "oldBrowserClose": "Tutup"
+      "oldBrowserClose": "Tutup",
+      "noViewerIE2": "Anda mencoba melihat cerita ini menggunakan browser yang lama dan tidak didukung. Mungkin ada fitur yang tidak berfungsi atau masalah yang tidak terduga lainnya. Sebaiknya Anda memperbaruinya ke Internet Explorer 11 atau gunakan browser lain, seperti Chrome.",
+      "noViewerIE3": "Di akhir 2017, cerita ini tidak akan dimuat lagi di browser ini. Pada saat itu, Anda harus menggunakan browser yang didukung untuk melihat cerita ini.",
+      "attention": "Perhatian!"
     },
     "mobileHTML": {
       "showIntro": "TAMPILKAN JUDUL",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Pilih tata letak ini",
       "settingsLayoutNote": "Perhatikan bahwa pada poin yang menggunakan video, plakat akan selalu ditempatkan di bawah video, meskipun opsi tersebut tidak dicentang.",
       "settingsLayoutLocBtn": "Tampilkan tombol 'Temukan'",
-      "settingsLayoutLocBtnHelp": "Fungsi tersebut didukung pada sebagian besar perangkat seluler dan browser desktop (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Didukung di sebagian besar browser. Hanya muncul ketika peta cerita diakses melalui HTTPS. Tidak akan muncul jika cerita disematkan.",
       "settingsColorExplain": "Ubah tampilan dengan memilih tema yang telah ditetapkan, atau buat tema Anda sendiri.",
       "settingsLabelColor": "Warna header, konten, and catatan kaki",
       "settingsLogoExplain": "Sesuaikan logo header (maksimum 250 x 50 px).",

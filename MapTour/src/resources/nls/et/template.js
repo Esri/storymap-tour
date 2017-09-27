@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Antud brauser ei toeta automaatset pisipiltide koostamist pildiandmetest, mis on laaditud tuuri kirjeldavale kaardile. Teil on võimalik koostada kaart selles brauseris kasutamiseks, kuid peate omistama igale üles laetud pildile asjakohase pisipildi.",
       "oldBrowserExplain2": "Oskuste parendamiseks, <a href='http://browsehappy.com/' target='_blank'>uuendage oma brauserit</a> või <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>Google Chrome Frame for Internet Explorer aktiveerimiseks</a>.",
       "oldBrowserExplain3": "Kaardi tuuri koostaja ei tööta Windows XP operatsioonisüsteemi Internet Explorer 10 versiooniga.",
-      "oldBrowserClose": "Sulge"
+      "oldBrowserClose": "Sulge",
+      "noViewerIE2": "Püüate seda lugu vaadata vanemas brauseris, mida ei toetata. Mõned funktsioonid ei pruugi töötada ning ilmneda võib ootamatuid probleeme. Soovitame kasutada brauserit Internet Explorer 11 või mõnda muud brauserit (nt Chrome).",
+      "noViewerIE3": "2017. aasta lõpus seda lugu selles brauseris enam ei laadita. Siis peate selle loo vaatamiseks kasutama toetatud brauserit.",
+      "attention": "Tähelepanu!"
     },
     "mobileHTML": {
       "showIntro": "KUVA PEALKIRI",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Vali see kujundus",
       "settingsLayoutNote": "Pange tähele, et videoid kasutavad punktid paigutatakse vastava plakatina video alla ka situatsioonis, kui antud valik on välja lülitatud.",
       "settingsLayoutLocBtn": "Kuva 'Määra asukoht' nupp",
-      "settingsLayoutLocBtnHelp": "Antud funktsionaalsus on toetatud enamikes mobiilsetes seadmetes ja veebibrauserites (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Toetatud enamikes brauserites. Kuvatakse ainult juhul, kui kaardilugu avatakse HTTPS-i kaudu. Ei kuvata, kui lugu on manustatud.",
       "settingsColorExplain": "Muuda väljanägemist, valides selleks puhuks eelnevalt määratud teema või koostades ise uue.",
       "settingsLabelColor": "Päise, sisu ja jaluse värvid",
       "settingsLogoExplain": "Kohanda päise logo (maksimum on 250 x 50px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "pildid",
       "videos": "videod",
       "disabled": "See funktsioon on administraatori poolt välja lülitatud",
-      "disabledPortal": "Selle funktsiooni kasutamiseks on nõutav, et ArcGIS Data Store oleks konfigureeritud portaali andmebaasiks. Võtke ühendust Portal for ArcGIS-i administraatoriga.",
+      "disabledPortal": "Selle funktsiooni kasutamiseks on nõutav, et portaalil oleks majutusserver. Võtke ühendust Portal for ArcGIS-i administraatoriga.",
       "header1": "Teie pildid peavad olema jagatud avalikult.",
       "header2": "Importimine on limiteeritud esimeste %NB1% %MEDIA%.",
       "emptyDataset": "Viga, pilte ei leitud",

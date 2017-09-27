@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Šis pārlūks neatbalsta automātisku sīktēlu radīšanu no attēliem, ko jūs augšupielādējat jūsu map tour. Jūs varat izveidot map tour, izmantojot šo pārlūku, bet jums būs jāsniedz atsevišķs sīktēls par katru no augšupielādētiem attēliem .",
       "oldBrowserExplain2": "Lai uzlabotu jūsu pieredzi, <a href='http://browsehappy.com/' target='_blank'>jaunina jūsu pārlūku</a> vai <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>aktivizē Google Chrome Frame priekš Internet Explorer</a>.",
       "oldBrowserExplain3": "The Map Tour veidotājs nedarbojas ar Internet Explorer 10 uz Windows XP.",
-      "oldBrowserClose": "Aizvērt"
+      "oldBrowserClose": "Aizvērt",
+      "noViewerIE2": "Jūs mēģināt skatīt šo stāstu, izmantojot vecāku, neatbalstītu pārlūku. Var gadīties, ka nedarbojas kāds elements vai rodas citas neparedzētas problēmas. Iesakām jaunināt uz Internet Explorer 11 vai izmantot citu pārlūku, piemēram, Chrome.",
+      "noViewerIE3": "No 2017. gada beigām šo stāstu vairs nevarēs ielādēt šajā pārlūkā. Pēc tam šī stāsta skatīšanai ir jāizmanto atbalstīts pārlūks.",
+      "attention": "Uzmanību!"
     },
     "mobileHTML": {
       "showIntro": "RĀDĪT VIRSRAKSTU",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Izvēlieties šo izkārtojumu",
       "settingsLayoutNote": "Ņemiet vērā, ka punktiem, kuriem izmantoti video, plakāti vienmēr būs novietoti zem video, pat ja šī izvēlne būs atiezīmēta.",
       "settingsLayoutLocBtn": "Attēlot pogu 'Atrast izvietojumu'",
-      "settingsLayoutLocBtnHelp": "Šī funkcionalitāte tiek atbalstīta uz biežāk lietotajām mobilājām ierīcēm un darbvirsmas pārlūkiem (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Atbalstīts vairākumā pārlūku. Tiek parādīts tikai tad, kad stāsta kartei piekļūst, izmantojot HTTPS. Netiek parādīts, ja stāsts ir iedarināts.",
       "settingsColorExplain": "Mainīt izskatu, izvēloties iepriekš noteiktu tēmu, vai izveidojot savu.",
       "settingsLabelColor": "Galvenes, satura un kājenes krāsas",
       "settingsLogoExplain": "Pielāgot galvenes logotipu (maksimums  ir 250 x 50piks).",
@@ -290,7 +293,7 @@ define({
       "pictures": "attēli",
       "videos": "video",
       "disabled": "Administrators ir atspējojis šo iezīmi",
-      "disabledPortal": "Lai lietotu šo elementu, ArcGIS datu krātuvei portālā ir jābūt konfigurētai kā pārvaldītajai datu bāzei. Sazinieties ar savu Portal for ArcGIS administratoru.",
+      "disabledPortal": "Šim līdzeklim nepieciešams, lai portālam būtu viesošanas serveris. Sazinieties ar portāla ArcGIS administratoru.",
       "header1": "Jūsu attēliem jābūt publiski koplietotiem.",
       "header2": "Imports būs limitēts uz pirmajiem %NB1% %MEDIA%.",
       "emptyDataset": "Kļūda, nav atrastas bildes",

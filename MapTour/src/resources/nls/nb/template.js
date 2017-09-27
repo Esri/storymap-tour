@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Denne nettleseren støtter ikke automatisk generering av miniatyrbilder fra bildene du laster inn i map tour. Du kan opprette map tour med denne nettleseren, men du må oppgi et eget miniatyrbilde for hvert av bildene du laster opp.",
       "oldBrowserExplain2": "Hvis du vil få en bedre opplevelse, kan du <a href='http://browsehappy.com/' target='_blank'>oppgradere webleseren</a> eller <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>aktivere Google Chrome Frame for Internet Explorer</a>.",
       "oldBrowserExplain3": "Byggeverktøyet for Map Tour fungerer ikke med Internet Explorer 10 på Windows XP.",
-      "oldBrowserClose": "Lukk"
+      "oldBrowserClose": "Lukk",
+      "noViewerIE2": "Du prøver å vise denne historien ved hjelp av en eldre nettleser som ikke støttes. Det kan være funksjoner som ikke fungerer eller andre uventede problemer. Vi foreslår at du oppgraderer til Internet Explorer 11 eller bruker en annen nettleser, for eksempel Chrome.",
+      "noViewerIE3": "Mot slutten av 2017 vil denne historien ikke lenger lastes på denne nettleseren. I mellomtiden må du bruke en nettleser som støttes for å se denne historien.",
+      "attention": "Obs!"
     },
     "mobileHTML": {
       "showIntro": "VIS TITTEL",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Velg denne utformingen",
       "settingsLayoutNote": "Legg merke til at for punkter som bruker video, plasseres oppslaget alltid under videoen, selv om det ikke er merket av for dette alternativet.",
       "settingsLayoutLocBtn": "Vis en 'lokaliser'-knapp",
-      "settingsLayoutLocBtnHelp": "Denne funksjonaliteten støttes på de fleste nettlesere for mobile enheter og stasjonære datamaskiner (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Støttes på de fleste weblesere. Vises bare når fortellingskart brukes over HTTPS. Vises ikke hvis historien er innebygd.",
       "settingsColorExplain": "Endre utseende ved å velge et forhåndsdefinert tema eller opprette ditt eget.",
       "settingsLabelColor": "Farge på topptekst, innhold og bunntekst",
       "settingsLogoExplain": "Tilpass logoen øverst (maks. 250 x 50 piksler).",
@@ -290,7 +293,7 @@ define({
       "pictures": "bilder",
       "videos": "videoer",
       "disabled": "Administratoren har deaktivert denne funksjonen",
-      "disabledPortal": "Dette geoobjektet krever at portalen har et ArcGIS Data Store konfigurert som den administrerte databasen. Kontakt administratoren din for Portal for ArcGIS.",
+      "disabledPortal": "Dette geoobjektet krever at portalen har en hostserver. Kontakt administratoren for Portal for ArcGIS.",
       "header1": "Bildene må deles offentlig.",
       "header2": "Importen blir begrenset til første %NB1% %MEDIA%.",
       "emptyDataset": "Feil; ingen bilder funnet",

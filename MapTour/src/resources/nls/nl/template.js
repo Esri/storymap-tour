@@ -153,7 +153,7 @@ define({
       "settingsLayoutSelect": "Selecteer deze lay-out",
       "settingsLayoutNote": "Merk op dat, op punten die video's gebruiken, de markering altijd onder de video zal worden geplaatst, zelfs als die optie niet is ingeschakeld.",
       "settingsLayoutLocBtn": "Een knop Locatie weergeven",
-      "settingsLayoutLocBtnHelp": "Deze functionaliteit wordt ondersteund op de meeste mobiele apparaten en desktopbrowsers (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Ondersteund op de meeste browsers. Verschijnt alleen als de storymap wordt geopend via HTTPS. Wordt niet weergegeven als het verhaal ingebed is.",
       "settingsColorExplain": "Verander het uiterlijk door een vooraf gedefinieerd thema te kiezen of door uw eigen thema te kiezen.",
       "settingsLabelColor": "Kleuren van koptekst, content en voettekst",
       "settingsLogoExplain": "Pas het logo van de koptekst aan (het maximum is 250 x 50px).",

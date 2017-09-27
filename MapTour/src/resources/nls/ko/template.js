@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "이 브라우저에서는 Map Tour에 업로드한 이미지에서 자동으로 미리보기를 생성할 수 없습니다. 이 브라우저를 사용하여 Map Tour를 생성할 수는 있지만 업로드한 각 이미지에 대해 별도의 미리보기 이미지를 제공해야 합니다.",
       "oldBrowserExplain2": "환경을 개선하려면 <a href='http://browsehappy.com/' target='_blank'>브라우저를 업그레이드</a>하거나 <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>Internet Explorer용 Google Chrome 프레임을 활성화</a>하세요.",
       "oldBrowserExplain3": "Map Tour 빌더는 Windows XP의 Internet Explorer 10에서 작동하지 않습니다.",
-      "oldBrowserClose": "닫기"
+      "oldBrowserClose": "닫기",
+      "noViewerIE2": "지원되지 않는 이전 브라우저를 사용하여 이 스토리를 보려고 합니다. 작동되지 않는 기능이 있거나 예기치 않은 문제가 발생할 수 있습니다. Internet Explorer 11로 업그레이드하거나 Chrome 등의 다른 브라우저를 사용하세요.",
+      "noViewerIE3": "2017년 후반부터는 이 스토리를 이 브라우저에서 불러올 수 없으므로 이 스토리를 보려면 지원되는 브라우저를 사용해야 합니다.",
+      "attention": "주의!"
     },
     "mobileHTML": {
       "showIntro": "제목 표시",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "이 레이아웃 선택",
       "settingsLayoutNote": "동영상을 사용하는 포인트에는 해당 옵션의 선택이 취소된 경우에도 항상 플래카드가 동영상 아래에 배치됩니다.",
       "settingsLayoutLocBtn": "'찾기' 버튼 표시",
-      "settingsLayoutLocBtnHelp": "이 기능은 대부분의 모바일 장치 및 데스크탑 브라우저(Internet Explorer 9)에서 지원됩니다.",
+      "settingsLayoutLocBtnHelp": "대부분의 브라우저에서 지원됩니다. 스토리 맵이 HTTPS를 통해서 접근된 경우에만 나타나며 스토리가 내장된 경우에는 나타나지 않습니다.",
       "settingsColorExplain": "미리 정의된 테마를 선택하여 모양을 변경하거나 고유의 모양을 생성합니다.",
       "settingsLabelColor": "머리글, 내용 및 바닥글 색상",
       "settingsLogoExplain": "머리글 로고를 사용자 지정합니다(최대 250x50 픽셀).",
@@ -290,7 +293,7 @@ define({
       "pictures": "그림",
       "videos": "동영상",
       "disabled": "이 기능은 관리자가 사용하지 않도록 설정했습니다.",
-      "disabledPortal": "이 피처를 사용하려면 Portal에서 ArcGIS Data Store를 관리되는 데이터베이스로 구성해야 합니다. Portal for ArcGIS 관리자에게 문의하세요.",
+      "disabledPortal": "이 기능을 사용하려면 포털에 호스팅 서버가 있어야 합니다. Portal for ArcGiS 관리자에게 문의하세요.",
       "header1": "그림을 공개적으로 공유해야 합니다.",
       "header2": "가져오기는 처음 %NB1%개의 %MEDIA%(으)로 제한됩니다.",
       "emptyDataset": "오류입니다. 그림이 없습니다.",

@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Este navegador no es compatible con la generación de vistas en miniatura automática a partir de las imágenes que subas a tu ruta de mapa. Puedes crear una ruta de mapa con este navegador, pero tendrás que proporcionar una imagen en miniatura diferente para cada una de las imágenes que subas.",
       "oldBrowserExplain2": "Para mejorar tu experiencia, <a href='http://browsehappy.com/' target='_blank'>actualiza tu explorador</a> o <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>activa Google Chrome Frame para Internet Explorer</a>.",
       "oldBrowserExplain3": "El builder de ruta de mapa no funciona con Internet Explorer 10 ni Windows XP.",
-      "oldBrowserClose": "Cerrar"
+      "oldBrowserClose": "Cerrar",
+      "noViewerIE2": "Está intentando ver esta historia con un navegador antiguo no compatible. Es posible que algunas características no funcionen o que se produzcan otros problemas inesperados. Es recomendable actualizar a Internet Explorer 11 o usar otro navegador como Chrome.",
+      "noViewerIE3": "A finales de 2017, esta historia no se podrá cargar en este navegador. Cuando eso ocurra, deberá usar un navegador compatible para ver la historia.",
+      "attention": "Atención"
     },
     "mobileHTML": {
       "showIntro": "MOSTRAR TÍTULO",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Selecciona este diseño",
       "settingsLayoutNote": "Ten en cuenta que en los puntos que usan vídeos, el letrero siempre se situará debajo del vídeo, incluso si esta opción está desactivada.",
       "settingsLayoutLocBtn": "Mostrar un botón de localización",
-      "settingsLayoutLocBtnHelp": "Esa funcionalidad se admite en la mayoría de los dispositivos móviles y navegadores de escritorio (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Es compatible con la mayoría de navegadores. Solo aparece cuando el acceso al story map se realiza mediante HTTPS. No aparece si la historia está integrada.",
       "settingsColorExplain": "Cambia el aspecto eligiendo un tema predefinido, o crea uno propio.",
       "settingsLabelColor": "Colores del encabezado, contenido y pie",
       "settingsLogoExplain": "Personaliza el logotipo del encabezado (el valor máximo es 250 x 50px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "imágenes",
       "videos": "vídeos",
       "disabled": "El administrador ha deshabilitado esta entidad",
-      "disabledPortal": "Esta entidad requiere que el portal tenga configurado un ArcGIS Data Store como base de datos gestionada. Contacta con tu administrador de Portal for ArcGIS.",
+      "disabledPortal": "Esta entidad requiere que el portal tenga un servidor host. Póngase en contacto con el administrador de Portal for ArcGIS.",
       "header1": "Tus imágenes deben compartirse públicamente.",
       "header2": "La importación se limitará a los primeros %NB1% %MEDIA%.",
       "emptyDataset": "Error, no se han encontrado imágenes",

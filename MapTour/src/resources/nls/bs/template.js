@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Ovaj preglednik ne podržava automatsko stvaranje sličice od slika koje prenesete u svoj obilazak po karti. Možete stvoriti obilazak po karti s pomoću ovog preglednika, no morat ćete napraviti zasebnu sličicu za svaku sliku koju prenesete.",
       "oldBrowserExplain2": "Da biste olakšali svoj rad, <a href='http://browsehappy.com/' target='_blank'>nadogradite preglednik</a> ili <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>aktivirajte Google Chrome Frame za Internet Explorer</a>.",
       "oldBrowserExplain3": "Sastavljač Map Tour ne radi s preglednikom Internet Explorer 10 na Windows XP.",
-      "oldBrowserClose": "Zatvori"
+      "oldBrowserClose": "Zatvori",
+      "noViewerIE2": "Pokušavate prikazati ovu priču preko starijeg, nepodržanog preglednika. Možda neki geoobjekti ne rade ili je došlo do drugih neočekivanih problema. Predlažemo nadogradnju u Internet Explorer 11 ili korištenje drugog preglednika, primjerice Chromea.",
+      "noViewerIE3": "Krajem 2017. ova se priča više neće moći učitati u ovom pregledniku. Tada ćete morati koristiti podržani preglednik za prikaz ove priče.",
+      "attention": "Pozor!"
     },
     "mobileHTML": {
       "showIntro": "PRIKAŽI NASLOV",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Odaberi ovaj izgled",
       "settingsLayoutNote": "Imajte na umu da na točkama koje imaju videozapis, plakat će se uvijek prikazivati ispod videozapisa čak i ako ta opcija nije označena.",
       "settingsLayoutLocBtn": "Prikaži gumb „Lociraj”",
-      "settingsLayoutLocBtnHelp": "Ta je funkcionalnost podržana na većini web-preglednika mobilnih uređaja i stolnih računala(Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Podržano na većini preglednika. Pojavljuje se samo kada se karti s pričom pristupa preko HTTPS-a. Ne pojavljuje se ako je priča umetnuta.",
       "settingsColorExplain": "Promijenite izgled tako da izaberete prethodno utvrđenu temu ili stvorite svoju.",
       "settingsLabelColor": "Boje zaglavlja, sadržaja ili podnožja",
       "settingsLogoExplain": "Prilagodite logotip u zaglavlju (maksimalno 250 x 50 px).",

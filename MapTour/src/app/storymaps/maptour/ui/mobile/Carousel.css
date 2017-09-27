@@ -14,11 +14,11 @@
 	cursor: pointer;
 }
 
-@media screen and (max-width: 767px) {
+/*@media screen and (max-width: 767px) {
 	#footerMobile .carousel .tpPreview {
 		cursor:default;
 	}
-}
+}*/
 
 #footerMobile .carousel > div > div {
 	overflow: hidden;

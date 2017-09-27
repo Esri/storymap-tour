@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "此浏览器不支持根据上传到地图浏览的图像自动生成缩略图。可使用此浏览器创建一个地图浏览，但需要为每个上传的图像分别提供缩略图。",
       "oldBrowserExplain2": "要改善体验，请<a href='http://browsehappy.com/' target='_blank'>升级浏览器</a>或<a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>激活用于 Internet Explore 的 Google Chrome 浏览器内嵌框架</a>。",
       "oldBrowserExplain3": "地图浏览构建器不适用于 Windows XP 上的 Internet Explorer 10。",
-      "oldBrowserClose": "关闭"
+      "oldBrowserClose": "关闭",
+      "noViewerIE2": "您尝试查看故事所使用的浏览器版本过旧，不受支持。某些要素可能无法正常运行或出现非预期问题。我们建议您将浏览器更新至 Internet Explorer 11 或使用 Chrome 等其他浏览器。",
+      "noViewerIE3": "2017 年底，将无法在此浏览器中加载此故事。届时，您必须使用受支持的浏览器查看此故事。",
+      "attention": "注意!"
     },
     "mobileHTML": {
       "showIntro": "显示标题",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "选择此布局",
       "settingsLayoutNote": "请注意，在使用视频的位置，即使未选中该选项，标语牌也始终位于视频下方。",
       "settingsLayoutLocBtn": "显示“定位”按钮",
-      "settingsLayoutLocBtnHelp": "大多数移动设备和桌面浏览器(Internet Explorer 9)均支持该功能。",
+      "settingsLayoutLocBtnHelp": "支持大多数浏览器。仅在通过 HTTPS 访问故事地图时显示。如果故事被镶嵌，则不显示。",
       "settingsColorExplain": "通过选择预定义主题或创建自定义主题来更改外观。",
       "settingsLabelColor": "页眉、内容和页脚颜色",
       "settingsLogoExplain": "自定义页眉徽标(不超过 250 x 50px)。",
@@ -290,7 +293,7 @@ define({
       "pictures": "图片",
       "videos": "视频",
       "disabled": "此功能已被管理员禁用",
-      "disabledPortal": "此要素要求 Portal 将一个 ArcGIS Data Store 配置为托管数据库。请联系您的 Portal for ArcGIS 管理员。",
+      "disabledPortal": "此功能需要门户拥有托管服务器。请联系您的 Portal for ArcGIS 管理员。",
       "header1": "您的图片必须公开共享。",
       "header2": "导入将限制为前 %NB1% 个 %MEDIA%。",
       "emptyDataset": "发生错误，未找到图片",

@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "لا يدعم هذا المستعرض إنشاء الصورة المصغرة تلقائيًا من الصور التي قمت بتحميلها على جولة الخريطة. يمكن إنشاء جولة الخريطة باستخدام هذا المستعرض، ولكن يجب توفير صورة مصغرة منفصلة لكل من الصور التي قمت بتحميلها.",
       "oldBrowserExplain2": "لتحسين القدرات، <a href='http://browsehappy.com/' target='_blank'>upgrade your browser</a> or <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>قم بتنشيط إطار Google Chrome من أجل Internet Explorer</a>.",
       "oldBrowserExplain3": "منشىء Map Tour لا يعمل مع Internet Explorer 10 على نظام التشغيل Windows XP.",
-      "oldBrowserClose": "إغلاق"
+      "oldBrowserClose": "إغلاق",
+      "noViewerIE2": "أنت تحاول عرض هذه القصة باستخدام مستعرض قديم غير مدعوم، وقد توجد مزايا لا تعمل أو مشكلات أخرى غير متوقعة. إننا نقترح الترقية إلى Internet Explorer 11 أو استخدام مستعرض آخر مثل Chrome.",
+      "noViewerIE3": "في أواخر 2017، لن يعد يتم تحويل هذه القصة بعد الآن في هذا المستعرض. وفي ذلك الوقت، يجب استخدام مستعرض مدعوم لعرض هذه القصة.",
+      "attention": "انتبه!"
     },
     "mobileHTML": {
       "showIntro": "إظهار العنوان",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "حدد هذا المخطط",
       "settingsLayoutNote": "لاحظ من على النقاط باستخدام مقاطع الفيديو،توضع دائمًا اللافتة أسفل الفيديو حتى إذا لم يكن هذا الخيار محددًا.",
       "settingsLayoutLocBtn": "اعرض زر \"تحديد موقع\"",
-      "settingsLayoutLocBtnHelp": "يتم دعم الوظائف على معظم أجهزة الجوال ومستعرضات سطح المكتب (Internet Explorer 9)",
+      "settingsLayoutLocBtnHelp": "مدعومة في معظم المستعرضات، ولا يظهر إلا عندما يتم الوصول إلى خريطة القصة عبر HTTPS، كما لا يظهر إلا إذا كانت القصة مُضمَّنة.",
       "settingsColorExplain": "تغيير الظهور عن طريق اختيار نسق مُعرف من قبل أو إنشاء الخاص بك.",
       "settingsLabelColor": "ألوان الرأس والمحتوى والذيل",
       "settingsLogoExplain": "تخصيص شعار (الحد الأقصى 250 x 50 px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "صور",
       "videos": "فيديوهات",
       "disabled": "لقد تم تعطيل هذا المعلم بواسطة المدير",
-      "disabledPortal": "تتطلب هذه الميزة البوابة الإلكترونية بتكوين ArcGIS Data Store لتكون قاعدة البيانات المُدارة. يرجى الاتصال بمسئول Portal for ArcGIS.",
+      "disabledPortal": "تتطلب هذه الميزة وجود خادم استضافة في البوابة الإلكترونية. يرجى الاتصال بمسئول Portal for ArcGIS.",
       "header1": "تتعين مشاركة الصور بشكل عام.",
       "header2": "سيتم تحديد الاستيراد لـ %NB1% %MEDIA% الأول.",
       "emptyDataset": "خطأ، لم يتم العثور على صور",

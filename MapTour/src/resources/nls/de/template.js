@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Dieser Browser unterstützt keine automatische Erstellung von Miniaturansichten der Bilder, die Sie in Ihre Karten-Tour hochladen. Sie können zwar mit diesem Browser eine Map-Tour erstellen, aber Sie müssen für jedes hochgeladene Bild eine eigene Miniaturansicht bereitstellen.",
       "oldBrowserExplain2": "Um die Performance zu verbessern, führen Sie ein <a href='http://browsehappy.com/' target='_blank'>Browser-Upgrade</a> durch, oder <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>aktivieren Sie Google Chrome Frame für Internet Explorer</a>.",
       "oldBrowserExplain3": "Der Map Tour-Builder kann nicht mit Internet Explorer 10 unter Windows XP verwendet werden.",
-      "oldBrowserClose": "Schließen"
+      "oldBrowserClose": "Schließen",
+      "noViewerIE2": "Sie versuchen, diese Story mit einem älteren, nicht unterstützten Browser anzuzeigen. Einige Features funktionieren möglicherweise nicht, oder es können andere nicht erwartete Probleme auftreten. Wir empfehlen, ein Upgrade auf Internet Explorer 11 durchzuführen oder einen anderen Browser wie Chrome zu verwenden.",
+      "noViewerIE3": "Ende 2017 kann diese Story nicht mehr in diesem Browser geladen werden. Zu diesem Zeitpunkt müssen Sie einen anderen unterstützten Browser zum Darstellen dieser Story nutzen.",
+      "attention": "Achtung!"
     },
     "mobileHTML": {
       "showIntro": "TITEL EINBLENDEN",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Dieses Layout auswählen",
       "settingsLayoutNote": "Beachten Sie, dass für Punkte, die Videos verwenden, das Werbeplakat immer unter dem Video angezeigt wird, selbst wenn die Option deaktiviert ist.",
       "settingsLayoutLocBtn": "\"Suchen\"-Schaltfläche anzeigen",
-      "settingsLayoutLocBtnHelp": "Diese Funktion wird von den meisten Browsern für mobile Geräte und Desktops (Internet Explorer 9) unterstützt.",
+      "settingsLayoutLocBtnHelp": "Wird auf den meisten Browsern unterstützt. Wird nur angezeigt, wenn auf die Story-Map über HTTPS zugegriffen wird. Wird für eine eingebettete Story nicht angezeigt.",
       "settingsColorExplain": "Ändern Sie das Aussehen durch Auswahl eines vordefinierten Themas, oder erstellen Sie ein eigenes.",
       "settingsLabelColor": "Farben für Kopfzeilen, Inhalt und Fußzeilen",
       "settingsLogoExplain": "Kopfzeilen-Logo anpassen (max. 250 x 50 Pixel).",
@@ -290,7 +293,7 @@ define({
       "pictures": "Bilder",
       "videos": "Videos",
       "disabled": "Diese Funktion wurde vom Administrator deaktiviert",
-      "disabledPortal": "Für dieses Feature muss im Portal ein ArcGIS Data Store als verwaltete Datenbank konfiguriert sein. Wenden Sie sich an den Portal for ArcGIS-Administrator.",
+      "disabledPortal": "Für dieses Feature muss das Portal über einen Hosting-Server verfügen. Wenden Sie sich an Ihren Portal for ArcGIS-Administrator.",
       "header1": "Ihre Bilder müssen öffentlich freigegeben werden.",
       "header2": "Der Import wird auf die ersten %NB1% %MEDIA% begrenzt.",
       "emptyDataset": "Fehler, keine Bilder gefunden",

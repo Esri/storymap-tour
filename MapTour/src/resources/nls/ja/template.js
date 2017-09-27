@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "このブラウザは、マップ ツアーにアップロードした画像からサムネイルを自動生成する機能をサポートしていません。このブラウザを使用してマップ ツアーを作成できますが、アップロードした画像に対してサムネイル画像を個別に指定する必要があります。",
       "oldBrowserExplain2": "操作性を改善するには、<a href='http://browsehappy.com/' target='_blank'>ブラウザをアップグレードするか</a>、<a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>Internet Explorer 向けの Google Chrome Frame を有効化してください</a>。",
       "oldBrowserExplain3": "マップ ツアー ビルダは、Windows XP の Internet Explorer 10 では動作しません。",
-      "oldBrowserClose": "閉じる"
+      "oldBrowserClose": "閉じる",
+      "noViewerIE2": "このストーリーをサポートされていない古いブラウザーで表示しようとしています。動作しない機能やその他の予期しない問題がある可能性があります。Internet Explorer 11 にアップグレードするか、Chrome などの別のブラウザーを使用することをお勧めします。",
+      "noViewerIE3": "2017 年後半には、このストーリーはこのブラウザーで読み込めなくなります。その時点で、サポートされているブラウザーを使用してこのストーリーを表示する必要があります。",
+      "attention": "注意"
     },
     "mobileHTML": {
       "showIntro": "タイトルの表示",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "このレイアウトを選択",
       "settingsLayoutNote": "ビデオを使用するポイントでは、プラカードは、そのオプションがオフの場合でも常に、ビデオの下に配置されるので、注意してください。",
       "settingsLayoutLocBtn": "[検索] ボタンを表示します",
-      "settingsLayoutLocBtnHelp": "その機能は、ほとんどのモバイル デバイスとデスクトップ ブラウザ (Internet Explorer 9) でサポートされています。",
+      "settingsLayoutLocBtnHelp": "ほとんどのブラウザーでサポートされています。HTTPS を介してストーリー マップにアクセスした場合にのみ表示されます。ストーリーが埋め込まれている場合は表示されません。",
       "settingsColorExplain": "外観を変更するには、定義済みのテーマを選択するか、独自のテーマを作成します。",
       "settingsLabelColor": "ヘッダー、コンテンツおよびフッターの色",
       "settingsLogoExplain": "ヘッダー ロゴをカスタマイズします (最大 250 x 50 ピクセル)。",
@@ -290,7 +293,7 @@ define({
       "pictures": "写真",
       "videos": "ビデオ",
       "disabled": "この機能は、管理者によって無効にされています",
-      "disabledPortal": "ArcGIS Data Store を管理されたデータベースとして構成するために、この機能は Portal for ArcGIS を必要とします。Portal for ArcGIS 管理者に連絡してください。",
+      "disabledPortal": "この機能を使用するには、ポータルにホスティング サーバーが存在する必要があります。Portal for ArcGIS 管理者に問い合わせてください。",
       "header1": "写真はパブリックに共有する必要があります。",
       "header2": "インポートは最初の %NB1% %MEDIA% に制限されます。",
       "emptyDataset": "写真が見つかりませんでした",

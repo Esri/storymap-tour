@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Tämä selain ei tue automaattista pikkukuvien luontia karttakierrokseesi lataamistasi kuvista. Voit luoda karttakierroksen käyttämällä tätä selainta, mutta sinun on järjestettävä erillinen pikkukuva kullekin ladattavista kuvista.",
       "oldBrowserExplain2": "Paranna käyttäjäkokemustasi <a href='http://browsehappy.com/' target='_blank'>päivittämällä selaimesi</a> tai <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>aktivoimalla Google Chrome Frame Internet Exploreria varten</a>.",
       "oldBrowserExplain3": "Map Tour -mallipohjan rakentaja ei toimi Windows XP:n Internet Explorer 10:ssä.",
-      "oldBrowserClose": "Sulje"
+      "oldBrowserClose": "Sulje",
+      "noViewerIE2": "Yrität tarkastella tätä tarinaa käyttämällä vanhempaa selainta, jota ei tueta. Siinä saattaa olla ominaisuuksia, jotka eivät toimi, tai muita odottamattomia ongelmia. Suosittelemme, että päivität Internet Explorer -selaimen versioon 11 tai käytät toista selainta, kuten Chromea.",
+      "noViewerIE3": "Vuoden 2017 loppupuolella tämä tarina ei enää lataudu tässä selaimessa. Käytä silloin tuettua selainta tämän tarinan katseluun.",
+      "attention": "Huomio!"
     },
     "mobileHTML": {
       "showIntro": "NÄYTÄ OTSIKKO",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Valitse tämä asettelu",
       "settingsLayoutNote": "Huomaa, että videoita käyttävissä pisteissä kyltti sijoitetaan aina videon alapuolelle, vaikka tätä asetusta ei olisi valittu.",
       "settingsLayoutLocBtn": "Näytä Paikanna-painike",
-      "settingsLayoutLocBtnHelp": "Kyseinen toiminto on tuettu useimmissa mobiililaitteissa ja tietokoneiden selaimissa (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Useimmat selaimet tukevat tätä. Näkyy vain, kun tarinakarttaa käytetään HTTPS-yhteyden kautta. Ei näy, jos tarina on upotettu.",
       "settingsColorExplain": "Muuta ulkoasua valitsemalla ennalta määritetty teema tai luo omasi.",
       "settingsLabelColor": "Ylätunnisteen, sisällön ja alatunnisteen värit",
       "settingsLogoExplain": "Mukauta ylätunnisteen logo (enimmäiskoko on 250 x 50 pikseliä).",
@@ -290,7 +293,7 @@ define({
       "pictures": "kuvat",
       "videos": "videot",
       "disabled": "Pääkäyttäjä on poistanut tämän toiminnon käytöstä",
-      "disabledPortal": "Tämä ominaisuus edellyttää, että ArcGIS Data Store on määritetty portaalissa hallinnoiduksi tietokannaksi. Ota yhteys Portal for ArcGIS -pääkäyttäjääsi.",
+      "disabledPortal": "Tämä ominaisuus edellyttää, että portaalissa on isännöintipalvelu. Ota yhteys Portal for ArcGIS -pääkäyttäjääsi.",
       "header1": "Kuvasi on jaettava julkisesti.",
       "header2": "Tuonti rajoitetaan ensimmäisiin %NB1% %MEDIA% -kohteeseen.",
       "emptyDataset": "Virhe. Kuvia ei löydy",

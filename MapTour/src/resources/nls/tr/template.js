@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Bu tarayıcı, harita turunuza yüklediğiniz görüntülerden otomatik küçük resim oluşturmayı desteklemiyor. Bu tarayıcıyı kullanarak bir harita turu oluşturabilirsiniz, ancak yüklediğiniz her görüntü için ayrı bir küçük resim görüntüsü sağlamanız gerekir.",
       "oldBrowserExplain2": "Deneyiminizi iyileştirmek için, <a href='http://browsehappy.com/' target='_blank'>tarayıcınızı yükseltin</a> veya <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>Google Chrome Frame for Internet Explorer'ı etkinleştirin</a>.",
       "oldBrowserExplain3": "Harita Turu derleyicisi Windows XP'de Internet Explorer 10 ile çalışmaz.",
-      "oldBrowserClose": "Kapat"
+      "oldBrowserClose": "Kapat",
+      "noViewerIE2": "Bu hikayeyi daha eski ve desteklenmeyen bir tarayıcı kullanarak görüntülemeye çalışıyorsunuz. Çalışmayan özellikler olabilir veya başka beklenmedik sorunlarla karşılaşılabilir. Internet Explorer 11 sürümüne yükseltme yapmanız veya Chrome gibi başka bir tarayıcı kullanmanız önerilir.",
+      "noViewerIE3": "2017’nin sonuna doğru bu hikaye artık bu tarayıcıda yüklenemeyecek. Hikayeyi o zaman görüntülemek için desteklenen bir tarayıcı kullanmanız gerekecek.",
+      "attention": "Dikkat!"
     },
     "mobileHTML": {
       "showIntro": "BAŞLIĞI GÖSTER",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Bu düzeni seç",
       "settingsLayoutNote": "Video kullanan noktalarda, seçenek işaretlenmese bile döviz her zaman videonun altına yerleştirilir.",
       "settingsLayoutLocBtn": "'Bul' düğmesi ekle",
-      "settingsLayoutLocBtnHelp": "Bu işlevsellik çoğu mobil cihazda ve masaüstü tarayıcıda (Internet Explorer 9) desteklenir.",
+      "settingsLayoutLocBtnHelp": "Çoğu tarayıcıda desteklenir. Yalnızca hikaye haritasına HTTPS üzerinden erişim sağlandığında görünür. Hikaye gömülü ise görünmez.",
       "settingsColorExplain": "Önceden tanımlı bir tema seçerek veya kendi temanızı oluşturarak görünümü değiştirin.",
       "settingsLabelColor": "Üstbilgi, içerik ve altbilgi renkleri",
       "settingsLogoExplain": "Üstbilgi logosunu özelleştirin. (Maksimum 250 x 50 px'tir.).",
@@ -290,7 +293,7 @@ define({
       "pictures": "resimler",
       "videos": "videolar",
       "disabled": "Bu özellik Yönetici tarafından devre dışı bırakıldı",
-      "disabledPortal": "Bu detay, ArcGIS Data Store uygulamasının Portalda yönetilen Veri Tabanı olarak yapılandırılmış olmasını gerektirir. Portal for ArcGIS Yöneticinize başvurun.",
+      "disabledPortal": "Bu detay, portalın bir barındırma sunucusuna sahip olmasını gerektirir. Portal for ArcGIS Yöneticinize başvurun.",
       "header1": "Resimlerinizin herkes ile paylaşılması gerekiyor.",
       "header2": "Bu içe aktarma ilk %NB1% %MEDIA% ile sınırlanacak.",
       "emptyDataset": "Hata, hiçbir resim bulunamadı",

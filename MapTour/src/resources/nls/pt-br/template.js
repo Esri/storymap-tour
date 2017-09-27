@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Este navegador não suporta geração automática de miniaturas a partir de imagens que você carregou em sua apresentação do mapa. Você pode criar uma  apresentação do mapa utilizando este navegador, mas você terá que fornecer uma imagem de miniatura separada para cada uma das imagens que você carregar.",
       "oldBrowserExplain2": "Para melhorar sua experiência, <a href='http://browsehappy.com/' target='_blank'>atualize seu navegador</a> ou <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>ative o Google Chrome Frame para Internet Explorer</a>.",
       "oldBrowserExplain3": "O construtor de Apresentação do Mapa não funciona com Internet Explorer 10 no Windows XP.",
-      "oldBrowserClose": "Fechar"
+      "oldBrowserClose": "Fechar",
+      "noViewerIE2": "Você está tentando visualizar esta história utilizando um navegador mais antigo, sem suporte. Pode haver feições que não funcioan ou outros problemas inesperados. Nós sugerimos que você atualize para Internet Explorer 11 ou utilize outro navegador, como Chrome.",
+      "noViewerIE3": "No final de 2017, esta história não carregará neste navegador. Até lá você deve utilizar um navegador suportado para visualizar esta história.",
+      "attention": "Atenção!"
     },
     "mobileHTML": {
       "showIntro": "MOSTRAR TÍTULO",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Selecionar este layout",
       "settingsLayoutNote": "Observe que em pontos utilizando vídeos, o letreiro será sempre posicionado abaixo do vídeo, mesmo que esta opção esteja desmarcada.",
       "settingsLayoutLocBtn": "Exibe um botão de localização",
-      "settingsLayoutLocBtnHelp": "Esta funcionalidade é suportada na maioria dos dispositivos móveis e navegadores desktop (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Suportado na maioria dos navegadores. Somente aparece quando o mapa histórico é acessado através de HTTPS. Não aparece se a história estiver embutida.",
       "settingsColorExplain": "Altere a aparência escolhendo um tema pré-definido ou crie seu próprio.",
       "settingsLabelColor": "Cabeçalho, conteúdo e cores do rodapé",
       "settingsLogoExplain": "Personalize o logo do cabeçalho (máximo de 250 x 50px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "figuras",
       "videos": "vídeos",
       "disabled": "Este recurso foi desabilitado pelo Administrador",
-      "disabledPortal": "Este recurso exige que o Portal tenha ArcGIS Data Store configurado como o Banco de Dados gerenciado. Entre em contato com seu Administrador do Portal for ArcGIS.",
+      "disabledPortal": "Este recurso exige que o portal tenha um servidor de hospedagem. Entre em contato com seu Administrador do Portal for ArcGIS.",
       "header1": "Suas figuras devem ser compartilhadas publicamente.",
       "header2": "A importação será limitada à primeira %NB1% %MEDIA%.",
       "emptyDataset": "Erro, nenhuma figura encontrada",

@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Trình duyệt này không hỗ trợ tạo hình thu nhỏ tự động từ những hình ảnh bạn tải vào map tour của bạn. Bạn có thể tạo ra một map tour bằng trình duyệt này, nhưng bạn sẽ phải cung cấp một hình ảnh thu nhỏ riêng biệt cho từng hình ảnh bạn tải lên.",
       "oldBrowserExplain2": "Để nâng cao trải nghiệm của bạn, <a href='http://browsehappy.com/' target='_blank'>hãy nâng cấp trình duyệt của bạn</a> hoặc <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>kích hoạt Google Chrome Frame cho Internet Explorer</a>.",
       "oldBrowserExplain3": "Bộ dựng Map Tour không làm việc với Internet Explorer 10 trên Windows XP.",
-      "oldBrowserClose": "Đóng"
+      "oldBrowserClose": "Đóng",
+      "noViewerIE2": "Bạn đang cố gắng xem câu chuyện này bằng một trình duyệt cũ, không được hỗ trợ. Có thể có các tính năng không hoạt động hoặc các vấn đề không mong đợi khác. Chúng tôi đề nghị bạn nâng cấp lên Internet Explorer 11 hoặc sử dụng một trình duyệt khác, chẳng hạn như Chrome.",
+      "noViewerIE3": "Vào cuối năm 2017, câu chuyện này sẽ không còn được tải trên trình duyệt này. Lúc đó, bạn phải sử dụng một trình duyệt được hỗ trợ để xem câu chuyện này.",
+      "attention": "Chú ý!"
     },
     "mobileHTML": {
       "showIntro": "HIỆN TIÊU ĐỀ",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Chọn bố cục này",
       "settingsLayoutNote": "Lưu ý rằng trên điểm sử dụng video, áp phích sẽ luôn luôn được đặt dưới video ngay cả khi tùy chọn đó được bỏ chọn.",
       "settingsLayoutLocBtn": "Hiển thị nút 'Định vị'",
-      "settingsLayoutLocBtnHelp": "Chức năng được hỗ trợ trên hầu hết các trình duyệt máy tính để bàn và thiết bị di động (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Được hỗ trợ trên hầu hết các trình duyệt. Chỉ xuất hiện khi story map được truy cập thông qua HTTPS. Không xuất hiện nếu câu chuyện đã được nhúng.",
       "settingsColorExplain": "Thay đổi giao diện bằng cách chọn một chủ đề được xác định trước hoặc tạo giao diện của riêng bạn.",
       "settingsLabelColor": "Màu đầu mục, nội dung và chân trang",
       "settingsLogoExplain": "Tùy chỉnh logo đầu mục (tối đa là 250 x 50px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "ảnh",
       "videos": "video",
       "disabled": "Người quản trị đã vô hiệu hóa tính năng này",
-      "disabledPortal": "Tính năng này yêu cầu Portal phải có ArcGIS Data Store được cấu hình làm Cơ sở dữ liệu được quản lý. Vui lòng liên hệ Người quản trị Portal for ArcGIS của bạn.",
+      "disabledPortal": "Đối tượng này yêu cầu cổng thông tin phải có máy chủ lưu trữ. Vui lòng liên hệ với người quản trị Portal for ArcGIS của bạn.",
       "header1": "Ảnh của bạn phải được chia sẻ công khai.",
       "header2": "Việc nhập sẽ bị giới hạn đối với %NB1% %MEDIA% đầu tiên.",
       "emptyDataset": "Lỗi, không tìm thấy ảnh",

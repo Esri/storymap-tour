@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Este navegador não suporta criação automática de miniaturas a partir de imagens carregadas na apresentação de mapa. Pode criar uma apresentação de mapa utilizando este navegador, mas terá de disponibilizar uma miniatura separada para cada uma das imagens carregadas.",
       "oldBrowserExplain2": "Para melhorar a sua experiência, <a href='http://browsehappy.com/' target='_blank'>atualize o navegador</a> ou <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>ative o Google Chrome Frame para Internet Explorer</a>.",
       "oldBrowserExplain3": "O builder de Apresentação de Mapa não funciona com Internet Explorer 10 em Windows XP.",
-      "oldBrowserClose": "Fechar"
+      "oldBrowserClose": "Fechar",
+      "noViewerIE2": "Está a tentar visualizar esta história através de um navegador mais antigo, que não é suportado. Alguns elementos poderão não funcionar, ou poderão surgir outros problemas inesperados. Sugerimos que atualize para o Internet Explorer 11 ou que utilize outro navegador, por exemplo, o Chrome.",
+      "noViewerIE3": "No final de 2017, esta história já não poderá ser carregada neste navegador. Nessa altura, terá de utilizar um navegador suportado para visualizar esta história.",
+      "attention": "Atenção!"
     },
     "mobileHTML": {
       "showIntro": "MOSTRAR TÍTULO",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Selecionar este layout",
       "settingsLayoutNote": "Atenção que em pontos que utilizam vídeo, o placard será sempre colocado por baixo do vídeo, mesmo que a opção esteja desativada.",
       "settingsLayoutLocBtn": "Exibir um botão 'Localizar'",
-      "settingsLayoutLocBtnHelp": "Esta funcionalidade é compatível mais com dispositivos móveis e navegadores (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Suportado na maioria dos navegadores. Apenas visível quando o acesso ao story map Only é efetuado através de HTTPS. Não é visível caso a história se encontre incorporada.",
       "settingsColorExplain": "Mude o aspeto selecionando um tema pré-definido ou crie um tema à sua escolha.",
       "settingsLabelColor": "Cores do cabeçalho, conteúdo e rodapé",
       "settingsLogoExplain": "Personalize o logótipo do cabeçalho (o máximo é 250 x 50 px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "imagens",
       "videos": "vídeos",
       "disabled": "Esta funcionalidade foi desativada pelo Admnistrador",
-      "disabledPortal": "Esta funcionalidade requer que o Portal tenha um Armazenamento de Dados ArcGIS configurado como Base de Dados gerida. Contacte o seu administrador Portal for ArcGIS.",
+      "disabledPortal": "Esta funcionalidade requer que o portal possua um servidor de alojamento. Por favor, contacte o seu Administrador Portal for ArcGIS.",
       "header1": "As suas imagens têm que estar partilhadas publicamente.",
       "header2": "A importação será limitada à primeira %NB1% %NB2%.",
       "emptyDataset": "Erro, não foram encontradas imagens",

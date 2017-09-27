@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Ši naršyklė nepalaiko automatinio miniatiūrų iš į kelionės žemėlapyje įkeltų paveikslėlių kūrimo. Galite kurti kelionę žemėlapyje naudojant šią naršyklę, tačiau turėsite kiekvienam įkeltam paveikslėliui nurodyti atskirą miniatiūros paveikslėlį.",
       "oldBrowserExplain2": "Naršymo pagerinimui, <a href='http://browsehappy.com/' target='_blank'>atnaujinkite savo naršyklę</a> arba <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>aktyvinkite Google Chrome Frame skirtą Internet Explorer</a>.",
       "oldBrowserExplain3": "Kelionės žemėlapyje kūrėjas neveikia naudojant Internet Explorer 10 su Windows XP.",
-      "oldBrowserClose": "Užverti"
+      "oldBrowserClose": "Užverti",
+      "noViewerIE2": "Jūs bandote peržiūrėti šį pasakojimą naudodami senesnę, nepalaikomą naršyklę. Kai kurie elementai gali neveikti ar įvykti kitokių nenumatytų problemų. Siūlome atnaujinti naršyklės versiją į Internet Explorer 11 arba naudoti kitą naršyklę, pavyzdžiui, Chrome.",
+      "noViewerIE3": "2017 m. pabaigoje šio pasakojimo nebebus galima įkelti naudojant šią naršyklę. Tuo metu, norėdami peržiūrėti šį pasakojimą, turėsite naudoti palaikomą naršyklę.",
+      "attention": "Dėmesio!"
     },
     "mobileHTML": {
       "showIntro": "RODYTI PAVADINIMĄ",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Pažymėkite šį maketą",
       "settingsLayoutNote": "Turėkite omenyje, kad taškuose su vaizdo įrašais, plakatai visuomet bus dedami po jais, net jei šis pasirinkimas nepažymėtas.",
       "settingsLayoutLocBtn": "Atvaizduoti 'Rasti' mygtuką",
-      "settingsLayoutLocBtnHelp": "Šis funkcionalumas palaikomas daugelyje mobilių prietaisų ir stacionarių kompiuterių naršyklėse (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Šią funkciją palaiko daugelis naršyklių. Matoma, kai žemėlapio pasakojimas atidaromas naudojant HTTPS. Nematoma, jei pasakojimas yra įdėtasis.",
       "settingsColorExplain": "Keisti atvaizdavimą pasirenkant iš anksto paruoštą apipavidalinimą arba sukuriant savą.",
       "settingsLabelColor": "Antraštės, turinio ir poraštės spalvos",
       "settingsLogoExplain": "Pritaikyti antraštės logotipą (maksimalus dydis: 250 x 50px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "nuotraukos",
       "videos": "vaizdo įrašų medžiagą",
       "disabled": "Šią funkciją išjungė Administratorius",
-      "disabledPortal": "Šiai funkcijai būtina, kad Portal skirta ArcGIS duomenų talpykla būtų sukonfigūruota kaip valdoma duomenų bazė. Susisiekite su savo Portal for ArcGIS administratoriumi.",
+      "disabledPortal": "Šiam elementui reikia, kad portalas turėtų talpinimo serverį. Kreipkitės į savo ArcGIS portalo administratorių.",
       "header1": "Jūsų nuotraukos turi būti bendrinamos viešai.",
       "header2": "Importavimas bus apribotas iki %NB1% %MEDIA%.",
       "emptyDataset": "Klaida, paveikslų nerasta",

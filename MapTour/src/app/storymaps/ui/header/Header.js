@@ -1,13 +1,13 @@
 define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 		"storymaps/utils/Helper",
-		"dojo/has", 
+		"dojo/has",
 		"dojo/topic",
 		"esri/urlUtils"
-	], 
+	],
 	function(
 		InlineFieldEdit,
-		Helper, 
-		has, 
+		Helper,
+		has,
 		topic,
 		urlUtils
 	){
@@ -23,15 +23,15 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 		{
 			var _builderButtonHidden = false;
 			var _bitlyStartIndexStatus = '';
-			
+
 			this.init = function(hideDesktop, title, subtitle, bgColor, logoURL, logoTarget, displaySwitchBuilderButton, topLinkText, topLinkURL, social)
 			{
 				this.setColor(bgColor);
 				this.setLogoInfo(logoURL, logoTarget);
-				
+
 				if( hideDesktop )
 					$(selector).addClass('hideDesktop');
-	
+
 				// Mobile
 				$(selector + ' #headerMobile .title')
 					.html(title)
@@ -39,78 +39,78 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				$(selector + ' #headerMobile .subtitle')
 					.html(subtitle)
 					.find('a:not([target])').attr('target', '_blank');
-	
+
 				// Desktop builder
 				if( isInBuilderMode ) {
 					$(selector).addClass('isBuilder');
 					title =  "<div class='text_edit_label'>" + (title || i18n.viewer.headerJS.editMe) + "</div>";
 					title += "<div class='text_edit_icon' title='"+i18n.viewer.headerJS.templateTitle+"'></div>";
 					title += "<textarea rows='1' class='text_edit_input' type='text' spellcheck='true'></textarea>";
-	
+
 					subtitle =  "<span class='text_edit_label'>" + (subtitle || i18n.viewer.headerJS.editMe) + "</span>";
 					subtitle += "<div class='text_edit_icon' title='"+i18n.viewer.headerJS.templateSubtitle+"'></div>";
 					subtitle += "<textarea rows='2' class='text_edit_input' type='text' spellcheck='true'></textarea>";
 				}
-	
+
 				$(selector + ' #headerDesktop .title')
 					.html(title)
 					.find('a:not([target])').attr('target', '_blank');
 				$(selector + ' #headerDesktop .subtitle')
 					.html(subtitle)
 					.find('a:not([target])').attr('target', '_blank');
-	
+
 				// Desktop builder
 				if( isInBuilderMode )
 					new InlineFieldEdit(selector, editFieldsEnterEvent, editFieldsExitEvent);
-				
+
 				if( ! isInBuilderMode && ! subtitle ) {
 					$(selector + ' #headerDesktop .title').css("margin-top", 40);
 					$(selector + ' #headerDesktop .subtitle').css("height", 32).attr("tabindex", "-1");
 				}
-	
+
 				// Mobile init
 				$(window).scroll(this.hideMobileBanner);
 				$(selector + " #headerMobile .banner").fastClick(this.hideMobileBanner);
 				$(selector + " #openHeaderMobile").fastClick(showMobileHeader);
-	
+
 				// Navigation bar
 				$(".navBar span").fastClick(function(){
 					if( ! $(this).hasClass("current") )
 						location.hash = $(this).data("viewid");
 				});
-	
+
 				if ( displaySwitchBuilderButton ) {
 					$(selector + " .switchBuilder").fastClick(this.switchToBuilder);
 					$(selector + " .switchBuilder").show();
 				}
-	
+
 				showMobileHeader(true);
 				this.setTopRightLink(topLinkText, topLinkURL);
 				this.setSocial(social, true);
-				
+
 				$(selector).css("display", "block");
-				
+
 				app.requestBitly = requestBitly;
 			};
-			
+
 			this.resize = function(widthViewport)
 			{
 				var rightAreaWidth = Math.max($(selector + " #headerDesktop .headerLogoImg").outerWidth() + 50, $(selector + " #headerDesktop .rightArea").outerWidth() + 20);
 				$(selector + " #headerDesktop .textArea").width(widthViewport - rightAreaWidth - 15);
 			};
-	
+
 			this.hideMobileBanner = function(immediate)
 			{
 				$(selector + " #headerMobile .banner").slideUp(immediate === true ? 0 : 250);
 				$(selector + " #openHeaderMobile").css("top", "40px");
 				$(selector + " #headerMobile").removeClass("firstDisplay");
 			};
-			
+
 			this.mobileHeaderIsInFirstState = function()
 			{
 				return $(selector + " #headerMobile").hasClass("firstDisplay");
 			};
-	
+
 			this.setColor = function(bgColor)
 			{
 				$(selector).css("background-color", bgColor);
@@ -118,7 +118,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				$(selector + ' #headerMobile').css("background-color", bgColor);
 				$("#openHeaderMobile").css("background-color", bgColor);
 			};
-	
+
 			this.setLogoInfo = function(url, target)
 			{
 				if ( ! url || url == "NO_LOGO" ) {
@@ -132,78 +132,78 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 							.attr("href", target)
 							.attr("tabindex", "-1");
 					}
-					else 
+					else
 						$(selector + ' .logo img').closest("a").css("cursor", "default");
-					
+
 					$(selector + ' .logo img').show();
 				}
 			};
-			
+
 			this.setTopRightLink = function(text, link)
 			{
 				if( link )
 					$(selector + ' .social .msLink').html(text ? '<a href="' + link + '" target="_blank" tabindex="-1">' + text + '</a>' : '');
 				else if ( text )
 					$(selector + ' .social .msLink').html('<span>' + text + '</a>');
-				else 
+				else
 					$(selector + ' .social .msLink').html('');
 			};
-			
+
 			this.setTitleAndSubtitle = function(title, subtitle)
 			{
 				$(selector + ' #headerMobile .title').html(title);
 				$(selector + ' #headerMobile .subtitle').html(subtitle);
-				
+
 				var defaultText = isInBuilderMode ? i18n.viewer.headerJS.editMe : '';
-				
+
 				$(selector + ' #headerDesktop .title' + (isInBuilderMode ? ' .text_edit_label' : '')).html(title || defaultText);
 				$(selector + ' #headerDesktop .subtitle' + (isInBuilderMode ? ' .text_edit_label' : '')).html(subtitle || defaultText);
 			};
-			
+
 			this.setSocial = function(social, initialCfg)
 			{
 				$(selector + " .share_facebook").toggle(
-					APPCFG.HEADER_SOCIAL 
-					&& APPCFG.HEADER_SOCIAL.facebook 
+					APPCFG.HEADER_SOCIAL
+					&& APPCFG.HEADER_SOCIAL.facebook
 					&& (!social || social.facebook)
 				);
-				
+
 				$(selector + " .share_twitter").toggle(
-					APPCFG.HEADER_SOCIAL 
-					&& APPCFG.HEADER_SOCIAL.twitter 
+					APPCFG.HEADER_SOCIAL
+					&& APPCFG.HEADER_SOCIAL.twitter
 					&& (!social || social.twitter)
 				);
-				
+
 				$(selector + " .share_bitly").toggle(
 					APPCFG.HEADER_SOCIAL && APPCFG.HEADER_SOCIAL.bitly
-					&& APPCFG.HEADER_SOCIAL.bitly.enable && APPCFG.HEADER_SOCIAL.bitly.login 
+					&& APPCFG.HEADER_SOCIAL.bitly.enable && APPCFG.HEADER_SOCIAL.bitly.login
 					&& APPCFG.HEADER_SOCIAL.bitly.key && (!social || social.bitly)
 				);
-					
+
 				if( initialCfg ) {
 					$(selector + " .share_facebook").unbind('click');
 					$(selector + " .share_twitter").unbind('click');
 					$(selector + " .share_bitly").unbind('click');
-					
+
 					$(selector + " .share_facebook").fastClick(shareFacebook);
 					$(selector + " .share_twitter").fastClick(shareTwitter);
 					$(selector + " .share_bitly").fastClick(shareBitly);
-					
+
 					// Bind keyboard enter to click
 					$(selector).find(".shareIcon").off('keypress').keypress(function (e) {
 						if(e.which == 13) {
 							$(this).click();
-							return false;  
+							return false;
 						}
 					});
-					
+
 				}
 			};
-			
+
 			this.enableAutoplay = function()
 			{
 				$(selector + " .shareIcon").attr("title", "");
-				
+
 				$(selector + " .shareIcon")
 					.toggleClass("disabled", true)
 					.popover({
@@ -213,58 +213,58 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 						html: true
 					});
 			};
-			
+
 			function shareFacebook()
 			{
 				var url = cleanURL(document.location.href);
-				
+
 				if ( $(this).hasClass("disabled") ) {
 					return;
 				}
-				
+
 				window.open(
-					'http://www.facebook.com/sharer/sharer.php?u=' + url, 
-					'', 
+					'http://www.facebook.com/sharer/sharer.php?u=' + url,
+					'',
 					'toolbar=0,status=0,width=626,height=436'
 				);
 			}
-			
+
 			function shareTwitter()
 			{
 				var options = 'text=' + encodeURIComponent($(selector + ' #headerMobile .title').text())
 								+ '&url=' + cleanURL(document.location.href)
 								+ '&related=EsriStoryMaps'
-								+ '&hashtags=storymap'; 
-				
+								+ '&hashtags=StoryMaps'; 
+
 				if ( $(this).hasClass("disabled") ) {
 					return;
 				}
-			
+
 				window.open(
-					'https://twitter.com/intent/tweet?' + options, 
-					'', 
+					'https://twitter.com/intent/tweet?' + options,
+					'',
 					'toolbar=0,status=0,width=626,height=436'
 				);
 			}
-			
+
 			function shareBitly()
 			{
 				if ( $(this).hasClass("disabled") ) {
 					return;
 				}
-				
+
 				$(selector).find(".share_bitly").popover({
 					trigger: 'manual',
 					placement: 'left',
 					html: true,
-					content: 
+					content:
 						'<div style="width:150px; min-height: 60px; text-align: center">'
 						+ ' <div id="bitlyLoad" style="position:absolute; top: 16px; left: 24px; width:130px; text-align:center;">'
 						+ '  <img src="resources/icons/loader-upload.gif" alt="Loading" />'
 						+ ' </div>'
 						+ ' <input id="bitlyInput" type="text" value="" style="display:none; width: 130px; margin-bottom: 0px;"/>'
 						+ ' <div style="font-size: 0.8em; margin-top: 2px; margin-bottom: -1px; position: absolute; top: 40px; width: 100%; left: 0px; text-align: center;">'
-						+ '  <input id="bitlyStartIndex" type="checkbox" style="width: 10px; vertical-align: -2px;" ' + _bitlyStartIndexStatus + '/> ' 
+						+ '  <input id="bitlyStartIndex" type="checkbox" style="width: 10px; vertical-align: -2px;" ' + _bitlyStartIndexStatus + '/> '
 						+    i18n.viewer.desktopHTML.bitlyStartIndex
 						+ ' </div>'
 						+ ' <div class="autoplay-container" style="font-size: 0.8em; margin-top: 2px; margin-bottom: -1px; position: absolute; top: 57px; width: 100%; left: 0px; text-align: center;">'
@@ -278,7 +278,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 						+ ' $("#bitlyStartIndex").change(app.requestBitly); '
 						+ '</script>'
 				}).popover('toggle');
-				
+
 				$(selector).find(".autoplay-help").popover({
 					content: "<div style='width: 150px'>"
 						+ i18n.viewer.desktopHTML.autoplayExplain1
@@ -287,53 +287,53 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					placement: 'bottom',
 					html: true
 				});
-				
+
 				$(selector).find('.autoplay-checkbox').change(requestBitly);
-				
+
 				requestBitly();
 			}
-			
+
 			function requestBitly()
 			{
 				var bitlyUrls = [
-					"http://api.bitly.com/v3/shorten?callback=?", 
+					"http://api.bitly.com/v3/shorten?callback=?",
 					"https://api-ssl.bitly.com/v3/shorten?callback=?"
 				];
 				var bitlyUrl = location.protocol == 'http:' ? bitlyUrls[0] : bitlyUrls[1];
-				
+
 				var urlParams = Helper.getUrlParams();
 				var currentIndex = app.data.getCurrentIndex() + 1;
 				var targetUrl = document.location.href;
-				
+
 				if( $("#bitlyStartIndex").is(":checked") ) {
 					if( urlParams.index )
 						targetUrl = targetUrl.replace(/index\=[0-9]+/, 'index=' + currentIndex);
 					else
-						targetUrl = document.location.origin 
+						targetUrl = document.location.origin
 									+ document.location.pathname
 									+ (!urlParams || $.isEmptyObject(urlParams) ? '?' : document.location.search + '&')
-									+ 'index=' + currentIndex 
+									+ 'index=' + currentIndex
 									+ document.location.hash;
 				}
-				
+
 				targetUrl = cleanURL(targetUrl, true);
-				
+
 				// Autoplay
 				if( $(".autoplay-checkbox").is(":checked") ) {
 					targetUrl += targetUrl.match(/\?/) ? '&' : '?';
 					targetUrl += 'autoplay';
 				}
-				
+
 				//else {
 					// remove index parameter if any
 					//targetUrl = targetUrl.replace(/index\=[0-9]+/, '');
-				//}	
-				
+				//}
+
 				_bitlyStartIndexStatus = $("#bitlyStartIndex").is(":checked") ? 'checked' : '';
-				
+
 				$.getJSON(
-					bitlyUrl, 
-					{ 
+					bitlyUrl,
+					{
 						"format": "json",
 						"apiKey": APPCFG.HEADER_SOCIAL.bitly.key,
 						"login": APPCFG.HEADER_SOCIAL.bitly.login,
@@ -343,7 +343,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					{
 						if( ! response || ! response || ! response.data.url )
 							return;
-						
+
 						$("#bitlyLoad").fadeOut();
 						$("#bitlyInput").fadeIn();
 						$("#bitlyInput").val(response.data.url);
@@ -351,27 +351,27 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					}
 				);
 			}
-			
+
 			function cleanURL(url, noEncoding)
 			{
 				var urlParams = urlUtils.urlToObject(url);
 				var newUrl = urlParams.path;
-				
+
 				if ( urlParams.query ) {
 					delete urlParams.query.edit;
 					delete urlParams.query.locale;
 					delete urlParams.query.folderId;
 					delete urlParams.query.webmap;
 					delete urlParams.query.autoplay;
-					
-					$.each(Object.keys(urlParams.query), function(i, k){ 
+
+					$.each(Object.keys(urlParams.query), function(i, k){
 						if ( i === 0 ){
 							newUrl += '?';
 						}
 						else {
 							newUrl += '&';
 						}
-						
+
 						if ( urlParams.query[k] !== undefined && urlParams.query[k] !== "" ) {
 							newUrl += k + '=' + urlParams.query[k];
 						}
@@ -380,43 +380,43 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 						}
 					});
 				}
-				
+
 				return noEncoding ? newUrl : encodeURIComponent(newUrl);
 			}
-	
+
 			function showMobileHeader(immediate)
 			{
 				$(selector + " #headerMobile .banner").slideDown(immediate === true ? 0 : 250);
 			}
-			
+
 			function editFieldsEnterEvent()
 			{
 				if( ! _builderButtonHidden )
 					$(selector + " #builderPanel").fadeOut("fast");
 				_builderButtonHidden = false;
 			}
-			
+
 			function editFieldsExitEvent(src, value)
 			{
 				_builderButtonHidden = true;
-				setTimeout(function(){ 
+				setTimeout(function(){
 					if( _builderButtonHidden )
 						$(selector + " #builderPanel").fadeIn("fast");
 					_builderButtonHidden = false;
 				}, has("ios") || has("ie") >= 10 ? 500 : 100);
-				
-				setTimeout(function(){ 
+
+				setTimeout(function(){
 					topic.publish("HEADER_EDITED", {
-						src: $(src).attr("class"), 
+						src: $(src).attr("class"),
 						value: value
 					});
 					$(selector + ' #headerMobile .banner .' + $(src).attr("class")).html(value);
 				}, has("ios") || has("ie") >= 10 ? 700 : 0);
-				
+
 				app.builder.hideSaveConfirmation();
 			}
-	
-			this.switchToBuilder = function() 
+
+			this.switchToBuilder = function()
 			{
 				if( document.location.search.match(/appid/) )
 					document.location = cleanURL(document.location.protocol + '//' + document.location.host + document.location.pathname + document.location.search, true) + "&edit" + document.location.hash;
@@ -425,7 +425,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				else
 					document.location = cleanURL(document.location.protocol + '//' + document.location.host + document.location.pathname, true) + "?edit"  + document.location.hash;
 			};
-			
+
 			this.initLocalization = function()
 			{
 				//Mobile

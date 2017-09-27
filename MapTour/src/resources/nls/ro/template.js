@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Acest browser nu suportă generarea automată de miniaturi pentru imaginile pe care le-aţi încărcat în turul hărţii. Puteţi crea un tur al hărţii utilizând acest browser, însă va trebui să furnizaţi câte o imagine miniaturală separată pentru fiecare din imaginile încărcate.",
       "oldBrowserExplain2": "Pentru a vă îmbunătăţi experienţa, <a href='http://browsehappy.com/' target='_blank'>efectuaţi upgrade de browser</a> sau <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>activaţi Google Chrome Frame for Internet Explorer</a>.",
       "oldBrowserExplain3": "Instrumentul de creare a Turului hărţii nu funcţionează cu Internet Explorer 10 în Windows XP.",
-      "oldBrowserClose": "Închidere"
+      "oldBrowserClose": "Închidere",
+      "noViewerIE2": "Încercaţi să vizualizaţi această poveste cu un browser vechi, care nu mai este suportat. Pot exista funcţiuni care să nu funcţioneze sau pot apărea probleme neaşteptate. Vă sugerăm să upgradaţi la Internet Explorer 11 sau să utilizaţi alt browser cum ar fi Chrome.",
+      "noViewerIE3": "Spre sfârşitul lui 2017, această poveste nu se va mai încărca pe acest browser. În acel moment, trebuie să utilizaţi un browser suportat pentru a vizualiza această poveste.",
+      "attention": "Atenţie!"
     },
     "mobileHTML": {
       "showIntro": "AFIŞARE TITLU",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Selectaţi această configuraţie",
       "settingsLayoutNote": "Reţineţi că în punctele care utilizează clipuri video, afişul va fi plasat întotdeauna sub clipul video chiar dacă opţiunea este debifată.",
       "settingsLayoutLocBtn": "Afişare buton pentru localizare",
-      "settingsLayoutLocBtnHelp": "Acea funcţionalitate este suportată pe majoritatea browserelor pentru dispozitive mobile şi sisteme desktop (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Suportat pe majoritatea browserelor. Apare numai dacă harta cu povestiri se accesează prin intermediul HTTPS. Nu apare dacă povestirea este încorporată.",
       "settingsColorExplain": "Schimbaţi aspectul prin alegerea unei teme predefinite sau creaţi una proprie.",
       "settingsLabelColor": "Culori pentru antet, cuprins şi notă de subsol",
       "settingsLogoExplain": "Particularizaţi sigla antetului (maximum 250 x 50px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "fotografii",
       "videos": "videoclipuri",
       "disabled": "Acest obiect spaţial a fost dezactivat de administrator",
-      "disabledPortal": "Această caracteristică are nevoie ca portalul să aibă configurat un ArcGIS Data Store sub formă de bază de date administrată. Contactaţi administratorul Portal for ArcGIS.",
+      "disabledPortal": "Această caracteristică are nevoie ca portalul să aibă un server de găzduire. Contactaţi administratorul Portal for ArcGIS.",
       "header1": "Imaginile dvs. trebuie partajate public.",
       "header2": "Importul va fi limitat la primele %NB1% %MEDIA%.",
       "emptyDataset": "Eroare, nu a fost găsită nicio imagine",

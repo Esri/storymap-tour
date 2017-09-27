@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Ovaj pregledač ne podržava automatsko generisanje sličice iz snimaka koje otpremite na turu mape. Možete da kreirate mapu koristeći pregledač, ali moraćete da obezbedite odvojenu sličicu za svaki snimak koji otpremite.",
       "oldBrowserExplain2": "Da biste poboljšali iskustvo, <a href=’http://browsehappy.com/’ target=’_blank’>ažurirajte pregledač</a> ili <a href=’http://www.google.com/chromeframe/?redirect=true’ target=’_blank’>aktivirajte Google Chrome Frame za Internet Explorer</a>.",
       "oldBrowserExplain3": "Alatka za izradu ture mape ne radi sa programom Internet Explorer 10 na Windows XP operativnom sistemu",
-      "oldBrowserClose": "Zatvori"
+      "oldBrowserClose": "Zatvori",
+      "noViewerIE2": "Pokušavate da vidite ovu priču korišćenjem starog, nepodržanog pregledača. Možda neka svojstva neće raditi ili će doći do drugih nepredviđenih problema. Predlažemo da nadogradite na Internet Explorer 11 ili da koristite drugi pregledač, kao što je Chrome.",
+      "noViewerIE3": "Krajem 2017. godine, učitavanje ove priče na ovom pregledaču neće biti moguće. Tada ćete morati da koristite podržani pregledač kako biste videli priču.",
+      "attention": "Napomena!"
     },
     "mobileHTML": {
       "showIntro": "PRIKAŽI NASLOV",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Izaberi ovaj raspored",
       "settingsLayoutNote": "Imajte u vidu pri korišćenju video zapisa na tačkama da je obaveštenje uvek smešteno ispod video zapisa čak i ako je ta opcija označena kao nepotvrđena.",
       "settingsLayoutLocBtn": "Prikaži „Lociraj“ dugme",
-      "settingsLayoutLocBtnHelp": "Ta funkcionalnost je podržana na većini pregledača mobilnih uređaja i desktop računara (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Podržano u većini pregledača. Pojavljuje se samo kada se mapi sa pričom pristupa preko HTTPS. Ne pojavljuje se ako je priča ugrađena.",
       "settingsColorExplain": "Promenite izgled odabirom predefinisane teme ili kreirajte sopstvenu.",
       "settingsLabelColor": "Boje zaglavlja, sadržaja i podnožja stranice",
       "settingsLogoExplain": "Prilagodite logotip zaglavlja (maksimalna veličina je 250 x 50px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "slike",
       "videos": "video zapisi",
       "disabled": "Ova funkcija je onemogućena od strane administratora",
-      "disabledPortal": "Ova funkcija zahteva da portal ima ArcGIS Data Store konfigurisan kao bazu podataka za upravljanje. Kontaktirajte administratora portala Portal for ArcGIS.",
+      "disabledPortal": "Ova funkcija zahteva da portal ima server za hostovanje. Kontaktirajte Portal for ArcGIS administratora.",
       "header1": "Vaše slike moraju da budu javno podeljene.",
       "header2": "Uvoz će da bude ograničen na prvih %NB1% %MEDIA%.",
       "emptyDataset": "Greška, slike nisu nađene",

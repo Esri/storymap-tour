@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Denne browser understøtter ikke automatisk miniaturegenerering af de billeder, du overfører til din korttur. Du kan oprette en korttur med denne browser, men du skal oprette et separat miniaturebillede for hvert af de billeder, du overfører.",
       "oldBrowserExplain2": "For at forbedre din oplevelse skal du <a href='http://browsehappy.com/' target='_blank'>opgradere din browser</a> eller <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>aktivere Google Chrome Frame for Internet Explorer</a>.",
       "oldBrowserExplain3": "Map Tour-builder fungerer ikke med Internet Explorer 10 på Windows XP.",
-      "oldBrowserClose": "Luk"
+      "oldBrowserClose": "Luk",
+      "noViewerIE2": "Du forsøger at få vist denne historie ved hjælp af en ældre, ikke-understøttet browser. Der kan være funktioner, der ikke fungerer, eller andre uventede problemer. Vi foreslår, at du opgraderer til Internet Explorer 11 eller benytter en anden browser, f.eks. Chrome.",
+      "noViewerIE3": "I slutningen af 2017 vil denne historie ikke længere kunne vises i denne browser. På det tidspunkt skal du benytte en understøttet browser til at vise denne historie.",
+      "attention": "Bemærk!"
     },
     "mobileHTML": {
       "showIntro": "VIS TITEL",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Vælg dette layout",
       "settingsLayoutNote": "Bemærk, at ved punkter, der benytter videoer, vil opslaget altid være placeret under videoen, selvom denne indstilling ikke er markeret.",
       "settingsLayoutLocBtn": "Få vist en søgeknap",
-      "settingsLayoutLocBtnHelp": "Denne funktionalitet understøttes på de fleste browsere på mobile enheder samt pc-browsere (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Understøttes af de fleste browsere. Vises kun, når historiekortet åbnes via HTTPS. Vises ikke, hvis historien er indlejret.",
       "settingsColorExplain": "Skift udseende ved at vælge et foruddefineret tema eller ved at oprette dit eget.",
       "settingsLabelColor": "Farver på toptekster, indhold og bundtekster",
       "settingsLogoExplain": "Tilpas toptekstlogoet  (maks. 250 x 50 pixel).",
@@ -290,7 +293,7 @@ define({
       "pictures": "billeder",
       "videos": "videoer",
       "disabled": "Dette objekt er blevet deaktiveret af administratoren",
-      "disabledPortal": "Dette objekt kræver, at Portal har en ArcGIS Data Store konfigureret som den administrerede database. Kontakt din Portal for ArcGIS-administrator.",
+      "disabledPortal": "Dette objekt kræver, at portalen har en værtsserver. Kontakt din Portal for ArcGIS-administrator.",
       "header1": "Dine billeder skal være delt offentligt.",
       "header2": "Importen begrænses til det første %NB1%%MEDIA%.",
       "emptyDataset": "Fejl, der blev ikke fundet nogen billeder",

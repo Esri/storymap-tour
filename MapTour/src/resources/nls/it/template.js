@@ -34,7 +34,10 @@ define({
       "oldBrowserExplain": "Il browser non supporta la generazione automatica di anteprime dalle immagini caricate nel tour mappa. Per creare un tour mappa utilizzando questo browser, sarà necessario fornire un'immagine di anteprima distinta per ogni immagine caricata.",
       "oldBrowserExplain2": "Per ottimizzare l'esperienza utente, <a href='http://browsehappy.com/' target='_blank'>aggiornare il browser</a> o <a href='http://www.google.com/chromeframe/?redirect=true' target='_blank'>attivare il Google Chrome Frame per Internet Explorer</a>.",
       "oldBrowserExplain3": "Il generatore di Tour mappa non funziona con Internet Explorer 10 su Windows XP.",
-      "oldBrowserClose": "Chiudi"
+      "oldBrowserClose": "Chiudi",
+      "noViewerIE2": "Si sta tentando di visualizzare la storia utilizzando un browser meno recente e non più supportato. Alcune funzioni potrebbero non funzionare o potrebbero verificarsi errori inattesi. Si consiglia di effettuare l'aggiornamento a Internet Explorer 11 o di utilizzare un altro browser, come Chrome.",
+      "noViewerIE3": "Verso la fine del 2017, questa storia non sarà più caricata su questo browser e sarà quindi necessario utilizzare un browser supportato per visualizzarla.",
+      "attention": "Attenzione."
     },
     "mobileHTML": {
       "showIntro": "MOSTRA TITOLO",
@@ -150,7 +153,7 @@ define({
       "settingsLayoutSelect": "Seleziona il layout",
       "settingsLayoutNote": "Tenere presente che sui punti che utilizzano i video l'etichetta verrà posizionata sempre al di sotto del video, anche se l'opzione non è selezionata.",
       "settingsLayoutLocBtn": "Visualizza un pulsante Trova posizione",
-      "settingsLayoutLocBtnHelp": "Questa funzionalità è supportata nella maggior parte dei browser per dispositivi mobili e desktop (Internet Explorer 9).",
+      "settingsLayoutLocBtnHelp": "Supportato su molti browser. Appare solo se si accede alla mappa della storia da HTTPS. Non appare se la storia è incorporata.",
       "settingsColorExplain": "Per modificare l'aspetto, scegliere un tema predefinito o crearne uno personale.",
       "settingsLabelColor": "Colori di intestazione, contenuto e piè di pagina",
       "settingsLogoExplain": "Personalizza il logo dell'intestazione (max 250 x 50 px).",
@@ -290,7 +293,7 @@ define({
       "pictures": "immagini",
       "videos": "video",
       "disabled": "Questa feature è stata disabilitata dall'amministratore",
-      "disabledPortal": "Questa feature richiede che nel portale sia configurato un ArcGIS Data Store come database gestito. Contattare l'amministratore di Portal for ArcGIS.",
+      "disabledPortal": "Questa feature richiede che il portale disponga di un server di hosting. Contattare l'amministratore di Portal for ArcGIS.",
       "header1": "Le immagini devono essere condivise pubblicamente.",
       "header2": "L'importazione sarà limitata ai primi %NB1% %MEDIA%.",
       "emptyDataset": "Errore, nessun'immagine trovata",
