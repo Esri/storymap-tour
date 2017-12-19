@@ -65,7 +65,7 @@ define([
 			},
 			"layers": [{
 				"id": 0,
-				"name": "arcgis.arcgis.MAP_TOUR",
+				"name": "MAP_TOUR",
 				"type": "Feature Layer",
 				"description": "",
 				"copyrightText": "",

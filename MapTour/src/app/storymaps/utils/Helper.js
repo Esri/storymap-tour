@@ -1,5 +1,5 @@
-define(["dojo/cookie", 
-		"dojo/has", 
+define(["dojo/cookie",
+		"dojo/has",
 		"esri/arcgis/utils",
 		"esri/urlUtils",
 		"esri/geometry/webMercatorUtils",
@@ -8,10 +8,11 @@ define(["dojo/cookie",
 		"esri/geometry/Polygon",
 		"esri/layers/ArcGISDynamicMapServiceLayer",
 		"esri/layers/ArcGISTiledMapServiceLayer",
-		"esri/layers/OpenStreetMapLayer"], 
+		"esri/layers/OpenStreetMapLayer",
+		"esri/layers/VectorTileLayer"],
 	function(
-		cookie, 
-		has, 
+		cookie,
+		has,
 		arcgisUtils,
 		urlUtils,
 		webMercatorUtils,
@@ -20,19 +21,20 @@ define(["dojo/cookie",
 		Polygon,
 		ArcGISDynamicMapServiceLayer,
 		ArcGISTiledMapServiceLayer,
-		OpenStreetMapLayer)
+		OpenStreetMapLayer,
+		VectorTileLayer)
 	{
 		/**
 		 * Helper
 		 * @class Helper
-		 * 
+		 *
 		 * Collection of helper functions
 		 */
 		return {
 			isMobile: function()
 			{
 				return navigator.userAgent.match(/iPhone|iPad|iPod/i)
-						|| navigator.userAgent.match(/Android/i) 
+						|| navigator.userAgent.match(/Android/i)
 						|| navigator.userAgent.match(/BlackBerry/i)
 						|| navigator.userAgent.match(/IEMobile/i);
 			},
@@ -50,22 +52,22 @@ define(["dojo/cookie",
 				var urlParams = urlUtils.urlToObject(document.location.search).query;
 				if ( urlParams )
 					return urlParams;
-				
+
 				if( ! this.browserSupportHistory() && ! urlParams )
 					return urlUtils.urlToObject(document.location.hash).query || {};
-				
+
 				return {};
 			},
 			getWebmapID: function(isProd)
 			{
 				var urlParams = this.getUrlParams();
-				
+
 				if( configOptions && configOptions.webmap )
 					return configOptions.webmap;
-				
+
 				if ( this.isArcGISHosted() || ! isProd )
 					return urlParams.webmap;
-				
+
 				// Only authorize URL params outside of arcgis.com if a webmap owner is specified
 				if( configOptions.authorizedOwners && configOptions.authorizedOwners.length > 0 && configOptions.authorizedOwners[0] )
 					return urlParams.webmap;
@@ -73,20 +75,20 @@ define(["dojo/cookie",
 			getAppID: function(isProd)
 			{
 				var urlParams = this.getUrlParams();
-				
+
 				if( configOptions && configOptions.appid )
 					return configOptions.appid;
-				
+
 				if ( this.isArcGISHosted() || ! isProd )
 					return urlParams.appid;
-				
+
 				// Only authorize URL params outside of arcgis.com if a webmap/app owner is specified
 				if( configOptions.authorizedOwners && configOptions.authorizedOwners.length > 0 && configOptions.authorizedOwners[0] )
 					return urlParams.appid;
 			},
 			getSharingHost: function() {
 				var urlParams = this.getUrlParams();
-				
+
 				if (urlParams.sharinghost) {
 					return '//' + urlParams.sharinghost;
 				}
@@ -108,21 +110,21 @@ define(["dojo/cookie",
 			{
 				if( ! item.extent || item.extent.length != 2 )
 					return null;
-							
+
 				var bottomLeft = webMercatorUtils.geographicToWebMercator(
 					new Point(
 						item.extent[0][0],
 						item.extent[0][1]
 					)
 				);
-						
+
 				var topRight = webMercatorUtils.geographicToWebMercator(
 					new Point(
 						item.extent[1][0],
 						item.extent[1][1]
 					)
 				);
-				
+
 				return new Extent({
 					xmax: topRight.x,
 					xmin: bottomLeft.x,
@@ -137,9 +139,9 @@ define(["dojo/cookie",
 			{
 				if( ! extent || ! extent.spatialReference )
 					return null;
-				
+
 				var extentWgs = extent.spatialReference.wkid == 4326 ? extent : webMercatorUtils.webMercatorToGeographic(extent);
-				
+
 				return [
 					[Math.round(extentWgs.xmin*10000)/10000, Math.round(extentWgs.ymin*10000)/10000],
 					[Math.round(extentWgs.xmax*10000)/10000, Math.round(extentWgs.ymax*10000)/10000]
@@ -147,7 +149,7 @@ define(["dojo/cookie",
 			},
 			serializedExtentEquals: function(extent1, extent2)
 			{
-				return extent1 
+				return extent1
 						&& extent2
 						&& extent1.length == extent2.length
 						&& extent1.length == 2
@@ -160,7 +162,7 @@ define(["dojo/cookie",
 			 * Clone Bing/OSM/Tile/Dynamic Map layer
 			 * Default to light grey canvas if bing or not tile/dynamic
 			 */
-			cloneLayer: function(layer)
+			cloneLayer: function(layer, layerResponse)
 			{
 				if( layer.url && layer.url.match(/virtualearth\./) )
 					return new ArcGISTiledMapServiceLayer("//services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer");
@@ -170,7 +172,9 @@ define(["dojo/cookie",
 					return new ArcGISDynamicMapServiceLayer(layer.url);
 				else if (layer.id == "OpenStreetMap" || layer.id == "layer_osm" )
 					return new OpenStreetMapLayer();
-				
+				else if (layerResponse && layerResponse.type == "VectorTileLayer")
+					return new VectorTileLayer(layer.url);
+
 				return new ArcGISTiledMapServiceLayer("//services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer");
 			},
 			extentToPolygon: function(extent)
@@ -178,10 +182,10 @@ define(["dojo/cookie",
 				var p = new Polygon(extent.spatialReference);
 				p.addRing(
 					[
-						[extent.xmin, extent.ymin], 
-						[extent.xmin, extent.ymax], 
-						[extent.xmax, extent.ymax], 
-						[extent.xmax, extent.ymin], 
+						[extent.xmin, extent.ymin],
+						[extent.xmin, extent.ymax],
+						[extent.xmax, extent.ymax],
+						[extent.xmax, extent.ymin],
 						[extent.xmin, extent.ymin]
 					]
 				);
@@ -192,49 +196,49 @@ define(["dojo/cookie",
 				var mapWidth = map.width;
 				var mapHeight = map.height;
 				var lods = map._params.lods;
-				
+
 				if ( ! lods )
 					return -1;
-				
+
 				for (var l = lods.length - 1; l >= 0; l--) {
 					if( mapWidth * map._params.lods[l].resolution > extent.getWidth() && mapHeight * map._params.lods[l].resolution > extent.getHeight() )
 						return l;
 				}
-				
+
 				return -1;
 			},
 			getPortalUser: function()
 			{
 				var esriCookie = cookie('esri_auth');
-				
+
 				if( ! esriCookie )
 					return;
-				
+
 				esriCookie = JSON.parse(esriCookie.replace('"ssl":undefined','"ssl":""'));
-				
+
 				// Cookie has to be set on the same organization
-				if( esriCookie.urlKey 
-						&& esriCookie.customBaseUrl 
+				if( esriCookie.urlKey
+						&& esriCookie.customBaseUrl
 						&& (esriCookie.urlKey + '.' + esriCookie.customBaseUrl).toLowerCase() != document.location.hostname.toLowerCase())
 					return;
-				
+
 				return esriCookie ? esriCookie.email : null;
 			},
 			getPortalRole: function()
 			{
 				var esriCookie = cookie('esri_auth');
-				
+
 				if( ! esriCookie )
 					return;
-				
+
 				esriCookie = JSON.parse(esriCookie.replace('"ssl":undefined','"ssl":""'));
-				
+
 				// If the cookie is not set on the same organization
-				if( esriCookie.urlKey 
-						&& esriCookie.customBaseUrl 
+				if( esriCookie.urlKey
+						&& esriCookie.customBaseUrl
 						&& (esriCookie.urlKey + '.' + esriCookie.customBaseUrl).toLowerCase() != document.location.hostname.toLowerCase())
 					return;
-				
+
 				return esriCookie ? esriCookie.role : null;
 			},
 			getMyStoriesURL: function()
@@ -262,9 +266,9 @@ define(["dojo/cookie",
 			},
 			browserSupportAttachementUsingFileReader: function()
 			{
-				return !! window.FileReader 
-						&& !! window.FormData 
-						&& !! this.browserSupportCanvas() 
+				return !! window.FileReader
+						&& !! window.FormData
+						&& !! this.browserSupportCanvas()
 						&& !! window.Blob
 						/*&& has("ie") != 10*/; // IE10 unexpectedly fail to do the addAttachment request (with CORS or proxy)
 			},
@@ -277,7 +281,7 @@ define(["dojo/cookie",
 			{
 				if( ! window.FileReader )
 					return false;
-				
+
 				var f = new window.FileReader();
 				return !! ('readAsArrayBuffer' in f);
 			},
@@ -293,7 +297,7 @@ define(["dojo/cookie",
 			{
 				if( has("ie") <= 8 )
 					return;
-				
+
 				$("<style>")
 					.prop("type", "text/css")
 					.html(style)
@@ -303,7 +307,7 @@ define(["dojo/cookie",
 			{
 				if( ! x || x === "" )
 					return "";
-				
+
 				var r = x.replace('#','').match(/../g),g=[],i;
 				for(i in r){
 					g.push(parseInt(r[i],16));
@@ -315,10 +319,10 @@ define(["dojo/cookie",
 			{
 				if ( ! url || url === "" || url.match(/^mailto:/) )
 					return url;
-				
+
 				if ( ! /^(https?:\/\/)|^(\/\/)/i.test(url) )
 					return 'http://' + url;
-				
+
 				return url;
 			}
 		};

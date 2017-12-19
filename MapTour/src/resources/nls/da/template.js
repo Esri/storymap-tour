@@ -99,7 +99,7 @@ define({
       "addTabPicture": "Medier",
       "addTabInformation": "Oplysninger",
       "addTabLocation": "Sted",
-      "addSelectCaption": "Vælg eller slet billede",
+      "addSelectCaption": "Vælg eller slip billede",
       "addNoteVideo": "Se Hjælp for at få vejledning i brugen af videoer",
       "addSelectCaptionNoFileReader": "Vælg billede",
       "addChangePhoto": "Redigér billede og miniature",

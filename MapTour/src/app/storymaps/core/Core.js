@@ -184,7 +184,7 @@ define(["esri/map",
 					// Get the portal instance name
 					var instance = location.pathname.substr(0,appLocation);
 
-					configOptions.sharingurl = "//" + location.host + instance + "/sharing/content/items";
+					configOptions.sharingurl = "//" + location.host + instance + "/sharing/rest/content/items";
 					configOptions.proxyurl =  "//" + location.host + instance +  "/sharing/proxy";
 				}
 				else
@@ -233,7 +233,7 @@ define(["esri/map",
 			// Get portal info and configure the app
 
 			esriRequest({
-				url: arcgisUtils.arcgisUrl.split('/sharing/')[0] + "/sharing/rest/portals/self",
+				url: arcgisUtils.arcgisUrl.split('/sharing/')[0] + "/sharing/portals/self",
 				content: {"f": "json"},
 				callbackParamName: "callback"
 			}).then(lang.hitch(this, function(response){
@@ -280,6 +280,11 @@ define(["esri/map",
 				//  - ArcGIS Data Store allow to create scalable Feature Service ; Portal configured against another DB don't support the same Feature Service creation API
 				//  - the Feature Service creation API is only supported starting at Portal 10.4 but there is no way to know what version of Portal
 				if( response.isPortal && ! response.supportsSceneServices && ! response.supportsHostedServices)
+					APPCFG.AUTHORIZED_IMPORT_SOURCE.featureService = false;
+
+				//  Not common, but some systems might be set up as a managed egdb instead of an arcgis data store.  See here for more info:
+				//  https://devtopia.esri.com/WebGIS/arcgis-for-server/issues/4741#issuecomment-973189
+				if( response.isPortal && !response.hasRelationalArcGISDataStore )
 					APPCFG.AUTHORIZED_IMPORT_SOURCE.featureService = false;
 
 				// Disable feature service creation as Portal for ArcGIS 10.2 doesn't support that yet
@@ -403,7 +408,7 @@ define(["esri/map",
 			});
 
 			// Pass cookie onto API to avoid infinite redirects
-			IdentityManager.checkSignInStatus(app.org.url);
+			IdentityManager.checkSignInStatus(app.org.url+'/sharing/rest/');
 
 			// If forceLogin parameter in URL OR builder
 			if ( forceLogin || app.isInBuilderMode )

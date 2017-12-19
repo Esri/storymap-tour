@@ -212,17 +212,31 @@ define(["storymaps/utils/Helper",
 								_extentMap.addLayer(Helper.cloneLayer(app.map.getLayer(layerId)));
 								if(!basemap)
 									basemap = app.map.getLayer(layerId);
-							} else if(app.map.getLayer(layerId).url == bmLayer.styleUrl){
-								_extentMap.addLayer(Helper.cloneLayer(app.map.getLayer(layerId), bmLayer));
-								if(!basemap)
-									basemap = app.map.getLayer(layerId);
+							} else if(app.map.getLayer(layerId).url && bmLayer.styleUrl){
+								var parser1 = document.createElement('a');
+								parser1.href = app.map.getLayer(layerId).url;
+								var parser2 = document.createElement('a');
+								parser2.href = bmLayer.styleUrl;
+								if(parser1.hostname + parser1.pathname == parser2.hostname + parser2.pathname){
+									_extentMap.addLayer(Helper.cloneLayer(app.map.getLayer(layerId), bmLayer));
+									if(!basemap)
+										basemap = app.map.getLayer(layerId);
+								}
 							}
 						});
 					});
 				}
 
-				if (extent.spatialReference.wkid != basemap.spatialReference.wkid) {
+				if (basemap && extent.spatialReference.wkid != basemap.spatialReference.wkid) {
 					esriConfig.defaults.geometryService.project([extent], basemap.spatialReference).then(function(features){
+						if (features && features[0]) {
+							_projectedExtent = features[0];
+							extentLayer.add(createExtentGraphics(features[0]));
+							_extentMap.addLayer(extentLayer);
+						}
+					});
+				} else if(!basemap && app.data.getWebMapItem().itemData.baseMap.baseMapLayers[0].type == "VectorTileLayer"){
+					esriConfig.defaults.geometryService.project([extent], app.data.getWebMapItem().itemData.spatialReference).then(function(features){
 						if (features && features[0]) {
 							_projectedExtent = features[0];
 							extentLayer.add(createExtentGraphics(features[0]));

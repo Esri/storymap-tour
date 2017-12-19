@@ -36,13 +36,19 @@ define(["esri/request",
 				item.typeKeywords = item.typeKeywords ? item.typeKeywords.join(',') : '';
 
 				var user = portal.getPortalUser();
-				var rqUrl = this.getSharingURL(portal)
+				var sharingUrl = this.getSharingURL(portal);
+				// For some reason the sharing url with rest in it does not work here.  REST bug?
+				if (sharingUrl.match('rest/')) {
+					sharingUrl = sharingUrl.slice(0, sharingUrl.match('rest/').index);
+				}
+
+				var rqUrl = sharingUrl
 								+ "content/users/" + user.credential.userId
 								+ (item.ownerFolder ? ("/" + item.ownerFolder) : "")
 								+ "/addItem";
 
 				var rqData = {
-					item: item.item,
+					item: item.id,
 					title: item.title,
 					tags: item.tags,
 					extent: JSON.stringify(item.extent),
@@ -54,11 +60,11 @@ define(["esri/request",
 				};
 
 				this.request(rqUrl, rqData, true).then(
-					function(){
-						resultDeferred.resolve();
+					function(e){
+						resultDeferred.resolve(e);
 					},
-					function(){
-						resultDeferred.reject();
+					function(e){
+						resultDeferred.reject(e);
 					}
 				);
 
@@ -222,11 +228,11 @@ define(["esri/request",
 			{
 				var sharingUrl = portal.portalUrl;
 
-				if( sharingUrl.match('/sharing/rest/$') )
+				if( sharingUrl.match('/sharing/rest/content/$') )
 					sharingUrl = sharingUrl.split('/').slice(0,-2).join('/') + '/';
-				else if ( sharingUrl.match('/sharing/rest$') )
+				else if ( sharingUrl.match('/sharing/rest/content$') )
 					sharingUrl = sharingUrl.split('/').slice(0,-1).join('/') + '/';
-				else if ( sharingUrl.match('/sharing$') )
+				else if ( sharingUrl.match('/sharing/rest$') )
 					sharingUrl = sharingUrl + '/';
 
 				return sharingUrl;

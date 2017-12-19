@@ -428,15 +428,21 @@ define(["storymaps/utils/Helper",
 				if(app.data.getWebMapItem() && app.data.getWebMapItem().itemData.baseMap){
 					$.each(app.data.getWebMapItem().itemData.baseMap.baseMapLayers, function(i, bmLayer){
 						$.each(app.map.layerIds, function(i, layerId){
-                            var basemap;
-							if(app.map.getLayer(layerId).url == bmLayer.url){
+							var basemap;
+							if(app.map.getLayer(layerId).url && bmLayer.url){
 								_csvMap.addLayer(Helper.cloneLayer(app.map.getLayer(layerId)));
 								if(!basemap)
 									basemap = app.map.getLayer(layerId);
 							} else if(app.map.getLayer(layerId).url == bmLayer.styleUrl){
-								_csvMap.addLayer(Helper.cloneLayer(app.map.getLayer(layerId), bmLayer));
-								if(!basemap)
-									basemap = app.map.getLayer(layerId);
+								var parser1 = document.createElement('a');
+								parser1.href = app.map.getLayer(layerId).url;
+								var parser2 = document.createElement('a');
+								parser2.href = bmLayer.styleUrl;
+								if(parser1.hostname + parser1.pathname == parser2.hostname + parser2.pathname){
+									_csvMap.addLayer(Helper.cloneLayer(app.map.getLayer(layerId), bmLayer));
+									if(!basemap)
+										basemap = app.map.getLayer(layerId);
+								}
 							}
 						});
 					});
