@@ -9,7 +9,7 @@ The Story Map Tour app is ideal when you want to present a linear, place-based n
 [Map Tour page on Esri Story Maps website](http://storymaps.arcgis.com/en/app-list/map-tour/) |
 [Download](http://links.esri.com/storymaps/map_tour_template_zip)
 
-**Latest release is version 2.10.0**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
+**Latest release is version 2.11.0**, if you want to be informed of new releases, we recommend you to watch these repository ([see GitHub help](https://help.github.com/articles/watching-repositories)).
 See the [release page](https://github.com/Esri/map-tour-storytelling-template-js/releases) for release notes.
 
 For more infomation about using and customizing Esri's Storytelling Apps follow the [Story Maps Developers' Corner](https://developerscorner.storymaps.arcgis.com).
@@ -18,7 +18,7 @@ The template produces an attractive, easy-to-use web application that lets you p
 If you are not familiar with ArcGIS Online or StoryMaps concepts, [that document](http://storymaps.esri.com/downloads/Building%20Story%20Maps.pdf) describe general workflows and best practices.
 
 This help will guide you through the steps for publishing Map Tours like:
- * [Palm Springs Map Tour](http://storymaps.esri.com/stories/demo/map_tour/?webmap=7190edafe7464cb19c1caf1360cd6ee5)
+ * [Palm Springs Map Tour](https://storymaps.esri.com/stories/maptour-sp-palmsprings/)
  * [Nederland country's best mountain biking](http://story.maps.arcgis.com/apps/MapTour/index.html?appid=4d6054b109ce482d88588d5c06a7a478)
  * [Los Angeles River Map Tour](http://ugis.esri.com/LA_River_Tour/)
 
