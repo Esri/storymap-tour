@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Není k dispozici v režimu automatického přehrávání.",
       "autoplayLabel": "Režim automatického přehrávání",
       "autoplayExplain1": "Režim automatického přehrávání bude příběhem procházet v pravidelných intervalech. Ideální pro použití na výstavních stáncích nebo veřejných monitorech, buďte si však vědomi toho, že to v některých případech může znesnadnit čtení příběhu. Tato funkce není podporována na malých obrazovkách.",
-      "autoplayExplain2": "Je-li tento režim aktivní, budou k dispozici ovládací prvky ke spuštění/pozastavení přehrávání příběhu a k nastavení rychlosti procházení."
+      "autoplayExplain2": "Je-li tento režim aktivní, budou k dispozici ovládací prvky ke spuštění/pozastavení přehrávání příběhu a k nastavení rychlosti procházení.",
+      "takeTourText": "Zahájit prohlídku",
+      "backToStart": "Zpět na Start"
     },
     "builderHTML": {
       "panelHeader": "KONFIGURACE PŘÍBĚHU",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Rozsah",
       "settingsTabZoom": "Úroveň přiblížení",
       "settingsLayoutExplain": "Vyberte požadované rozvržení.",
-      "settingsLayoutProfessional": "Rozvržení tří panelů",
-      "settingsLayoutModern": "Ucelené rozvržení",
+      "settingsLayoutProfessional": "Trojpanel",
+      "settingsLayoutModern": "Integrovaný",
+      "settingsLayoutSidePanel": "Postranní panel",
       "settingsLayoutSelected": "Vybrané rozvržení",
-      "settingsLayoutSelect": "Zvolit toto rozvržení",
+      "settingsLayoutNew": "Novinka!",
+      "settingsLayoutSelect": "Výběr (Select)",
       "settingsLayoutNote": "Při používání videí na bodech bude pod videem vždy poutač, i když tato možnost není zaškrtnuta.",
       "settingsLayoutLocBtn": "Zobrazit tlačítko 'Lokalizovat'",
       "settingsLayoutLocBtnHelp": "Podporováno většinou prohlížečů. Zobrazuje se pouze, pokud se k mapě s příběhem přistupuje přes HTTPS. Nezobrazuje se, pokud je příběh vložený.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Upravit rozsah",
       "settingsExtentApplyBtn": "Zobrazit náhled na prohlídce mapy",
       "settingsExtentUseMainMap": "Použít rozsah prohlídky mapy",
-      "settingsZoomExplain": "Nastavit přiblížení bodů příběhu po úvodu (nepovinné).",
+      "settingsZoomExplain": "Nastavit přiblížení bodů příběhu (volitelné).",
       "settingsLabelZoom": "Měřítko/úroveň",
       "settingsZoomFirstValue": "Žádné",
       "settingsFieldError": "Vyberte pole v každém seznamu.",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Vytvoření se nezdařilo. Zkuste to znovu.",
       "tabError": "Zkontrolujte prosím, nejsou-li v záložkách chyby.",
       "introRecordBtn": "Úvod",
-      "introRecordActivate": "Použít první bod jako úvod (nezobrazuje se v karuselu)"
+      "introRecordActivate": "Použít první bod jako úvod (nezobrazuje se v karuselu)",
+      "coverRecordActivate": "Použít první bod jako úvodní stránku",
+      "coverBuilder": "Konfigurace úvodní stránky",
+      "cover": "Obal",
+      "showCover": "Ukázat úvodní stránku",
+      "editCover": "Editovat úvodní stránku",
+      "coverNoVideo": "Na úvodní stránce nelze použít video. Prosím vyberte obrázek.",
+      "coverPreview": "Pokud si chcete prohlédnout úvodní stránku, uložte svůj příběh a otevřete náhled pomocí tlačítka Sdílet."
     },
     "addPopupJS": {
       "uploadingPicture": "Nahrávání obrázku",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Edituj mě!",
       "templateTitle": "Nastavit název šablony",
-      "templateSubtitle": "Nastavit podnadpis šablony"
+      "templateSubtitle": "Nastavit podnadpis šablony",
+      "edit": "Upravit"
     },
     "crossFaderJS": {
       "setPicture": "Nastavit název obrázku",
@@ -306,9 +318,9 @@ define({
       "csv": "Odkazováno ze souboru CSV",
       "advanced": "Pokročilé možnosti",
       "advancedScratchLbl": "Začít novou prohlídku",
-      "advancedScratchTip": "Vytvořte prázdnou prohlídku, kterou budete moci manuálně zaplnit pomocí průvodce.",
+      "advancedScratchTip": "Vytvořte prázdnou prohlídku, do které budete přidávat prohlídkové body. Vaše média už musí být online. Tato možnost nepodporuje nahrávání obrázků.",
       "advancedCSVLbl": "Importovat data prohlídky ze souboru CSV",
-      "advancedCSVTip": "Importujte svůj obsah prohlídky ze souboru CSV.",
+      "advancedCSVTip": "Importujte obsah své prohlídky ze souboru CSV, který odkazuje na vaše média online. Tato možnost nepodporuje nahrávání obrázků.",
       "advancedCommonTip": "Je nutné, aby obrázky a videa už byly online.",
       "select": "Provést výběr",
       "locUse": "Používat geo-umístění obrázků",
@@ -382,7 +394,7 @@ define({
       "title": "Vyberte a lokalizujte své obrázky/videa",
       "header": "Klikněte nebo klepněte na obrázky, které chcete importovat, abyste je našli.",
       "headerMore": "Proč nejsou mé obrázky/videa geolokalizovány?",
-      "headerExplain": "Pokud mají vaše obrázky platné geo-umístění, budou na mapě automaticky umístěny a uvedeny na druhé kartě.<br /><br />Služby Picasa a Flickr ve výchozím nastavení při importu obrázků neukládají metadata geo-umístění EXIF. Zkontrolujte, zda je v nastavení soukromí služby Flickr/Picasa povolen import geo-umístění obrázků a jejich použití externí aplikací. Je možné, že budete muset své stávající obrázky do služby Flickr/Picasa znovu importovat, aby bylo geo-umístění EXIF použito.<br /><br />Na Facebooku je nutné u každého obrázku kliknout na tlačítko Editovat a vybrat umístění.",
+      "headerExplain": "Pokud vaše snímky mají platnou geolokaci, budou automaticky umístěny na mapě a uvedeny v druhé kartě.<br /><br />Služby Picasa a Flickr ve výchozím nastavení při importu obrázků neukládají geolokační metadata EXIF. Zkontrolujte, zda je v nastavení soukromí služby Picasa/Flickr povolen import geolokace snímků a použití externí aplikací. Je možné, že budete muset své stávající snímky do služby Flickr/Picasa znovu naimportovat, aby bylo možné využít jejich geolokační metadata EXIF.",
       "leftPanelTab1": "Umístit",
       "leftPanelTab2": "Umístěno",
       "clickOrTap": "Kliknutím nebo klepnutím na mapu provedete umístění.",
@@ -404,7 +416,7 @@ define({
       "header2": "Tento asistent vám pomůže vytvořit prohlídku mapy z médií, která jsou již uložena online, případně je importuje do vašeho účtu ArcGIS Online pro organizace.",
       "title1": "Jsou již online",
       "title2": "Potřebuji nahrát své obrázky",
-      "hostedFSTooltip": "Nahrajte své obrázky a uložte je do vrstvy prohlídky mapy (nepodporuje video).",
+      "hostedFSTooltip": "Nahrajte obrázky a uložte je do své prohlídky (nepodporuje video).",
       "hostedFsNA": "Musíte být tvůrce nebo mít jinou roli s oprávněním zveřejňovat hostované vrstvy prvků. Obraťte se na svého správce ArcGIS.",
       "hostedFsNA2": "K dispozici pouze s předplatným ArcGIS Online. <a href='%LINK%'>Zaregistrujte si bezplatnou zkušební verzi</a>",
       "footer1": "Až budete hotovi, nezapomeňte prohlídku mapy sdílet se svým publikem na stránce položek aplikace.",
@@ -420,19 +432,23 @@ define({
       "close": "Zavřít",
       "tab1": {
         "title": "Úvod",
+        "moreInfo": "Další informace",
+        "infoSites": "Navštivte sekci <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Prohlídka mapy</a> na <a href='https://storymaps.arcgis.com' target='_blank'>webové stránce map s příběhem společnosti Esri.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Často kladené dotazy o prohlídce mapy.</a>",
+        "myStories": "Na této webové stránce v sekci <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Moje příběhy</a> můžete spravovat a kontrolovat správnost svých prohlídek map.",
         "div1": "Tato šablona prohlídky mapy je navržena pro prezentaci geografických informací, pokud k příběhu, který chcete vyprávět, existuje atraktivní fotografický nebo mediální prvek.",
         "div2": "Pomocí šablony lze vytvořit atraktivní a snadno ovladatelnou webovou aplikaci umožňující umístit na mapu malou sadu míst v číslované sekvenci, kterou mohou uživatelé procházet. Šablona je navržena k použití v libovolném webovém prohlížeči na všech zařízeních včetně chytrých telefonů a tabletů. <br /><br />",
-        "div42": "Chcete-li vidět příklady prohlídek map, které vytvářejí ostatní uživatelé, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>podívejte se do galerie</a> na <a href='http://storymaps.arcgis.com/' target='_blank'>webovou mapu se specificky zaměřeným obsahem</a>. Můžete nás také sledovat na Twitteru na <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Rádi od vás uslyšíme! Ať už máte otázku, chcete požádat o novou funkci nebo si myslíte, že jste našli chybu, navštivte prosím <a href='http://links.esri.com/storymaps/forum' target='_blank'>uživatelské fórum map s příběhem</a>."
+        "div42": "Chcete-li vidět, jaké prohlídky map vytváří jiní uživatelé, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>navštivte galerii</a> na <a href='https://storymaps.arcgis.com/' target='_blank'>webové stránce map s příběhem</a>. Můžete nás také sledovat na Twitteru na <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "Zajímá nás váš názor! Můžete nás informovat o problémech s aplikacemi a o nových funkcích, které byste si přáli využívat ve fóru map s příběhem na <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Data",
-        "div1": "Hlavním aspektem, který je třeba při vytváření prohlídky mapy zvážit, je výběr úložiště obrázků. Prohlídky map mohou využívat obrázky uložené prostřednictvím hlavních služeb pro sdílení fotografií, na libovolném webovém serveru nebo jako přílohy služeb feature service.",
+        "div1": "Hlavním aspektem, který je třeba při vytváření prohlídky mapy zvážit, je výběr úložiště obrázků. Prohlídky map mohou využívat obrázky uložené prostřednictvím služeb pro sdílení fotografií nebo obrázky nacházející se na libovolném webovém serveru nebo na disku.",
         "div1a": "Podrobné informace o podporovaných formátech obrázků a videa naleznete v poslední části této karty.",
         "div2": "Interaktivní nástroj pro tvorbu vám dává dvě možnosti, jak v prohlídce mapy zpracovávat obrázky:",
-        "div3": "<ul><li>Můžete použít <b>fotografie, které již jsou online</b>, například obrázky uložené ve službě pro sdílení fotografií jako je Flickr, nebo obrázky uložené na vašem vlastním webu. Tyto obrázky budou odkazovat do mapové prohlídky skrze jejich URL.</li><li>Do mapové prohlídky můžete také <b>nahrávat fotografie přímo z Vašeho počítače</b>. Tato možnost nahrávání vyžaduje účet  ArcGIS for Organizations a oprávnění vydavatele nebo administrátora, protože automaticky vytvoří hostovanou feature service, ve které se fotografie uloží jako přílohy.</li></ul>",
+        "div3": "<ul><li>Můžete použít <b>fotografie, které již jsou online</b>, například snímky uložené ve službě pro sdílení fotografií jako Flickr, nebo snímky uložené na vašem vlastním webu. Tyto snímky budou vloženy do vaší mapové prohlídky jako odkazy, prostřednictvím jejich adres URL.</li><li>Přímo do prohlídky mapy můžete také <b>nahrávat fotografie z vašeho počítače</b>. Tato možnost nahrávání vyžaduje předplatné ArcGIS a oprávnění vydavatele nebo administrátora, protože automaticky vytvoří hostovanou feature službu, ve které se fotografie uloží jako přílohy.</li></ul>",
         "div4": "Využití se najde hlavně v těchto případech:",
-        "div4b": "<b>Fotografie ještě nemáte hostované</b> a vlastníte účet ArcGIS for Organizations: Využití hostované feature service je pro vás nejlepší možnost. Stejně jako veřejné služby pro sdílení fotografií, Vaše obrázky optimalizujeme, aby se rychleji načítaly. Budete mít přístup ke všem možnostem administrace a správy dat platformy ArcGIS.",
+        "div4b": "<b>Fotografie ještě nemáte hostované</b> a máte předplatné ArcGIS: Využití služby hostování je pro vás nejlepší možnost. Stejně jako veřejné služby pro sdílení fotografií vaše obrázky optimalizujeme, aby se rychle načítaly. Budete mít přístup ke všem možnostem administrace a správy dat platformy ArcGIS.",
         "div5": "<b>Nejste členem organizace</b>: Nejprve bude nutné nahrát obrázky na web pro sdílení fotografií nebo na vlastní webový server. Nástroj pro tvorbu vám pak pomůže použít tyto obrázky, které budou dál uloženy v původním umístění.",
         "div6": "<b>Chcete znovu využít stávající Feature Service</b>, ve které jsou obrázky uloženy jako přílohy nebo která odkazuje na externě uložené obrázky. Podrobný návod najdete v příslušné části níže.",
         "div7": "<b>Využíváte předchozí verzi</b> šablony prohlídky mapy a již máte soubor CSV, který odkazuje na příslušné obrázky a miniatury. Budete moci importovat a doplnit data. Nástroj pro tvorbu podporuje pouze soubory CSV, které využívají pole zeměpisné šířky a délky. Soubory CSV využívající adresy je mohou nadále používat prostřednictvím webové mapy (viz příslušná část níže).",
@@ -441,10 +457,10 @@ define({
         "learn": "další informace",
         "div9": "Operace importu odkazuje na hostované obrázky uložením jejich URL adresy ve sbírce prvků webové mapy. Obrázky nejsou uloženy ve službě ArcGIS Online. Pokud hostované obrázky nejsou přístupné, nebudou se v prohlídce mapy zobrazovat. Místo nich se zobrazí zpráva „Obrázek není k dispozici“. V závislosti na poskytovateli služeb obrázků nemusí prohlídka mapy importovat název, popis a umístění obrázků. Tyto atributy jsou uloženy ve webové mapě a případné úpravy online služeb se v prohlídce mapy nijak neprojeví.",
         "div10": "Obrázky uložené na webovém serveru",
-        "div11": "Rozhodnete-li se hostovat si obrázky sami, bude nutné manuálně vytvořit jejich miniatury. Použijete-li jako miniatury obrázky v plném rozlišení, výrazně tím snížíte výkon. Z tohoto důvodu důrazně doporučujeme využívat služby pro online sdílení fotografií nebo feature service, které to provedou za vás.",
-        "div12": "Využití stávající služby Feature Service nebo souboru Shapefile",
-        "div13": "Jako zdroj dat pro prohlídku mapy lze využít libovolnou feature service nebo soubor Shapefile využívající body. Bude třeba je přidat do webové mapy jako vrstvu prostřednictvím prohlížeče map na stránkách arcgis.com. Pokud aplikace ve vrstvě najde očekávané atributy, budou k dispozici všechny funkce pro vytváření.",
-        "div14": "Možné hodnoty pro název pole jsou (malá a velká písmena se nerozlišují):",
+        "div11": "Pokud se rozhodnete hostovat svoje obrázky sami, budete muset manuálně vytvořit náhledy obrázků. Použití obrázků s plným rozlišením pro náhledy přináší špatné výsledky. Pro tipy týkající se velikosti vašich obrázků, pokud k nim budete přistupovat na webu přímo prostřednictvím adresy URL – viz <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>často kladené dotazy</a>.",
+        "div12": "Použití stávajících dat GIS",
+        "div13": "Jakákoli služba, soubor CSV nebo soubor obsahující body může posloužit jako zdroj dat pro prohlídku mapy, pokud tento zdroj obsahuje soubor polí požadovaný aplikací. Je nutné ho přidat jako vrstvu do webové mapy platformy ArcGIS a poté sdílet mapu vytvořením prohlídky mapy.",
+        "div14": "Podporované hodnoty pro název pole jsou (malá a velká písmena se nerozlišují):",
         "div151": "Název",
         "div152": "Popis",
         "div153": "Obrázek",
@@ -479,20 +495,20 @@ define({
         "div0": "Podporované prohlížeče",
         "div0a": "Zobrazování prohlídek map je podporováno v IE8+. Interaktivní nástroj pro tvorbu je podporován v IE9+. Produkty aktivně testujeme ve všech hlavních prohlížečích, nicméně v případě potíží doporučujeme používat Chrome.",
         "div0b": "Narazíte-li na jakékoli potíže, dejte nám vědět. Prozatím bude při vytváření prohlídky mapy pomocí CSV šablony minimalizována vaše interakce s rozhraním nástroje pro tvorbu.",
-        "div1": "Obrázky",
-        "div2": "Doporučujeme nahrávat obrázky na šířku. Nejvhodnější jsou obrázky s poměrem stran 4:3. Obrázky na výšku lze použít také, ale na menších obrazovkách, jako má třeba iPad, může velkou část fotografie zakrýt popisek (při zobrazení v užším prostoru zabere text více místa). Přestože lze v prohlídce mapy použít obrázky různých velikostí, tvarů a orientace, doporučujeme všechny obrázky nahrávat ve stejné velikosti a tvaru. Uživatele tak při prohlídce nebudou rozptylovat změny velikosti obrázků.",
+        "div1": "Snímky",
+        "div2": "Přestože ve stejné prohlídce mapy lze použít obrázky s různou velikostí, tvarem a orientací, doporučujeme orientaci na šířku, nikoli na výšku. Obrázky s poměrem stran 4 : 3 vypadají nejlépe. Použití obrázků s orientací na výšku v trojpanelu nebo integrovaném uspořádání, kdy popisek přesahuje do obrázku, může vést k zakrytí obrázku popiskem. V trojpanelu a integrovaném uspořádání doporučujeme použít pokud možno stejnou velikost a tvar pro všechny obrázky. Během prohlídky tak nebude uživatele rozptylovat různá velikost obrázků.",
         "div2a": "Jako maximální velikost obrázku doporučujeme 1000 pixelů na šířku × 750 pixelů na výšku pro hlavní obrázky a 140×93 pixelů pro miniatury.",
         "div3": "Formátování textu popisku značkami HTML",
-        "div4": "Text popisku může obsahovat značky HTML, kterými lze určit formátování a odkazy. Tento kód například přidá žlutý odkaz:",
+        "div4": "Do svých popisků můžete vkládat HTML značky pro definice formátování a odkazů. Následující značky například přidávají zelený odkaz:",
         "div4a": "Napište pro svou prohlídku vhodný podnadpis",
-        "div4b": "Věnujte čas vytvoření lákavého podnadpisu pro svou prohlídku. Vhodný podnadpis k vaší prohlídce přiláká lidi a sdělí jim, co v ní objeví. Je dobré v něm zmínit stát nebo zemi, kde je prohlídka umístěna. Nepředpokládejte, že lidé vědí, kde se město z vaší prohlídky nachází. Váš popisek lze formátovat pomocí HTML značek, např. přidávat odkazy. Nedoporučujeme příliš dlouhý popisek. V menších oknech prohlížeče nebo na iPadu se nemusí zobrazit celý. Pokud vás nenapadá vhodný podnadpis, nechte pole prázdné.",
+        "div4b": "Dejte si práci s vymyšlením přitažlivého podtitulku pro svoji prohlídku. Podtitulek je dobrým způsobem, jak upoutat pozornost lidí k Vaší prohlídce a říct jim, co od ní mohou čekat. V podtitulku můžete také sdělit svému publiku, v které zemi se prohlídka nachází. Například nepředpokládejte, že lidé budou vědět, kde leží město, ve kterém se nachází vaše prohlídka. Na druhou stranu by podtitulek neměl být příliš dlouhý. Pokud vás nenapadá dobrý podtitulek, nechte pole prázdné. Podtitulek, který se objevuje na úvodní straně v uspořádání postranního panelu, je popiskem prvního bodu Vaší prohlídky (pokud jste v dialogu Uspořádání nastavili možnost použití obsahu prvního bodu jako úvodní strany).",
         "div5": "Podpůrné vrstvy",
-        "div6": "Do mapy můžete přidávat dodatečné podpůrné vrstvy, které slouží k přidání kontextu pro prohlídku mapy. Tyto vrstvy mohou obsahovat další geografické prvky, které chcete zobrazovat v mapě navíc k bodům prohlídky mapy, jako jsou naučné oblasti, pěší či automobilovou trasu po bodech prohlídky atd. Šablona zobrazuje tyto dodatečné podpůrné vrstvy s využitím symbolů, které určíte ve webové mapě. Vyskakovací okna však nejsou dostupná.",
+        "div6": "Do mapy můžete přidat další podpůrné vrstvy, abyste zasadili prohlídku mapy do kontextu. Tyto vrstvy mohou obsahovat jiné geografické prvky, které chcete zobrazovat v mapě mimo body prohlídky. Sem patří například studijní oblast, pěší nebo jízdní trasa spojující vaše body prohlídky atd. Šablona prohlídky mapy zobrazuje tyto další podpůrné vrstvy pomocí symbolů, které si zvolíte ve webové mapě. Vyskakovací okna ovšem nejsou k dispozici. Pokud chcete přidat podpůrné vrstvy do prohlídky, uložte svoji práci a zavřete nástroj pro tvorbu prohlídky mapy. Poté otevřete webovou mapu použitou ve Vaší prohlídce. Tu najdete v sekci Můj obsah na platformě ArcGis nebo pomocí sekce Moje příběhy na webové stránce map s příběhem.",
         "div7": "Prohlídka by měla být krátká a poutavá",
         "div8": "Prohlídka může obsahovat nejvýše 99 bodů. Většina prohlídek bude ale samozřejmě výrazně kratší. Předpokládejte, že publikum nemá zájem procházet příliš mnoho bodů. Vám možná téma připadá fascinující, ale to nemusí automaticky platit pro všechny.",
         "div10": "Režim vkládání",
-        "div11": "Chcete-li vložit šablonu do jiné webové stránky pomocí iframe, přidáním volitelného parametru \"&embed\" na konec adresy URL odstraníte záhlaví. Ve verzi ke stažení lze tento režim nastavit také konfiguračním souborem.",
-        "div12": "Vyhněte se použití iFrame úzké šířky, který pro maximální zjednodušení používání přepne prohlídku mapy do rozvržení pro malé dotykové displeje. Při vkládání prohlídky mapy doporučujeme vedle vložené prohlídky vždy poskytnout odkaz, aby uživatelé prohlídku mohli spustit na celé obrazovce."
+        "div11": "Chcete-li vložit šablonu do jiné webové stránky pomocí iframe, přidáním volitelného parametru \"&embed\" na konec adresy URL odstraníte záhlaví.",
+        "div12": "Vyhněte se použití iFrame úzké šířky, který pro maximální zjednodušení používání přepne prohlídku mapy do rozvržení pro malé dotykové displeje. Pro maximální pohodlí uživatele vždy doporučujeme při vkládání prohlídky mapy navíc poskytnout odkaz, aby uživatelé prohlídku mohli spustit na celé obrazovce."
       },
       "tab5": {
         "title": "Publikování",
@@ -548,6 +564,22 @@ define({
       "panel4": "Příště již neupozorňovat u tohoto příběhu",
       "mystories": "Moje příběhy",
       "btnSave": "Uložit"
+    },
+    "bannerNotification": {
+      "learnMore": "Více informací",
+      "close": "Zavřít",
+      "dontShowAgain": "Toto hlášení příště nezobrazovat"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Důležité upozornění týkající se webové bezpečnosti a map s příběhem",
+      "s1h1": "Společnost Esri zvyšuje zabezpečení map s příběhem",
+      "s1p1": "Vaše mapy s příběhem živě na webu a webová komunita neustále pracují na tom, jak zajistit a implementovat lepší zabezpečení. Protokol HTTPS, který poskytuje bezpečné připojení k obsahu šířenému po internetu, se profiluje jako běžný způsob přístupu k webovému obsahu. Většina moderních prohlížečů dnes zobrazuje varování, když internetová adresa používá protokol HTTP místo HTTPS. Kvůli tomuto vznikajícímu standardu bude nutné, počínaje updatem ArcGIS Online v červnu 2018, aby vaše mapy s příběhem používaly protokol HTTPS.",
+      "s1p2": "V praxi to znamená, že přístup k mapě s příběhem a veškerému jejímu obsahu (včetně obrázků, vrstev, připojených aplikací a webových stránek) musí probíhat prostřednictvím odkazů, které začínají řetězcem HTTPS místo HTTP. Zajistíte tak svým čtenářům ten nejlepší možný zážitek, jelikož většina webových prohlížečů bude hlásit, že vaše příběhy používají zabezpečené připojení.",
+      "s2h1": "Co mám udělat?",
+      "s2p1": "Společnost Esri pracuje na tom, aby pro autory map s příběhem a čtenáře tento přechod proběhl hladce. V nástrojích pro tvorbu map s příběhem a aplikaci Moje příběhy jsou nyní k dispozici pomůcky, které vám umožní najít nezabezpečený obsah (HTTP) ve vašich příbězích a které vám poradí, jak postupovat dál. Zkontrolujte prosím zabezpečení svých příběhů a přejděte na protokol HTTPS do června 2018.",
+      "action1": "Zavřít",
+      "action2": "Chci si prohlédnout svoje příběhy",
+      "action3": "Více informací"
     }
   }
 });

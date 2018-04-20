@@ -105,16 +105,19 @@ a:hover{
 /*
  * Scrollbar
  */
-::-webkit-scrollbar {
+body:not(.mobile-view) ::-webkit-scrollbar,
+body.isEmbed ::-webkit-scrollbar {
 	width: 8px;
 }
 
-::-webkit-scrollbar-thumb {
+body:not(.mobile-view) ::-webkit-scrollbar-thumb,
+body.isEmbed ::-webkit-scrollbar-thumb {
 	background: #888;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
-::-webkit-scrollbar-track {
+body:not(.mobile-view) ::-webkit-scrollbar-track,
+body.isEmbed ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
@@ -204,4 +207,34 @@ a:hover{
 	width: 75px;
 	height: 75px;
 	background-repeat: no-repeat;
+}
+
+.reset-btn {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+}
+
+/* Remove excess padding and border in Firefox 4+ */
+.reset-btn::-moz-focus-inner {
+    border: 0;
+    padding: 0;
 }

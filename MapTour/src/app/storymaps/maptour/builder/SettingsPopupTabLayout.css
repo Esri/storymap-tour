@@ -1,28 +1,36 @@
+#settings-layout {
+	overflow-y: auto;
+	overflow-x: hidden;
+	max-height: 450px;
+}
+
 #settings-layout .layout-box {
-	display: inline-block;
-	width: 259px;
+	display: block;
+	position: relative;
+	width: 100%;
 	vertical-align: top;
-	text-align: center;
 	padding-top: 10px;
 	margin-top: 15px;
 	/*margin-bottom: 35px;*/
 }
 
 #settings-layout .layout-box:nth-child(2) {
-	padding-right: 5px;
+	/*padding-right: 5px;*/
 }
 
 #settings-layout .layout-box > img {
-	padding-top: 17px;
-	padding-bottom: 10px;
+	position: absolute;
+  left: 10px;
+  top: 10px;
+  height: 105px;
 }
 
 #settings-layout .layout-box:nth-child(3) > img {
-	padding-bottom: 36px;
+	/*padding-bottom: 36px;*/
 }
 
 #settings-layout .layout-box {
-	min-height: 250px;
+	min-height: 115px;
 }
 
 #settings-layout .layout-box .layoutOption {
@@ -30,18 +38,26 @@
 	font-size: 14px;
 }
 
+#settings-layout .layout-box-title {
+	font-weight: 700;
+	margin-left: 215px;
+  margin-top: 20px;
+}
+
 #settings-layout .layout-box .layoutOption input:checkbox {
 	height: 12px;
 }
 
 #settings-layout .layout-box .layoutFooter {
-	position: absolute;
+	margin-left: 215px;
+	margin-top: 15px;
+	/*position: absolute;
 	bottom: 50px;
-	width: 258px;
+	width: 258px;*/
 }
 
 #settings-layout .layout-box button {
-	display: inline-block;
+	/*display: inline-block;*/
 }
 
 #settings-layout .layout-box .selectedLayout {
@@ -57,6 +73,8 @@
 #settings-layout .layout-box.selected .selectedLayout {
 	display: block;
 	margin-bottom: 2px;
+	font-size: 18px;
+	color: #2e8fd1;
 }
 
 #settings-layout .layout-box.selected button {
@@ -76,4 +94,11 @@
 #settings-layout .useLocBtn {
 	width: 12px;
 	vertical-align: -2px;
+}
+
+.newLayout {
+	color: red;
+  margin-left: 10px;
+  font-weight: 900;
+  font-size: 18px;
 }

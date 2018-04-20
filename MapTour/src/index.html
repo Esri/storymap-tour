@@ -49,7 +49,7 @@
 				// To authorize all users you can use ["*"]
 				authorizedOwners: [""],
 				// Select the application layout between "three-panel" and "integrated"
-				layout: "three-panel",
+				layout: "side-panel",
 				// The application header title, if no title is specified, the webmap's title is used
 				title: "",
 				// The application header subtitle, if not specified the ArcGIS.com web map's summary is used
@@ -70,7 +70,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.10.0';
+			var version = '2.11.0';
 			var isProduction = false;
 			// IE 9 and below are not compatible with script async attribute.
 			var canUseAsyncAttr = true;
@@ -82,6 +82,7 @@
 				if(version <= 9)
 					canUseAsyncAttr = false;
 			}
+
 
 			function loadJS(url, isExternal)
 			{
@@ -112,11 +113,12 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("https://js.arcgis.com/3.23/esri/css/esri.css", true);
-			loadCSS("https://js.arcgis.com/3.23/dijit/themes/claro/claro.css", true);
+			loadCSS("https://js.arcgis.com/3.24/esri/css/esri.css", true);
+			loadCSS("https://js.arcgis.com/3.24/dijit/themes/claro/claro.css", true);
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
+				loadCSS("resources/icons/font-awesome-4.7.0/css/font-awesome.min.css");
 			}
 			else {
 				loadCSS("lib/bootstrap/css/bootstrap.min.css");
@@ -173,6 +175,8 @@
 				loadCSS("app/storymaps/maptour/ui/mobile/ListView.css");
 				loadCSS("app/storymaps/maptour/ui/mobile/InfoView.css");
 				loadCSS("app/storymaps/maptour/ui/Responsive.css");
+
+				loadCSS("resources/icons/font-awesome-4.7.0/css/font-awesome.min.css");
 			}
 
 			var dojoConfig = {
@@ -200,9 +204,50 @@
 		<style>
 			/* CUSTOM CSS RULES */
 		</style>
+		<div id="side-panel-builder">
+			<button id="panels-builder-save" role="button" class="builder-save bldr-btn">
+				<i class="fa-custom-x fa fa-floppy-o"></i>
+			</button>
+			<button id="panels-builder-settings" role="button" class="builder-settings bldr-btn">
+				<i class="fa-custom-x fa fa-cog"></i>
+			</button>
+			<button id="panels-builder-share" role="button" class="builder-share bldr-btn btn">
+				<span class="fa-stack">
+					<i class="fa-custom-x fa fa-share"></i>
+					<i class="fa fa-stack-1x fa-lock share-level"></i>
+				</span>
+			</button>
+			<hr>
+			<button role="button" id="addPopupButton2" class="bldr-btn">
+				<span class="fa-stack">
+					<i class="fa fa-stack-2x fa-plus"></i>
+				</span>
+			</button>
+			<button role="button" id="importPopupButton2" class="bldr-btn btn">
+				<span class="fa-stack">
+					<i class="fa fa-stack-2x fa-plus"></i>
+					<i class="fa fa-stack-1x fa-map-marker"></i>
+					<i class="fa fa-stack-1x fa-map-marker map-marker2"></i>
+				</span>
+			</button>
+			<button role="button" id="organizeSlidesButton2" class="bldr-btn">
+				<span class="fa-lg">
+					<i class="fa-custom-x fa fa-exchange"></i>
+				</span>
+			</button>
+			<button id="panels-builder-help" role="button" class="builder-help bldr-btn">
+				<i class="fa fa-question-circle"></i>
+			</button>
+		</div>
 		<div id="header">
 			<!-- Mobile header -->
 			<div id="headerMobile" class="firstDisplay">
+				<div class="scroll-layout-banner">
+					<a class="mobile-scroll-logo-link" href="" target="_blank">
+						<img src="" alt="" class="mobile-scroll-logo">
+					</a>
+					<a href="" class="mobile-scroll-story-tag-link" target="_blank"></a>
+				</div>
 				<div class="banner">
 					<h1 class="title"></h1>
 					<h2 class="subtitle"></h2>
@@ -218,6 +263,11 @@
 			<!-- Desktop header -->
 			<div id="headerDesktop">
 				<div class="rightArea">
+					<div role="button" type="button" class="switchBuilder btn btn-xs btn-primary" tabindex="-1">
+						<span class="fa fa-cog" style="outline: none;"></span>
+						<span class="editLabel"></span>
+						<span aria-hidden="true" class="switch-builder-close">×</span>
+					</div>
 					<div class="social">
 						<span class="msLink">
 							<a href="http://storymaps.arcgis.com" target="_blank" tabindex="-1"></a>
@@ -236,7 +286,7 @@
 					<h1 class="title" tabindex="0"></h1>
 					<h2 class="subtitle" tabindex="0"></h2>
 				</div>
-				<button type="button" class="switchBuilder btn" tabindex="-1"></button>
+
 				<!-- Builder top panel -->
 				<div id="builderPanel">
 					<h4></h4>
@@ -254,6 +304,17 @@
 			</div>
 		</div>
 		<div id="contentPanel" class="mobileView">
+			<div id="splashPanel">
+				<div id="splashText">
+					<div id="splashTitle"></div>
+					<div id="splashSubtitle"></div>
+				</div>
+				<div id="takeTour">
+					<div id="takeTourText"></div>
+					<div class="fa fa-chevron-down"></div>
+				</div>
+			</div>
+			<div id="leftPanel"></div>
 			<!-- Map panel -->
 			<div id="mapPanel">
 				<div id="mainMap">
@@ -261,10 +322,10 @@
 				</div>
 				<!-- Builder switch basemap -->
 				<div id="basemapChooser">
-					<div data-dojo-type="dijit/TitlePane"
-						 data-dojo-props="closable:false, open:false">
-					<div data-dojo-type="dijit/layout/ContentPane" style="width:380px; height:280px; overflow:auto;">
-						<div id="basemapGallery" ></div></div>
+					<div data-dojo-type="dijit/TitlePane" data-dojo-props="closable:false, open:false">
+						<div data-dojo-type="dijit/layout/ContentPane" style="width:380px; height:280px; overflow:auto;">
+							<div id="basemapGallery" ></div> <!-- icon th-large -->
+						</div>
 					</div>
 				</div>
 				<div class="mapLocationError">
@@ -287,6 +348,14 @@
 				<img id="arrowPrev" class="arrow disabled" alt="Previous point"/>
 				<div id="cfader"></div>
 				<div id="pictureLoadingIndicator" style="visibility:hidden;"></div>
+				<div class='builderImageTarget'>
+					<div class='pencilIconDiv'>
+						<i class='fa fa-pencil'></i>
+					</div>
+					<form>
+						<input class="side-panel-upload" type="file" accept="image/jpeg" title=" " />
+					</form>
+				</div>
 				<img id="arrowNext" class="arrow disabled" alt="Next point"/>
 
 				<a class="modern-layout-control left click-btn"></a>
@@ -330,8 +399,9 @@
 				<button id="organizeSlidesButton" type="button" class="btn"></button>
 				<button id="importPopupButton" type="button" class="btn"></button>
 			</div>
+			<!-- Container for story points in mobile-layout-scroll -->
+			<div id="mobile-scroll-story-content"></div>
 		</div>
-
 		<!-- Mobile views -->
 		<div id="listPanel" class="mobileView">
 			<div class="listWrapper">
@@ -382,12 +452,12 @@
 			</div>
 		</div>
 
-		<!-- Loading indicator -->
 		<div id="loadingOverlay"></div>
-		<div id="loadingIndicator" class="loadingIndicator">
-			<img src="resources/icons/loading-light.gif" />
-		</div>
-		<div id="loadingMessage" aria-hidden="true"></div>
+		<div id="loadingIndicator" class="loading-dots is-active loadingIndicator">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
 		<!-- Loading -->
 		<style>
@@ -399,45 +469,64 @@
 				width: 100%;
 				height: 100%;
 				overflow: hidden;
-				background-color: #E5E5E5;
-				-webkit-box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3);
-				-moz-box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3);
-				box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3);
+				background-color: #EFEFEF;
 			}
 
-			@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-			@-moz-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-			@-webkit-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-			@-ms-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-			@-o-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-
-			@keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
-			@-moz-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
-			@-webkit-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
-			@-ms-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
-			@-o-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
-
-			#loadingOverlay.fadeOut {
-				-webkit-animation: fadeout 1.1s;
-				-moz-animation: fadeout 1.1s;
-				-ms-animation: fadeout 1.1s;
-				-o-animation: fadeout 1.1s;
-				animation: fadeout 1.1s;
-				-webkit-animation-fill-mode:forwards;
-				-moz-animation-fill-mode:forwards;
-				animation-fill-mode:forwards;
+			.loading-dots {
+			    display: none;
+			    width: 48px;
+			    height: 48px;
+			    position: fixed;
+			    top: calc(50vh - 24px);
+			    left: calc(50% - 24px);
+			    z-index: 700;
 			}
 
-			#loadingIndicator {
-				position: fixed;
-				top: 50%;
-				left: 50%;
-				z-index: 700;
+			.is-active {
+			    display: block;
 			}
 
-			.loadingIndicator {
-				margin-left: -17px;
-				margin-top: -35px;
+			.loading-dots span {
+			    display: block;
+			    background: #00b9f2;
+			    width: 12px;
+			    height: 12px;
+			    border-radius: 50%;
+			    position: absolute;
+			    -webkit-transform: translateZ(0) scale(.7);
+			            transform: translateZ(0) scale(.7);
+			}
+
+			.loading-dots span:nth-of-type(1) {
+			    top: calc(50% - 12.5%);
+			    -webkit-animation: jump 1.2s infinite ease-in-out;
+			            animation: jump 1.2s infinite ease-in-out;
+			}
+
+			.loading-dots span:nth-of-type(2) {
+			    top: calc(50% - 12.5%);
+			    left: calc(50% - 12.5%);
+			    -webkit-animation: jump 1.2s infinite ease-in-out .25s;
+			            animation: jump 1.2s infinite ease-in-out .25s;
+			}
+
+			.loading-dots span:nth-of-type(3) {
+			    top: calc(50% - 12.5%);
+			    left: calc(100% - 25%);
+			    -webkit-animation: jump 1.2s infinite ease-in-out .5s;
+			            animation: jump 1.2s infinite ease-in-out .5s;
+			}
+
+			@-webkit-keyframes jump {
+			    0% { background: #00b9f2; -webkit-transform: scale(.7); transform: scale(.7); }
+			    65% { background: #007ac2; -webkit-transform: translateY(-125%) scale(1); transform: translateY(-125%) scale(1); }
+			    100% { background: #00b9f2; -webkit-transform: scale(.7); transform: scale(.7); }
+			}
+
+			@keyframes jump {
+			    0% { background: #00b9f2; -webkit-transform: scale(.7); transform: scale(.7); }
+			    65% { background: #007ac2; -webkit-transform: translateY(-125%) scale(1); transform: translateY(-125%) scale(1); }
+			    100% { background: #00b9f2; -webkit-transform: scale(.7); transform: scale(.7); }
 			}
 		</style>
 
@@ -600,7 +689,7 @@
 			<div class="modal-footer">
 				<span class="error"></span>
 				<span class="success"></span><img src="resources/icons/loader-upload.gif" class="addSpinner" />
-    			<button class="btnSave btn btn-primary"></button>
+				<button class="btnSave btn btn-primary"></button>
 				<button class="btnClose btn" data-dismiss="modal" aria-hidden="true"></button>
 			</div>
 		</div>
@@ -859,23 +948,31 @@
 			<div class="modal-body">
 				<!-- Layout -->
 				<div id="settings-layout" class="tab-content">
-					<p></p>
-					<span class="layout-box">
-						<div></div>
+					<!-- <p></p> -->
+					<div class="layout-box">
 						<img />
-						<div class="layoutFooter">
-							<button class="btn"></button>
-							<div class="selectedLayout"></div>
-						</div>
-					</span>
-					<span class="layout-box">
 						<div class="layout-box-title"></div>
-						<img />
 						<div class="layoutFooter">
 							<button class="btn"></button>
 							<div class="selectedLayout"></div>
 						</div>
-					</span>
+					</div>
+					<div class="layout-box">
+						<img />
+						<div class="layout-box-title"></div>
+						<div class="layoutFooter">
+							<button class="btn"></button>
+							<div class="selectedLayout"></div>
+						</div>
+					</div>
+					<div class="layout-box">
+						<img />
+						<div class="layout-box-title"></div>
+						<div class="layoutFooter">
+							<button class="btn"></button>
+							<div class="selectedLayout"></div>
+						</div>
+					</div>
 					<div class="layoutOption"></div>
 				</div>
 				<!-- Colors -->
@@ -895,7 +992,7 @@
 						<div class="control-group">
 							<div class="controls">
 								<label class="radio">
-								  <input type="radio" name="optionsLogo" id="optionsRadios2" value="esri" checked>
+								  <input type="radio" name="optionsLogo" id="optionsRadios0" value="esri" checked>
 								  <span class="logoText"></span>
 								</label>
 								<label class="radio">
@@ -1032,8 +1129,7 @@
 						</div>
 						<div class="share-warning"></div>
 						<div class="footer">
-							<a class="btn-learnmore"></a>
-							| <a class="btn-preview"></a>
+							<a class="btn-preview"></a>
 						</div>
 					</div>
 					<div class="shared-dialog">
@@ -1057,8 +1153,6 @@
 				<h3></h3>
 			</div>
 			<div class="helpPopupHeader modal-tabs">
-				<div class="tab"></div>
-				<div class="tab"></div>
 				<div class="tab"></div>
 				<div class="tab"></div>
 				<div class="tab"></div>
@@ -1154,27 +1248,26 @@
 			</table>
 		</div>
 
-		<script src="https://js.arcgis.com/3.23/init.js"></script>
+		<script src="https://js.arcgis.com/3.24/init.js"></script>
 		<script type="text/javascript">
 			loadJS('app/maptour-config.js');
 
 			function getUrlVar(name)
 			{
-			    var vars = [], hash;
-			   	if( window.location.href.indexOf('?') == -1 ) return null;
+				var vars = [], hash;
+				if( window.location.href.indexOf('?') == -1 ) return null;
 
-			    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-			    for(var i = 0; i < hashes.length; i++){
-			        hash = hashes[i].split('=');
+				var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+				for(var i = 0; i < hashes.length; i++){
+					hash = hashes[i].split('=');
 					hash[0] = hash[0].split('#')[0];
-			        vars.push(hash[0]);
-			        vars[hash[0]] = (hash[1] == undefined) ? "true" : hash[1];
-			    }
-			    return vars[name];
+					vars.push(hash[0]);
+					vars[hash[0]] = (hash[1] == undefined) ? "true" : hash[1];
+				}
+				return vars[name];
 			}
 
 			if( isProduction ) {
-				
 				if( getUrlVar('edit') || getUrlVar('fromScratch') || getUrlVar('fromscratch') || getUrlVar('fromGallery') )
 					loadJS('app/maptour-builder-min.js');
 				else

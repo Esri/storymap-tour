@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "這不適用於自動播放模式",
       "autoplayLabel": "自動播放模式",
       "autoplayExplain1": "自動播放模式將以一定間隔向前播放您的故事。這很適用於書報攤或公共顯示器，但請注意，在其他情況下可能會使得故事更難閱讀。此圖徵不支援小畫面。",
-      "autoplayExplain2": "啟用此模式時，可使用控制項來播放/暫停故事和調整瀏覽速度。"
+      "autoplayExplain2": "啟用此模式時，可使用控制項來播放/暫停故事和調整瀏覽速度。",
+      "takeTourText": "進行導覽",
+      "backToStart": "返回開頭"
     },
     "builderHTML": {
       "panelHeader": "故事設定",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "範圍",
       "settingsTabZoom": "縮放級別",
       "settingsLayoutExplain": "選擇所需的版面設定。",
-      "settingsLayoutProfessional": "由三個面板構成的版面設定",
-      "settingsLayoutModern": "整合的版面設定",
+      "settingsLayoutProfessional": "三面板",
+      "settingsLayoutModern": "整合式",
+      "settingsLayoutSidePanel": "側面板",
       "settingsLayoutSelected": "選取的版面設定",
-      "settingsLayoutSelect": "選擇此版面設定",
+      "settingsLayoutNew": "新增!",
+      "settingsLayoutSelect": "選擇",
       "settingsLayoutNote": "請注意，在使用影片的位置，即使未勾選該選項，標語牌也始終位於影片下方。",
       "settingsLayoutLocBtn": "顯示“定位”按鈕",
       "settingsLayoutLocBtnHelp": "大多數瀏覽器皆支援。只有在透過 HTTPS 存取故事地圖時才會出現。若內嵌地圖則不會出現。",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "編輯範圍",
       "settingsExtentApplyBtn": "Map Tour 預覽",
       "settingsExtentUseMainMap": "使用 Map Tour 範圍",
-      "settingsZoomExplain": "根據介紹設定故事點的縮放(可選項)。",
+      "settingsZoomExplain": "設定故事點的縮放 (選用)。",
       "settingsLabelZoom": "比例/級別",
       "settingsZoomFirstValue": "無",
       "settingsFieldError": "請在每個清單中選擇一個欄位",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "建立失敗。請重試",
       "tabError": "請檢查所有索引標籤中的錯誤",
       "introRecordBtn": "入口",
-      "introRecordActivate": "將第一個點做為導入點 (不在轉盤中顯示)"
+      "introRecordActivate": "將第一個點做為導入點 (不在轉盤中顯示)",
+      "coverRecordActivate": "將第一個點作為封面頁",
+      "coverBuilder": "封面頁配置",
+      "cover": "封面",
+      "showCover": "顯示封面",
+      "editCover": "編輯封面",
+      "coverNoVideo": "封面媒體不支援影片。請選擇圖片。",
+      "coverPreview": "若要看到封面，請儲存故事，然後使用「分享」按鈕預覽它。"
     },
     "addPopupJS": {
       "uploadingPicture": "正在上傳圖片",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "編輯!",
       "templateTitle": "設置範本標題",
-      "templateSubtitle": "設置範本子標題"
+      "templateSubtitle": "設置範本子標題",
+      "edit": "編輯"
     },
     "crossFaderJS": {
       "setPicture": "設置圖片標題",
@@ -306,9 +318,9 @@ define({
       "csv": "在 CSV 中引用",
       "advanced": "進階選項",
       "advancedScratchLbl": "啟動新的導覽",
-      "advancedScratchTip": "建立可以使用精靈進行手動填充的空導覽。",
+      "advancedScratchTip": "建立可在其中新增導覽點的空白導覽。您的媒體必須已連線。此選項不支援圖片上傳。",
       "advancedCSVLbl": "從 CSV 檔案匯入導覽資料",
-      "advancedCSVTip": "從 CSV 檔案匯入導覽內容。",
+      "advancedCSVTip": "從在線上參考媒體的 CSV 檔案中匯入導覽內容。此選項不支援圖片上傳。",
       "advancedCommonTip": "這需要圖像和影片均已上線。",
       "select": "做出選擇",
       "locUse": "使用圖片地理位置",
@@ -382,7 +394,7 @@ define({
       "title": "選擇並定位您的圖像/影片",
       "header": "按一下或點觸想匯入的圖片，以將其定位。",
       "headerMore": "為什麼我的圖像/影片沒有地理定位?",
-      "headerExplain": "如果您的圖片具有效的地理位置，它們將自動在地圖上定位並在第二個索引標籤中列出。<br /><br />預設情況下，Picasa 和 Flickr 在您匯入圖片時不會儲存地理位置 EXIF 元資料。請勾選 Picasa/Flickr 隱私設置以啟用外部應用程式的圖片地理位置匯入與供使用。可能需要針對要使用的 EXIF 地理位置將現有圖片重新匯入到 Flickr/Picasa。<br /><br />在 Facebook 中，需要勾選每個圖片，按一下“編輯”並選擇位置。",
+      "headerExplain": "如果您的圖片具備有效的地理位置，它們將自動在地圖上定位並在第二個頁籤中列出。<br /><br />預設情況下，Picasa 和 Flickr 在您匯入圖片時不會儲存地理位置 EXIF 中繼資料。 請勾選 Picasa/Flickr 隱私設定，以啟用外部應用程式的圖片地理位置匯入和使用。 可能需要針對要使用的 EXIF 地理位置，將現有的圖片重新匯入到 Flickr/Picasa。",
       "leftPanelTab1": "定位",
       "leftPanelTab2": "已定位",
       "clickOrTap": "按一下或輕觸要定位的地圖",
@@ -404,7 +416,7 @@ define({
       "header2": "該助手將協助您透過從已經儲存在線上的媒體建構 Map Tour，或者將媒體匯入到您的 ArcGIS Online for Organizations 帳戶。",
       "title1": "媒體已上線",
       "title2": "我需要上傳我的圖像",
-      "hostedFSTooltip": "上傳您的圖像並使用 Map Tour 圖層儲存它們 (不支援影片)。",
+      "hostedFSTooltip": "上傳您的圖片並將其儲存於導覽中 (不支援影片)。",
       "hostedFsNA": "您必須是發佈者，或是具有發佈託管的圖徵圖層權限的其他角色。請聯絡您的 ArcGIS 管理員。",
       "hostedFsNA2": "僅適用於 ArcGIS Online 訂閱。<a href='%LINK%'>註冊免費試用</a>",
       "footer1": "完成後，不要忘記透過應用程式項目頁面分享您的 Map Tour 。",
@@ -420,19 +432,23 @@ define({
       "close": "關閉",
       "tab1": {
         "title": "簡介",
+        "moreInfo": "如需詳細資訊",
+        "infoSites": "造訪 <a href='https://storymaps.arcgis.com' target='_blank'>Esri Story Maps 網站的 <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Map Tour 部分。</a></a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Map Tour 常見問題集。</a>",
+        "myStories": "您可以管理 Map Tour，並在網站的<a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>我的故事</a>中檢查其中是否有錯誤。",
         "div1": "Map Tour 範本旨在呈現地理資訊，為您要講述的故事提供吸引人的攝影或媒體元素。",
         "div2": "範本可生成具有吸引力且易於使用的 web 應用程式，讓您按編號順序在地圖上顯示使用者可瀏覽的一小組地點。該範本可在任何裝置上的任何 web 瀏覽器中使用，其中包括智慧型手機和平板電腦。<br /><br />",
-        "div42": "要查看其他使用者建立的 Map Tour 範例，<a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>請存取<a href='http://storymaps.arcgis.com/' target='_blank'>Story Maps 網站</a>中的圖庫</a>。您也可以在 Twitter 上關注我們 :<a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>。",
-        "div5": "我們非常期待您的參與! 如果您有任何疑問、想要請求新的圖徵或者發現漏洞，請造訪<a href='http://links.esri.com/storymaps/forum' target='_blank'>Story Maps 使用者論壇</a>。"
+        "div42": "若要查看其他使用者正在建立的 Map Tour 範例，請造訪 <a href='https://storymaps.arcgis.com/' target='_blank'>Story Maps 網站</a>上的<a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>圖庫</a>。您也可以在 Twitter (<a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>) 上追蹤我們的動態。",
+        "div5": "我們很希望聽到您的意見! 請造訪 <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet</a> 上的 Story Maps 論壇，告訴我們問題和您需要的新功能。"
       },
       "tab2": {
         "title": "資料",
-        "div1": "建構Map Tour 時要考慮的主要因素是選擇在何處儲存圖片。Map Tour 使用的圖片可以儲存在主要圖片分享服務中、任何 web 伺服器上或做為圖徵服務的附件。",
+        "div1": "建構Map Tour 時要考慮的主要因素是選擇在何處儲存圖片。Map Tour 可使用圖片分享服務上儲存的圖片、任何 Web 伺服器上的圖片，或從磁碟上傳的圖片。",
         "div1a": "有關受支援的圖片格式和影片的詳細資訊，請參閱此索引標籤的最後一部分。",
         "div2": "互動式建構器提供兩個選項，用於處理您的 Map Tour 中的影像:",
-        "div3": "<ul><li>您可以使用<b>已經在線上的照片</b>，例如儲存在 Flickr 等照片分享網站的影像或儲存在您自己網站上的影像。透過影像的 URL 將其引用到您的 Map Tour 中。</li><li>還可以<b>透過電腦將照片</b>直接上傳到您的 Map Tour。該上傳選項需要您具有 ArcGIS for Organizations 帳戶，並具有發佈者或管理員權限，因為系統將自動為您建立託管的圖徵服務，您可將照片做為附件儲存在其中。</li></ul>",
+        "div3": "<ul><li>您可以使用<b>已經在線上的照片</b>，例如儲存在 Flickr 等照片分享網站的圖片，或儲存在您自己網站上的圖片。 透過這些圖片的 URL，在您的 Map Tour 中參考它們。</li><li>還可以<b>透過電腦將照片</b>直接上傳到您的 Map Tour。 該上傳選項需要您具有 ArcGIS 訂閱並擁有發佈者或管理員權限，因為系統將自動為您建立託管圖徵服務，您可將照片做為附件儲存在其中。</li></ul>",
         "div4": "主要用例包括:",
-        "div4b": "<b>您的照片尚未託管</b>，且您擁有 ArcGIS for Organizations 帳戶: 使用託管的圖徵服務是您的最佳選擇。與公開照片分享服務一樣，我們將最佳化您的圖片以建立快速載入影像，您將可以存取 ArcGIS 平臺的所有管理和資料管理功能。",
+        "div4b": "<b>您的照片尚未託管</b>，且您擁有 ArcGIS 訂閱: 使用託管的圖徵服務是您的最佳選擇。與公開照片分享服務一樣，我們將最佳化您的圖片以建立快速載入影像，您將可以存取 ArcGIS 平臺的所有管理和資料管理功能。",
         "div5": "<b>您不是組織的成員</b>: 首先，您需要將圖片上傳到照片分享網站或您自己的 web 伺服器上。建構器將協助您使用這些繼續託管在其原始位置的圖片。",
         "div6": "<b>您希望重複使用現有圖徵服務</b>將圖片儲存為附件或引用外部圖片: 請參閱下面的詳細描述部分。",
         "div7": "<b>您是上一版 Map Tour </b>範本的使用者，且已經擁有引用圖片和縮圖的 CSV: 您可以匯入該 CSV 並最佳化資料。建構器僅支援使用緯度/經度欄位的 CSV; 以地址為基礎的 CSV 可以繼續在您的 web 地圖中使用 (請參閱以下部分)。",
@@ -441,10 +457,10 @@ define({
         "learn": "瞭解詳細資訊",
         "div9": "匯入操作透過在 web 地圖圖徵集中儲存其 URL 來引用已託管的圖片。圖片並未儲存在 ArcGIS Online 中。如果無法存取託管的圖片，則無法在 Map Tour 中使用，您將看到“圖片不可用”的圖像。依您的照片服務提供者而定，Map Tour 可能不會匯入圖片的名稱、描述和位置。這些屬性儲存在 web 地圖中，對在線上服務進行的任何編輯都不會反映在 Map Tour 中。",
         "div10": "在 web 伺服器上儲存圖片",
-        "div11": "如果選擇自己託管圖片，則需要手動建立圖片的縮圖。使用全解析度的圖片建立縮圖將導致效能不佳。因此，強烈建議您使用線上照片分享服務或圖徵服務來進行此操作。",
-        "div12": "使用現有圖徵服務或 Shapefile",
-        "div13": "任何點圖徵服務或 shapefile 都可做為 Map Tour 資料來源。只需透過 arcgis.com 地圖檢視器新增為 web 地圖的圖層。如果應用程式在您的圖層中找到預定的屬性，則所有建構器功能都將可用。",
-        "div14": "欄位名稱的可能值包括 (不區分大小寫):",
+        "div11": "如果選擇自己託管圖片，則需要手動建立圖片的縮圖。使用全解析度的圖片建立縮圖將導致效能不佳。若要透過 URL 直接在 Web 上存取圖片，請參閱此<a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>常見問題集</a>以取得調整圖片大小的提示。",
+        "div12": "使用現有的 GIS 資料",
+        "div13": "若任何圖徵服務、CSV 檔案或包含點的 shapefile 包含應用程式所預期的欄位集，則可將其作為 Map Tour 資料資源。您必須將其作為圖層新增至 ArcGIS Web 地圖，然後藉由建立 Map Tour 來分享地圖。",
+        "div14": "欄位名稱的支援值包括 (不區分大小寫):",
         "div151": "名稱",
         "div152": "描述",
         "div153": "圖片",
@@ -480,18 +496,18 @@ define({
         "div0a": "IE8+ 支援 Map Tour 檢視器。IE9+ 支援互動式建構器。我們已經在所有主要瀏覽器中進行測試，但如果您遇到了困難，則建議您使用 Chrome。",
         "div0b": "如果您遇到任何困難，請與我們聯繫。此外，使用 CSV 範本建構 Map Tour，可將您與建構器介面的互動降至最低。",
         "div1": "圖片",
-        "div2": "建議使用橫向照片，而不要使用縱向照片。縱橫比為 4:3 的照片最為合適。可以使用縱向影像，但在像 iPad 這樣的小螢幕上，很多照片可能會被說明文字遮擋 (相對於寬幅區域，在長幅區域顯示文字會佔用更多的空間)。雖然在 Map Tour 中可以使用不同大小、形狀和方向的影像，但建議對所有影像使用完全相同的大小和形狀。這樣，使用者就不會在瀏覽時被不同大小的影像分散注意力。",
+        "div2": "雖然可在一個 Map Tour 中使用不同大小、形狀和方向的圖片，但建議使用橫向方向而不是縱向方向的圖片。4:3 長寬比的圖片最適合。在三面板和整合式版面設定中 (標題與圖片會重疊)，使用縱向方向圖片會使得大量圖片被標題遮擋。在三面板和整合式版面設定中，如果可能的話，我們建議對所有圖片使用相同的大小和形狀。利用這種方式，使用者在導覽時就不會因不同大小的圖片而分散注意力。",
         "div2a": "建議主要圖片的最大圖像大小為 1000 像素 (寬) x 750 像素 (高)，縮圖的最大圖像大小為 140 像素 (寬) x 93 像素 (高)。",
         "div3": "使用 HTML 標記將說明文字格式化",
-        "div4": "頁眉和圖片標題/說明文字可以包含 HTML 標記，以定義格式和連結。例如，此代碼將新增黃色連結:",
+        "div4": "您可以在標題中輸入 HTML 標記以定義格式和連結。例如，這些標記會新增綠色超連結:",
         "div4a": "為導覽寫出適當的子標題",
-        "div4b": "請利用時間為導覽寫出吸引人的子標題。子標題是吸引人們關注您的導覽並簡要介紹內容的良好途徑，也是告知觀眾該導覽所在的州或國家的好地方。例如，不要假設大家知道導覽中城市或城鎮的位置。也可以使用 HTML 標記將說明文字格式化，例如包括連結。但說明文字不要過長。在較小的瀏覽器視窗或 iPad 中，子標題可能並不完全適合，需要進行裁剪。如果您未想出合適的子標題，則保留空白。",
+        "div4b": "請利用時間為導覽寫出吸引人的子標題。子標題是吸引人們關注您的導覽並簡要介紹內容的良好途徑，也是告知觀眾該導覽所在的州或國家的好地方。例如，不要假設大家知道導覽中城市或城鎮的位置。但不要製作太長的子標題。如果想不到適當的子標題，請將其留空。在側面板的版面配置中，封面頁上顯示的子標題是導覽中第一個點的標題 (如果使用「組織」對話方塊中的選項，將第一個點的內容作為封面頁)。",
         "div5": "支援圖層",
-        "div6": "可新增其他支援的圖層為 Map Tour 提供上下文。除 Map Tour 點之外，這些圖層還可能包含您希望地圖顯示的其他地理圖徵，例如研究區域、連結到導覽點的步行或開車路線等等。Map Tour 範本透過您在 web 地圖中指定的符號系統顯示這些附加的支援圖層，但無法使用快顯。",
+        "div6": "可新增其他支援的圖層為 Map Tour 提供上下文。除 Map Tour 點之外，這些圖層還可能包含您希望地圖顯示的其他地理圖徵，例如研究區域、連結到導覽點的步行或開車路線等等。Map Tour 範本透過您在 Web 地圖中指定的符號系統顯示這些附加的支援圖層，但無法使用快顯視窗。若要為您的導覽新增支援圖層，請儲存工作並關閉 Map Tour 構建器。然後開啟導覽中使用的 Web 地圖。您可以在 ArcGIS 的「我的內容」中，或透過 Story Maps 網站的「我的故事」部分來尋找此能。",
         "div7": "維持導覽簡潔明瞭",
         "div8": "每次導覽限制為 99 個點。大部分 Map Tour 肯定明顯少於該限制。不要期望觀眾願意逐一瀏覽過多的導覽點。您可能覺得自己的主題很吸引人，但不要以為其他人也這麼想!",
         "div10": "嵌入模式",
-        "div11": "如果您想要透過 iframe 將範本嵌入另一個網站，在 URL 末端添加選項參數 \"&embed\" 將移除標頭。此模式也可以透過設定參數於可下載的版本中設定。",
+        "div11": "如果您想要透過 iframe 將範本嵌入另一個網站，在 URL 末端添加選用參數 \"embed\" 將移除標頭。",
         "div12": "避免使用狹窄的 iFrame 寬度，因其可能導致 Map Tour 切換至回應式觸控小螢幕的版面設定。為了擴大使用簡易性，在嵌入 Map Tour 時，通常建議在所嵌入的導覽旁邊提供一個連結，以便使用者啟動全螢幕導覽。"
       },
       "tab5": {
@@ -548,6 +564,22 @@ define({
       "panel4": "請勿再針對此故事發出警告",
       "mystories": "我的經驗",
       "btnSave": "儲存"
+    },
+    "bannerNotification": {
+      "learnMore": "瞭解詳細資訊",
+      "close": "關閉",
+      "dontShowAgain": "請勿再次顯示此訊息"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Web 安全性和 Story Maps 的相關重要資訊",
+      "s1h1": "Esri 正在加強 Story Maps 的安全性",
+      "s1p1": "您的 Story Maps 在 Web 上運作，且 Web 社群一直致力於建立和實施更好的安全機制。為透過網際網路傳輸的內容提供安全連線的 HTTPS，正在成為存取 Web 內容的通行方式。若是使用 HTTP 而非 HTTPS，現今大多數的瀏覽器都會顯示警告訊息。基於此新興的標準，從 ArcGIS Online 的 2018 年 6 月更新開始，Story Maps 將需要使用 HTTPS。",
+      "s1p2": "從實務而言，這表示故事地圖及其所有內容 (包含圖片、圖層、內嵌的應用程式和網站) 都必須使用以 HTTPS (而非 HTTP) 開頭的連結存取。如此可確保為您的讀者提供最佳的體驗，因為大多數的 Web 瀏覽器都會指出您的故事是安全的。",
+      "s2h1": "我需要執行哪些工作?",
+      "s2p1": "Esri 正在努力使故事地圖的作者和讀者都能輕鬆進行此轉移。故事地圖建立器和我的故事現在提供了工具，可協助您在故事中尋找不安全的內容 (HTTP)，並提供如何解決問題的建議。請檢查您的故事是否有不安全的內容，並在 2018 年 6 月之前更新為 HTTPS。",
+      "action1": "關閉",
+      "action2": "立即檢查我的故事",
+      "action3": "瞭解詳細資訊"
     }
   }
 });

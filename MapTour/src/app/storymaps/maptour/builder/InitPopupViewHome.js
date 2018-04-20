@@ -29,7 +29,7 @@ define(["dojo/has"],
 					if (!APPCFG.AUTHORIZED_IMPORT_SOURCE.featureService) {
 						errMsg = i18n.viewer.onlinePhotoSharingCommon.disabled;
 						if ( app.isPortal && ! app.portal.supportsSceneServices && !app.portal.supportsHostedServices) {
-							errMsg = i18n.viewer.onlinePhotoSharingCommon.disabledPortal;
+							errMsg = i18n.viewer.onlinePhotoSharingCommon.disabled;
 						}
 
 						_container.find('.btn-select-hostedFS img').parent().addClass("disabled");

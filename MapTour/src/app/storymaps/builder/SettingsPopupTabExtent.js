@@ -129,7 +129,8 @@ define(["storymaps/utils/Helper",
 					slider: true,
 					center: extent.getCenter(),
 					extent: extent.expand(2),
-					autoResize: false
+					autoResize: false,
+					smartNavigation: false
 				});
 
 				var extentLayer = new GraphicsLayer({

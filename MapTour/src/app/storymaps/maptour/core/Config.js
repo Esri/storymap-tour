@@ -1,4 +1,4 @@
-define([], 
+define([],
 	function(){
 		return {
 			loadAllWebmapOnInit: false,
@@ -12,8 +12,8 @@ define([],
 					&& APPCFG.COLOR_SCHEMES
 					&& APPCFG.DISPLAY_LOCATE_BUTTON !== undefined
 					&& APPCFG.DEFAULT_SHARING_URL
-					&& APPCFG.DEFAULT_PROXY_URL 
-					&& APPCFG.MINIMUM_MAP_WIDTH 
+					&& APPCFG.DEFAULT_PROXY_URL
+					&& APPCFG.MINIMUM_MAP_WIDTH
 					&& APPCFG.TIMEOUT_VIEWER_LOAD
 					&& APPCFG.TIMEOUT_VIEWER_REQUEST
 					&& APPCFG.TIMEOUT_BUILDER_REQUEST
@@ -21,16 +21,17 @@ define([],
 					&& APPCFG.USE_STATIC_ICON
 					&& APPCFG.USE_STATIC_ICON.enabled !== undefined
 					&& APPCFG.USE_STATIC_ICON.url
-					&& APPCFG.PIN_CFG 
+					&& APPCFG.PIN_CFG
 					&& APPCFG.PIN_DEFAULT_CFG
 					&& APPCFG.PIN_CFG[APPCFG.PIN_DEFAULT_CFG]
-					&& APPCFG.ICON_CFG 
+					&& APPCFG.ICON_CFG
+					&& APPCFG.ICON_CUSTOM_CFG 
 					&& APPCFG.EMBED !== undefined
-					&& APPCFG.HEADER_LOGO_URL !== undefined 
+					&& APPCFG.HEADER_LOGO_URL !== undefined
 					&& APPCFG.HEADER_LOGO_TARGET !== undefined
 					&& APPCFG.HEADER_LINK_TEXT !== undefined
 					&& APPCFG.HEADER_LINK_URL !== undefined
-					&& APPCFG.HEADER_SOCIAL  
+					&& APPCFG.HEADER_SOCIAL
 					&& APPCFG.FIELDS_CANDIDATE
 					&& APPCFG.CORS_SERVER
 					&& APPCFG.AUTHORIZED_IMPORT_SOURCE

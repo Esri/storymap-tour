@@ -29,7 +29,7 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 				setColor(bgColor);
 
 				// Completly destroy the previous carousel
-				_carousel.destroy();
+				_carousel && _carousel.destroy();
 				$(selector).empty();
 
 				render(slides);
@@ -47,6 +47,7 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 					_firstDisplaySinceRendered = false;
 				}
 				_carousel.refreshSize();
+
 				if(!/iPhone|iPad|iPod/i.test(navigator.userAgent)){
 					$('#tourPoint' + app.data.getCurrentIndex()).css('height', $('#infoPanel').height() - 40);
 				}
@@ -55,7 +56,7 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 
 			this.getCurrentPoint = function()
 			{
-				return _carousel.pageIndex;
+				return _carousel && _carousel.pageIndex;
 			};
 
 			function render(slides)

@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Dette er ikke tilgængeligt i autoplay-tilstand.",
       "autoplayLabel": "Autoplay-tilstand",
       "autoplayExplain1": "Autoplay-tilstand vil gå frem igennem din historie med et regelmæssigt interval. Dette er ideelt på en kiosk-skærm eller offentlig tilgængelig skærm, men du skal være opmærksom på, at dette kan gøre din historie vanskeligere at læse i andre situationer. Denne funktion understøttes ikke på små skærme.",
-      "autoplayExplain2": "Når denne tilstand er aktiv, er der knapper til at afspille din historie eller sætte den på pause og til at justere navigationshastigheden."
+      "autoplayExplain2": "Når denne tilstand er aktiv, er der knapper til at afspille din historie eller sætte den på pause og til at justere navigationshastigheden.",
+      "takeTourText": "Tag en rundtur",
+      "backToStart": "Tilbage til Start"
     },
     "builderHTML": {
       "panelHeader": "HISTORIEKONFIGURATION",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Område",
       "settingsTabZoom": "Zoomniveau",
       "settingsLayoutExplain": "Vælg det ønskede layout.",
-      "settingsLayoutProfessional": "Layout med tre paneler",
-      "settingsLayoutModern": "Integreret layout",
+      "settingsLayoutProfessional": "Tre-panel",
+      "settingsLayoutModern": "Integreret",
+      "settingsLayoutSidePanel": "Sidepanel",
       "settingsLayoutSelected": "Vælg layout",
-      "settingsLayoutSelect": "Vælg dette layout",
+      "settingsLayoutNew": "Nyt!",
+      "settingsLayoutSelect": "Vælg",
       "settingsLayoutNote": "Bemærk, at ved punkter, der benytter videoer, vil opslaget altid være placeret under videoen, selvom denne indstilling ikke er markeret.",
       "settingsLayoutLocBtn": "Få vist en søgeknap",
       "settingsLayoutLocBtnHelp": "Understøttes af de fleste browsere. Vises kun, når historiekortet åbnes via HTTPS. Vises ikke, hvis historien er indlejret.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Redigér udstrækningen",
       "settingsExtentApplyBtn": "Vis på Map Tour",
       "settingsExtentUseMainMap": "Brug Map Tour-udstrækning",
-      "settingsZoomExplain": "Indstil zoom for historiepunkter efter introduktionen (valgfrit).",
+      "settingsZoomExplain": "Indstil zoom for historiepunkter (valgfrit).",
       "settingsLabelZoom": "Skala/niveau",
       "settingsZoomFirstValue": "Ingen",
       "settingsFieldError": "Marker et felt i hver liste",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Oprettelse mislykkedes. Prøv igen",
       "tabError": "Kontrollér for fejl på alle faner",
       "introRecordBtn": "Introduktion",
-      "introRecordActivate": "Brug det første punkt som introduktion (vises ikke i karrusellen)"
+      "introRecordActivate": "Brug det første punkt som introduktion (vises ikke i karrusellen)",
+      "coverRecordActivate": "Brug det første punkt som forside",
+      "coverBuilder": "Konfiguration af forside",
+      "cover": "Forside",
+      "showCover": "Vis forside",
+      "editCover": "Redigér forside",
+      "coverNoVideo": "Video understøttes ikke som forsidemedie. Vælg et billede.",
+      "coverPreview": "Hvis du vil se forsiden, kan du gemme din historie og se en forhåndsvisning med knappen Del."
     },
     "addPopupJS": {
       "uploadingPicture": "Overfører billede",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Redigér mig!",
       "templateTitle": "Indstil skabelontitel",
-      "templateSubtitle": "Indstil skabelonundertitel"
+      "templateSubtitle": "Indstil skabelonundertitel",
+      "edit": "Redigér"
     },
     "crossFaderJS": {
       "setPicture": "Indstil billedtitel",
@@ -306,9 +318,9 @@ define({
       "csv": "Refereres til i en CSV-fil",
       "advanced": "Avancerede indstillinger",
       "advancedScratchLbl": "Start en ny tur",
-      "advancedScratchTip": "Opret en tom tur, som du kan udfylde manuelt ved hjælp af en guide.",
+      "advancedScratchTip": "Opret en tom rundtur, som du kan tilføje punkter i. Dine medier skal være online. Denne valgmulighed understøtter ikke indlæsning af dine billeder.",
       "advancedCSVLbl": "Importér turdata fra en CSV-fil",
-      "advancedCSVTip": "Importér dit turindhold fra en CSV-fil.",
+      "advancedCSVTip": "Importér dit rundtursindhold fra en CSV-fil, der henviser til dine medier online. Denne valgmulighed understøtter ikke indlæsning af dine billeder.",
       "advancedCommonTip": "Det kræver, at dine billeder og videoer allerede er online.",
       "select": "Foretag en markering",
       "locUse": "Brug billed-geoplacering",
@@ -382,7 +394,7 @@ define({
       "title": "Vælg og find dine billeder/videoer",
       "header": "Klik eller tryk på de billeder, du vil importere, for at finde dem.",
       "headerMore": "Hvorfor er mine billeder/videoer ikke blevet geoplaceret?",
-      "headerExplain": "Hvis dine billeders geoplacering er gyldig, findes de automatisk på kortet og vises på listen på det andet faneblad.<br /><br />Som standard lagrer Picasa og Flickr ikke billedernes EXIF-geoplaceringsmetadata, når du importerer billeder. Markér Flickr/Picasa-fortrolighedsindstillinger for at aktivere import af billedernes geoplaceringsdata og brug af en ekstern applikation. Du er muligvis nødt til at genimportere dine eksisterende billeder til Flickr/Picasa, for at EXIF-geoplaceringen kan benyttes.<br /><br />I Facebook skal du gå til hvert enkelt billede, klikke på Redigér og markere placeringen.",
+      "headerExplain": "Hvis dine billeder har en gyldig geoplacering, placeres de automatisk på kortet og vises på den anden fane.<br /><br />Som standard gemmer Picasa og Flickr ikke EXIF-geoplaceringsmetadata, når du importerer billeder. Markér Flickr/Picasa-fortrolighedsindstillinger for at aktivere import af billedernes geoplaceringsdata og brug af en ekstern applikation. Du er muligvis nødt til at genimportere dine eksisterende billeder til Flickr/Picasa, for at EXIF-geoplaceringen kan benyttes.",
       "leftPanelTab1": "Skal findes",
       "leftPanelTab2": "Fundet",
       "clickOrTap": "Klik eller tryk på kortet for at finde",
@@ -404,7 +416,7 @@ define({
       "header2": "Denne assistent hjælper dig med at oprette en Map Tour på grundlag af medier, der allerede er lagret online, eller den importerer dem til din ArcGIS Online for Organizations-konto.",
       "title1": "De findes allerede online",
       "title2": "Jeg skal overføre mine billeder",
-      "hostedFSTooltip": "Overfør dine billeder, og gem dem sammen med Map Tour-laget (understøtter ikke video).",
+      "hostedFSTooltip": "Overfør dine billeder, og gem dem i din rundtur (understøtter ikke video).",
       "hostedFsNA": "Du skal være udgiver eller have en anden rolle med rettigheder til at publicere \"hostede\" vektorlag. Kontakt din ArcGIS-administrator.",
       "hostedFsNA2": "Kun tilgængelig med ArcGIS Online-abonnement. <a href='%LINK%'>Tilmeld dig et gratis prøveabonnement</a>",
       "footer1": "Når du er færdig, skal du huske at dele din Map Tour med dit publikum gennem siden for applikationselementer.",
@@ -420,19 +432,23 @@ define({
       "close": "Luk",
       "tab1": {
         "title": "Introduktion",
+        "moreInfo": "Yderligere oplysninger.",
+        "infoSites": "Besøg <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Map Tour-afsnittet</a> af <a href='https://storymaps.arcgis.com' target='_blank'>Esri Story Maps-webstedet.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Map Tour FAQ.</a>",
+        "myStories": "Du kan administrere dine Map Tours og kontrollere dem for fejl i <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Mine historier</a> på webstedet.",
         "div1": "Map Tour-skabelonen er udviklet til at præsentere geografisk information dér, hvor der er et spændende fotografi- eller medieelement, der passer til din historie.",
         "div2": "Skabelonen producerer en attraktiv, brugervenlig webapplikation, der gør det muligt at præsentere en række steder på et kort i nummereret rækkefølge, som brugere kan gennemse. Skabelonen er beregnet til at anvendelse i alle webbrowsere og på alle enheder, herunder smartphones og tablets.<br /><br />",
-        "div42": "For at få vist eksempler på map tours, som andre brugere opretter, kan du <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>besøge galleriet</a> på <a href='http://storymaps.esri.com/' target='_blank'>Story Maps-webstedet</a>. Du kan også følge os på Twitter på <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Vi vil meget gerne høre fra dig! Hvad enten du har spørgsmål, ønsker at bestille et nyt objekt eller mener, at du har fundet en fejl, vil vi bede dig om at besøge <a href='http://links.esri.com/storymaps/forum' target='_blank'>Story Maps User Forum</a>."
+        "div42": "For at se eksempler på rundture, som andre forfattere er i gang med at skabe, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>kan du besøge galleriet</a> på <a href='https://storymaps.arcgis.com/' target='_blank'>Story Maps-webstedet</a>. Du kan også følge os på Twitter på <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "Vi vil meget gerne have din tilbagemelding! Fortæl os om eventuelle problemer og nye funktioner, som du har brug for, ved at besøge Story Maps-forum på <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Data",
-        "div1": "Det vigtigste, du skal overveje, når du skal oprette en Map Tour, er hvor dine billeder skal lagres. En Map Tour kan bruge billeder, der er lagret på større fotodelingstjenester, webservere eller som vedhæftede filer på en featuretjeneste.",
+        "div1": "Det vigtigste, du skal overveje, når du skal oprette en Map Tour, er hvor dine billeder skal lagres. En Map Tour kan bruge billeder, der er lagret på fotodelingstjenester, webservere eller som overføres fra en disk.",
         "div1a": "Se det sidste afsnit på denne fane for at få oplysninger om understøttede formater og videoer.",
         "div2": "Det interaktive builder-program indeholder to muligheder til håndtering af billeder i din Map Tour:",
-        "div3": "<ul><li>Du kan bruge <b>fotos, der allerede er online</b>, f.eks. billeder, der er gemt på et fotodelings-websted som Flickr, eller billeder, der er gemt på dit eget websted. Der vil være referencer til disse billeder i din Map Tour via deres URL'er.</li><li>Du kan også <b>overføre billeder fra din computer</b> direkte til din Map Tour. Denne mulighed kræver, at du har en ArcGIS for Organizations-konto, og at du har udgiver- eller administratorrettigheder, fordi der automatisk oprettes en \"hosted\" featuretjeneste til dig, hvor dine fotos gemmes som vedhæftninger.</li></ul>",
+        "div3": "<ul><li>You can use <b>fotos, der allerede er online</b>, f.eks. billeder, der er gemt på et fotodelings-websted som Flickr, eller billeder, der er gemt på dit eget websted. Der vil være referencer til disse billeder i din Map Tour via deres URL'er.</li><li>Du kan også <b>overføre billeder fra din computer</b> direkte til din Map Tour. Denne mulighed kræver, at du har et ArcGIS-abonnement, og at du har udgiver- eller administratorrettigheder, fordi der automatisk oprettes en \"hosted\" featuretjeneste til dig, hvor dine fotos gemmes som vedhæftninger.</li></ul>",
         "div4": "Typiske brugerscenarier:",
-        "div4b": "<b>Dine billeder er ikke \"hosted\"</b> endnu, og du har en ArcGIS for Organizations-konto: Det er dit bedste valg at benytte en \"hosted\" featuretjeneste. Ligesom på offentlige fotodelingstjenester vil vi optimere dine billeder med henblik på at oprette billeder, der indlæses hurtigt, og du får adgang til alle administrations- og datahåndteringsfunktionerne på ArcGIS-platformen.",
+        "div4b": "<b>Dine billeder er ikke  \"hosted \"</b> endnu, og du har et ArcGIS-abonnement: Det er dit bedste valg at benytte en  \"hosted \" featuretjeneste. Ligesom på offentlige fotodelingstjenester vil vi optimere dine billeder med henblik på at oprette billeder, der indlæses hurtigt, og du får adgang til alle administrations- og datahåndteringsfunktionerne på ArcGIS-platformen.",
         "div5": "<b>Du er ikke medlem af en organisation</b>: Du skal først overføre dine billeder til et fotodelings-websted eller til din egen webserver. Builder-programmet hjælper dig med at anvende disse billeder, der fortsat vil være \"hosted\" på deres oprindelige placering.",
         "div6": "<b>Du vil gerne genbruge en eksisterende featuretjeneste,</b> som gemmer dine billeder som vedhæftede filer, eller som henviser til eksterne billeder: Se afsnittet med detaljerede oplysninger nedenfor.",
         "div7": "<b>Du bruger en tidligere version</b> af Map Tour-skabelonen og har allerede en CSV-fil, der henviser til dine billeder og miniaturer: Du kan importere den og forfine dine data. Builder-programmet understøtter kun CSV-filer, der benytter længde- og breddegradsfelter. Adressebaserede CSV-filer kan fortsat benyttes via dit webkort (se nedenfor).",
@@ -441,10 +457,10 @@ define({
         "learn": "lær mere",
         "div9": "Denne import-handling henviser til billeder, der allerede er \"hosted\" ved at gemme deres URL'er i en samling af webkorttjenester. Billederne gemmes ikke på ArcGIS Online. Hvis du ikke kan få adgang til de \"hostede\" billeder, vil de ikke være tilgængelige i din Map Tour, og du får vist et billede med teksten 'Billedet er ikke tilgængeligt'. Det afhænger af tjenesteudbyderen, om din Map Tour importerer navn, beskrivelse og placering for billederne. Disse attributter gemmes i webkortet, og eventuelle redigeringer af online-tjenesten vises ikke i Map Tour.",
         "div10": "Lagring af billeder på en web-server",
-        "div11": "Hvis du vælger selv at \"hoste\" billederne, skal du manuelt oprette miniaturebilleder til dine billeder. Hvis du bruger billeder med fuld opløsning til miniaturebillederne, bliver de ikke gode. Vi anbefaler derfor, at du bruger en online fotodelingstjeneste eller en featuretjeneste til dette.",
-        "div12": "Brug af en eksisterende featuretjeneste eller shapefil",
-        "div13": "Alle punkt-featuretjenester og shapefiler kan bruges som Map Tour-datakilde. Du skal blot tilføje dem som et lag i dit webkort via ArcGIS.com-kortviseren. Hvis applikationen finder de forventede attributter i dine lag, vil alle builder-funktioner være tilgængelige.",
-        "div14": "De mulige værdier for feltnavnene er (forskel på store og små bogstaver):",
+        "div11": "Hvis du vælger selv at  \"hoste \" billederne, skal du manuelt oprette miniaturebilleder til dine billeder. Hvis du bruger billeder med fuld opløsning til miniaturebillederne, bliver de ikke gode. Se disse <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>FAQ</a> for at få tips til at tilpasse størrelsen på dine billeder, hvis du benytter dem på nettet direkte via URL’er.",
+        "div12": "Bruge eksisterende GIS-data",
+        "div13": "Enhver featuretjeneste, CSV-fil eller shapefil, der indeholder punkter, kan bruges som datakilde for Map Tour, hvis den indeholder det sæt felter, applikationen forventer. Du skal tilføje den som et lag i et ArcGIS-webkort og derefter dele kortet ved at oprette en Map Tour.",
+        "div14": "De understøttede værdier for feltnavnene er (forskel på store og små bogstaver):",
         "div151": "Navn",
         "div152": "Beskrivelse",
         "div153": "Billede",
@@ -480,19 +496,19 @@ define({
         "div0a": "Map Tour-viewer-programmet understøttes af IE8+. Det interaktive builder-program understøttes af IE9+. Vi tester programmet i alle de store browsere, men hvis du kommer ud for vanskeligheder, anbefaler vi, at du bruger Chrome.",
         "div0b": "Giv os gerne besked, hvis du kommer ud for vanskeligheder. I mellemtiden vil du, når du opretter din Map Tour ved hjælp af CSV-skabelonen, minimere din interaktion med builder-programmets grænseflade.",
         "div1": "Billeder",
-        "div2": "Vi anbefaler, at du benytter liggende format til dine fotos i stedet for stående format. Fotos med et størrelsesforhold på 4:3 passer bedst. Stående format kan benyttes, men på mindre skærme som iPad vil en stor del af fotoet måske blive skjult af billedteksten (tekst fylder mere, når den vises på et opretstående område sammenlignet med et bredt område). Skønt billeder med forskellig størrelse, form og orientering kan benyttes i den samme Map Tour, anbefaler vi, at du bruger præcis samme størrelse og form til alle billeder. Så bliver brugeren ikke distraheret af billeder med forskellig størrelse, når de følger turen.",
+        "div2": "Selvom billeder med forskellige størrelser, former og orientering kan bruges i en Map Tour, anbefaler vi liggende billeder i stedet for stående. Billeder med et 4:3-format passer bedst. I Tre-panelet og integrerede layouts, hvor billedteksten overlapper billedet, kan stående billedretning betyde, at billedet bliver skjult af billedteksten. I Tre-panelet og integrerede layouts anbefaler vi at bruge samme størrelse og form til alle billeder, hvis det er muligt. På den måde bliver brugeren ikke distraheret af forskellige billedstørrelser, når de ser rundturen.",
         "div2a": "Vi anbefaler en maksimal billedstørrelse på 1000 pixels i bredden x 750 pixels i højden for almindelige billeder og 140x93 for miniaturer.",
         "div3": "Formatering af din billedtekst vha. HTML-tags",
-        "div4": "Overskrifts- og billedtitlen/-teksten kan indeholde HTML-tags, der definerer formatering og links. For eksempel tilføjer denne kode et gult link:",
+        "div4": "Du kan indsætte HTML-koder i dine billedtekster for at definere formatering og links. For eksempel vil denne kode tilføje et grønt hyperlink:",
         "div4a": "Skriv en god undertitel til din tur",
-        "div4b": "Brug tid på at skrive en markant undertitel til din tur. Undertitlen er en god måde at drage brugerne ind i din tur på og fortælle dem, hvad de vil blive præsenteret for på turen. Det er også et godt sted at fortælle dit publikum, hvilken stat eller land turen foregår i. Du skal f.eks. ikke tro, at brugerne ved, hvor byen i din tur ligger. Din billedtekst kan også formateres vha. HTML-koder, f.eks. kan du inkludere links. Gør ikke billedteksten for lang. I mindre browservinduer eller på en iPad passer den måske ikke helt og vil blive afskåret. Hvis du kke kan komme i tanker om en god undertitel, kan du lade den stå tom.",
+        "div4b": "Brug tid på at skrive en markant undertitel til din tur. Undertitlen er en god måde at drage brugerne ind i din tur på og fortælle dem, hvad de vil blive præsenteret for på turen. Det er også et godt sted at fortælle dit publikum, hvilken stat eller hvilket land turen foregår i. Du skal f.eks. ikke tro, at brugerne ved, hvor byen i din tur ligger. Du må ikke gøre undertitlen for lang. Hvis du ikke kan komme i tanker om en god undertitel, så lad være med at skrive en. I sidepanellayoutet er den undertitel, der vises på forsiden, billedteksten til det første punkt i din rundtur (hvis du bruger indstillingen i dialogboksen Organiser for at bruge indholdet i det første punkt som forside).",
         "div5": "Understøttende lag",
-        "div6": "Du kan tilføje flere understøttende lag, der giver yderligere kontekst til din Map Tour. Disse lag kan indeholde andre geografiske objekter, som du ønsker, at kortet skal vise som supplement til Map Tour-punkterne, såsom et undersøgelsesområde, en gå- eller kørerute, der forbinder dine tour-punkter osv. Map Tour-skabelonen viser disse supplerende supportlag vha. den symbologi, du angiver i webkortet, men pop-up-vinduerne er ikke tilgængelige.",
+        "div6": "Du kan tilføje flere understøttende lag, der giver yderligere kontekst til din Map Tour. Disse lag kan indeholde andre geografiske objekter, som du ønsker, at kortet skal vise som supplement til Map Tour-punkterne, såsom et undersøgelsesområde, en gå- eller kørerute, der forbinder dine tour-punkter osv. Map Tour-skabelonen viser disse supplerende supportlag vha. den symbologi, du angiver i webkortet, men pop-up-vinduerne er ikke tilgængelige. Hvis du vil tilføje understøttende lag til din rundtur, skal du gemme dit arbejde og lukke Map Tour Builder. Åbn derefter det webkort, der blev brugt i din rundtur. Du kan finde dette i ArcGIS Mit indhold eller via afsnittet Mine historier på Story Maps-webstedet.",
         "div7": "Pas på, din tour ikke bliver for lang",
         "div8": "Der er en begrænsning på 99 punkter pr. tour. De fleste Map Tours vil naturligvis være væsentligt kortere end dette. Publikum har som regel ikke lyst til at gå igennem alt for mange tour-punkter. Det er ikke sikkert, de finder dit emne lige så spændende, som du gør!",
         "div10": "Indlejringstilstand",
-        "div11": "Hvis du ønsker at indlejre skabelonen på et andet websted via en iframe, fjernes overskriften, hvis du tilføjer den valgfrie parameter \"&embed\" i slutningen af URL'en. Du kan også benytte denne tilstand i den version, der kan overføres, ved at bruge konfigurationsfilen.",
-        "div12": "Undgå at bruge en iFrame-bredde, der er for smal, fordi det medfører, at map tour'en skifter til det lille touch-screen-baserede layout. For at maksimere brugervenligheden: Når du indlejrer en map tour, anbefaler vi altid, at du placerer et link ved siden af den indlejrede tur, så brugerne kan starte turen i fuldskærmsvisning."
+        "div11": "Hvis du ønsker at indlejre skabelonen på et andet websted via en iframe, fjernes overskriften, hvis du tilføjer den valgfrie parameter \"&embed\" i slutningen af URL'en.",
+        "div12": "Undgå at bruge en iFrame-bredde, der er for smal, fordi det medfører, at map tour'en skifter til det lille touch-screen-baserede layout. Hvis du vil maksimere brugervenligheden, når du indlejrer en map tour, anbefaler vi altid, at du placerer et link ved siden af den indlejrede tur, så brugerne kan starte turen i fuldskærmsvisning."
       },
       "tab5": {
         "title": "Udgivelse",
@@ -548,6 +564,22 @@ define({
       "panel4": "Giv mig ikke igen besked om denne historie",
       "mystories": "Mine historier",
       "btnSave": "Gem"
+    },
+    "bannerNotification": {
+      "learnMore": "Yderligere oplysninger",
+      "close": "Luk",
+      "dontShowAgain": "Vis ikke denne meddelelse igen"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Vigtig meddelelse om internetsikkerhed og Story Maps",
+      "s1h1": "Esri forbedrer sikkerheden for Story Maps",
+      "s1p1": "Dine Story Maps lever på nettet, og internetfællesskabet arbejder altid for at skabe og implementere bedre sikkerhed. HTTPS som giver en sikker forbindelse til indhold, der sendes over internettet, bliver den mest almindelige måde at få adgang til webindhold på. De fleste moderne browsere viser nu advarselsmeddelelser, når der bruges HTTP i stedet for HTTPS. På grund af denne nye standard, der starter med opdateringen i juni 2018 til ArcGIS Online, skal dine Story Maps bruge HTTPS.",
+      "s1p2": "I praksis betyder det, at et Story Map og alt dets indhold (herunder billeder, lag, indlejrede apps og websteder) skal åbnes ved hjælp af links, der starter med HTTPS i stedet for HTTP. Det sikrer den bedste oplevelse for dine læsere, fordi de fleste webbrowsere vil vise, at dine historier er sikre.",
+      "s2h1": "Hvad skal jeg gøre?",
+      "s2p1": "Esri arbejder på at gøre overgangen let for Story Map-forfattere og -læsere. Der er værktøjer tilgængelige nu i Story Map builders og Mine historier, der hjælper dig med at finde usikkert indhold (HTTP) i dine historier og giver anbefalinger til, hvordan du ordner det. Kontrollér dine historier for usikkert indhold og opdatér til HTTPS inden juni 2018.",
+      "action1": "Luk",
+      "action2": "Kontrollér mine historier nu",
+      "action3": "Lær mere"
     }
   }
 });

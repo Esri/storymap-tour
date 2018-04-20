@@ -420,6 +420,7 @@ define(["storymaps/utils/Helper",
 				_csvMap = new Map(_mapDivId, {
 					slider: true,
 					extent: initialExtent,
+					smartNavigation: false,
 					// iOS requirement
 					autoResize: false
 				});

@@ -604,7 +604,6 @@ define([
 				var explain = i18n.viewer.builderHTML.dataExplain;
 				if ( app.isPortal ) {
 					explain += "<br /><br />";
-					explain += i18n.viewer.builderHTML.dataExplainPortal;
 				}
 				$('.dataExplain', container).html(explain);
 			}

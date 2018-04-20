@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Isto não está disponível no modo de reprodução automática",
       "autoplayLabel": "Modo reprodução automática",
       "autoplayExplain1": "Modo reprodução automática irá avançar através da sua história em intervalos regulares. Isto é ideal num monitor de quiosque ou exibição pública, mas esteja ciente de que noutras situações pode tornar a história mais difícil de ler. Este elemento não é suportado em écrans pequenos.",
-      "autoplayExplain2": "Quando este modo está activo existem controles para reproduzir/pausar a história e ajustar a velocidade de navegação."
+      "autoplayExplain2": "Quando este modo está activo existem controles para reproduzir/pausar a história e ajustar a velocidade de navegação.",
+      "takeTourText": "Fazer a visita guiada",
+      "backToStart": "Regressar ao Início"
     },
     "builderHTML": {
       "panelHeader": "CONFIGURAÇÃO DA HISTÓRIA",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Extensão",
       "settingsTabZoom": "Nível de Zoom",
       "settingsLayoutExplain": "Selecione o layout que pretende.",
-      "settingsLayoutProfessional": "Layout de Três Painéis",
-      "settingsLayoutModern": "Layout Integrado",
+      "settingsLayoutProfessional": "Três painéis",
+      "settingsLayoutModern": "Integrada",
+      "settingsLayoutSidePanel": "Painel lateral",
       "settingsLayoutSelected": "Layout selecionado",
-      "settingsLayoutSelect": "Selecionar este layout",
+      "settingsLayoutNew": "Novo!",
+      "settingsLayoutSelect": "Selecionar",
       "settingsLayoutNote": "Atenção que em pontos que utilizam vídeo, o placard será sempre colocado por baixo do vídeo, mesmo que a opção esteja desativada.",
       "settingsLayoutLocBtn": "Exibir um botão 'Localizar'",
       "settingsLayoutLocBtnHelp": "Suportado na maioria dos navegadores. Apenas visível quando o acesso ao story map Only é efetuado através de HTTPS. Não é visível caso a história se encontre incorporada.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Editar a extensão atual",
       "settingsExtentApplyBtn": "Aplicar ao mapa principal",
       "settingsExtentUseMainMap": "Utilizar a extensão do mapa principal",
-      "settingsZoomExplain": "Defina o zoom para pontos de história no seguimento da introdução (opcional).",
+      "settingsZoomExplain": "Defina zoom para pontos de história (opcional).",
       "settingsLabelZoom": "Escala/nível",
       "settingsZoomFirstValue": "Nenhum",
       "settingsFieldError": "Selecione um campo em cada lista",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "A criação falhou. Tente novamente",
       "tabError": "Verifique todos os separadores para ver se existem erros",
       "introRecordBtn": "Introdução",
-      "introRecordActivate": "Utilizar o primeiro ponto como introdução (não aparece no carrossel)"
+      "introRecordActivate": "Utilizar o primeiro ponto como introdução (não aparece no carrossel)",
+      "coverRecordActivate": "Utilizar o primeiro ponto como página de capa",
+      "coverBuilder": "Configuração de Página de Capa",
+      "cover": "Capa",
+      "showCover": "Exibir Capa",
+      "editCover": "Editar Capa",
+      "coverNoVideo": "Vídeo não é suportado como media de capa. Por favor, selecione uma imagem.",
+      "coverPreview": "Para visualizar a capa, guarde a sua história e depois pré-visualize-a utilizando o botão Partilhar."
     },
     "addPopupJS": {
       "uploadingPicture": "A carregar a imagem",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Edite-me!",
       "templateTitle": "Definir título do modelo",
-      "templateSubtitle": "Definir subtítulo do modelo"
+      "templateSubtitle": "Definir subtítulo do modelo",
+      "edit": "Editar"
     },
     "crossFaderJS": {
       "setPicture": "Definir título da imagem",
@@ -306,9 +318,9 @@ define({
       "csv": "Referenciado num ficheiro CSV",
       "advanced": "Opções avançadas",
       "advancedScratchLbl": "Iniciar uma nova Apresentação",
-      "advancedScratchTip": "Crie uma Apresentação vazia que poderá preencher manualmente através de um assistente.",
+      "advancedScratchTip": "Crie uma Apresentação vazia à qual pode acrescentar pontos de visita. Os seus media têm de encontrar-se previamente online. Esta opção não suporta o carregamento das suas imagens.",
       "advancedCSVLbl": "Importar dados para Apresentação a partir de um ficheiro CSV.",
-      "advancedCSVTip": "Importar o conteúdo para a sua Apresentação a partir de um ficheiro CSV.",
+      "advancedCSVTip": "Importe o conteúdo da sua Apresentação de um ficheiro CSV que referencie os seus media online. Esta opção não suporta o carregamento das suas imagens.",
       "advancedCommonTip": "Requer que as suas imagens e videos já estejam online.",
       "select": "Escolher",
       "locUse": "Utilizar geolocalização de imagens",
@@ -382,7 +394,7 @@ define({
       "title": "Selecione e localize as suas imagens/videos",
       "header": "Clique ou toque nas imagens que pretende importar para as localizar.",
       "headerMore": "Porque é que as minhas imagens/videos não são geolocalizados?",
-      "headerExplain": "Se as suas imagens tiverem uma localização válida, serão localizadas automaticamente no mapa e listadas no segundo separador.<br /><br />Por predefinição, o Picasa e o Flickr não exploram os metadados de localização EXIF das imagens; verifique as definições do Flickr/Picasa no separador Privacidade para ativar a utilização da localização das imagens. Poderá ser necessário importar novamente todas as imagens para o Flickr/Picasa.<br /><br />No caso do Facebook, tem de ir a cada imagem, clicar em Editar e selecionar a localização de entre as opções sugeridas, que são baseadas nos metadados EXIF das imagens.",
+      "headerExplain": "Caso as suas imagens tenham uma geolocalização válida, serão automaticamente localizadas no mapa e listadas no segundo separador.<br /><br />Por defeito, o Picasa e o Flickr não armazenam os metadados EXIF de geolocalização quando importa imagens. Verifique as definições de privacidade de Picasa/Flickr para ativar a importação de geolocalização de imagens e utilização por aplicação externa. Poderá ter de voltar a importar as suas imagens existentes para Flickr/Picasa para que a geolocalização EXIF ser utilizada.",
       "leftPanelTab1": "Para localizar",
       "leftPanelTab2": "Localizado",
       "clickOrTap": "Clique ou toque no Mapa para localizar",
@@ -404,7 +416,7 @@ define({
       "header2": "Este assistente irá ajudá-lo a construir uma Apresentação de Mapa a partir de imagens guardadas online ou a importar as imagens para a sua conta ArcGIS Online for Organization.",
       "title1": "Já estão online.",
       "title2": "Necessito carregar as minhas imagens",
-      "hostedFSTooltip": "Carregue as suas imagens e armazene-as com a camada de Apresentação de Mapa (vídeo não suportado).",
+      "hostedFSTooltip": "Carregue as suas imagens e armazene-as com a sua Apresentação (não suporta vídeo).",
       "hostedFsNA": "Tem de ser publicador ou ter outro papel com privilégios para publicar Camadas de Elementos alojadas. Por favor, contacte o seu administrador ArcGIS.",
       "hostedFsNA2": "Apenas disponível com uma assinatura ArcGIS Online. <Um href='%LINK%'>Iniciar sessão para uma versão teste grátis</a>",
       "footer1": "Quando acabar, não se esqueça de partilhar a Apresentação de Mapa com o público-alvo através da página de itens da aplicação.",
@@ -420,19 +432,23 @@ define({
       "close": "Fechar",
       "tab1": {
         "title": "Introdução",
+        "moreInfo": "Para obter mais informações",
+        "infoSites": "Visite a <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>secção Apresentação de Mapa</a> do <a href='https://storymaps.arcgis.com' target='_blank'>site web Esri Story Maps.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>FAQ da Apresentação de Mapa.</a>",
+        "myStories": "Pode gerir as suas Apresentações de Mapa e verificar se têm erros em <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>As Minhas Histórias</a> no site web.",
         "div1": "O modelo de Apresentação de Mapa foi concebido para apresentar informação geográfica quando existe um elemento fotográfico interessante na história que pretende contar.",
         "div2": "O modelo produz uma aplicação web atrativa, fácil de utilizar, que lhe permite apresentar um pequeno conjunto de locais num mapa numa sequência numerada pela qual os utilizadores podem navegar. O modelo foi concebido para ser utilizado em qualquer navegador web ou em qualquer dispositivo, incluindo smartphones e tablets. <br /><br />",
-        "div42": "Para ver exemplos de apresentações de mapa que outras pessoas estão a criar, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>visite a galeria</a> no <a href='http://storymaps.arcgis.com/' target='_blank'>Site web Story Maps</a>. Pode ainda seguir-nos noTwitter em <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Gostaríamos de ter notícias suas! Não hesite em partilhar a sua Apresentação de Mapa connosco:"
+        "div42": "Para visualizar exemplos de apresentações de mapa que estão a ser criadas por outros utilizadores, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>visite a galeria</a> no <a href='https://storymaps.arcgis.com/' target='_blank'>site web Story</a>. Pode ainda seguir-nos no Twitter, em <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "Gostaríamos de ter notícias suas! Informe-nos acerca de quaisquer problemas e novas funcionalidades de que necessite visitando o fórum Story Maps em <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Dados",
-        "div1": "O principal elemento a ter em conta ao construir uma Apresentação de Mapa é a escolha da localização de armazenamento das imagens. A Apresentação de Mapa pode utilizar imagens guardadas nos principais serviços de partilha de fotografias, em qualquer servidor web ou em Serviços de Elementos.",
+        "div1": "O principal elemento a ter em conta ao construir uma Apresentação de Mapa é a escolha da localização de armazenamento das imagens. Uma Apresentação de Mapa pode utilizar imagens guardadas nos principais serviços de partilha de fotografias, em qualquer servidor web ou imagens carregadas do seu disco.",
         "div1a": "Consulte a última secção deste separador para mais detalhes sobre formatos de imagem e vídeo suportados.",
         "div2": "O builder interativo disponibiliza duas opções para gerir as imagens na Apresentação de Mapa:",
-        "div3": "<ul><li>Pode utilizar <b>fotografias que já estejam online</b>, como imagens guardadas num site de partilha de fotografias como o Flickr, ou imagens guardadas no seu próprio site. Essas imagens serão referenciadas na Apresentação de Mapa através dos respetivos URLs</li><li>Também pode <b>carregar fotografias do seu computador</b> diretamente para a Apresentação de Mapa. Para utilizar esta opção de carregamento, é necessário ter uma conta de subscrição ArcGIS for Organizations e privilégios de Publicador ou Administrador, porque é criado automaticamente um serviço de elementos alojado no qual as suas fotografias são guardadas como anexos.</li></ul>",
+        "div3": "<ul><li>Pode utilizar <b>fotografias que já se encontrem online</b>, tais como imagens armazenadas num site de partilha de imagens, como o Flickr, ou imagens armazenadas no seu próprio site web. Estas imagens serão referenciadas na sua Apresentação de Mapa através dos respetivos URLs.</li><li>Pode ainda <b>carregar fotografias do seu computador</b> diretamente para a sua Apresentação de Mapa. Esta opção de carregamento requer que possua uma subscrição ArcGIS e que tenha privilégios de Publicador ou de Administrador, já que é automaticamente criado para si um serviço de elementos alojado no qual as suas fotografias são armazenadas como anexos.</li></ul>",
         "div4": "Os principais casos de utilização são:",
-        "div4b": "<b>As suas fotografias ainda não estão alojadas</b>apesar de ter uma conta ArcGIS for Organizations: a utilização de um Serviço de Elementos alojado é a melhor opção. Tal como os serviços públicos de partilha de fotografias, otimizaremos as suas imagens para criar imagens de carregamento rápido e terá acesso a todas as capacidades de administração e gestão de dados da plataforma ArcGIS.",
+        "div4b": "<b>As suas fotos não se encontram alojadas</b> ainda, e possui uma subscrição ArcGIS: A utilização de um serviço de elementos alojado é a melhor opção. Tal como os serviços públicos de partilha de fotografias, otimizaremos as suas imagens para criar imagens de carregamento rápido e terá acesso a todas as capacidades de administração e gestão de dados da plataforma ArcGIS.",
         "div5": "<b>Não é membro de uma Organização</b>: tem primeiro de carregar as imagens para um site de partilha de fotografias ou para o seu próprio servidor web. O assistente ajudá-lo-á depois a utilizar essas imagens, que continuarão alojadas na localização original",
         "div6": "<b>Pretende reutilizar um Serviço de Elementos existente</b> que guarda as suas imagens como anexos ou que referencia imagens externas: consulte a secção detalhada abaixo",
         "div7": "<b>É um utilizador de uma versão anterior</b> do modelo de Apresentação de Mapa e já tem um ficheiro CSV que referencia imagens e miniaturas: poderá importar o modelo e ajustar os seus dados. O assistente só suporta ficheiros CSV que utilizem atributos de latitude/longitude; é possível continuar a utilizar um ficheiro CSV baseado em endereços através do mapa web (consulte a secção abaixo)",
@@ -441,10 +457,10 @@ define({
         "learn": "saber mais",
         "div9": "A referência da operação de importação já alojou imagens guardando os URLs das imagens numa coleção de elementos de mapa web. As imagens não são guardadas no ArcGIS Online. Se as imagens alojadas não forem válidas, não estarão disponíveis na Apresentação de Mapa e será utilizada uma imagem com a mensagem “Imagem não disponível”. Dependendo do fornecedor de serviços, a Apresentação de Mapa poderá ou não importar o nome, a descrição e a localização das imagens. Esses atributos são guardados no mapa web e quaisquer edições efetuadas nos serviços online não serão aplicadas na Apresentação de Mapa.",
         "div10": "Guardar as imagens num servidor web",
-        "div11": "Se optar por alojar as imagens num servidor próprio, terá de criar as miniaturas das imagens manualmente. A utilização de imagens de resolução total para a miniatura irá prejudicar o desempenho. Por esse motivo, é aconselhável utilizar um serviço de partilha de fotografias online ou um Serviço de Elementos que faça esse trabalho por si.",
-        "div12": "Utilizar um Serviço de Elementos ou Shapefile existente",
-        "div13": "É possível utilizar qualquer Serviço de Elementos ou Shapefile de pontos como fonte de dados para uma Apresentação de Mapa. Só terá de adicioná-lo como uma camada ao seu mapa web através do visualizador de mapas do ArcGIS.com. Se a aplicação encontrar os atributos previstos na camada, todas as funcionalidades do builder estarão disponíveis.",
-        "div14": "Os campos previstos são (não sensíveis a maiúsculas/minúsculas):",
+        "div11": "Caso opte por assumir o armazenamento das imagens, terá de criar imagens miniatura das suas imagens manualmente. A utilização das imagens com resolução total para criar a imagem miniatura resultará num desempenho fraco. Consulte estas <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>FAQ</a> para aceder a dicas sobre dimensionamento de imagens caso vá aceder às mesmas diretamente na web através de URLs.",
+        "div12": "Utilizar dados SIG existentes",
+        "div13": "Qualquer serviço de elementos, ficheiro CSV ou shapefile que contenha pontos pode ser utilizado como fonte de dados para uma Apresentação de Mapa, caso contenha o conjunto de campos exigidos pela aplicação. É necessário que o adicione como camada num mapa web ArcGIS e depois partilhe o mapa criando uma Apresentação de Mapa.",
+        "div14": "Os valores suportados para nome de campo são (não sensíveis a maiúsculas/minúsculas):",
         "div151": "Nome",
         "div152": "Descrição",
         "div153": "Imagem",
@@ -480,19 +496,19 @@ define({
         "div0a": "O visualizador Apresentação de Mapa é suportado em IE8 +. O builder interativo é compatível com IE9 +. Nós testámo-lo ativamente em todos os principais navegadores, mas se tiver algumas dificuldades, recomendamos que utilize o Chrome.",
         "div0b": "Se tiver alguma dificuldade, por favor, avise-nos. Entretanto, através da construção da sua Apresentação de Mapa usando o modelo CSV, irá minimizar a sua interação com a interface do builder.",
         "div1": "Imagens",
-        "div2": "É aconselhável utilizar fotografias com orientação horizontal em vez de orientação vertical. É possível utilizar imagens com orientação vertical, mas em ecrãs mais pequenos (como o iPad) uma grande parte da fotografia pode ficar tapada pela legenda, uma vez que o texto ocupa mais espaço quando é visualizado numa área alta em comparação com uma área larga. Embora seja possível utilizar imagens de tamanhos, formas e orientações diferentes numa Apresentação de Mapa, é aconselhável utilizar exatamente o mesmo tamanho e forma para todas as imagens. Dessa forma, o utilizador não será distraído por imagens de tamanhos diferentes à medida que acompanha a apresentação.",
+        "div2": "Apesar de imagens de diferentes tamanhos, formas e orientação poderem ser utilizadas numa Apresentação de Mapa, recomendamos imagens com orientação horizontal ao invés de vertical. Imagens com uma proporção de aspeto de 4:3 encaixam melhor. Nos layouts Três painéis e Integrado, em que a legenda se sobrepõe à imagem, a utilização de imagens de orientação vertical pode resultar na sobreposição de grande parte da imagem pela legenda. Para os layouts Três painéis e Integrado, recomendamos que seja utilizado o mesmo tamanho e formato para todas as imagens, se possível. Deste modo, o utilizador não será distraído por imagens com diferentes tamanhos à medida que percorre a apresentação.",
         "div2a": "Se está a alojar as imagens você mesmo, recomendamos uma resolução máxima de 1090x725 <b> </ b> para as principais fotos e <b> 140x93 </ b> para as miniaturas.",
         "div3": "Formatar o texto da legenda utilizando tags de HTML",
-        "div4": "O texto da legenda pode incluir tags de HTML para definir a formatação e as ligações; consulte <a href='http://blogs.esri.com/esri/arcgis/2013/03/29/add-links-map-tour/' target='_blank'>este post de blog</a>.",
+        "div4": "Pode introduzir tags HTML nas suas legendas para definir formatação e ligações. Por exemplo, estas tags adicionam uma hiperligação verde:",
         "div4a": "Escreva um bom subtítulo para a sua apresentação",
-        "div4b": "Ocupe algum tempo a escrever um subtítulo apelativo para a sua apresentação. O subtítulo é uma boa forma de atrair as pessoas para a sua apresentação e dizer-lhes o que eles vão descobrir nela. É também um bom sítio para informar o seu público da zona ou país onde a apresentação está localizada. Por exemplo, não assuma que as pessoas saibam onde fica a cidade ou localidade abrangida pela sua apresentação. A sua legenda também pode ser formatada utilizando tags HTML, como por exemplo, a inclusão de ligações. No entanto, não faça a legenda muito longa. Em janelas do navegador ou menores no iPad pode não se encaixar completamente e ser cortada. Se você não consegue pensar num bom subtítulo, deixe-o em branco.",
+        "div4b": "Dedique algum tempo à redação de um subtítulo estimulante para a sua apresentação. O subtítulo é uma boa forma de atrair pessoas para a sua apresentação e comunicar-lhes o que irão descobrir na mesma. É ainda um bom local para informar o seu público acerca do estado ou país em que a sua apresentação se localiza. Por exemplo, não assuma que as pessoas sabem onde se localiza a cidade ou vila em que a sua apresentação tem lugar. No entanto, não crie um subtítulo demasiado extenso. Caso não consiga conceber um bom subtítulo, deixe-o em branco. No layout Painel lateral, o subtítulo apresentado na página de capa é a legenda do primeiro ponto da sua apresentação (caso esteja a utilizar a opção, na caixa de diálogo Organizar, para utilizar o conteúdo do primeiro ponto como página de capa).",
         "div5": "Camadas de Apoio",
-        "div6": "Pode adicionar camadas de apoio ao mapa. Essas camadas aparecem na Apresentação de Mapa para fornecer orientação, fundo e outros elementos geográficos que pretenda apresentar no mapa além dos pontos da Apresentação de Mapa, como uma área de estudo, uma rota de caminhada ou condução a ligar os pontos da apresentação, etc. O modelo exibe essas camadas de apoio adicionais utilizando a simbologia definida por si no mapa web; não estão disponíveis janelas pop-up.",
+        "div6": "Pode adicionar camadas adicionais de apoio para acrescentar contexto à Apresentação de Mapa. Estas camadas podem conter outros elementos geográficos que pretenda apresentar no mapa para além dos pontos da Apresentação de Mapa, como uma área de estudo, uma rota de caminhada ou condução a ligar os pontos da apresentação, etc. O Modelo de Apresentação de Mapa exibe estas camadas de apoio adicionais utilizando a simbologia definida por si no mapa web, as janelas pop-up não se encontram disponíveis. Para adicionar camadas de apoio à sua apresentação, guarde o seu trabalho e feche o Builder de Apresentações de Mapa. Depois abra o mapa web utilizado na sua apresentação. Pode encontrar isto em O Meu Conteúdo ArcGIS ou através da secção As Minhas Histórias do site web Story Maps.",
         "div7": "Mantenha a sua apresentação resumida e interessante",
         "div8": "Existe um limite de 99 pontos por apresentação. Obviamente, a maioria das Apresentações de Mapa será significativamente mais pequena do que isso. Não espere que o público esteja disposto a percorrer demasiados pontos de apresentação. Poderá achar o seu tópico fascinante, mas não parta do princípio de que as outras pessoas acharão o mesmo!",
         "div10": "Modo incorporado",
-        "div11": "Se deseja incorporar o modelo noutro site através de um iframe, acrescentando o parâmetro opcional   \"&embed \" no final da URL irá remover o cabeçalho. Esse modo também pode ser definido na versão para download através do ficheiro de configuração.",
-        "div12": "Evite utilizar uma altura de iFrame estreita que leve a apresentação de mapa a alterar para o layout de pequeno ecrã interativo de toque. Para maximizar a sua facilidade de utilização. Quando incorpora a apresentação de mapa, recomendamos sempre que inclua uma ligação junto à apresentação incorporada para que seja possível aos utilizadores abrir a apresentação em ecrã completo."
+        "div11": "Caso pretenda incorporar o modelo noutro site web através de um iframe, acrescentar o parâmetro opcional \"&embed\" no final do URL irá remover o cabeçalho.",
+        "div12": "Evite utilizar uma largura de iFrame estreita que leve a apresentação de mapa a alterar para o layout de pequeno ecrã interativo de toque. Para maximizar a sua facilidade de utilização, quando incorpora uma apresentação de mapa, recomendamos sempre que inclua uma ligação junto à apresentação incorporada para que seja possível aos utilizadores abrir a apresentação em ecrã completo."
       },
       "tab5": {
         "title": "A Publicar",
@@ -548,6 +564,22 @@ define({
       "panel4": "Não me avise outra vez para esta história",
       "mystories": "As Minhas Histórias",
       "btnSave": "Guardar"
+    },
+    "bannerNotification": {
+      "learnMore": "Saber Mais",
+      "close": "Fechar",
+      "dontShowAgain": "Não exibir esta mensagem novamente"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Mensagem Importante acerca de Segurança na Web e Story Maps",
+      "s1h1": "A Esri está a melhorar a segurança dos Story Maps",
+      "s1p1": "Os seus Story Maps existem na web, e a comunidade da web está sempre a trabalhar para estabelecer e implementar melhor segurança. HTTPS, que fornece uma ligação segura para conteúdo transmitido através da Internet, está a emergir como modo habitual de aceder a conteúdo web. A maioria dos navegadores modernos exibe agora mensagens de aviso quando é utilizado HTTP ao invés de HTTPS. Devido a esta norma emergente, a partir da atualização de junho de 2018 ao ArcGIS Online, será necessário que os seus Story Maps utilizem HTTPS.",
+      "s1p2": "Em termos práticos, isto significa que um story map e todo o respetivo conteúdo (incluindo imagens, camadas, aplicações incorporadas e sites web) tem de ser acedido através de ligações que começam com HTTPS ao invés de HTTP. Isto garante uma experiência de maior qualidade para os seus leitores, já que a maioria dos navegadores web indicarão que as suas histórias são seguras.",
+      "s2h1": "O que tenho de fazer?",
+      "s2p1": "A Esri está a trabalhar para que esta transição seja simples para autores e leitores de Story Maps. Encontram-se agora disponíveis ferramentas, nos builders de Story Maps e em As Minhas Histórias, que o ajudam a encontrar conteúdo inseguro (HTTP) nas suas histórias e oferecem recomendações sobre como lidar com isso. Por favor, verifique se as suas histórias têm conteúdo inseguro e atualize para HTTPS antes de junho de 2018.",
+      "action1": "Fechar",
+      "action2": "Verificar as minhas histórias agora",
+      "action3": "Obter mais informações"
     }
   }
 });

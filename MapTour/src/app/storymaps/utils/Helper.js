@@ -79,7 +79,7 @@ define(["dojo/cookie",
 				if( configOptions && configOptions.appid )
 					return configOptions.appid;
 
-				if ( this.isArcGISHosted() || ! isProd )
+				if ( this.isArcGISHosted() || ! isProd ) //REMOVE not prod, commented out for demo
 					return urlParams.appid;
 
 				// Only authorize URL params outside of arcgis.com if a webmap/app owner is specified

@@ -17,7 +17,7 @@
 }
 
 .modal .modal-body {
-    max-height: none; 
+    max-height: none;
 }
 
 #addPopup .modal-body {
@@ -338,4 +338,10 @@
 /* avoid flickering */
 #geocoder .esriGeocoderActive {
 	border-bottom: 2px solid #666;
+}
+
+.colorSelectorPin.selected {
+	border: 1.5px solid black;
+	height: 19px;
+	width: 19px;
 }

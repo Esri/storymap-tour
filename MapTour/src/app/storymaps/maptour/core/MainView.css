@@ -26,6 +26,18 @@
 	display: none !important;
 }
 
+.side-panel:not(.mobile-layout-scroll) #mapPanel {
+	min-width: 500px;
+	height: 50%;
+	float: left;
+}
+
+.side-panel:not(.mobile-layout-scroll) #leftPanel {
+	min-width: 500px;
+	float: left;
+	background-color: #fff;
+}
+
 #footer {
 	position: absolute;
 	bottom: 0px;
@@ -98,11 +110,153 @@ audio {
 /*
  * Autoplay
  */
- 
+
 #autoplay {
 	display: none;
-    position: absolute;
-    bottom: 10px;
-    z-index: 31;
-    left: 50%;
+  position: absolute;
+  bottom: 10px;
+  z-index: 31;
+  left: 50%;
+}
+
+.side-panel #footerDesktop {
+	display: none;
+}
+
+#splashPanel {
+  width: 100%;
+  height: 100%;
+  left: 0px;
+	z-index: 499;
+	background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+	display: none;
+	position: absolute;
+}
+
+#splashPanel .builder-mode {
+	display: none;
+}
+
+#splashText {
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 20px;
+  width: calc(100% - 150px);
+  max-width: 1200px;
+	text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+	margin-top: 10%;
+	font-weight: 300;
+  overflow-y: auto;
+	word-break: break-word;
+}
+
+#splashTitle {
+	font-size: 60px;
+}
+
+#splashSubtitle {
+	font-size: 28px;
+}
+
+#takeTour {
+	background-color: rgba(255, 255, 255, 0.6);
+	width: 180px;
+	height: 180px;
+	border-radius: 50%;
+	font-size: 35px;
+	z-index: 99;
+	text-align: center;
+	font-size: 35px;
+	line-height: 35px;
+	cursor: pointer;
+	bottom: 82px;
+	position: absolute;
+	left: calc(50% - 90px);
+}
+
+#takeTourText {
+	padding: 20px;
+	padding-bottom: 10px;
+	font-size: 40px;
+	line-height: 35px;
+	text-align: center;
+}
+
+#leftPanel {
+	height: unset;
+}
+
+.side-panel .esriSimpleSlider {
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+	border: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+	color: rgba(50,50,50,0.8);
+}
+
+.side-panel .esriSimpleSlider div {
+	font-family: Avenir Next,Avenir;
+	color: rgba(50,50,50,0.8);
+}
+
+.side-panel .esriSimpleSliderVertical .esriSimpleSliderIncrementButton {
+	border-bottom: none;
+	border-radius: 0;
+}
+
+.side-panel .esriSimpleSliderVertical .esriSimpleSliderDecrementButton {
+	border-top: solid 1px rgba(50,50,50,0.25);
+}
+
+.side-panel .esriSimpleSliderIncrementButton:nth-of-type(2){
+	position: absolute;
+  top: 75px;
+  z-index: 99999999999;
+  width: 30px;
+  height: 30px;
+  border-radius: 0;
+  color: rgba(50,50,50,0.5);
+  font-family: Avenir Next,Avenir;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  background: #FFF;
+}
+
+.side-panel .mapCommandHomeBtn {
+	padding-top: 4px;
+	font-size: 15px;
+	background: #FFF;
+}
+
+.side-panel #mainMap_zoom_location {
+	top: 135px;
+}
+
+.side-panel #mainMap_zoom_location div{
+	font-size: 15px;
+	margin-top: 3px;
+	height: 27px;
+}
+
+.side-panel #mainMap_zoom_location img{
+	display: none;
+}
+
+.side-panel .modern-layout-control {
+	display: none;
+}
+
+.side-panel .esriSimpleSlider :hover {
+	background-color: #f4f4f4;
+}
+
+#mainMap_gc {
+	z-index: 2;
 }

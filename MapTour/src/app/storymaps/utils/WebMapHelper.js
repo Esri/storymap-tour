@@ -41,7 +41,6 @@ define(["esri/request",
 				if (sharingUrl.match('rest/')) {
 					sharingUrl = sharingUrl.slice(0, sharingUrl.match('rest/').index);
 				}
-
 				var rqUrl = sharingUrl
 								+ "content/users/" + user.credential.userId
 								+ (item.ownerFolder ? ("/" + item.ownerFolder) : "")
@@ -60,11 +59,11 @@ define(["esri/request",
 				};
 
 				this.request(rqUrl, rqData, true).then(
-					function(e){
-						resultDeferred.resolve(e);
+					function(){
+						resultDeferred.resolve();
 					},
-					function(e){
-						resultDeferred.reject(e);
+					function(){
+						resultDeferred.reject();
 					}
 				);
 

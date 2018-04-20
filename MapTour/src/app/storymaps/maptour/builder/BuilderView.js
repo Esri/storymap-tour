@@ -82,6 +82,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 				$("#importPopupButton").click(importPopupShow);
 				$("#introRecordButton").click(introRecordClick);
 
+				$("#addPopupButton2").click(addPopupShow);
+				$("#organizeSlidesButton2").click(organizePopupShow);
+				$("#importPopupButton2").click(importPopupShow);
+
 				initLocalization();
 
 				_initPopup.initLocalization();
@@ -122,6 +126,67 @@ define(["storymaps/maptour/core/WebApplicationData",
 					return;
 				}
 
+				if( app.data.getAppItem().access == "org" || app.data.getAppItem().access == "account" || app.data.getAppItem().access == "public" ) {
+					$(".share-level").removeClass("fa-lock");
+					if( app.data.getAppItem().access == "public" ) {
+						$(".share-level").addClass("fa-globe");
+						$("#panels-builder-share").attr("title", i18n.viewer.builderHTML.buttonShare + " (" + i18n.viewer.builderJS.shareStatus2 + ")");
+					} else {
+						$(".share-level").addClass("fa-building-o");
+						$("#panels-builder-share").attr("title", i18n.viewer.builderHTML.buttonShare + " (" + i18n.viewer.builderJS.shareStatus3 + ")");
+					}
+				} else {
+					$("#panels-builder-share").attr("title", i18n.viewer.builderHTML.buttonShare + " (" + i18n.viewer.builderJS.shareStatus4 + ")");
+				}
+
+				$("#panels-builder-settings").attr("title", i18n.viewer.builderHTML.buttonSettings);
+
+				$("#addPopupButton2").attr("title", i18n.viewer.builderHTML.buttonAdd);
+				if (app.data.sourceIsNotFSAttachments())
+					$("#importPopupButton2").attr("title", i18n.viewer.builderHTML.buttonImport);
+				$("#organizeSlidesButton2").attr("title", i18n.viewer.builderHTML.buttonOrganize);
+
+				if($("body").hasClass("side-panel")) {
+					if(app.data.getAllFeatures().length === 0){
+						$(".builderImageTarget").hide();
+					}
+				}
+
+				/*$("#panels-builder-settings").popover({
+					trigger: 'hover',
+					placement: 'right',
+					html: true,
+					content: "<div>" + i18n.viewer.builderHTML.buttonSettings + "</div>"
+				});
+
+				$("#panels-builder-share").popover({
+					trigger: 'hover',
+					placement: 'right',
+					html: true,
+					content: i18n.viewer.builderHTML.buttonShare
+				});
+
+				$("#addPopupButton2").popover({
+					trigger: 'hover',
+					placement: 'right',
+					html: true,
+					content: i18n.viewer.builderHTML.buttonAdd
+				});
+
+				$("#importPopupButton2").popover({
+					trigger: 'hover',
+					placement: 'right',
+					html: true,
+					content: i18n.viewer.builderHTML.buttonImport
+				});
+
+				$("#organizeSlidesButton2").popover({
+					trigger: 'hover',
+					placement: 'right',
+					html: true,
+					content: i18n.viewer.builderHTML.buttonOrganize
+				});*/
+
 				var galleryConfig = {
 					map: app.map,
 					portalUrl: arcgisUtils.arcgisUrl.split('/sharing/')[0],
@@ -158,6 +223,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 				basemapGallery.startup();
 
 				$("#basemapChooser .dijitTitlePaneTextNode").html(i18n.viewer.builderJS.switchBM);
+				$("#basemapChooser .dijitTitlePaneTextNode").prop('title', i18n.viewer.builderJS.switchBM);
+				if ($("body").hasClass("side-panel") ) {
+					$(".dijitTitlePaneTextNode").empty();
+					$(".dijitTitlePaneTextNode").addClass('fa fa-2x fa-th-large');
+				}
 				$("#basemapChooser").show();
 
 				// Very lame but the title isn't saved in the new map layer
@@ -213,6 +283,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 				if( ! app.data.sourceIsNotFSAttachments() && Helper.browserSupportAttachementUsingFileReader() )
 					new AddButton().init(saveApp);
+
+				if (app.data.getTourPoints().length === 0) {
+					addPopupShow();
+				}
 			};
 
 			function parseQuery(queryString)
@@ -280,10 +354,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 			this.openSettingPopup = function(fieldsError)
 			{
+				$(".edit-attr-popover").hide();
 				_settingsPopup.present(
 					[
 						{
-							name: WebApplicationData.getLayout(),
+							name: WebApplicationData.getLayout() || (!app.isGalleryCreation && !app.isDirectCreation ? "three-panel" : "side-panel"),
 							placardUnder: WebApplicationData.getPlacardPosition() === "under",
 							locationButton: WebApplicationData.getZoomLocationButton()
 						},
@@ -459,9 +534,30 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 				if( ! WebApplicationData.getFirstRecordAsIntro() && param.firstRecordAsIntro ) {
 					app.data.setFirstPointAsIntroRecord();
+					if( $("body").hasClass("side-panel") ) {
+						$(".cover-builder").show();
+						if( app.data.getIntroData().attributes.isVideo() || ! MapTourHelper.mediaIsSupportedImg(app.data.getIntroData().attributes.getURL() )) {
+							$(".cover-novideo-tooltip").show();
+						}
+						setTimeout(function() {
+							$("#placard .name .fa-pencil").css("top", "73px");
+							$(".side-panel.builder-mode #arrowPrev").css("top", "60px");
+							$(".side-panel.builder-mode #arrowNext").css("top", "60px");
+						}, 500);
+					}
 				}
 				else if ( WebApplicationData.getFirstRecordAsIntro() && ! param.firstRecordAsIntro ) {
 					app.data.restoreIntroRecordAsPoint();
+					$(".cover-novideo-tooltip").hide();
+					if( $("body").hasClass("side-panel") ) {
+						$(".cover-builder").hide();
+						$(".side-panel.builder-mode #arrowPrev").css("top", "30px");
+						$(".side-panel.builder-mode #arrowNext").css("top", "30px");
+					}
+				}
+
+				if ( param.firstRecordAsIntro && app.data.getNbPoints() < 1 && app.data.getCurrentIndex() != null ) {
+					addPopupShow();
 				}
 
 				WebApplicationData.setFirstRecordAsIntro(param.firstRecordAsIntro);
@@ -635,13 +731,26 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var height = MapTourHelper.getSymbolConfig('normal').height;
 
 				$.each(MapTourHelper.getSymbolColors(), function(i, color){
+					if(color == "custom")
+						return;
 					var selectedClass = (""+pointColor).toLowerCase() == color.toLowerCase() ? "selectedColor" : "";
-					tipHtml += '<img class="colorSelectorPin ' + selectedClass + '" src="' +  MapTourHelper.getSymbolUrl(color, index + 1) + '" alt="" style="width:' + width + 'px; height: ' + height + 'px;"/>';
+					if( $("body").hasClass("side-panel") ) {
+						width = MapTourHelper.getSymbolConfig('selected').width;
+						height = MapTourHelper.getSymbolConfig('selected').height;
+						var swatchColor = MapTourHelper.getCustomColor(color);
+
+						tipHtml += '<span class="colorSelectorPin colorSelectorSwatch ' + selectedClass + '" style="background-color: ' + swatchColor + ';"></span>';
+					} else {
+						tipHtml += '<img class="colorSelectorPin ' + selectedClass + '" src="' +  MapTourHelper.getSymbolUrl(color, index + 1) + '" alt="" style="width:' + width + 'px; height: ' + height + 'px;"/>';
+					}
 				});
+
+				app.mapTips && app.mapTips.clean(true);
 
 				app.mapTips = new MultiTips({
 					map: app.map,
 					content: tipHtml,
+					selected: null,
 					pointArray:[graphic],
 					labelDirection: "auto",
 					backgroundColor: APPCFG.POPUP_BACKGROUND_COLOR,
@@ -684,6 +793,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 					});
 					topic.publish("BUILDER_INCREMENT_COUNTER", 1);
 					app.data.updateCurrentTourPointColor(color[0]);
+					var textColor = MapTourHelper.getCustomColor(color);
+
+					$("#placard .feature-id").css("color", textColor);
 				}
 			}
 
@@ -721,6 +833,32 @@ define(["storymaps/maptour/core/WebApplicationData",
 				if ($("#organizeSlidesButton").width() > 0) {
 					$("#builderPanel2 > button").width($("#organizeSlidesButton").width() > $("#addPopupButton").width() ? $("#organizeSlidesButton").width() : $("#addPopupButton").width());
 					$("#builderPanel2").css("margin-left", $("body").width() / 2 - $("#builderPanel2").outerWidth() / 2);
+				}
+				if ($("body").hasClass("side-panel") ) {
+					if(($("body").width() - 60) * (1/3) > 500) {
+						$("#leftPanel").width(($("body").width() - 60) * (1/3));
+						$("#mapPanel").width(($("body").width() - 60) * (1/3));
+						$("#placardContainer").width(($("body").width() - 60) * (1/3));
+						$("#picturePanel").width(($("body").width() - 60) * (2/3));
+					} else {
+						$("#leftPanel").width(500);
+						$("#mapPanel").width(500);
+						$("#placardContainer").width(500);
+						$("#picturePanel").width($("body").width() - 560);
+					}
+					$("#picturePanel").css('left', $("#leftPanel").width() + 60);
+
+					$(".builderImageTarget").height($("#picturePanel").height() - 20);
+					$(".builderImageTarget").width($("#picturePanel").width() - 20);
+					var titleWidth = $("#headerDesktop").width() - $("#headerDesktop .logo").width() - $("#headerDesktop .rightArea").width();
+					$("#headerDesktop .title .text_edit_input").width(titleWidth - 125);
+					setTimeout(function() {
+						var descriptionHeight = $("#placard-bg").height() - ($(".cover-builder").css("display") == "block" ? $(".cover-builder").height() : 0) - $(".name").height() - 90;
+						$(".description").height(descriptionHeight);
+						$(".description.text_edit_input").height(descriptionHeight);
+						$(".description .text_edit_label").height(descriptionHeight);
+					}, 0);
+
 				}
 			};
 

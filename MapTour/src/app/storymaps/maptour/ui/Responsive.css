@@ -2,7 +2,7 @@
 	#listPanel, #infoPanel, #introPanel {
 		display: none !important;
 	}
-	
+
 	#contentPanel {
 		display: block !important;
 	}
@@ -10,12 +10,12 @@
 
 @media only screen and (min-device-width : 768px)  and (max-device-width : 1024px)  and (orientation : landscape) {
 	/*
-	 *  iPad rules 
+	 *  iPad rules
 	 */
 	#footer {
 		height: 160px;
 	}
-	
+
 	.modern-layout #footer {
 		height: 140px
 	}
@@ -31,45 +31,61 @@
 	#headerDesktop {
 		display: none;
 	}
-	
+
 	#header {
 		height: 41px !important;
 		background-color: #E5E5E5;
 	}
-	
+
 	#picturePanel {
 		display: none;
 	}
-	
+
 	#mapPanel {
 		width: 100% !important;
 	}
-	
+
 	#footerDesktop {
 		display: none;
 	}
-	
+
 	#openHeaderMobile {
 		display: block;
 	}
-	
+
 	#footerMobile {
 		display: block;
 	}
-	
+
 	#headerMobile {
 		display: block;
 	}
-	
+
 	#loadingOverlay {
 		top: 0px;
 	}
-	
+
 	#builderPanel2, #builderPanel3 {
 		display: none !important;
 	}
-	
+
 	.modal, .modal-backdrop {
 		display: none !important;
+	}
+
+	.mobile-view.mobile-layout-scroll #header {
+		height: 0 !important;
+	}
+
+	.mobile-view.mobile-layout-scroll #contentPanel {
+		overflow: hidden;
+	}
+
+	.mobile-view.mobile-layout-scroll #mapPanel {
+		height: 100%;
+	}
+
+	#splashPanel {
+		display: none;
 	}
 }

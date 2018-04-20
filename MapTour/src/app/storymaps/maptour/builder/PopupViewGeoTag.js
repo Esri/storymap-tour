@@ -220,7 +220,8 @@ define(["storymaps/maptour/core/MapTourHelper",
 				_geotagMap = new Map(_mapDivId, {
 					slider: true,
 					autoResize: false,
-					extent: Helper.getWebMapExtentFromItem(app.data.getWebMapItem().item)
+					extent: Helper.getWebMapExtentFromItem(app.data.getWebMapItem().item),
+					smartNavigation: false
 				});
 
 				on.once(_geotagMap, "load", function() {
@@ -424,7 +425,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 
 				return new Graphic(
 					geom,
-					MapTourHelper.getSymbol(null, geoTagIndex),
+					MapTourHelper.getSymbol(APPCFG.PIN_DEFAULT_CFG, geoTagIndex),
 					attributes
 				);
 			}

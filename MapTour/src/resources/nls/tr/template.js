@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Bu özellik otomatik oynatma modunda kullanılamaz",
       "autoplayLabel": "Otomatik oynatma modu",
       "autoplayExplain1": "Otomatik oynatma modu düzenli aralıklarla hikayenizde ilerler. Bu özellik, bir kiosk ya da genel ekran için idealdir, ancak bunun bazı durumlarda hikayenin okunmasını güçleştirebileceğini unutmayın. Bu özellik küçük ekranlarda desteklenmez.",
-      "autoplayExplain2": "Bu etkin durumdayken hikayeyi oynatacak/duraklatacak ve gezinme hızını ayarlayacak kontroller vardır."
+      "autoplayExplain2": "Bu etkin durumdayken hikayeyi oynatacak/duraklatacak ve gezinme hızını ayarlayacak kontroller vardır.",
+      "takeTourText": "Tura başlayın",
+      "backToStart": "Başlangıca Geri Dön"
     },
     "builderHTML": {
       "panelHeader": "HİKAYE YAPILANDIRMASI",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Yayılım",
       "settingsTabZoom": "Yakınlaştırma Düzeyi",
       "settingsLayoutExplain": "İstediğiniz yerleşimi seçin.",
-      "settingsLayoutProfessional": "Üç Panelli Düzen",
-      "settingsLayoutModern": "Entegre Düzen",
+      "settingsLayoutProfessional": "Üç panelli",
+      "settingsLayoutModern": "Entegre",
+      "settingsLayoutSidePanel": "Yan panel",
       "settingsLayoutSelected": "Seçili düzen",
-      "settingsLayoutSelect": "Bu düzeni seç",
+      "settingsLayoutNew": "Yeni!",
+      "settingsLayoutSelect": "Seç",
       "settingsLayoutNote": "Video kullanan noktalarda, seçenek işaretlenmese bile döviz her zaman videonun altına yerleştirilir.",
       "settingsLayoutLocBtn": "'Bul' düğmesi ekle",
       "settingsLayoutLocBtnHelp": "Çoğu tarayıcıda desteklenir. Yalnızca hikaye haritasına HTTPS üzerinden erişim sağlandığında görünür. Hikaye gömülü ise görünmez.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Yayılımı düzenle",
       "settingsExtentApplyBtn": "Harita Turunda Önizle",
       "settingsExtentUseMainMap": "Harita Turu yayılımını kullan",
-      "settingsZoomExplain": "Girişten sonraki öykü noktalarının yakınlaştırmasını ayarlayın (isteğe bağlı).",
+      "settingsZoomExplain": "Hikaye noktaları için yakınlaştırmayı ayarla (isteğe bağlı).",
       "settingsLabelZoom": "Ölçek/düzey",
       "settingsZoomFirstValue": "Hiçbiri",
       "settingsFieldError": "Her listeden bir alan seçin",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Oluşturma başarısız. Tekrar deneyin",
       "tabError": "Tüm sekmelerdeki hataları kontrol etin",
       "introRecordBtn": "Giriş",
-      "introRecordActivate": "İlk noktayı giriş olarak kullanın (döner sistemde görünmez)"
+      "introRecordActivate": "İlk noktayı giriş olarak kullanın (döner sistemde görünmez)",
+      "coverRecordActivate": "Kapak sayfası olarak ilk noktayı kullan",
+      "coverBuilder": "Kapak Sayfası Yapılandırması",
+      "cover": "Kapak",
+      "showCover": "Kapağı Göster",
+      "editCover": "Kapağı Düzenle",
+      "coverNoVideo": "Kapak ortamı için video desteklenmiyor. Lütfen bir görüntü seçin.",
+      "coverPreview": "Kapağı görmek için hikayenizi kaydedin ve ardından Paylaş düğmesini kullanarak inceleyin."
     },
     "addPopupJS": {
       "uploadingPicture": "Resim yükleniyor",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Beni düzenle!",
       "templateTitle": "Şablon başlığını ayarla",
-      "templateSubtitle": "Şablon altyazısını ayarla"
+      "templateSubtitle": "Şablon altyazısını ayarla",
+      "edit": "Düzenle"
     },
     "crossFaderJS": {
       "setPicture": "Resim başlığını ayarla",
@@ -306,9 +318,9 @@ define({
       "csv": "Bir CSV'de başvuruluyor",
       "advanced": "Gelişmiş seçenekler",
       "advancedScratchLbl": "Yeni bir Tur başlat",
-      "advancedScratchTip": "Sihirbaz kullanarak kendiniz doldurabileceğiniz boş bir Tur oluşturun.",
+      "advancedScratchTip": "Tur noktaları ekleyebileceğiniz boş bir Tur oluşturun. Ortamınız zaten çevrimiçi olmalıdır. Bu seçenek, görüntülerinizi yüklemeyi desteklemiyor.",
       "advancedCSVLbl": "CSV dosyasından içe Tur verileri aktarın",
-      "advancedCSVTip": "Tur içeriğinizi bir CSV dosyasından içe aktarın.",
+      "advancedCSVTip": "Çevrimiçi ortamınıza referans veren bir CSV dosyasından Tur içeriğini içeri aktarın. Bu seçenek, görüntülerinizi yüklemeyi desteklemez.",
       "advancedCommonTip": "Görüntü ve videolarınızın zaten çevrimiçi olmasını gerektirir.",
       "select": "Seçim yap",
       "locUse": "Resimlerin coğrafi konumunu kullan",
@@ -382,7 +394,7 @@ define({
       "title": "Görüntülerinizi/videolarınızı seçin ve bulun",
       "header": "İçe aktarmak istediğiniz resimleri bulmak için resimlerin üzerine tıklayın veya dokunun.",
       "headerMore": "Görüntülerimin/videolarımın coğrafi konumları neden bulunamıyor?",
-      "headerExplain": "Geçerli bir coğrafi konumları varsa, resimleriniz haritada otomatik olarak bulunur ve ikinci sekmede listelenir.<br /><br />Resim içe aktardığınızda, Picasa ve Flickr varsayılan olarak coğrafi konum EXIF meta verilerini saklamaz. Resimlerin coğrafi içe aktarımını ve harici bir uygulama tarafından kullanılmasını etkinleştirmek için Picasa/Flickr gizlilik ayarlarını işaretleyin. EXIF coğrafi konumunun kullanılması için mevcut resimlerinizi Flickr'a/Picasa'ya tekrar içe aktarmanız gerekebilir.<br /><br />Facebook'ta her resme gitmeniz, Düzenle'ye tıklamanız ve konumu seçmeniz gerekir.",
+      "headerExplain": "Resimlerinizin geçerli bir coğrafi konumu varsa, bunlar otomatik olarak haritaya yerleştirilir ve ikinci sekmede listelenir.<br /><br />Varsayılan olarak, Picasa ve Flickr resimleri içe aktarırken coğrafi konum EXIF meta verilerini saklamaz. Resimlerin coğrafi konumunun içe aktarılmasını ve harici bir uygulama tarafından kullanılmasını sağlamak için Picasa/Flickr gizlilik ayarlarını kontrol edin. EXIF coğrafi konumunun kullanılabilmesi için mevcut resimlerinizi Flickr/Picasa'ya yeniden aktarmanız gerekebilir.",
       "leftPanelTab1": "Bulunacaklar",
       "leftPanelTab2": "Bulunanlar",
       "clickOrTap": "Bulmak için Haritaya tıklayın veya dokunun",
@@ -404,7 +416,7 @@ define({
       "header2": "Bu yardımcı, daha önce çevrimiçi olarak depoladığınız medyadan bir Harita Turu derlemenize yardımcı olacak veya bunları ArcGIS Online for Organizations hesabınıza içe aktaracak.",
       "title1": "Zaten çevirimiçi",
       "title2": "Görüntülerimi yüklemem gerekiyor",
-      "hostedFSTooltip": "Görüntülerinizi yükleyin ve Harita Turu katmanı ile bunları saklayın (video desteklenmez).",
+      "hostedFSTooltip": "Görüntülerinizi yükleyin ve Turunuzda saklayın (video desteklenmez).",
       "hostedFsNA": "Yayıncı veya barındırılan Detay Katmanı yayınlama ayrıcalığına sahip başka bir rol sahibi olmalısınız. ArcGIS yöneticinize başvurun.",
       "hostedFsNA2": "Yalnızca ArcGIS Online aboneliğiyle kullanılabilir. <a href='%LINK%'>Ücretsiz deneme sürümüne kaydolun</a>",
       "footer1": "İşiniz bittiğinde, Harita Turunuzu uygulama öğesi sayfasından izleyici kitlenizle paylaşmayı unutmayın.",
@@ -420,19 +432,23 @@ define({
       "close": "Kapat",
       "tab1": {
         "title": "Giriş",
+        "moreInfo": "Daha fazla bilgi için",
+        "infoSites": "<a href='https://storymaps.arcgis.com' target='_blank'>Esri Story Maps web sitesinin</a> <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Harita Turu bölümünü</a> ziyaret edin.",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Harita Turu SSS.</a>",
+        "myStories": "Harita Turlarınızı yönetebilir ve web sitesinde <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Hikayelerim</a> bölümünde hatalar için denetleyebilirsiniz.",
         "div1": "Harita Turu şablonu, anlatmak istediğiniz öykü açısından ilgi uyandıracak bir fotoğraf veya medya öğesi olduğunda coğrafi bilgi sunmak için tasarlanmıştır.",
         "div2": "Şablon, az sayıda yeri kullanıcıların içinde gezinebileceği numaralı bir sırada sunmanıza izin veren çekici, kullanımı kolay bir web uygulaması üretir. Şablon, akıllı telefon ve tablet gibi bir cihazdaki web tarayıcısında kullanılmak üzere tasarlanmıştır. <br /><br />",
-        "div42": "Başka kullanıcıların oluşturmakta olduğu harita turu örneklerini görmek için, <a href='http://storymaps.arcgis.com/' target='_blank'>Anlatı Haritaları web sitesindeki</a> <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>galeriyi ziyaret edin</a>. Bizi Twitter'da <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a> adresinden izleyebilirsiniz.",
-        "div5": "Bize yazmanızı istiyoruz! İster bir soru sormak istiyor, ister yeni bir özellik istiyor, ister bir hata bulduğunuzu düşünüyor olun, <a href='http://links.esri.com/storymaps/forum' target='_blank'>Öykü Haritaları Kullanıcı Forumu</a>'nu ziyaret edin."
+        "div42": "Diğer kullanıcıların oluşturduğu harita turlarının örneklerini görmek için <a href='https://storymaps.arcgis.com/' target='_blank'>Story Maps web sitesinde</a> <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>galeriyi ziyaret edin</a>. Bizi ayrıca Twitter'da <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a> adresinden takip edebilirsiniz.",
+        "div5": "Sizden haber almak bizi çok mutlu eder! Story Maps'i ziyaret ederek sorunlarınızı ve ihtiyaç duyduğunuz yeni özellikleri <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet üzerinden bize bildirin.</a>"
       },
       "tab2": {
         "title": "Veri",
-        "div1": "Bir Harita Turu derlerken göz önüne alınacak ana öğe, resimlerinizin nereye depolanacağını seçmektir. Harita Turu önemli fotoğraf paylaşma servislerinde, herhangi bir web sunucusunda veya bir detay servisinin eki olarak depolanmış resimleri kullanabilir.",
+        "div1": "Harita Turu oluştururken dikkate alınacak temel unsur, resimlerin nerede saklanacağını seçmektir. Harita Turunda, fotoğraf paylaşım hizmetleri, herhangi bir web sunucusu veya diskte saklanan resimler kullanabilir.",
         "div1a": "Desteklenen resim formatların ve videoların ayrıntıları için bu sekmenin son bölümüne bakın.",
         "div2": "Etkileşimli derleyici Harita Turunuzdaki görüntüleri yönetmek için iki seçenek sunar:",
-        "div3": "<ul><li>Flickr gibi bir fotoğraf paylaşma sitesinde depolanan görüntüler gibi <b>zaten çevrimiçinde olan fotoğrafları</b> veya kendi web sitenizde depolanan görüntüleri kullanabilirsiniz. Harita Turunda bu görüntülere URL'leri yoluyla başvurulur.</li><li>Ayrıca, Harita Turunuza doğrudan <b>bilgisayarınızdaki fotoğrafları yükleyebilirsiniz</b>. Bu yükleme seçeneği bir ArcGIS for Organizations hesabınız olmasını ve Yayıncı veya Yönetici ayrıcalıklarına sahip olmanızı gerektirir çünkü fotoğraflarınızın ekler olarak depolandığı barındırılan bir detay servisi sizin adınıza otomatik olarak oluşturulur.</li></ul>",
+        "div3": "<ul><li>Flickr gibi bir fotoğraf paylaşım sitelerinde saklanan veya kendi web sitenizde depolanan görüntüler gibi <b>zaten çevrimiçi olan fotoğrafları</b> kullanabilirsiniz. Bu görüntülere, URL'leri aracılığıyla, Harita Turunuzda referans verilecektir.</li><li>Ayrıca, fotoğrafları bilgisayarınızdan <b>doğrudan Harita Turunuza</b> da yükleyebilirsiniz. Bu yükleme seçeneği, bir ArcGIS aboneliğinizin olmasını ve Yayıncı veya Yönetici ayrıcalıklarınızın olmasını gerektirir; çünkü fotoğraflarınızın ek olarak saklandığı barındırılan bir özellik hizmeti sizin için otomatik olarak oluşturulur.</li></ul>",
         "div4": "Ana kullanım örnekleri şunlardır:",
-        "div4b": "Henüz <b>fotoğraflarınız barındırılmıyordur</b> ve bir ArcGIS for Organizations hesabınız vardır: Barındırılan bir detay servisi kullanmak en iyi seçeneğinizdir. Genel fotoğraf paylaşma servisleri gibi, hızlı yüklenen görüntüler oluşturmak için resimlerinizi optimize ederiz ve ArcGIS platformunun tüm yönetim ve veri yönetimi imkanlarına erişiminiz olur.",
+        "div4b": "<b>Fotoğraflarınız henüz barındırılmıyor</b> ve bir ArcGIS aboneliğine sahipsiniz: Barındırılan detay servisini kullanmak en iyi seçiminizdir. Genel fotoğraf paylaşım hizmetlerinde de olduğu gibi, hızlı yüklenen görüntüler için resimlerinizi optimum hale getireceğiz ve siz de ArcGIS platformunun tüm idari ve veri yönetim becerilerine erişim sağlayabileceksiniz.",
         "div5": "<b>Bir Kuruluşa üye değilsinizdir</b>: Resimlerinizi önce bir fotoğraf paylaşma web sitesine veya kendi web sunucunuza yüklemeniz gerekir. Derleyici, asıl konumlarında barındırılmaya devam edecek olan bu resimleri kullanmanıza yardımcı olur.",
         "div6": "Resimlerinizi ekler olarak depolayan veya harici resimlere başvuran <b>mevcut bir Detay Servisi'ni tekrar kullanmanın yollarını arıyorsunuzdur</b>: Aşağıdaki ayrıntılı bölüme bakın.",
         "div7": "Harita Turu şablonunun <b>önceki bir sürümünün kullanıcısısınızdır</b> ve zaten resimlerinize ve küçük resimlerinize başvuran bir CSV'niz vardır: Bu dosyayı içe aktarıp verilerinizi ayrıntılandırabilirsiniz. Derleyici yalnızca enlem/boylam alanlarını kullanan CSV'leri destekler; adres tabanlı CSV'ler web haritanız yoluyla kullanılmaya devam edebilir. (Aşağıdaki bölüme bakın.)",
@@ -441,10 +457,10 @@ define({
         "learn": "daha fazla bilgi",
         "div9": "İçe aktarma işlemi zaten barındırılmakta olan resimlere bunların URL'lerini bir web haritası detay koleksiyonda depolayarak başvurur. Resimler ArcGIS Online'da depolanamaz. Barındırılan resimlere erişilemiyorsa, bunlar Harita Turu'nda kullanılamaz ve bir 'Resim kullanılamıyor' görüntüsü görürsünüz. Fotoğraf servisi sağlayıcınıza bağlı olarak Harita Turu resimlerini adını, açıklamasını ve konumunu içe aktaramayabilir. Bu öznitelikler web haritasında depolanır ve çevrimiçi servislerde yapılan düzenlemelerin hiçbiri Harita Turuna yansımaz.",
         "div10": "Resimleri bir web sunucusunda depolama",
-        "div11": "Resimleri kendiniz barındırmayı seçerseniz, resimlerinizin küçük resimlerini el ile oluşturmanız gerekir. Küçük resim için tam çözünürlüklü resimleri kullanmak yetersiz performansla sonuçlanır. Bu nedenle bunu sizin için yapacak çevrimiçi bir fotoğraf paylaşma servisi veya bir detay servisi kullanmanızı öneririz.",
-        "div12": "Mevcut bir Detay Servisi'ni veya Shapefile'ı kullanma",
-        "div13": "Herhangi bir nokta detay servisi veya shapefile bir Harita Turu veri kaynağı olarak kullanılabilir. Bu kaynağı arcgis.com Harita Görüntüleyicisi yoluyla web haritanıza bir katman olarak eklemeniz yeterlidir. Uygulama katmanınızda beklenen öznitelikleri bulursa, tüm derleyici işlevleri kullanılabilir.",
-        "div14": "Alan adları için olabilecek değerler şunlardır (harf büyüklüğüne duyarlıdır):",
+        "div11": "Fotoğrafları kendiniz saklamayı seçerseniz, resimlerinizin küçük resimlerini manuel olarak oluşturmalısınız. Tam çözünürlükteki resimlerin küçük resim oluşturmak için kullanılması performansın düşmesine neden olur. Görüntülerinize URL'ler aracılığıyla doğrudan web üzerinde erişim sağlıyorsanız, boyutlandırma ipuçları ile ilgili bu <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>SSS</a>'ye bakın.",
+        "div12": "Mevcut GIS verilerinin kullanılması",
+        "div13": "Herhangi bir detay servisi, CSV dosyası veya noktalar içeren bir shapefile dosyası, uygulamanın beklediği alanlar kümesini içeriyorsa, bir Harita Turu veri kaynağı olarak kullanılabilir. Bunu bir ArcGIS web haritasına katman olarak eklemeli ve ardından Harita Turu oluşturarak haritayı paylaşmalısınız.",
+        "div14": "Alan adları için desteklenen değerler (büyük/küçük harfe duyarlı):",
         "div151": "Ad",
         "div152": "Açıklama",
         "div153": "Resim",
@@ -479,20 +495,20 @@ define({
         "div0": "Desteklenen tarayıcılar",
         "div0a": "Harita Turu görüntüleyicisi IE8+'da desteklenmektedir. Etkileşimli derleyici IE9+'da desteklenmektedir. Derleyiciyi tüm tarayıcılarda aktif olarak test ediyoruz ancak güçlüklerle karşılaşırsanız, Chrome'u kullanmanızı öneririz.",
         "div0b": "Bazı güçlüklerle karşılaşırsanız, bize bildirin. Bu arada, Harita Turunuzu CSV şablonunu kullanarak derleyerek derleyici arayüzüyle etkileşiminizi en aza indirmiş olursunuz.",
-        "div1": "Resimler",
-        "div2": "Dikey yönlendirme yerine yatay yönlendirme kullanan fotoğrafları öneriyoruz. 4:3 en boy oranı olan fotoğraflar en uygun olanlarıdır. Dikey yönlendirmeli görüntüler kullanılabilir, ancak iPad gibi küçük ekranlarda fotoğrafın büyük bir kısmı altyazı ile örtülebilir. (Metin, boylamasına gösterildiğinde enlemesine gösterildiğinden daha fazla yer kaplamaktadır.) Harita Turunda farklı boylarda, şekillerde ve yönlendirmelerde görüntüler kullanılabilirse de tüm görüntülerde aynı boyutu ve şekli kullanmayı öneriyoruz. Bu şekilde, turda gezerken kullanıcının dikkati farklı boyda görüntüler nedeniyle dağılmaz.",
+        "div1": "Görüntüler",
+        "div2": "Her ne kadar tek bir Harita Turunda farklı boyut, şekil ve yönde görüntüler kullanılabiliyor olsa da dikey yerine yatay görüntüler kullanılmasını tavsiye ediyoruz. 4:3 en boy oranına sahip görüntüler en uygun olanlarıdır. Resim yazısı ile görüntünün üst üste bindiği Üç Panelli ve Entegre şablonlarda dikey görüntüler kullanıldığında, görüntünün bir kısmı resim yazısının altında kalır. Üç Panelli ve Entegre şablonlarda, mümkün olduğunda tüm görüntüler için aynı boyut ve şekli kullanmanızı tavsiye ediyoruz. Böylece farklı boyutlarda görüntüler, tura devam eden kullanıcının dikkatini dağıtmaz.",
         "div2a": "Ana resimlerde maksimum 1000 piksel genişlik x 750 piksel yükseklik, küçük resimlerde 140x93 boyut öneriyoruz.",
         "div3": "Altyazı metninizi HTML etiketleriyle formatlama",
-        "div4": "Üstbilgi ve resim başlığı/altyazısı, formatlama ve bağlantılar için HTML etiketleri içerebilir. Örneğin, şu kod sarı bir bağlantı eklemektedir:",
+        "div4": "Format ve bağlantıları tanımlamak için resim yazılarınıza HTML etiketlerini girebilirsiniz. Örneğin, bu etiketler yeşil bir köprü bağlantısı ekler:",
         "div4a": "Turunuz için uygun altyazı yazın",
-        "div4b": "Turunuz için ilgi çekici bir altyazı yazmaya vakit ayırın. Altyazı insanları turunuza çekmenin ve onlara turda neler keşfedeceklerini anlatmanın iyi bir yoludur. Ayrıca, izleyici kitlenize turun yapıldığı eyalet veya ülkeyi söylemek için de uygun yerdir. Örneğin, insanların turunuzun yapıldığı şehri veya kasabayı bildiklerini varsaymayın. Altyazınız, ayrıca, bağlantı gibi HTML etiketleriyle de formatlanabilir. Yalnızca altyazı çok uzun olmamalıdır. Daha küçük tarayıcı pencerelerinde veya iPad'de tam olarak ekrana sığmayabilir ve kırpılabilir. İyi bir altyazı düşünemiyorsanız, altyazıyı boş bırakın.",
+        "div4b": "Turunuza ilgi çekici bir altyazı yazmak için zaman ayırın. Altyazı, insanları turunuza çekmek ve içinde neler keşfedeceklerini anlatmak için iyi bir yoldur. Ayrıca, seyircinize turun yapıldığı bölge veya ülke hakkında bilgi vermek için iyi bir seçenektir. Örneğin, insanların turunuzun gerçekleştiği şehir veya kasabanın yerini bilmediklerini farz edelim. Altyazıyı fazla uzun tutmayın. Aklınıza iyi bir altyazı gelmediğinde, boş bırakın. Yan panel şablonunda kapak sayfasında görünen altyazı, turunuzun ilk noktasının resim yazısıdır (ilk noktanın içeriğini kapak sayfası olarak kullanmak için Düzenle iletişim kutusundaki seçeneği kullanıyorsanız).",
         "div5": "Katmanları Destekleme",
-        "div6": "Harita Turuna içerik sağlamak için destekleyici ilave katmanlar ekleyebilirsiniz. Bu katmanlar, bir inceleme alanı, tur noktalarınızı birbirine bağlayan bir yaya veya taşıt yolu gibi Harita Turu noktalarına ek olarak haritanın göstermesini istediğiniz diğer coğrafi detayları da içerebilir. Harita Turu şablonu bu destekleyici ilave katmanları web haritasında belirttiğiniz simgeleri kullanarak görüntüler, ancak açılan pencereler kullanılamaz.",
+        "div6": "Harita Turuna içerik sağlamak için ek destek katmanları ekleyebilirsiniz. Bu katmanlar, haritanın Harita Turu noktalarına ek olarak göstermesini istediğiniz, bir çalışma alanı, tur noktalarınızı bağlayan bir yürüyüş veya sürüş rotası gibi farklı coğrafi detaylar içerebilir. Harita Turu şablonu, web haritasında belirttiğiniz sembolojiyi kullanan ek destek katmanlarını görüntüler ancak açılır pencereler kullanılmaz. Turunuza destek katmanları eklemek için işinizi kaydedin ve Harita Turu Oluşturucu'yu kapatın. Ardından turunuzda kullanılan web haritasını açın. Bunu ArcGIS My Content'te veya Story Maps web sitesinin Hikayelerim bölümünde bulabilirsiniz.",
         "div7": "Turunuz kısa ve çekici olsun",
         "div8": "Tur başına 99 noktalık bir sınırlama vardır. Çoğu Harita Turu tabii ki bundan önemli ölçüde daha kısa olacaktır. İzleyici kitlenizin bir sürü tur noktasını adım adım gezmesini beklemeyin. Konunuz size çok ilginç gelebilir, ancak izleyicinizin de çok ilginç bulacağını varsaymayın!",
         "div10": "Katıştırma modu",
-        "div11": "Şablonu bir iframe yoluyla başka bir web sitesine katıştırmak istiyorsanız, URL'nin sonuna isteğe bağlı \"&embed\" parametresini eklemek üstbilgiyi sayfadan çıkarır. Bu mod, ayrıca, yapılandırma dosyası yoluyla indirilebilir sürümde de ayarlanabilir.",
-        "div12": "Harita turunuzun kolay tepki veren dokunmatik küçük ekran yerleşimine geçmesine neden olacak dar bir iFrame genişliği kullanmayın. Bunun amacı kullanım kolaylığını artırmaktır. Bir harita turunuzu bir sayfaya katıştırırken, kullanıcıların turu tam ekranda başlatabilmesi için daima katıştırılmış turun yanına yine de bir bağlantı koymanızı öneririz."
+        "div11": "Şablonu bir iFrame aracılığıyla başka bir web sitesine yerleştirmek isterseniz, URL'nin sonuna ek olarak \"&embed\" parametresini eklemek, başlığı kaldıracaktır.",
+        "div12": "Harita turunun hassas küçük ekran dokunmatik düzenine geçmesine neden olacak dar bir iFrame genişliği kullanmaktan kaçının. Bir harita turu oluşturduğunuzda, kullanım kolaylığını en üst düzeye çıkarmak amacıyla kullanıcıların turu tam ekran olarak başlatabilmesi için gömülü turun yanında bir bağlantı sağlamanızı tavsiye ediyoruz."
       },
       "tab5": {
         "title": "Yayınlama",
@@ -548,6 +564,22 @@ define({
       "panel4": "Bu hikaye için beni bir daha uyarma",
       "mystories": "Hikayelerim",
       "btnSave": "Kaydet"
+    },
+    "bannerNotification": {
+      "learnMore": "Daha Fazla Bilgi",
+      "close": "Kapat",
+      "dontShowAgain": "Bu iletiyi tekrar gösterme"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Web Güvenliği ve Story Maps hakkında Önemli İleti",
+      "s1h1": "Esri, Story Maps'in güvenliğini geliştiriyor",
+      "s1p1": "Story Maps'iniz web'de yayınlanır ve web topluluğu her zaman daha iyi güvenlik sağlamak ve uygulamak için çalışmaktadır. İnternet üzerinden iletilen içerik için güvenli bir bağlantı sağlayan HTTPS, web içeriğine erişmenin birincil yolu olarak kullanılmaktadır. Çoğu modern tarayıcı artık, HTTPS yerine HTTP kullanıldığında uyarı mesajları göstermektedir. Bu yeni geliştirilen standart nedeniyle Haziran 2018 ArcGIS Online güncellemesinden itibaren Story Maps'te HTTPS kullanılması gerekecektir.",
+      "s1p2": "Pratik olarak bu, bir Story Map demektir ve tüm içeriğine (görüntüler, katmanlar, gömülü uygulamalar ve web siteleri dahil) HTTP yerine HTTPS ile başlayan bağlantılar kullanılarak erişim sağlanmalıdır. Bu, okuyucularınız için en iyi deneyimi sağlar; çünkü çoğu web tarayıcısında bu, hikayelerinizin güvenli olduğu anlamına gelir.",
+      "s2h1": "Ne yapmam gerekiyor?",
+      "s2p1": "Esri, Story Map yazarları ve okuyucuları için bu geçişi kolaylaştırmaya çalışmaktadır. Artık Story Map oluşturucuları ve Hikayelerim'de, hikayelerinizdeki güvensiz içeriği (HTTP) bulmanıza yardımcı olacak ve bunları nasıl ele alacağınıza dair tavsiyelerde bulunacak araçlar mevcuttur. Lütfen hikayenizi güvenli olmayan içeriklere karşı kontrol edin ve Haziran 2018'den önce HTTPS'ye güncelleyin.",
+      "action1": "Kapat",
+      "action2": "Hikayelerimi şimdi kontrol et",
+      "action3": "Daha fazla bilgi"
     }
   }
 });

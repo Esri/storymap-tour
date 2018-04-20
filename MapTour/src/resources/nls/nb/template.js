@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Dette er ikke tilgjengelig i automatisk avspillingsmodus",
       "autoplayLabel": "Automatisk avspillingsmodus",
       "autoplayExplain1": "Automatisk avspillingsmodus går videre i historien med gitte intervaller. Dette fungerer utmerket til kiosker eller informasjonsskjermer, men kan i andre situasjoner gjøre det vanskeligere å lese historien. Denne funksjonen støttes ikke på små skjermer.",
-      "autoplayExplain2": "Når denne modusen er aktivert, vises det kontroller for å spille av/pause historien og justere navigeringshastigheten."
+      "autoplayExplain2": "Når denne modusen er aktivert, vises det kontroller for å spille av/pause historien og justere navigeringshastigheten.",
+      "takeTourText": "Bli med på omvisningen",
+      "backToStart": "Tilbake til start"
     },
     "builderHTML": {
       "panelHeader": "KONFIGURASJON AV HISTORIE",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Utstrekning",
       "settingsTabZoom": "Zoomnivå",
       "settingsLayoutExplain": "Velg det oppsettet du ønsker.",
-      "settingsLayoutProfessional": "Utforming med tre paneler",
-      "settingsLayoutModern": "Integrert utforming",
+      "settingsLayoutProfessional": "Tre paneler",
+      "settingsLayoutModern": "Integrert",
+      "settingsLayoutSidePanel": "Sidepanel",
       "settingsLayoutSelected": "Valgt utforming",
-      "settingsLayoutSelect": "Velg denne utformingen",
+      "settingsLayoutNew": "Ny!",
+      "settingsLayoutSelect": "Velg",
       "settingsLayoutNote": "Legg merke til at for punkter som bruker video, plasseres oppslaget alltid under videoen, selv om det ikke er merket av for dette alternativet.",
       "settingsLayoutLocBtn": "Vis en 'lokaliser'-knapp",
       "settingsLayoutLocBtnHelp": "Støttes på de fleste weblesere. Vises bare når fortellingskart brukes over HTTPS. Vises ikke hvis historien er innebygd.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Rediger utstrekningen",
       "settingsExtentApplyBtn": "Forhåndsvis på Map Tour",
       "settingsExtentUseMainMap": "Bruk Map Tour-utstrekning",
-      "settingsZoomExplain": "Angi zoomnivå for fortellingspunkter etter innledningen (valgfritt).",
+      "settingsZoomExplain": "Angi zoom for fortellingspunkter (valgfritt).",
       "settingsLabelZoom": "Målestokk/nivå",
       "settingsZoomFirstValue": "Ingen",
       "settingsFieldError": "Velg et felt i hver liste",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Opprettelsen mislyktes. Prøv på nytt.",
       "tabError": "Se etter feil i alle faner",
       "introRecordBtn": "Intro",
-      "introRecordActivate": "Bruk første punkt som innledning (vises ikke i karusell)"
+      "introRecordActivate": "Bruk første punkt som innledning (vises ikke i karusell)",
+      "coverRecordActivate": "Bruk første punkt som forside",
+      "coverBuilder": "Forsidekonfigurasjon",
+      "cover": "Forside",
+      "showCover": "Vis forside",
+      "editCover": "Rediger forside",
+      "coverNoVideo": "Video støttes ikke som forsidemedia. Velg et bilde.",
+      "coverPreview": "Hvis du vil se forsiden, lagrer du fortellingen og forhåndsviser den ved hjelp av deleknappen."
     },
     "addPopupJS": {
       "uploadingPicture": "Laster opp bilde",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Rediger meg!",
       "templateTitle": "Angi tittel på malen",
-      "templateSubtitle": "Angi undertittel for malen"
+      "templateSubtitle": "Angi undertittel for malen",
+      "edit": "Rediger"
     },
     "crossFaderJS": {
       "setPicture": "Angi bildetittel",
@@ -306,9 +318,9 @@ define({
       "csv": "Vist til i en CSV",
       "advanced": "Avanserte alternativer",
       "advancedScratchLbl": "Start en ny omvisning",
-      "advancedScratchTip": "Opprett en tom omvisning som du kan fylle manuelt ved hjelp av en veiviser.",
+      "advancedScratchTip": "Opprett en tom omvisning som du legger til omvisningspunktene i. Mediene må allerede være tilgjengelige på nettet. Dette alternativet støtter ikke at du laster opp bilder",
       "advancedCSVLbl": "Importer omvisningsdata fra en CSV-fil",
-      "advancedCSVTip": "Importer innholdet i omvisningen fra en CSV-fil.",
+      "advancedCSVTip": "Importer omvisningsinnholdet fra en CSV-fil som refererer til mediene på nettet. Dette alternativet støtter ikke at du laster opp bilder",
       "advancedCommonTip": "Det krever at bildene og videoene dine allerede er lagret online.",
       "select": "Foreta et valg",
       "locUse": "Bruk bildenes geolokasjon",
@@ -382,7 +394,7 @@ define({
       "title": "Velg og finn bildene/videoene dine",
       "header": "Klikk eller trykk på bildene du vil importere, for å finne dem.",
       "headerMore": "Hvorfor er ikke bildene/videoene mine geoplassert?",
-      "headerExplain": "Hvis bildene dine har en gyldig geolokasjon, blir de automatisk funnet på kartet og ført opp på den andre fliken.<br /><br />Som standard lagrer ikke Picasa og Flickr EXIF-metadataene for geoplasseringen når du importerer bilder. Kontroller personverninnstillingene for Picasa/Flickr for å tillate eksterne programmers import og bruk av bildenes geoplassering. Det kan hende du må importere de eksisterende bildene til Flickr/Picasa på nytt for å kunne bruke EXIF-geoplasseringen.<br /><br />På Facebook må du gå til hvert enkelt bilde, klikke på Rediger og velge plassering.",
+      "headerExplain": "Hvis bildene dine har en gyldig geolokasjon, blir de automatisk funnet på kartet og ført opp i den andre fanen.<br /><br />Som standard lagrer ikke Picasa og Flickr geolokasjoner fra EXIF-metadataene når du importerer bilder. Kontroller innstillingene for personvern Picasa/Flickr for å tillate at eksterne applikasjoner importerer og bruker bildenes geolokasjon. Du må kanskje importere de eksisterende bildene til Flickr/Picasa på nytt for å kunne bruke EXIF-geolokasjonen.",
       "leftPanelTab1": "For å finne",
       "leftPanelTab2": "Funnet",
       "clickOrTap": "Klikk eller trykk på kartet for å finne",
@@ -404,7 +416,7 @@ define({
       "header2": "Denne assistenten hjelper deg med å bygge en Map Tour fra bilder som allerede er lagret online, eller den importerer dem til kontoen din på ArcGIS Online for Organizations.",
       "title1": "De er allerede online",
       "title2": "Jeg må laste opp bildene mine",
-      "hostedFSTooltip": "Last opp bildene dine, og lagre dem sammen med kartomvisningslaget (støtter ikke video).",
+      "hostedFSTooltip": "Last opp bildene dine, og lagre dem i omvisningen (støtter ikke video).",
       "hostedFsNA": "Du må være en utgiver eller ha en annen rolle med rettigheter til å publisere hostede geoobjektslag. Kontakt ArcGIS-administratoren din.",
       "hostedFsNA2": "Kun tilgjengelig med et ArcGIS Online-abonnement. <a href='%LINK%'>Registrer deg og få en gratis prøveversjon</a>",
       "footer1": "Når du er ferdig, må du ikke glemme å dele Map Tour med publikum via  siden for programelementer.",
@@ -420,19 +432,23 @@ define({
       "close": "Lukk",
       "tab1": {
         "title": "Innledning",
+        "moreInfo": "For mer informasjon",
+        "infoSites": "Gå til <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>kartomvisningsområdet</a> på  <a href='https://storymaps.arcgis.com' target='_blank'>nettstedet for Esri Story Maps.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Vanlig spørsmål om kartomvisning.</a>",
+        "myStories": "Du kan administrere kartomvisningene og sjekke om de inneholder feil, under <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Mine fortellinger</a> på nettstedet.",
         "div1": "Map Tour-malen er utarbeidet for å presentere geografisk informasjon i de tilfellene der fortellingen du vil formidle, har et sterkt fotografisk- eller mediaelement.",
         "div2": "Malen produserer et tiltalende og brukervennlig webprogram som gjør at du kan presentere et lite sett av steder på et kart i nummerert rekkefølge, som brukerne kan bla gjennom. Malen er beregnet for bruk i alle weblesere og på alle typer enheter, også smarttelefoner og nettbrett.<br /><br />",
-        "div42": "Hvis du vil se eksempler på kartomvisninger som andre brukere har lagd, kan du <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>besøke galleriet</a> på <a href='http://storymaps.arcgis.com/' target='_blank'>nettstedet Story Maps</a>. Du kan også følge oss på Twitter på <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Vi vil gjerne høre fra deg! Uansett om du har spørsmål, ønsker en ny funksjon eller tror du har funnet en feil, kan du besøke <a href='http://links.esri.com/storymaps/forum' target='_blank'>Story Maps User Forum</a>."
+        "div42": "Hvis du vil se eksempler på omvisninger som andre brukere lager, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>går du til galleriet</a> på <a href='https://storymaps.arcgis.com/' target='_blank'>nettstedet for Story Maps </a>. Du kan også følge oss på Twitter på <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "Vi vil gjerne høre fra deg! Du kan fortelle om problemer du har støtt på, og nye funksjoner du trenger, i Story Maps-forumet på <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Data",
-        "div1": "Det viktigste å tenke på når du skal bygge en Map Tour, er hvor du skal lagre bildene dine. Map Tour kan bruke bilder som er lagret på større bildedelingstjenester, på alle webservere eller som vedlegg til en featuretjeneste.",
+        "div1": "Det viktigste å tenke på når du skal bygge en kartomvisning, er hvor du skal lagre bildene dine. Kartomvisningen kan bruke bilder som er lagret i bildedelingstjenester, på en webserver eller som du laster opp fra en disk.",
         "div1a": "Se den siste delen av denne fanen for detaljer om støttede bilde- og videoformater.",
         "div2": "Det interaktive verktøyet gir deg to alternativer for bildebehandling i Map Tour:",
-        "div3": "<ul><li>Du kan bruke <b>bilder som allerede er lagret online</b>, for eksempel bilder som er lagret på et bildedelingsområde som Flickr, eller bilder som du har lagret på ditt eget webområde. Disse bildene blir referert til med URL-adresser i Map Tour</li><li>Du kan også <b>laste opp bilder fra datamaskinen</b> direkte til Map Tour. Dette opplastingsalternativet krever at du har en ArcGIS for organisasjoner-konto, og at du har en utgiver- eller administratorkonto fordi det automatisk opprettes en administrert (hosted) featuretjeneste for deg, der bildene blir lagret som vedlegg</li></ul>",
+        "div3": "<ul><li>Du kan bruke <b>bilder som allerede er lagret på nettet</b>, for eksempel bilder som er lagret på bildedelingsområder som Flickr, eller bilder som er lagret på ditt eget webområde. Disse bildene refereres til med URL-adresser i kartomvisningen.</li><li>Du kan også <b>laste opp bilder fra datamaskinen</b> direkte til kartomvisningen. Dette opplastingsalternativet krever at du har et ArcGIS-abonnement, og at du har utgiver- eller administratorrettigheter fordi det automatisk opprettes en hostet geoobjektstjeneste der bildene lagres som vedlegg.</li></ul>",
         "div4": "De viktigste brukertilfellene er:",
-        "div4b": "<b>Bildene dine er ikke lastet opp</b> ennå, og du har et ArcGIS for organisasjoner-abonnement: Det beste er å bruke en administrert (hosted) featuretjeneste. I likhet med offentlige bildedelingstjenester optimaliserer vi bildene slik at de lastes raskt, og du får tilgang til alle funksjonene for administrasjon og databehandling på ArcGIS-plattformen.",
+        "div4b": "<b>Bildene dine er ikke hostet</b> ennå, og du har et ArcGIS-abonnement: Det beste er å bruke en hostet geoobjektstjeneste. I likhet med offentlige bildedelingstjenester optimaliserer vi bildene slik at de lastes raskt, og du får tilgang til alle funksjonene for administrasjon og databehandling på ArcGIS-plattformen.",
         "div5": "<b>Du er ikke medlem av en organisasjon</b>: Du må først laste opp bildene dine på et bildedelingsområde eller på din egen webserver. Veiviseren gir deg deretter hjelp til å bruke disse bildene, som fortsatt blir liggende på den opprinnelige plasseringen.",
         "div6": "<b>Du prøver å gjenbruke en eksisterende featuretjeneste</b> der bildene dine er lagret som vedlegg, eller som refererer til eksterne bilder: Les det mer utfyllende avsnittet nedenfor.",
         "div7": "<b>Du bruker en tidligere versjon av</b> Map Tour-malen og har allerede en CSV som refererer til bildene og miniatyrbildene dine: Du kan importere den og forbedre dataene. Byggeren støtter bare CSV som bruker attributter for bredde- og lengdegrader; adressebasert CSV kan fortsatt brukes gjennom webkartet (se avsnitt nedenfor).",
@@ -441,10 +457,10 @@ define({
         "learn": "få mer informasjon",
         "div9": "Importoperasjonen refererer til bilder som allerede er vertsbaserte, ved å lagre URL-adressene i en samling av webkartfunksjoner. Bildene lagres ikke i ArcGIS Online. Hvis driftingen av bildene avbrytes, blir de ikke lenger tilgjengelige i kartomvisningen og et \"Bilde ikke tilgjengelig\"-bilde blir brukt. Det avhenger av tjenesteleverandøren om kartomvisningen importerer bildenes navn, beskrivelse og plassering, eller ikke. De attributttene er lagret i webkartet, og eventuelle redigeringer av online-tjenestene gjenspeiles ikke i kartomvisningen.",
         "div10": "Lagre bildene på en webserver",
-        "div11": "Hvis du velger å drifte bildene selv, må du opprette miniatyrer av bildene manuelt. Hvis du bruker bilder med maksimal oppløsning til miniatyrene, reduseres ytelsen. Derfor anbefaler vi på det sterkeste å bruke en online bildedelingstjeneste eller en featuretjeneste til dette.",
-        "div12": "Bruke en eksisterende featuretjeneste eller shapefil",
-        "div13": "Enhver featuretjeneste eller shapefil kan brukes som datakilde for Map Tour. Du må bare legge den til som et lag i webkartet ved hjelp av kartvisningsprogrammet på arcgis.com. Hvis programmet finner de forventede attributtene i laget, vil alle byggeverktøyets funksjoner være tilgjengelige.",
-        "div14": "De mulige verdiene for feltnavn er (skiller ikke mellom små og store bokstaver):",
+        "div11": "Hvis du velger å hoste bildene selv, må du opprette miniatyrer av bildene manuelt. Hvis du bruker bilder med maksimal oppløsning til miniatyrbildene, reduseres ytelsen. Se <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>Vanlige spørsmål</a> for tips om tilpassing av størrelse hvis du vil ha tilgang til bildene direkte på nettet via URL-er.",
+        "div12": "Bruke eksisterende GIS-data",
+        "div13": "Alle geoobjektstjenester, CSV-filer eller shapefiler som inneholder punkter, kan brukes som datakilde for kartomvisningen forutsatt at de inneholder de feltene som applikasjonen forventer. Du må legge dem til som et lag i et ArcGIS-webkart og deretter dele kartet ved å opprette en kartomvisning.",
+        "div14": "Støttede verdier for feltnavn er (skiller ikke mellom små og store bokstaver):",
         "div151": "Navn",
         "div152": "Beskrivelse",
         "div153": "Bilde",
@@ -480,19 +496,19 @@ define({
         "div0a": "Map Tour-viseren støttes på IE8+. Den interaktive byggeren støttes på IE9+. Vi tester aktivt i alle større nettlesere, men hvis du opplever problemer, anbefaler vi at du bruker Chrome.",
         "div0b": "Hvis du opplever problemer, må du varsle oss. I mellomtiden kan du begrense samhandlingen med byggergrensesnittet ved å bygge Map Tour med CSV-malen.",
         "div1": "Bilder",
-        "div2": "Vi anbefaler å bruke liggende bilder fremfor stående. Bilder med størrelsesforholdet 4:3 passer best. Stående bilder kan brukes, men på mindre skjermer som på en iPad, kan en stor del av bildet bli skjult bak underteksten, fordi teksten opptar mer plass når den vises på et høyt område sammenlignet med et bredt område. Selv om bilder med forskjellige størrelse, form og retning kan brukes i én og samme Map Tour, anbefaler vi å bruke nøyaktig samme størrelse og form på alle bildene. På den måten slipper brukerne å bli distrahert av bilder av ulik størrelse når de følger omvisningen.",
+        "div2": "Selv om bilder med ulike størrelser, former og format kan brukes i samme kartomvisning, anbefaler vi at du bruker liggende format fremfor stående format. Bilder med størrelsesforholdet 4:3 passer best. I oppsettet med tre paneler og integrert oppsett der bildeteksten overlapper bildet, kan bildet bli skjult av bildeteksten om bildet har stående format. I oppsettet med tre paneler eller integrert oppsett anbefaler vi at det brukes samme størrelse og form for alle bildene hvis det er mulig. Det gjør at brukeren ikke distraheres av bilder i ulike størrelser under omvisningen.",
         "div2a": "Vi anbefaler en maksimal bildestørrelse på 1000 pikslers bredde x 750 pikslers høyde for hovedbildene og 140 x 93 for miniatyrbildene.",
         "div3": "Formatere underteksten med HTML-koder",
-        "div4": "Underteksten kan inneholde HTML-koder som definerer formatering og koblinger. Denne koden legger f.eks. til en gul kobling:",
+        "div4": "Du kan angi HTML-koder i bildetekstene for å definere formatering og koblinger. Disse kodene legger for eksempel inn en grønn hyperkobling:",
         "div4a": "Gi omvisningen en god undertittel",
-        "div4b": "Ta deg tid til å gi omvisningen en fengende undertittel. Undertittelen er viktig for å gjøre folk interessert i omvisningen og fortelle dem hva de vil oppdage underveis. Det er også en god anledning til å fortelle publikum om området eller landet som omvisningen handler om. For eksempel kan du ikke være sikker på at folk vet hvor byen eller stedet for omvisningen ligger. Undertittelen kan også formateres med HTML-koder, for eksempel for koblinger. Men underteksten bør ikke være for lang. Det kan hende den ikke får plass i mindre nettleservinduer eller på en iPad, og blir kuttet. Hvis du ikke kommer på noen god undertittel, er det bedre å utelate den.",
+        "div4b": "Ta deg tid til å gi omvisningen en fengende undertittel. Undertittelen er viktig for å gjøre folk interessert i omvisningen og fortelle dem hva de vil oppdage underveis. Det er også en god anledning til å fortelle publikum om fylket eller landet som omvisningen handler om. Du bør for eksempel ikke ta for gitt at folk vet hvor byen eller stedet for omvisningen ligger. Pass på at undertittelen ikke blir for lang. Hvis du ikke kommer på en god undertittel, lar du den stå tom. I sidepaneloppsettet er undertittelen som vises på forsiden, bildeteksten til det første punktet i omvisningen (hvis du bruker alternativet i dialogboksen Organiser for å bruke innholdet i første punkt som forside).",
         "div5": "Støttelag",
-        "div6": "Du kan legge til ekstra støttelag i kartet for å gi kontekst i Map Tour. Disse lagene kan inneholde andre geoobjekter du vil at kartet skal vise i tillegg til Map Tour-punktene, f.eks. et studieområde, en gå- eller kjørerute som kobler omvisningspunktene sammen osv. Map Tour-malen viser disse ekstra støttelagene ved å bruke symbolene du angir i webkartet, men oppsprettvinduene er ikke tilgjengelige.",
+        "div6": "Du kan legge til ekstra støttelag i kartet for å gi kontekst i kartomvisningen. Disse lagene kan inneholde andre geoobjekter du vil at kartet skal vise i tillegg til kartomvisningspunktene, som f.eks. et studieområde, en gå- eller kjørerute som kobler omvisningspunktene sammen osv. Kartomvisningsmalen viser disse ekstra støttelagene ved å bruke symbolene du angir i webkartet, men popupene er ikke tilgjengelige. Hvis du vil legge til et støttelag i omvisningen, lagrer du arbeidet og lukker byggeverktøyet for kartomvisning. Åpne deretter webkartet som brukes i omvisningen. Du finner dette i ArcGIS Mitt innhold eller via Mine fortellinger-delen på Story Map-nettstedet.",
         "div7": "Gjør omvisningen kort og hyggelig",
         "div8": "Det er en grense på 99 punkter per omvisning. De fleste omvisninger vil selvsagt være atskillig kortere enn det. Ikke forvent at publikum har lyst til å gå gjennom altfor mange omvisningspunkter. Du synes kanskje emnet er uendelig fascinerende, men det er ikke sikkert at alle andre synes det samme!",
         "div10": "Innbyggingsmetode",
-        "div11": "Hvis du vil bygge inn malen i en annen nettside med en iframe, legger du til den ekstra parameteren \"&embed\" til slutt i URLen for å fjerne headeren. Denne modusen kan også stilles inn i den nedlastbare versjonen gjennom en konfigurasjonsfil.",
-        "div12": "Unngå å bruke en smal iFrame-bredde som får omvisningen til å bytte til det tilgjengelige touch-baserte oppsettet for små skjermer, for å blir mest mulig brukervennlig. Når du bygger inn en kartomvisning, anbefaler vi alltid å opprette en kobling ved siden av den innebygde omvisningen slik at brukerne kan starte omvisningen i fullskjermmodus."
+        "div11": "Hvis du vil bygge inn malen på et annet webområde ved hjelp av en iframe, fjerner du toppteksten ved å legge til den valgfrie parameteren \"embed\" på slutten av URL-en.",
+        "div12": "Unngå å bruke en smal iFrame-bredde som får omvisningen til å bytte til det tilgjengelige berøringsbaserte oppsettet for små skjermer. Når du bygger inn en kartomvisning, anbefaler vi alltid å opprette en kobling ved siden av den innebygde omvisningen slik at brukerne kan starte omvisningen i fullskjermmodus. Det er mer brukervennlig."
       },
       "tab5": {
         "title": "Publisere",
@@ -548,6 +564,22 @@ define({
       "panel4": "Ikke vis denne advarselen igjen for denne historien",
       "mystories": "Mine historier",
       "btnSave": "Lagre"
+    },
+    "bannerNotification": {
+      "learnMore": "Få mer informasjon",
+      "close": "Lukk",
+      "dontShowAgain": "Ikke vis denne meldingen igjen"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Viktig informasjon om websikkerhet og fortellingskart",
+      "s1h1": "Esri forbedrer sikkerheten for fortellingskart",
+      "s1p1": "Fortellingskartene lever på nettet, og Internett-fellesskapet jobber hele tiden med å forbedre sikkerheten. HTTPS som gir en sikker forbindelse til innhold som sendes over Internett, blir den vanligste måten å få tilgang til Internett-innhold på. De fleste moderne nettlesere viser en advarsel når det brukes HTTP i stedet for HTTPS. Som en følge av denne nye standarden vil fortellingskartene bruke HTTPS fra og med oppdateringen av ArcGIS Online som kommer i juni 2018.",
+      "s1p2": "Det betyr at du får tilgang til et fortellingskart og alt innholdet i det (inkludert bilder, lag, innebygde apper og nettsteder) ved hjelp av koblinger som begynner med HTTPS i stedet for HTTP. Dette gir leserne dine den beste opplevelsen siden de fleste nettleserne viser at fortellingene dine er sikre.",
+      "s2h1": "Hva må jeg gjøre?",
+      "s2p1": "Esri arbeider for at det skal bli en enkel overgang for alle som lager og bruker fortellingskart. Byggeverktøyene for Story Map og Mine fortellinger inneholder nå verktøy som hjelper deg med å finne usikkert innhold (HTTP) i fortellingene dine og gir råd om hvordan du ordner dette. Kontroller om fortellingene dine har usikkert innhold og oppdater til HTTPS før juni 2018.",
+      "action1": "Lukk",
+      "action2": "Kontroller mine fortellinger nå",
+      "action3": "Mer informasjon"
     }
   }
 });

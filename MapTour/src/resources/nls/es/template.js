@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Esto no está disponible en el modo de reproducción automática",
       "autoplayLabel": "Modo de reproducción automática",
       "autoplayExplain1": "El modo de reproducción automática avanzará por la historia a intervalos regulares. Esto es idóneo para monitores de quioscos o de visualización pública, pero debes tener en cuenta que, en otras situaciones, puede que dificulte la lectura de la historia. Esta función no es compatible con pantallas pequeñas.",
-      "autoplayExplain2": "Cuando este modo está activado, hay disponibles controles para reproducir o detener la historia y para ajustar la velocidad de navegación."
+      "autoplayExplain2": "Cuando este modo está activado, hay disponibles controles para reproducir o detener la historia y para ajustar la velocidad de navegación.",
+      "takeTourText": "Realizar el recorrido",
+      "backToStart": "Volver al inicio"
     },
     "builderHTML": {
       "panelHeader": "CONFIGURACIÓN DE LA HISTORIA",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Extensión",
       "settingsTabZoom": "Nivel de zoom",
       "settingsLayoutExplain": "Selecciona el diseño que desees.",
-      "settingsLayoutProfessional": "Diseño de tres paneles",
-      "settingsLayoutModern": "Diseño integrado",
+      "settingsLayoutProfessional": "Panel triple",
+      "settingsLayoutModern": "Integrado",
+      "settingsLayoutSidePanel": "Panel lateral",
       "settingsLayoutSelected": "Diseño seleccionado",
-      "settingsLayoutSelect": "Selecciona este diseño",
+      "settingsLayoutNew": "¡Novedad!",
+      "settingsLayoutSelect": "Seleccionar",
       "settingsLayoutNote": "Ten en cuenta que en los puntos que usan vídeos, el letrero siempre se situará debajo del vídeo, incluso si esta opción está desactivada.",
       "settingsLayoutLocBtn": "Mostrar un botón de localización",
       "settingsLayoutLocBtnHelp": "Es compatible con la mayoría de navegadores. Solo aparece cuando el acceso al story map se realiza mediante HTTPS. No aparece si la historia está integrada.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Edita la extensión",
       "settingsExtentApplyBtn": "Vista previa de la ruta de mapa",
       "settingsExtentUseMainMap": "Uso de la extensión de la ruta de mapa",
-      "settingsZoomExplain": "Ajusta el zoom para los puntos de la historia después de la introducción (opcional).",
+      "settingsZoomExplain": "Establezca el zoom para los puntos de la historia (opcional).",
       "settingsLabelZoom": "Escala/Nivel",
       "settingsZoomFirstValue": "Ninguno",
       "settingsFieldError": "Selecciona un campo de cada lista",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Error de creación. Inténtalo de nuevo",
       "tabError": "Comprueba todas las fichas por si existen errores",
       "introRecordBtn": "Introducción",
-      "introRecordActivate": "Utiliza el punto de partida como introducción (no aparece en la muestra)"
+      "introRecordActivate": "Utiliza el punto de partida como introducción (no aparece en la muestra)",
+      "coverRecordActivate": "Utilizar el primer punto como portada",
+      "coverBuilder": "Configuración de portada",
+      "cover": "Portada",
+      "showCover": "Mostrar portada",
+      "editCover": "Editar portada",
+      "coverNoVideo": "El contenido multimedia de la portada no admite vídeo. Seleccione una imagen.",
+      "coverPreview": "Para ver la portada, guarde su historia y, luego, previsualícela con el botón Compartir."
     },
     "addPopupJS": {
       "uploadingPicture": "Cargando imagen",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "¡Modifícame!",
       "templateTitle": "Establecer título de plantilla",
-      "templateSubtitle": "Establecer subtítulo de plantilla"
+      "templateSubtitle": "Establecer subtítulo de plantilla",
+      "edit": "Editar"
     },
     "crossFaderJS": {
       "setPicture": "Establecer título de imagen",
@@ -306,9 +318,9 @@ define({
       "csv": "Referenciado en un CSV",
       "advanced": "Opciones avanzadas",
       "advancedScratchLbl": "Iniciar recorrido nuevo",
-      "advancedScratchTip": "Crea un recorrido vacío que podrás rellenar manualmente mediante un asistente.",
+      "advancedScratchTip": "Cree un recorrido vacío al que agregar puntos de recorrido. Su contenido multimedia ya debe estar en línea. Esta opción no admite la carga de sus imágenes.",
       "advancedCSVLbl": "Importar datos de recorrido de un archivo CSV",
-      "advancedCSVTip": "Importa el contenido de tu recorrido de un archivo CSV.",
+      "advancedCSVTip": "Importe el contenido de su recorrido desde un archivo CSV que haga referencia a su contenido multimedia en línea. Esta opción no admite la carga de sus imágenes.",
       "advancedCommonTip": "Es necesario que las imágenes y vídeos ya estén en línea.",
       "select": "Crear una selección",
       "locUse": "Utilizar geolocalización de imágenes",
@@ -382,7 +394,7 @@ define({
       "title": "Selecciona y localiza tus imágenes/vídeos",
       "header": "Haz clic o puntea en las imágenes que desees importar para buscarlas.",
       "headerMore": "¿Por qué mis imágenes/vídeos no están geolocalizados?",
-      "headerExplain": "Si tus imágenes tienen una geolocalización válida, se ubicarán automáticamente en el mapa y se registrarán en la segunda etiqueta.<br /><br />Por defecto, Picasa y Flickr no guardan los metadatos de geolocalización EXIF cuando se importan imágenes. Comprueba los ajustes de Flickr/Picasa para activar la importación de la geolocalización de las imágenes y el uso mediante una aplicación externa. Es posible que tengas que volver a importar todas tus imágenes a Flickr/Picasa para poder utilizar la geolocalización EXIF.<br /><br />En Facebook, tienes que ir a cada imagen, hacer clic en Editar y seleccionar la ubicación.",
+      "headerExplain": "Si las fotos tienen una geolocalización válida, se colocarán automáticamente en el mapa y aparecerán en una lista en la segunda pestaña.<br /><br />De forma predeterminada, Picasa y Flickr no almacenan metadatos EXIF de geolocalización cuando usted importa fotos. Compruebe la configuración de privacidad de Picasa/Flickr para habilitar la importación y el uso de la geolocalización de fotos por una aplicación externa. Es posible que deba reimportar sus fotos existentes a Flickr/Picasa para utilizar la geolocalización EXIF.",
       "leftPanelTab1": "Para localizar",
       "leftPanelTab2": "Localizado",
       "clickOrTap": "Haz clic o puntea el mapa para localizar",
@@ -404,7 +416,7 @@ define({
       "header2": "Este asistente te ayudará a crear una ruta de mapa a partir de imágenes que ya estén almacenadas en línea o las importará en la cuenta de ArcGIS Online for Organizations.",
       "title1": "Ya están en línea",
       "title2": "Necesito cargar mis imágenes",
-      "hostedFSTooltip": "Carga tus imágenes y almacénalas con la capa Map Tour (no admite vídeo).",
+      "hostedFSTooltip": "Cargue sus imágenes y almacénelas en su recorrido (no admite vídeo).",
       "hostedFsNA": "Debes ser publicador o tener otro rol con el privilegio de publicar capas de entidades alojadas. Contacta con tu administrador de ArcGIS.",
       "hostedFsNA2": "Solo está disponible con una suscripción a ArcGIS Online. <a href='%LINK%'>Regístrate para obtener una versión de prueba</a>",
       "footer1": "Cuando termines, no olvides compartir la ruta de mapa con tu audiencia a través de la página de elementos de la aplicación.",
@@ -420,19 +432,23 @@ define({
       "close": "Cerrar",
       "tab1": {
         "title": "Introducción",
+        "moreInfo": "Para obtener más información",
+        "infoSites": "Visite la <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>sección Map Tour</a> del <a href='https://storymaps.arcgis.com' target='_blank'>sitio web de Esri Story Maps.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Preguntas frecuentes de Map Tour.</a>",
+        "myStories": "Puede administrar sus Map Tours y buscar errores en ellos en <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Mis historias</a>, en el sitio web.",
         "div1": "La plantilla de Ruta de mapa está diseñada para presentar la información geográfica donde exista un elemento fotográfico o multimedia atractivo en la historia que deseas contar.",
         "div2": "La plantilla crea una atractiva aplicación web fácil de usar que te permitirá presentar un conjunto pequeño de lugares en un mapa con una secuencia numerada por el que podrán navegar los usuarios. La plantilla se ha diseñado para su uso en cualquier navegador web y dispositivo, incluidos los smartphones y las tablets. <br /><br />",
-        "div42": "Para ver ejemplos de rutas de mapa que están creando otros usuarios, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>visita la galería</a> en el <a href='http://storymaps.arcgis.com/' target='_blank'>sitio web de Story Maps</a>. También puedes seguirnos en Twitter, en <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Nos gusta mucho tener noticias tuyas. Tanto si tienes alguna pregunta, si deseas solicitar un nueva característica o si crees que has encontrado un error, visita el <a href='http://links.esri.com/storymaps/forum' target='_blank'>foro de usuarios de Story Maps</a>."
+        "div42": "Para ver ejemplos de recorridos de mapa creados por otros usuarios, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>visite la galería</a> en el <a href='https://storymaps.arcgis.com/' target='_blank'>sitio web de Story Maps</a>. También puede seguirnos en Twitter en <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "¡Nos encantaría conocer su opinión! Infórmenos de los problemas detectados y de las características que necesita visitando el foro de Story Maps en <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Datos",
-        "div1": "El principal aspecto que hay que tener en cuenta al generar una ruta de mapa es decidir dónde se almacenarán las imágenes. Las rutas de mapa pueden utilizar las imágenes almacenadas en los principales servicios de uso compartido de fotos, en cualquier servidor web o como adjuntos para un servicio de entidades.",
+        "div1": "El elemento principal a tener en cuenta cuando se crea un Map Tour es elegir dónde se van a almacenar sus imágenes. Un Map Tour puede usar imágenes almacenadas en servicios de uso compartido de imágenes o en cualquier servidor web, o bien imágenes que usted carga desde el disco.",
         "div1a": "Consulta la última sección de esta pestaña para obtener información detallada acerca de los formatos de imágenes y vídeos compatibles.",
         "div2": "El builder interactivo te da dos opciones para gestionar las imágenes de la ruta de mapa:",
-        "div3": "<ul><li>Puedes utilizar <b>fotos que ya estén en línea</b>, por ejemplo imágenes almacenadas en sitios de uso compartido de fotos, como Flickr, o imágenes almacenadas en tu propio sitio web. Se hará referencia a ellas en la ruta de mapa por medio de sus direcciones URL.</li><li>También puedes <b>cargar fotos de tu ordenador</b> directamente en la ruta de mapa. Para esta opción de carga, es necesario disponer de una cuenta de ArcGIS for Organizations y de privilegios de publicador o administrador, ya que se crea automáticamente un servicio de entidades alojado para ti en el que las fotos se almacenan como adjuntos.</li></ul>",
+        "div3": "<ul><li>Puede utilizar <b>fotos que ya estén en línea</b>, por ejemplo, imágenes almacenadas en un sitio para compartir fotos como Flickr, o imágenes almacenadas en su propio sitio web. Se hará referencia a estas imágenes en su Map Tour mediante sus URL.</li><li>También puede <b>cargar fotos desde su equipo</b> directamente en su Map Tour. Esta opción de carga requiere una suscripción de ArcGIS y tener privilegios de publicador o administrador, porque el servicio de entidades alojado se crea automáticamente para usted, y en él sus fotos están almacenadas como adjuntos.</li></ul>",
         "div4": "Los principales casos de uso son:",
-        "div4b": "<b>Tus fotos no están alojadas</b> y dispones de una cuenta de ArcGIS for Organizations: el uso de un servicio de entidades alojado es la mejor opción. Al igual que los servicios públicos de uso compartido de fotos, optimizaremos tus imágenes para que se carguen con rapidez y tendrás acceso a todas las funciones de administración y gestión de datos de la plataforma ArcGIS.",
+        "div4b": "<b>Sus fotos aún no están alojadas</b> y usted tiene una suscripción a ArcGIS: Su mejor opción es utilizar un servicio de entidades alojado. Al igual que los servicios públicos de uso compartido de imágenes, optimizaremos sus fotos para crear imágenes de carga rápida y tendrá acceso a todas las capacidades de administración general y de datos de la plataforma ArcGIS.",
         "div5": "<b>No eres miembro de ninguna organización</b>: en primer lugar, debes cargar las imágenes en un sitio web de uso compartido de fotos o en tu propio sitio web. El builder te ayudará a utilizar estas imágenes, que seguirán alojadas en su ubicación original.",
         "div6": "<b>Deseas volver a utilizar un servicio de entidades existente</b> que almacena las imágenes como adjuntos o que hace referencia a imágenes externas: consulta la siguiente sección detallada.",
         "div7": "<b>Eres usuario de una versión anterior</b> de la plantilla de ruta de mapa y ya posees un archivo CSV que hace referencia a las imágenes y miniaturas: puedes importarlo y refinar los datos. El builder solo es compatible con los archivos CSV que utilicen campos lat./long.; puedes seguir utilizando los archivos CSV basados en direcciones mediante el mapa web (consulta la siguiente sección).",
@@ -441,10 +457,10 @@ define({
         "learn": "más información",
         "div9": "La operación de importación hace referencia a imágenes que ya se encuentran alojadas mediante el almacenamiento de las direcciones URL en una recopilación de entidades de mapas web. Las imágenes no se almacenan en ArcGIS Online. Si no se puede acceder a las imágenes alojadas, no estarán disponibles en la ruta de mapa y aparecerá la imagen 'Imagen no disponible'. En función del proveedor de servicios fotográficos, la ruta de mapa podría no importar el nombre, la descripción ni la ubicación de las imágenes. Estos atributos se almacenan en el mapa web y las modificaciones de los servicios en línea no aparecerán reflejadas en la ruta de mapa.",
         "div10": "Almacenando las imágenes en un servidor web",
-        "div11": "Si decides alojar las imágenes tú mismo, deberás crear manualmente las miniaturas de las imágenes. Al utilizar las imágenes con resolución completa para la miniatura, el rendimiento se vería afectado de forma negativa. Por ese motivo, te recomendamos encarecidamente que utilices servicios de uso compartido de fotos en línea o servicios de entidades que lo hagan por ti.",
-        "div12": "Uso de un Shapefile o un servicio de entidades existente",
-        "div13": "Se puede utilizar cualquier Shapefile o servicio de entidades de puntos como fuente de datos de la ruta de mapa. Solo tienes que agregarlo como capa en el mapa web mediante el visor de mapas de arcgis.com. Si la aplicación encuentra los atributos esperados en la capa, todas las funciones del builder estarán disponibles.",
-        "div14": "Los valores posibles para los nombres de campo son (se distingue entre mayúsculas y minúsculas):",
+        "div11": "Si elige alojar las fotos por su cuenta, tendrá que crear manualmente vistas en miniatura de sus fotos. Si utiliza en las vistas en miniatura imágenes a resolución completa, el rendimiento será deficiente. Consulte estas <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>Preguntas frecuentes</a> para obtener sugerencias sobre el tamaño de las imágenes si va a acceder a ellas en la web directamente a través de URL.",
+        "div12": "Usar datos de SIG existentes",
+        "div13": "Cualquier servicio de entidades, archivo CSV o shapefile que contenga puntos se puede utilizar como fuente de datos de un Map Tour si contiene el conjunto de campos que la aplicación espera. Tiene que agregarlo como capa a un mapa web de ArcGIS y, luego, compartir el mapa creando un Map Tour.",
+        "div14": "Los valores compatibles para los nombres de campo son (no distingue entre mayúsculas y minúsculas):",
         "div151": "Nombre",
         "div152": "Descripción",
         "div153": "Imagen",
@@ -480,19 +496,19 @@ define({
         "div0a": "El visor de rutas de mapa es compatible con IE8 (y posteriores). El builder interactivo es compatible con IE9 (y posteriores). Lo hemos probado de forma activa en todos los exploradores principales, pero, si experimentas dificultades, te recomendamos que utilices Chrome.",
         "div0b": "Si experimentas dificultades, ponte en contacto con nosotros. Mientras tanto, si generas la ruta de mapa con la plantilla CSV, se minimizará la interacción con la interfaz del builder.",
         "div1": "Imágenes",
-        "div2": "Te recomendamos que utilices fotos con orientación horizontal en lugar de con orientación vertical. Las fotos con una relación de aspecto de 4:3 son las mejor se adaptan. Aunque se pueden utilizar imágenes con orientación vertical, en pantallas de menor tamaño (como en un iPad) gran parte de la foto puede quedar tapada por el título (el texto ocupa más espacio al aparecer un área alta que en un área ancha). Aunque se pueden utilizar imágenes con diferentes tamaños, formas y orientaciones en una ruta de mapa, te recomendamos que utilices los mismos tamaños y formas para todas las imágenes. De esta forma, los cambios en los tamaños de las imágenes no distraerán a los usuarios mientras realizan el recorrido.",
+        "div2": "Aunque puede utilizar imágenes de distintos tamaños, formas y orientación en un Map Tour, recomendamos las imágenes en orientación horizontal en lugar de vertical. Las imágenes con una relación de aspecto de 4:3 son las que mejor encajan. En los diseños Panel triple e Integrado, en los que el título se superpone a la imagen, el uso de imágenes en orientación vertical puede hacer que el título oscurezca gran parte de la imagen. En los diseños Panel triple e Integrado, recomendamos el uso del mismo tamaño y forma en todas las imágenes en la medida de lo posible. De esta forma, el usuario no se distraerá por tener imágenes de distinto tamaño a medida que avanzan por el recorrido.",
         "div2a": "Te recomendamos que utilices un tamaño máximo de la imagen de 1.000 píxeles de ancho x 750 píxeles para las imágenes principales y de 140 x 93 para las vistas en miniatura.",
         "div3": "Establece el formato de texto de tu leyenda usando etiquetas HTML",
-        "div4": "El encabezado y el título/leyenda de la imagen pueden incluir etiquetas HTML para definir formatos y enlaces. Por ejemplo, este código agrega un enlace amarillo:",
+        "div4": "Puede introducir etiquetas HTML en sus títulos para definir el formato y los vínculos. Por ejemplo, estas etiquetas agregan un hipervínculo verde:",
         "div4a": "Escribe un buen subtítulo para el recorrido",
-        "div4b": "Tómate el tiempo que necesites para escribir un subtítulo que sea atractivo para el recorrido. El subtítulo es una buena forma de atraer a los usuarios a tu recorrido y de indicarles lo que van a descubrir en él. También es un buen lugar para indicar al público en qué estado o país se encuentra el recorrido. Por ejemplo, no des por supuesto que los usuarios saben en qué ciudad o población se encuentra el recorrido. También se puede aplicar formato al título utilizando etiquetas HTML e incluyendo vínculos. No escribas un título demasiado largo. En las ventanas pequeñas de los navegadores o en los iPad puede que no quepan y que aparezcan recortados. Si no se te ocurre ningún subtítulo bueno, déjalo en blanco.",
+        "div4b": "Dedique tiempo a escribir un subtítulo atractivo para su recorrido. El subtítulo es una buena forma de atraer a la gente a su recorrido y contarles lo que descubrirán en él. También es un buen lugar para decirle al público el estado o el país en el que se ubica el recorrido. Por ejemplo, no dé por sentado que la gente va a conocer dónde está la ciudad o la población en la que se ubica su recorrido. Sin embargo, no escriba un subtítulo demasiado largo. Si no se le ocurre ningún subtítulo bueno, déjelo en blanco. En el diseño Panel lateral, el subtítulo que aparece en la portada es el título del primer punto de su recorrido (si utiliza la opción del cuadro de diálogo Organizar para usar el contenido del primer punto como portada).",
         "div5": "Capas de apoyo",
-        "div6": "Puedes agregar capas adicionales para proporcionar un contexto a la ruta de mapa. Estas capas pueden contener otras entidades geográficas que deseas que aparezcan en el mapa además de los puntos de la ruta de mapa, como áreas de estudio, rutas peatonales o de conducción enlazadas con los puntos del recorrido, etc. La plantilla de ruta de mapa muestra estas capas adicionales con la simbología especificada en el mapa web, pero las ventanas emergentes no se encuentran disponibles.",
+        "div6": "Puede agregar capas complementarias adicionales para proporcionar contexto al Map Tour. Estas capas pueden contener otras características geográficas que desea que aparezcan en el mapa además de los puntos del Map Tour, por ejemplo, un área de estudio, una ruta a pie o de conducción que una los puntos del recorrido, etc. La plantilla Map Tour muestra estas capas complementarias adicionales con la simbología que usted especifique en el mapa web, pero los elementos emergentes no están disponibles. Para agregar capas complementarias a su recorrido, guarde su trabajo y cierre el builder de Map Tour. A continuación, abra el mapa web utilizado en su recorrido. Lo encontrará en ArcGIS, Mi contenido o en la sección Mis historias del sitio web de Story Maps.",
         "div7": "Mantén tu recorrido corto y agradable",
         "div8": "Hay un límite de 99 puntos por recorrido. Por supuesto, la mayoría de las rutas de mapa tendrán menos. No esperes a que los demás usuarios deseen pasar por demasiados puntos de recorrido. Aunque el tema te resulte fascinante, puede que a otros usuarios no se lo parezca.",
         "div10": "Modo integrado",
-        "div11": "Si deseas integrar la plantilla en otro sitio web mediante un iframe, al agregar el parámetro opcional \"&embed\" al final de la dirección URL, se eliminará el encabezado. Dicho modo también se puede establecer en la versión descargable mediante el archivo de configuración.",
-        "div12": "Evita utilizar un iFrame estrecho que provoque que el recorrido del mapa cambie al diseño táctil de la pantalla pequeña. Para maximizar la facilidad de uso, cuando integres un recorrido de mapa, te recomendamos que sigas incluyendo un vínculo junto al recorrido integrado para que los usuarios puedan iniciar el recorrido en pantalla completa."
+        "div11": "Si desea integrar la plantilla en otro sitio web a través de iframe, al agregar el parámetro adicional \"&embed\" al final de la URL se eliminará el encabezado.",
+        "div12": "Evite utilizar un ancho de iFrame estrecho que haga que el recorrido de mapa cambie a su diseño responsive táctil y de pequeña resolución. Para maximizar la facilidad de uso, recomendamos que cuando integre un recorrido de mapa proporcione un vínculo junto al recorrido integrado para que los usuarios puedan iniciar el recorrido en pantalla completa."
       },
       "tab5": {
         "title": "Publicación",
@@ -548,6 +564,22 @@ define({
       "panel4": "No volver a advertirme sobre esta historia",
       "mystories": "Mis historias",
       "btnSave": "Guardar"
+    },
+    "bannerNotification": {
+      "learnMore": "Más información",
+      "close": "Cerrar",
+      "dontShowAgain": "No volver a mostrar este mensaje"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Mensaje importante sobre seguridad web y Story Maps",
+      "s1h1": "Esri está mejorando la seguridad de Story Maps",
+      "s1p1": "Sus Story Maps en vivo en la web y la comunidad web siempre están trabajando para establecer e implementar una mejor seguridad. HTTPS, que ofrece una conexión segura al contenido transmitido por Internet, está emergiendo como la forma esperada de acceder a contenido web. La mayoría de navegadores modernos ahora muestran mensajes de advertencia cuando se utiliza HTTP en lugar de HTTPS. Como se trata de un estándar emergente, a partir de la actualización de ArcGIS Online de junio de 2018, sus Story Maps tendrán que utilizar HTTPS.",
+      "s1p2": "Desde el punto de vista práctico, significa que se debe acceder a un Story Map y todo su contenido (incluidas imágenes, capas, aplicaciones y sitios web integrados) por medio de vínculos que comiencen por HTTPS en lugar de HTTP. Con ello garantiza una experiencia óptima a sus lectores, ya que la mayoría de navegadores web indicarán que sus historias son seguras.",
+      "s2h1": "¿Qué tengo que hacer?",
+      "s2p1": "Esri está trabajando para que esta sea una transición fácil para los autores y lectores de Story Map. Ahora, los builders de Story Map y Mis historias cuentan con herramientas que le ayudarán a encontrar contenido no seguro (HTTP) en sus historias y le harán recomendaciones para actuar al respecto. Compruebe si sus historias tienen contenido no seguro y actualice a HTTPS antes de junio de 2018.",
+      "action1": "Cerrar",
+      "action2": "Comprobar mis historias ahora",
+      "action3": "Más información"
     }
   }
 });

@@ -9,10 +9,10 @@ APPCFG = {
 
 	// Header Logo
 	HEADER_LOGO_URL: "resources/icons/esri-logo-white.png",
-	HEADER_LOGO_TARGET: "http://www.esri.com",
+	HEADER_LOGO_TARGET: "https://www.esri.com",
 	// Header top right link
-	HEADER_LINK_TEXT: "A story map",
-	HEADER_LINK_URL: "http://storymaps.arcgis.com",
+	HEADER_LINK_TEXT: "A Story Map",
+	HEADER_LINK_URL: "https://storymaps.arcgis.com",
 	// Control display of Facebook and Twitter links
 	HEADER_SOCIAL: {
 		facebook: true,
@@ -31,6 +31,11 @@ APPCFG = {
 	POPUP_BACKGROUND_COLOR: "#444444",
 	POPUP_BORDER_COLOR: "#444444",
 	POPUP_ARROW_COLOR: "#444444",
+
+	// Map popup colors
+	HOVER_POPUP_BACKGROUND_COLOR: "#666666",
+	HOVER_POPUP_BORDER_COLOR: "#666666",
+	HOVER_POPUP_ARROW_COLOR: "#666666",
 
 	// Add a 'zoom on my location' button under the +/home/- buttons
 	// For example this is not supported in IE 8
@@ -93,7 +98,17 @@ APPCFG = {
 		p: {
 			iconPath: 'resources/markers/purple/IconPurple',
 			cssClass: 'number-purple'
+		},
+		custom: {
+			iconPath: 'resources/icons/PaddleTall_Color.png',
+			iconPath2: 'resources/icons/PaddleTall_Chrome.png'
 		}
+	},
+	ICON_CUSTOM_COLORS: {
+		r: "#de2900",
+		b: "#007ac2",
+		g: "#35ac46",
+		p: "#7751ab"
 	},
 	// Default color
 	PIN_DEFAULT_CFG: 'r',
@@ -118,6 +133,27 @@ APPCFG = {
 			height: 40,
 			offsetX: 3,
 			offsetY: 11
+		}
+	},
+
+	ICON_CUSTOM_CFG: {
+		normal: {
+			width: 31,
+			height: 49,
+			offsetX: 1,
+			offsetY: 20
+		},
+		hover: {
+			width: 34,
+			height: 54,
+			offsetX: 1,
+			offsetY: 23
+		},
+		selected: {
+			width: 41,
+			height: 65,
+			offsetX: 1,
+			offsetY: 25
 		}
 	},
 

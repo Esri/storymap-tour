@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Aceasta nu este disponibilă în modul de redare automată",
       "autoplayLabel": "Mod redare automată",
       "autoplayExplain1": "Modul de redare automată va avansa prin scenariul dvs. la un interval regulat. Această opţiune este ideală pentru un chioşc sau un monitor pentru afişare publică, dar, reţineţi, că în alte situaţii poate face ca scenariul să fie dificil de urmărit. Această caracteristică nu este acceptată pe ecranele de dimensiuni mici.",
-      "autoplayExplain2": "Când acest mod este activ, sunt afişate butoane pentru a reda/întrerupe scenariul şi pentru a regla viteza de navigare."
+      "autoplayExplain2": "Când acest mod este activ, sunt afişate butoane pentru a reda/întrerupe scenariul şi pentru a regla viteza de navigare.",
+      "takeTourText": "Faceţi turul",
+      "backToStart": "Înapoi la start"
     },
     "builderHTML": {
       "panelHeader": "CONFIGURARE POVESTE",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Extindere",
       "settingsTabZoom": "Nivel de transfocare",
       "settingsLayoutExplain": "Selectaţi configuraţia dorită.",
-      "settingsLayoutProfessional": "Configuraţie cu trei panouri",
-      "settingsLayoutModern": "Configuraţie integrată",
+      "settingsLayoutProfessional": "Trei panouri",
+      "settingsLayoutModern": "Integrat",
+      "settingsLayoutSidePanel": "Panou lateral",
       "settingsLayoutSelected": "Configuraţie selectată",
-      "settingsLayoutSelect": "Selectaţi această configuraţie",
+      "settingsLayoutNew": "Nou!",
+      "settingsLayoutSelect": "Selectare",
       "settingsLayoutNote": "Reţineţi că în punctele care utilizează clipuri video, afişul va fi plasat întotdeauna sub clipul video chiar dacă opţiunea este debifată.",
       "settingsLayoutLocBtn": "Afişare buton pentru localizare",
       "settingsLayoutLocBtnHelp": "Suportat pe majoritatea browserelor. Apare numai dacă harta cu povestiri se accesează prin intermediul HTTPS. Nu apare dacă povestirea este încorporată.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Editare extindere",
       "settingsExtentApplyBtn": "Previzualizare în Turul hărţii",
       "settingsExtentUseMainMap": "Utilizare extindere Tur hartă",
-      "settingsZoomExplain": "Setaţi transfocarea pentru punctele informative care urmează după prezentare (opţional).",
+      "settingsZoomExplain": "Fixați panoramarea pentru punctele de poveste (opțional).",
       "settingsLabelZoom": "Scară/nivel",
       "settingsZoomFirstValue": "Niciuna",
       "settingsFieldError": "Selectaţi un câmp în fiecare listă",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Creare nereuşită. Încercaţi din nou",
       "tabError": "Verificaţi erorile în toate filele",
       "introRecordBtn": "Introducere",
-      "introRecordActivate": "Utilizare primul punct drept introducere (nu apare în carusel)"
+      "introRecordActivate": "Utilizare primul punct drept introducere (nu apare în carusel)",
+      "coverRecordActivate": "Utilizaţi primul punct ca pagină de copertă",
+      "coverBuilder": "Configurare pagină de copertă",
+      "cover": "Copertă",
+      "showCover": "Afișare copertă",
+      "editCover": "Editare copertă",
+      "coverNoVideo": "Materialul video nu este acceptat pentru copertă. Vă rugăm să selectaţi o imagine.",
+      "coverPreview": "Pentru a vizualiza coperta, salvaţi povestea, apoi previzualizați-o folosind butonul Share."
     },
     "addPopupJS": {
       "uploadingPicture": "Se încarcă imaginea",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Editează-mă!",
       "templateTitle": "Setare titlu şablon",
-      "templateSubtitle": "Setare subtitlu şablon"
+      "templateSubtitle": "Setare subtitlu şablon",
+      "edit": "Editare"
     },
     "crossFaderJS": {
       "setPicture": "Setare titlu imagine",
@@ -306,9 +318,9 @@ define({
       "csv": "Cu referinţă într-un CSV",
       "advanced": "Opţiuni avansate",
       "advancedScratchLbl": "Începeţi un tur nou",
-      "advancedScratchTip": "Creaţi un tur gol, pe care îl veţi putea popula manual utilizând un expert.",
+      "advancedScratchTip": "Creaţi un Tur necompletat în care să puteţi adăuga anumite puncte. Diversele dvs. medii trebuie să fie deja online. Această opţiune nu acceptă încărcarea imaginilor.",
       "advancedCSVLbl": "Import date tur dintr-un fişier CSV",
-      "advancedCSVTip": "Import conţinut tur dintr-un fişier CSV.",
+      "advancedCSVTip": "Importați conţinutul Turului dvs. dintr-un fişier CSV care conţine referinţe la mediile dvs. online. Această opţiune nu acceptă încărcarea imaginilor dvs.",
       "advancedCommonTip": "Necesită ca imaginile şi videoclipurile să fie deja online.",
       "select": "Efectuare selecţie",
       "locUse": "Utilizare locaţie geografică imagini",
@@ -382,7 +394,7 @@ define({
       "title": "Selectarea şi localizarea imaginilor/videoclipurilor",
       "header": "Faceţi clic pe sau atingeţi imaginile pe care doriţi să le importaţi pentru a le localiza.",
       "headerMore": "De ce nu sunt localizate geografic imaginile/clipurile mele video?",
-      "headerExplain": "Dacă imaginile dvs. au o locaţie validă, acestea vor fi localizate automat pe hartă şi listate în a doua filă.<br /><br />În mod implicit, Picasa şi Flickr nu stochează metadatele EXIF ale locaţiei când importaţi fotografii. Verificaţi setările Flickr/Picasa din fila Confidenţialitate pentru a activa utilizarea locaţiei imaginilor. Este posibil să fie necesar să reimportaţi complet imaginile în Flickr/Picasa.<br /><br />Pentru Facebook, trebuie să accesaţi fiecare imagine, să faceţi clic pe Editare şi să selectaţi locaţia dintre variantele sugerate, care se bazează pe metadatele EXIF ale imaginilor.",
+      "headerExplain": "Dacă imaginile dvs. au o geolocalizare valabilă, vor fi amplasate automat pe hartă și listate pe a doua filă.<br /><br />În mod implicit, Picasa și Flickr nu stochează metadatele EXIF ale geolocalizării când importați imagini. Verificați setările de confidențialitate Picasa/Flickr pentru a permite importul geolocalizării imaginilor și folosirea de către aplicații externe. Poate fi nevoie sp reimportați imaginile existente în Flickr/Picasa pentru geolocalizarea EXIF de folosit.",
       "leftPanelTab1": "De localizat",
       "leftPanelTab2": "Localizat",
       "clickOrTap": "Faceţi clic pe sau atingeţi harta pentru a localiza",
@@ -404,7 +416,7 @@ define({
       "header2": "Acest asistent vă va ajuta să creaţi un Tur al hărţii din imaginile stocate deja online sau le va importa în contul ArcGIS Online for Organizations.",
       "title1": "Acestea sunt online deja",
       "title2": "Trebuie să încarc imaginile",
-      "hostedFSTooltip": "Încărcaţi imaginile şi stocaţi-le cu stratul tematic Tur de hartă (nu acceptă video).",
+      "hostedFSTooltip": "Încărcaţi imaginile şi stocaţi-le în Turul dvs. (nu acceptă video).",
       "hostedFsNA": "Trebuie să fiţi Editor sau să aveţi un alt rol cu privilegii pentru a publica straturi tematice de obiecte spaţiale găzduite. Contactaţi administratorul ArcGIS.",
       "hostedFsNA2": "Disponibil numai cu un abonament ArcGIS Online. <a href='%LINK%'>Înscrieţi-vă pentru o testare gratuită</a>",
       "footer1": "După ce terminaţi, nu uitaţi să partajaţi Turul hărţii cu publicul prin pagina elementului de tip aplicaţie.",
@@ -420,19 +432,23 @@ define({
       "close": "Închidere",
       "tab1": {
         "title": "Introducere",
+        "moreInfo": "Pentru informaţii suplimentare",
+        "infoSites": "Vizitați <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>secţiunea Map Tour</a> a <a href='https://storymaps.arcgis.com' target='_blank'>site-ul web Esri Story Maps.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Întrebări frecvente Map Tour.</a>",
+        "myStories": "Vă puteţi gestiona Map Tours și puteţi să verificaţi dacă conțin greşeli în <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>My Stories</a> pe site-ul web.",
         "div1": "Şablonul Turul hărţii este conceput pentru prezentarea de informaţii geografice atunci când există un element fotografic sau media interesant pentru informaţiile pe care doriţi să le ilustraţi.",
         "div2": "Şablonul reprezintă o aplicaţie web atractivă şi uşor de utilizat, care vă permite să prezentaţi un set redus de locuri de pe o hartă într-o ordine numerotată, pe care utilizatorii o pot parcurge. Şablonul este conceput pentru a fi utilizat în orice browser web de pe orice dispozitiv, inclusiv pe telefoane smartphone şi tablete. <br /><br />",
-        "div42": "Pentru a vedea exemple de tururi de hărţi create de alţi utilizatori, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>vizitaţi galeria</a> de pe <a href='http://storymaps.arcgis.com/' target='_blank'>site-ul web de hărţi informative</a>. De asemenea, ne puteţi urmări pe Twitter, la adresa <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Ne-ar face plăcere să împărtăşiţi lucruri cu noi! Dacă aveţi o întrebare, doriţi să solicitaţi o caracteristică nouă sau credeţi că aţi găsit o defecţiune, vizitaţi <a href='http://links.esri.com/storymaps/forum' target='_blank'>Forumul utilizatorilor de hărţi informative</a>."
+        "div42": "Pentru a vizualiza exemple de tururi de hartă pe care alţi utilizatori le crează, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>vizitați galeria</a> pe <a href='https://storymaps.arcgis.com/' target='_blank'>site-ul web Story Maps</a>. Ne puteţi urmări pe Twitter la <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "Abia așteptăm să ne contactați! Informați-ne despre problemele și noile caracteristici de care aveți nevoie vizitând forumul Story Maps pe <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Date",
-        "div1": "Cel mai important element de luat în considerare la crearea unui Tur al hărţii este alegere locaţiei în care vor fi stocate fotografiile. Un tur de hartă poate utiliza fotografii stocate în servicii mari de partajare a fotografiilor, de pe orice server web sau ca ataşări la un serviciu de obiecte spaţiale.",
+        "div1": "Cel mai important element de luat în considerare la crearea unui Map Tour este alegere locaţiei în care vor fi stocate fotografiile. Un Map Tour poate utiliza fotografii stocate în servicii de partajare a fotografiilor, de pe orice server web, sau pe care le încărcați de pe disc.",
         "div1a": "Consultaţi ultima parte a acestei file pentru detalii despre formatele de fotografii şi clipuri video suportate.",
         "div2": "Instrumentul de creare interactiv vă oferă două posibilităţi  pentru gestionarea imaginilor din Turul hărţii:",
-        "div3": "<ul><li>Puteţi utiliza <b>fotografii aflate deja online</b>, precum imaginile stocate pe un site de partajare a fotografiilor, cum ar fi Flickr, sau imagini stocate pe propriul dvs. site web. Aceste imagini vor avea referinţe în Turul hărţii prin intermediul URL-urilor lor</li><li>De asemenea, puteţi <b>încărca fotografii de pe computer</b> direct în Turul hărţii. Pentru această opţiune de încărcare, trebuie să aveţi un cont ArcGIS pentru organizaţii şi privilegii de Editor sau Administrator, deoarece se creează automat un serviciu de obiecte spaţiale găzduit, care sunt stocate fotografiile dvs. sub formă de ataşări.</li></ul>",
+        "div3": "<ul><li>Puteți utiliza <b>fotografii care sunt deja online</b>, cum ar fi imaginile stocate pe un site de partajare a fotografiilor cum ar fi Flickr, sau imaginile stocate pe propriul dvs. website. Aceste imagini vor fi menționate în Turul dvs. de Hartă cu ajutorul URL-urilor lor.</li><li>De asemenea, puteți <b>încărca fotografii din calculatorul dvs.</b> direct în Turul dvs. de Hartă. Această opțiune de încărcare presupune să aveți un abonament ArcGIS și privilegii Publisher sau Administrator, deoarece un servicii de obiecte spaţiale găzduite este creat automat pentru dvs., unde fotografiile dvs. sunt stocate ca anexe.</li></ul>",
         "div4": "Principalele cazuri de utilizare sunt:",
-        "div4b": "<b>Fotografiile dvs. nu sunt găzduite</b> încă şi aveţi un cont ArcGIS pentru organizaţii: utilizarea unui serviciu de obiecte spaţiale găzduit este cea mai bună alegere. Ca şi serviciile publice de partajare a fotografiilor, vă vom optimiza fotografiile pentru a crea fotografiile cu încărcare rapidă, iar dvs. veţi avea acces la toate capabilităţile de administrare şi gestionare a datelor de pe platforma ArcGIS.",
+        "div4b": "<b>Fotografiile dvs. nu sunt găzduite</b> încă şi aveţi un abonament ArcGIS: utilizarea unui serviciu de obiecte spaţiale găzduit este cea mai bună alegere. Ca şi serviciile publice de partajare a fotografiilor, vă vom optimiza fotografiile pentru a crea fotografiile cu încărcare rapidă, iar dvs. veţi avea acces la toate capabilităţile de administrare şi gestionare a datelor de pe platforma ArcGIS.",
         "div5": "<b>Nu sunteţi membru al unei organizaţii</b>: mai întâi trebuie să încărcaţi fotografiile pe un site web de partajare a fotografiilor sau pe propriul dvs. server web. Apoi, instrumentul de creare vă va ajuta să utilizaţi aceste fotografii, care vor continua să fie găzduite în locaţia lor originală",
         "div6": "<b>Doriţi să reutilizaţi un serviciu de obiecte spaţiale existent</b>, în care fotografiile dvs. sunt stocate ca ataşări sau în care există referinţe către fotografii externe: consultaţi capitolul detaliat de mai jos.",
         "div7": "<b>Utilizaţi o versiune anterioară</b> a şablonului Turul hărţii şi aveţi propriul dvs. CSV în care aveţi referinţe la fotografii şi miniaturi: îl veţi putea importa şi vă veţi putea rafina datele. Instrumentul de creare suportă numai formatul CSV care utilizează câmpuri lat/long; utilizarea fişierului CSV bazat pe adrese poate continua în harta web (consultaţi capitolul de mai jos).",
@@ -441,10 +457,10 @@ define({
         "learn": "aflaţi mai multe",
         "div9": "Operaţia de import conţine referinţe la fotografii deja găzduite, prin stocarea URL-urilor acestora într-o colecţie de obiecte spaţiale de hartă web. Fotografiile nu sunt stocate în ArcGIS Online.Dacă imaginile găzduite nu pot fi accesate, ele nu vor fi disponibile în Turul hărţii, iar dvs. veţi vedea o imagine cu textul „Imagine indisponibilă”. În funcţie de furnizorul de servicii fotografice, este posibil ca Turul hărţii să nu importe numele, descrierile şi locaţiile imaginilor. Aceste informaţii sunt stocate în harta web şi nicio editare a serviciilor online nu se va reflecta în Turul hărţii.",
         "div10": "Stocarea imaginilor pe un server web",
-        "div11": "Dacă alegeţi să vă găzduiţi singuri fotografiile, va trebui să creaţi manual miniaturi ale fotografiilor. Utilizarea fotografiilor la rezoluţia maximă pentru miniaturi va conduce la performanţe slabe. Din acest motiv, vă recomandăm să utilizaţi un serviciu online de partajare a fotografiilor sau un serviciu de obiecte spaţiale care va face acest lucru pentru dvs.",
-        "div12": "Utilizarea unui serviciu de obiecte spaţiale sau a unui shapefile existent",
-        "div13": "Orice serviciul de obiecte spaţiale sau shapefile de puncte poate fi utilizat ca sursă de date pentru Turul hărţii. Trebuie doar să îl adăugaţi ca strat tematic în harta web prin aplicaţia de vizualizare a hărţilor din arcgis.com. Dacă aplicaţia găseşte atributele aşteptate în stratul dvs. tematic, toate funcţionalităţile instrumentului de creare vor fi disponibile.",
-        "div14": "Valorile posibile pentru numele câmpurilor sunt (ţin cont de majuscule/minuscule):",
+        "div11": "Dacă alegeţi să găzduiți imaginile, va trebui să creaţi manual miniaturi ale acestora. Utilizarea imaginilor la rezoluţie maximă pentru miniatură va duce la performanţe slabe. Consultaţi această secţiune <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>Întrebări frecvente</a> pentru sfaturi privind dimensionarea imaginilor în cazul în care le veţi accesa direct pe internet prin intermediul URL-urilor.",
+        "div12": "Utilizarea datelor GIS existente",
+        "div13": "Orice serviciu de straturi tematice, fişier CSV sau fişier formă care conţine puncte poate fi utilizat ca sursă de date pentru Map Tour dacă conţine setul de câmpuri pe care îl aşteaptă aplicaţia. Trebuie să îl adăugaţi ca un strat tematic într-o hartă web ArcGIS şi apoi să partajaţi harta creând un Map Tour.",
+        "div14": "Valorile acceptate pentru numele câmpurilor sunt (ţin cont de majuscule/minuscule):",
         "div151": "Nume",
         "div152": "Descriere",
         "div153": "Fotografie",
@@ -480,19 +496,19 @@ define({
         "div0a": "Aplicaţia de vizualizare pentru Turul hărţii este suportată începând de la IE8+.Instrumentul de creare interactiv este suportat începând de la IE9+. Noi testăm în mod activ toate browserele importante, însă, dacă întâmpinaţi dificultăţi, vă recomandăm să utilizaţi Chrome.",
         "div0b": "Dacă întâmpinaţi dificultăţi, daţi-ne de ştire. Între timp, prin creare Turului hărţii utilizând şablonul CSV veţi reduce la minim interacţiunea cu interfaţa instrumentului de creare.",
         "div1": "Imagini",
-        "div2": "Vă recomandăm să utilizaţi orientarea fotografiilor peisaj în loc de portret. Fotografiile cu raportul 4:3 se potrivesc cel mai bine. Imaginile cu orientare portret pot fi utilizate, însă pe ecrane mai mici precum iPad şi este posibil ca o mare parte din fotografie să fie obturată de subtitlu (textul ocupă mai mult spaţiu când este afişat într-o suprafaţă înaltă, decât într-o suprafaţă înaltă). Cu toate că se pot utiliza imagini de dimensiuni, forme şi orientări diferite într-un Tur al hărţii, vă recomandăm să utilizaţi aceeaşi dimensiune şi aceeaşi formă pentru toate imaginile. În acest fel, utilizatorul nu va fi distras de de imagini cu dimensiuni diferite în timp ce parcurg turul.",
+        "div2": "Deşi imaginile de diferite mărimi, forme şi orientare pot fi utilizate într-un singur Map Tour, vă recomandăm imagini cu orientare peisagistică în loc cele cu orientare portret. Imaginile cu un raport de aspect 4:3 se potrivesc cel mai bine. În cele trei panouri şi în aspectele integrate, în care legenda se suprapune peste imagine, folosirea imaginilor cu orientare portret poate face ca o mulţime de imagini să fie obstrucționate de către legendă. În cele trei panouri şi în aspectele integrate, recomandăm utilizarea aceloraşi dimensiuni şi forme pentru toate imaginile, dacă este posibil. În acest fel, utilizatorul nu va fi distras de imagini de dimensiuni diferite pe măsură ce se derulează în cadrul turului.",
         "div2a": "Vă recomandăm o dimensiune maximă pentru imagini de 1000 pixeli pe lăţime x 750 pixeli pe înălţime pentru fotografiile principale şi 140x93 pentru miniaturi.",
         "div3": "Formatarea textului din subtitluri cu ajutorul etichetelor HTML",
-        "div4": "Antetul şi titlul/subtitlul fotografiei pot include etichete HTML pentru definirea formatării şi a linkurilor. De exemplu, acest cod adaugă un link galben:",
+        "div4": "Aveţi posibilitatea să introduceţi etichete HTML în legende pentru a defini formatarea şi legăturile. De exemplu, aceste etichete adaugă un hyperlink verde:",
         "div4a": "Scrieţi un subtitlu bun pentru tur",
-        "div4b": "Alocaţi timp pentru redactarea unui subtitlu atrăgător pentru tur. Subtitlul constituie un mijloc bun de a atrage oamenii să parcurgă turul şi de a le spune ce vor descoperi în el. De asemenea, este un loc potrivit pentru a comunica publicului statul sau ţara în care este localizat turul. De exemplu, nu presupuneţi că publicul ştie unde se află localitatea prezentată în tur. Subtitlul poate fi, de asemenea, formatat folosind etichete HTML, precum în cazul includerii unor linkuri. Totuşi, nu faceţi subtitlul prea mare. În ferestrele de browser mai mici sau pe iPad este posibil să nu încapă complet şi să fie scurtat. Dacă nu găsiţi niciun subtitlu bun, lăsaţi-l necompletat.",
+        "div4b": "Alocaţi-vă suficient timp pentru a compune un subtitlu convingător pentru turul dvs. Subtitlul este o modalitate bună de a atrage oamenii în turul dvs. și pentru a le spune ce vor descoperi în acesta. Este, de asemenea, un loc bun pentru a spune publicului dvs. statul sau ţara în care turul are loc. De exemplu, nu presupuneţi că oamenii ştiu unde se află oraşul sau localitatea din turul dvs. Nu faceţi însă un subtitlul prea lung. Dacă nu vă puteţi gândi la un subtitlu bun, nu completaţi nimic. În aspectul panoului lateral, subtitlul care apare pe pagina de copertă este legenda pentru primul punct al turului dvs. (dacă utilizaţi opţiunea din dialogul Organize pentru a folosiţi conţinutul primului punct ca pagină de copertă).",
         "div5": "Straturi tematice de asistenţă",
-        "div6": "Puteţi adăuga straturi tematice de asistenţă suplimentare pentru a oferi context în Turul hărţii. Aceste straturi tematice pot conţine alte obiecte spaţiale geografice care doriţi să apară pe hartă pe lângă punctele din Turul hărţii, cum ar fi o rută de deplasare pe jos sau cu maşina, care să lege punctele din tur etc. Turul hărţii afişează afişează aceste straturi tematice de asistenţă suplimentare utilizând simbolurile pe care le specificaţi în harta web, însă nu sunt disponibile ferestre pop-up.",
+        "div6": "Puteţi adăuga straturi tematice suport suplimentare pentru a crea un context în Turul hărţii. Aceste straturi tematice pot conţine alte obiecte spaţiale geografice care doriţi să apară pe hartă pe lângă punctele din Turul hărţii, cum ar fi o rută de deplasare pe jos sau cu maşina, care să lege punctele din tur etc. Turul hărţii afişează aceste straturi tematice suport suplimentare utilizând simbolurile pe care le specificaţi în harta web, însă nu sunt disponibile ferestre pop-up. Pentru a adăuga straturi tematice suport la turul dvs., salvaţi ce aţi lucrat şi închideţi aplicaţia de creare Map Tour. Apoi deschideţi harta web utilizată în turul dvs. Aceasta poate fi găsită în ArcGIS My Content sau prin intermediul secţiunii My Stories din site-ul Story Maps.",
         "div7": "Păstraţi turul scurt şi plăcut",
         "div8": "Există o limită de 99 de puncte per tur. Majoritatea Tururilor de hărţi vor fi semnificativ mai scurte de atât. Nu vă aşteptaţi ca publicul să dorească să parcurgă prea multe puncte în tur. Poate că dvs. vi se pare subiectul fascinant, însă nu presupuneţi că şi ceilalţi cred acelaşi lucru!",
         "div10": "Mod încorporat",
-        "div11": "Dacă doriţi să încorporaţi şablonul în alt site web folosind un iframe, adăugarea parametrului opţional \"&embed\" la sfârşitul URL-ului va elimina antetul. Acel mod poate fi setat şi în versiunea descărcabilă prin intermediul fişierului de configurare.",
-        "div12": "Evitaţi să utilizaţi o lăţime iFrame îngustă, care ar determina turul hărţii să comute la aspectul bazat pe interacţiune tactilă, pentru ecrane mici. Pentru a-l face cât mai uşor de utilizat. La încorporarea unui tur de hartă, recomandăm întotdeauna să furnizaţi şi un link lângă turul încorporat, astfel încât utilizatorii să poată lansa turul pe tot ecranul."
+        "div11": "Dacă doriți să încorporați șablonul pe un alt site web printr-un iframe, adăugarea parametrului opțional \"&embed\" la sfârșitul URL-ului va elimina antetul.",
+        "div12": "Evitaţi să utilizaţi o lăţime iFrame îngustă, care ar determina turul hărţii să comute la aspectul bazat pe interacţiune tactilă, pentru ecrane mici. Pentru a-l face cât mai uşor de utilizat, la încorporarea unui tur de hartă, recomandăm întotdeauna să furnizaţi şi un link lângă turul încorporat, astfel încât utilizatorii să poată lansa turul pe tot ecranul."
       },
       "tab5": {
         "title": "Publicarea",
@@ -548,6 +564,22 @@ define({
       "panel4": "Opriţi avertizarea pentru acest scenariu",
       "mystories": "Relatările mele",
       "btnSave": "Salvare"
+    },
+    "bannerNotification": {
+      "learnMore": "Aflaţi mai multe",
+      "close": "Închidere",
+      "dontShowAgain": "Nu afişa acest mesaj din nou"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Mesaj important referitor la Securitatea web şi Story Maps",
+      "s1h1": "Esri îmbunătăţeşte securitatea Story Maps",
+      "s1p1": "Story Maps sunt operaționale pe internet, iar comunitatea web depune toate eforturile pentru a stabili şi implementa o mai bună securitate. HTTPS, care furnizează o conexiune securizată pentru conţinutul transmis prin internet, este recunoscut din ce în ce mai des ca modalitatea agreată pentru a accesa conţinut web. Majoritatea browserelor moderne emit acum mesaje de avertizare atunci când HTTP este utilizat în loc de HTTPS. Datorită acestui standard din ce în ce mai des folosit, începând cu actualizarea din iunie 2018 a ArcGIS Online, Story Maps dvs. vor trebui să folosească HTTPS.",
+      "s1p2": "În mod concret, acest lucru înseamnă că o Story Map şi întregul său conţinut (inclusiv imagini, straturi tematice, aplicaţii încorporate şi site-uri web) trebuie să fie accesate folosind mai degrabă link-uri care încep cu HTTPS decât HTTP. Acest lucru asigură cititorilor dvs. o experienţă optimă, deoarece cele mai multe browsere web vor indica faptul că relatările dvs. sunt sigure.",
+      "s2h1": "Ce trebuie să fac?",
+      "s2p1": "Esri depune toate eforturile pentru a face această tranziţie să fie una uşoară pentru autorii Story Map şi pentru cititori. Sunt disponibile acum instrumentele în aplicaţiile de creare Story Map şi în Relatările mele care vă ajută să găsiţi conţinut nesigur (HTTP) în relatările dvs. şi vă oferă recomandări pentru modul în care puteţi să-l gestionați. Verificaţi-vă relatările pentru a vedea dacă includ conţinut nesigur și actualizați la HTTPS înainte de iunie 2018.",
+      "action1": "Închidere",
+      "action2": "Verificaţi-mi acum relatările",
+      "action3": "Aflaţi mai multe"
     }
   }
 });

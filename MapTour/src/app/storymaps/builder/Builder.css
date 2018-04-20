@@ -33,7 +33,7 @@
 }
 
 /*
- * Mobile Builder 
+ * Mobile Builder
  */
 .builderMobile {
 	display: none;
@@ -60,6 +60,10 @@
     word-wrap: break-word;
 	height: 100px;
 	padding: 15px 20px 0px 20px;
+}
+
+.side-panel #builderPanel {
+	display: none !important;
 }
 
 #builderPanel > div > button {
@@ -112,6 +116,7 @@
 	color: #30750A;
 	font-weight: bold;
 	font-size: 14px;
+	display: none;
 }
 
 .builder-save {
@@ -153,7 +158,7 @@
 	display: none;
 }
 
-/* Spectrum input color picker */	
+/* Spectrum input color picker */
 .sp-input-container {
 	height: 16px !important;
 }

@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Dit is niet beschikbaar in autoplaymodus.",
       "autoplayLabel": "Autoplaymodus",
       "autoplayExplain1": "Autoplaymodus speelt uw verhaal regelmatig af. Dit is ideaal voor een kiosk of monitor in een openbare ruimte, maar houd er rekening mee dat het verhaal in andere situaties moeilijker te lezen is. Deze functie wordt niet ondersteund op kleine schermen.",
-      "autoplayExplain2": "Wanneer deze modus actief is, kan het verhaal worden afgespeeld en gepauzeerd en kan de navigatiesnelheid worden aangepast."
+      "autoplayExplain2": "Wanneer deze modus actief is, kan het verhaal worden afgespeeld en gepauzeerd en kan de navigatiesnelheid worden aangepast.",
+      "takeTourText": "Start de tour",
+      "backToStart": "Terug naar Start"
     },
     "builderHTML": {
       "panelHeader": "VERHAALCONFIGURATIE",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Extent",
       "settingsTabZoom": "Zoomniveau",
       "settingsLayoutExplain": "Selecteer de gewenste indeling.",
-      "settingsLayoutProfessional": "Lay-out met drie deelvensters",
-      "settingsLayoutModern": "Geïntegreerde lay-out",
+      "settingsLayoutProfessional": "Driedelig",
+      "settingsLayoutModern": "Geïntegreerd",
+      "settingsLayoutSidePanel": "Zijvenster",
       "settingsLayoutSelected": "Geselecteerde lay-out",
-      "settingsLayoutSelect": "Selecteer deze lay-out",
+      "settingsLayoutNew": "Nieuw!",
+      "settingsLayoutSelect": "Selecteren",
       "settingsLayoutNote": "Merk op dat, op punten die video's gebruiken, de markering altijd onder de video zal worden geplaatst, zelfs als die optie niet is ingeschakeld.",
       "settingsLayoutLocBtn": "Een knop Locatie weergeven",
       "settingsLayoutLocBtnHelp": "Ondersteund op de meeste browsers. Verschijnt alleen als de storymap wordt geopend via HTTPS. Wordt niet weergegeven als het verhaal ingebed is.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Het extent bewerken",
       "settingsExtentApplyBtn": "Voorbeeld weergeven op Kaarttour",
       "settingsExtentUseMainMap": "Extent van kaarttour gebruiken",
-      "settingsZoomExplain": "Stel het zoomniveau in voor de verhaalpunten volgens de inleiding (optioneel).",
+      "settingsZoomExplain": "Stel het zoomniveau in voor de verhaalpunten (optioneel).",
       "settingsLabelZoom": "Schaal/niveau",
       "settingsZoomFirstValue": "Geen",
       "settingsFieldError": "Selecteer een veld in elke lijst",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Het maken is mislukt. Probeer het opnieuw",
       "tabError": "Controleer alle tabbladen op fouten",
       "introRecordBtn": "Inleiding",
-      "introRecordActivate": "Gebruik het eerste punt als een inleiding (verschijnt niet in carousel)"
+      "introRecordActivate": "Gebruik het eerste punt als een inleiding (verschijnt niet in carousel)",
+      "coverRecordActivate": "Gebruik het eerste punt als een titelpagina",
+      "coverBuilder": "Configuratie titelpagina",
+      "cover": "Omslag",
+      "showCover": "Titelpagina tonen",
+      "editCover": "Titelpagina bewerken",
+      "coverNoVideo": "Video wordt niet ondersteund voor titelpaginamedia. Selecteer een afbeelding.",
+      "coverPreview": "Om de titelpagina te bekijken, sla uw verhaal op en bekijk het dan d.m.v. de knop Delen."
     },
     "addPopupJS": {
       "uploadingPicture": "Afbeelding uploaden",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Bewerk me!",
       "templateTitle": "Titel voor template instellen",
-      "templateSubtitle": "Subtitel voor template instellen"
+      "templateSubtitle": "Subtitel voor template instellen",
+      "edit": "Bewerken"
     },
     "crossFaderJS": {
       "setPicture": "Titel voor afbeelding instellen",
@@ -306,9 +318,9 @@ define({
       "csv": "Verwijzing in een CSV",
       "advanced": "Geavanceerde opties",
       "advancedScratchLbl": "Start een nieuwe tour",
-      "advancedScratchTip": "Maak een lege tour die u handmatig kunt invullen met behulp van een wizard.",
+      "advancedScratchTip": "Maak een lege Rondleiding waar u rondleidingspunten kunt aan toevoegen. Uw media moet al online zijn. Deze optie biedt geen ondersteuning voor het opladen van uw afbeeldingen.",
       "advancedCSVLbl": "Tourgegevens importeren vanaf een CSV-bestand",
-      "advancedCSVTip": "Importeer uw tourcontent vanaf een CSV-bestand.",
+      "advancedCSVTip": "Importeer uw Rondleidingcontent vanuit een CSV-bestand dat verwijst naar uw online media. Deze optie biedt geen ondersteuning voor het opladen van uw afbeeldingen.",
       "advancedCommonTip": "Om dit te doen moeten uw afbeeldingen en video's al online zijn.",
       "select": "Maak een keuze",
       "locUse": "Gebruik de geografische locatie van de afbeeldingen",
@@ -382,7 +394,7 @@ define({
       "title": "Uw afbeeldingen/video's selecteren en zoeken",
       "header": "Klik of tik op de afbeeldingen die u wilt importeren om ze te lokaliseren.",
       "headerMore": "Waarom zijn mijn afbeeldingen/video's niet geografisch gelokaliseerd?",
-      "headerExplain": "Als uw afbeeldingen een geldige locatie hebben, worden ze automatisch op de kaart gelokaliseerd en op het tweede tabblad weergegeven.<br /><br />Standaard slaan Picasa en Flickr de EXIF-metadata voor locaties niet op wanneer u afbeeldingen importeert. Raadpleeg de privacyinstellingen voor Flickr/Picasa om het importeren en gebruiken van de locaties van afbeeldingen door een externe applicatie mogelijk te maken. Mogelijk moet u uw bestaande afbeeldingen opnieuw importeren in Flickr/Picasa zodat de EXIF-gegevens van locaties worden gebruikt.<br /><br />In Facebook moet u naar elke afbeelding gaan, op Bewerken klikken en de locatie selecteren.",
+      "headerExplain": "Als uw foto's een geldige geolocatie hebben, zullen ze automatisch gelokaliseerd worden op de kaart, en vermeld worden in het tweede tabblad.<br /><br />Picasa en Flickr slaan de geolocatie EXIF metadata niet standaard op als u foto's importeert. Controleer de privacy-instellingen van Picasa/Flickr om het importeren van geolocatie van foto's en gebruik ervan door externe applicaties in te schakelen. U moet uw bestaande foto's mogelijk terug in Flickr/Picasa importeren om de EXIF geolocatie te gebruiken.",
       "leftPanelTab1": "Lokaliseren",
       "leftPanelTab2": "Gelokaliseerd",
       "clickOrTap": "Klik of tik op de kaart om te lokaliseren",
@@ -404,7 +416,7 @@ define({
       "header2": "Deze assistent helpt u bij het samenstellen van een Kaart Tour met afbeeldingen die al online zijn opgeslagen, of het importeert deze in uw ArcGIS Online for Organizations-account.",
       "title1": "Ze zijn al online",
       "title2": "Ik moet mijn afbeeldingen uploaden",
-      "hostedFSTooltip": "Upload uw afbeeldingen en bewaar ze samen met de Map Tour-laag (geen ondersteuning voor video).",
+      "hostedFSTooltip": "Upload uw afbeeldingen en bewaar ze in uw Rondleiding (geen ondersteuning voor video).",
       "hostedFsNA": "U moet een Publisher zijn of een andere functie met machtiging om gehoste objectlagen te publiceren. Neem contact op met uw ArcGIS beheerder.",
       "hostedFsNA2": "Alleen beschikbaar met een ArcGIS Online abonnement. <a href='%LINK%'>Aanmelden voor een gratis proefversie</a>",
       "footer1": "Als u klaar bent, moet u niet vergeten om uw Kaart Tour te delen met uw publiek via de applicatie-itempagina.",
@@ -420,19 +432,23 @@ define({
       "close": "Sluiten",
       "tab1": {
         "title": "Inleiding",
+        "moreInfo": "Voor meer informatie",
+        "infoSites": "Bezoek de <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Kaarttour sectie</a> van de <a href='https://storymaps.arcgis.com' target='_blank'>Esri Story Maps website.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Kaarttour FAQ's.</a>",
+        "myStories": "U kunt uw Map Tours beheren en ze controleren op fouten in <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>My Stories</a> op de website.",
         "div1": "De Kaart Tour-template is ontworpen voor het presenteren van geografische informatie waar een belangrijk fotografisch of media-element aanwezig is voor het verhaal dat u wilt vertellen.",
         "div2": "De template maakt een aantrekkelijke en eenvoudig bruikbare webapplicatie waarin u een kleine reeks plaatsen op een kaart kunt presenteren in een genummerde volgorde waarin gebruikers kunnen bladeren. De template is ontworpen voor gebruik in elke webbrowser op elk apparaat, inclusief smartphones en tablets.<br /><br />",
-        "div42": "Om voorbeelden te zien van kaart tours die andere gebruikers maken, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>gaat u naar de galerij</a> op de <a href='http://storymaps.arcgis.com/' target='_blank'>Story Map website van Esri</a>. U kunt ons ook volgen op Twitter op <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "We horen graag van u! Als u een vraag hebt, een nieuw object wilt aanvragen of problemen ondervindt, gaat u naar het <a href='http://links.esri.com/storymaps/forum' target='_blank'>gebruikersforum voor kaartverhalen</a>."
+        "div42": "Om voorbeelden te bekijken van kaartrondleidingen die andere gebruikers maken, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>bezoek de galerij</a> op de <a href='https://storymaps.arcgis.com/' target='_blank'>Story Maps website</a>. U kunt ons ook volgen op Twitter via <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "We zouden graag van u horen! Laat ons iets weten over problemen en nieuwe objecten die u nodig heeft door het Story Maps forum te bezoeken op <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Gegevens",
-        "div1": "Het voornaamste element waarmee u rekening moet houden bij het samenstellen van een Kaarttour is kiezen waar uw afbeeldingen zullen worden opgeslagen. Een Kaarttour kan afbeeldingen gebruiken die zijn opgeslagen in belangrijke services voor het delen van foto's, op een webserver of als bijlagen bij een featureservice.",
+        "div1": "Het voornaamste element waarmee u rekening moet houden bij het samenstellen van een Kaarttour is kiezen waar uw afbeeldingen zullen worden opgeslagen. Een Kaarttour kan afbeeldingen gebruiken die zijn opgeslagen in services voor het delen van foto's, op een webserver of die u uploadt vanuit een harde schijf.",
         "div1a": "Raadpleeg de laatste sectie van dit tabblad voor meer informatie over ondersteunde afbeeldingsindelingen en video's.",
         "div2": "De interactieve builder biedt twee opties voor het in de Kaart Tour verwerken van afbeeldingen:",
-        "div3": "<ul><li>U kunt <b>foto's gebruiken die al online staan</b>, zoals afbeeldingen die zijn opgeslagen op een site voor het delen van foto's, zoals Flickr, of afbeeldingen die op uw eigen website zijn opgeslagen. Naar deze afbeeldingen wordt in de Kaarttour verwezen via de URL.</li><li>U kunt ook <b>foto's rechtstreeks uploaden vanaf uw computer</b> naar uw Kaarttour. Voor deze uploadoptie hebt u een ArcGIS for Organizations-account nodig en publisher- of beheersmachtigingen, omdat dit automatisch een gehoste featureservice voor u maakt waarin de foto's als bijlagen worden opgeslagen.</li></ul>",
+        "div3": "<ul><li>U kunt <b>foto's die al online staan gebruiken</b>, zoals afbeeldingen die opgeslagen zijn op een fotodeelwebsite zoals Flickr, of afbeeldingen die zijn opgeslagen op uw eigen website. Deze afbeeldingen zullen in uw Map Tour gebruikt worden via hun URL's.</li><li>U kunt ook rechtstreeks <b>foto's van uw computer uploaden</b> in uw Map Tour. Deze ploadoptie vereist dat u een ArcGIS abonnement hebt en dat u Publisher of Administrator machtigingen hebt, omdat een gehoste featureservice automatisch gemaakt wordt voor u, waarin u uw foto's kunt bewaren als bijlagen.</li></ul>",
         "div4": "De voornaamste gebruikersvoorbeelden zijn:",
-        "div4b": "<b>Uw foto's worden nog niet gehost</b> en u hebt een ArcGIS for Organizations-account: uw beste optie is het gebruik van een gehoste featureservice. Net als bij diensten voor het openbaar delen van foto's optimaliseren we uw foto's zodat ze snel geladen kunnen worden en u hebt toegang tot alle beheers- en gegevensbeheermogelijkheden van het ArcGIS-platform.",
+        "div4b": "<b>Uw foto's worden nog niet gehost</b>  en u hebt een ArcGIS-abonnement: uw beste optie is het gebruik van een gehoste featureservice. Net als bij diensten voor het openbaar delen van foto's optimaliseren we uw foto's zodat ze snel geladen kunnen worden en u hebt toegang tot alle beheers- en gegevensbeheermogelijkheden van het ArcGIS-platform.",
         "div5": "<b>U bent geen lid van een organisatie</b>: u moet uw foto's eerst uploaden naar een website voor het delen van foto's of naar uw eigen webserver. De builder helpt u bij het gebruiken van deze afbeeldingen die op hun oorspronkelijke locatie gehost blijven.",
         "div6": "<b>U wilt een bestaande Featureservice opnieuw gebruiken</b> waarin uw afbeeldingen als bijlagen zijn opgeslagen of die naar externe afbeeldingen verwijst: zie de uitgebreide sectie hierna.",
         "div7": "<b>U gebruikt een eerdere versie</b> van de Kaarttour-template en beschikt al over uw CSV-bestand met een verwijzing naar uw afbeeldingen en miniaturen: u kunt deze importeren en uw gegevens verfijnen. De builder ondersteunt alleen CSV-bestanden met lengte- en breedtegraadvelden. Op adressen gebaseerde CSV-bestanden kunt u blijven gebruiken via uw webmap (zie de sectie hierna).",
@@ -441,10 +457,10 @@ define({
         "learn": "meer informatie",
         "div9": "Bij het importeren wordt naar reeds gehoste afbeeldingen verwezen door de URL's op te slaan in een webmapverzameling. De afbeeldingen worden niet opgeslagen in ArcGIS Online. Als de gehoste afbeeldingen niet kunnen worden geopend, zijn ze niet beschikbaar in de Kaarttour en wordt een afbeelding 'Afbeelding niet beschikbaar' weergegeven. Afhankelijk van de fotoserviceprovider importeert de Kaarttour al dan niet de naam, beschrijving en locatie van de afbeeldingen. Die attributen worden opgeslagen in de webmap en bewerkingen in de onlinediensten zijn niet zichtbaar in de Kaarttour.",
         "div10": "De afbeeldingen opslaan op een webserver",
-        "div11": "Als u ervoor kiest om de afbeeldingen zelf te hosten, moet u handmatig miniaturen van uw foto's maken. Het gebruik van de volledige afbeeldingen voor miniaturen levert slechte prestaties op. Daarom raden we sterk aan om een onlinedienst voor het delen van foto's te gebruiken of een featureservice die dat voor u doet.",
-        "div12": "Een bestaande Featurservice of Shapefile gebruiken",
-        "div13": "Elke puntfeatureservice of shapefile is bruikbaar als gegevensbron voor een Kaarttour. U hoeft deze alleen toe te voegen als laag in de webmap met de ArcGIS.com-map viewer. Als de applicatie de verwachte attributen in de laag aantreft, zijn alle mogelijkheden van de builder beschikbaar.",
-        "div14": "De mogelijk waarden voor de veldnaam zijn (hoofdletterongevoelig):",
+        "div11": "Als u ervoor kiest om de afbeeldingen zelf te hosten, moet u handmatig miniaturen van uw afbeeldingen maken. Het gebruik van de foto's met volledige resolutie voor de miniatuur zal resulteren in slechte prestaties. Raadpleeg deze <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>FAQ</a> voor tips over het aanpassen van uw afbeeldingen als u deze rechtstreeks op internet wilt openen via URL's.",
+        "div12": "Bestaande GIS data gebruiken",
+        "div13": "Elke featureservice, CSV-bestand of shapefile die punten bevatten kan worden gebruikt als een Kaarttour-gegevensbron als deze de set velden bevat die de toepassing verwacht. U moet het als een laag toevoegen aan een ArcGIS-webmap en de kaart vervolgens delen door een Kaarttour te maken.",
+        "div14": "De ondersteunde waarden voor de veldnaam zijn (hoofdletterongevoelig):",
         "div151": "Naam",
         "div152": "Beschrijving",
         "div153": "Afbeelding",
@@ -480,19 +496,19 @@ define({
         "div0a": "De Kaarttour-viewer wordt ondersteund op IE8+. De interactieve builder wordt ondersteund op IE9+. Wij voeren actief tests uit in alle belangrijke browsers, maar als u problemen ondervindt, raden wij u aan Chrome te gebruiken.",
         "div0b": "Als u problemen ondervindt, laat het ons dan weten. Ondertussen kunt u uw Kaarttour bouwen met de CSV-template en zo uw interactie met de builderinterface minimaliseren.",
         "div1": "Afbeeldingen",
-        "div2": "We raden het gebruik aan van liggende foto's in plaats van staande. Foto's met een beeldverhouding van 4:3 passen het beste. Staande afbeeldingen zijn bruikbaar, maar op kleinere schermen zoals de iPad kan een groot deel van de foto door de tekst worden bedekt (tekst neemt meer ruimte in als het wordt weergegeven in een hoog gebied dan in een liggend gebied). Afbeeldingen met verschillende grootten, vormen en stand kunnen weliswaar worden toegepast in een Kaart tour, maar we raden aan om voor alle afbeeldingen dezelfde grootte en vorm te gebruiken. Op deze manier wordt de gebruiker niet afgeleid door afbeeldingen met verschillende maten tijdens het volgen van de tour.",
+        "div2": "Hoewel afbeeldingen van verschillende grootten, vormen en richtingen in één kaarttour kunnen worden gebruikt, raden we u aan landschapsafbeeldingen in plaats van de staande afdrukstand te gebruiken. Afbeeldingen met een beeldverhouding van 4:3 passen het best. In de lay-out met drie panelen en de geïntegreerde lay-out, waarbij het bijschrift de afbeelding overlapt, kan het gebruik van portretoriëntatiebeelden ertoe leiden dat veel van de afbeelding wordt verdoezeld door de bijschriften. In de lay-out met drie panelen en geïntegreerde lay-outs raden we aan om, voor zover mogelijk, dezelfde grootte en vorm te gebruiken voor alle afbeeldingen. Op deze manier wordt de gebruiker niet afgeleid door beelden van verschillende grootte tijdens het maken van de tour.",
         "div2a": "Wij raden u aan een maximaal afbeeldingsformaat van 1000 pixels breed x 750 pixels hoog te gebruiken voor de hoofdafbeeldingen en 140x93 voor de thumbnails.",
         "div3": "Tekst opmaken met HTML-tags",
-        "div4": "De koptekst, en de titel en het bijschrift van de afbeelding kunnen HTML-tags bevatten voor de opmaak en de koppelingen. Deze code voegt bijvoorbeeld een gele koppeling toe:",
+        "div4": "U kunt HTML-tags in uw bijschriften invoeren om opmaak en koppelingen te definiëren. Deze tags voegen bijvoorbeeld een groene hyperlink toe:",
         "div4a": "Een goede ondertitel voor uw tour schrijven",
-        "div4b": "Neem uw tijd om een aantrekkelijke ondertitel te schrijven voor uw tour. De ondertitel is een goede manier om mensen naar uw tour te lokken en ze te vertellen wat ze in uw tour zullen ontdekken. Het is ook een geschikte plek om uw publiek te vertellen in welke staat of provincie de tour zich bevindt. Ga er bijvoorbeeld niet van uit dat mensen de plaats of stad van uw tour kennen. Uw bijschrift kan worden opgemaakt met behulp van HMTL-tags, zoals het opnemen van koppelingen. Maak uw bijschrift echter niet te lang. In kleinere browservensters of op de iPad zal het bijschrift mogelijk niet goed passen en zal het worden bijgesneden. Als u geen goede ondertitel kunt bedenken, dan laat u dit veld leeg.",
+        "div4b": "Neem de tijd om een ​​overtuigende ondertitel voor uw tour te schrijven. De ondertitel is een goede manier om mensen naar je reis te trekken en hen te vertellen wat ze daarin zullen ontdekken. Het is ook een goede plek om uw publiek de staat of het land te vertellen waar de tour zich in bevindt. Ga er bijvoorbeeld niet vanuit dat mensen weten waar de stad of de stad in uw tour zich bevindt. Maak de ondertitel echter niet te lang. Als je geen goede ondertitel kunt bedenken, laat het dan leeg. In de lay-out van het zijpaneel is de ondertitel die op de omslagpagina wordt weergegeven, het bijschrift voor het eerste punt in uw rondleiding (als u de optie in het dialoogvenster Indelen gebruikt om de inhoud van het eerste punt als titelpagina te gebruiken).",
         "div5": "Ondersteunende lagen",
-        "div6": "U kunt extra ondersteunende lagen toevoegen om context aan de Kaarttour te geven. Deze lagen bevatten mogelijk andere geografische opties die de kaart moet weergeven naast de Kaarttour-punten, zoals een studiegebied, een wandel- of rijroute die de punten in uw tour met elkaar verbindt enzovoort. De Kaarttour-template geeft deze aanvullende ondersteunende lagen weer met de symbolen die u in de webmap opgeeft, maar de pop-ups zijn niet beschikbaar.",
+        "div6": "U kunt extra ondersteunende lagen toevoegen om context te bieden voor de kaarttour. Deze lagen kunnen andere geografische kenmerken bevatten die u wilt dat de kaart toont naast de kaarttourpunten, zoals een studiegebied, een wandel- of rijroute die uw reispunten verbindt, enz. De kaarttourtemplate geeft deze extra ondersteunende lagen weer met behulp van de symbologie die u opgeeft in de webkaart, maar de pop-ups zijn niet beschikbaar. Als u ondersteunende lagen aan uw tour wilt toevoegen, slaat u uw werk op en sluit u de Map Tour Builder. Open vervolgens de webmap die in uw rondleiding is gebruikt. U kunt dit vinden in ArcGIS My Content via het gedeelte My Stories van de Story Maps-website.",
         "div7": "Houd de tour kort en aangenaam",
         "div8": "Elke tour heeft een limiet van 99 punten. De meeste Kaarttours zijn uiteraard aanzienlijk korter dan dit. Verwacht niet dat uw publiek door teveel tourpunten zal willen stappen. U vindt uw onderwerp waarschijnlijk fascinerend, maar ga er niet vanuit dat anderen dat ook vinden.",
         "div10": "Modus voor inbedden",
-        "div11": "Als u de template in een andere website wilt inbedden met behulp van een Iframe, zal door de optionele parameter \"&embed\" aan het einde van de URL toe te voegen, de koptekst worden verwijderd. Deze modus kan ook worden ingesteld in de downloadbare versie via het configuratiebestand.",
-        "div12": "Gebruik geen smalle iFrame-breedte waardoor de kaart tour omschakelt naar de lay-out op basis van aanrakingen voor reactieve kleine schermen. Hiermee vergroot u het gebruiksgemak. Wanneer u een kaart tour inbedt, raden wij u aan altijd een koppeling op te geven naast de ingebedde tour, zodat gebruikers de tour op volledig scherm kunnen starten."
+        "div11": "Als u de template in een andere website wilt inbedden met behulp van een iframe, zal door de optionele parameter \"&embed\" aan het einde van de URL toe te voegen, de koptekst worden verwijderd.",
+        "div12": "Gebruik geen smalle iFrame-breedte waardoor de kaarttour omschakelt naar de lay-out op basis van aanrakingen voor reactieve kleine schermen. Hiermee vergroot u het gebruiksgemak. Wanneer u een kaarttour inbedt, raden wij u aan altijd een koppeling op te geven naast de ingebedde tour, zodat gebruikers de tour op volledig scherm kunnen starten."
       },
       "tab5": {
         "title": "Publiceren",
@@ -548,6 +564,22 @@ define({
       "panel4": "Waarschuw me niet opnieuw voor dit verhaal",
       "mystories": "My Stories",
       "btnSave": "Opslaan"
+    },
+    "bannerNotification": {
+      "learnMore": "Meer informatie",
+      "close": "Sluiten",
+      "dontShowAgain": "Dit bericht niet meer weergeven"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Belangrijk bericht over internetbeveiliging en Story Maps",
+      "s1h1": "Esri verbetert de beveiliging van Story Maps",
+      "s1p1": "Uw Story Maps staan live op het internet en de internetcommunity werkt permanent aan het bepalen en implementeren van betere beveiliging. HTTPS, dat een beviligde verbinding biedt voor content die over het internet verzonden wordt, wordt meer en meer gebruikt als de manier bij uitstek om content op het internet te openen. De meeste moderne browsers tonen nu waarschuwingsberichten als HTTP wordt gebruikt in plaats van HTTPS. Omwille van deze nieuwe norm, en met ingang van de ArcGIS Online update van juni 2018, moet uw Story Maps gebruik maken van HTTPS.",
+      "s1p2": "Praktisch betekent dit dat een Story Map en alle content ervan (inclusief afbeeldingen, lagen, geëmbedde apps en websites) moet worden geopend d.m.v. koppelingen die beginnen met HTTPS in plaats van HTTP. Dit garandeert de beste ervaring voor uw lezers, want de meeste webbrowsers zullen aangeven dat uw verhalen beveiligd zijn.",
+      "s2h1": "Wat moet ik doen?",
+      "s2p1": "Esri zorgt er voor dat dit een eenvoudige overgang wordt voor makers en lezers van Story Maps. Er zijn nu tools beschikbnaar in Story Map builders en My Stories die u in staat stellen om onbeveiligde content (HTTP) in uw verhalen te vinden en aanbevelingen geven voor het corrigeren ervan. Controleer uw verhalen op onbeveiligde content en werkt alles bij naar HTTPS voor juni 2018.",
+      "action1": "Sluiten",
+      "action2": "Controleer nu mijn verhalen",
+      "action3": "Meer weten"
     }
   }
 });

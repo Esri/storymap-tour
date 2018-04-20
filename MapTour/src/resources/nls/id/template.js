@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Tidak tersedia pada mode pemutaran otomatis",
       "autoplayLabel": "Mode pemutaran otomatis",
       "autoplayExplain1": "Mode pemutaran otomatis akan berputar seiring cerita Anda pada interval reguler. Interval ini ideal pada monitor layar kios atau publik, namun perlu diperhatikan bahwa dalam situasi lainnya, cerita mungkin akan lebih sulit dibaca. Fitur ini tidak didukung pada layar kecil.",
-      "autoplayExplain2": "Saat mode ini aktif, ada beberapa kontrol untuk memutar/menjeda cerita dan mengatur kecepatan navigasi."
+      "autoplayExplain2": "Saat mode ini aktif, ada beberapa kontrol untuk memutar/menjeda cerita dan mengatur kecepatan navigasi.",
+      "takeTourText": "Ikuti tur",
+      "backToStart": "Kembali ke Awal"
     },
     "builderHTML": {
       "panelHeader": "KONFIGURASI CERITA",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Jangkauan",
       "settingsTabZoom": "Tingkat Zoom",
       "settingsLayoutExplain": "Pilih tata letak yang Anda inginkan.",
-      "settingsLayoutProfessional": "Tata Letak Tiga Panel",
-      "settingsLayoutModern": "Tata Letak Terintegrasi",
+      "settingsLayoutProfessional": "Tiga panel",
+      "settingsLayoutModern": "Terintegrasi",
+      "settingsLayoutSidePanel": "Panel samping",
       "settingsLayoutSelected": "Tata letak terpilih",
-      "settingsLayoutSelect": "Pilih tata letak ini",
+      "settingsLayoutNew": "Baru!",
+      "settingsLayoutSelect": "Pilih",
       "settingsLayoutNote": "Perhatikan bahwa pada poin yang menggunakan video, plakat akan selalu ditempatkan di bawah video, meskipun opsi tersebut tidak dicentang.",
       "settingsLayoutLocBtn": "Tampilkan tombol 'Temukan'",
       "settingsLayoutLocBtnHelp": "Didukung di sebagian besar browser. Hanya muncul ketika peta cerita diakses melalui HTTPS. Tidak akan muncul jika cerita disematkan.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Edit jangkauan",
       "settingsExtentApplyBtn": "Pratinjau pada Tur Peta",
       "settingsExtentUseMainMap": "Gunakan jangkauan Tur Peta",
-      "settingsZoomExplain": "Atur zoom untuk poin cerita yang mengikuti pengantar (opsional).",
+      "settingsZoomExplain": "Atur zoom untuk titik cerita Anda (opsional).",
       "settingsLabelZoom": "Skala/tingkat",
       "settingsZoomFirstValue": "Tidak ada",
       "settingsFieldError": "Pilih bidang pada setiap daftar",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Pembuatan gagal. Silahkan coba lagi",
       "tabError": "Periksa kesalahan pada semua tab",
       "introRecordBtn": "Pendahuluan",
-      "introRecordActivate": "Gunakan poin pertama sebagai pendahuluan (tidak muncul pada korsel)"
+      "introRecordActivate": "Gunakan poin pertama sebagai pendahuluan (tidak muncul pada korsel)",
+      "coverRecordActivate": "Gunakan titik awal sebagai halaman sampul",
+      "coverBuilder": "Konfigurasi Halaman Sampul",
+      "cover": "Sampul",
+      "showCover": "Tampilkan Sampul",
+      "editCover": "Edit Sampul",
+      "coverNoVideo": "Video tidak didukung untuk media sampul. Harap pilih gambar.",
+      "coverPreview": "Untuk melihat sampul, simpan cerita Anda kemudian pratinjau menggunakan tombol Bagikan."
     },
     "addPopupJS": {
       "uploadingPicture": "Mengunggah gambar",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Edit saya!",
       "templateTitle": "Tentukan judul templat",
-      "templateSubtitle": "Tentukan subjudul pola dasar"
+      "templateSubtitle": "Tentukan subjudul pola dasar",
+      "edit": "Edit"
     },
     "crossFaderJS": {
       "setPicture": "Atur judul gambar",
@@ -306,9 +318,9 @@ define({
       "csv": "Dirujuk pada CSV",
       "advanced": "Opsi lanjutan",
       "advancedScratchLbl": "Mulai Tur baru",
-      "advancedScratchTip": "Buat Tur kosong yang akan dapat Anda tempati secara manual menggunakan wizard.",
+      "advancedScratchTip": "Buat Tur kosong yang dapat Anda tambahkan ke titik Anda. Media Anda harus sudah online. Opsi ini tidak mendukung pengunggahan gambar Anda.",
       "advancedCSVLbl": "Impor data Tur dari file CSV",
-      "advancedCSVTip": "Impor konten Tur dari file CSV.",
+      "advancedCSVTip": "Impor konten Tur dari file CSV yang merujuk ke media online Anda. Opsi ini tidak mendukung pengunggahan gambar Anda.",
       "advancedCommonTip": "Hal itu mengharuskan gambar dan video Anda untuk online.",
       "select": "Buat pilihan",
       "locUse": "Gunakan geolokasi gambar",
@@ -382,7 +394,7 @@ define({
       "title": "Pilih dan temukan gambar/video",
       "header": "Klik atau ketuk gambar yang ingin Anda impor untuk menemukannya.",
       "headerMore": "Mengapa gambar/video saya tidak tergeolokasi?",
-      "headerExplain": "Jika gambar Anda memiliki geolokasi yang valid, gambar tersebut secara otomatis akan ditemukan pada peta dan didaftarkan pada tab kedua.<br /><br />Secara default, Picasa dan Flickr tidak menyimpan metadata EXIF geolokasi ketika Anda mengimpor gambar. Periksa pengaturan pribadi Picasa/Flickr untuk mengaktifkan impor dan penggunaan geolokasi gambar oleh aplikasi eksternal. Anda mungkin harus mengimpor ulang gambar yang ada ke dalam Flickr/Picasa untuk geolokasi EXIF yang akan digunakan.<br /><br />Pada Facebook, Anda harus masuk ke setiap gambar, mengeklik Edit, dan memilih lokasi.",
+      "headerExplain": "Jika gambar Anda memiliki geolokasi yang valid, gambar tersebut secara otomatis akan ditemukan pada peta dan dicantumkan dalam tab kedua.<br /><br />Secara default Picasa dan Flickr tidak menyimpan metadata EXIF geolokasi saat Anda mengimpor gambar. Periksa pengaturan privasi Picasa/Flickr untuk mengaktifkan impor geolokasi gambar dan penggunaan oleh aplikasi eksternal. Anda mungkin harus mengimpor ulang gambar Anda yang ada ke Flickr/Picasa untuk geolokasi EXIF yang akan digunakan.",
       "leftPanelTab1": "Untuk menemukan",
       "leftPanelTab2": "Ditemukan",
       "clickOrTap": "Klik atau ketuk Peta untuk menemukan",
@@ -404,7 +416,7 @@ define({
       "header2": "Bantuan ini akan membantu Anda membuat Tur Peta dari media yang disimpan secara online atau akan mengimpornya ke dalam ArcGIS Online Anda untuk akun Organisasi.",
       "title1": "Gambar atau video sudah online",
       "title2": "Saya perlu mengunggah gambar.",
-      "hostedFSTooltip": "Unggah gambar Anda dan simpan dengan lapisan Tur Peta (tidak mendukung video).",
+      "hostedFSTooltip": "Unggah gambar Anda dan simpan di Tur Anda (tidak mendukung video).",
       "hostedFsNA": "Anda harus menjadi Penerbit atau memiliki peran lain dengan hak istimewa untuk menerbitkan Lapisan Fitur di-host. Hubungi administrator ArcGIS.",
       "hostedFsNA2": "Hanya tersedia dengan langganan ArcGIS Daring. <a href='%LINK%'>Daftar untuk coba gratis</a>",
       "footer1": "Jika telah selesai, jangan lupa untuk membagikan Tur Peta Anda kepada audiens melalui halaman item aplikasi.",
@@ -420,19 +432,23 @@ define({
       "close": "Tutup",
       "tab1": {
         "title": "Perkenalan",
+        "moreInfo": "Untuk informasi selengkapnya",
+        "infoSites": "Kunjugi <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>bagian Tur Peta</a> pada <a href='https://storymaps.arcgis.com' target='_blank'>situs web Story Map Esri.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>FAQ Tur Peta.</a>",
+        "myStories": "Anda dapat mengelola Tur Peta Anda dan memeriksa kesalahannya dalam <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Cerita Saya</a> di situs web.",
         "div1": "Pola dasar Tur Peta dirancang untuk menyajikan informasi geografis ketika ada elemen fotografi atau media yang menarik pada cerita yang akan Anda ceritakan.",
         "div2": "Pola dasar menghasilkan aplikasi web interaktif dan mudah digunakan yang memungkinkan Anda menyajikan rangkaian tempat kecil pada peta di urutan bernomor yang dapat ditelusuri pengguna. Pola dasar ini dirancang untuk digunakan di semua browser web pada semua perangkat, termasuk smartphone dan tablet. <br /><br />",
-        "div42": "Untuk melihat contoh tur peta yang dibuat pengguna lain, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>kunjungi galeri</a> pada <a href='http://storymaps.arcgis.com/' target='_blank'>situs web Peta Cerita</a>. Anda juga dapat mengikuti kami di Twitter <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Kami ingin mendengar dari Anda! Apakah Anda memiliki pertanyaan, ingin meminta fitur baru, atau merasa menemukan bug, silakan kunjungi <a href='http://links.esri.com/storymaps/forum' target='_blank'>Forum Pengguna Peta Cerita</a>."
+        "div42": "Untuk melihat contoh tur peta yang dibuat pengguna lain, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>kunjungi galeri</a> di <a href='https://storymaps.arcgis.com/' target='_blank'>situs web Story Map</a>. Anda dapat juga mengikuti kami di Twitter di <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "Kami ingin mendengar dari Anda! Beri tahu kami masalah dan fitur baru yang Anda perlukan dengan mengunjungi forum Peta Cerita di <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Data",
-        "div1": "Elemen utama yang harus dipertimbangkan ketika membuat Tur Peta adalah memilih tempat untuk menyimpan gambar. Tur Peta dapat menggunakan gambar yang disimpan di layanan berbagi foto utama, di semua server web, atau sebagai lampiran pada layanan fitur.",
+        "div1": "Elemen utama yang harus dipertimbangkan ketika membuat Tur Peta adalah memilih tempat untuk menyimpan gambar. Tur Peta dapat menggunakan gambar yang disimpan di layanan berbagi foto, di semua server web, atau yang Anda unggah dari disk.",
         "div1a": "Lihat bagian terakhir pada tab ini untuk mengetahui detail tentang format gambar dan video yang didukung.",
         "div2": "Penyusun interaktif memberikan Anda dua opsi untuk menangani gambar di Tur Peta:",
-        "div3": "<ul><li>Anda dapat menggunakan <b>foto yang sudah online</b>, seperti gambar yang disimpan di situs berbagi foto seperti Flickr, atau gambar yang disimpan di situs web Anda sendiri. Gambar ini akan dirujuk pada Tur Peta Anda melalui URL-nya.</li><li>Anda juga dapat <b>mengunggah foto dari komputer</b> secara langsung ke Tur Peta Anda. Opsi unggah ini mengharuskan Anda memiliki ArcGIS untuk akun Organisasi dan memiliki hak istimewa Administrator atau Penerbit, karena layanan fitur di-host secara otomatis dibuat untuk Anda yang mana foto Anda disimpan sebagai lampiran.</li></ul>",
+        "div3": "<ul><li>Anda dapat menggunakan <b>foto yang sudah online</b>, misalnya gambar yang disimpan di situs berbagi foto seperti Flickr, atau gambar yang disimpan di situs web Anda sendiri. Gambar ini akan dijadikan referensi di Tur Peta Anda melalui URL mereka.</li><li>Anda juga dapat <b>mengunggah foto dari komputer Anda </b> langsung ke Tur Peta Anda. Opsi unggah ini mengharuskan Anda memiliki langganan ArcGIS dan bahwa Anda memiliki hak Penerbit atau Administrator, karena feature service yang di-host secara otomatis dibuat untuk Anda yang mana foto Anda disimpan sebagai lampiran.</li></ul>",
         "div4": "Kasus penggunaan utama adalah:",
-        "div4b": "<b>Foto Anda belum di-host</b> dan Anda memiliki ArcGIS untuk akun Organisasi: Menggunakan layanan fitur di-host adalah pilihan terbaik. Seperti layanan berbagi foto publik, kami akan mengoptimasi gambar untuk menciptakan gambar yang dimuat cepat dan Anda akan memiliki akses ke semua kemampuan administrasi dan menajemen data dari platform ArcGIS.",
+        "div4b": "<b>Foto Anda belum di-host</b> dan Anda memiliki langganan ArcGIS: Menggunakan layanan fitur di-host adalah pilihan terbaik. Seperti layanan berbagi foto publik, kami akan mengoptimasi gambar untuk menciptakan gambar yang dimuat cepat dan Anda akan memiliki akses ke semua kemampuan administrasi dan manajemen data dari platform ArcGIS.",
         "div5": "<b>Anda bukan anggota Organisasi</b>: Pertama-tama Anda harus mengunggah gambar pada situs web berbagi foto atau ke server web Anda sendiri. Penyusun akan membantu Anda menggunakan gambar ini yang akan terus di-host pada lokasi aslinya.",
         "div6": "<b>Anda sepertinya akan menggunakan ulang Layanan Fitur saat ini</b> yang menyimpan gambar sebagai lampiran atau gambar referensi eksternal: Lihat bagian rincian di bawah.",
         "div7": "<b>Anda merupakan pengguna versi sebelumnya</b> dari pola dasar Tur Peta dan telah memiliki CSV yang merujuk gambar pada dan gambar mini: Anda akan dapat mengimpornya dan memperbaiki data. Penyusun hanya mendukung CSV yang menggunakan bidang lat/long; CVS berbasis alamat dapat terus digunakan melalui peta web (lihat bagian di bawah).",
@@ -441,10 +457,10 @@ define({
         "learn": "pelajari selengkapnya",
         "div9": "Operasi impor merujuk pada gambar yang telah di-host dengan menyimpan URLnya di koleksi fitur peta web. Gambar tidak disimpan pada ArcGIS Daring. Jika gambar yang di-host tidak dapat diakses, gambar tidak akan tersedia di Tur Peta dan Anda akan melihat citra \"Gambar tidak tersedia\". Bergantung pada penyedia layanan foto Anda, Tur Peta mungkin tidak mengimpor nama, deskripsi, dan lokasi gambar. Atribut tersebut disimpan pada peta web dan semua editan pada layanan online tidak akan tercermin di Tur Peta.",
         "div10": "Menyimpan foto di server web",
-        "div11": "Jika memilih untuk meng-host gambar sendiri, Anda diharuskan untuk membuat gambar mini dari foto Anda secara manual. Menggunakan gambar beresolusi penuh untuk gambar mini akan menghasilkan kinerja yang buruk. Oleh karena itu, kami sangat menyarankan Anda untuk menggunakan layanan berbagi foto online atau feature service yang akan melakukan hal itu untuk Anda.",
-        "div12": "Menggunakan Layanan Fitur atau Shapefile yang ada",
-        "div13": "Setiap layanan fitur poin atau shapefile dapat digunakan sebagai sumber data Tur Peta. Anda hanya perlu menambahkannya sebagai lapisan ke dalam peta web melalui Penampil Web arcgis.com. Jika aplikasi menemui atribut yang diharapkan pada lapisan Anda, semua fungsi penyusun akan tersedia.",
-        "div14": "Nilai yang memungkinkan untuk bidang nama adalah (tidak sensitif huruf besar dan kecil):",
+        "div11": "Jika Anda memilih untuk meng-host sendiri gambar Anda, Anda harus membuat thumbnail gambar tersebut secara manual. Menggunakan gambar resolusi penuh untuk thumbnail akan mengakibatkan kinerja yang buruk. Lihat <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>FAQ</a> ini untuk mendapatkan tips mengubah ukuran gambar Anda jika Anda akan mengaksesnya langsung di web melalui URL.",
+        "div12": "Menggunakan data GIS yang sudah ada",
+        "div13": "Setiap feature service, file CSV, atau shapefile yang berisi titik dapat digunakan sebagai sumber data Tur Peta jika berisi serangkaian kolom yang diperlukan aplikasi. Anda harus menambahkannya sebagai layer ke dalam web map ArcGIS dan kemudian membagikan peta tersebut dengan membuat Tur Peta.",
+        "div14": "Nilai yang didukung nama kolom adalah (tidak sensitif huruf):",
         "div151": "Nama",
         "div152": "Deskripsi",
         "div153": "Gambar",
@@ -480,19 +496,19 @@ define({
         "div0a": "Penampil Tur Peta didukung pada IE8+. Penyusun interaktif didukung pada IE9+. Kami secara aktif mengujinya di semua browser utama, tetapi jika Anda mengalami beberapa kesulitan, sebaiknya gunakan Chrome.",
         "div0b": "Jika Anda mengalami beberapa kesulitan, mohon beri tahu kami. Sementara itu, dengan membuat Tur Peta menggunakan pola dasar CSV, Anda akan meminimalkan interaksi dengan antarmuka penyusun.",
         "div1": "Gambar",
-        "div2": "Kami menyarankan foto orientasi lanskap, bukan orientasi potret. Foto dengan rasio aspek 4:3 yang paling sesuai. Gambar orientasi potret dapat digunakan, tetapi pada layar yang lebih kecil seperti iPad, banyak foto yang terlihat kabur karena keterangan (teks mengambil banyak ruang ketika ditampilkan di area tinggi dibandingkan pada area luas). Walaupun gambar dengan ukuran, bentuk, dan orientasi yang berbeda dapat digunakan pada Tur Peta, sebaiknya gunakan ukuran dan bentuk yang sama untuk semua gambar. Dengan cara ini, pengguna tidak akan bingung karena perbedaan ukuran gambar saat mereka mengikuti tur.",
+        "div2": "Walaupun gambar dengan ukuran, bentuk, dan orientasi berbeda dapat digunakan dalam satu Story Map, kami sarankan gambar dengan orientasi lanskap, bukan orientasi potret. Gambar dengan rasio aspek 4:3 adalah yang paling sesuai. Pada tata letak Tiga panel dan Terintegrasi, yang mana keterangan yang tumpang tindih dengan gambar, menggunakan gambar orientasi potret dapat menyebabkan sebagian besar gambar tersebut kabur tertutup keterangan. Pada tata letak Tiga panel dan Terintegrasi, kami sarankan menggunakan ukuran dan bentuk yang sama bagi semua gambar jika memungkinkan. Dengan demikian, pengguna tidak akan terganggu oleh gambar berukuran berbeda selagi mereka menjalani tur.",
         "div2a": "Kami sarankan ukuran gambar maksimal dengan lebar 1000 piksel x tinggi 750 piksel untuk gambar utama dan 140x93 untuk gambar mini.",
         "div3": "Pemformatan teks keterangan menggunakan tag HTML",
-        "div4": "Judul/keterangan header dan gambar dapat mencakup tag HTML untuk menetapkan pemformatan dan tautan. Misalnya, kode ini menambahkan tautan berwarna kuning:",
+        "div4": "Anda dapat memasukkan tag HTML ke dalam keterangan untuk menentukan format dan tautan. Misalnya, tag ini menambahkan hyperlink hijau:",
         "div4a": "Tulis subjudul yang baik untuk tur Anda",
-        "div4b": "Luangkan waktu untuk menulis subjudul yang menarik untuk tur Anda. Subjudul adalah cara yang baik untuk menarik orang ke tur Anda dan memberi tahu mereka tentang apa yang ada di dalamnya. Itu juga tempat yang baik untuk memberi tahu audiens tentang negara bagian atau negara tempat tur itu berada. Misalnya, jangan beranggapan bahwa orang sudah mengetahui kota atau lokasi tur Anda. Keterangan Anda juga dapat diformat menggunakan tag HTML, seperti menyertakan tautan. Jangan membuat keterangan terlalu panjang. Pada jendela browser yang lebih kecil atau pada iPad, itu tidak akan pas sepenuhnya dan terpotong. Jika Anda tidak memiliki subjudul yang baik, biarkan kosong.",
+        "div4b": "Luangkan waktu untuk menulis teks penjelasan untuk tur Anda. Teks ini merupakan cara yang bagus untuk menarik orang mengikuti tur Anda dan menyampaikan kepada mereka apa yang akan mereka temukan di dalamnya. Teks ini juga menjadi tempat yang bagus untuk menginformasikan pemirsa Anda mengenai negara bagian atau negara lokasi tur ini. Misalnya, jangan mengasumsikan bahwa orang tahu di mana lokasi kota tempat tur Anda berada. Jangan membuat teks terlalu panjang. Jika Anda tidak dapat membuat teks yang bagus, biarkan kosong. Di tata letak Panel Samping, teks yang muncul pada halaman sampul adalah keterangan untuk titik pertama dalam tur Anda (jika Anda menggunakan opsi dialog Organisasikan untuk menggunakan konten titik pertama sebagai halaman sampul).",
         "div5": "Lapisan Pendukung",
-        "div6": "Anda dapat menambahkan lapisan pendukung tambahan untuk menyediakan konteks pada Tur Peta. Lapisan ini mungkin berisi fitur geografis lainnya yang ingin Anda tampilkan di Peta selain poin Tur Peta, seperti area studi, rute berjalan atau mengemudi yang menghubungkan titik-titik wisata, dll. Pola dasar Tur Peta menampilkan lapisan pendukung tambahan ini menggunakan simbologi yang Anda tentukan di peta web, tetapi pop-up tidak tersedia.",
+        "div6": "Anda dapat menambahkan lapisan pendukung tambahan untuk menyediakan konteks pada Tur Peta. Lapisan ini mungkin berisi fitur geografis lainnya yang ingin Anda tampilkan di Peta selain poin Tur Peta, seperti area studi, rute berjalan atau mengemudi yang menghubungkan titik-titik wisata, dll. Template Tur Peta menampilkan lapisan pendukung tambahan ini menggunakan simbologi yang Anda tentukan di peta web, tetapi pop-up tidak tersedia. Untuk menambahkan layer pendukung ke tur Anda simpan pekerjaan Anda dan tutup Builder Tur Peta. Kemudian buka web map yang digunakan dalam tur Anda. Anda dapat menemukan ini di ArcGIS Konten Saya atau melalui bagian Cerita Saya pada situs web Story Map.",
         "div7": "Pertahankan agar tur Anda pendek dan menarik",
         "div8": "Terdapat batasan 99 titik per tur. Sebagian besar Tur Peta tentunya akan lebih pendek dari ini. Jangan berharap audiens Anda ingin mengunjungi terlalu banyak titik tur. Anda mungkin melihat bahwa subjeknya menarik, tetapi jangan mengangap mereka akan mengunjunginya juga!",
         "div10": "Sematkan mode",
-        "div11": "Jika Anda ingin menyematkan pola dasar di situs web lainnya melalui iframe, menambahkan parameter opsional \"&sematkan\" di akhir URL akan menghapus header. Mode tersebut juga dapat diatur di versi yang dapat diunduh melalui file konfigurasi.",
-        "div12": "Hindari menggunakan iFrame sempit yang menyebabkan tur peta beralih ke tata letak berbasis layar sentuh yang kurang responsif. Untuk memaksimalkan kemudahan penggunaan. Saat Anda menyematkan tur peta, sebaiknya tetap sediakan tautan di sebelah tur yang disematkan, sehingga pengguna dapat meluncurkan tur dalam layar penuh."
+        "div11": "Jika Anda ingin menyematkan template di situs web lainnya melalui iframe, menambahkan parameter opsional \"&sematkan\" di akhir URL akan menghapus header.",
+        "div12": "Hindari menggunakan iFrame sempit yang menyebabkan tur peta beralih ke tata letak berbasis layar sentuh yang kurang responsif. Untuk memaksimalkan kemudahan penggunaan, saat Anda menyematkan tur peta, sebaiknya tetap sediakan tautan di sebelah tur yang disematkan, sehingga pengguna dapat meluncurkan tur dalam layar penuh."
       },
       "tab5": {
         "title": "Penerbitan",
@@ -548,6 +564,22 @@ define({
       "panel4": "Jangan mengingatkan saya lagi untuk cerita ini",
       "mystories": "Cerita Saya",
       "btnSave": "Simpan"
+    },
+    "bannerNotification": {
+      "learnMore": "Pelajari Lebih Lanjut",
+      "close": "Tutup",
+      "dontShowAgain": "Jangan tampilkan pesan ini lagi"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Pesan Penting mengenai Keamanan Web dan Story Map",
+      "s1h1": "Esri sedang meningkatkan keamanan Story Map",
+      "s1p1": "Story Map Anda berada di web, dan komunitas web selalu berupaya membangun dan mengimplementasikan keamanan yang lebih baik. HTTPS, yang menyediakan koneksi aman untuk konten yang ditransmisikan melalui internet, berkembang sebagai cara yang harapkan untuk mengakses konten web. Sebagian besar browser modern sekarang memperlihatkan pesan peringatan jika yang digunakan adalah HTTP, bukan HTTPS. Karena standar yang berkembang ini, mulai dari pembaruan Juni 2018 untuk ArcGIS Online, Story Map Anda harus menggunakan HTTPS.",
+      "s1p2": "Praktisnya, ini berarti Story Map dan semua kontennya (termasuk gambar, layer, aplikasi yang disematkan, dan situs web) harus diakses menggunakan tautan yang diawali dengan HTTPS, bukan HTTP. Ini memastikan pengalaman terbaik bagi pembaca Anda karena sebagai besar browser web akan menunjukkan bahwa cerita Anda aman.",
+      "s2h1": "Apa yang harus saya lakukan?",
+      "s2p1": "Esri sedang berupaya membuat ini menjadi transisi yang mudah bagi penulis dan pembaca Story Map. Alat sekarang tersedia di builder Story Map dan Cerita Saya yang membantu Anda menemukan konten tidak aman (HTTP) dalam cerita Anda dan memberi rekomendasi cara menanganinya. Harap periksa cerita Anda untuk mengetahui konten tidak aman dan perbarui ke HTTPS sebelum Juni 2018.",
+      "action1": "Tutup",
+      "action2": "Periksa cerita saya sekarang",
+      "action3": "Pelajari lebih lanjut"
     }
   }
 });

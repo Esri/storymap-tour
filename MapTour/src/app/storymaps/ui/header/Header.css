@@ -7,6 +7,11 @@
 	display: none;
 }
 
+.side-panel #header {
+	height: 64px;
+	background-color: black !important;
+}
+
 #header .title {
 	font-family: 'open_sanssemibold', sans-serif;
 }
@@ -29,6 +34,11 @@
 	width:70%;
 }
 
+.side-panel .textArea {
+	position: absolute;
+	padding-left: 0;
+}
+
 #headerDesktop .title {
 	height:26px;
 	margin-top: 14px;
@@ -38,6 +48,18 @@
 	text-align:left;
 	overflow: hidden;
 	white-space: nowrap;
+}
+
+.side-panel #headerDesktop .title {
+		margin-top: 18px;
+		line-height: 1;
+}
+
+.builder-mode.side-panel #headerDesktop .title {
+		padding-top: 9px;
+		height: auto;
+		margin-top: 0;
+		cursor: pointer;
 }
 
 /* In view mode add ellipsis if title is too long */
@@ -55,8 +77,12 @@
 	color: #F00;
 }
 
-#headerDesktop .title.titleEmpty .text_edit_icon {
+#headerDesktop:not(.side-panel) .title.titleEmpty .text_edit_icon  {
 	background-color: #F00;
+}
+
+.side-panel #headerDesktop .title.titleEmpty .text_edit_icon{
+	background-color: unset;
 }
 
 #headerDesktop .subtitle {
@@ -71,6 +97,17 @@
 	color: #C5D5D5;
 }
 
+.side-panel #headerDesktop {
+	position: absolute;
+	height: 64px;
+	width: 100%;
+	margin-top: 4px;
+}
+
+.side-panel #headerDesktop .subtitle {
+	display: none !important;
+}
+
 .rightArea {
 	position: absolute;
 	right: 0px;
@@ -80,8 +117,13 @@
 	text-align:right;
 }
 
+.builder-mode.side-panel .rightArea {
+	margin-right: 60px;
+}
+
 .rightArea .social {
 	margin-bottom: 6px;
+	float: right;
 }
 
 .social .msLink, .social .msLink a {
@@ -95,15 +137,27 @@
 	height: 60px;
 	border:none;
 	outline:none;
+	margin-top: 27px;
+}
+
+.side-panel .logo {
+	position:relative;
+	height: 60px;
+	width: auto;
+	float: left;
+	border:none;
+	outline:none;
+	margin-top: 0px;
+	margin-left: 4px;
 }
 
 /* Firefox don't like this - vertical align on top instead */
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
 	.rightArea .logo a {
-		position:relative;
+		/*position:relative;*/
 		display: inline-block;
 	}
-	
+
 	.rightArea .logo a img {
 		bottom: initial;
 		top: initial;
@@ -121,27 +175,59 @@
 	margin: auto 0;
 }
 
-.switchBuilder {
-	display: none;
-	position:absolute; 
-	right: 180px; 
-	top: 30px;
-	width: 145px;
-	padding-left: 35px;
+.side-panel .logo img {
+	position: absolute;
+	top: 50%;
+	bottom: 50%;
+	left: 0px;
+	max-width: 250px;
+	max-height: 50px;
+	margin: auto 0;
 }
 
-.switchBuilder img {
-	position: absolute;
-	top: 8px;
-	left: 7px;
-	width: 28px;
-	height: 28px;
+.switchBuilder {
+	display: none;
+	margin-top: -2px;
+	margin-right: 10px;
+	padding: 1px 5px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+	color: #fff;
+	background-color: #428BC9!important;
+	border-color: #428BC9!important;
+	touch-action: manipulation;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	float: left;
+}
+
+.switchBuilder .fa-cog {
+  margin-right: 3px;
+	position: relative;
+	display: inline-block;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+.switchBuilder .switch-builder-close {
+	margin-left: 3px;
+	cursor: pointer;
+	pointer-events: all;
 }
 
 /*
  * Social sharing
  */
- 
+
 @font-face {
   font-family: 'storymaps-icons';
   src: url('../../../../resources/font/sharing/storymaps-icons.eot?49500659');
@@ -170,36 +256,36 @@
   font-style: normal;
   font-weight: normal;
   speak: none;
- 
+
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
   text-align: center;
   /* opacity: .8; */
- 
+
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
- 
+
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
- 
+
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
   margin-left: .2em;
- 
+
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
- 
+
   /* Font smoothing. That was taken from TWBS */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
+
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
- 
+
 .autoplay-icon-play:before { content: '\e800'; } /* '' */
 .icon-link:before { content: '\e801'; } /* '' */
 .icon-facebook-squared:before { content: '\e802'; } /* '' */
@@ -258,9 +344,33 @@
 }
 
 /* Reduce the width of the field to be sure that icon will stay visible */
-#headerDesktop .text_edit_label { 
+#headerDesktop .text_edit_label {
 	max-width: 94%;
 	overflow: hidden;
+}
+
+#headerDesktop .pencilIconDiv {
+	top: 10px;
+  left: 124px;
+  position: absolute;
+  opacity: 0.8;
+}
+
+#headerDesktop .title .fa-pencil {
+	position: absolute;
+	top: -15px;
+  left: -4px;
+	font-size: 15px;
+	color: black;
+}
+
+.side-panel #headerDesktop .text_edit_label {
+	border: 1px dashed rgba(255,255,255, .4);
+	padding: 7px;
+}
+
+.side-panel #headerDesktop .text_edit_label:hover {
+	border-color: rgba(255,255,255, 1);
 }
 
 .title .text_edit_input {
@@ -271,7 +381,7 @@
 	width: 98%;
 }
 
-.title .text_edit_icon {
+.title .text_edit_icon :not(.side-panel){
 	margin-top: -12px;
 	margin-left: 8px;
 }
@@ -386,4 +496,45 @@
 .navBar .current {
 	color:#fff;
 	font-weight:bold;
+}
+
+.mobile-view.mobile-layout-scroll #headerMobile {
+	top: 0;
+	max-height: 70px;
+	animation-name: slideDownMobileHeader;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+}
+
+.mobile-view.mobile-layout-scroll #headerMobile.hidden {
+	top: -70px;
+	animation-name: slideUpMobileHeader;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+}
+
+.mobile-view.mobile-layout-scroll .mobile-scroll-logo {
+	max-height: 40px;
+}
+
+@keyframes slideUpMobileHeader {
+	from {
+		top: 0;
+	}
+	to {
+		top: -70px;
+	}
+}
+
+@keyframes slideDownMobileHeader {
+	from {
+		top: -70px;
+	}
+	to {
+		top: 0;
+	}
+}
+
+.side-panel #headerDesktop .textArea .pencilIconDiv {
+	left: 0;
 }

@@ -14,7 +14,8 @@ define(["esri/arcgis/Portal",
 		"esri/IdentityManager",
 		"esri/request",
 		"esri/geometry/Multipoint",
-		"dojo/topic"
+		"dojo/topic",
+		"storymaps/ui/bannerNotification/BannerNotification"
 	],
 	function(
 		esriPortal,
@@ -33,7 +34,8 @@ define(["esri/arcgis/Portal",
 		IdentityManager,
 		esriRequest,
 		Multipoint,
-		topic
+		topic,
+		BannerNotification
 	) {
 		var _core = null;
 		var _builderView = null;
@@ -94,6 +96,47 @@ define(["esri/arcgis/Portal",
 
 				app.cleanApp = cleanApp;
 			}));
+
+			// Show https-transition notification when app loads
+			if (!app.isPortal) {
+				topic.subscribe('maptour-ready', function() {
+					var strings = i18n.viewer.httpsTransitionNotification;
+					new BannerNotification({
+						id: "httpsTransitionMessage",
+						bannerMsg: strings.bannerMsg,
+						mainMsgHtml: '\
+							<h2>' + strings.s1h1 + '</h2>\
+							<p>' + strings.s1p1 + '</p>\
+							<p>' + strings.s1p2 + '</p>\
+							<h2>' + strings.s2h1 + '</h2>\
+							<p>' + strings.s2p1 + '</p>\
+						',
+						actions: [
+							{
+								primary: true,
+								string: strings.action1,
+								closeOnAction: true
+							},
+							{
+								string: strings.action2,
+								action: function() {
+									window.open('https://storymaps.arcgis.com/en/my-stories/');
+								}
+							},
+							{
+								string: strings.action3,
+								action: function() {
+									window.open('https://links.esri.com/storymaps/web_security_faq');
+								}
+							}
+						],
+						cookie: {
+							domain: window.location.hostname,
+							maxAge: 60 * 60 * 24 * 365
+						}
+					});
+				});
+			}
 		}
 
 		function appInitComplete()
@@ -471,7 +514,7 @@ define(["esri/arcgis/Portal",
 			appItem.typeKeywords = appItem.typeKeywords.concat(APPCFG.WEBAPP_KEYWORD_GENERIC);
 
 			// Layout
-			var layouts = $.map(['integrated', 'three-panel'], function(layout){ return "layout-" + layout; });
+			var layouts = $.map(['side-panel', 'integrated', 'three-panel'], function(layout){ return "layout-" + layout; });
 			// Filter previous layout keyword
 			appItem.typeKeywords = $.grep(appItem.typeKeywords, function(keyword) {
 				return $.inArray(keyword, layouts) == -1;
@@ -785,12 +828,12 @@ define(["esri/arcgis/Portal",
 			// Can only be used to add more privilege
 			// Looks like sharing to private imply a unshareItems request first
 			// => don't use it that code to share private without more test
-			if ( sharingMode != "public" && sharingMode != "account" )
+			if ( sharingMode != "public" && sharingMode != "account" && sharingMode != "org")
 				sharingMode = "public";
 
 			// Find items to share - only if they aren't already shared to the proper level
 			var targetItems = [];
-			if( sharingMode == "account" ) {
+			if( sharingMode == "account" || sharingMode == "org") {
 				if( (app.data.getWebMapItem().item.access == "private"||app.data.getWebMapItem().item.access == "shared"||!app.data.getWebMapItem().item.access) && app.data.getWebMapItem().item.owner == app.portal.getPortalUser().username )
 					targetItems.push(app.data.getWebMapItem().item.id);
 				if ( app.data.getAppItem().access == "private" || app.data.getAppItem().access == "shared" )
@@ -840,13 +883,13 @@ define(["esri/arcgis/Portal",
 				items: items,
 				groups: '',
 				everyone: '',
-				account: ''
+				org: ''
 			};
 
 			if ( sharing == "public" )
 				params.everyone = true;
-			if ( sharing == "account" )
-				params.account = true;
+			if ( sharing == "account" || sharing == "org" )
+				params.org = true;
 
 			return esriRequest(
 				{

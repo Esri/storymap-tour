@@ -11,6 +11,25 @@
 	width: 400px;
 	height: 400px;
 	background-color: transparent;
+	z-index: 99;
+}
+
+.side-panel #picturePanel {
+	position: absolute;
+	top: 64px !important;
+	left: 500px;
+	float: none;
+	-webkit-box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3);
+	-moz-box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3);
+	box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3);
+}
+
+.builder-mode.side-panel #picturePanel {
+	left: 560px;
+}
+
+.builder-mode.side-panel #picturePanel .arrow {
+	display: none;
 }
 
 /*
@@ -18,13 +37,6 @@
  */
 .arrow {
 	cursor:pointer;
-}
-
-#arrowPrev {
-	position:absolute;
-	top:0px;
-	left:8px;
-	z-index:100;
 }
 
 #arrowNext {
@@ -99,6 +111,37 @@ body.hasTouch .modern-layout-control:not(.disabled){
 	opacity: 1.0 !important;
 }
 
+/*
+	Side Panel layout
+ */
+
+ .side-panel.builder-mode #arrowPrev {
+ 	top: 30px;
+ }
+
+ .side-panel.builder-mode #arrowNext {
+ 	top: 30px;
+ }
+
+ #arrowPrev :not(.side-panel){
+ 	position:absolute;
+ 	top:0px;
+ 	left:8px;
+ 	z-index:100;
+ }
+
+ .side-panel #arrowPrev {
+ 	position:absolute;
+ 	top: 20px;
+ 	right: 60px;
+ 	z-index:100;
+ 	right: 60px;
+ }
+
+ .side-panel #arrowNext {
+ 	top: 20px;
+ }
+
 #cfader {
 	width:100%;
 	height:100%;
@@ -111,6 +154,10 @@ body.hasTouch .modern-layout-control:not(.disabled){
 	top: 76px;
 	text-align: center;
 	height: 30px;
+}
+
+.side-panel .editPictureButtons {
+	display: none !important;
 }
 
 .editPictureButtons > div {
@@ -165,4 +212,20 @@ body.hasTouch .modern-layout-control:not(.disabled){
 	font-size:14px;
 	color:#c43d40;
 	margin-top: 4px;
+}
+
+.side-panel #picturePanel .error {
+	display: none;
+	font-weight:bold;
+	font-size:14px;
+	color:#c43d40;
+	margin-top: 4px;
+}
+
+.side-panel #picturePanel .popover {
+	margin-top: 50px !important;
+}
+
+.side-panel .file-input-name {
+	display: none;
 }

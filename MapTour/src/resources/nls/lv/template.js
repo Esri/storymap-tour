@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Tas nav pieejams automātiskās demonstrēšanas režīmā",
       "autoplayLabel": "Automātiskās demonstrēšanas režīms",
       "autoplayExplain1": "Automātiskās demonstrēšanas režīms darbosies jūsu stāstā ar regulāriem intervāliem. Tas ir izcili piemērots stendiem vai publiskās demonstrēšanas monitoram, bet ņemiet vērā, ka citās situācijās šis režīms var padarīt stāstu grūtāk izlasāmu. Šī funkcija netiek atbalstīta maza izmēra displejos.",
-      "autoplayExplain2": "Pēc šī režīma aktivizēšanas ir pieejamas vadīklas stāsta demonstrēšanai/apturēšanai un navigācijas ātruma regulēšanai."
+      "autoplayExplain2": "Pēc šī režīma aktivizēšanas ir pieejamas vadīklas stāsta demonstrēšanai/apturēšanai un navigācijas ātruma regulēšanai.",
+      "takeTourText": "Skatīt tūri",
+      "backToStart": "Atpakaļ uz sākumu"
     },
     "builderHTML": {
       "panelHeader": "STĀSTA KONFIGURĒŠANA",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Pārklājums",
       "settingsTabZoom": "Mērogmaiņas līmenis",
       "settingsLayoutExplain": "Atlasiet vēlamo izkārtojumu.",
-      "settingsLayoutProfessional": "Trīs paneļu izkārtojums",
-      "settingsLayoutModern": "Integrētais izkārtojums",
+      "settingsLayoutProfessional": "Trīs punktu panelis",
+      "settingsLayoutModern": "Integrēts",
+      "settingsLayoutSidePanel": "Sānu panelis",
       "settingsLayoutSelected": "Izvēlētais izkārtojums",
-      "settingsLayoutSelect": "Izvēlieties šo izkārtojumu",
+      "settingsLayoutNew": "Jaunums!",
+      "settingsLayoutSelect": "Atlasīt",
       "settingsLayoutNote": "Ņemiet vērā, ka punktiem, kuriem izmantoti video, plakāti vienmēr būs novietoti zem video, pat ja šī izvēlne būs atiezīmēta.",
       "settingsLayoutLocBtn": "Attēlot pogu 'Atrast izvietojumu'",
       "settingsLayoutLocBtnHelp": "Atbalstīts vairākumā pārlūku. Tiek parādīts tikai tad, kad stāsta kartei piekļūst, izmantojot HTTPS. Netiek parādīts, ja stāsts ir iedarināts.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Rediģēt pārklājumu",
       "settingsExtentApplyBtn": "Priekšskatīt Map Tour",
       "settingsExtentUseMainMap": "Lietot Map Tour pārklājumu",
-      "settingsZoomExplain": "Iestatīt mērogmaiņu stāstu punktiem, kas seko pēc ievada (pēc izvēles).",
+      "settingsZoomExplain": "Iestatīt mērogmaiņu stāstu punktiem (pēc izvēles).",
       "settingsLabelZoom": "Mērogs/līmenis",
       "settingsZoomFirstValue": "Neviens",
       "settingsFieldError": "Lūdzu, izvēlieties lauku katrā sarakstā",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Izveide neizdevās. Lūdzu, mēģiniet vēlreiz",
       "tabError": "Lūdzu pārbaudīt kļūdas visās cilnēs",
       "introRecordBtn": "Ievads",
-      "introRecordActivate": "Izmantojiet pirmo punktu, kā ievadu (neparādās karuselī)"
+      "introRecordActivate": "Izmantojiet pirmo punktu, kā ievadu (neparādās karuselī)",
+      "coverRecordActivate": "Izmantot pirmo punktu kā titullapu",
+      "coverBuilder": "Titullapas konfigurācija",
+      "cover": "Vāks",
+      "showCover": "Rādīt vāku",
+      "editCover": "Labot vāku",
+      "coverNoVideo": "Vāka multivide neatbalsta video saturu. Izvēlieties attēlu.",
+      "coverPreview": "Lai skatītu vāku, saglabājiet stāstu un pēc tam priekšskatiet to, izmantojot kopīgošanas pogu."
     },
     "addPopupJS": {
       "uploadingPicture": "Augšupielādē attēlu",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Rediģē mani!",
       "templateTitle": "Iestatīt šablona virsrakstu",
-      "templateSubtitle": "Iestatīt šablona apakšvirsrakstu"
+      "templateSubtitle": "Iestatīt šablona apakšvirsrakstu",
+      "edit": "Labot"
     },
     "crossFaderJS": {
       "setPicture": "Iestatīt bildes virsrakstu",
@@ -306,9 +318,9 @@ define({
       "csv": "Atsauce uz CSV",
       "advanced": "Papildus opcijas",
       "advancedScratchLbl": "Sākt jaunu tūri",
-      "advancedScratchTip": "Izveidojiet tukšu tūri, kuru jūs varēsiet aizpildīt manuāli izmantojot vedni.",
+      "advancedScratchTip": "Izveidojiet tukšu tūri, kurā varat pievienot tūres punktus. Jūsu multividei jau ir jābūt tiešsaistē. Šī opcija neatbalsta savu attēlu augšupielādi.",
       "advancedCSVLbl": "Importēt tūres datus no CSV faila",
-      "advancedCSVTip": "Importēt tūres saturu no CSV faila",
+      "advancedCSVTip": "Importējiet savas tūres saturu no CSV faila, kurā iekļautas atsauces uz jūsu tiešsaistes multividi. Šī opcija neatbalsta savu attēlu augšupielādi.",
       "advancedCommonTip": "Nepieciešams, lai jūsu attēli un video jau atrodas tiešsaistē.",
       "select": "Veikt izvēli",
       "locUse": "Lietot bilžu ģeoizvietojumu",
@@ -382,7 +394,7 @@ define({
       "title": "Izvēlieties un nosakiet izvietojumu jūsu attēliem/video",
       "header": "Lai atrastu, noklikšķiniet vai pieskarieties attēliem, ko vēlaties importēt.",
       "headerMore": "Kāpēc manas bildes/video nav ģeoizvietoti?",
-      "headerExplain": "Ja jūsu attēliem ir derīgs izvietojums, tie tiks automātiski izvietoti uz kartes un uzskaitīti otrajā cilnē.<br /><br />Pēc noklusējuma Picasa un Flickr neizmanto bilžu EXIF izvietojuma metadatus, pārbaudiet Flickr/Picasa iestatījumus zem Privacy cilnes, lai iespējotu bildes atrašanās izmantošanu. Jūs varat pilnībā ievest atpakaļ savus attēlus Flickr/Picasa.<br /><br />Priekš Facebook, jums ir jāiet uz katra attēla, jānoklikšķina uz Rediģēt un jāizvēlas izvietojums starp ieteiktajām izvēlēm, kas balstās uz bildes EXIF metadatiem.",
+      "headerExplain": "Ja jūsu attēliem ir derīgs ģeoizvietojums, tie tiks automātiski izvietoti kartē un uzskaitīti otrajā cilnē.<br /><br />Pēc noklusējuma Picasa un Flickr nesaglabā ģeoizvietojuma EXIF metadatus, kad importējat attēlus. Pārbaudiet Picasa/Flickr privātuma iestatījumus, lai aktivizētu attēlu ģeoizvietojuma importēšanu un izmantošanu ārējās lietotnēs. Lai izmantotu EXIF ģeoizvietojumu, jums esošie attēli varētu būt jāimportē vēlreiz vietnē Flickr/Picasa.",
       "leftPanelTab1": "Lai atrastu",
       "leftPanelTab2": "Atrodas",
       "clickOrTap": "Noklikšķiniet vai pieskarieties kartei, lai atrastu",
@@ -404,7 +416,7 @@ define({
       "header2": "Šis asistents palīdzēs jums veidot Map Tour no attēliem, kas jau glabājas tiešsaistē vai tie tiks importēti jūsu ArcGIS Online for Organizations kontā.",
       "title1": "Tās jau atrodas tiešsaistē",
       "title2": "Man nepieciešams augšupielādēt attēlus",
-      "hostedFSTooltip": "Augšupielādējiet attēlus un saglabājiet tos Map Tour slānī (netiek atbalstīts video).",
+      "hostedFSTooltip": "Augšupielādējiet attēlus un saglabājiet tos savā tūrē (video saturs netiek neatbalstīts).",
       "hostedFsNA": "Jums jābūt publicētājam vai jādarbojas citā lomā, kam ir tiesības publicēt viesotus elementu slāņus. Sazinieties ar ArcGIS administratoru.",
       "hostedFsNA2": "Pieejams tikai ar ArcGIS Online abonementu. <a href='%LINK%'>Reģistrēties bezmaksas izmēģinājumam</a>",
       "footer1": "Kad tas ir izdarīts, neaizmirstiet dalīties ar jūsu Map Tour ar jūsu auditoriju, izmantojot aplikācijas vienības lapu.",
@@ -420,19 +432,23 @@ define({
       "close": "Aizvērt",
       "tab1": {
         "title": "Ievads",
+        "moreInfo": "Lai iegūtu papildinformāciju",
+        "infoSites": "Apmeklējiet <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Kartes tūres sadaļu</a> <a href='https://storymaps.arcgis.com' target='_blank'>Esri Kartes stāsta tīmekļa vietnē.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Bieži uzdotie jautājumi par Kartes tūri.</a>",
+        "myStories": "Varat pārvaldīt savas Kartes tūres un pārbaudīt, vai tajās nav radušās kļūdas — apmeklējiet tīmekļa vietnes sadaļu <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Mani stāsti</a>.",
         "div1": "Map Tour šablons ir noformēts, lai prezentētu ģeogrāfisku informāciju, ja ir pārliecinoši fotogrāfiskie vai mediju elementi stāstam, ko jūs vēlaties pastāstīt.",
         "div2": "Veidne rada pievilcīgu, viegli izmantojamu tīmekļa lietotni, kas ļauj kartē numurētā secībā attēlot nelielu vietu kopu, ko lietotāji var pārlūkot. Veidne ir paredzēta izmantošanai jebkurā tīmekļa pārlūkprogrammā jebkurā ierīcē, tostarp viedtālruņos un planšetdatoros. <br /><br />",
-        "div42": "Lai apskatītu karšu ceļvežus, kurus veidojuši citi lietotāji, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>apmeklējiet galeriju</a> tīmekļa vietnē <a href='http://storymaps.arcgis.com/' target='_blank'>Story Maps</a>. Jūs varat sekot mums arī Twitter lapā <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Mēs labprāt vēlētos dzirdēt jūsu atsauksmes! Neatkarīgi no tā vai jums ir jautājumi, vēlaties pieprasit jaunu elementu, vai uzskatāt , ka esat atradis kļūdu, lūdzu apmeklējiet <a href='http://links.esri.com/storymaps/forum' target='_blank'>Story Maps lietotāju forums</a>."
+        "div42": "Lai skatītu citu lietotāju veidoto kartes tūru piemērus, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>apmeklējiet galeriju</a> <a href='https://storymaps.arcgis.com/' target='_blank'>Kartes stāstu tīmekļa vietnē</a>. Varat arī sekot mums Twitter (<a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>).",
+        "div5": "Mēs vēlētos dzirdēt jūsu atsauksmes. Informējiet mūs par problēmām un jums nepieciešamajiem jaunajiem elementiem, apmeklējot Story Maps forumu <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Dati",
-        "div1": "Galvenais elements, kas ir jāievēro, būvējot Map Tour, ir izvēlēties, kur tiks glabātas bildes. Map Tour varat izmantot bildes, kas saglabātas uz galvenajiem foto koplietošanas servisiem, jebkurā web serverī vai kā piesaiste elementu servisam.",
+        "div1": "Veidojot kartes tūri, ir svarīgi izvēlēties vietu, kur tiks glabāti attēli. Kartes tūrē varat izmantot attēlus, kas saglabāti fotoattēlu kopīgošanas servisos vai jebkurā tīmekļa serverī, kā arī varat izmantot attēlus, kas augšupielādēti no diska.",
         "div1a": "Aplūkojiet pēdējo sadaļu šajā tabulatorā, lai uzzinātu par atbalstītajiem attēlu un video formātiem.",
         "div2": "Interaktīvais veidotājs dod jums divas iespējas apstrādāt attēlus jūsu Map Tour:",
-        "div3": "<ul><li>Jūs varat lietot <b>fotoattēlus, kas jau ir tiešsaistē</b>, piemēram, attēlus, kas glabājas foto koplietošanas vietnēs kā Flickr, vai saglabātos attēlus savā tīmekļa vietnē. Šiem attēliem būs atsauce jūsu kartes ceļvedī, izmantojot to vietrāžus URL</li><li>Jūs varat arī <b>augšupielādēt fotoattēlus no datora</b> tieši kartes ceļvedī. Lai veiktu augšupielādi, nepieciešams ArcGIS for Organizations konts vai administratora privilēģijas, jo jums tiek automātiski izveidots viesotu elementu pakalpojums, kur jūsu fotoattēli tiek glabāti kā pielikumi</li></ul>",
+        "div3": "<ul><li>Jūs varat izmantot <b>attēlus, kas jau ir tiešsaistē</b>, piemēram, attēlus, kas tiek glabāti tādā attēlu kopīgošanas vietnē kā Flickr, vai attēlus, kas tiek glabāti jūsu tīmekļa vietnē. Uz šiem attēliem tiks izveidotas atsauces jūsu lietotnē Map Tour, izmantojot to vietrāžus URL.</li><li>Jūs varat arī<b>augšupielādēt fotogrāfijas no sava datora</b> tieši lietotnē Map Tour. Šādai augšupielādes opcijai ir nepieciešams ArcGIS uzturēšanas abonements un izdevēja vai administratora tiesības, jo jums automātiski tiks izveidots viesots elementu serviss, kurā fotogrāfijas tiek saglabātas kā pielikumi.</li></ul>",
         "div4": "Galvenie lietošanas gadījumi ir:",
-        "div4b": "<b>Jūsu fotoattēli vēl netiek viesoti,</b> un jums ir ArcGIS for Organizations konts: izmantot viesotu elementu pakalpojumu ir jūsu labākā izvēle. Līdzīgi publiskajiem fotoattēlu koplietošanas pakalpojumiem mēs optimizēsim jūsu attēlus, lai izveidotu ātri ielādējamus attēlus, un jums būs piekļuve visām ArcGIS platformas administrēšanas un datu pārvaldības iespējām.",
+        "div4b": "<b>Jūsu fotoattēli vēl netiek viesoti</b>, un jums ir ArcGIS abonements: viesots elementu serviss ir labākā izvēle. Tāpat kā publiski pieejamos fotoattēlu kopīgošanas servisos, arī šeit jūsu attēli tiks optimizēti, lai to ielāde būtu ātra, turklāt iegūsiet piekļuvi visām ArcGIS Platform administrācijas un datu pārvaldības iespējām.",
         "div5": "<b>Jūs neesat Organizācijas biedrs</b>: Jums vispirms jāaugšupielādē savas bildes foto koplietošanas mājas lapā, vai uz jūsu web serveri. Tad veidotājs palīdzēs izmantot šīs bildes, kas turpmāk tiks viesotas savā oriģinālajā izvietojumā.",
         "div6": "<b>Jūs meklējat, lai atkārtoti lietotu esošo Feature Service</b> kas glabā jūsu bildes kā piesaistes, vai kas atsaucas uz ārējām bildēm: skatiet detalizētāku nodaļu apakšā.",
         "div7": "<b>Jūs esat iepriekšējās versijas lietotājs</b> Map Tour šablonam un jau ir jūsu CSV, kas atsaucas jūsu bildēm un sīktēliem: jums būs iespēja importēt un uzlabot savus datus. Veidotājs atbalsta tikai CSV, kas lieto plat/gar laukus; uz adresēm balstīts CSV var tikt turpināts lietot caur jūsu web karti (skatīt nodaļu zemāk).",
@@ -441,10 +457,10 @@ define({
         "learn": "uzzināt vairāk",
         "div9": "Importa operācijas atsaucas uz attēliem, kas tiek viesoti, saglabājot to URL web kartes elementu kolekcijā. Attēli netiek saglabāti ArcGIS Online. Ja viesotiem attēliem nevar piekļūt, tie nebūs pieejami Map Tour un jūs redzēsiet 'Attēls nav pieejams' attēlu. Atkarībā no attēlu servisu sniedzēja, Map Tour tiks vai netiks importēts nosaukums, apraksts un attēla izvietojums. Šie atribūti tiek glabāti web kartē un jebkādi labojumi uz tiešsaistes servisiem netiks atspoguļoti Map Tour.",
         "div10": "Uzglabā bildes uz web servera",
-        "div11": "Ja vēlaties viesot bildes pats, jums būs manuāli jāizveido sīktēli jūsu attēliem. Izmantojot pilnas rezolūcijas bildes priekš sīktēliem radīs sliktu sniegumu. Šī iemesla dēļ mēs noteikti iesakām, ka jūs izmantojat tiešsaistes foto koplietošanas servisus vai elementu servisu, kas to veiks jūsu vietā.",
-        "div12": "Lieto eksistējošu Feature Service vai Shapefile",
-        "div13": "Jebkurš punktu elementu serviss vai shape fails var tikt lietots kā Map Tour datu avots. Jums vienkārši ir jāpievieno to kā slāni savā web kartē, izmantojot arcgis.com kartes pārlūku. Ja aplikācija atrod gaidītos atribūtus jūsu slānī, visa veidotāja funkcionalitāte būs pieejama.",
-        "div14": "Iespējamās lauku nosaukumu vērtības ir (reģistrjūtīgas):",
+        "div11": "Ja izvēlēsieties patstāvīgi viesot attēlus, jums būs manuāli jāizveido sīktēli. Ja izmantosiet pilnas izšķirtspējas attēlus sīktēla izveidei, veiktspēja tiks negatīvi ietekmēta. Skatiet <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>bieži uzdoto jautājumu sadaļu</a>, kurā pieejami ieteikumi attēlu izmēru maiņai, ja piekļūsiet tiem tīmeklī tieši, izmantojot vietrāžus URL.",
+        "div12": "Esošu ĢIS datu izmantošana",
+        "div13": "Jebkuru elementu servisu, CSV failu vai shape failu, kurā ietverti punkti, var izmantot kā Map Tour datu avotu, ja tas ietver lietojumprogrammai nepieciešamo lauku kopu. Datu avots ir jāpievieno kā ArcGIS tīmekļa kartes slānis un pēc tam jākopīgo karte, izveidojot Map Tour ekskursiju.",
+        "div14": "Tālāk norādītas atbalstītās lauku nosaukumu vērtības (vērtības nav reģistrjutīgas).",
         "div151": "Nosaukums",
         "div152": "Apraksts",
         "div153": "Bilde",
@@ -479,20 +495,20 @@ define({
         "div0": "Atbalstītie pārlūki",
         "div0a": "Map Tour pārlūks tiek atbalstīts uz IE8 un augstāka versija. Interaktīvais veidotājs tiek atbalstīts uz IE9 un augstāka versija. Mēs veicam aktīvu testēšanu visos galvenajos pārlūkos, bet gadījumā ja sastopaties ar kādām grūtībām, iesakām izmantot Chrome pārlūku.",
         "div0b": "Ja jūs saskaraties ar grūtībām, lūdzu ziņojiet. Tikmēr veidojot Map Tour izmantojot CSV šablonu jūs minimizēsiet jūsu mijiedarbību ar veidotāja interfeisu.",
-        "div1": "Bildes",
-        "div2": "Mēs iesakām fotogrāfijām ainavas orientāciju, nevis portreta. Fotogrāfijas ar attiecību 4:3 der vislabāk. Portreta orientācijas attēlus var izmantot, bet uz mazākiem ekrāniem, piemēram, iPad, daudz foto var aptumšot ar uzrakstu, teksts aizņem vairāk vietas, kad tas tiek parādīts garā laukumā, salīdzinot ar platu laukumu. Lai gan dažāda lieluma, formas un orientācijas attēlus var izmantot vienā Map Tour, mēs iesakām izmantot tieši tādu pašu izmēru un formu visiem attēliem. Tādā veidā, lietotājs neapjuks saktoties uz dažāda izmēra attēliem, kad tie seko tūrei.",
+        "div1": "Attēli",
+        "div2": "Vienā Map Tour ekskursijā var izmantot dažāda izmēra, formas un orientācijas attēlus, tomēr ir ieteicams izmantot attēlus ainavorientācijā, nevis portretorientācijā. Vispiemērotākie ir attēli ar proporciju 4:3. Ja izmantosiet portretorientācijas attēlus trīs punktu panelī un integrēto izkārtojumu sadaļā, kur paraksti daļēji apklāj attēlu, iespējams, paraksti aizsegs lielu daļu attēla. Trīs punktu panelī un integrēto izkārtojumu sadaļā ir ieteicams izmantot vienāda izmēra un formas attēlus (ja iespējams). Tādējādi lietotājam, kurš skatīs ekskursiju, netraucēs dažāda izmēra attēli.",
         "div2a": "Mēs iesakām maksimālo attēla izmēru 1000 pikseļi platumā un 750 pikseļi garumā galvenajam attēlam un 140x93 sīkattēlam.",
         "div3": "Formatē jūsu uzrakstu tekstu, izmantojot HTML tagus",
-        "div4": "Galvenes un attēla nosaukums/paraksts var ietvert HTML tagus, lai definētu formatējumu un saites. Piemēram, šis kods pievieno dzeltenu saiti:",
+        "div4": "Varat ievadīt HTML birku parakstos, lai definētu formatējumu un saites. Piemēram, zaļu hipersaiti var pievienot ar šādām birkām:",
         "div4a": "Ierakstiet labu apakšvirsrakstu jūsu tūrei",
-        "div4b": "Atvēliet laiku, lai uzrakstītu saistošu apakšvirsrakstu savai tūrei. Apakšvirsraksts ir labs paņēmiens, kā piesaistīt cilvēkus tūrei un pastāstīt, ko viņi te uzzinās. Apakšvirsraksts ir arī piemērots, lai pavēstītu mērķauditorijai, kurā valstī izvietota jūsu tūre. Piemēram, neuzskatiet, ka cilvēki zinās jūsu tūres pilsētas vai ciemata izvietojumu. Virsrakstu var formatēt, izmantojot HTML tagus, piemēram, iekļaujot saites. Tomēr nepadariet virsrakstu pārāk garu. Mazākos pārlūkprogrammu logos vai iPad tas var neietilpt vai tikt apgriezts. Ja jūs nevarat izdomāt labu apakšvirsrakstu, tad atstājiet šo vietu tukšu.",
+        "div4b": "Veltiet laiku, lai savai tūrei izveidotu saistošu apakšvirsrakstu. Tas ir labs veids, kā piesaistīt lietotāju uzmanību un informēt par tūres saturu. Apakšvirsrakstā ir ieteicams norādīt arī tūres atrašanās vietu — reģionu vai valsti. Piemēram, nepieņemiet par pašsaprotamu, ka lietotāji zina jūsu tūres atrašanās pilsētu vai ciematu. Tomēr apakšvirsrakstam nevajadzētu būt pārāk garam. Ja nevarat izdomāt labu apakšvirsrakstu, atstājiet lauku tukšu. Sānu paneļa izkārtojumā apakšvirsraksts, kas parādās titullapā, ir tūres pirmā punkta paraksts (ja organizēšanas dialoglodziņā izmantojat opciju lietot pirmā punkta saturu kā titullapu).",
         "div5": "Atbalstot slāņus",
-        "div6": "Jūs varat pievienot papildu atbalsta slāņus, lai nodrošinātu kontekstu Map Tour. Šie slāņi var saturēt citus ģeogrāfiskos elementus, kurus jūs vēlaties attēlot kartē paplidus Map Tour punktiem, kā piemēram, studiju areālu, iešanas vai braukšanas maršrutu, kas savieno jūsu maršruta punktus, utt. Map Tour šablons parāda šos papildu atbalsta slāņus, izmantojot jūsu norādīto simboliku šajā web kartē, bet uznirstošie logi nav pieejami.",
+        "div6": "Varat pievienot papildu atbalsta slāņus, lai nodrošinātu kontekstu kartes tūrei. Šie slāņi var ietvert citus ģeogrāfiskus elementus, ko vēlaties parādīt kartē papildus kartes tūres punktiem, piemēram, izpētes teritoriju, gājējiem vai autobraucējiem paredzētu maršrutu, kas savieno ekskursijas punktus, un citus elementus. Kartes tūres sagatavē šie papildu atbalsta slāņi tiek parādīti, izmantojot tīmekļa kartē norādītos simbolus, bet uznirstošie logi nav pieejami. Lai savā ekskursijā pievienotu atbalsta slāņus, saglabājiet darbu un aizveriet kartes tūres veidotāju. Pēc tam atveriet tūrē izmantoto karti. Tā ir pieejama ArcGIS sadaļā Mans saturs vai kartes stāstu tīmekļa vietnes sadaļā Mani stāsti.",
         "div7": "Turiet jūsu ceļojumu īsu un saldu",
         "div8": "Tūres limits ir 99 punkti. Protams, vairums Map Tours, būs ievērojami īsāks nekā minētie 99 punkti. Nesagaidiet, ka jūsu auditorija vēlas apskatīt pārāk daudz tūres punktus. Jūs variet uzkatīt šo tēmu par saistošu, bet nepieņemiet, ka pārējais vairums arī!",
         "div10": "Iedarināts režims",
-        "div11": "Ja vēlaties iedarināt šablonu citā web vietnē imantojot iframe, pievienojot izvēles parametru \"&embed\" URL saites beigās tiks noņemta galvene. Šads režīms var tikt iestatīs lejupielādējamajai versijai caur konfigurācijas failu.",
-        "div12": "Izvairieties izmantot šauru iFrame platumu, kas izraisīs kartes tūres pārslēgšanos uz tās attiecīgo pieksāriena bāzēto maza ekrāna izkārtojumu. Lai maksimizētu lietošanas vienkāršumu, kad jūs iedarināt kartes tūri, mēs iesakām vienmēr norādīt saiti blakus  iedarinātai tūrei, lai lietotājs var palaist tūri pilnekrāna režīmā."
+        "div11": "Ja vēlaties iedarināt sagatavi citā tīmekļa vietnē ar iframe, pievienojot izvēles parametru \"&embed\" URL saites beigās tiks noņemta galvene.",
+        "div12": "Nav ieteicams izmantot šauru iFrame, lai kartes ekskursija nepārslēgtos uz reaģējošo, nelieliem skārienjutīgiem ekrāniem paredzēto izkārtojumu. Lai lietošana būtu pēc iespējas ērtāka, blakus iegultai kartes ekskursijai ir ieteicams norādīt saiti — tādējādi lietotāji varēs palaist ekskursiju pilnekrāna režīmā."
       },
       "tab5": {
         "title": "Publicē",
@@ -548,6 +564,22 @@ define({
       "panel4": "Vairs nerādīt brīdinājumus par šo stāstu",
       "mystories": "Mani stāsti",
       "btnSave": "Saglabāt"
+    },
+    "bannerNotification": {
+      "learnMore": "Uzzināt vairāk",
+      "close": "Aizvērt",
+      "dontShowAgain": "Nerādīt šo ziņojumu vēlreiz"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Svarīgs ziņojums par tīmekļa drošību un Kartes stāstiem (Story Maps)",
+      "s1h1": "Esri uzlabo Kartes stāstu drošību",
+      "s1p1": "Jūsu Kartes stāsta  vienības ir pieejamas tiešsaistē tīmeklī, un tīmekļa kopiena pastāvīgi veido un ievieš uzlabotus drošības pasākumus. Protokols HTTPS, kas gādā par drošu savienojumu ar saturu internetā, ir populārākais veids, kā piekļūt tīmekļa saturam. Vairākumā mūsdienīgu pārlūku tagad tiek rādīts brīdinājuma ziņojums, ja vietnē tiek izmantots protokols HTTP, nevis HTTPS. Šī jaunā standarta dēļ jūsu Kartes stāstu vienībās būs jāizmanto protokols HTTPS, sākot ar ArcGIS Online 2018. gada jūnija atjauninājumu.",
+      "s1p2": "Tas nozīmē, ka Kartes stāstu vienībai un visam tās saturam (tostarp attēliem, slāņiem, iegultām lietotnēm un tīmekļa vietnēm) ir jāpiekļūst, izmantojot saites, kas sākas ar HTTPS, nevis HTTP. Tādējādi lasītājiem tiks nodrošināta vislabākā pieredze, jo vairākumā tīmekļa pārlūku lietotājs tiks informēts par to, ka stāsti ir droši.",
+      "s2h1": "Kas man jādara?",
+      "s2p1": "Esri strādā pie tā, lai Kartes stāstu autoriem un lasītājiem pāreja būtu vienkārša. Pašlaik Kartes stāsta veidotājos un sadaļā Mani stāsti ir pieejami rīki, kas palīdz stāstos atrast nedrošu saturu (HTTP), kā arī ir pieejami ieteikumi šo problēmu novēršanai. Pārbaudiet, vai jūsu stāstos nav nedroša satura, un jauniniet uz protokolu HTTPS līdz 2018. gada jūnijam.",
+      "action1": "Aizvērt",
+      "action2": "Pārbaudīt manus stāstus tūlīt",
+      "action3": "Uzziniet vairāk"
     }
   }
 });

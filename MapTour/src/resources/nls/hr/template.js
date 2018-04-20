@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Ovo nije dostupno u načinu automatske reprodukcije",
       "autoplayLabel": "Način automatske reprodukcije",
       "autoplayExplain1": "Način automatske reprodukcije napredovat će kroz vašu priču u redovitim intervalima. To je idealno za kiosk ili javno prikazani zaslon, no budite svjesni da će se u drugim situacijama priča možda teže čitati. Ova značajka nije podržana na malim zaslonima.",
-      "autoplayExplain2": "Kada je ovaj način rada aktivan, postoje kontrole za reprodukciju/pauziranje priče i podešavanje brzine navigacije."
+      "autoplayExplain2": "Kada je ovaj način rada aktivan, postoje kontrole za reprodukciju/pauziranje priče i podešavanje brzine navigacije.",
+      "takeTourText": "Idi na obilazak",
+      "backToStart": "Natrag na početak"
     },
     "builderHTML": {
       "panelHeader": "KONFIGURACIJA PRIČE",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Obuhvat",
       "settingsTabZoom": "Razina uvećanja",
       "settingsLayoutExplain": "Odaberite prikaz koji želite.",
-      "settingsLayoutProfessional": "Izgled s trostrukom pločom",
-      "settingsLayoutModern": "Integrirani izgled",
+      "settingsLayoutProfessional": "Trostruka ploča",
+      "settingsLayoutModern": "Integrirano",
+      "settingsLayoutSidePanel": "Bočna ploča",
       "settingsLayoutSelected": "Odabrani izgled",
-      "settingsLayoutSelect": "Odaberi ovaj izgled",
+      "settingsLayoutNew": "Novo!",
+      "settingsLayoutSelect": "Odaberi",
       "settingsLayoutNote": "Imajte na umu da na točkama koje imaju videozapis, plakat će se uvijek prikazivati ispod videozapisa čak i ako ta opcija nije označena.",
       "settingsLayoutLocBtn": "Prikaži gumb „Lociraj”",
       "settingsLayoutLocBtnHelp": "Podržano na većini preglednika. Pojavljuje se samo kada se karti s pričom pristupa preko HTTPS-a. Ne pojavljuje se ako je priča umetnuta.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Uredite obuhvat",
       "settingsExtentApplyBtn": "Pretpregled Map Toura",
       "settingsExtentUseMainMap": "Upotrijebi obuhvat Map Toura",
-      "settingsZoomExplain": "Postavite uvećanje za točke priče koje slijede nakon uvoda (nije obavezno).",
+      "settingsZoomExplain": "Postavite uvećanje za točke priče (neobavezno).",
       "settingsLabelZoom": "Mjerilo/razina",
       "settingsZoomFirstValue": "Nema",
       "settingsFieldError": "Odaberi polje na svakom popisu",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Neuspješno stvaranje. Pokušajte ponovno",
       "tabError": "Provjerite ima li pogrešaka u svim karticama",
       "introRecordBtn": "Uvod",
-      "introRecordActivate": "Upotrijebite početnu točku kao uvod (ne pojavljuje se u rotirajućem prikazu)"
+      "introRecordActivate": "Upotrijebite početnu točku kao uvod (ne pojavljuje se u rotirajućem prikazu)",
+      "coverRecordActivate": "Upotrijebi prvu točku kao naslovnu stranicu",
+      "coverBuilder": "Konfiguracija naslovne stranice",
+      "cover": "Naslovnica",
+      "showCover": "Prikaži naslovnicu",
+      "editCover": "Uredi naslovnicu",
+      "coverNoVideo": "Videozapis nije podržan za medij na naslovnici. Odaberite sliku.",
+      "coverPreview": "Da biste vidjeli naslovnicu, spremite priču, a zatim je prikažite pomoću gumba Podijeli."
     },
     "addPopupJS": {
       "uploadingPicture": "Učitavanje slike",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Uredi me!",
       "templateTitle": "Postavi naslov predloška",
-      "templateSubtitle": "Postavi podnaslov predloška"
+      "templateSubtitle": "Postavi podnaslov predloška",
+      "edit": "Uredi"
     },
     "crossFaderJS": {
       "setPicture": "Postavi naslov slike",
@@ -306,9 +318,9 @@ define({
       "csv": "Referencirano u CSV-u",
       "advanced": "Napredne opcije",
       "advancedScratchLbl": "Pokreni novi Tour",
-      "advancedScratchTip": "Stvorite prazni Tour koji ćete moći popuniti ručno s pomoću čarobnjaka.",
+      "advancedScratchTip": "Stvorite prazan obilazak kojem možete dodati točke obilaska. Vaši mediji već moraju biti na internetu. Ta opcija ne podržava učitavanje vlastitih slika.",
       "advancedCSVLbl": "Uvezi podatke o Touru iz CSV datoteke",
-      "advancedCSVTip": "Uvezite sadržaj Toura iz CSV datoteke.",
+      "advancedCSVTip": "Uvezite sadržaj obilaska s CSV datoteke koja referencira vaše medije na internetu. Ta opcije ne podržava učitavanje vlastitih slika.",
       "advancedCommonTip": "Slike i videozapisi već moraju biti na mreži.",
       "select": "Odaberite",
       "locUse": "Upotrijebi geolokaciju slike",
@@ -382,7 +394,7 @@ define({
       "title": "Odaberite i pronađite svoje slike/videozapise",
       "header": "Kliknite ili dodirnite slike koje želite uvesti da biste ih pronašli.",
       "headerMore": "Zašto moje slike/videozapisi nisu geolocirani?",
-      "headerExplain": "Ako vaše slike imaju valjanu geolokaciju, automatski će se locirati na karti i navesti u drugoj kartici.<br /><br />Prema zadanim postavkama Picasa i Flickr ne pohranjuju EXIF metapodatke geolokacije kada uvozite slike. Provjerite postavke privatnosti za Picasa/Flickr kako biste omogućili uvoz geolokacija slika i upotrebu od strane vanjske aplikacije. Možda ćete morati ponovno uvesti postojeće slike u Flickr/Picasa da bi se upotrijebila EXIF geolokacija.<br /><br />Na Facebooku morate doći na svaku sliku, kliknuti na Uredi i odabrati lokaciju.",
+      "headerExplain": "Ako vaše slike imaju valjanu geolokoaciju, automatski će se locirati na karti i navesti u drugoj kartici.<br /><br />Prema zadanim postavkama Picasa i Flickr ne pohranjuju EXIF metapodatke geolokacije kada uvozite slike. Provjerite postavke privatnosti za Picasa/Flickr kako biste omogućili uvoz geolokacija slika i upotrebu od strane vanjske aplikacije. Možda ćete morati ponovno uvesti postojeće slike u Flickr/Picasa da bi se upotrijebila EXIF geolokacija.",
       "leftPanelTab1": "Za lociranje",
       "leftPanelTab2": "Locirano",
       "clickOrTap": "kliknite ili dodirnite kartu da biste locirali",
@@ -404,7 +416,7 @@ define({
       "header2": "Pomoćnik će vam pomoći izraditi Map Tour od medija koji su već pohranjeni na mreži ili će ih uvesti u vaš račun ArcGIS Online za organizacije.",
       "title1": "Već su na mreži",
       "title2": "Trebam učitati slike",
-      "hostedFSTooltip": "Učitajte slike i pohranite ih sa slojem Map Tour (ne podržava videozapise)",
+      "hostedFSTooltip": "Učitajte slike i pohranite ih u obilazak (ne podržava videozapise).",
       "hostedFsNA": "Morate biti objavljivač ili u drugoj ulozi s privilegijama za objavljivanje hostiranih slojeva geoobjekata. Obratite se administratoru za ArcGIS.",
       "hostedFsNA2": "Dostupno samo s pretplatom na ArcGIS Online. <a href='%LINK%'>Prijavite se za besplatno probno razdoblje</a>",
       "footer1": "Kad ste gotovi, nemojte zaboraviti podijeliti svoj Map Tour sa svojom publikom putem stranice stavke aplikacije.",
@@ -420,19 +432,23 @@ define({
       "close": "Zatvori",
       "tab1": {
         "title": "Uvod",
+        "moreInfo": "Za više informacija",
+        "infoSites": "Posjetite odjeljak <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Map Tour</a> na web-mjestu <a href='https://storymaps.arcgis.com' target='_blank'>Esri Story Maps.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Često postavljana pitanja za Map Tour.</a>",
+        "myStories": "Možete upravljati svojim Map Tours i provjeriti imaju li pogreške u <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Mojim pričama</a> na web-mjestu.",
         "div1": "Predložak Map Tour osmišljen je za predstavljanje geografskih informacija kada postoji fotografski ili medijski element priče koju želite ispričati.",
         "div2": "Predloškom se daje privlačna web-aplikacija jednostavna za upotrebu koja vam omogućuje da predstavite mali niz mjesta na karti u brojčanom nizu koje korisnici mogu pregledavati. Predložak je osmišljen za upotrebu u svim web-preglednicima na bilo kojem uređaju, uključujući pametne telefone i tablete. <br /><br />",
-        "div42": "Da biste vidjeli obilaske po karti koje stvaraju drugi korisnici, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>posjetite galeriju</a> na <a href='http://storymaps.arcgis.com/' target='_blank'>web-mjestu Story Maps</a>. Možete nas i pratiti na Twitteru na <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Voljeli bismo da nam se javite! Neovisno o tome imate li pitanje, želite zatražiti novu značajku ili mislite da ste pronašli pogrešku, posjetite nas na <a href='http://links.esri.com/storymaps/forum' target='_blank'>Forumu za korisnike Story Mapsa</a>."
+        "div42": "Da biste vidjeli primjere obilazaka po karti koje drugi korisnici stvaraju, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>posjetite galeriju</a> na web-mjestu <a href='https://storymaps.arcgis.com/' target='_blank'>Story Maps</a>. Možete nas pratiti i na Twitteru na <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "Rado bismo vas čuli! Recite nam o problemima i novim značajkama koje vam trebaju tako da posjetite forum Story Maps na <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonetu.</a>"
       },
       "tab2": {
         "title": "Podaci",
-        "div1": "Glavni element koji treba razmotriti pri izradi Map Toura jest odabir gdje ćete pohraniti slike. Map Tour može upotrijebiti slike pohranjene na velikim servisima za dijeljenje fotografija, s bilo kojeg poslužitelja ili kao privitke usluge geoobjekata.",
+        "div1": "Glavni element koji treba razmotriti pri izradi Map Toura jest odabir gdje ćete pohraniti slike. Map Tour može upotrijebiti slike pohranjene na servisima za dijeljenje fotografija, s bilo kojeg poslužitelja ili slike koje učitate s diska.",
         "div1a": "Pojedinosti o podržanim formatima slika i videozapisima potražite u posljednjem odjeljku ove kartice.",
         "div2": "Interaktivni sastavljač daje vam dvije opcije za rukovanje slikama u Map Touru:",
-        "div3": "<ul><li>Možete upotrijebiti <b>fotografije koje su već na mreži</b>, kao što su slike pohranjene na web-mjestu za dijeljenje fotografija poput servisa Flickr, ili slike pohranjene na vašem web-mjestu. Te će se slike referencirati u vašem  Map Touru putem njihovih URL-ova.</li><li>Možete i <b>učitati fotografije sa svojeg računala</b> izravno u  Map Tour. Za ovu opciju slanja morate imati račun za organizacije za ArcGIS i privilegija izdavača ili administratora jer se automatski stvara hostirana usluga geoobjekata za vas u kojoj se pohranjuju vaše fotografije kao privitci.</li></ul>",
+        "div3": "<ul><li>Možete upotrijebiti <b>fotografije koje su već na mreži</b>, kao što su slike pohranjene na web-mjestu za dijeljenje fotografija poput servisa Flickr, ili slike pohranjene na vašem web-mjestu. Te će se slike referencirati u vašem Map Touru putem njihovih URL-ova.</li><li>Također možete <b>učitati fotografije sa svojeg računala</b> izravno u Map Tour. Za ovu opciju učitavanja morate imate pretplatu za ArcGIS i privilegije izdavača ili administratora jer se automatski stvara hostirana usluga za vas u kojoj se vaše fotografije pohranjuju kao privitci.</li></ul>",
         "div4": "Glavni slučajevi kad se upotrebljava:",
-        "div4b": "<b>Vaše fotografije još nisu hostirane</b> i imate račun ArcGIS za organizacije: upotreba hostirane usluge geoobjekata najbolji vam je izbor. Kao javni servis za dijeljenje fotografija optimizirat ćemo vam slike kako bismo stvorili slike koje se brzo učitavaju i imat ćete pristup svim mogućnostima za administraciju i upravljanje podacima platforme ArcGIS.",
+        "div4b": "<b>Vaše fotografije još nisu hostirane</b> i imate pretplatu na ArcGIS: upotreba hostirane usluge geoobjekata najbolji vam je izbor. Kao javni servis za dijeljenje fotografija optimizirat ćemo vam slike kako bismo stvorili slike koje se brzo učitavaju i imat ćete pristup svim mogućnostima za administraciju i upravljanje podacima platforme ArcGIS.",
         "div5": "<b>Niste član organizacije</b>: prvo morate učitati slike na web-mjesto za dijeljenje fotografija ili na vlastiti web-poslužitelj. Sastavljač će vam pomoći upotrijebiti ove slike koje će se nastaviti hostirati na izvornoj lokaciji.",
         "div6": "<b>Želite ponovno upotrijebiti postojeću uslugu geoobjekata</b> koja pohranjuje vaše slike i privitke ili koja referencira vanjske slike: potražite odjeljak s pojedinostima u nastavku.",
         "div7": "<b>Korisnik ste prethodne verzije</b> predloška Map Toura i već imate CSV koji referencira vaše slike i sličice: moći ćete ga uvesti i pročistiti svoje podatke. Sastavljač podupire samo CSV-ove koji upotrebljavaju polja geografske širine/dužine. CSV-ovi koji se temelje na adresama mogu se nastaviti upotrebljavati putem web-karte (vidi odjeljak u nastavku).",
@@ -441,10 +457,10 @@ define({
         "learn": "saznaj više",
         "div9": "Operacija uvoza referencira slike koje su već hostirane tako da pohranjuje njihove URL-ove u kolekciji geoobjekata web-karte. Slike nisu pohranjene na programu ArcGIS Online. Ako se hostiranim slikama ne može pristupiti, neće biti dostupne u Map Touru i vidjet ćete obavijest 'Slika nije dostupna'. Ovisno o pružatelju usluga za fotografije, Map Tour možda neće uvesti naziv, opis i lokaciju slika. Ovi su atributi pohranjeni u web-karti i sva uređivanja usluga na mreži neće se odraziti u Map Touru.",
         "div10": "Pohranjivanje slika na web-poslužitelju",
-        "div11": "Ako odaberete sami hostirati slike, morat ćete ručno stvoriti sličice svojih slika. Korištenjem slika s punom razlučivošću za sličice, rezultirati će lošijim performansama. Iz tog razloga preporučujemo da upotrebljavate servise za dijeljenje fotografija na mreži ili uslugu geoobjekata koja će to raditi za vas.",
-        "div12": "Upotreba postojeće usluge geoobjekata ili Shapefile",
-        "div13": "Bilo koja usluga geoobjekata ili shapefile može se upotrijebiti kao izvor podataka za Map Tour. Samo je morate dodati kao sloj u web-kartu putem preglednika karte na arcgis.com. Ako aplikacija pronađe očekivane atribute u vašem sloju, sve će funkcionalnosti sastavljača biti dostupne.",
-        "div14": "Moguće su vrijednosti za naziv polja (velika i mala slova):",
+        "div11": "Ako odaberete sami hostirati slike, morat ćete ručno stvoriti sličice svojih slika. Upotrebom slika s punom razlučivošću za sličice, rezultirati će lošijim performansama. Pogledajte <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>Često postavljana pitanja</a> za savjete o određivanju veličine slika ako ćete im pristupati na internetu izravno putem URL-ova.",
+        "div12": "Upotreba postojećih GIS podataka",
+        "div13": "Bilo koja usluga geoobjekata, CSV datoteka ili shapefile koji sadrži točke može se upotrijebiti kao izvor podataka za Map Tour ako sadrži skup polja koje aplikacija očekuje. Morate je/ga dodati kao sloj na ArcGIS web-kartu i zatim podijeliti kartu stvaranjem Map Toura.",
+        "div14": "Podržane vrijednosti za naziv polja jesu (velika i mala slova):",
         "div151": "Naziv",
         "div152": "Opis",
         "div153": "Slika",
@@ -480,19 +496,19 @@ define({
         "div0a": "Preglednik Map Toura podržava IE8+. Interaktivni sastavljač podržava IE9+. Aktivno smo ga ispitali u svim glavnim preglednicima, ali ako doživite poteškoće, preporučujemo koristiti Chrome.",
         "div0b": "Ako imate poteškoća, obavijestite nas. U međuvremenu, ako izradite Map Tour s pomoću predloška CSV, umanjit ćete interakciju sa sučeljem sastavljača.",
         "div1": "Slike",
-        "div2": "Preporučujemo vodoravnu orijentaciju fotografija, a ne okomito. Najbolje će odgovarati fotografije omjera 4:3. Slike okomitog usmjerenja mogu se upotrebljavati, ali bi na manjim zaslonima kao što je iPad većinu slike mogao prekriti natpis (tekst zauzima više prostora kada se prikaže na visokom području u usporedbi sa širokim područjem). Iako se u jednom Map Touru mogu upotrebljavati slike različitih veličina, oblika i usmjerenja, preporučujemo upotrebu jedinstvene veličine i oblika za sve slike. Na taj način korisnika neće omesti slike različitih veličina tijekom obilaska.",
+        "div2": "Iako se u jednom Map Touru mogu upotrebljavati slike različitih veličina, oblika i usmjerenja, preporučujemo vodoravno usmjerenje fotografija, a ne okomito. Najbolje će odgovarati slike omjera 4:3. U izgledima s trostrukom pločom i integriranim izgledima u kojima se natpis preklapa preko slike upotreba slika okomitog usmjerenja može dovesti do toga da je većina slike skrivena natpisom. U izgledima s trostrukom pločom i integriranim izgledima preporučujemo upotrebu jedinstvene veličine i oblika za sve slike. Na taj način korisnika neće omesti slike različitih veličina tijekom obilaska.",
         "div2a": "Preporučujemo maksimalnu veličinu slike od 1000 px širine x 750 px visine za glavnu sliku i 140 x 93 px za sličice.",
         "div3": "Formatiranje teksta natpisa s pomoću HTML oznaka",
-        "div4": "Zaglavlje i naslov/natpis slike mogu uključivati HTML oznake za definiranje formatiranja i poveznica. Na primjer, ovim se kodom dodaje žuta poveznica:",
+        "div4": "Možete unijeti HTML oznake na natpise da biste definirali formatiranje i poveznice. Primjerice, ove oznake dodaju zelenu hipervezu:",
         "div4a": "Napišite dobar podnapis za svoj obilazak",
-        "div4b": "Uložite vrijeme kako biste napisali zanimljive podnapise za obilazak. Podnapisi su dobar način za privlačenje ljudi i za obavještavanje o tome što mogu saznati u obilasku. Osim toga, podnapisima možete informirati svoju publiku o državi/županiji u kojoj se nalazi obilazak. Nemojte pretpostaviti da ljudi znaju primjerice gdje se nalazi grad u kojem se odvija vaš obilazak. Vaš podnapis također se može formatirati s pomoću HTML oznaka, npr. tako da uključuje poveznice. Pripazite ipak da podnapis ne bude predug. Možda neće potpuno stati na prozore manjih preglednika ili na iPad pa će biti izrezani. Ako ne možete smisliti dobar podnapis, ostavite polje prazno.",
+        "div4b": "Uložite vrijeme kako biste napisali zanimljive podnapise za obilazak. Podnapisi su dobar način za privlačenje ljudi i za obavještavanje o tome što mogu saznati u obilasku. Osim toga, podnapisima možete informirati svoju publiku o državi ili županiji u kojoj se nalazi obilazak. Nemojte pretpostaviti da ljudi znaju primjerice gdje se nalazi grad u kojem se odvija vaš obilazak. Pripazite ipak da podnapis ne bude predug. Ako ne možete smisliti dobar podnapis, ostavite ga praznim. U izgledu bočne ploče podnapis koji se pojavljuje na naslovnoj stranici jest natpis za prvu točku u obilasku (ako upotrebljavate opciju u dijaloškom okviru Organiziraj da biste upotrijebili sadržaj prve točke kao naslovnu stranicu).",
         "div5": "Dodatni slojevi",
-        "div6": "Možete umetnuti dodatne slojeve da prikažu kontekst Map Toura. Ti slojevi mogu sadržavati ostale geoobjekte koje želite prikazati na karti uz točke obilaska, kao što su studijska područja, ruta za šetanje ili vožnju koja povezuje vaše točke obilaska itd. Predložak za Map Tour prikazat će dodatne slojeve s pomoću simbologije koju odredite na web-karti, ali skočni prozori nisu dostupni.",
+        "div6": "Možete umetnuti dodatne slojeve da prikažu kontekst Map Toura. Ti slojevi mogu sadržavati ostale geoobjekte koje želite prikazati na karti uz točke obilaska, kao što su radno područje, ruta za šetanje ili vožnju koja povezuje vaše točke obilaska itd. Predložak za Map Tour prikazat će dodatne slojeve s pomoću simbologije koju odredite na web-karti, ali skočni prozori nisu dostupni. Da biste dodali dodatne slojeve na obilazak, spremite ono što ste napravili i zatvorite sastavljač Map Tour. Zatim otvorite web-kartu koja se upotrebljava u vašem obilasku. To možete pronaći u Mojem sadržaju ArcGIS ili u odjeljku Moje priče na web-mjestu Story Maps.",
         "div7": "Neka obilazak bude kratak i sladak",
         "div8": "Postoji ograničenje od 99 točaka po obilasku. Naravno, većina Map Tourova bit će mnogo kraća. Ne očekujte od publike da želi proći kroz previše točaka obilaska. Vama je možda vaša tema iznimno zanimljiva, ali nemojte pretpostaviti da će i njima biti!",
         "div10": "Ugradbeni način",
-        "div11": "Ako želite ugraditi svoj predložak u neko drugo web-mjesto s pomoću iFramea, umetanjem dodatnog parametra „&embed” na kraju URL-a, izgubit će se zaglavlje. Taj se način također može postaviti u verziji za preuzimanje kroz konfiguracijsku datoteku.",
-        "div12": "Izbjegavajte upotrebu uskog iFramea zbog kojeg će se obilazak po karti prebaciti na izgled za mali zaslon osjetljiv na dodir. Tako će se olakšati upotreba. Kad je obilazak po karti ugrađen, uvijek preporučujemo da svejedno umetnete još i poveznicu pored ugrađenog obilaska te ga tako korisnici mogu pokrenuti na punom zaslonu."
+        "div11": "Ako želite ugraditi svoj predložak u neko drugo web-mjesto s pomoću iFramea, umetanjem dodatnog parametra \"&embed\" na kraju URL-a izgubit će se zaglavlje.",
+        "div12": "Izbjegavajte upotrebu uskog iFramea zbog kojeg će se obilazak po karti prebaciti na izgled za mali zaslon osjetljiv na dodir. Da biste olakšali upotrebu, kad je obilazak po karti ugrađen, uvijek preporučujemo da svejedno umetnete još i poveznicu pored ugrađenog obilaska te ga tako korisnici mogu pokrenuti na punom zaslonu."
       },
       "tab5": {
         "title": "Objavljivanje",
@@ -548,6 +564,22 @@ define({
       "panel4": "Ne upozoravaj me ponovno za ovu priču",
       "mystories": "Moje priče",
       "btnSave": "Spremi"
+    },
+    "bannerNotification": {
+      "learnMore": "Saznaj više",
+      "close": "Zatvori",
+      "dontShowAgain": "Nemoj ponovno prikazati ovu poruku"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Važna poruka o internetskoj sigurnosti i Story Mapsu",
+      "s1h1": "Esri unaprjeđuje sigurnost Story Mapsa",
+      "s1p1": "Vaš Story Maps koji se prikazuje uživo na internetu i internetska zajednica uvijek rade na tome da uspostave i provedu bolju sigurnost. HTTPS, koji osigurava sigurnu vezu za sadržaj koji se prenosi preko interneta, postaje očekivani način pristupa web sadržajima. Najsuvremeniji preglednici sada prikazuju poruke upozorenja kad se upotrebljava HTTP umjesto HTTPS. Zbog tog novog standarda, od ažuriranja ArcGIS Onlinea u lipnju 2018. vaš Story Maps trebat će upotrebljavati HTTPS.",
+      "s1p2": "Praktično govoreći, to znači da se karti s pričom i svom njezinom sadržaju (uključujući slike, slojeve, ugrađene appove i web-mjesta) mora pristupiti pomoću poveznica koje počinju HTTPS-om umjesto HTTP-om. Time se osigurava najbolje iskustvo za čitatelje jer će većina web-preglednika naznačiti da su vaše priče sigurne.",
+      "s2h1": "Što trebam napraviti?",
+      "s2p1": "Esri radi na tome da to bude lak prijelaz za autore i čitatelje Story Mapa. Alati su sada dostupni u sastavljaču Story Map i u Mojim pričama pomoću kojih ćete pronaći nesiguran sadržaj (HTTP) u vašim pričama i koji će vam preporučiti kako to riješiti. Pregledajte svoje priče za nesiguran sadržaj i nadogradite na HTTPS prije lipnja 2018.",
+      "action1": "Zatvori",
+      "action2": "Sada pregledaj moje priče",
+      "action3": "Saznajte više"
     }
   }
 });

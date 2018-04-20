@@ -117,6 +117,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 							// Intro record
 							if ( app.data.getCurrentIndex() === null && app.data.getNbPoints() >= 1 ) {
 								nextIndex = 0;
+								if( $("body").hasClass("side-panel") ) {
+									$("#splashPanel").animate({
+										bottom: "2000px"
+									}, 900);
+								}
 							}
 
 							// Delay the event so Autoplay has received the updated index before the event is fired
@@ -141,6 +146,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 					});
 				}
 
+				MapTourHelper.loadCustomIcon();
+
 				addMapTourBusinessToEsriGraphic();
 
 				topic.subscribe("CORE_UPDATE_EXTENT", this.setMapExtent);
@@ -152,6 +159,12 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// Global handler for not found image
 				window.mediaNotFoundHandler = function(that){
 					that.src = MapTourHelper.getNotFoundMedia();
+
+					if($("body").hasClass("side-panel")) {
+						setTimeout(function() {
+							$(that).css("object-fit", "contain");
+						}, 500);
+					}
 					// Avoid infinite loop if something is wrong with the not found image
 					that.onerror = '';
 				};
@@ -173,7 +186,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					$(document).bind(
 						'touchmove',
 						function(e) {
-							if( ! $(e.target).parents('#helpPopup, #placardContainer, #introPanel, #infoPanel, #popupViewGeoTag').length && ! $(e.target).hasClass('subtitle') )
+							if( ! $(e.target).parents('#helpPopup, #placardContainer, #introPanel, #infoPanel, #popupViewGeoTag, #mobile-scroll-story-content').length && ! $(e.target).hasClass('subtitle') )
 								e.preventDefault();
 						}
 					);
@@ -333,6 +346,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 					MapTourHelper.isModernLayout()
 				);
 
+				if ( MapTourHelper.isPanelsLayout() ) {
+					$("#leftPanel").append($('#mapPanel'));
+					$("#leftPanel").append($('#placardContainer'));
+				}
+
 				// FeatureLayer
 				if ( app.data.sourceIsFS() ) {
 					// Give full editing privileges for hosted FS
@@ -480,10 +498,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 					if( (configOptions.firstRecordAsIntro || WebApplicationData.getFirstRecordAsIntro()) && result.graphics.length > 1 ) {
 						app.data.setFirstPointAsIntroRecord();
 
-						if( forceStartIndex )
+						if( forceStartIndex ) {
 							app.data.setCurrentPointByIndex(forceStartIndex - 1);
-						else
+							if( $("body").hasClass("side-panel") ) {
+								$("#splashPanel").css("bottom", "2000px");
+							}
+						} else {
 							app.data.setCurrentPointByIndex(null);
+						}
 
 						if( app.isInBuilderMode )
 							$("#builderPanel3").toggle(app.data.hasIntroRecord());
@@ -606,6 +628,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 				if (!app.data.sourceIsNotFSAttachments()) {
 					$("#importPopupButton").attr("disabled", "disabled");
 					$("#importPopupButton").attr("title", i18n.viewer.builderHTML.buttonImportDisabled);
+					$("#importPopupButton2").attr("disabled", "disabled");
+					$("#importPopupButton2").addClass("disabled");
+					$("#importPopupButton2").attr("title", i18n.viewer.builderHTML.buttonImportDisabled);
 				}
 
 				// If there is data, the app is displayed after the first point is loaded
@@ -620,6 +645,74 @@ define(["storymaps/maptour/core/WebApplicationData",
 				if ( app.autoplay ) {
 					app.header.enableAutoplay();
 				}
+
+				if( ! $("body").hasClass("builder-mode") && $("body").hasClass("side-panel") ) {
+					if( app.data.hasIntroRecord() ) {
+						var img = document.createElement('img');
+						var newUrl = app.data.getIntroData().attributes.getURL();
+						if( app.data.getIntroData().attributes.isVideo() || ! MapTourHelper.mediaIsSupportedImg(app.data.getIntroData().attributes.getURL() ))
+							img.src = MapTourHelper.getNotFoundMedia();
+						else {
+							img.src = app.data.getIntroData().attributes.getURL();
+
+							if(app.data.getIntroData().attributes.getURL().indexOf("'") > -1) {
+								// Check for apostrophe
+								var aposIndices = [];
+								for(var i = 0; i < app.data.getIntroData().attributes.getURL().length; i++) {
+										if (app.data.getIntroData().attributes.getURL()[i] === "'") aposIndices.push(i);
+								}
+								if(aposIndices.length) {
+									$.each(aposIndices, function(i, index) {
+										newUrl = [app.data.getIntroData().attributes.getURL().slice(0, index), '\\', app.data.getIntroData().attributes.getURL().slice(index)].join('');
+									});
+								}
+							}
+						}
+						img.onload = function() {
+							$("#splashPanel").css("background-image", "url(" + newUrl + ")");
+							if(app.data.getIntroData().attributes.getName()){
+								$("#splashTitle").html(app.data.getIntroData().attributes.getName());
+								$("#splashText").css("max-height", $(window).height() - 375 - (0.1 * $(window).height()));
+							} else {
+								$("#splashText").hide();
+							}
+							if(app.data.getIntroData().attributes.getDescription()){
+								$("#splashSubtitle").html(app.data.getIntroData().attributes.getDescription());
+							}
+
+							$("#takeTourText").text(i18n.viewer.desktopHTML.takeTourText);
+							$("#takeTour").on("click", function() {
+								$("#splashPanel").animate({
+									bottom: "2000px"
+								}, 900);
+								topic.publish("SELECT_BY_SCROLL", 0);
+							});
+							if(app.data.getCurrentIndex() == null) {
+								if( ! $("body").hasClass("mobile-layout-scroll") ) {
+									$("#splashPanel").show();
+									setTimeout(function() {
+										var skipZoom = true;
+										selectedPointChange_afterStep2(skipZoom);
+									}, 50);
+								}
+							}
+						};
+						$("#headerDesktop .title").css("cursor", "pointer");
+						$("#headerDesktop .title").on("click", function() {
+							$("#splashPanel").show();
+							$("#splashPanel").animate({
+								bottom: "-64px"
+							}, 700);
+							topic.publish("SELECT_BY_SCROLL", 0);
+						});
+					}
+					else {
+						$("#headerDesktop .title").css("cursor", "pointer");
+						$("#headerDesktop .title").on("click", function() {
+							topic.publish("SELECT_BY_SCROLL", 0);
+						});
+					}
+				}
 			};
 
 			function initUI()
@@ -628,15 +721,24 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var tourPoints = app.data.getTourPoints();
 
 				// Initialize desktop carousel
-				app.desktopCarousel.init(tourPoints, appColors[2], appColors[1]);
-				topic.subscribe("CAROUSEL_CLICK", loadPictureAtIndex);
+				if( ! $("body").hasClass("side-panel") || app.isInBuilderMode ) {
+					app.desktopCarousel.init(tourPoints, appColors[2], appColors[1]);
+					topic.subscribe("CAROUSEL_CLICK", loadPictureAtIndex);
+				}
 
 				// Initialize mobile UI on IE > 8
-				if (has("ie") === undefined || has("ie") > 8) {
-					app.mobileCarousel.init(tourPoints, appColors[2]);
-					topic.subscribe("CAROUSEL_SWIPE", loadPictureAtIndex);
+				if ( has("ie") === undefined || has("ie") > 8) {
+					if( !$("body").hasClass("side-panel") ) {
+						app.mobileCarousel.init(tourPoints, appColors[2]);
+						topic.subscribe("CAROUSEL_SWIPE", loadPictureAtIndex);
+					}
+
+					topic.subscribe("SELECT_BY_SCROLL", loadPictureAtIndex);
+
 					app.mobileListView.init(tourPoints, appColors[2]);
-					app.mobileInfoView.init(app.data.getTourPoints(), appColors[2]);
+					if( ! $("body").hasClass("side-panel") && ! app.isInBuilderMode ) {
+						app.mobileInfoView.init(app.data.getTourPoints(), appColors[2]);
+					}
 					topic.subscribe("OPEN_MOBILE_INFO", showMobileViewInfo);
 					topic.subscribe("MOBILE_INFO_SWIPE", loadPictureAtIndex);
 				}
@@ -694,8 +796,44 @@ define(["storymaps/maptour/core/WebApplicationData",
 				else
 					$("#footerMobile").hide();
 
-				app.desktopPicturePanel.resize(cfg.width - APPCFG.MINIMUM_MAP_WIDTH, cfg.height);
-				app.desktopCarousel.resize();
+				app.desktopPicturePanel.resize(cfg.width, cfg.height);
+				if ( !MapTourHelper.isPanelsLayout() ) {
+					app.desktopCarousel.resize();
+				} else {
+					$("#leftPanel").width(cfg.width * (1/3));
+					$("#mapPanel").width(cfg.width * (1/3));
+					$("#placardContainer").width(cfg.width * (1/3));
+					$("#picturePanel").width(cfg.width * (2/3));
+					$("#picturePanel").css('left', $("#leftPanel").width());
+
+					if ('objectFit' in document.documentElement.style === true) {
+						$(".side-panel .member-image img").css("object-fit", "cover");
+					} else {
+						$(".side-panel .member-image img").css("opacity", "0");
+						$(".side-panel .member-image").css({
+							backgroundPositionX: 'center',
+							backgroundPositionY: 'center',
+							backgroundRepeat: 'no-repeat',
+							backgroundSize: 'cover',
+							backgroundImage: app.data.getCurrentAttributes() && app.data.getCurrentAttributes().getURL() ? 'url(' + app.data.getCurrentAttributes().getURL() + ');' : 'url("");'
+						});
+					}
+					$(".member-image.current").css('left', 0);
+					setTimeout(function() {
+						var descriptionHeight = $("#placard-bg").height() - $(".name").height();
+						$(".description").height(descriptionHeight - 70);
+					}, 0);
+					if(!$("body").hasClass("mobile-layout-scroll")) {
+						$("#leftPanel").height(cfg.height);
+					} else {
+						$("#leftPanel").height("35%");
+					}
+					if( app.data.hasIntroRecord() && ! cfg.isMobileView && ! app.isInBuilderMode ) {
+						$("#splashPanel").show();
+					} else if( app.data.hasIntroRecord() && cfg.isMobileView ) {
+						$("#splashPanel").hide();
+					}
+				}
 
 				if( app.mapTips ) {
 					if ( cfg.isMobileView )
@@ -715,6 +853,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 						left: "25%",
 						bottom: 160
 					});
+				}
+
+				if ( cfg.isMobileView && $("body").hasClass("mobile-layout-scroll") && ! $(".tour-point-content").length && !app.isLoading) {
+					app.mobileListView.update(app.data.getTourPoints());
 				}
 
 				// Stop autoplay in mobile view
@@ -838,14 +980,19 @@ define(["storymaps/maptour/core/WebApplicationData",
 			{
 				// Hide tooltip after click on the map in view mode
 				if( ! e.graphic && ! app.isInBuilderMode )
-					app.mapTips.hide();
+					app.mapTips && app.mapTips.hide();
+				if(! e.graphic && ! app.isInBuilderMode && $("body").hasClass("side-panel")) {
+					_this.selected.hidden = true;
+					app.mapTips && app.mapTips.clean(true);
+				}
 			}
 
 			function picLayer_onClick(event)
 			{
-				if( event.graphic != app.data.getCurrentGraphic() ) {
+				if( event.graphic != app.data.getCurrentGraphic() || app.data.getCurrentGraphic().hidden) {
 					// IE fire an extra event after the renderer is updated that we need to filter
 					app.filterMouseHoverEvent = true;
+
 
 					selectedPointChange_before();
 					app.data.setCurrentPointByGraphic(event.graphic);
@@ -854,7 +1001,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					// IE
 					setTimeout(function(){
 						app.filterMouseHoverEvent = false;
-					}, 500);
+					}, 1500);
 				}
 				else
 					checkPopoverState();
@@ -869,18 +1016,38 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 				var graphic = event.graphic;
 				var isCurrentGraphic = graphic == app.data.getCurrentGraphic();
-				if ( ! isCurrentGraphic )
+				if ( ! isCurrentGraphic ) {
 					updateGraphicIcon(graphic, "hover");
+				} else {
+					if ( ! $("body").hasClass("side-panel") )
+						return;
+				}
+
+				if($('body').hasClass('builder-mode') && $('body').hasClass('side-panel')){
+					displayHoverTooltip(graphic);
+					return;
+				}
 
 				// Show the tooltip if it's not current point or if no black popover is displayed in view mode
-				if ( ! isCurrentGraphic || (! app.isInBuilderMode && ! MapTourHelper.isOnMobileView() && ! $(".multiTip").is(':visible') ) )
+				if ( ! $("body").hasClass("side-panel") && (! isCurrentGraphic || (! app.isInBuilderMode && ! MapTourHelper.isOnMobileView() && ! $(".multiTip").is(':visible')) ) ) {
 					displayHoverTooltip(graphic);
+				} else if ( /*! isCurrentGraphic ||*/ (! app.isInBuilderMode && ! MapTourHelper.isOnMobileView() && ! $(".multiTip").is(':visible') ) ) {
+					displayHoverMapTip(graphic);
+				}
 			}
 
 			function picLayer_onMouseOut(event)
 			{
+				if( app.filterMouseHoverEvent && _this.selected ) {
+					return;
+				}
 				app.map.setMapCursor("default");
 				hideHoverTooltip();
+				if($('body').hasClass('builder-mode') && $('body').hasClass('side-panel'))
+					return;
+				if( $("body").hasClass("side-panel") ) {
+					hideHoverMapTip();
+				}
 
 				var graphic = event.graphic;
 				if (graphic != app.data.getCurrentGraphic())
@@ -918,6 +1085,37 @@ define(["storymaps/maptour/core/WebApplicationData",
 			function hideHoverTooltip()
 			{
 				$("#hoverInfo").hide();
+			}
+
+			function displayHoverMapTip(graphic)
+			{
+				if(app.mapTips && ($('body').hasClass('mobile-view')) ){
+					app.mapTips.clean(true);
+					return;
+				}
+				app.mapTips && app.mapTips.clean();
+				app.mapTips = new MultiTips({
+					map: app.map,
+					content: graphic.attributes.getName(),
+					selected: null,
+					pointArray: [graphic],
+					labelDirection: "auto",
+					backgroundColor: APPCFG.HOVER_POPUP_BACKGROUND_COLOR,
+					borderColor: APPCFG.HOVER_POPUP_BORDER_COLOR,
+					pointerColor: APPCFG.HOVER_POPUP_ARROW_COLOR,
+					textColor: "#ffffff",
+					offsetTop: app.data.getTourLayer().renderer.getSymbol(graphic).height / 2 + app.data.getTourLayer().renderer.getSymbol(graphic).yoffset,
+					offsetBottom: $("body").hasClass("side-panel") ? 0 : 8,
+					topLeftNotAuthorizedArea: has('touch') ? [40, 180] : [30, 150],
+					mapAuthorizedWidth: MapTourHelper.isModernLayout() ? domQuery("#picturePanel").position()[0].x : -1,
+					mapAuthorizedHeight: MapTourHelper.isModernLayout() ? domQuery("#footerDesktop").position()[0].y - domQuery("#header").position()[0].h : -1,
+					visible: ! MapTourHelper.isOnMobileView() && graphic.attributes.getName() !== ""
+				});
+			}
+
+			function hideHoverMapTip()
+			{
+				app.mapTips && app.mapTips.clean();
 			}
 
 			function checkPopoverState()
@@ -960,9 +1158,30 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 				var attributes = forcedRecord ? forcedRecord.attributes : app.data.getCurrentAttributes();
 
+				if( $("body").hasClass("mobile-layout-scroll") ) {
+					if( attributes.isVideo() || !MapTourHelper.mediaIsSupportedImg(attributes.getURL()) ) {
+						var currentPointContent = $(".tour-point-content .media").eq(app.data.getCurrentIndex());
+						if( ! currentPointContent.find('.mobile-layout-scroll-video').attr("src") )
+							currentPointContent.find('.mobile-layout-scroll-video').attr("src", attributes.getURL());
+					}
+
+					var nextPoint = app.data.getAllFeatures()[app.data.getCurrentIndex() + 1];
+
+					if( nextPoint && (nextPoint.attributes.isVideo() || !MapTourHelper.mediaIsSupportedImg(nextPoint.attributes.getURL())) ) {
+						var nextPointContent = $(".tour-point-content .media").eq(app.data.getCurrentIndex() + 1);
+						nextPointContent.find('.mobile-layout-scroll-video').attr("src", nextPoint.attributes.getURL());
+					}
+				}
+
 				app.data.setIsEditingFirstRecord(!! forcedRecord);
 
 				if( ! attributes ) {
+					if( $("body").hasClass("builder-mode") && $("body").hasClass("side-panel") && app.data.hasIntroRecord() && (app.data.getCurrentIndex() == null || app.data.getCurrentIndex() == -1) ) {
+						app.data.setCurrentPointByGraphic(app.data.getIntroData());
+						topic.publish("CORE_UPDATE_UI", { editFirstRecord: true });
+						$("#arrowPrev").addClass("disabled");
+						return;
+					}
 					console.error("selectedPointChange_after - invalid point");
 					// To be sure to update picture panel
 					_core.handleWindowResize();
@@ -986,17 +1205,25 @@ define(["storymaps/maptour/core/WebApplicationData",
 				);
 			}
 
-			function selectedPointChange_afterStep2()
+			function selectedPointChange_afterStep2(skipZoom)
 			{
+				console.log("selectedPointChange_afterStep2");
 				var index = app.data.getCurrentIndex();
 				var graphic = app.data.getCurrentGraphic();
 
 				// Clean popover
 				hideHoverTooltip();
-				app.mapTips && app.mapTips.clean();
+				app.mapTips && app.mapTips.clean(true);
+
+				if ($("body").hasClass("side-panel") ) {
+					if(graphic){
+						//app.map.centerAt(graphic.geometry);
+						_this.centerMap(graphic.geometry);
+					}
+				}
 
 				// Apply the selected zoom level on first user action
-				if( app.isFirstUserAction ) {
+				if( app.isFirstUserAction && ! skipZoom) {
 					app.isFirstUserAction = false;
 
 					var appZoomLevel = parseInt((WebApplicationData.getZoomLevel() !== "" && WebApplicationData.getZoomLevel() !== undefined ? WebApplicationData.getZoomLevel() : configOptions.zoomLevel), 10);
@@ -1185,6 +1412,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 				var symbol = graphic.getLayer().renderer.getSymbol(graphic);
 				var iconCfg = APPCFG.ICON_CFG[type];
+				if( $("body").hasClass("side-panel") ) {
+					iconCfg = APPCFG.ICON_CUSTOM_CFG[type];
+				}
 				if( ! iconCfg )
 					return;
 
@@ -1205,7 +1435,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			 */
 			function moveGraphicToFront(graphic)
 			{
-				if (! visibleMapContains(graphic.geometry) ) {
+				if (! visibleMapContains(graphic.geometry) || $('body').hasClass('mobile-layout-scroll') ) {
 					on.once(app.map, "extent-change", function() {
 						moveGraphicToFrontStep2(graphic);
 					});
@@ -1218,6 +1448,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 			function moveGraphicToFrontStep2(graphic)
 			{
+				_this.selected = null;
+				_this.selected = graphic;
 				try {
 					graphic.getDojoShape().moveToFront();
 				}
@@ -1228,10 +1460,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 					if( app.data.sourceIsEditable() )
 						app.builder.createPinPopup(graphic, app.data.getCurrentIndex(), ! MapTourHelper.isOnMobileView());
 				}
-				else
+				else{
+					app.mapTips && app.mapTips.clean(true);
+					if( $("body").hasClass("side-panel") )
+						return;
 					app.mapTips = new MultiTips({
 						map: app.map,
 						content: graphic.attributes.getName(),
+						selected: graphic,
 						pointArray: [graphic],
 						labelDirection: "auto",
 						backgroundColor: APPCFG.POPUP_BACKGROUND_COLOR,
@@ -1239,11 +1475,13 @@ define(["storymaps/maptour/core/WebApplicationData",
 						pointerColor: APPCFG.POPUP_ARROW_COLOR,
 						textColor: "#ffffff",
 						offsetTop: app.data.getTourLayer().renderer.getSymbol(graphic).height / 2 + app.data.getTourLayer().renderer.getSymbol(graphic).yoffset,
+						offsetBottom: $("body").hasClass("side-panel") ? 0 : 8,
 						topLeftNotAuthorizedArea: has('touch') ? [40, 180] : [30, 150],
 						mapAuthorizedWidth: MapTourHelper.isModernLayout() ? domQuery("#picturePanel").position()[0].x : -1,
 						mapAuthorizedHeight: MapTourHelper.isModernLayout() ? domQuery("#footerDesktop").position()[0].y - domQuery("#header").position()[0].h : -1,
 						visible: ! MapTourHelper.isOnMobileView() && graphic.attributes.getName() !== ""
 					});
+				}
 			}
 
 			//

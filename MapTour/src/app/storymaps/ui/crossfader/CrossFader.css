@@ -38,12 +38,26 @@
 	border: none;
 }
 
+.side-panel .member-image {
+	border: none;
+}
+
+.side-panel .member-image img{
+	object-fit: cover;
+	object-position: center;
+	height: 100%;
+}
+
 .modern-layout .member-image {
 	border: none;
 }
 
 .modern-layout .member-image.current {
 	border: 1px solid #B4B4B4;
+}
+
+.side-panel .member-image {
+	height: 100%;
 }
 
 /*
@@ -59,6 +73,15 @@
 	/* under app loading overlay ; above builder button */
 	z-index: 400;
 	margin-top: 1px;
+}
+
+.side-panel .btn-fullscreen {
+	top: 70px;
+	right: 10px;
+}
+
+.builder-mode.side-panel .btn-fullscreen {
+	display: none;
 }
 
 .btn-fullscreen.hover {
@@ -100,19 +123,36 @@ body.hasTouch .btn-fullscreen{
 	overflow: hidden;
 }
 
+.side-panel #placardContainer {
+	min-width: 500px;
+	height: 50% !important;
+	position: relative;
+}
+
 #placard {
 	display: inline-table;
-	background-image:url(../../../../resources/icons/background_filler.png); 
+	background-image:url(../../../../resources/icons/background_filler.png);
 	position:relative;
 	width:100%;
 	color:#FFF;
 	z-index: 5;
-    word-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.side-panel #placard {
+	height: 100%;
+	background-color: #FFF;
+	background-image: none;
+	color: black;
 }
 
 #placard a {
 	color:#FFF;
 	text-decoration: underline;
+}
+
+.side-panel #placard a {
+	color:#000;
 }
 
 #placard ul {
@@ -124,6 +164,23 @@ body.hasTouch .btn-fullscreen{
 	margin-bottom: -5px;
 }
 
+.side-panel #placard-bg {
+	height: 100%;
+}
+
+.side-panel .feature-id {
+	margin-top: 10px;
+	font-weight: 600;
+	font-size: 48px;
+	width: 55px;
+	margin-left: 10px;
+	float: left;
+}
+
+.builder-mode.side-panel .feature-id {
+	margin-top: 20px;
+}
+
 #placard .name {
 	padding: 10px 0px 15px 10px;
 	font-size:20px;
@@ -133,15 +190,49 @@ body.hasTouch .btn-fullscreen{
 	/*word-break:break-all;*/
 }
 
+.side-panel #placard .name {
+	width: 60%;
+	padding: 30px 0px 0px 10px;
+	margin-bottom: 30px;
+	word-break: break-word;
+}
+
+.side-panel #placard .name .text_edit_label {
+	width: 100%;
+	word-break: break-word;
+}
+
 #placard .description {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	position: relative;
-	width:55%;
-	float:right;
-	margin-top:0px;
-	padding-right:10px;
+	width: 55%;
+	float: right;
+	padding-right: 10px;
 	font-size: 14px;
+}
+
+#placard .name, #placard .description {
+	overflow-x: hidden;
+}
+
+.side-panel #placard .description {
+	width: 70%;
+	left: 75px;
+	float: none;
+	padding: 0;
+	word-break: break-word;
+}
+
+/*.side-panel.builder-mode #placard .description {
+	left: -75px;
+	float: right;
+}*/
+
+.side-panel #placard .description .text_edit_label {
+	word-break: break-word;
+	overflow-x: auto;
+	overflow-y: hidden;
 }
 
 #placard.one-line-layout .name {
@@ -159,6 +250,7 @@ body.hasTouch .btn-fullscreen{
 	width: auto;
 	margin-right: 0px;
 	margin-bottom: 5px;
+	margin-top: 3px;
 }
 
 .builder-mode #placard.one-line-layout .description {
@@ -166,14 +258,14 @@ body.hasTouch .btn-fullscreen{
 }
 
 #placard.one-line-layout .description .text_edit_icon {
-	top: -26px;
+	top: -16px;
 }
 
 #placard.one-line-layout .description .text_edit_label {
 	margin-bottom: 4px;
 }
 
-#placardContainer.no-description .name {
+#placardContainer.no-description .name :not(.side-panel){
 	width: 97%;
 }
 
@@ -189,8 +281,12 @@ body.hasTouch .btn-fullscreen{
 	width:36px;
 	height:18px;
 	margin-left:25px;
-	background-image:url(../../../../resources/icons/picturepanel-placard-toggle.png); 
+	background-image:url(../../../../resources/icons/picturepanel-placard-toggle.png);
 	cursor:pointer;
+}
+
+.side-panel #toggle {
+	display: none !important;
 }
 
 body.modern-layout #toggle {
@@ -228,7 +324,7 @@ body.modern-layout #toggle {
 }
 
 #placardContainer.placardUnder .description .text_edit_icon {
-	top: 1px;
+	top: 11px;
 	right: 1px;
 }
 
@@ -237,7 +333,7 @@ body.modern-layout #toggle {
 	left: 37%;
 }
 
-/* 
+/*
  * Builder mode
  */
 
@@ -261,6 +357,11 @@ body.modern-layout #toggle {
 	left: 38%;
 }
 
+.side-panel #placard .name .text_edit_icon {
+	top: auto;
+	left: auto;
+}
+
 #placard .description .text_edit_input {
 	width: 98%;
 	margin-top: -2px;
@@ -274,14 +375,86 @@ body.modern-layout #toggle {
 
 #placard .description .text_edit_icon {
 	position: absolute;
-	top: -16px;
+	top: -8px;
 	right: 4px;
 }
 
-#placard .name, #placard .description  {
-	overflow-x: hidden;
+.side-panel #placard .description .text_edit_icon {
+	top: auto;
+	left: auto;
 }
 
-.builder-mode #placard .name, .builder-mode #placard .description  {
+.builder-mode #placard .name, .builder-mode #placard .description {
 	overflow-x: initial;
+}
+
+.builder-mode.side-panel #placard .name, .builder-mode.side-panel #placard .description {
+	overflow: hidden;
+	padding-right: 25px;
+}
+
+/*.builder-mode.side-panel #placard .name, .builder-mode.side-panel #placard .description {
+	overflow-x: auto;
+}*/
+
+.builderImageTarget {
+	display: none;
+}
+
+.builder-mode.side-panel .builderImageTarget {
+	height: 100%;
+	width: 100%;
+	border: 2px dashed rgba(222,222,222, .4);
+	margin: 10px;
+	display: block;
+	position: absolute;
+	top: 0;
+	cursor: pointer;
+}
+
+.builder-mode.side-panel .builderImageTarget:hover{
+	border-color: rgba(222, 222, 222, 1);
+}
+
+.featureId {
+	display: none;
+}
+
+.side-panel .featureId {
+	display: block;
+}
+
+.cover-builder {
+	display: none;
+}
+
+.builder-mode .cover-builder {
+	display: block;
+	height: 40px;
+  line-height: 35px;
+  width: 100%;
+  background-color: #4C78BB;
+  color: white;
+  font-size: 24px;
+}
+
+.cover-config {
+	text-align: center;
+}
+
+.coverRecordButton {
+	display: none;
+}
+
+.builder-mode .coverRecordButton {
+  color: white;
+  text-align: center;
+	left: 25px;
+	top: 10px;
+	position: absolute;
+	display: block;
+}
+
+.cover-builder-tooltip {
+	margin-left: 10px;
 }

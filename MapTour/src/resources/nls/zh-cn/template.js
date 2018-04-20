@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "这不适用于自动播放模式",
       "autoplayLabel": "自动播放模式",
       "autoplayExplain1": "自动播放模式将定期持续播放您的故事。该模式是广告亭或公共显示屏的理想选择，但请注意，在其他情景下会使故事难以阅读。小型显示器不支持该功能。",
-      "autoplayExplain2": "激活此模式时，可使用控件播放/暂停故事和调整导航速度。"
+      "autoplayExplain2": "激活此模式时，可使用控件播放/暂停故事和调整导航速度。",
+      "takeTourText": "浏览",
+      "backToStart": "回到起点"
     },
     "builderHTML": {
       "panelHeader": "故事配置",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "范围",
       "settingsTabZoom": "缩放级别",
       "settingsLayoutExplain": "选择您想要的图层。",
-      "settingsLayoutProfessional": "由三个面板构成的布局",
-      "settingsLayoutModern": "集成的布局",
+      "settingsLayoutProfessional": "三面板",
+      "settingsLayoutModern": "已集成",
+      "settingsLayoutSidePanel": "侧面板",
       "settingsLayoutSelected": "选中的布局",
-      "settingsLayoutSelect": "选择此布局",
+      "settingsLayoutNew": "新增功能!",
+      "settingsLayoutSelect": "选择",
       "settingsLayoutNote": "请注意，在使用视频的位置，即使未选中该选项，标语牌也始终位于视频下方。",
       "settingsLayoutLocBtn": "显示“定位”按钮",
       "settingsLayoutLocBtnHelp": "支持大多数浏览器。仅在通过 HTTPS 访问故事地图时显示。如果故事被镶嵌，则不显示。",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "编辑范围",
       "settingsExtentApplyBtn": "地图浏览预览",
       "settingsExtentUseMainMap": "使用地图浏览范围",
-      "settingsZoomExplain": "根据介绍设置故事点的缩放(可选项)。",
+      "settingsZoomExplain": "设置故事点的缩放(可选)。",
       "settingsLabelZoom": "比例/级别",
       "settingsZoomFirstValue": "无",
       "settingsFieldError": "请在每个列表中选择一个字段",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "创建失败。请重试",
       "tabError": "请检查所有选项卡中的错误",
       "introRecordBtn": "入口",
-      "introRecordActivate": "将第一个点做为入手点 (不在转盘中显示)"
+      "introRecordActivate": "将第一个点做为入手点 (不在转盘中显示)",
+      "coverRecordActivate": "使用第一个点作为封面",
+      "coverBuilder": "封面配置",
+      "cover": "封面",
+      "showCover": "显示封面",
+      "editCover": "编辑封面",
+      "coverNoVideo": "封面媒体不支持视频。请选择图像。",
+      "coverPreview": "要查看封面，请保存您的故事，然后使用“共享”按钮进行预览。"
     },
     "addPopupJS": {
       "uploadingPicture": "正在上传图片",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "编辑!",
       "templateTitle": "设置模板标题",
-      "templateSubtitle": "设置模板子标题"
+      "templateSubtitle": "设置模板子标题",
+      "edit": "编辑"
     },
     "crossFaderJS": {
       "setPicture": "设置图片标题",
@@ -306,9 +318,9 @@ define({
       "csv": "在 CSV 中引用",
       "advanced": "高级选项",
       "advancedScratchLbl": "启动新浏览",
-      "advancedScratchTip": "创建可使用向导进行手动填充的空浏览。",
+      "advancedScratchTip": "创建一个空 Tour，您可以向其中添加游览点。您的媒体必须处于在线状态。该选项不支持上传图像。",
       "advancedCSVLbl": "从 CSV 文件导入浏览数据",
-      "advancedCSVTip": "从 CSV 文件导入浏览内容。",
+      "advancedCSVTip": "从引用在线媒体的 CSV 文件导入您的 Tour 内容。该选项不支持上传图像。",
       "advancedCommonTip": "这需要图像和视频均已在线。",
       "select": "做出选择",
       "locUse": "使用图片地理位置",
@@ -382,7 +394,7 @@ define({
       "title": "选择并定位您的图像/视频",
       "header": "单击或点击想导入的图片，以将其定位。",
       "headerMore": "为什么我的图像/视频没有地理定位?",
-      "headerExplain": "如果您的图片具有有效的地理位置，它们将自动在地图上定位并在第二个选项卡中列出。<br /><br />默认情况下，Picasa 和 Flickr 在您导入图片时不会存储地理位置 EXIF 元数据。请选中 Picasa/Flickr 隐私设置以启用图片地理位置导入并可供外部应用程序使用。可能需要针对要使用的 EXIF 地理位置将现有图片重新导入到 Flickr/Picasa。<br /><br />在 Facebook 中，需要选中每个图片，单击“编辑”并选择位置。",
+      "headerExplain": "如果您的图片具有有效的地理位置，则其将自动在地图上定位并在第二个选项卡中列出。<br /><br />默认情况下，Picasa 和 Flickr 在您导入图片时不会存储地理位置 EXIF 元数据。 请选中 Picasa/Flickr 隐私设置以启用图片地理位置导入并可供外部应用程序使用。 可能需要针对要使用的 EXIF 地理位置将现有图片重新导入到 Flickr/Picasa。",
       "leftPanelTab1": "定位",
       "leftPanelTab2": "已定位",
       "clickOrTap": "单击或点击要定位的地图",
@@ -404,7 +416,7 @@ define({
       "header2": "该助手将帮助您通过已在线存储的媒体来构建地图浏览，或者将媒体导入到您的 ArcGIS Online for Organizations 帐户。",
       "title1": "媒体已在线",
       "title2": "我需要上传我的图像",
-      "hostedFSTooltip": "上传您的图像，然后将其与 Map Tour 图层一同保存(不支持视频)。",
+      "hostedFSTooltip": "上传您的图像，然后将其保存在 Tour 中(不支持视频)。",
       "hostedFsNA": "您必须是“发布者”或其他有权限发布托管“要素图层”的角色。请联系您的 ArcGIS 管理员。",
       "hostedFsNA2": "仅适用于 ArcGIS Online 订阅。<a href='%LINK%'>注册以获取免费的试用版</a>",
       "footer1": "完成后，不要忘记通过应用程序项目页面与受众共享您的地图浏览。",
@@ -420,19 +432,23 @@ define({
       "close": "关闭",
       "tab1": {
         "title": "简介",
+        "moreInfo": "有关详细信息",
+        "infoSites": "访问 <a href='https://storymaps.arcgis.com' target='_blank'>Esri Story Maps 网站</a>的 <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Map Tour 部分</a>。",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Map Tour 常见问题</a>",
+        "myStories": "您可以管理您的 Map Tour 并在网站上的 <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>My Stories</a> 中检查地图游览的错误。",
         "div1": "地图浏览模板旨在呈现地理信息，为您要讲述的故事提供吸引人的摄影或媒体元素。",
         "div2": "模板可生成具有吸引力且易于使用的 Web 应用程序，允许您按编号顺序在地图上显示一小组地点，供用户进行浏览。该模板可在任何设备上的任何 Web 浏览器中使用，其中包括智能手机和平板电脑。<br /><br />",
-        "div42": "要查看其他用户创建的地图浏览示例，<a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>请访问<a href='http://storymaps.arcgis.com/' target='_blank'>故事地图网站</a>中的图库</a>。您也可以在 Twitter 上关注我们 :<a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>。",
-        "div5": "我们非常期待您的参与! 如果您有任何疑问、想要请求新特性或者发现漏洞，请访问<a href='http://links.esri.com/storymaps/forum' target='_blank'>故事地图用户论坛</a>。"
+        "div42": "要查看其他用户所创建的地图游览示例，请在 <a href='https://storymaps.arcgis.com/' target='_blank'>Story Maps 网站</a><a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>访问图库</a>。您也可以在 Twitter 上关注我们：<a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>。",
+        "div5": "我们非常希望能够获得您的反馈！ 请访问 <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet</a> 上的 Story Maps 论坛，告知我们您的问题以及您需要的新功能。"
       },
       "tab2": {
         "title": "数据",
-        "div1": "构建地图浏览时要考虑的主要因素是选择在何处存储图片。地图浏览使用的图片可以存储在主要图片共享服务中、任何 web 服务器上或作为要素服务的附件。",
+        "div1": "构建 Map Tour 时要考虑的主要因素是选择在何处存储图片。 Map Tour 使用的图片可以存储在图片共享服务中、任何 web 服务器上或从磁盘上传。",
         "div1a": "有关受支持的图片格式和视频的详细信息，请参阅此选项卡的最后一部分。",
         "div2": "交互式构建器提供两个选项，用于处理您的地图浏览中的影像:",
-        "div3": "<ul><li>您可以使用<b>在线照片</b>，例如存储在 Flickr 等照片共享站点的影像或存储在您自己网站上的影像。通过影像的 URL 将其引用到您的地图浏览中。</li><li>还可以<b>通过计算机将照片</b>直接上传到您的地图浏览。该上传选项需要您拥有 ArcGIS for Organizations 帐户，并拥有发布者或管理员权限，因为系统将自动为您创建托管的要素服务，您可将照片作为附件存储在其中。</li></ul>",
+        "div3": "<ul><li>您可以使用<b>在线图片</b>，例如存储在 Flickr 等图片共享站点的图像或存储在您自己网站上的图像。 可以通过图像的 URL 在 Map Tour 中引用该图像。</li><li>您还可以<b>将计算机中的图片</b>直接上传到您的 Map Tour。 此上传选项要求您拥有 ArcGIS 订阅，并拥有发布者或管理员权限，因为系统将自动为您创建托管要素服务，您可将图片作为附件存储在其中。</li></ul>",
         "div4": "主要用例包括:",
-        "div4b": "<b>您的照片尚未托管</b>，且您拥有 ArcGIS for Organizations 帐户: 使用托管的要素服务是您的最佳选择。与公共照片共享服务一样，我们将优化您的图片以创建快速加载影像，您将可以访问 ArcGIS 平台的所有管理和数据管理功能。",
+        "div4b": "<b>您的图片尚未托管</b>，且您拥有 ArcGIS 订阅：使用托管要素服务是您的最佳选择。与公共图片共享服务一样，我们将优化您的图片以创建快速加载影像，您将可以访问 ArcGIS 平台的所有管理和数据管理功能。",
         "div5": "<b>您不是组织成员</b>: 首先，您需要将图片上传到照片共享网站或您自己的 web 服务器上。借助构建器，您将使用这些继续托管在其原始位置的图片。",
         "div6": "<b>您希望重复使用现有要素服务</b>将图片存储为附件或引用外部图片: 请参阅下面的详细描述部分。",
         "div7": "<b>您是先前版本的用户</b>，即上一版地图浏览模板的用户，并且已经拥有引用图片和缩略图的 CSV: 您可以导入该 CSV 并优化数据。构建器仅支持使用纬度/经度字段的 CSV; 可以继续在您的 web 地图中使用基于地址的 CSV (请参阅以下部分)。",
@@ -441,10 +457,10 @@ define({
         "learn": "了解详细信息",
         "div9": "导入操作通过在 web 地图要素集中存储图片的 URL 来引用已托管的图片。图片未存储在 ArcGIS Online 中。如果托管的图片无法访问，则图片在地图浏览中将不可用，您将看到“图片不可用”的图像。地图浏览可能不会导入图片的名称、描述和位置，这取决于照片服务的提供者。这些属性存储在 web 地图中，对在线服务进行的任何编辑都不会反映在地图浏览中。",
         "div10": "在 web 服务器上存储图片",
-        "div11": "如果选择自己托管图片，则需要手动创建图片的缩略图。使用全分辨率的图片创建缩略图将导致性能下降。因此，强烈建议您使用在线照片共享服务或要素服务来进行此操作。",
-        "div12": "使用现有要素服务或 Shapefile",
-        "div13": "任何点要素服务或 shapefile 都可用作地图浏览数据源。只需通过 arcgis.com 地图查看器将其作为图层添加到 web 地图中。如果应用程序在您的图层中找到预期属性，则所有构建器功能都将可用。",
-        "div14": "字段名称的可能值包括 (不区分大小写):",
+        "div11": "如果您选择自行托管图片，则必须手动创建图片的缩略图。使用缩略图的全分辨率图片将会对性能产生不利影响。如果您要通过 URL 直接访问 web 上的图像，请参阅此<a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>常问问题</a>部分，获取有关调整图像大小的提示。",
+        "div12": "使用现有 GIS 数据",
+        "div13": "如果任何要素服务、CSV 文件或包含点的 shapefile 包含应用程序所需的字段组，则可以将其用作一个 Map Tour 数据源。您必须将其作为图层添加到 ArcGIS web 地图中，然后通过创建 Map Tour 来共享地图。",
+        "div14": "支持的字段名称值包括(不区分大小写)：",
         "div151": "名称",
         "div152": "描述",
         "div153": "图片",
@@ -479,20 +495,20 @@ define({
         "div0": "支持的浏览器",
         "div0a": "IE8+ 支持地图浏览查看器。IE9+ 支持交互式构建器。我们已经在所有主要浏览器中对其进行了测试，但如果您遇到了困难，则建议您使用 Chrome。",
         "div0b": "如果您遇到任何困难，请与我们联系。此外，使用 CSV 模板来构建地图浏览将最大程度地减少您与构建器界面的交互。",
-        "div1": "图片",
-        "div2": "建议使用横向照片，而不要使用纵向照片。纵横比为 4:3 的照片最为合适。可以使用纵向影像，但在像 iPad 这样的小屏幕上，很多照片可能会被说明文字遮挡 (相对于宽幅区域，在长幅区域显示文本会占用更多的空间)。虽然在一个地图浏览中可以使用不同大小、形状和方向的影像，但建议对所有影像使用完全相同的大小和形状。这样，用户就不会在浏览时被不同大小的影像分散注意力。",
+        "div1": "图像",
+        "div2": "尽管可以在一个 Map Tour 中使用大小、形状和方向不同的图像，但我们建议使用横向图像而非纵向图像。其中纵横比为 4:3 的图像最为适合。在三面板和集成布局中，标题与图像重叠，使用纵向图像会导致很多图像被标题遮挡。在三面板和集成布局中，我们建议对所有图像使用相同的大小和形状(如有可能)。这样，用户在浏览时就不会被不同大小的图像分散注意力。",
         "div2a": "建议主要图片的最大图像大小为 1000 像素 (宽) x 750 像素 (高)，缩略图的最大图像大小为 140 像素 (宽) x 93 像素 (高)。",
         "div3": "使用 HTML 标签格式化说明文字文本",
-        "div4": "页眉和图片标题/说明文字可以包含 HTML 标签，以定义格式和链接。例如，此代码将添加黄色链接:",
+        "div4": "您可以在标题中输入 HTML 标签来定义格式和链接。例如，这些标签将添加一个绿色的超链接：",
         "div4a": "为浏览命名适当的子标题",
-        "div4b": "请花点时间为浏览命名一个引人注目的子标题。子标题是吸引人们关注您的浏览并简要介绍浏览内容的良好途径。它也是告知用户该浏览所定位的州或国家的好方法。例如，不要假设用户知道浏览中城市或城镇的位置。还可使用 HTML 标签来设置说明文字的格式，例如包括链接。但说明文字不要过长。在较小的浏览器窗口或 iPad 中，子标题可能并不完全适合，需要进行裁剪。如果您未想出合适的子标题，则将其留空。",
+        "div4b": "花点时间为游览编写一个引人注目的子标题。子标题是吸引人们注意您的游览并简要介绍内容的良好途径。这也是向观众告知游览所在国家或地区的一个好办法。例如，不要想当然认为人们知道您游览的城市或城镇所在的位置。不要让子标题过长。如果您没有想到一个好的子标题，请将其留空。在侧面板布局中，封面上显示的子标题是游览中第一个点的标题(如果使用“组织”对话框中的选项将第一个点的内容用作封面)。",
         "div5": "支持图层",
-        "div6": "可添加其他支持的图层为地图浏览提供上下文。除地图浏览点之外，这些图层还可能包含您希望地图显示的其他地理要素，例如研究区域、链接到浏览点的步行或行驶路径等等。地图浏览模板通过在 web 地图中指定的符号系统来显示这些附加的支持图层，但弹出窗口不可用。",
+        "div6": "您可以添加其他支持图层来为 Map Tour 提供上下文。除 Map Tour 点之外，这些图层还可能包含您要在地图中显示的其他地图要素，例如研究区域、连接游览点的步行或驾车路线等。Map Tour 模板使用您在 web 地图中指定的符号系统来显示这些附加支持图层，但弹出窗口不可用。要为游览添加支持图层，请保存您的工作并关闭 Map Tour 构建器。然后打开浏览中使用的 web 地图。您可以在 ArcGIS“我的内容”中或通过 Story Maps 网站的“我的故事”部分找到该地图。",
         "div7": "保持浏览简洁明了",
         "div8": "每次浏览限制为 99 个点。大部分地图浏览肯定明显少于该限制。不要期望用户愿意逐个浏览过多的浏览点。您可能觉得自己的主题很吸引人，但不要以为其他人也这么想!",
         "div10": "嵌入模式",
-        "div11": "如果想通过 iframe 将模板嵌入到其他网站，则在 URL 尾部添加可选参数 \"&embed\" 可移除标题。还可通过配置文件在可下载版本中设置该模式。",
-        "div12": "避免使用狭窄的 iFrame 宽度，因其可能导致地图浏览切换至相应的小屏幕触控式布局。要尽可能地方便使用，在嵌入地图浏览时，通常建议在所嵌入的浏览旁边提供一个链接，以便用户启动全屏浏览。"
+        "div11": "如果想通过 iframe 将模板嵌入到其他网站，则在 URL 尾部添加可选参数 \"&embed\" 可移除标题。",
+        "div12": "避免使用狭窄的 iFrame 宽度，因其可能导致地图游览切换至相应的小屏幕触控式布局。要尽可能地方便使用，在嵌入地图游览时，通常建议在所嵌入的游览旁边提供一个链接，以便用户启动全屏游览。"
       },
       "tab5": {
         "title": "发布",
@@ -548,6 +564,22 @@ define({
       "panel4": "此故事不再提醒",
       "mystories": "我的故事",
       "btnSave": "保存"
+    },
+    "bannerNotification": {
+      "learnMore": "更多信息",
+      "close": "关闭",
+      "dontShowAgain": "不再显示此消息"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "关于网络安全和故事地图的重要消息",
+      "s1h1": "Esri 将增强故事地图的安全性",
+      "s1p1": "您的故事地图将显示在 web 上，web 社区始终致力于建立并实施更好的安全性措施。HTTPS（可为通过 Internet 传输的内容提供安全连接）正逐渐成为访问 web 内容的首选方式。当使用 HTTP 而非 HTTPS 时，大多数现代浏览器现在会显示警告消息。鉴于这一新兴标准，从 ArcGIS Online 2018 年 6 月的更新起，故事地图将需要使用 HTTPS。",
+      "s1p2": "实际上，这意味着故事地图及其所有内容(包括图像、图层、嵌入式应用程序和网站)必须使用以 HTTPS 而非 HTTP 开头的链接进行访问。这可确保为读者提供最佳体验，因为大多数 web 浏览器都会指示您的故事是安全的。",
+      "s2h1": "我需要做什么?",
+      "s2p1": "Esri 致力于使故事地图的作者和读者轻松实现过渡。Story Map 构建器和 My Stories 中现已提供工具，可帮助您在故事中查找非安全内容 (HTTP)，并就如何解决提出建议。请检查您的故事是否存在非安全内容，并在 2018 年 6 月之前更新为 HTTPS。",
+      "action1": "关闭",
+      "action2": "立即检查我的故事",
+      "action3": "了解详细信息"
     }
   }
 });

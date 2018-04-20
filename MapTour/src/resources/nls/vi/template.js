@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Tính năng này không khả dụng trong chế độ phát tự động",
       "autoplayLabel": "Chế độ phát tự động",
       "autoplayExplain1": "Chế độ phát tự động sẽ chuyển qua câu chuyện của bạn theo khoảng thời gian định kỳ. Đây là tính năng lý tưởng đối với màn hình hiển thị nơi công cộng hoặc của ki-ốt, tuy nhiên, hãy lưu ý rằng trong các trường hợp khác, câu chuyện có thể trở nên khó đọc hơn. Tính năng này không được hỗ trợ trên các màn hình hiển thị nhỏ.",
-      "autoplayExplain2": "Khi chế độ này được kích hoạt, có các nút điều khiển để phát/tạm dừng câu chuyện và điều chỉnh tốc độ điều hướng."
+      "autoplayExplain2": "Khi chế độ này được kích hoạt, có các nút điều khiển để phát/tạm dừng câu chuyện và điều chỉnh tốc độ điều hướng.",
+      "takeTourText": "Tham quan hành trình",
+      "backToStart": "Quay lại từ đầu"
     },
     "builderHTML": {
       "panelHeader": "CẤU HÌNH CÂU CHUYỆN",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Phạm vi",
       "settingsTabZoom": "Độ thu phóng",
       "settingsLayoutExplain": "Chọn bố cục bạn muốn.",
-      "settingsLayoutProfessional": "Bố cục ba bảng điều khiển",
-      "settingsLayoutModern": "Bố cục tích hợp",
+      "settingsLayoutProfessional": "Bảng điều khiển ba phần",
+      "settingsLayoutModern": "Tích hợp",
+      "settingsLayoutSidePanel": "Bảng điều khiển bên",
       "settingsLayoutSelected": "Bố cục được chọn",
-      "settingsLayoutSelect": "Chọn bố cục này",
+      "settingsLayoutNew": "Mới!",
+      "settingsLayoutSelect": "Chọn",
       "settingsLayoutNote": "Lưu ý rằng trên điểm sử dụng video, áp phích sẽ luôn luôn được đặt dưới video ngay cả khi tùy chọn đó được bỏ chọn.",
       "settingsLayoutLocBtn": "Hiển thị nút 'Định vị'",
       "settingsLayoutLocBtnHelp": "Được hỗ trợ trên hầu hết các trình duyệt. Chỉ xuất hiện khi story map được truy cập thông qua HTTPS. Không xuất hiện nếu câu chuyện đã được nhúng.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Sửa phạm vi",
       "settingsExtentApplyBtn": "Xem trước trên Map Tour",
       "settingsExtentUseMainMap": "Sử dụng phạm vi Map Tour",
-      "settingsZoomExplain": "Đặt thu phóng cho các điểm kể chuyện sau khi giới thiệu (tùy chọn).",
+      "settingsZoomExplain": "Đặt thu phóng cho các điểm câu chuyện (tùy chọn).",
       "settingsLabelZoom": "Tỷ lệ/mức độ",
       "settingsZoomFirstValue": "Không có",
       "settingsFieldError": "Vui lòng chọn một trường trong mỗi danh sách",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Tạo thất bại. Vui lòng thử lại",
       "tabError": "Vui lòng kiểm tra lỗi trong tất cả các tab",
       "introRecordBtn": "Giới thiệu",
-      "introRecordActivate": "Sử dụng điểm đầu tiên là phần giới thiệu (không xuất hiện trong ảnh trượt xoay vòng)"
+      "introRecordActivate": "Sử dụng điểm đầu tiên là phần giới thiệu (không xuất hiện trong ảnh trượt xoay vòng)",
+      "coverRecordActivate": "Sử dụng điểm đầu tiên làm trang bìa",
+      "coverBuilder": "Cấu hình Trang Bìa",
+      "cover": "Bìa",
+      "showCover": "Hiển thị Trang bìa",
+      "editCover": "Chỉnh sửa Trang bìa",
+      "coverNoVideo": "Video không được dùng cho trang bìa. Vui lòng chọn hình ảnh.",
+      "coverPreview": "Để xem trang bìa, hãy lưu câu chuyện của bạn rồi xem trước bằng nút Chia sẻ."
     },
     "addPopupJS": {
       "uploadingPicture": "Đang tải ảnh lên",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Chỉnh sửa tôi!",
       "templateTitle": "Thiết lập tiêu đề mẫu",
-      "templateSubtitle": "Thiết lập phụ đề mẫu"
+      "templateSubtitle": "Thiết lập phụ đề mẫu",
+      "edit": "Chỉnh sửa"
     },
     "crossFaderJS": {
       "setPicture": "Đặt tiêu đề ảnh",
@@ -306,9 +318,9 @@ define({
       "csv": "Tham chiếu trong một CSV",
       "advanced": "Tùy chọn nâng cao",
       "advancedScratchLbl": "Bắt đầu một Chuyến tham quan mới",
-      "advancedScratchTip": "Tạo một Chuyến tham quan trống mà bạn có thể nhập thủ công bằng một thuật sĩ.",
+      "advancedScratchTip": "Tạo một Tour trống để bạn có thể thêm các điểm tham quan vào. Phương tiện của bạn đã phải có sẵn trên internet. Lựa chọn này không hỗ trợ bạn tải lên hình ảnh.",
       "advancedCSVLbl": "Nhập dữ liệu Chuyến tham quan từ một tệp CSV",
-      "advancedCSVTip": "Nhập nội dung Chuyến tham quan từ một tệp CSV.",
+      "advancedCSVTip": "Nhập nội dung Tour của bạn từ một tệp CSV tham chiếu đến phương tiện của bạn trực tuyến. Lựa chọn này không hỗ trợ tải lên hình ảnh.",
       "advancedCommonTip": "Yêu cầu ảnh và video của bạn hiện đang trực tuyến.",
       "select": "Lựa chọn",
       "locUse": "Sử dụng vị trí địa lý ảnh",
@@ -382,7 +394,7 @@ define({
       "title": "Chọn và định vị ảnh/video của bạn",
       "header": "Bấm hoặc gõ nhẹ vào ảnh bạn muốn nhập để định vị chúng.",
       "headerMore": "Tại sao không định vị địa lý được ảnh/video?",
-      "headerExplain": "Nếu ảnh của bạn có một vị trí địa lý hợp lệ, chúng sẽ được tự động đặt trên bản đồ và được liệt kê vào tab thứ hai.<br /><br />Theo mặc định, Picasa và Flickr không lưu trữ siêu dữ liệu EXIF định vị địa lý khi bạn nhập ảnh. Kiểm tra thiết lập bảo mật Picasa/Flickr để cho phép nhập vị trí địa lý ảnh và sử dụng bởi ứng dụng bên ngoài. Bạn có thể phải nhập lại ảnh hiện tại của bạn vào Flickr/Picasa để sử dụng vị trí địa lý EXIF.<br /><br />Trên Facebook, bạn phải vào từng hình ảnh, nhấp vào Sửa và chọn vị trí.",
+      "headerExplain": "Nếu hình ảnh của bạn có một vị trí địa lý không hợp lệ, chúng sẽ tự động được định vị trên bản đồ và được liệt kê trên tab thứ hai.<br /><br />Theo mặc định, Picasa và Flickr không lưu trữ mô tả dữ liệu EXIF vị trí địa lý khi bạn nhập hình ảnh. Kiểm tra cài đặt quyền riêng tư trên Picasa/Flickr để cho phép ứng dụng bên ngoài nhập và sử dụng vị trí địa lý hình ảnh. Bạn có thể phải nhập lại hình ảnh đang có vào Flickr/Picasa để cho phép sử dụng vị trí địa lý EXIF.",
       "leftPanelTab1": "Để định vị",
       "leftPanelTab2": "Được định vị",
       "clickOrTap": "Bấm hoặc gõ nhẹ vào Bản đồ để định vị",
@@ -404,7 +416,7 @@ define({
       "header2": "Bộ trợ giúp này sẽ giúp bạn xây dựng một Map Tour từ phương tiện đã được lưu trữ trực tuyến hoặc nó sẽ nhập chúng vào ArcGIS Online cho tài khoản Tổ chức.",
       "title1": "Chúng đã trực tuyến",
       "title2": "Tôi cần tải lên ảnh của mình",
-      "hostedFSTooltip": "Tải lên hình ảnh của bạn và lưu trữ với lớp Map Tour (không hỗ trợ video).",
+      "hostedFSTooltip": "Tải lên hình ảnh và lưu trữ chúng trong Tour của bạn (không hỗ trợ video).",
       "hostedFsNA": "Bạn phải là Người xuất bản hoặc có vai trò khác có quyền xuất bản Lớp Đối tượng được lưu trữ. Vui lòng liên hệ người quản trị ArcGIS của bạn.",
       "hostedFsNA2": "Chỉ khả dụng với gói đăng ký ArcGIS Online. <a href='%LINK%'>Hãy đăng ký để dùng thử miễn phí</a>",
       "footer1": "Khi bạn làm xong, đừng quên chia sẻ Map Tour của bạn với khán giả thông qua trang mục ứng dụng.",
@@ -420,19 +432,23 @@ define({
       "close": "Đóng",
       "tab1": {
         "title": "Giới thiệu",
+        "moreInfo": "Để biết thêm thông tin",
+        "infoSites": "Truy cập phần <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Map Tour</a> của <a href='https://storymaps.arcgis.com' target='_blank'>trang web Esri Story Maps.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Hỏi đáp về Map Tour.</a>",
+        "myStories": "Bạn có thể quản lý Map Tours và kiểm tra xem có lỗi gì không trong phần <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Câu chuyện của tôi</a> trên trang web này.",
         "div1": "Mẫu Map Tour được thiết kế để trình bày thông tin địa lý, ở đây có một bộ phận truyền thông và nhiếp ảnh hấp dẫn cho câu chuyện bạn muốn kể.",
         "div2": "Mẫu tạo ra một ứng dụng web hấp dẫn và dễ sử dụng, cho phép bạn trình bày một tập hợp địa điểm nhỏ trên bản đồ theo chuỗi được đánh số mà người sử dụng có thể duyệt. Mẫu được thiết kế để được sử dụng trong bất kỳ trình duyệt web trên bất kỳ thiết bị nào, bao gồm cả điện thoại thông minh và máy tính bảng.<br /><br />",
-        "div42": "Để xem ví dụ về các map tour mà người dùng khác đang tạo, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>truy cập phòng trưng bày</a> trên <a href='http://storymaps.arcgis.com/' target='_blank'>trang web Story Maps</a>. Bạn cũng có thể theo dõi chúng tôi trên Twitter tại <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Chúng tôi muốn nhận phản hồi từ bạn! Cho dù bạn có một câu hỏi, muốn yêu cầu một tính năng mới hoặc cho rằng bạn đã tìm thấy một lỗi, vui lòng truy cập <a href='http://links.esri.com/storymaps/forum' target='_blank'>Diễn đàn Người dùng Story Maps</a>."
+        "div42": "Để xem ví dụ về các map tour mà người dùng khác đang tạo, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>truy cập vào bộ sưu tập</a> trên trang web <a href='https://storymaps.arcgis.com/' target='_blank'>Story Maps</a>. Bạn cũng có thể theo dõi chúng tôi trên Twitter tại <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "Chúng tôi rất mong được nghe bạn góp ý! Hãy cho chúng tôi biết về các sự cố cùng những tính năng mới mà bạn cần bằng cách truy cập diễn đàn Story Maps trên <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Dữ liệu",
-        "div1": "Đối tượng chính cần xem xét khi xây dựng một Map Tour là chọn nơi hình ảnh của bạn sẽ được lưu trữ. Một Map Tour có thể sử dụng hình ảnh được lưu trữ trên các dịch vụ chia sẻ hình ảnh lớn, trên bất kỳ máy chủ web hoặc theo tệp đính kèm một dịch vụ đối tượng.",
+        "div1": "Đối tượng chính cần xem xét khi xây dựng một Map Tour là chọn nơi hình ảnh của bạn sẽ được lưu trữ. Một Map Tour có thể sử dụng hình ảnh được lưu trữ trên các dịch vụ chia sẻ hình ảnh, trên bất kỳ máy chủ web hoặc dữ liệu mà bạn tải lên từ ổ đĩa.",
         "div1a": "Xem phần cuối cùng của tab này để biết chi tiết về các định dạng hình ảnh và video được hỗ trợ.",
         "div2": "Bộ dựng tương tác cung cấp cho bạn hai lựa chọn để xử lý các hình ảnh của bạn trên Map Tour:",
-        "div3": "<ul><li>Bạn có thể sử dụng <b>hình ảnh đã trực tuyến</b>, chẳng hạn như hình ảnh được lưu trữ trong một trang web chia sẻ hình ảnh như Flickr hoặc hình ảnh được lưu trữ trên trang web của riêng bạn. Những hình ảnh này sẽ được tham chiếu trong Map Tour của bạn thông qua URL của chúng.</li><li>Bạn cũng có thể <b>tải lên hình ảnh trực tiếp từ máy tính của bạn</b> vào Map Tour của bạn. Tùy chọn tải lên này yêu cầu bạn có một tài khoản ArcGIS dành cho Tổ chức và bạn có đặc quyền của Nhà xuất bản hoặc Người quản trị, bởi vì một dịch vụ đối tượng lưu trữ sẽ được tự động tạo cho bạn, trong đó hình ảnh của bạn được lưu trữ dưới dạng tệp đính kèm.</li></ul>",
+        "div3": "<ul><li>Nếu bạn sử dụng <b>ảnh đã có sẵn trên mạng</b>, chẳng hạn như các hình ảnh được lưu trữ trên trang chia sẻ ảnh như Flickr, hoặc hình ảnh được lưu trữ trên trang web của chính bạn. Những hình ảnh này sẽ được tham chiếu trong Map Tour của bạn qua URL của hình ảnh.</li><li>Bạn cũng có thể <b>tải ảnh lên từ máy tính của bạn</b> trực tiếp vào Map Tour. Tùy chọn tải lên này yêu cầu bạn có gói đăng ký ArcGIS đồng thời có quyền Nhà xuất bản hoặc Người quản trị, bởi vì dịch vụ đối tượng lưu trữ được tự động tạo ra cho bạn mà ở đó bạn có thể lưu trữ ảnh của mình dưới dạng tài liệu đính kèm.</li></ul>",
         "div4": "Các trường hợp sử dụng chính là:",
-        "div4b": "<b>Hình ảnh của bạn vẫn chưa được lưu trữ</b> và bạn có tài khoản ArcGIS dành cho Tổ chức: Sử dụng một dịch vụ đối tượng lưu trữ là sự lựa chọn tốt nhất của bạn. Giống như các dịch vụ chia sẻ hình ảnh công khai, chúng tôi sẽ tối ưu hóa hình ảnh của bạn để tạo các ảnh tải nhanh và bạn sẽ có quyền truy cập vào tất cả các khả năng quản lý và quản trị dữ liệu của nền tảng ArcGIS.",
+        "div4b": "<b>Hình ảnh của bạn vẫn chưa được lưu trữ</b> và bạn có gói đăng ký tài khoản ArcGIS: Sử dụng dịch vụ đối tượng lưu trữ (hosted feature service) là lựa chọn tốt nhất của bạn. Giống như các dịch vụ chia sẻ hình ảnh công khai, chúng tôi sẽ tối ưu hóa hình ảnh của bạn để tải nhanh hơn và bạn sẽ có quyền truy cập vào tất cả các khả năng quản lý và quản trị dữ liệu của nền tảng ArcGIS.",
         "div5": "<b>Bạn không phải là thành viên của một Tổ chức</b>: Trước tiên, bạn phải tải ảnh của mình lên một trang web chia sẻ hình ảnh hoặc máy chủ web của riêng bạn. Bộ dựng sẽ giúp bạn sử dụng những ảnh vẫn tiếp tục được lưu trữ tại vị trí ban đầu của họ.",
         "div6": "<b>Bạn đang muốn sử dụng lại một Dịch vụ Đối tượng hiện có</b> lưu trữ hình ảnh của bạn dưới dạng tệp đính kèm hoặc tham chiếu ảnh bên ngoài: Xem phần chi tiết dưới đây.",
         "div7": "<b>Bạn là một người dùng phiên bản mẫu Map Tour trước</b> và đã có CSV tham chiếu ảnh và hình thu nhỏ của bạn: Bạn có thể nhập nó và tinh chỉnh dữ liệu của bạn. Bộ dựng chỉ hỗ trợ các CSV sử dụng các trường kinh độ/vĩ độ; CSV theo địa chỉ có thể tiếp tục được sử dụng thông qua bản đồ web của bạn (xem phần dưới đây).",
@@ -441,10 +457,10 @@ define({
         "learn": "tìm hiểu thêm",
         "div9": "Thao tác nhập tham chiếu ảnh đã được lưu trữ bằng cách lưu trữ các URL của chúng vào một bộ sưu tập tính năng bản đồ web. Các ảnh không được lưu trữ trong ArcGIS Online. Nếu không thể truy cập vào ảnh được lưu trữ, chúng sẽ không có trong Map Tour và bạn sẽ thấy một hình ảnh 'Ảnh không khả dụng'. Tùy thuộc vào nhà cung cấp dịch vụ hình ảnh, Map Tour có thể không nhập tên, mô tả và vị trí ảnh. Những thuộc tính đó được lưu trữ trong bản đồ web và bất kỳ sửa đổi dịch vụ trực tuyến nào sẽ không được phản ánh trong Map Tour.",
         "div10": "Lưu trữ các ảnh trên một máy chủ web",
-        "div11": "Nếu bạn chọn tự lưu trữ ảnh, bạn sẽ phải tạo hình thu nhỏ ảnh của bạn thủ công. Sử dụng các hình ảnh độ phân giải đầy đủ cho hình thu nhỏ sẽ dẫn đến hiệu quả kém. Vì lý do đó, chúng tôi khuyên bạn nên sử dụng một dịch vụ chia sẻ ảnh trực tuyến hoặc dịch vụ đối tượng giúp bạn làm điều đó.",
-        "div12": "Sử dụng một Dịch vụ Đối tượng hiện có hoặc Shapefile",
-        "div13": "Có thể sử dụng bất kỳ dịch vụ đối tượng điểm hoặc shapefile nào để làm nguồn dữ liệu Map Tour. Bạn chỉ cần thêm nó như là một lớp vào bản đồ web của bạn thông qua Trình xem Bản đồ arcgis.com. Nếu ứng dụng phát hiện các thuộc tính dự kiến ​​trong lớp của bạn, tất cả các chức năng bộ dựng sẽ khả dụng.",
-        "div14": "Các giá trị có thể cho các trường tên là (không phân biệt chữ hoa/chữ thường):",
+        "div11": "Nếu bạn lựa chọn bạn tự lưu trữ hình ảnh, bạn sẽ phải tạo thủ công các ảnh thu nhỏ của hình ảnh của bạn. Sử dụng hình ảnh có độ phân giải đầy đủ cho ảnh thu nhỏ sẽ dẫn đến kết quả kém. Xem phần <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>Hỏi đáp</a> để biết các mẹo thay đổi kích cỡ hình ảnh nếu bạn truy cập hình ảnh trực tiếp trên web thông qua URL.",
+        "div12": "Sử dụng dữ liệu GIS hiện có",
+        "div13": "Bất kỳ feature service, tệp CSV hoặc shapefile nào có chứa các điểm đều có thể sử dụng làm dữ liệu Map Tour nếu nó có chứa các trường mà ứng dụng yêu cầu. Bạn phải thêm nó làm một lớp trong bản đồ web ArcGIS, sau đó chia sẻ bản đồ bằng cách tạo Map Tour.",
+        "div14": "Tên trường có thể chứa các giá trị sau (không phân biệt chữ hoa/chữ thường):",
         "div151": "Tên",
         "div152": "Mô tả",
         "div153": "Ảnh",
@@ -479,20 +495,20 @@ define({
         "div0": "Trình duyệt hỗ trợ",
         "div0a": "Trình xem Map Tour được hỗ trợ trên IE8+. Bộ dựng tương tác được hỗ trợ trên IE9+. Chúng tôi tích cực thử nghiệm nó trên tất cả các trình duyệt, nhưng nếu bạn gặp một số khó khăn, chúng tôi khuyên bạn nên sử dụng Chrome.",
         "div0b": "Nếu bạn gặp phải một số khó khăn, vui lòng cho chúng tôi biết. Trong khi đó, với việc xây dựng Map Tour của bạn bằng cách sử dụng mẫu CSV, bạn sẽ giảm thiểu sự tương tác của mình với giao diện bộ dựng.",
-        "div1": "Ảnh",
-        "div2": "Chúng tôi khuyến khích ảnh hướng ngang thay vì ảnh hướng dọc. Hình ảnh với tỷ lệ khung hình 4:3 phù hợp nhất. Có thể sử dụng ảnh hướng dọc, nhưng trên màn hình nhỏ hơn như iPad, rất nhiều bức ảnh có thể bị che khuất bởi chú thích (văn bản chiếm nhiều không gian hơn khi nó được hiển thị trong một khu vực cao so với một khu vực rộng). Mặc dù hình ảnh có các kích cỡ, hình dạng và hướng khác nhau có thể được sử dụng trong một Map Tour, chúng tôi khuyên bạn nên sử dụng cùng một kích thước và hình dạng cho tất cả các hình ảnh. Bằng cách này, người dùng sẽ không bị phân tâm bởi những hình ảnh có kích thước khác nhau khi họ theo dõi chuyến tham quan.",
+        "div1": "Hình ảnh",
+        "div2": "Mặc dù có thể sử dụng các hình ảnh có kích thước, hình dạng và hướng khác nhau trong một Map Tour, nhưng chúng tôi khuyến nghị hình ảnh của bạn nên có hướng nằm ngang thay vì hướng nằm dọc. Các hình ảnh có tỷ lệ tương quan 4:3 sẽ phù hợp nhất. Trong bố cục Ba bảng điều khiển và bố cục Tích hợp, sẽ có phần chú thích chồng đè lên hình ảnh, việc sử dụng hình ảnh hướng dọc có thể dẫn đến tình trạng nhiều phần trong hình ảnh bị chú thích che lấp. Trong bố cục Ba bảng điều khiển và bố cục Tích hợp, chúng tôi khuyến nghị sử dụng cùng kích cỡ và hình dạng cho tất cả hình ảnh nếu có thể. Như vậy, người dùng sẽ không bị phân tâm bởi các hình ảnh có kích cỡ khác nhau trong quá trình xem tour.",
         "div2a": "Chúng tôi khuyến khích sử dụng kích thước hình ảnh tối đa là chiều rộng 1000 điểm ảnh x chiều cao 750 điểm cho hình ảnh chính và 140x93 cho hình thu nhỏ.",
         "div3": "Định dạng văn bản chú thích của bạn bằng cách sử dụng các thẻ HTML",
-        "div4": "Đầu mục và tiêu đề/chú thích ảnh có thể bao gồm các thẻ HTML để xác định định dạng và liên kết. Ví dụ: mã này sẽ thêm một liên kết màu vàng:",
+        "div4": "Bạn có thể nhập thẻ HTML vào phần chú thích để chỉ ra định dạng và liên kết. Ví dụ: các thẻ này thay đổi hyperlink sang màu xanh lục:",
         "div4a": "Viết phụ đề hay cho chuyến tham quan của bạn",
-        "div4b": "Hãy dành thời gian để viết phụ đề hấp dẫn cho chuyến tham quan của bạn. Phụ đề là một cách hay để thu hút mọi người vào chuyến tham quan và cho họ biết những điều họ sẽ khám phá ra trong đó. Nó cũng là một nơi tốt để cho khán giả của bạn biết chuyến tham quan diễn ra tại tiểu bang hoặc quốc gia nào. Ví dụ: giả sử mọi người không biết thành phố hoặc thị xã diễn ra chuyến tham quan. Chú thích của bạn cũng có thể được định dạng bằng cách sử dụng các thẻ HTML, chẳng hạn như liên kết bao gồm. Đừng tạo chú thích quá dài. Trong cửa sổ trình duyệt nhỏ hơn hoặc trên iPad, nó có thể không hoàn toàn vừa và bị cắt bớt. Nếu bạn không thể nghĩ ra một phụ đề hay, hãy để trống.",
+        "div4b": "Hãy dành thời gian để viết phụ đề thật hấp dẫn cho hành trình của bạn. Phụ đề là một cách hay để thu hút mọi người vào xem tour của bạn và giúp họ dễ dàng khám phá những điều thú vị trong đó. Nó cũng là nơi để khán giả của bạn biết được tour đang diễn ra tại tiểu bang hoặc quốc gia nào. Ví dụ: Đừng giả sử mọi người đều biết tour của bạn diễn ra ở thành phố hoặc khu phố nào. Đừng tạo chú thích quá dài. Nếu bạn không thể nghĩ ra câu chú thích hay, hãy để trống. Trong bố cụ Bảng điều khiển bên, phần chú thích nằm ở trang bìa sẽ cũng là chú thích cho điểm đầu tiên của hành trình (nếu bạn đang thiết lập điểm đầu tiên sẽ là nội dung của trang bìa ở phần Tổ chức).",
         "div5": "Lớp Hỗ trợ",
-        "div6": "Bạn có thể thêm các lớp hỗ trợ bổ sung để cung cấp bối cảnh cho Map Tour. Những lớp này có thể chứa các đặc điểm địa lý khác mà bạn muốn bản đồ thể hiện ngoài các điểm Map Tour, chẳng hạn như một khu vực nghiên cứu, một tuyến đường đi bộ hoặc lái xe đến các điểm tham quan của bạn, v.v. Mẫu Map Tour sẽ hiển thị các lớp hỗ trợ bổ sung bằng biểu tượng mà bạn chỉ định trong bản đồ trang web, nhưng không khả dụng cửa sổ pop-up.",
+        "div6": "Bạn có thể thêm các lớp hỗ trợ bổ sung để cung cấp bối cảnh cho Map Tour. Những lớp này có thể chứa các đặc điểm địa lý khác mà bạn muốn bản đồ thể hiện ngoài các điểm Map Tour, chẳng hạn như một khu vực nghiên cứu, một tuyến đường đi bộ hoặc lái xe đến các điểm tham quan của bạn, v.v. Biểu mẫu Map Tour sẽ hiển thị các lớp hỗ trợ bổ sung bằng biểu tượng mà bạn thiết lập trong bản đồ web, nhưng cửa sổ pop-up sẽ không bật lên được. Để thêm các lớp hỗ trợ vào chuyến tham quan của bạn, hãy lưu lại công việc, sau đó đóng Bộ thiết lập Map Tour. Rồi mở bản đồ web được sử dụng trong chuyến hành trình của bạn. Bạn có thể tìm thấy nó trong phần Nội dung của tôi ở trang arcgis.com hoặc thông qua phần Câu chuyện của tôi trên trang web Story Maps.",
         "div7": "Giữ cho chuyến tham quan của bạn ngắn gọn và ngọt ngào",
         "div8": "Giới hạn 99 điểm cho mỗi chuyến tham quan. Dĩ nhiên, hầu hết Map Tour sẽ ngắn hơn nhiều. Đừng nghĩ rằng khán giả của bạn muốn đi qua quá nhiều điểm tham quan. Bạn có thể thấy chủ đề của bạn hấp dẫn, nhưng đừng cho rằng họ cũng nghĩ như vậy!",
         "div10": "Chế độ nhúng",
-        "div11": "Nếu bạn muốn nhúng mẫu vào một trang web khác thông qua một iframe, thêm tham số tùy chọn \"&embed\" vào cuối URL sẽ xóa đầu mục. Chế độ đó cũng có thể được thiết lập trong phiên bản tải về thông qua tệp cấu hình.",
-        "div12": "Tránh sử dụng chiều rộng iFrame hẹp dẫn đến map tour chuyển sang bố cục màn hình cảm ứng nhỏ. Để dễ sử dụng nhất. Khi bạn nhúng một map tour, chúng tôi luôn khuyến khích bạn vẫn cung cấp một liên kết bên cạnh chuyến tham quan đã nhúng để người dùng có thể khởi chạy chuyến tham quan ở chế độ toàn màn hình."
+        "div11": "Nếu bạn muốn nhúng mẫu vào một trang web khác thông qua một iframe, việc thêm tham số tùy chọn \"&embed\" vào cuối URL sẽ xóa đầu mục.",
+        "div12": "Tránh sử dụng chiều rộng iFrame hẹp, nó sẽ làm cho map tour chuyển sang bố cục màn hình cảm ứng nhỏ. Để dễ sử dụng nhất, khi bạn nhúng vào một map tour, chúng tôi luôn khuyến khích bạn nên cung cấp thêm một liên kết bên cạnh tour đã nhúng để người dùng có thể khởi chạy chuyến tham quan ở chế độ toàn màn hình."
       },
       "tab5": {
         "title": "Đang xuất bản",
@@ -548,6 +564,22 @@ define({
       "panel4": "Đừng cảnh báo lại đối với câu chuyện này",
       "mystories": "Câu chuyện của Tôi",
       "btnSave": "Lưu"
+    },
+    "bannerNotification": {
+      "learnMore": "Tìm hiểu Thêm",
+      "close": "Đóng",
+      "dontShowAgain": "Không hiện lại thông báo này"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Thông báo quan trọng về Bảo mật web và Story Maps",
+      "s1h1": "Esri đang ngày càng làm tăng cường chế độ bảo mật cho Story Maps",
+      "s1p1": "Story Maps của bạn đang hoạt động trên nền web và cộng đồng web vẫn luôn nỗ lực để thiết lập và thực thi bảo mật được tốt hơn. Giao thức HTTPS cung cấp kết nối bảo mật để truyền tải nội dung thông qua internet, đây là phương thức nổi bật hỗ trợ truy cập vào nội dung web. Hiện nay, hầu hết các trình duyệt hiện đại đều hiển thị thông báo khi sử dụng HTTP thay vì HTTPS. Trong tình hình tiêu chuẩn này đang ngày càng mở rộng, bắt đầu từ bản cập nhật ArcGIS Online tháng 6 năm 2018, Story Maps sẽ cần phải sử dụng với giao thức HTTPS.",
+      "s1p2": "Xét về khía cạnh thực tế, điều này có nghĩa là phải truy cập vào một story map và những nội dung liên quan đến nó (như hình ảnh, lớp dữ liệu, ứng dụng được nhúng và trang web) bằng cách sử dụng liên kết bắt đầu với HTTPS thay vì HTTP. Điều này đảm bảo mang đến trải nghiệm tốt hơn cho người xem bởi vì hầu hết trình duyệt web sẽ đảm bảo câu chuyện của bạn là bảo mật.",
+      "s2h1": "Bạn cần làm gì?",
+      "s2p1": "Esri đang nỗ lực giúp bước chuyển tiếp này được thực hiện dễ dàng hơn cho các tác giả và người xem Story Maps. Các công cụ hiện đã có sẵn trong Bộ thiết lập Story Map và phần Câu chuyện của tôi sẽ giúp bạn tìm thấy những nội dung không bảo mật (HTTP) bên trong câu chuyện của mình và đưa ra những khuyến nghị về cách xử lý vấn đề. Vui lòng kiểm tra câu chuyện của bạn để tìm nội dung không bảo mật và cập nhật thành HTTPS trước tháng 6 năm 2018.",
+      "action1": "Đóng",
+      "action2": "Kiểm tra câu chuyện của tôi ngay",
+      "action3": "Tìm hiểu thêm"
     }
   }
 });

@@ -44,7 +44,11 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				if( isInBuilderMode ) {
 					$(selector).addClass('isBuilder');
 					title =  "<div class='text_edit_label'>" + (title || i18n.viewer.headerJS.editMe) + "</div>";
-					title += "<div class='text_edit_icon' title='"+i18n.viewer.headerJS.templateTitle+"'></div>";
+					if ( $("body").hasClass("side-panel") ) {
+						title +=  "<div class='text_edit_icon pencilIconDiv'><i class='fa fa-pencil' title='"+i18n.viewer.headerJS.templateTitle+"'></i></div>";
+					}else {
+						title +=  "<div class='text_edit_icon'><i class='fa fa-pencil' title='"+i18n.viewer.headerJS.templateTitle+"'></i></div>";
+					}
 					title += "<textarea rows='1' class='text_edit_input' type='text' spellcheck='true'></textarea>";
 
 					subtitle =  "<span class='text_edit_label'>" + (subtitle || i18n.viewer.headerJS.editMe) + "</span>";
@@ -59,11 +63,16 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					.html(subtitle)
 					.find('a:not([target])').attr('target', '_blank');
 
-				// Desktop builder
-				if( isInBuilderMode )
-					new InlineFieldEdit(selector, editFieldsEnterEvent, editFieldsExitEvent);
+				if( $('body').hasClass('side-panel') ) {
+					$("#headerDesktop").prepend($(".logo"));
+				}
 
-				if( ! isInBuilderMode && ! subtitle ) {
+				// Desktop builder
+				if( isInBuilderMode ){
+					new InlineFieldEdit(selector, editFieldsEnterEvent, editFieldsExitEvent);
+				}
+
+				if( ! isInBuilderMode && ! subtitle && !$("body").hasClass("side-panel")) {
 					$(selector + ' #headerDesktop .title').css("margin-top", 40);
 					$(selector + ' #headerDesktop .subtitle').css("height", 32).attr("tabindex", "-1");
 				}
@@ -80,7 +89,9 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				});
 
 				if ( displaySwitchBuilderButton ) {
-					$(selector + " .switchBuilder").fastClick(this.switchToBuilder);
+					$(selector + " .fa-cog, .editLabel").fastClick(this.switchToBuilder);
+					$("#header .editLabel").fastClick(this.switchToBuilder);
+					$(selector + " .switch-builder-close").click(this.closeEditButton);
 					$(selector + " .switchBuilder").show();
 				}
 
@@ -95,8 +106,14 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 
 			this.resize = function(widthViewport)
 			{
-				var rightAreaWidth = Math.max($(selector + " #headerDesktop .headerLogoImg").outerWidth() + 50, $(selector + " #headerDesktop .rightArea").outerWidth() + 20);
-				$(selector + " #headerDesktop .textArea").width(widthViewport - rightAreaWidth - 15);
+				if($("body").hasClass("side-panel")){
+					$('.textArea').css('left', $('.logo img').width() + 10);
+					$('.textArea').width(widthViewport - $('.logo img').width() - $('.rightArea').outerWidth() - (app.data.userIsAppOwner() ? 45 : 15));
+				} else {
+					var rightAreaWidth = Math.max($(selector + " #headerDesktop .headerLogoImg").outerWidth() + 50, $(selector + " #headerDesktop .rightArea").outerWidth() + 20);
+					$(selector + " #headerDesktop .textArea").width(widthViewport - rightAreaWidth - 15);
+				}
+
 			};
 
 			this.hideMobileBanner = function(immediate)
@@ -114,6 +131,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			this.setColor = function(bgColor)
 			{
 				$(selector).css("background-color", bgColor);
+				$(selector).css("background-color", bgColor);
 				$(selector + " #builderPanel").css("background-color", bgColor);
 				$(selector + ' #headerMobile').css("background-color", bgColor);
 				$("#openHeaderMobile").css("background-color", bgColor);
@@ -121,19 +139,36 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 
 			this.setLogoInfo = function(url, target)
 			{
+				console.log(url,target);
 				if ( ! url || url == "NO_LOGO" ) {
 					$(selector + ' .logo img').hide();
 				}
 				else {
+					if( $("body").hasClass("side-panel") ) {
+						var imgCheck = new Image();
+						imgCheck.onload = function(){
+							$('.logo img').css("display") == "block" ? $(".textArea").css("left", $('.logo img').width() + 12) : $(".textArea").css("left", $('.logo').width() + 12);
+						};
+						imgCheck.src = url;
+					}
 					$(selector + ' .logo img').attr("src", url);
+					// Again for mobile scroll layout
+					$('.scroll-layout-banner .mobile-scroll-logo').attr("src", url);
 					if (target) {
 						$(selector + ' .logo img').closest("a")
+							.css("cursor", "pointer")
+							.attr("href", target)
+							.attr("tabindex", "-1");
+            // Again for mobile scroll layout
+						$('.scroll-layout-banner .mobile-scroll-logo-link')
 							.css("cursor", "pointer")
 							.attr("href", target)
 							.attr("tabindex", "-1");
 					}
 					else
 						$(selector + ' .logo img').closest("a").css("cursor", "default");
+						// Again for mobile scroll layout
+						$('.scroll-layout-banner .mobile-scroll-logoLink').css("cursor", "default");
 
 					$(selector + ' .logo img').show();
 				}
@@ -141,11 +176,13 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 
 			this.setTopRightLink = function(text, link)
 			{
-				if( link )
+				if( link ) {
 					$(selector + ' .social .msLink').html(text ? '<a href="' + link + '" target="_blank" tabindex="-1">' + text + '</a>' : '');
-				else if ( text )
+					$('.scroll-layout-banner .mobile-scroll-story-tag-link').attr('href', link).html(text || '');
+				} else if ( text ) {
 					$(selector + ' .social .msLink').html('<span>' + text + '</a>');
-				else
+					$('.scroll-layout-banner .mobile-scroll-story-tag-link').html(text);
+				} else
 					$(selector + ' .social .msLink').html('');
 			};
 
@@ -234,7 +271,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				var options = 'text=' + encodeURIComponent($(selector + ' #headerMobile .title').text())
 								+ '&url=' + cleanURL(document.location.href)
 								+ '&related=EsriStoryMaps'
-								+ '&hashtags=StoryMaps'; 
+								+ '&hashtags=StoryMaps';
 
 				if ( $(this).hasClass("disabled") ) {
 					return;
@@ -295,11 +332,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 
 			function requestBitly()
 			{
-				var bitlyUrls = [
-					"http://api.bitly.com/v3/shorten?callback=?",
-					"https://api-ssl.bitly.com/v3/shorten?callback=?"
-				];
-				var bitlyUrl = location.protocol == 'http:' ? bitlyUrls[0] : bitlyUrls[1];
+				var bitlyUrl = 'https://arcg.is/prod/shorten?callback=?';
 
 				var urlParams = Helper.getUrlParams();
 				var currentIndex = app.data.getCurrentIndex() + 1;
@@ -416,6 +449,11 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				app.builder.hideSaveConfirmation();
 			}
 
+			this.closeEditButton = function()
+			{
+				$(".switchBuilder").hide();
+			};
+
 			this.switchToBuilder = function()
 			{
 				if( document.location.search.match(/appid/) )
@@ -436,7 +474,8 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				$(selector + ' #infoViewLink').html(i18n.viewer.mobileHTML.navInfo);
 				//Desktop
 				$(selector + ' .msLink').html(i18n.viewer.desktopHTML.storymapsText);
-				$(selector + ' .switchBuilder').html('<div><img src="resources/icons/builder-edit-fields.png" /></div>' + i18n.viewer.desktopHTML.builderButton);
+				$(selector + ' .switchBuilder .editLabel').text(i18n.viewer.headerJS.edit);
+				//$(selector + ' .switchBuilder').html('<div><img src="resources/icons/builder-edit-fields.png" /></div>' + i18n.viewer.desktopHTML.builderButton);
 				$(selector + ' .share_facebook').attr("title", i18n.viewer.desktopHTML.facebookTooltip);
 				$(selector + ' .share_twitter').attr("title", i18n.viewer.desktopHTML.twitterTooltip);
 				$(selector + ' .share_bitly').attr("title", i18n.viewer.desktopHTML.bitlyTooltip);

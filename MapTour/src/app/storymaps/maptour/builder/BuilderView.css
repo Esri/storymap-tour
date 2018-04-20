@@ -19,6 +19,10 @@
 	height: 30px;
 }
 
+.side-panel #builderPanel2 {
+	display: none !important;
+}
+
 #builderPanel2 .text_edit_icon {
 	vertical-align: -4px;
 }
@@ -51,6 +55,10 @@
 	height: 30px;
 }
 
+.side-panel #builderPanel3 {
+	display: none !important;
+}
+
 /*
  * Map Pin Infowindow
  */
@@ -66,6 +74,22 @@
 	border-radius: 4px;
 	background-color: #777;
 	cursor: default;
+}
+
+.colorSelectorSwatch{
+	height: 22px;
+	width: 22px;
+	border-radius: 44px;
+	display: inline-block;
+	margin-right: 5px;
+	margin-top: 5px;
+	padding: 3px;
+}
+
+.colorSelectorSwatch.selectedColor{
+	border: 1.5px solid white;
+	height: 19px;
+	width: 19px;
 }
 
 /*
@@ -98,4 +122,204 @@ body.mobile-view #basemapChooser {
 
 #basemapChooser .esriBasemapGalleryLabelContainer {
 	font-size: 14px;
+}
+
+.side-panel .name .text_edit_label {
+	border: 1px dashed rgba(0,0,0, .4);
+	padding: 10px;
+	word-wrap: break-all;
+}
+
+.side-panel .name .text_edit_label:hover{
+	border-color: rgba(0,0,0, 1);
+	cursor: pointer;
+}
+
+.side-panel .description .text_edit_label {
+	border: 1px dashed rgba(0,0,0, .4);
+	padding: 10px;
+	width: 100%;
+	word-wrap: break-all;
+}
+
+.side-panel .description .text_edit_label:hover{
+	border-color: rgba(0,0,0, 1);
+	cursor: pointer;
+}
+
+#side-panel-builder {
+	display: none;
+}
+
+.side-panel.builder-mode #side-panel-builder {
+	display: block;
+	height: 100%;
+	width: 60px;
+	float: left;
+	background-color: #999;
+}
+
+#side-panel-builder .bldr-btn {
+	width: 60px;
+	height: 50px;
+	margin-left: 0;
+	color: white;
+	background-color: #999;
+	text-align: center;
+	cursor: pointer;
+}
+
+#panels-builder-share, #importPopupButton2 {
+	background-image: none;
+	border: none;
+	box-shadow: none;
+}
+
+#panels-builder-share.disabled, #importPopupButton2.disabled {
+	cursor: default;
+}
+
+#side-panel-builder .builder-save {
+	height: 65px;
+	margin-bottom: 15px;
+	border-bottom: solid 1px;
+}
+
+#side-panel-builder .builder-save.unsaved {
+	background-color: #4C78BB;
+}
+
+#side-panel-builder button {
+	border: none;
+}
+
+.fa-custom-x {
+	font-size: 28px !important;
+}
+
+.fa-map-marker {
+}
+
+.fa-plus {
+}
+
+#addPopupButton2 .fa-plus {
+	left: -5px;
+}
+
+#organizeSlidesButton2 .fa-arrows-v {
+
+}
+
+#importPopupButton2 .fa-plus {
+	left: -5px
+}
+
+#addPopupButton2 .fa-map-marker {
+	left: 10px;
+	top: -10px;
+}
+
+#importPopupButton2 .fa-map-marker {
+	left: 10px;
+	top: -10px;
+}
+
+#importPopupButton2 .map-marker2 {
+	left: 20px;
+	top: -10px;
+}
+
+#panels-builder-help.builder-help {
+	position: absolute;
+	bottom: 10px;
+	font-size: 20px;
+	left: 0;
+}
+
+.fa-exchange {
+	transform: rotate(90deg);
+}
+
+.side-panel .pencilIconDiv {
+	display: block;
+	width: 0;
+	height: 0;
+	border-right: 30px solid transparent;
+	border-top: 30px solid #999;
+	background-color: transparent;
+  border-radius: 0;
+}
+
+.builderImageTarget .pencilIconDiv .fa-pencil {
+	position: absolute;
+  top: 2px;
+  left: 3px;
+}
+
+#placard .pencilIconDiv {
+	opacity: 0.7;
+}
+
+#placard .name .fa-pencil {
+	position: absolute;
+  top: 33px;
+  left: 78px;
+	font-size: 15px;
+}
+
+#placard .description .fa-pencil {
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	font-size: 15px;
+}
+
+.side-panel .dijitTitlePaneTitle {
+	border: none;
+	background-color: transparent;
+	font-size: 12px;
+	color: #666;
+}
+
+.side-panel .dijitTitlePaneTitleHover {
+	border: none;
+	background-color: #fff;
+	font-size: 12px;
+	color: #666;
+}
+
+.side-panel .dijitTitlePaneTitleOpen {
+	background-color: #fff;
+}
+
+.side-panel .dijitTitlePaneTextNode {
+	margin-top: 4px;
+}
+
+.side-panel.builder-mode .dijitArrowNodeInner {
+	display: none;
+}
+
+.side-panel.builder-mode .dijitArrowNode {
+	display: none;
+}
+
+.fa-pencil :not('.side-panel') {
+	display: none;
+}
+
+.side-panel.builder-mode .fa-pencil {
+	display: block;
+}
+
+.share-level {
+	top: -10px;
+  left: 21px !important;
+}
+
+.cover-novideo-tooltip {
+	color: red;
+	margin-top: 13px;
+	display: none;
 }

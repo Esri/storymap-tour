@@ -1,52 +1,52 @@
-define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"], 
+define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"],
 	function(FieldConfig, lang)
 	{
 		/**
 		 * WebApplicationData
 		 * @class WebApplicationData
-		 * 
+		 *
 		 * Store the Web mapping Application /data request
 		 */
-		
+
 		var _originalData = {};
-		var _data = { 
+		var _data = {
 			values: {}
 		};
-		
+
 		return {
 			set: function(data)
 			{
 				_originalData = lang.clone(data);
-				
+
 				if( ! data || ! data.values )
 					return;
-				
+
 				if( data.values.fieldsOverride )
 					data.values.fieldsOverride = new FieldConfig(data.values.fieldsOverride);
-				
-				_data = data; 
+
+				_data = data;
 			},
 			get: function()
 			{
 				var data = lang.clone(_data);
 				if( data.values.fieldsOverride )
 					data.values.fieldsOverride = data.values.fieldsOverride.serialize();
-				
+
 				data.values.sourceLayer = app.data.getSourceLayer().id;
-				
+
 				if( ! data.values.template )
 					data.values.template = "Map Tour";
 				if( ! data.values.templateCreation )
 					data.values.templateCreation = version;
-				
+
 				//delete data.values.templateCreation;
 				//delete data.values.disableVideo;
-				
+
 				//data.values.templateCreation = "2.1";
 				//data.values.disableVideo = "true";
-				
+
 				data.values.templateVersion = version;
-				
+
 				return data;
 			},
 			getBlank: function()
@@ -72,16 +72,16 @@ define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"],
 							delete data.values.firstRecordAsIntro;
 							hasDoneCleaning = true;
 						}
-							
+
 						if (data.values.fieldsOverride){
 							delete data.values.fieldsOverride;
 							hasDoneCleaning = true;
-						} 
-							
+						}
+
 						if (data.values.sourceLayer){
 							delete data.values.sourceLayer;
 							hasDoneCleaning = true;
-						} 
+						}
 					}
 				}
 				return hasDoneCleaning;
@@ -98,7 +98,7 @@ define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"],
 			{
 				return _data.values.doNotWarnTitle || false;
 			},
-			
+
 			setDoNotWarnTitle: function(value)
 			{
 				_data.values.doNotWarnTitle = value;
@@ -152,7 +152,7 @@ define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"],
 					});
 				}
 			},
-			setColors: function(color1, color2, color3) 
+			setColors: function(color1, color2, color3)
 			{
 				_data.values.colors = color1 + ';' + color2 + ';' + color3;
 			},
@@ -180,7 +180,7 @@ define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"],
 			{
 				_data.values.zoomLevel = level;
 			},
-			getZoomLevel: function() 
+			getZoomLevel: function()
 			{
 				return _data.values.zoomLevel;
 			},
@@ -234,7 +234,7 @@ define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"],
 			{
 				_data.values.social = social;
 			},
-			// Last template version the tour has been edited with 
+			// Last template version the tour has been edited with
 			getTemplateVersion: function()
 			{
 				return _data.values.templateVersion;
@@ -267,6 +267,10 @@ define(["storymaps/maptour/core/FieldConfig", "dojo/_base/lang"],
 			setWebmap: function(webmap)
 			{
 				_data.values.webmap = webmap;
+			},
+			getAllValues: function()
+			{
+				return _data.values;
 			}
 		};
 	}

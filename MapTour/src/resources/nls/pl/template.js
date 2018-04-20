@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "To nie jest dostępne w trybie automatycznego odtwarzania",
       "autoplayLabel": "Tryb automatycznego odtwarzania",
       "autoplayExplain1": "W trybie automatycznego odtwarzania narracja jest prezentowana w stałym tempie. Ten tryb doskonale nadaje się do monitora kiosku internetowego lub wyświetlacza publicznego, ale należy pamiętać, że w innych sytuacjach może pogorszyć czytelność narracji. Ta funkcja nie jest obsługiwana na małych wyświetlaczach.",
-      "autoplayExplain2": "Po włączeniu tego trybu udostępniane są elementy sterujące do włączania odtwarzania/wstrzymywania narracji oraz do regulacji szybkości nawigacji."
+      "autoplayExplain2": "Po włączeniu tego trybu udostępniane są elementy sterujące do włączania odtwarzania/wstrzymywania narracji oraz do regulacji szybkości nawigacji.",
+      "takeTourText": "Rozpocznij wycieczkę",
+      "backToStart": "Powrót do początku"
     },
     "builderHTML": {
       "panelHeader": "KONFIGURACJA NARRACJI",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Zasięg",
       "settingsTabZoom": "Poziom powiększenia",
       "settingsLayoutExplain": "Wybierz kompozycję, której chcesz używać.",
-      "settingsLayoutProfessional": "Układ z trzema panelami",
-      "settingsLayoutModern": "Układ zintegrowany",
+      "settingsLayoutProfessional": "Panel trzyczęściowy",
+      "settingsLayoutModern": "Zintegrowana",
+      "settingsLayoutSidePanel": "Panel boczny",
       "settingsLayoutSelected": "Wybrany układ",
-      "settingsLayoutSelect": "Wybierz ten układ",
+      "settingsLayoutNew": "Nowe!",
+      "settingsLayoutSelect": "Zaznacz",
       "settingsLayoutNote": "Należy pamiętać, że w przypadku punktów, w ramach których wykorzystywane są materiały wideo, plakietka będzie zawsze znajdowała się pod materiałem wideo nawet, jeśli opcja ta nie jest zaznaczona.",
       "settingsLayoutLocBtn": "Wyświetl przycisk Lokalizuj",
       "settingsLayoutLocBtnHelp": "Funkcja obsługiwana w większości przeglądarek. Wyświetlana tylko wtedy, gdy dostęp do mapy narracyjnej jest uzyskiwany za pomocą protokołu HTTPS. Nie pojawia się, gdy narracja jest osadzona.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Zmień zasięg",
       "settingsExtentApplyBtn": "Zobacz podgląd mapy wycieczki",
       "settingsExtentUseMainMap": "Użyj zasięgu mapy wycieczki",
-      "settingsZoomExplain": "Konfiguracja powiększenia punktów historii następujących po wprowadzeniu (opcja).",
+      "settingsZoomExplain": "Konfiguracja powiększenia punktów narracji (opcja).",
       "settingsLabelZoom": "Skala/poziom",
       "settingsZoomFirstValue": "Brak",
       "settingsFieldError": "Wybierz pole z każdej listy",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Tworzenie nie powiodło się. Spróbuj ponownie",
       "tabError": "Sprawdź, czy dane w poszczególnych kartach nie zawierają błędów",
       "introRecordBtn": "Wprowadzenie",
-      "introRecordActivate": "Użyj pierwszego punktu jako wprowadzenia (nie jest wyświetlany na przewijanej taśmie)"
+      "introRecordActivate": "Użyj pierwszego punktu jako wprowadzenia (nie jest wyświetlany na przewijanej taśmie)",
+      "coverRecordActivate": "Użyj pierwszego punktu jako okładki",
+      "coverBuilder": "Konfiguracja okładki",
+      "cover": "Okładka",
+      "showCover": "Pokaż okładkę",
+      "editCover": "Edytuj okładkę",
+      "coverNoVideo": "Wideo nie jest obsługiwane na okładkach. Wybierz obraz.",
+      "coverPreview": "Aby zobaczyć okładkę, zapisz swoją narrację, a następnie wyświetl podgląd, używając przycisku Udostępnij."
     },
     "addPopupJS": {
       "uploadingPicture": "Wczytywanie obrazu",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Edytuj!",
       "templateTitle": "Określ tytuł szablonu",
-      "templateSubtitle": "Określ podtytuł szablonu"
+      "templateSubtitle": "Określ podtytuł szablonu",
+      "edit": "Edytuj"
     },
     "crossFaderJS": {
       "setPicture": "Określ tytuł obrazu",
@@ -306,9 +318,9 @@ define({
       "csv": "Odnośnik w pliku CSV",
       "advanced": "Opcje zaawansowane",
       "advancedScratchLbl": "Rozpocznij nową wycieczkę",
-      "advancedScratchTip": "Utwórz pustą wycieczkę, którą wypełnisz ręcznie przy pomocy kreatora.",
+      "advancedScratchTip": "Utwórz pustą wycieczkę, do której możesz dodać punkty wycieczki. Multimedia muszą być dostępne w trybie online. Ta opcja nie obsługuje przesyłania własnych obrazów.",
       "advancedCSVLbl": "Importuj dane wycieczki z pliku CSV",
-      "advancedCSVTip": "Importuj zawartość swojej wycieczki z pliku CSV.",
+      "advancedCSVTip": "Importuj zawartość swojej wycieczki z pliku CSV, który odnosi się do Twoich multimediów w internecie. Ta opcja nie obsługuje przesyłania własnych obrazów.",
       "advancedCommonTip": "Wymagane jest, aby Twoje obrazy oraz filmy znajdowały się już w Internecie.",
       "select": "Wybierz",
       "locUse": "Użyj geolokalizacji obrazów",
@@ -382,7 +394,7 @@ define({
       "title": "Wybierz i zlokalizuj swoje obrazy/filmy",
       "header": "Kliknij lub dotknij obrazy, które chcesz zaimportować, aby je zlokalizować.",
       "headerMore": "Dlaczego moje obrazy lub filmy wideo nie mają geolokalizacji?",
-      "headerExplain": "Jeśli Twoje obrazy znajdują się w prawidłowej lokalizacji, zostaną automatycznie zlokalizowane na mapie i umieszczone na liście na drugiej karcie.<br /><br />Domyślnie serwisy Picasa i Flickr nie korzystają z metadanych lokalizacji obrazów EXIF. Sprawdź ustawienia serwisu Flickr/Picasa na karcie Prywatność, aby włączyć korzystanie z lokalizacji obrazów oraz używanie ich przez zewnętrzną aplikację. W tym celu konieczne może być ponowne zaimportowanie wszystkich obrazów do serwisu Flickr/Picasa.<br /><br />W przypadku portalu Facebook należy przejść do każdego z obrazów, kliknąć przycisk Edytuj i wybrać jedną z sugerowanych lokalizacji, które wyselekcjonowano na podstawie metadanych obrazu EXIF.",
+      "headerExplain": "Jeśli obrazy mają poprawne dane geolokalizacji, zostaną one automatycznie zlokalizowane na mapie i wyświetlone na drugiej karcie.<br /><br />Domyślnie serwisy Picasa i Flickr nie przechowują metadanych EXIF geolokalizacji przy importowaniu obrazów. Należy sprawdzić ustawienia prywatności w serwisie Picasa/Flickr, aby włączyć importowanie danych geolokalizacji obrazów i ich używanie przez aplikację zewnętrzną. Być może konieczne będzie ponowne zaimportowanie istniejących obrazów do serwisu Flickr/Picasa, aby można było używać geolokalizacji EXIF.",
       "leftPanelTab1": "Do zlokalizowania",
       "leftPanelTab2": "Zlokalizowane",
       "clickOrTap": "Kliknij lub dotknij mapę, aby zlokalizować",
@@ -404,7 +416,7 @@ define({
       "header2": "Ten kreator pomoże Ci zbudować mapę wycieczki z multimediów przechowywanych online lub zaimportuje te elementy na Twoje konto w ArcGIS Online dla instytucji.",
       "title1": "Są już online",
       "title2": "Potrzebuję przesłać obrazy",
-      "hostedFSTooltip": "Prześlij obrazy i zapisz je razem z warstwą mapy wycieczki (pliki wideo nie są obsługiwane).",
+      "hostedFSTooltip": "Prześlij własne obrazy i zapisz je w wycieczce (pliki wideo nie są obsługiwane).",
       "hostedFsNA": "Do publikowania hostowanych warstw obiektów konieczna jest rola Publikującego lub inna rola z odpowiednimi uprawnieniami. Skontaktuj się z administratorem oprogramowania ArcGIS.",
       "hostedFsNA2": "Dostępne tylko w ramach subskrypcji ArcGIS Online. <a href='%LINK%'>Zarejestruj się w celu uzyskania bezpłatnej wersji próbnej</a>",
       "footer1": "Po zakończeniu wprowadzania zmian nie zapomnij udostępnić mapy wycieczki odbiorcom za pomocą strony szczegółów aplikacji.",
@@ -420,19 +432,23 @@ define({
       "close": "Zamknij",
       "tab1": {
         "title": "Wprowadzenie",
+        "moreInfo": "Więcej informacji",
+        "infoSites": "Odwiedź <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>sekcję Mapa wycieczki</a> <a href='https://storymaps.arcgis.com' target='_blank'>witryny internetowej Esri Story Maps (Mapy narracyjne).</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Mapa wycieczki — często zadawane pytania.</a>",
+        "myStories": "W witrynie internetowej w elemencie <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Moje narracje</a> można zarządzać mapami wycieczek i sprawdzać w nich błędy.",
         "div1": "Szablon mapy wycieczki został zaprojektowany do prezentacji informacji geograficznych oraz fascynujących fotografii lub elementów multimedialnych dopełniających prezentowany scenariusz.",
         "div2": "Przy użyciu szablonu można utworzyć atrakcyjnie wyglądającą i łatwą w obsłudze aplikację internetową umożliwiającą prezentację niewielkiego zbioru miejsc na mapie w ponumerowanej kolejności. Użytkownicy mogą przeglądać ten zbiór. Szablon zaprojektowano do użytku w dowolnej przeglądarce i na każdym urządzeniu, w tym również na smartfonie i tablecie.<br /><br />",
-        "div42": "Aby zobaczyć przykładowe mapy wycieczek utworzone przez innych użytkowników, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>przejdź do galerii</a> znajdującej się na <a href='http://storymaps.arcgis.com/' target='_blank'>stronie Story Maps</a>. Możesz także śledzić nas na Twitterze: <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Czekamy na wiadomości od Ciebie! Niezależnie od tego, czy masz pytanie, chcesz poprosić o nowy obiekt lub poinformować nas o znalezionym błędzie, odwiedź <a href='http://links.esri.com/storymaps/forum' target='_blank'>Forum użytkowników Story Maps</a>."
+        "div42": "Aby zobaczyć przykłady map wycieczek utworzonych przez innych użytkowników, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>przejdź do galerii</a> w <a href='https://storymaps.arcgis.com/' target='_blank'>witrynie internetowej Story Maps (Mapy narracyjne)</a>. Można także śledzić nas w serwisie Twitter: <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "Będziemy wdzięczni za wszelkie opinie! Opowiedz nam o problemach i nowych funkcjach, których potrzebujesz, odwiedzając forum Story Maps w serwisie <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Dane",
-        "div1": "Głównym zagadnieniem, które należy rozważyć podczas tworzenia mapy wycieczki, jest miejsce przechowywania obrazów. W mapie wycieczki można użyć obrazów przechowywanych w najpopularniejszych serwisach udostępniających zdjęcia, na dowolnym serwerze WWW oraz jako załączniki w usługach obiektowych.",
+        "div1": "Głównym zagadnieniem, które należy rozważyć podczas tworzenia mapy wycieczki, jest miejsce przechowywania obrazów. Na mapie wycieczki można użyć obrazów przechowywanych w serwisach udostępniających zdjęcia, na dowolnym serwerze WWW lub przesłanych z dysku.",
         "div1a": "Informacje o obsługiwanych formatach obrazów i wideo można znaleźć w ostatniej sekcji tej karty.",
         "div2": "Interaktywny kreator udostępnia dwie opcje obsługi obrazów w mapie wycieczki:",
-        "div3": "<ul><li>Możesz użyć <b>zdjęć już zamieszczonych w sieci</b>, takich jak obrazy przechowywane w witrynach przeznaczonych do udostępniania zdjęć (np. Flickr) lub obrazy przechowywane w Twojej własnej witrynie. Na mapie wycieczki zostaną utworzone odnośniki do tych obrazów, korzystające z ich adresów URL.</li><li>Możesz także <b>przesłać zdjęcia ze swojego komputera</b> bezpośrednio do mapy wycieczki. Ta opcja wymaga posiadania konta dla instytucji (ArcGIS for Organizations) oraz uprawnień publikującego lub administratora (to dlatego, że korzystanie z niej powoduje automatyczne utworzenie hostowanej usługi obiektowej, w której zdjęcia są przechowywane w postaci załączników).</li></ul>",
+        "div3": "<ul><li>Można używać <b>zdjęć, które już zostały udostępnione</b>, na przykład obrazów zapisanych w witrynie udostępniania zdjęć, takiej jak Flickr, lub obrazów zapisanych we własnej witrynie internetowej. Obrazy te będą przywoływane na mapie wycieczki za pomocą ich adresów URL.</li><li>Można też <b>przesłać zdjęcia z komputera</b> bezpośrednio do mapy wycieczki. Opcja przesyłania wymaga subskrypcji ArcGIS i uprawnień Publikującego lub Administratora, ponieważ automatycznie tworzona jest hostowana usługa obiektowa, w której zdjęcia są zapisywane jako załączniki.</li></ul>",
         "div4": "Najczęstsze przypadki zastosowania to:",
-        "div4b": "<b>Twoje zdjęcia nie są jeszcze hostowane</b>, ale masz konto ArcGIS dla instytucji (ArcGIS for Organizations). Najlepszym wyborem będzie skorzystanie z hostowanej usługi obiektowej. Podobnie jak publiczne serwisy udostępniające zdjęcia, zapewnimy optymalizację Twoich obrazów w celu utworzenia zdjęć niewymagających długiego wczytywania, a Ty będziesz mieć dostęp do wszystkich funkcji administracyjnych i zarządzania danymi oferowanych przez platformę ArcGIS.",
+        "div4b": "<b>Twoje zdjęcia nie są jeszcze hostowane</b>, ale masz subskrypcję ArcGIS. Najlepszym wyborem będzie skorzystanie z hostowanej usługi obiektowej. Podobnie jak serwisy udostępniające zdjęcia, zapewnimy optymalizację Twoich obrazów w celu uzyskania zdjęć niewymagających długiego wczytywania, a Ty będziesz mieć dostęp do wszystkich funkcji administracyjnych i zarządzania danymi oferowanych przez platformę ArcGIS.",
         "div5": "<b>Nie jesteś członkiem instytucji</b> — najpierw musisz przesłać swoje obrazy do witryny udostępniającej zdjęcia lub na własny serwer internetowy. Następnie kreator pomoże Ci w użyciu tych obrazów, które nadal będą hostowane w oryginalnej lokalizacji.",
         "div6": "<b>Chcesz ponownie użyć istniejącej już usługi obiektowej</b> przechowującej obrazy w postaci załączników lub zawierającej odnośniki do obrazów zewnętrznych. Szczegółowe informacje znajdują się w poniższej sekcji.",
         "div7": "<b>Jesteś użytkownikiem poprzedniej wersji</b> szablonu mapy wycieczki i masz już plik CSV zawierający odnośniki do obrazów i miniatury. Będziesz mieć możliwość zaimportowania go i dopracowania danych. Kreator obsługuje jedynie pliki CSV korzystające z szerokości/długości geograficznej. Plików CSV bazujących na danych adresowych można nadal używać za pomocą mapy internetowej (patrz poniższa sekcja).",
@@ -441,10 +457,10 @@ define({
         "learn": "więcej informacji",
         "div9": "Operacja importowania tworzy odnośniki do już hostowanych obrazów poprzez zapisanie ich adresów URL w zbiorze obiektów mapy internetowej. Obrazy te nie są przechowywane w ArcGIS Online. Jeśli nie można uzyskać dostępu do hostowanych obrazów, nie będą one dostępne na mapie wycieczki i wyświetlany będzie obrazek zastępczy „Obraz niedostępny”. W zależności od dostawcy używanego serwisu udostępniania zdjęć dostępna lub niedostępna może być funkcja importowania do mapy wycieczki nazwy, opisu i lokalizacji obrazów. Te atrybuty są przechowywane na mapie internetowej, dlatego zmiany dokonywane w usługach internetowych nie będą widoczne na mapie wycieczki.",
         "div10": "Przechowywanie obrazów na serwerze WWW",
-        "div11": "Jeśli zdecydujesz się na samodzielne hostowanie obrazów, konieczne będzie ręczne utworzenie ich miniatur. Używanie obrazów w pełnej rozdzielczości jako miniatur powoduje zmniejszenie wydajności. Z tego powodu zalecane jest korzystanie z internetowych serwisów udostępniających zdjęcia lub usług obiektowych, które są hostowane.",
-        "div12": "Korzystanie z istniejącej usługi obiektowej lub pliku shape",
-        "div13": "Jako źródła danych mapy wycieczki można użyć dowolnej punktowej usługi obiektowej lub pliku shape. Trzeba tylko dodać ten element do mapy jako warstwę za pomocą przeglądarki map ArcGIS.com. Jeśli aplikacja odnajdzie odpowiednie atrybuty w warstwie, dostępne będą wszystkie funkcje kreatora.",
-        "div14": "Możliwe wartości nazw pól to (wielkie i małe litery nie są rozróżniane):",
+        "div11": "Jeśli zdecydujesz się na samodzielne hostowanie obrazów, konieczne będzie ręczne utworzenie ich miniatur. Używanie obrazów w pełnej rozdzielczości jako miniatur powoduje zmniejszenie wydajności. Następujące <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>często zadawane pytania</a> zawierają wskazówki dotyczące zmiany rozmiaru obrazów, jeśli dostęp do nich będzie uzyskiwany bezpośrednio w Internecie za pomocą adresów URL.",
+        "div12": "Korzystanie z istniejących danych GIS",
+        "div13": "Jako źródło danych mapy wycieczki może być używana dowolna usługa obiektowa, plik CSV lub plik shape zawierający punkty, jeśli zawiera zestaw pól oczekiwanych przez aplikację. Należy dodać ten element jako warstwę do mapy internetowej ArcGIS, a następnie udostępnić tę mapę, tworząc mapę wycieczki.",
+        "div14": "Obsługiwane wartości nazw pól to (wielkie i małe litery nie są rozróżniane):",
         "div151": "Nazwa",
         "div152": "Opis",
         "div153": "Obraz",
@@ -480,19 +496,19 @@ define({
         "div0a": "Przeglądarka map wycieczek jest obsługiwana w przeglądarce IE8+. Interaktywny kreator jest obsługiwany w przeglądarce IE9+. Prowadzimy aktywnie testy z użyciem wszystkich najważniejszych przeglądarek, ale w razie trudności zalecamy używanie przeglądarki Chrome.",
         "div0b": "W razie trudności prosimy o kontakt z nami. Aby zminimalizować interakcję z interfejsem kreatora, można tymczasem skorzystać z szablonu CSV.",
         "div1": "Obrazy",
-        "div2": "Zalecamy korzystanie z orientacji poziomej zamiast pionowej. Najlepiej pasują tutaj zdjęcia o proporcjach 4:3. Można używać obrazy w orientacji pionowej, ale na mniejszych ekranach, takich jak te w urządzeniach iPad, duża część zdjęcia może zostać zasłonięta przez podpis, ponieważ tekst zajmuje więcej miejsca, gdy jest wyświetlany w obszarze o dużej wysokości, niż gdy jest wyświetlany na powierzchni o dużej szerokości. Mimo, że na mapie wycieczki można używać obrazów o różnych rozmiarach, kształtach i orientacjach, zalecane jest korzystanie z obrazów o dokładnie tym samym rozmiarze i kształcie. W ten sposób podczas przeglądania mapy użytkowników nie będą rozpraszały różne wymiary obrazów.",
+        "div2": "Wprawdzie na jednej mapie wycieczki można użyć obrazów o różnych rozmiarach, kształtach i orientacji, jednak zalecane są obrazy w orientacji poziomej, a nie pionowej. Najlepiej pasują obrazy o proporcjach 4:3. W kompozycjach Panel trzyczęściowy i Zintegrowana, w których podpis nachodzi na obraz, użycie obrazów w orientacji pionowej może spowodować zasłonięcie większości obrazu przez podpis. W kompozycjach Panel trzyczęściowy i Zintegrowana zalecane jest w miarę możliwości używanie tego samego rozmiaru i kształtu dla wszystkich obrazów. W ten sposób podczas wycieczki użytkowników nie będą rozpraszały różne rozmiary obrazów.",
         "div2a": "Zalecamy, aby maksymalny rozmiar głównych obrazów wynosił 1000 x 750 pikseli oraz 140 x 93 pikseli w przypadku miniatur.",
         "div3": "Formatowanie tekstu podpisów za pomocą znaczników HTML",
-        "div4": "Nagłówki i tytuły/podpisy obrazów mogą zawierać znaczniki HTML definiujące formatowanie i łącza. Ten kod spowoduje na przykład dodanie żółtego łącza:",
+        "div4": "W podpisach można wprowadzać znaczniki HTML, aby zdefiniować formatowanie i łącza. Na przykład następujące znaczniki dodają zielone hiperłącze:",
         "div4a": "Napisz dobrze brzmiące napisy dla swojej wycieczki",
-        "div4b": "Poświęć trochę czasu, aby napisać przekonujące napisy do swojej wycieczki. Jest to dobry sposób, aby zainteresować nią innych, informując ich co mogą podczas niej odkryć. W tym miejscu można także umieścić informację na temat stanu, regionu lub państwa, w którym ma miejsce wycieczka. Nie można zakładać, że każdy będzie wiedział, gdzie dokładnie znajduje się dane miasto lub miejscowość. Napis można również sformatować za pomocą znaczników HTML, włączając w to odnośniki. Podpisy nie powinny być jednak zbyt długie. Mogą one nie zmieścić się w mniejszych oknach przeglądarki lub na urządzeniach iPad i w związku z tym zostaną obcięte. Jeśli nie możesz wymyśleć dobrego podpisu, pozostaw to pole puste.",
+        "div4b": "Poświęć trochę czasu, aby w ciekawy sposób opisać swoją wycieczkę. Jest to dobry sposób, aby zainteresować nią innych, informując ich co mogą podczas niej odkryć. W tym miejscu można także umieścić informację na temat stanu, województwa, regionu lub państwa, w którym ma miejsce wycieczka. Nie można zakładać, że każdy będzie wiedział, gdzie dokładnie znajduje się dane miasto lub miejscowość. W kompozycji Panel boczny napis znajdujący się na stronie tytułowej jest podpisem dla pierwszego punktu wycieczki (jeśli używana jest opcja w oknie dialogowym Organizuj służąca do użycia zawartości pierwszego punktu jako strony tytułowej).",
         "div5": "Warstwy pomocnicze",
-        "div6": "Można dodać dodatkowe warstwy pomocnicze oferujące kontekst dla mapy wycieczki. Warstwy te mogą zawierać inne obiekty geograficzne, które mapa wycieczki ma przedstawiać oprócz punktów, takie jak analizowany obszar, trasa piesza lub przejazdu łącząca punkty wycieczki, itd. W szablonie mapy wycieczki te dodatkowe warstwy pomocnicze są wyświetlane za pomocą symboli skonfigurowanych dla mapy internetowej, ale okna podręczne nie są dostępne.",
+        "div6": "Można dodać dodatkowe warstwy pomocnicze oferujące kontekst dla mapy wycieczki. Warstwy te mogą zawierać inne obiekty geograficzne, które mapa wycieczki ma przedstawiać oprócz punktów, takie jak analizowany obszar, trasa piesza lub trasa przejazdu łącząca punkty wycieczki itd. W szablonie mapy wycieczki te dodatkowe warstwy pomocnicze są wyświetlane za pomocą symboli skonfigurowanych dla mapy internetowej, ale okna podręczne nie są dostępne. Aby dodać warstwy pomocnicze do wycieczki, zapisz swoją pracę i zamknij kreator mapy wycieczki. Następnie otwórz mapę internetową użytą w Twojej wycieczce. Możesz ją znaleźć na stronie Moje zasoby ArcGIS lub w sekcji Moje narracje witryny internetowej Story Maps (Mapy narracyjne).",
         "div7": "Twoja wycieczka powinna być krótka i atrakcyjna",
         "div8": "Liczba lokalizacji wycieczek jest ograniczona do 99 punktów. Większość map wycieczek będzie prezentowała znacznie krótsze trasy. Nie oczekuj, że odbiorcy będą chcieli śledzić dużą liczbę punktów wycieczki. Dla ciebie dany temat może być fascynujący, nie wszyscy jednak muszą podzielać tę opinię!",
         "div10": "Tryb osadzania",
-        "div11": "Jeżeli chcesz osadzić szablon w innej witrynie przy użyciu ramki iframe, dodanie opcjonalnego parametru \"&embed\" na końcu adresu URL spowoduje usunięcie nagłówka. Tryb ten można także ustawić w wersji do pobrania przy użyciu pliku konfiguracji.",
-        "div12": "Należy unikać korzystania z elementu iFrame o niewielkiej szerokości, ponieważ spowoduje on przełączenie się mapy wycieczki do interaktywnego układu dotykowego dla małych ekranów. Aby zmaksymalizować łatwe użytkowania, po osadzeniu mapy wycieczki najlepiej nadal dodać obok niej odnośnik, dzięki czemu użytkownicy będą mogli uruchomić mapę wycieczki na pełnym ekranie."
+        "div11": "Jeśli chcesz osadzić szablon w innej witrynie przy użyciu ramki iframe, dodanie opcjonalnego parametru \"&embed\" na końcu adresu URL spowoduje usunięcie nagłówka.",
+        "div12": "Należy unikać korzystania z elementu iFrame o niewielkiej szerokości, ponieważ spowoduje on przełączenie się mapy wycieczki do interaktywnej kompozycji dotykowej dla małych ekranów. Aby ułatwić użytkowanie mapy, po osadzeniu mapy wycieczki najlepiej nadal dodać obok niej odnośnik, dzięki czemu użytkownicy będą mogli uruchomić mapę wycieczki na pełnym ekranie."
       },
       "tab5": {
         "title": "Publikacja",
@@ -548,6 +564,22 @@ define({
       "panel4": "Nie ostrzegaj ponownie dla tej narracji",
       "mystories": "Moje narracje",
       "btnSave": "Zapisz"
+    },
+    "bannerNotification": {
+      "learnMore": "Dowiedz się więcej",
+      "close": "Zamknij",
+      "dontShowAgain": "Nie pokazuj tej wiadomości ponownie"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Istotny komunikat dotyczący bezpieczeństwa internetowego i aplikacji Story Maps (Mapy narracyjne)",
+      "s1h1": "Firma Esri rozbudowuje zabezpieczenia map narracyjnych (Story Maps)",
+      "s1p1": "Mapy narracyjne funkcjonują w Internecie i społeczność internetowa stale pracuje nad opracowaniem i zaimplementowaniem lepszych zabezpieczeń. Protokół HTTPS, który udostępnia bezpieczne połączenie dla zasobów przesyłanych przez Internet, przedstawia się jako oczekiwany sposób dostępu do zasobów internetowych. Większość nowoczesnych przeglądarek obecnie wyświetla komunikaty ostrzegawcze, gdy jest używany protokół HTTP, a nie HTTPS. Z uwagi na ten nowoczesny standard, począwszy od aktualizacji usługi ArcGIS Online w czerwcu 2018 roku, mapy narracyjne będą wymagać użycia protokołu HTTPS.",
+      "s1p2": "W praktyce oznacza to, że dostęp do mapy narracyjnej i jej zasobów (w tym obrazów, warstw, osadzonych aplikacji i witryn internetowych) musi być uzyskiwany za pomocą łączy rozpoczynających się od HTTPS, a nie od HTTP. Jest to najlepsze rozwiązanie dla czytelników, ponieważ większość przeglądarek internetowych wskaże, że narracje są bezpieczne.",
+      "s2h1": "Co mam zrobić?",
+      "s2p1": "Firma Esri pracuje nad tym, aby niniejsza zmiana w jak najmniejszym stopniu wpływała na pracę autorów i użytkowników map narracyjnych. Obecnie w kreatorach map narracyjnych i w elemencie Moje narracje są dostępne narzędzia pomagające znaleźć niezabezpieczone zasoby (HTTP) w narracjach i przedstawiające zalecenia dotyczące ich zmiany. Należy sprawdzić narracje pod kątem niezabezpieczonych zasobów i zaktualizować je do protokołu HTTPS przed upływem czerwca 2018 roku.",
+      "action1": "Zamknij",
+      "action2": "Sprawdź teraz moje narracje",
+      "action3": "Dowiedz się więcej"
     }
   }
 });

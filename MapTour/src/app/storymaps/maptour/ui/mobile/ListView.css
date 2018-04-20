@@ -37,3 +37,142 @@ body.hasTouch .listWrapper > div:nth-child(2) {
 	height:100px;
 	border-bottom:#444 1px solid;
 }
+
+.back-to-top {
+	display: none;
+}
+
+.mobile-view.mobile-layout-scroll .back-to-top {
+	display: block;
+	position: fixed;
+	z-index: 70;
+	bottom: 30px;
+	margin: auto;
+	background: #000;
+	height: 40px;
+	padding: 0 0 3px;
+	width: 70px;
+	border-radius: 35px;
+	line-height: 0;
+	color: #fff;
+	font-size: 35px;
+	right: calc(50vw - 35px);
+	cursor: pointer;
+	animation-name: slideUpTopButton;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+}
+
+.mobile-view.mobile-layout-scroll .back-to-top.hidden {
+	bottom: -40px;
+	animation-name: slideDownTopButton;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes slideUpTopButton {
+	from {
+		bottom: -40px;
+	}
+	to {
+		bottom: 30px;
+	}
+}
+
+@keyframes slideDownTopButton {
+	from {
+		bottom: 30px;
+	}
+	to {
+		bottom: -40px;
+	}
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content {
+	position: relative;
+	display: block;
+	height: 65%;
+	width: 100%;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	background-color: #fff;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content img,
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .mobile-layout-scroll-video {
+	width: 100%;
+	border: none;
+	display: block;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .mobile-layout-scroll-video {
+	background: #efefef;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .text-wrapper {
+	color: #555;
+	margin: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ccc;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .tour-title {
+	font-size: 2em;
+	font-weight: 200;
+	text-align: center;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .tour-subtitle {
+	font-size: 1.3em;
+	font-weight: 200;
+	margin-top: 15px;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content table {
+	border-spacing: 0;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .tpNumberScroll {
+	padding: 0;
+	margin: 0 15px 0 0;
+	font-size: 2.2em;
+	color: #999;
+	text-align: left;
+	font-weight: 200;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .tpNumberScroll.red {
+	color: #de2900;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .tpNumberScroll.blue {
+	color: #007ac2;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .tpNumberScroll.green {
+	color: #35ac46;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .tpNumberScroll.purple {
+	color: #7751ab;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .tpNameScroll {
+	padding: 0;
+	margin: 0;
+	font-size: 1.5em;
+	line-height: 1.2em;
+	font-weight: 200;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .tpDescriptionScroll {
+	margin: 20px 0 0;
+	padding: 0;
+	font-size: 1em;
+	font-weight: 200;
+}
+
+.mobile-view.mobile-layout-scroll #mobile-scroll-story-content .tour-point-content:last-child .text-wrapper {
+	padding-bottom: 0;
+	border-bottom: none;
+}

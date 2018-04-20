@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "Ceci n'est pas disponible en mode de lecture automatique",
       "autoplayLabel": "Mode de lecture automatique",
       "autoplayExplain1": "Le mode de lecture automatique fait avancer votre récit à intervalle régulier. Il est idéal pour les écrans publics, mais, dans d'autres cas, il peut compliquer la lecture du récit. Cette fonctionnalité n'est pas prise en charge sur les petits écrans.",
-      "autoplayExplain2": "Lorsque ce mode est actif, vous disposez de contrôles pour lire le récit ou le mettre en pause, ainsi que régler la vitesse de navigation."
+      "autoplayExplain2": "Lorsque ce mode est actif, vous disposez de contrôles pour lire le récit ou le mettre en pause, ainsi que régler la vitesse de navigation.",
+      "takeTourText": "Suivre la visite",
+      "backToStart": "Retour au début"
     },
     "builderHTML": {
       "panelHeader": "CONFIGURATION DU RECIT",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Etendue",
       "settingsTabZoom": "Niveau de zoom",
       "settingsLayoutExplain": "Sélectionnez la mise en page de votre choix.",
-      "settingsLayoutProfessional": "Mise en page à trois volets",
-      "settingsLayoutModern": "Mise en page intégrée",
+      "settingsLayoutProfessional": "Trois volets",
+      "settingsLayoutModern": "Intégré",
+      "settingsLayoutSidePanel": "Volet latéral",
       "settingsLayoutSelected": "Mise en page sélectionnée",
-      "settingsLayoutSelect": "Sélectionner cette mise en page",
+      "settingsLayoutNew": "Nouveau !",
+      "settingsLayoutSelect": "Sélectionner",
       "settingsLayoutNote": "Notez que sur les points qui utilisent des vidéos, le message est toujours placé sous la vidéo même si cette option est désélectionnée.",
       "settingsLayoutLocBtn": "Afficher un bouton de localisation",
       "settingsLayoutLocBtnHelp": "Fonctionnalité prise en charge sur la plupart des navigateurs. Apparaît uniquement en cas d’accès à la Story Map via HTTPS. Non visible si le récit est incorporé.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Modifier l’étendue",
       "settingsExtentApplyBtn": "Aperçu dans Map Tour",
       "settingsExtentUseMainMap": "Utiliser l'étendue de Map Tour",
-      "settingsZoomExplain": "Définissez le zoom des points de narration qui suivent l’introduction (facultatif).",
+      "settingsZoomExplain": "Définir le zoom pour les points du récit (facultatif).",
       "settingsLabelZoom": "Echelle/niveau",
       "settingsZoomFirstValue": "Aucun",
       "settingsFieldError": "Sélectionnez un champ dans chaque liste",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "La création du service a échoué. Réessayez",
       "tabError": "Recherchez des erreurs dans tous les onglets",
       "introRecordBtn": "Introduction",
-      "introRecordActivate": "Utilisez le premier point en introduction (n'apparaît pas dans le vidéorama)"
+      "introRecordActivate": "Utilisez le premier point en introduction (n'apparaît pas dans le vidéorama)",
+      "coverRecordActivate": "Utilisez le premier point comme page de couverture",
+      "coverBuilder": "Configuration de la page de couverture",
+      "cover": "Couverture",
+      "showCover": "Afficher la couverture",
+      "editCover": "Mettre à jour la couverture",
+      "coverNoVideo": "La couverture ne prend pas en charge les vidéos. Sélectionnez une image.",
+      "coverPreview": "Pour visualiser la couverture, enregistrez votre récit, puis affichez son aperçu à l’aide du bouton Partager."
     },
     "addPopupJS": {
       "uploadingPicture": "Chargement de l’image",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Modifier",
       "templateTitle": "Définir le titre du modèle",
-      "templateSubtitle": "Définir le sous-titre du modèle"
+      "templateSubtitle": "Définir le sous-titre du modèle",
+      "edit": "Mise à jour"
     },
     "crossFaderJS": {
       "setPicture": "Définir le titre de l’image",
@@ -306,9 +318,9 @@ define({
       "csv": "Référencées dans un fichier CSV",
       "advanced": "Options avancées",
       "advancedScratchLbl": "Démarrer une nouvelle visite",
-      "advancedScratchTip": "Créez une visite vide que vous pourrez renseigner manuellement à l'aide d'un assistant.",
+      "advancedScratchTip": "Créez un Tour vide dans lequel vous pouvez ajouter des points de visite. Votre support doit déjà être en ligne. Cette option ne prend pas en charge le chargement de vos images.",
       "advancedCSVLbl": "Importer les données de la visite à partir d'un fichier CSV",
-      "advancedCSVTip": "Importez le contenu de votre visite à partir d'un fichier CSV.",
+      "advancedCSVTip": "Importez le contenu de votre Tour à partir d’un fichier CSV qui fait référence à votre support en ligne. Cette option ne prend pas en charge le chargement de vos images.",
       "advancedCommonTip": "Pour cela, vos images et vidéos doivent déjà être en ligne.",
       "select": "Effectuer une sélection",
       "locUse": "Utiliser la géolocalisation des images",
@@ -382,7 +394,7 @@ define({
       "title": "Sélectionnez et localisez vos images/vidéos",
       "header": "Cliquez ou touchez les images que vous voulez importer pour les localiser.",
       "headerMore": "Pourquoi mes images/vidéos ne sont-elles pas géolocalisées ?",
-      "headerExplain": "Si vos images possèdent une géolocalisation valide, elles seront automatiquement localisées sur la carte et répertoriées dans le deuxième onglet.<br /><br />Par défaut Picasa et Flickr ne stockent pas les métadonnées de géolocalisation EXIF lorsque vous importez des images. Vérifiez les paramètres de confidentialité Flickr/Picasa pour activer l'utilisation et l'importation de la géolocalisation des images par l'application externe. Vous devrez peut-être réimporter vos images dans Flickr/Picasa afin d'utiliser la géolocalisation EXIF.<br /><br />Dans le cas de Facebook, sur chaque image, cliquez sur Modifier et sélectionnez l'emplacement.",
+      "headerExplain": "Si vos images ont une géolocalisation valide, elles sont automatiquement localisées sur la carte et répertoriées dans le deuxième onglet.<br /><br />Par défaut, Picasa et Flickr ne stockent pas les métadonnées de géolocalisation EXIF lorsque vous importez des images. Vérifiez les paramètres de confidentialité Flickr/Picasa pour activer l'importation et l'utilisation de la géolocalisation des images par une application externe. Vous devrez peut-être réimporter vos images dans Flickr/Picasa pour pouvoir utiliser la géolocalisation EXIF.",
       "leftPanelTab1": "Pour localiser",
       "leftPanelTab2": "Localisé",
       "clickOrTap": "Cliquez sur la carte ou touchez-la pour localiser",
@@ -404,7 +416,7 @@ define({
       "header2": "Cet assistant va vous aider à créer un Map Tour à partir des images déjà stockées en ligne ou il les importera dans votre compte ArcGIS Online for Organizations.",
       "title1": "Elles sont déjà en ligne",
       "title2": "J'ai besoin de télécharger mes images",
-      "hostedFSTooltip": "Chargez vos images et stockez-les avec la couche Map Tour (vidéos non prises en charge).",
+      "hostedFSTooltip": "Chargez vos images et stockez-les dans votre visite (vidéos non prises en charge).",
       "hostedFsNA": "Vous devez être éditeur ou détenir un autre rôle doté du privilège de publication des couches d'entités hébergées. Contactez votre administrateur ArcGIS.",
       "hostedFsNA2": "Uniquement disponible avec un abonnement à ArcGIS Online. <a href='%LINK%'>Inscrivez-vous pour essayer la version d'évaluation gratuite</a>",
       "footer1": "Lorsque vous aurez terminé, n'oubliez pas de partager votre Map Tour avec votre public par le biais de la page d'élément de l'application.",
@@ -420,19 +432,23 @@ define({
       "close": "Fermer",
       "tab1": {
         "title": "Introduction",
+        "moreInfo": "Pour plus d’informations",
+        "infoSites": "Consultez la <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>section Map Tour</a> du <a href='https://storymaps.arcgis.com' target='_blank'>site Web Esri Story Maps.</a>",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>FAQ du Map Tour.</a>",
+        "myStories": "Vous pouvez gérer vos Map Tours et rechercher les erreurs qui y figurent dans la section <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Mes récits</a> du site Web.",
         "div1": "Le modèle Map Tour est conçu pour présenter des informations géographiques lorsque vous ne disposez pas d'éléments photographiques ou multimédias intéressants pour agrémenter l'histoire que vous souhaitez raconter.",
         "div2": "Le modèle produit une application Web attractive et conviviale qui vous permet de présenter un ensemble réduit d'emplacements sur une carte au sein d'une séquence numérotée que les utilisateurs peuvent parcourir. Ce modèle est destiné à être utilisé dans tous les navigateurs Web et sur tous les périphériques, dont les smartphones et les tablettes. <br /><br />",
-        "div42": "Pour voir des exemples de visites cartographiques créées par d'autres utilisateurs, <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>consultez la galerie</a> sur le <a href='http://storymaps.arcgis.com/' target='_blank'>site Web des Story Maps</a>. Vous pouvez également nous suivre sur Twitter à l'adresse <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Nous aimerions avoir de vos nouvelles ! Pour poser une question, proposer une nouvelle fonctionnalité ou si vous pensez avoir trouvé un bogue, consultez le <a href='http://links.esri.com/storymaps/forum' target='_blank'>forum des utilisateurs des Story Maps</a>."
+        "div42": "Pour afficher des exemples de Map Tours créés par d’autres utilisateurs, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>visitez la bibliothèque</a> sur le <a href='https://storymaps.arcgis.com/' target='_blank'>site Web Story Maps</a>. Vous pouvez également nous suivre sur Twitter à <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "Nous aimerions connaître votre opinion ! Faites-nous part d’éventuels problèmes et de vos suggestions de nouvelles fonctionnalités sur le forum concernant les Story Maps sur <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonet.</a>"
       },
       "tab2": {
         "title": "Données",
-        "div1": "Le principal élément à envisager lorsque vous créez un Map Tour est l'endroit de stockage de vos images. Un Map Tour peut utiliser des images stockées sur les principaux services de partage de photos, sur un serveur Web ou comme pièce jointe dans un service d'entités.",
+        "div1": "Le principal élément à envisager lorsque vous créez un Map Tour est l’endroit de stockage de vos images. Un Map Tour peut utiliser des images stockées sur des services de partage de photos ou sur un serveur Web, ou des images que vous avez chargées à partir du disque.",
         "div1a": "Consultez la dernière section de cet onglet pour connaître les formats d'image et les vidéos pris en charge.",
         "div2": "Le générateur interactif vous propose deux options de gestion des images dans votre Map Tour :",
-        "div3": "<ul><li>Vous pouvez utiliser des <b>photos qui sont déjà en ligne</b>, par exemple des images stockées sur un site de partage de photos tel que Flickr ou des images contenues sur votre propre site Web. Ces images seront référencées dans votre Map Tour via leurs URL</li><li>Vous pouvez également <b>charger des photos depuis votre ordinateur</b> directement dans votre Map Tour. Cette option nécessite que vous déteniez un compte ArcGIS for Organization avec des privilèges d'éditeur ou d'administrateur, car un service d'entités hébergées est créé automatiquement, dans lequel vos photos sont stockées sous la forme de pièces jointes.</li></ul>",
+        "div3": "<ul><li>Vous pouvez utiliser des <b>photos qui sont déjà en ligne</b>, par exemple des images stockées sur un site de partage de photos tel que Flickr, ou des images contenues sur votre propre site web. Ces images seront référencées dans votre Map Tour via leurs URL.</li><li>Vous pouvez également <b>charger des photos depuis votre ordinateur</b> directement dans votre Map Tour. Cette option nécessite que vous déteniez un abonnement ArcGIS avec des privilèges d'éditeur ou d'administrateur, car un service d'entités hébergé est créé automatiquement, dans lequel vos photos sont stockées sous la forme de pièces jointes.</li></ul>",
         "div4": "Les principaux cas d'usage sont les suivants :",
-        "div4b": "<b>Vos photos ne sont pas hébergées</b> pour l'instant et vous détenez un compte ArcGIS for Organization. Votre meilleure option consiste à utiliser un service d'entités hébergé. Tout comme les services de partage de photos publics, nous optimiserons vos photos pour créer des images à chargement rapide et vous aurez accès à toutes les fonctionnalités d'administration et de gestion de données de la plateforme ArcGIS.",
+        "div4b": "<b>Vos photos ne sont pas hébergées</b> pour l’instant et vous détenez un abonnement à ArcGIS : votre meilleure option consiste à utiliser un service d’entités hébergé. Tout comme les services de partage de photos publics, nous optimiserons vos photos pour créer des images à chargement rapide et vous aurez accès à toutes les fonctionnalités d’administration et de gestion de données de la plateforme ArcGIS.",
         "div5": "<b>Vous n'êtes pas membre d'une organisation</b> : vous devez d'abord charger vos images sur un site Web de partage de photos ou sur votre propre serveur Web. Le générateur vous aidera ensuite à utiliser ces images qui resteront hébergées à l'emplacement d'origine.",
         "div6": "<b>Vous envisagez de réutiliser un service d'entités existant</b>qui stocke vos images sous la forme de pièces jointes ou qui référence des images externes : reportez-vous à la section détaillée ci-après.",
         "div7": "<b>Vous êtes un utilisateur d'une version précédente</b> du modèle de Map Tour et vous possédez déjà votre fichier CSV qui référence vos images et miniatures : vous pourrez l'importer et peaufiner vos données. Le générateur prend en charge uniquement des CSV utilisant des champs de latitude/longitude, mais vous pouvez continuer à utiliser des CSV basés sur des adresses via votre carte Web (voir la section ci-après).",
@@ -441,10 +457,10 @@ define({
         "learn": "en savoir plus",
         "div9": "L'opération d'importation référence les images déjà hébergées en stockant leurs URL dans une collection d'entités de cartes Web. Les images ne sont pas stockées sur ArcGIS Online. Si les images hébergées sont inaccessibles, elles ne sont pas disponibles dans le Map Tour et une image « Photo non disponible » est utilisée. Selon le fournisseur de services de photos, le Map Tour peut ne pas importer le nom, la description et l'emplacement des images. Ces attributs sont stockés dans la carte Web et les modifications apportées aux services en ligne ne seront pas répercutées dans le Map Tour.",
         "div10": "Stockage des images sur un serveur Web",
-        "div11": "Si vous décidez d'héberger les images vous-même, vous devez créer manuellement les miniatures de vos photos. L'utilisation d'images à résolution maximale en tant que miniatures donnera des performances médiocres. Nous vous conseillons par conséquent d'utiliser des services de partage de photos en ligne ou un service d'entités, qui créent les miniatures.",
-        "div12": "Utilisation d'un service d'entités ou d'un fichier de formes existant",
-        "div13": "Tout service d'entités ponctuelles ou fichier de formes peut être utilisé comme source de données Map Tour. Il vous suffit de l'ajouter en tant que couche dans votre carte Web via la visionneuse de cartes arcgis.com.Si l'application trouve les attributs attendus dans votre couche, toutes les fonctionnalités du générateur seront disponibles.",
-        "div14": "Les valeurs possibles pour le nom des champs sont (ne respectent pas la casse) :",
+        "div11": "Si vous décidez d’héberger les images vous-même, vous devez créer manuellement les miniatures de vos photos. L’utilisation d’images à résolution maximale en tant que miniatures donnera des performances médiocres. Consultez cette <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>FAQ</a> pour avoir des astuces sur le dimensionnement de vos images si vous y accédez directement sur le Web via des URL.",
+        "div12": "Utilisation de données SIG existantes",
+        "div13": "N’importe quel service d’entités, fichier CSV ou shapefile contenant des points peut être utilisé comme source de données d’un Map Tour s’il contient l’ensemble de champs attendu par l’application. Vous devez l’ajouter en tant que couche dans une carte web ArcGIS, puis partager la carte en créant un Map Tour.",
+        "div14": "Les valeurs prises en charge pour le nom des champs sont (ne respectent pas la casse) :",
         "div151": "Nom",
         "div152": "Description",
         "div153": "Image",
@@ -480,19 +496,19 @@ define({
         "div0a": "La visionneuse de Map Tour est prise en charge sous Internet Explorer 8+. Le générateur interactif est pris en charge sous Internet Explorer 9+. Nous testons activement dans tous les principaux navigateurs, mais si vous rencontrez des difficultés quelconques, nous vous recommandons d|'utiliser Chrome.",
         "div0b": "Si vous rencontrez des difficultés, faites-le nous savoir. Dans l'intervalle, en créant votre Map Tour grâce au modèle CSV vous réduisez votre interaction avec l'interface du générateur.",
         "div1": "Images",
-        "div2": "Nous recommandons les photos en orientation Paysage plutôt qu'en Portrait. Les photos avec les proportions 4:3 sont idéales. Les images en orientation Portrait peuvent être utilisées, mais sur des écrans plus petits, par exemple l'iPad, une grande partie de la photo peut être masquée par la légende (le texte occupant plus d'espace lorsqu'il est affiché dans une zone haute plutôt que large). Même s'il est possible d'utiliser des images de tailles, formes et orientations différentes dans une même visite cartographique, nous vous conseillons d'adopter la même taille et la même forme pour toutes les images. Ainsi l'utilisateur ne sera pas distrait par des images de formats différents lors de sa visite.",
+        "div2": "Bien que des images de tailles, de formes et d’orientations différentes puissent être utilisées dans un Map Tour, nous vous recommandons d’employer des images en orientation de type paysage et non de type portrait. Les images aux proportions 4:3 sont les mieux adaptées. Dans les mises en page intégrées et à trois volets, dans lesquelles la légende est superposée à l’image, l’utilisation d’images en orientation de type portrait peut entraîner l’obscurcissement d’une grande partie de l’image par la légende. Dans les mises en page intégrées et à trois volets, il est conseillé d’utiliser la même taille et la même forme pour toutes les images dans la mesure du possible. Ainsi, l’utilisateur n’est pas distrait par des images de tailles différentes au fur et à mesure de la visite.",
         "div2a": "Nous recommandons une taille d'image maximale de 1 000 pixels de largeur x 750 pixels de hauteur pour les images principales et de 140x93 pour les miniatures.",
         "div3": "Formatage du texte de votre légende grâce à des balises HTML",
-        "div4": "Le titre/la légende de l'en-tête et de l'image peut comporter des balises HTML permettant de définir le formatage et les liens. Par exemple, le code suivant ajoute un lien jaune :",
+        "div4": "Vous pouvez saisir des balises HTML dans les légendes pour définir la mise en forme et les liens. Par exemple, ces balises permettent d’ajouter un hyperlien vert :",
         "div4a": "Rédigez un sous-titre de qualité pour votre visite",
-        "div4b": "Prenez le temps de rédiger un sous-titre attrayant pour votre visite. Le sous-titre est un bon moyen d'attirer les gens dans votre visite et de leur dire ce qu'ils vont y trouver. C'est également l'endroit idéal pour informer votre public de la région ou du pays où se trouve la visite. Par exemple, ne prenez pas pour acquis que les gens savent où se trouve la ville de votre visite. Votre légende peut également contenir des balises HTML de façon à inclure des liens. Evitez toutefois les légendes trop longues. Dans les fenêtres de navigateur plus petites ou sur l'iPad, elles risquent de ne pas s'afficher entièrement et d'être coupées. Si vous ne parvenez pas à rédiger un sous-titre attirant, laissez le champ vide.",
+        "div4b": "Prenez le temps d’écrire un sous-titre captivant pour votre visite. Le sous-titre est un excellent moyen d’attirer l’attention des gens sur votre visite et de leur indiquer ce qu’ils vont y découvrir. Vous pouvez également y préciser le lieu ou le pays dans lequel se déroule la visite. Ne supposez pas que les gens connaissent la ville qui fait l’objet de votre visite. N’indiquez cependant pas un sous-titre trop long. Si vous ne pensez à aucun sous-titre approprié, n’indiquez rien. Dans la mise en page à volet latéral, le sous-titre qui apparaît sur la page de couverture est la légende du premier point de la visite (si vous utilisez l’option de la boîte de dialogue Organiser pour employer en page de couverture le contenu du premier point).",
         "div5": "Couches complémentaires",
-        "div6": "Vous pouvez ajouter des couches supplémentaires pour fournir du contexte au Map Tour. Ces couches peuvent contenir d'autres entités géographiques que vous voulez que la carte présente en plus des points du Map Tour, par exemple la zone d'étude, un itinéraire à pied ou en voiture reliant les points de la visite, etc. Le modèle de Map Tour affiche ces couches complémentaires grâce à la symbologie que vous spécifiez dans la carte Web, mais les fenêtres contextuelles ne sont pas disponibles.",
+        "div6": "Vous pouvez ajouter des couches supplémentaires pour fournir du contexte au Map Tour. Ces couches peuvent contenir d’autres entités géographiques que vous voulez que la carte présente en plus des points du Map Tour, par exemple la zone d’étude, un itinéraire à pied ou en voiture reliant les points de la visite, etc. Le modèle de Map Tour affiche ces couches complémentaires grâce à la symbologie que vous spécifiez dans la carte web, mais les fenêtres contextuelles ne sont pas disponibles. Pour ajouter des couches supplémentaires à votre visite, enregistrez votre travail et fermez le générateur de Map Tour. Ouvrez ensuite la carte web utilisée dans la visite. Vous la trouverez dans Mon contenu ArcGIS ou dans la section Mes récits du site web Story Maps.",
         "div7": "Faites en sorte que votre visite soit brève et factuelle",
         "div8": "Le nombre de points par visite est limité à 99. La plupart des Map Tours sont bien entendu beaucoup plus courts. Ne vous attendez pas à ce que votre public ait la patience de parcourir un trop grand nombre de points. Vous trouvez probablement votre sujet fascinant, mais ce ne sera peut-être pas le cas de tout le monde !",
         "div10": "Mode d'incorporation",
-        "div11": "Si vous souhaitez intégrer le modèle dans un autre site Web via un iframe, le fait d'ajouter le paramètre facultatif \"&embed\" à la fin de l'URL supprimera l'en-tête. Vous pouvez aussi définir ce mode dans la version à télécharger via le fichier de configuration.",
-        "div12": "Evitez d'utiliser un iFrame d'étroite largeur qui entraîne l'utilisation d'une mise en page tactile pour petits écrans réactifs par la visite cartographique. Pour simplifier l'utilisation, lorsque vous intégrez une visite cartographique, nous conseillons toujours de fournir un lien en regard de la visite incorporée afin que les utilisateurs puissent la lancer en plein écran."
+        "div11": "Si vous souhaitez intégrer le modèle dans un autre site web via un iframe, le fait d'ajouter le paramètre facultatif \"&embed\" à la fin de l'URL supprime l'en-tête.",
+        "div12": "Évitez d’utiliser un iFrame de largeur étroite qui entraîne l’utilisation d’une mise en page tactile pour petits écrans réactifs par le Map Tour. Pour simplifier l’utilisation, lorsque vous intégrez un Map Tour, il est conseillé de toujours fournir un lien en regard de la visite incorporée afin que les utilisateurs puissent le lancer en plein écran."
       },
       "tab5": {
         "title": "Publication",
@@ -548,6 +564,22 @@ define({
       "panel4": "Ne plus m'avertir pour ce récit",
       "mystories": "Mes récits",
       "btnSave": "Enregistrer"
+    },
+    "bannerNotification": {
+      "learnMore": "En savoir plus",
+      "close": "Fermer",
+      "dontShowAgain": "Ne plus afficher ce message"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Message important sur la sécurité web et les Story Maps",
+      "s1h1": "Esri améliore la sécurité des Story Maps",
+      "s1p1": "Vos Story Maps existent sur le Web et la communauté web vise constamment à établir et implémenter une meilleure sécurité. HTTPS, qui offre une connexion sécurisée au contenu transmis via Internet, apparaît désormais comme le moyen d’accès attendu au contenu web. La plupart des navigateurs modernes affichent maintenant des messages d’avertissement lorsque HTTP est employé à la place de HTTPS. En raison de cette nouvelle norme, et à compter de la mise à jour de juin 2018 de ArcGIS Online, vos Story Maps devront utiliser HTTPS.",
+      "s1p2": "Concrètement, cela signifie que l’accès à une Story Map et à la totalité de son contenu (y compris les images, les couches, les applications et les sites Web incorporés) doit s’effectuer via des liens qui commencent par HTTPS et non plus par HTTP. Vos lecteurs bénéficient ainsi d’une meilleure expérience puisque la plupart des navigateurs indiqueront que vos récits sont sécurisés.",
+      "s2h1": "Que dois-je faire ?",
+      "s2p1": "Esri prévoit d’effectuer une transition en douceur pour les auteurs et les lecteurs de Story Map. Des outils sont désormais disponibles dans les générateurs de Story Map et dans Mes récits pour vous permettre de rechercher le contenu non sécurisé (HTTP) dans vos récits ; ils contiennent également des recommandations indiquant comment gérer ce contenu. Il convient de vérifier le contenu non sécurisé de vos récits et de le mettre à jour vers HTTPS avant juin 2018.",
+      "action1": "Fermer",
+      "action2": "Vérifier mes récits maintenant",
+      "action3": "En savoir plus"
     }
   }
 });

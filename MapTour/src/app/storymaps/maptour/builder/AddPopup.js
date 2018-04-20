@@ -235,12 +235,22 @@ define(["esri/dijit/Search",
 				_tempItemData.color = APPCFG.PIN_DEFAULT_CFG;
 				$.each(MapTourHelper.getSymbolColors(), function(i, color){
 					var selectedClass = color == APPCFG.PIN_DEFAULT_CFG ? "selected" : "";
-					_pinContainer.append('<img class="pinSelector ' + selectedClass + '" src="' +  MapTourHelper.getSymbolUrl(color, app.data.getTourPoints().length+1) + '" alt="" />');
+					if( $("body").hasClass("side-panel") ) {
+						var swatchColor = MapTourHelper.getCustomColor(color);
+						_pinContainer.append('<span class="colorSelectorPin colorSelectorSwatch ' + selectedClass + '" style="background-color: ' + swatchColor + ';"></span>');
+					} else {
+						_pinContainer.append('<img class="pinSelector ' + selectedClass + '" src="' +  MapTourHelper.getSymbolUrl(color, app.data.getTourPoints().length+1) + '" alt="" />');
+					}
+
 				});
-				$(_container).find(".pinSelector").fastClick(onSelectPinChange);
+				$(_container).find(".pinSelector, .colorSelectorPin").fastClick(onSelectPinChange);
 
 				if ( WebApplicationData.getDisableVideo() )
 					$(_container).find("#addImageAttributesTypeChooser").find('li').eq(1).addClass('disabled');
+
+				if (  $("body").hasClass("side-panel") && app.data.hasIntroRecord() && (app.data.getCurrentIndex() == -1 || app.data.getCurrentIndex() == null) ){
+					$(_container).find("#addImageAttributesTypeChooser").find('li').eq(1).addClass('disabled');
+				}
 
 				$(".modal-footer .error", _container).hide();
 				$(_container).modal();
@@ -403,6 +413,7 @@ define(["esri/dijit/Search",
 					var addSuccessCallback = function() {
 						$(".modal-footer .success", _container).html(i18n.viewer.addPopupJS.uploadSuccess);
 						$(".modal-footer .addSpinner", _container).hide();
+
 						setTimeout(function(){
 							$(".modal-footer .success", _container).html(i18n.viewer.builderHTML.addUploading).hide();
 							$(_container).modal("hide");
@@ -933,6 +944,7 @@ define(["esri/dijit/Search",
 					center: _tempItemData.point,
 					zoom: app.map.getLevel(),
 					extent: app.map.extent,
+					smartNavigation: false,
 					// iOS requirement
 					autoResize: false
 				});
@@ -1066,6 +1078,12 @@ define(["esri/dijit/Search",
 						}
 					);
 				}
+				if( $("body").hasClass("side-panel") ) {
+					setTimeout(function() {
+						$('.mapCommandHomeBtn').addClass('esri-icon esri-icon-home');
+						$('#mainMap_zoom_location div').addClass('esri-icon esri-icon-locate');
+					}, 250);
+				}
 			}
 
 			_lat.change(latLongChange);
@@ -1105,14 +1123,17 @@ define(["esri/dijit/Search",
 
 			function onSelectPinChange()
 			{
-				_pinContainer.find(".pinSelector").removeClass("selected");
+				_pinContainer.find(".pinSelector, .colorSelectorPin").removeClass("selected");
 				$(this).addClass("selected");
-				_map.pointLayer.graphics[0].setSymbol(_map.pointLayer.graphics[0].symbol.setUrl($(this).attr("src")));
-
 				var colorIndex = $(this).index();
 				var color = $.grep(MapTourHelper.getSymbolColors(), function(color, index){
 					return index == colorIndex;
 				});
+				if( $("body").hasClass("side-panel") ) {
+					_map.pointLayer.graphics[0].setSymbol(MapTourHelper.getSymbol(color[0], app.data.getNbPoints() + 1));
+				} else {
+					_map.pointLayer.graphics[0].setSymbol(_map.pointLayer.graphics[0].symbol.setUrl($(this).attr("src")));
+				}
 
 				_tempItemData.color = color[0];
 			}

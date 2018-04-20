@@ -50,7 +50,7 @@ define(["dojo/has",
 			this.update = function(slides, bgColor, hoverColor)
 			{
 				setColor(bgColor, hoverColor);
-				iscroll.destroy();
+				iscroll && iscroll.destroy();
 				render(slides);
 			};
 
@@ -155,7 +155,7 @@ define(["dojo/has",
 				});
 
 				_picDownloadedIndex = 14;
-				
+
 				$(selector + ' .carouselScroller ul img').slice(0,_picDownloadedIndex).each(function(i, img){
 					if(app.org && app.org.allSSL && app.data.isFSWithURLFields() && $(img).data("src").slice(0,5) != 'https'){
 						$(img).attr("src", 'https:' + $(img).data("src").slice(5));

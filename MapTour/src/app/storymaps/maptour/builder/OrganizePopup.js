@@ -1,6 +1,6 @@
 define(["storymaps/maptour/core/MapTourHelper",
 		"dojo/topic",
-		"dojo/query"], 
+		"dojo/query"],
 	function (
 		MapTourHelper,
 		topic,
@@ -10,55 +10,55 @@ define(["storymaps/maptour/core/MapTourHelper",
 		{
 			var _this = this;
 			var _container = container;
-	
+
 			var _list = $(_container).find(".picturesGrid");
 			var _btnSave = $(_container).find(".btnSave");
 			var _btnClose = $(_container).find(".btnClose");
 			var _btnDelete = $(_container).find(".btnDelete");
 			var _btnHide = $(_container).find(".btnHide");
 			var _btnReset = $(_container).find(".btnReset");
-	
+
 			var _selectedsIds = [];
 			var _dropped = [];
-	
+
 			$(_btnDelete).fastClick(del);
 			$(_btnHide).fastClick(hide);
 			$(_btnReset).fastClick(reset);
-	
+
 			$(_btnSave).click(save);
 			$(_btnClose).click(dismiss);
-			
+
 			this.present = function(tourPoints, hasIntroRecord)
 			{
 				_dropped = [];
 				_selectedsIds = [];
-	
+
 				$(_list).empty();
-	
+
 				$.each(tourPoints, function(index, tourPoint) {
 					var forceHidden = '';
 					if( tourPoint == app.data.getIntroData() )
 						forceHidden = 'style="display: none;"';
-					
+
 					var pinCssClass = MapTourHelper.getSymbolCss(tourPoint.attributes.getColor());
 					var elt = $('<li data-featureid="'+tourPoint.attributes.getID()+'"' + forceHidden + '></li>');
 					var img = $('<img src="' + tourPoint.attributes.getThumbURL() + '"/>');
 					var num = $('<div class="numberLabel ' + pinCssClass + '">'+(index+1)+'</div>');
 					var veil = $('<div class="veil"></div>');
 					var halo = $('<div class="halo"></div>');
-					
+
 					$(elt).append(img);
 					$(elt).append(num);
 					$(elt).append(veil);
 					$(elt).append(halo);
 					$(_list).append(elt);
-	
+
 					if (!tourPoint.attributes.getTourVisibility()) {
 						$(veil).show();
 						$(num).hide();
 					}
 				});
-	
+
 				$(_list).sortable({
 					start: function() {
 						$(_list).find(".halo").hide();
@@ -70,23 +70,30 @@ define(["storymaps/maptour/core/MapTourHelper",
 						renumber();
 					}
 				});
-	
+
 				$(_container).modal();
-	
+
 				$($("li",_list)).bind("mousedown", function(event){
 					setSelected(event.currentTarget);
 				});
-				
-				// First record as intro
-				$(_container).find('.organizeIntro').html(
-					'<input type="checkbox" name="organizeFirstRecordIntro" ' + (hasIntroRecord ? "checked" : "") + '/> ' 
-					+ i18n.viewer.builderHTML.introRecordActivate
-				);
-				
+
+				// First record as intro/cover
+				if( $("body").hasClass("side-panel") ) {
+					$(_container).find('.organizeIntro').html(
+						'<input type="checkbox" name="organizeFirstRecordIntro" ' + (hasIntroRecord ? "checked" : "") + '/> '
+						+ i18n.viewer.builderHTML.coverRecordActivate
+					);
+				} else {
+					$(_container).find('.organizeIntro').html(
+						'<input type="checkbox" name="organizeFirstRecordIntro" ' + (hasIntroRecord ? "checked" : "") + '/> '
+						+ i18n.viewer.builderHTML.introRecordActivate
+					);
+				}
+
 				$(_container).find('input[name="organizeFirstRecordIntro"]').change(onFirstRecordCheckboxChange);
-	
+
 				enableButtons(false);
-	
+
 				setTimeout(function(){
 					$.each($("li",_list),function(index,value){
 						var halo = $(".halo",value);
@@ -94,25 +101,25 @@ define(["storymaps/maptour/core/MapTourHelper",
 						$(halo).height($(value).height() - parseInt($(halo).css("border-left-width"), 10)*2);
 					});
 				},300);
-	
+
 				renumber();
 			};
-			
+
 			function save()
 			{
-				if (_dropped.length === 0) 
+				if (_dropped.length === 0)
 					saveConfirmed();
 				else {
 					createConfirmationPopover();
 					return false;
 				}
 			}
-	
+
 			function setSelected(selectedNode)
 			{
 				var featureId = $(selectedNode).data("featureid");
 				var alreadySelectedIndex = $.inArray(featureId, _selectedsIds);
-				
+
 				if( alreadySelectedIndex == -1 ) {
 					_selectedsIds.push(featureId);
 					$(".halo", selectedNode).show();
@@ -121,38 +128,38 @@ define(["storymaps/maptour/core/MapTourHelper",
 					_selectedsIds.splice(alreadySelectedIndex, 1);
 					$(".halo", selectedNode).hide();
 				}
-				
+
 				enableButtons(!! _selectedsIds.length);
 			}
-	
+
 			function del()
 			{
 				if (! _selectedsIds.length)
 					return;
-				
+
 				getSelectedNodes().remove();
-				
+
 				_dropped = _dropped.concat(_selectedsIds);
 				_selectedsIds = [];
 				enableButtons(false);
 				renumber();
 			}
-			
+
 			function reset()
 			{
 				app.data.resetPointsOrderAndHidden();
-				
+
 				$(_container).find('input[name="organizeFirstRecordIntro"]').prop('checked', false);
 				_this.present(app.data.getAllFeatures());
 			}
-	
+
 			function hide()
 			{
 				if (! _selectedsIds.length)
 					return;
-				
+
 				var selectedNodes = getSelectedNodes();
-				
+
 				if ($(_btnHide).html() == i18n.viewer.organizePopupJS.labelButtonShow) {
 					selectedNodes.find(".veil").hide();
 					selectedNodes.find(".numberLabel").show();
@@ -161,38 +168,39 @@ define(["storymaps/maptour/core/MapTourHelper",
 					selectedNodes.find(".veil").show();
 					selectedNodes.find(".numberLabel").hide();
 				}
-				
+
 				selectedNodes.find(".halo").hide();
 				_selectedsIds = [];
-				
+
 				renumber();
 				enableButtons(false);
 			}
-			
+
 			function onFirstRecordCheckboxChange()
 			{
 				$(_list).find("li").first().css("display", $(this).is(":checked") ? "none" : "block");
 				$(_list).find(".veil").first().css("display", $(this).is(":checked") ? "block" : "none");
+				$('.coverRecordButton').toggle();
 				renumber();
 			}
-			
+
 			function getFirstSelectedNode()
 			{
 				if( ! _selectedsIds.length )
 					return;
-				
-				return $($.grep($(_list).find("li"), function(e){ 
-					return $(e).data("featureid") == _selectedsIds[0]; 
+
+				return $($.grep($(_list).find("li"), function(e){
+					return $(e).data("featureid") == _selectedsIds[0];
 				}));
 			}
-			
+
 			function getSelectedNodes()
 			{
-				return $($.grep($(_list).find("li"), function(e){ 
-					return $.inArray($(e).data("featureid"), _selectedsIds) != -1; 
+				return $($.grep($(_list).find("li"), function(e){
+					return $.inArray($(e).data("featureid"), _selectedsIds) != -1;
 				}));
 			}
-			
+
 			function createConfirmationPopover()
 			{
 				_btnSave.popover({
@@ -206,7 +214,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 				});
 				_btnSave.popover('show');
 			}
-	
+
 			this.saveConfirmationCallback = function(confirmed)
 			{
 				if( confirmed )
@@ -214,7 +222,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 				else
 					dismiss();
 			};
-			
+
 			function saveConfirmed()
 			{
 				var pointsOrder = $(_list).find("li").map(function(){
@@ -223,22 +231,22 @@ define(["storymaps/maptour/core/MapTourHelper",
 						visible: $(this).find(".veil").css("display") == "none"
 					};
 				});
-				
+
 				topic.publish("ORGANIZE_POPUP_SAVE", {
 					order: pointsOrder.toArray(),
 					dropped: _dropped,
 					firstRecordAsIntro: $(_container).find('input[name="organizeFirstRecordIntro"]').is(":checked")
 				});
-				
+
 				dismiss();
 			}
-	
+
 			function dismiss()
 			{
 				_btnSave.popover('destroy');
 				$(_container).modal('hide');
 			}
-	
+
 			function renumber()
 			{
 				var count = 1;
@@ -249,7 +257,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 					}
 				});
 			}
-	
+
 			function enableButtons(state)
 			{
 				if( state ) {
@@ -260,17 +268,17 @@ define(["storymaps/maptour/core/MapTourHelper",
 					_btnHide.attr("disabled", true);
 					_btnDelete.attr("disabled", true);
 				}
-	
+
 				// The label of the hide/show button is the one appropriate for the first selected item
 				if ( _selectedsIds.length ) {
 					var veil = $(".veil", getFirstSelectedNode())[0];
 					$(_btnHide).html($(veil).css("display") == "none" ? i18n.viewer.organizePopupJS.labelButtonHide : i18n.viewer.organizePopupJS.labelButtonShow);
-				} 
+				}
 				else {
 					$(_btnHide).html(i18n.viewer.organizePopupJS.labelButtonHide);
 				}
 			}
-	
+
 			function generateMessage(count)
 			{
 				var message;
@@ -281,7 +289,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 				message = message + i18n.viewer.organizePopupJS.messageConfirm;
 				return message;
 			}
-			
+
 			this.initLocalization = function()
 			{
 				query('#organizePopup h3')[0].innerHTML = i18n.viewer.builderHTML.organizeHeader;
@@ -291,7 +299,7 @@ define(["storymaps/maptour/core/MapTourHelper",
 				query('#organizePopup .btnReset')[0].innerHTML = i18n.viewer.builderHTML.organizeReset;
 				query('#organizePopup .btnClose')[0].innerHTML = i18n.viewer.builderHTML.modalCancel;
 				query('#organizePopup .btnSave')[0].innerHTML = i18n.viewer.builderHTML.modalApply;
-				
+
 			};
 		};
 	}

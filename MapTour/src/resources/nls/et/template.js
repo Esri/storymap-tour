@@ -57,7 +57,9 @@ define({
       "tooltipAutoplayDisabled": "See pole automaatesituse režiimis saadaval",
       "autoplayLabel": "Automaatesituse režiim",
       "autoplayExplain1": "Automaatesituse režiimis keritakse teie lugu kindla ajavahemiku järel edasi. Seda on hea kasutada kioskite või avalike kohtade ekraanidel, kuid arvestage, et muudel juhtudel võib see raskendada teie loo lugemist. See funktsioon pole väikestel ekraanidel toetatud.",
-      "autoplayExplain2": "Kui see režiim on aktiveeritud, saate kasutada loo esitamise või peatamise ja liikumiskiiruse reguleerimise juhtelemente."
+      "autoplayExplain2": "Kui see režiim on aktiveeritud, saate kasutada loo esitamise või peatamise ja liikumiskiiruse reguleerimise juhtelemente.",
+      "takeTourText": "Tutvu võimalustega",
+      "backToStart": "Tagasi algusesse"
     },
     "builderHTML": {
       "panelHeader": "LOO KONFIGUREERIMINE",
@@ -147,10 +149,12 @@ define({
       "settingsTabExtent": "Kuvaulatus",
       "settingsTabZoom": "Suumimise tase",
       "settingsLayoutExplain": "Valige meelepärane paigutus.",
-      "settingsLayoutProfessional": "Kolme paneeliga kujundus",
-      "settingsLayoutModern": "Integreeritud kujundus",
+      "settingsLayoutProfessional": "Kolme paneeliga",
+      "settingsLayoutModern": "Integreeritud",
+      "settingsLayoutSidePanel": "Külgpaneeliga",
       "settingsLayoutSelected": "Valitud kujundus",
-      "settingsLayoutSelect": "Vali see kujundus",
+      "settingsLayoutNew": "Uus!",
+      "settingsLayoutSelect": "Vali",
       "settingsLayoutNote": "Pange tähele, et videoid kasutavad punktid paigutatakse vastava plakatina video alla ka situatsioonis, kui antud valik on välja lülitatud.",
       "settingsLayoutLocBtn": "Kuva 'Määra asukoht' nupp",
       "settingsLayoutLocBtnHelp": "Toetatud enamikes brauserites. Kuvatakse ainult juhul, kui kaardilugu avatakse HTTPS-i kaudu. Ei kuvata, kui lugu on manustatud.",
@@ -180,7 +184,7 @@ define({
       "settingsExtentModifyBtn": "Muuda ulatust",
       "settingsExtentApplyBtn": "Kaardituuri eelvaade",
       "settingsExtentUseMainMap": "Kasuta kaardituuri kuvaulatust",
-      "settingsZoomExplain": "Määra looga seotud punktidele suum järgneva juhisega (valikuline).",
+      "settingsZoomExplain": "Määra looga seotud punktidele suum (valikuline).",
       "settingsLabelZoom": "Mõõtkava/tase",
       "settingsZoomFirstValue": "Puudub",
       "settingsFieldError": "Palun vali väli igale loendile",
@@ -201,7 +205,14 @@ define({
       "dataFooterError": "Koostamine ei õnnestunud. Proovi uuesti",
       "tabError": "Palun kontrolli vigu kõigis osades",
       "introRecordBtn": "Intro",
-      "introRecordActivate": "Kasuta esimest punkti tutvustusena (ei ilmu karussellis)"
+      "introRecordActivate": "Kasuta esimest punkti tutvustusena (ei ilmu karussellis)",
+      "coverRecordActivate": "Kasuta esimest punkti esilehena",
+      "coverBuilder": "Esilehe konfigureerimine",
+      "cover": "Esileht",
+      "showCover": "Kuva esileht",
+      "editCover": "Muuda esilehte",
+      "coverNoVideo": "Videot esilehe meediumina ei toetata. Valige palun pilt.",
+      "coverPreview": "Esilehe vaatamiseks salvestage lugu ja seejärel avage nupu Jaga abil selle eelvaade."
     },
     "addPopupJS": {
       "uploadingPicture": "Laen pilti",
@@ -275,7 +286,8 @@ define({
     "headerJS": {
       "editMe": "Muuda mind!",
       "templateTitle": "Määra mallile pealkiri",
-      "templateSubtitle": "Määra mallile alampealkiri"
+      "templateSubtitle": "Määra mallile alampealkiri",
+      "edit": "Muuda"
     },
     "crossFaderJS": {
       "setPicture": "Määra pildile pealkiri",
@@ -306,9 +318,9 @@ define({
       "csv": "CSV failis viidatud",
       "advanced": "Täiendavad võimalused",
       "advancedScratchLbl": "Alusta uut tuuri",
-      "advancedScratchTip": "Loo tühi tuur, mille saate täita viisardi abil.",
+      "advancedScratchTip": "Looge tühi tuur, millele saate lisada tuuripunkte. Meedium peab olema juba veebis. See valik ei toeta piltide üleslaadimist.",
       "advancedCSVLbl": "Impordi tuuri andmed CSV failist",
-      "advancedCSVTip": "Impordi oma tuuri sisu CSV failist.",
+      "advancedCSVTip": "Importige tuuri sisu CSV-failist, mis viitab teie veebis olevale meediumile. See valik ei toeta piltide üleslaadimist.",
       "advancedCommonTip": "See nõuab, et teie pildid ja videod oleks juba veebis üleval.",
       "select": "Koosta valik",
       "locUse": "Kasuta piltide ruumilist asukohta",
@@ -382,7 +394,7 @@ define({
       "title": "Vali ja positsioneeri oma pildid/videod",
       "header": "Klikkige või puudutage pilte, mida soovite nende paigutamiseks importida.",
       "headerMore": "Miks minu pildid/videod ei ole ruumiliselt paigutatud?",
-      "headerExplain": "Kui piltidel on kehtiv asukoht, märgitakse need automaatselt kaardile ja teise saki all olevasse loendisse.<br /><br />Vaikimisi Picasa ega Flickr piltide EXIF metainfot ei kasutada, kontrolli Flickri/Picasa seadeid privaatsuse seadetest, et see võimaldada. Võib juhtuda, et pead kogu Flickri/Picasa impordi  uuesti läbi tegema.<br /><br />Facebookis pead liikuma igale pildile, aktiveerima Muuda ning valima asukoha soovituslike valikute vahel, mis põhinevad pildiandmete EXIF sisul.",
+      "headerExplain": "Kui teie piltidel on kehtiv asukohateave, leitakse see asukoht kaardil automaatselt ja lisatakse teisele vahekaardile.<br /><br />Vaikimisi ei talleta Picasa ja Flickr piltide importimisel EXIF-i geograafilise asukoha metaandmeid. Vaadake Picasa või Flickri privaatsussätted üle ning lubage piltide asukohateabe importimine ja kasutamine välise rakenduse poolt. On võimalik, et peate EXIF-i asukohateabe kasutamiseks oma olemasolevad pildid uuesti Flickrisse või Picasasse importima.",
       "leftPanelTab1": "Paiguta",
       "leftPanelTab2": "Paigutatud",
       "clickOrTap": "Paigutamiseks klikkige kaardil või puudutage kaarti",
@@ -404,7 +416,7 @@ define({
       "header2": "See nõustaja abistab sind kaardi tuuri loomisel, kasutades selleks  kas veebis olemasolevaid pilte või importides pildid sinu ArcGIS Online for Organizations kontole.",
       "title1": "Need on juba veebis üleval",
       "title2": "Ma pean oma pildid üles laadima",
-      "hostedFSTooltip": "Laadige pildid üles ja hoidke neid kaardi tuurikihis (videot ei toeta).",
+      "hostedFSTooltip": "Laadige pildid üles ja hoidke neid tuuris (videot ei toeta).",
       "hostedFsNA": "Peate olema publitseerija rollis või mõnes muus rollis, millel on õigused majutatud objektikihte avaldada. Võtke ühendust ArcGIS-i administraatoriga.",
       "hostedFsNA2": "Saadaval ainult ArcGIS Online'i tellimusega. <a href='%LINK%'>Registreeru tasuta prooviversiooni hankimiseks</a>",
       "footer1": "Kui oled valmis, ära unusta oma kaarti rakenduste lehe kaudu teistega jagada.",
@@ -420,19 +432,23 @@ define({
       "close": "Sulge",
       "tab1": {
         "title": "Tutvustus",
+        "moreInfo": "Lisateabe saamiseks",
+        "infoSites": "avage <a href='https://storymaps.arcgis.com' target='_blank'>Esri kaardilugude</a> veebilehe <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>kaardituuri jaotis</a>.",
+        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Kaardituuri KKK.</a>",
+        "myStories": "Veebilehe jaotises <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Minu lood</a> saate kaardituure hallata ja neid vigade osas kontrollida.",
         "div1": "Kaardi tuuri mall on loodud geograafilise teabe esitamiseks kujul, kus siduvaks elemendiks on jutustatavale loole fotod või muu meedia sisu.",
         "div2": "Mall loob pilkupüüdva ja kergesti kasutatava veebirakenduse, mille abil saate väikesel hulgal paiku numbrilises järjestuses kaardil esitada ja mida kasutajad saavad sirvida. Mall on välja töötatud mistahes tüüpi veebibrauseris või seadmes (sh nutitelefonis ja tahvelarvutis) kasutamiseks. <br /><br />",
-        "div42": "Kui soovite vaadata näiteid teiste kasutajate loodavatest kaardituuridest, külastage <a href='http://storymaps.arcgis.com/' target='_blank'>kaardilugude veebisaidil</a> asuvat <a href='http://links.esri.com/storymaps/map_tour_gallery' target='_blank'>galeriid</a>. Samuti saate meid jälgida Twitteri kanalis <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
-        "div5": "Ootame Teie tagasisidet!  Kui Teil on küsimusi, soovite küsida uusi võimalusi või arvate, et olete leidnud vea, siis palun külastage meid <a href='http://links.esri.com/storymaps/forum' target='_blank'>kaardilugude kasutajate foorumis</a>."
+        "div42": "Teiste kasutajate loodud kaardituuride näidete vaatamiseks <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>külastage galeriid</a> <a href='https://storymaps.arcgis.com/' target='_blank'>Kaardilugude veebilehel</a>. Saate meid jälgida ka Twitteris: <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div5": "Soovime kuulda teie arvamust! Andke meile teada, millised probleemid teil on või milliseid uusi funktsioone te soovite, külastades kaardilugude foorumit <a href='https://links.esri.com/storymaps/forum' target='_blank'>Geonetis.</a>"
       },
       "tab2": {
         "title": "Andmed",
-        "div1": "Kaardi tuuri loomisel tuleb eelkõige silmas pidada kohta, kuhu pildid salvestatakse. Kaardi tuuri loomisel saab kasutada pilte, mis asuvad peamistes fotopankades, mistahes veebiserveris või objektiteenuste manustena.",
+        "div1": "Kaardituuri loomisel tuleb eelkõige silmas pidada kohta, kuhu pildid salvestatakse. Kaardituuri loomisel saab kasutada pilte, mis asuvad fotode jagamise keskkondades, mistahes veebiserveris või mis laaditakse üles kettalt.",
         "div1a": "Vaata selle vahelehe viimast sektsiooni piltide ja videote toetatud formaatide osas.",
         "div2": "Interaktiivne koostaja käib tuuri piltide haldamisega seoses välja kaks valikut:",
-        "div3": "<ul><li>Saate kasutada <b>veebis olevaid fotosid</b> (nt fotojagamissaidil Flickr või teie enda veebilehel talletatavaid pilte). Nendele piltidele viidatakse teie kaardituuril URL-ide kaudu.</li><li>Samuti saate <b>oma arvutist pilte üles laadida</b>. Selle üleslaadimissuvandi kasutamiseks peab Teil olema ArcGIS for Organizations konto ning publitseerija või administraatori õigused, kuna Teie jaoks luuakse automaatselt majutatav objektiteenus, kus Teie fotosid talletatakse manustena.</li></ul>",
+        "div3": "<ul><li>Kasutada saate <b>fotosid, mis on juba veebi üles laaditud</b>, näiteks pilte, mis on talletatud mõnel fotojagamissaidil (nt Flickr) või teie enda veebisaidil. Teie kaardiloo tuuris viidatakse neile piltidele nende URL-ide kaudu.</li><li>Soovi korral saate ka <b>fotod oma arvutist üles laadida</b> otse kaardituuri. Selle üleslaadimisvariandi kasutamiseks peab teil olema ArcGIS-i tellimus ning avaldaja või administraatori õigused, kuna teie jaoks luuakse automaatselt hostitud objektide teenus, kus teie fotod talletatakse manustena.</li></ul>",
         "div4": "Peamised kasutusjuhud on:",
-        "div4b": "<b>Teie fotosid ei majutata</b> veel ja Teil on ArcGIS for Organizations konto. Kõige mõistlikum oleks kasutada majutatavat objektiteenust. Sarnaselt avalike fotojagamise teenustega optimeeritakse ka siin pildid selliselt, et neid saab kiiresti üles laadida ja Teil on juurdepääs ArcGIS-i platvormi administraatori- ja andmehalduse funktsioonidele.",
+        "div4b": "<b>Teie fotod on veel majutamata</b> ning teil on ArcGIS Online tellimus: sobiv valik oleks kasutada majutusteenust. Analoogiliselt nagu fotode jagamise keskkondades, optimeeritakse ka siin pilte selliselt, et laadida neid kiiresti üles, kasutades selleks ArcGIS platvormi andmehalduse ja administreerimise oskusi.",
         "div5": "<b>Te ei ole organisatsiooni liige</b>: esmalt pead pildid laadima fotode jagamise keskkonda või enda veebiserverisse. Seejärel aitab Teid tuuri looja, et saaksite kasutada neid pilte, mida jätkuvalt algses asukohas hoitakse.",
         "div6": "<b>Otsid olemasoleva objektiteenuse korduvkasutust,</b> mis hoiaks pilte manustena või viitaks välistele asukohtadele: vaata täpsustavat lõiku allpool.",
         "div7": "<b>Oled varasema versiooni kaardi tuuri malli kasutaja</b> ja seal on juba CSV, mis viitab sinu piltidele ja pisipiltidele: sul on võimalus importida ja täiustada oma andmeid. Tuuri looja toetab vaid CSV faili, mis sisaldab pikkuse ja laiuse veergu, aadressipõhist CSV faili saab samuti kasutada sinu veebikaardi kaudu (vt lõiku allpool).",
@@ -441,10 +457,10 @@ define({
         "learn": "lisateave",
         "div9": "Importimise toiming viitab juba majutatud piltidele, mis on salvestatud nende URL-ide veebikaardi objektide kollektsioonis. Pilte ei hoita ArcGIS Online all. Kui piltide lingid on vigased, ei kuvata neid ka kaardi tuuri aknas ja kuvatakse teadet \"Pilt ei ole kättesaadav\". Sõltuvalt fototeenuse pakkujast, kaardi tuur ei pruugi importida piltide nime, kirjeldust ja asukohta. Neid atribuute hoitakse veebikaardil ning tehtavad muudatused ei kajastu kaardi tuuri sisus.",
         "div10": "Haldan pilte veebiserveris",
-        "div11": "Kui soovid pilte ise majutada, pead käsitsi looma ka pisipildid. Kui kasutad pisipiltide loomiseks piltide täisresolutsiooni, siis tulemus kõige parem ei tule. Seetõttu soovitame kasutada veebipõhiseid fotode jagamise teenuseid või objektiteenuseid.",
-        "div12": "Kasutan olemasolevat objektiteenust või vormifaili",
-        "div13": "Mistahes objektiteenuse või vormifaili punkt on kasutatav kaardi tuuri andmeallikana. Pead vaid lisama selle kihina enda veebikaardile arcgis.com kaardiakna kaudu. Juhul, kui rakendus leiab sinu kihist vajalikud atribuudid, on kõik funktsioonid ka kasutatavad.",
-        "div14": "Võimalikud väärtused väljade nimedeks on (tõstutundlikud):",
+        "div11": "Kui soovite pilte ise majutada, peate käsitsi looma ka pisipildid. Kui loote pisipildid täiseraldusvõimega piltidest, põhjustab see jõudlusprobleeme. Sellest <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>KKK</a> jaotisest leiate näpunäiteid piltide suuruse määramise kohta, kui soovite võimaldada piltidele veebis URL-iga otsejuurdepääsu.",
+        "div12": "Olemasolevate GIS-i andmete kasutamine",
+        "div13": "Kaardituuri andmeallikana saab kasutada igasugust punkte sisaldavat objektiteenust, CSV-faili või Shape faili, kui see sisaldab sellist väljakomplekti, mida rakendus eeldab. Teil tuleb see lisada kihina ArcGIS-i veebikaardile ja seejärel kaarti jagada, luues kaardituuri.",
+        "div14": "Väljanimedena toetatakse väärtusi (tõstutundlikud):",
         "div151": "Nimi",
         "div152": "Kirjeldus",
         "div153": "Pilt",
@@ -480,19 +496,19 @@ define({
         "div0a": "Kaardituuri vaataja on toetatud IE8+. Interaktiivne looja on toetatud IE9+. Me testime aktiivselt kõiki enimlevinud veebibrausereid, aga kui Teil esineb tõrkeid, siis soovitame kasutada Chrome’i veebibrauserit.",
         "div0b": "Kui Teil esineb tõrkeid, siis andke palun meile teada. Vahepeal proovige CSV malliga oma kaardituuri luua, kuna nii vähendate oma suhtluse interaktiivse looja keskkonnaga minimaalseks.",
         "div1": "Pildid",
-        "div2": "Soovitame kasutada horisontaalset paigutust. Kuvasuhtega 4:3 fotod sobivad kõige paremini. Vertikaalpaigutus ei sobi väiksemate ekraanide korral nagu iPad,  pilt võib selgitava teksti varju jääda, sest tekst võtab rohkem ruumi, kui see kuvatakse kitsal ja mitte laial alal. Kuigi erinevate suuruste, kujude ja paigutusega pilte võib ühe ja sama kaardi tuuri loomisel kasutada, soovitame kasutada täpselt sama suurust ja vormi kõigi piltide korral. Sellisel juhul on kasutajal infot lihtsam jälgida.",
+        "div2": "Kuigi ühes kaardituuris saab kasutada erineva suuruse, kuju ja paigutusega pilte, soovitame vertikaalpaigutuse asemel kasutada horisontaalpaigutusega pilte. Kõige paremini sobivad pildid, mille kuvasuhe on 4:3. Kolme paneeliga ja integreeritud paigutuste korral, milles tiitrid kattuvad pildiga, võivad vertikaalpaigutusega piltide kasutamisel tiitrid suure osa pildist ära varjata. Kolme paneeliga ja integreeritud paigutuste korral soovitame võimalusel kasutada ühesuguse suuruse ja kujuga pilte. Sel juhul ei häiri kasutajat tuuri ajal erineva suurusega piltide kuvamine.",
         "div2a": "Soovitame maksimaalseks pildi suuruseks 1000 pikslit laiust x 750 pikslit pikkust põhipiltidele ning 140x93 pisipiltidele.",
         "div3": "Vormindan selgitava teksti HTML märgenditega",
-        "div4": "Päis ja pildi pealkiri võivad sisaldada HTML teeke defineerimaks kujundust ja linke. Näiteks see kood lisab kollase lingi:",
+        "div4": "Tiitritesse saab vorminduse ja linkide määratlemiseks sisestada HTML-märgendeid. Näiteks need märgendid lisavad rohelise hüperlingi:",
         "div4a": "Kirjuta sobiv alampealkiri oma tuurile",
-        "div4b": "Võtke aega, et leida sobiv alapealkiri oma tuurile. Alapealkiri on hea moodus haarata inimesi oma tuuriga ning jutustada neile sisust. Samuti on see hea koht rääkimaks oma külalistele antud kaardi asukohast. Näiteks ärge eeldage, et inimesed teavad millises linnas või külas antud tuur paikneb. Teie pealkiri võib omada HTML formaati, näiteks sisaldada linke. Samas ärge muutke pealkirja liiga pikaks. Väiksemates veebibrauserite akendes või tahvlites ei pruugi see mahtuda täielikult ekraanile ja lõigatakse osaliselt. Kui te ei oska mõelda head alapealkirja, siis jätke see tühjaks.",
+        "div4b": "Võtke aega ja kirjutage tuurile köitev alapealkiri. Alapealkiri sobib hästi selleks, et inimesi teie tuuri juurde meelitada ja neile teada anda, mida nad seal leida võivad. Samuti sobib see tuuri asukohariigi äramärkimiseks. Näiteks ei maksa eeldada, et kõik inimesed teavad, kus teie tuuri linn asub. Kuid ärge muutke alapealkirja liiga pikaks. Kui teil head alapealkirja sõnastust pähe ei tule, jätke alapealkirja koht tühjaks. Külgpaneeliga paigutuse korral on esilehel kuvatav alapealkiri tuuri esimese punkti tiiter (kui te kasutate dialoogi Korralda seda valikut, millega kuvatakse esimese punkti sisu avalehena).",
         "div5": "Toetatud kihid",
-        "div6": "Saad kaardile lisada täiendavaid toetatud kihte, et pakkuda sisu kaardituurile. Need kihid võivad sisaldada muid geograafilisi nähtusi, mida soovite kuvada lisaks kaardituuri punktidele. Näiteks uurimusalad, kõndimise või sõidu teekond, mis ühendab tuuri punkte jne. Mall kuvab abistavad lisakihid veebikaardil täpsustatud kirjelduse alusel, aga hüpikaknad ei ole kättesaadavad.",
+        "div6": "Saate lisada täiendavaid tugikihte, mis lisavad kaardituurile sisu. Need kihid võivad sisaldada muid geograafilisi funktsioone, mida soovite lisaks kaardituuri punktidele kaardil näidata (nt uuringualad, tuuripunkte ühendavad kõnni- või sõiduteekonnad jne). Kaardituuri mall kuvab need täiendavad tugikihid veebikaardil määratletud sümboloogia abil, kuid hüpikaknad pole saadaval. Tugikihtide tuurile lisamiseks salvestage töö ja sulgege kaardituuri koostur. Seejärel avage tuuris kasutatav veebikaart. Leiate selle ArcGIS-i jaotises Minu sisu või kaardilugude veebilehe jaotises Minu lood.",
         "div7": "Hoia tuuri sisu lühikese ja löövana",
         "div8": "Ühes tuuris võib olla kuni 99 punkti. Enamik tuure on loomulikult lühemad. Ära oota, et külastajad on valmis läbi käima liiga arvukalt tuuripunkte. Sinu arvates võib teema olla äärmiselt huvitav, kuid ära eelda, et nemad sama arvavad!",
         "div10": "Kinnitusrežiim",
-        "div11": "Kui te soovite lisada malli mõnele teisele veebilehele iframe abil, siis lisage valikuline parameeter \"&embed\" aadressi lõppu, et eemaldada päis. Selle võimaluse võib seadistada samuti alla laetavale versioonile läbi konfiguratsioonifaili.",
-        "div12": "Proovige mitte kasutada kitsaid iFrame laiusi, mis põhjustavad teie tuuri automaatselt ümberlülituma väiksemale puutetundlikule ekraanile mõeldud kujundusele.  Kasutusmugavuse maksimeerimiseks. Kui olete põiminud kaardituuri oma sisu sisse, siis soovitame ikkagi lisada ka juurde lingi, et tuuri kasutajad saaksid avada tuuri täisekraanil."
+        "div11": "Kui te soovite lisada malli mõnele teisele veebilehele iframe’i abil, siis lisage päise eemaldamiseks aadressi lõppu valikuline parameeter \"&embed\".",
+        "div12": "Proovige mitte kasutada kitsaid iFrame laiusi, mis põhjustavad teie tuuri automaatse ümberlülitumise vastavale väikese puutetundliku ekraani jaoks loodud kujundusele. Kui manustate kaardituuri, siis soovitame kasutusmugavuse maksimeerimiseks alati lisada manustatud tuuri juurde ka lingi, et kasutajad saaksid avada tuuri täisekraanil."
       },
       "tab5": {
         "title": "Publitseerin",
@@ -548,6 +564,22 @@ define({
       "panel4": "Ära hoiata mind enam selle loo puhul",
       "mystories": "Minu lood",
       "btnSave": "Salvesta"
+    },
+    "bannerNotification": {
+      "learnMore": "Lisateave",
+      "close": "Sule",
+      "dontShowAgain": "Ära kuva enam seda teadet"
+    },
+    "httpsTransitionNotification": {
+      "bannerMsg": "Oluline teade veebiturvalisuse ja kaardilugude kohta",
+      "s1h1": "Esri tegeleb kaardilugude turvalisuse tõstmisega",
+      "s1p1": "Teie kaardilood on veebis reaalajas ja veebikogukond töötab pidevalt selle nimel, et turvalisust parendada ja tõhustada. Interneti kaudu sisu turvalist edastamist võimaldav HTTPS on kujunemas veebisisule juurdepääsu eelistatud viisiks. Enamik moodsaid brausereid kuvavad hoiatusteate, kui HTTPS-i asemel kasutatakse HTTP-d. Selle uue standardi kujunemise tõttu on alates ArcGIS Online’i 2018. aasta juunikuu värskendusest teie kaardilugudel HTTPS-i kasutamine kohustuslik.",
+      "s1p2": "See tähendab, et juurdepääs kaardiloole ja kogu selle sisule (sh piltidele, kihtidele, manusrakendustele ja veebilehtedele) peab toimuma linkidega, mille alguses on HTTPS ja mitte HTTP. Nii tagatakse teie lugejatele parim kasutuskogemus, kuna enamik veebibrausereid näitab, et teie lugude avamine on turvaline.",
+      "s2h1": "Mida ma pean tegema?",
+      "s2p1": "Esri töötab selle nimel, et kaardilugude autoritele ja lugejatele kulgeks üleminek võimalikult lihtsalt. Juba praegu on kaardiloo koosturites ja jaotises Minu lood saadaval tööriistad, mis aitavad leida lugudes ebaturvalist sisu (HTTP) ja annavad soovitusi, mida sellega ette võtta. Palun kontrollige enne 2018. aasta juunit oma lugude sisu üle ja värskendage kogu ebaturvaline sisu uuele standardile HTTPS.",
+      "action1": "Sule",
+      "action2": "Kontrolli minu lugusid kohe",
+      "action3": "Lisateave"
     }
   }
 });
