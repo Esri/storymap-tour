@@ -49,7 +49,7 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 				_carousel.refreshSize();
 
 				if(!/iPhone|iPad|iPod/i.test(navigator.userAgent)){
-					$('#tourPoint' + app.data.getCurrentIndex()).css('height', $('#infoPanel').height() - 40);
+					$('#tourPoint' + app.data.getCurrentIndex()).css('height', $('#infoPanel').height() - 40 - (app.embedBar && app.embedBar.initiated ? 26 : 0));
 				}
 				_carousel.goToPage(app.data.getCurrentIndex());
 			};

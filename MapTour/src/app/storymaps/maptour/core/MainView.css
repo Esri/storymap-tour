@@ -27,15 +27,23 @@
 }
 
 .side-panel:not(.mobile-layout-scroll) #mapPanel {
-	min-width: 500px;
+	min-width: 400px;
 	height: 50%;
 	float: left;
 }
 
-.side-panel:not(.mobile-layout-scroll) #leftPanel {
+.side-panel.builder-mode:not(.mobile-layout-scroll) #mapPanel {
 	min-width: 500px;
+}
+
+.side-panel:not(.mobile-layout-scroll) #leftPanel {
+	min-width: 400px;
 	float: left;
 	background-color: #fff;
+}
+
+.side-panel.builder-mode:not(.mobile-layout-scroll) #leftPanel {
+	min-width: 500px;
 }
 
 #footer {
@@ -45,6 +53,11 @@
 	right: 0px;
 	width: 100%;
 	background-color:#E5E5E5;
+}
+
+.side-panel #footer {
+	display: none;
+	height: 0;
 }
 
 .builderMobile a {
@@ -125,7 +138,7 @@ audio {
 
 #splashPanel {
   width: 100%;
-  height: 100%;
+  height: inherit;
   left: 0px;
 	z-index: 499;
 	background-repeat: no-repeat;
@@ -259,4 +272,27 @@ audio {
 
 #mainMap_gc {
 	z-index: 2;
+}
+
+.cover-start {
+	font-size: 90px;
+  color: #fff;
+  text-shadow: 1px 1px 10px #000, -1px -1px 10px #000;
+  opacity: 0.6;
+  cursor: pointer;
+  height: 90px;
+  line-height: 1;
+  display: block;
+  margin-bottom: 0;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}
+
+.isEmbed .cover-start {
+	bottom: 0;
+}
+
+.embed-modal-content:not(.side-panel) {
+	margin: 25% auto;
 }

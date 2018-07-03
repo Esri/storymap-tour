@@ -30,6 +30,10 @@ define(["./SaveErrorPopupSocial", "storymaps/maptour/core/WebApplicationData"],
 					app.builder.openSharePopup(false);
 				});
 				$("#side-panel-builder").find('.builder-settings').click(showSettingsPopup);
+
+				$("#side-panel-builder").find('.builder-preview').off('click').on('click', function() {
+					openPreview();
+				});
 				$("#side-panel-builder").find('.builder-help').click(showHelpPopup);
 
 				_saveErrorPopupSocial = new SaveErrorPopupSocial($("#saveErrorPopupSocial"));
@@ -154,6 +158,12 @@ define(["./SaveErrorPopupSocial", "storymaps/maptour/core/WebApplicationData"],
 			{
 				closePopover();
 				_builderView.openSettingPopup(false);
+			}
+
+			function openPreview()
+			{
+				var appUrl = document.location.protocol + '//' + document.location.host + document.location.pathname + '?appid=' + app.data.getAppItem().id;
+				window.open(appUrl,'_blank');
 			}
 
 			function showHelpPopup()
@@ -400,10 +410,13 @@ define(["./SaveErrorPopupSocial", "storymaps/maptour/core/WebApplicationData"],
 			{
 				container.find(".builder-cmd").attr("disabled", ! activate);
 				$("#panels-builder-share").attr("disabled", ! activate);
+				$("#panels-builder-preview").attr("disabled", ! activate);
 				if(activate) {
 					$("#panels-builder-share").removeClass("disabled");
+					$("#panels-builder-preview").removeClass("disabled");
 				} else {
 					$("#panels-builder-share").addClass("disabled");
+					$("#panels-builder-preview").addClass("disabled");
 				}
 			}
 
@@ -416,6 +429,8 @@ define(["./SaveErrorPopupSocial", "storymaps/maptour/core/WebApplicationData"],
 					container.find('.builder-share').attr("disabled", "disabled");
 					$("#panels-builder-share").attr("disabled", "disabled");
 					$("#panels-builder-share").addClass("disabled");
+					$("#panels-builder-preview").attr("disabled", "disabled");
+					$("#panels-builder-preview").addClass("disabled");
 				}
 				else if ( appAccess == "public" ){
 					$("#sharing-status").html("; " + i18n.viewer.builderJS.shareStatus2);

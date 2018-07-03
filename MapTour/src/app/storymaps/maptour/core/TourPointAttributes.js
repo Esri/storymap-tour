@@ -74,6 +74,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var fieldsOverride = WebApplicationData.getFieldsOverride();
 				var field = fieldsOverride ? fieldsOverride.getIconColorField() : _fields.getIconColorField();
 
+				if(_attributes[field] && app.data.getAppItem().created > APPCFG.HTML_SANITIZER_DATE){
+					_attributes[field] = app.sanitizer.sanitize(_attributes[field]);
+				}
+
 				return _attributes[field] || '';
 			};
 
@@ -89,6 +93,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var field = fieldsOverride ?
 						fieldsOverride.getURLField() ? fieldsOverride.getURLField() : _fields.getURLField()
 						: _fields.getURLField();
+
+				if(app.data.getAppItem().created > APPCFG.HTML_SANITIZER_DATE){
+					_attributes[field] = app.sanitizer.sanitize(_attributes[field]);
+				}
 
 				// URL are not enforced as when using attachments it's something like /attachments/ID without extension
 				return checkHostedFSToken(_attributes[field]) || MapTourHelper.getNotFoundMedia();
@@ -119,6 +127,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var field = fieldsOverride ?
 						fieldsOverride.getThumbField() ? fieldsOverride.getThumbField() : _fields.getThumbField()
 						: _fields.getThumbField();
+
+				if(app.data.getAppItem().created > APPCFG.HTML_SANITIZER_DATE){
+					_attributes[field] = app.sanitizer.sanitize(_attributes[field]);
+				}
 
 				return checkHostedFSToken(_attributes[field]) || MapTourHelper.getNotFoundMedia();
 			};

@@ -237,10 +237,6 @@ body.mobile-view #basemapChooser {
 	left: 0;
 }
 
-.fa-exchange {
-	transform: rotate(90deg);
-}
-
 .side-panel .pencilIconDiv {
 	display: block;
 	width: 0;

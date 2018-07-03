@@ -96,51 +96,83 @@ define(["esri/arcgis/Portal",
 
 				app.cleanApp = cleanApp;
 			}));
+		}
 
+		function appInitComplete()
+		{
 			// Show https-transition notification when app loads
 			if (!app.isPortal) {
 				topic.subscribe('maptour-ready', function() {
-					var strings = i18n.viewer.httpsTransitionNotification;
+					var stringsSurvey = i18n.viewer.june2018SurveyMessage;
+					var stringsHttps = i18n.viewer.httpsTransitionNotification;
+					new BannerNotification({
+						id: "storymapsSurvey",
+						bannerMsg: stringsSurvey.bannerMsg,
+						primaryColor: '#1e8a87',
+						mainMsgHtml: '\
+						<h2>' + stringsSurvey.s1h1 + '</h2>\
+						<p>' + stringsSurvey.s1p1 + '</p>\
+						<p>' + stringsSurvey.s2p1 + '</p>\
+						',
+						actions: [
+							{
+								string: stringsSurvey.action1,
+								closeOnAction: true
+							},
+							{
+								primary: true,
+								string: stringsSurvey.action2,
+								closeOnAction: true,
+								action: function() {
+									window.open('https://links.esri.com/storymaps/june2018-survey');
+								}
+							}
+						],
+						cookie: {
+							domain: 'arcgis.com',
+							path: '/',
+							maxAge: 60 * 60 * 24 * 365
+						},
+						autohideAfter: new Date() > new Date(/*'July 31 2018'*/) ? 0 : 2
+					});
 					new BannerNotification({
 						id: "httpsTransitionMessage",
-						bannerMsg: strings.bannerMsg,
+						bannerMsg: stringsHttps.bannerMsg,
 						mainMsgHtml: '\
-							<h2>' + strings.s1h1 + '</h2>\
-							<p>' + strings.s1p1 + '</p>\
-							<p>' + strings.s1p2 + '</p>\
-							<h2>' + strings.s2h1 + '</h2>\
-							<p>' + strings.s2p1 + '</p>\
+						<h2>' + stringsHttps.s1h1 + '</h2>\
+						<p>' + stringsHttps.s1p1 + '</p>\
+						<p>' + stringsHttps.s1p2 + '</p>\
+						<h2>' + stringsHttps.s2h1 + '</h2>\
+						<p>' + stringsHttps.s2p1 + '</p>\
 						',
 						actions: [
 							{
 								primary: true,
-								string: strings.action1,
+								string: stringsHttps.action1,
 								closeOnAction: true
 							},
 							{
-								string: strings.action2,
+								string: stringsHttps.action2,
 								action: function() {
 									window.open('https://storymaps.arcgis.com/en/my-stories/');
 								}
 							},
 							{
-								string: strings.action3,
+								string: stringsHttps.action3,
 								action: function() {
 									window.open('https://links.esri.com/storymaps/web_security_faq');
 								}
 							}
 						],
 						cookie: {
-							domain: window.location.hostname,
+							domain: 'arcgis.com',
+							path: '/',
 							maxAge: 60 * 60 * 24 * 365
-						}
+						},
+						blockingNotifications: 'storymapsSurvey'
 					});
 				});
 			}
-		}
-
-		function appInitComplete()
-		{
 			var storyTitle = "",
 				itemTitle = "";
 

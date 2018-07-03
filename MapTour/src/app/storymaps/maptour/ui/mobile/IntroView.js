@@ -47,7 +47,7 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 					}
 				}
 
-				var scrollHtml = '<div class="slide scroll-layout" style="background-image: '
+				var scrollHtml = '<div class="slide scroll-layout" alt="" style="background-image: '
 				+ (! feature.attributes.isVideo() && MapTourHelper.mediaIsSupportedImg(feature.attributes.getURL()) ?
 				("url(" + newUrl + ")") : 'none')+ '">'
 				+ '<div class="text-wrapper">'
@@ -120,7 +120,11 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic"],
 							marginTop: marginTop
 						});
 					} else {
-						$("#introPanel").css('height', $('#infoPanel').height() - 40);
+
+						if(app.embedBar && app.embedBar.initiated){
+						} else {
+							$("#introPanel").css('height', $('#infoPanel').height() - 40);
+						}
 					}
 				};
 

@@ -139,12 +139,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 					$("#panels-builder-share").attr("title", i18n.viewer.builderHTML.buttonShare + " (" + i18n.viewer.builderJS.shareStatus4 + ")");
 				}
 
+				$("#panels-builder-preview").attr("title", i18n.viewer.share.viewStory);
+
 				$("#panels-builder-settings").attr("title", i18n.viewer.builderHTML.buttonSettings);
 
 				$("#addPopupButton2").attr("title", i18n.viewer.builderHTML.buttonAdd);
 				if (app.data.sourceIsNotFSAttachments())
 					$("#importPopupButton2").attr("title", i18n.viewer.builderHTML.buttonImport);
-				$("#organizeSlidesButton2").attr("title", i18n.viewer.builderHTML.buttonOrganize);
+				$("#organizeSlidesButton2").attr("title", i18n.viewer.builderHTML.buttonOrganizeAndCover);
 
 				if($("body").hasClass("side-panel")) {
 					if(app.data.getAllFeatures().length === 0){
@@ -758,7 +760,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					pointerColor: APPCFG.POPUP_ARROW_COLOR,
 					textColor: "#ffffff",
 					minWidth: (width+15) * MapTourHelper.getSymbolColors().length,
-					offsetTop: app.data.getTourLayer().renderer.getSymbol(graphic).height / 2 + app.data.getTourLayer().renderer.getSymbol(graphic).yoffset,
+					offsetTop: graphic.symbol.height / 2 + graphic.symbol.yoffset,
 					topLeftNotAuthorizedArea: has('touch') ? [40, 173] : [30,143],
 					mapAuthorizedWidth: MapTourHelper.isModernLayout() ? query("#picturePanel").position()[0].x : -1,
 					mapAuthorizedHeight: MapTourHelper.isModernLayout() ? query("#footerDesktop").position()[0].y - query("#header").position()[0].h : -1,

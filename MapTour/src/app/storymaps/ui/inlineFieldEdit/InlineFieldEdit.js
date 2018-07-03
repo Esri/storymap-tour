@@ -101,8 +101,13 @@ define(["dojo/has"],
 				if( value === "" )
 					value = i18n.viewer.headerJS.editMe;
 
-				// Basic XSS check
-				value = value.replace(/<\/?script>/g,'');
+				if(!app.data.getAppItem().created || app.data.getAppItem().created > APPCFG.HTML_SANITIZER_DATE) {
+					value = app.sanitizer.sanitize(value);
+				} else {
+					// Basic XSS check
+					value = value.replace(/<\/?script>/g,'');
+				}
+
 
 				label.parent().parent().removeClass("isEditing");
 				label.html(value);

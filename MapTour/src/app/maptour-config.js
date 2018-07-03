@@ -50,6 +50,10 @@ APPCFG = {
 	// DATA
 	//
 
+	// Date to enforce HTML sanitization and embed bar for apps created after 6/27/18 (June '18 release)
+	HTML_SANITIZER_DATE: 1530072000000,
+	JUNE_CREATED_DATE: 1530072000000,
+
 	// Case insensitive prioritized list of fields name to be used
 	FIELDS_CANDIDATE: {
 		objectid: ['__objectid', 'objectid', 'id', 'fid'],
@@ -100,11 +104,18 @@ APPCFG = {
 			cssClass: 'number-purple'
 		},
 		custom: {
-			iconPath: 'resources/icons/PaddleTall_Color.png',
-			iconPath2: 'resources/icons/PaddleTall_Chrome.png'
+			iconPath: 'resources/icons/PaddleTall_Color_Crushed.png',
+			iconPath2: 'resources/icons/PaddleTall_Chrome_Crushed.png',
+			iconPath3: 'resources/icons/PaddleTall_Chrome_Selected_Crushed.png'
 		}
 	},
 	ICON_CUSTOM_COLORS: {
+		r: "#ff5833",
+		b: "#33b4ff",
+		g: "#63cf73",
+		p: "#9374be"
+	},
+	ICON_CUSTOM_SELECTED_COLOR: {
 		r: "#de2900",
 		b: "#007ac2",
 		g: "#35ac46",
@@ -163,6 +174,12 @@ APPCFG = {
 
 	HELP_URL: "http://links.esri.com/storymaps/map_tour_template",
 	HELP_URL_PORTAL: "#/Story_Map_Tour/0193000000w0000000/",
+
+	// links to third-party terms of service
+	YOUTUBE_TERMS_LINK: "http://links.esri.com/storymaps/youtube-terms",
+	VIMEO_TERMS_LINK: "http://links.esri.com/storymaps/vimeo-terms",
+	FLICKR_TERMS_LINK: "http://links.esri.com/storymaps/flickr-terms",
+	GOOGLE_TERMS_LINK: "http://links.esri.com/storymaps/google-terms",
 
 	// Control the authorized data source (for initialization and import screen)
 	AUTHORIZED_IMPORT_SOURCE: {

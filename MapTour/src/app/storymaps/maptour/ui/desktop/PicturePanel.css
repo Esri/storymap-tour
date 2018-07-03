@@ -16,7 +16,7 @@
 
 .side-panel #picturePanel {
 	position: absolute;
-	top: 64px !important;
+	/*top: 64px !important;*/
 	left: 500px;
 	float: none;
 	-webkit-box-shadow: inset 0px 0px 82px 19px rgba(0,0,0,0.3);

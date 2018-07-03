@@ -105,9 +105,9 @@
 #initPopupViewHome .footer {
 	margin-top: 15px;
 	text-align: center;
-	text-decoration: underline;
 }
 
 #initPopupViewHome a {
+	text-decoration: underline;
 	display: block;
 }

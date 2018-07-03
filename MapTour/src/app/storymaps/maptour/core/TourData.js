@@ -10,10 +10,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"esri/geometry/Point",
 		"dojo/topic"],
 	function(
-		WebApplicationData, 
-		TourPointAttributes, 
-		FieldConfig, 
-		FeatureServiceManager, 
+		WebApplicationData,
+		TourPointAttributes,
+		FieldConfig,
+		FeatureServiceManager,
 		Helper,
 		MapTourHelper,
 		WebMapHelper,
@@ -31,25 +31,25 @@ define(["storymaps/maptour/core/WebApplicationData",
 		return function TourData()
 		{
 			var _this = this;
-			
+
 			// Web map and Web application JSON
 			var _webmapItem = null;
 			var _appItem = null;
 			// App proxies
 			var _appProxies = null;
-	
+
 			// Reference to the map layer created through arcgisUtils.createMap
 			// This layer is hidden and only used to save data
 			var _sourceLayer = null;
-			
+
 			// The GraphicsLayer with the tour point collection
 			var _tourLayer = null;
-	
+
 			// Collection of Graphic that represent the Map Tour points
 			// Graphics are created manually from the _sourceLayer original graphics and added to _tourLayer
 			// The graphics attributes properties is a TourPointAttributes object
 			var _tourPoints = null;
-	
+
 			/* Ordered array of tour points, elements have four properties :
 			 *  - id: feature ID
 			 *  - index: index in _tourPoints
@@ -59,92 +59,92 @@ define(["storymaps/maptour/core/WebApplicationData",
 			var _tourPointsOrder = null;
 			// _tourPoints ordered regarding order set by user through _tourPointsOrder
 			var _tourPointsOrdered = null;
-			
+
 			// _tourPoints element that have been added since the last save
 			var _tourPointsAdded = [];
 			// _tourPoints element that have been dropped since the last save
 			var _tourPointsDropped = [];
-	
+
 			// Reference to the Graphic of the currently selected Map Tour point
 			var _currentGraphic = null;
 			// Index of the currently selected Map Tour point in _tourPoints
 			var _currentIndex = -1;
-			
+
 			// Optional introductive tour point
 			var _introData = null;
 			var _isEditingFirstRecord = false;
-			
+
 			// Determine if on application loading, the dataset contained more than APPCFG.MAX_ALLOWED_POINTS features
 			// In than case add is disabled permanently
-			// Dropping some data has no effect, it is necessary to reload the application 
+			// Dropping some data has no effect, it is necessary to reload the application
 			var _isMaxAllowedFeatureReached = false;
-	
+
 			this.initialExtentHasBeenEdited = false;
-	
+
 			this.getWebMapItem = function()
 			{
 				return _webmapItem;
 			};
-	
+
 			this.setWebMapItem = function(webmapItem)
 			{
 				_webmapItem = webmapItem;
 			};
-	
+
 			this.getAppItem = function()
 			{
 				return _appItem || {};
 			};
-	
+
 			this.setAppItem = function(appItem)
 			{
 				_appItem = appItem;
 			};
-			
+
 			this.getAppProxies = function()
 			{
 				return _appProxies;
 			};
-			
+
 			this.setAppProxies = function(appProxies)
 			{
 				_appProxies = appProxies;
 			};
-	
+
 			this.getSourceLayer = function()
 			{
 				return _sourceLayer;
 			};
-	
+
 			this.setSourceLayer = function(sourceLayer)
 			{
 				_sourceLayer = sourceLayer;
 			};
-			
+
 			this.getFSSourceLayerItemId = function()
 			{
 				var sourceLayerItemId = null;
-				
+
 				if ( ! this.sourceIsFS() )
 					return sourceLayerItemId;
-				
+
 				$.each(_webmapItem.itemData.operationalLayers, function(i, layer){
 					if( layer.id == _sourceLayer.id )
 						sourceLayerItemId = layer.itemId;
 				});
 				return sourceLayerItemId;
 			};
-			
+
 			this.getTourLayer = function()
 			{
 				return _tourLayer;
 			};
-			
+
 			this.setTourLayer = function(tourLayer)
 			{
 				_tourLayer = tourLayer;
 			};
-	
+
 			/**
 			 * Get the tour points
 			 * Use of this function is mandatory even inside TourData (to avoid wrong indexing because of hidden points)
@@ -158,17 +158,17 @@ define(["storymaps/maptour/core/WebApplicationData",
 					else
 						return _tourPointsOrdered;
 				}
-				else 
+				else
 					return $.grep(_tourPointsOrdered, function(p){
 						return p.attributes.getTourVisibility();
 					});
 			};
-			
+
 			this.getOrder = function()
 			{
 				return _tourPointsOrder;
 			};
-			
+
 			/**
 			 * Get ALL tour points:
 			 *  - Visible and hidden points that have an entry in web application order
@@ -182,15 +182,15 @@ define(["storymaps/maptour/core/WebApplicationData",
 					var isDropped = $.grep(_tourPointsDropped, function(dropped){
 						return dropped.attributes.getID() == tourPoint.attributes.getID();
 					});
-					
+
 					return _tourPointsOrdered.indexOf(tourPoint) == -1 && ! isDropped.length;
 				});
-				
+
 				// Hide outsideFeatures
 				$.each(outsideFeatures, function(i, feature){
 					feature.attributes.setTourVisibility(false);
 				});
-				
+
 				if (outsideFeatures.length && outsideFeatures[0] == _introData) {
 					outsideFeatures = outsideFeatures.slice(1);
 					return [_introData].concat(_tourPointsOrdered).concat(outsideFeatures);
@@ -198,11 +198,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 				else
 					return _tourPointsOrdered.concat(outsideFeatures);
 			};
-	
+
 			this.setTourPoints = function(tourPoints)
 			{
 				_tourPoints = tourPoints;
-	
+
 				// If no feature order has been found in the web map application data
 				// or if the source is not editable (live source like CSV)
 				// compute the feature order by the feature ID
@@ -212,118 +212,118 @@ define(["storymaps/maptour/core/WebApplicationData",
 				else
 					processPointsOrder( computeTourPointOrderFromConfig() );
 			};
-			
+
 			this.resetPointsOrderAndHidden = function()
 			{
 				processPointsOrder( computeInitialTourPointOrder() );
 			};
-			
+
 			this.getCurrentGraphic = function()
 			{
 				return _currentGraphic;
 			};
-	
+
 			this.getCurrentIndex = function()
 			{
 				return _currentIndex;
 			};
-	
+
 			this.getCurrentAttributes = function()
 			{
 				return _currentGraphic ? _currentGraphic.attributes : null;
 			};
-	
+
 			this.getCurrentId = function()
 			{
 				if( ! _currentGraphic )
 					return  null;
-				
+
 				return _currentGraphic.attributes.getID();
 			};
-	
+
 			this.setCurrentPointByGraphic = function(graphic)
 			{
 				var newIndex = $.inArray(graphic, this.getTourPoints(false));
-				
+
 				topic.publish("maptour-point-change-before", _currentIndex, newIndex);
-				
+
 				_currentGraphic = graphic;
 				_currentIndex = newIndex;
 			};
-	
+
 			this.setCurrentPointByIndex = function(index)
 			{
 				topic.publish("maptour-point-change-before", _currentIndex, index);
-				
+
 				_currentGraphic = this.getTourPoints(false)[index];
 				_currentIndex = index;
 			};
-	
+
 			this.setIntroData = function(introData)
 			{
 				_introData = introData;
 			};
-			
+
 			this.getIntroData = function()
 			{
 				return _introData;
 			};
-			
+
 			this.hasIntroRecord = function()
 			{
 				return _introData != null;
 			};
-			
+
 			this.setIsEditingFirstRecord = function(isEditingFirstRecord)
 			{
 				_isEditingFirstRecord = isEditingFirstRecord;
 			};
-			
+
 			this.isEditingFirstRecord = function()
 			{
 				return _isEditingFirstRecord;
 			};
-			
+
 			this.setFirstPointAsIntroRecord = function()
 			{
 				var firstPoint = this.getTourPoints(true)[0];
 				this.setIntroData(firstPoint);
 				_tourPointsOrdered = _tourPointsOrdered.slice(1);
 			};
-			
+
 			this.restoreIntroRecordAsPoint = function()
 			{
 				_tourPointsOrdered.splice(0, null, this.getIntroData());
 				this.setIntroData(null);
 			};
-			
+
 			this.updateIntroRecord = function(name, description)
 			{
 				_introData.attributes.updateNameAndDescription(name, description);
 			};
-			
+
 			this.setMaxAllowedFeatureReached = function(isMaxAllowedFeatureReached)
 			{
 				_isMaxAllowedFeatureReached = isMaxAllowedFeatureReached;
 			};
-			
+
 			this.getMaxAllowedFeatureReached = function()
 			{
 				return _isMaxAllowedFeatureReached;
 			};
-	
+
 			this.getFeatureIDField = function()
 			{
 				// Return the first feature ID field
 				if( _tourPoints && _tourPoints[0] )
 					return _tourPoints[0].attributes.getIDField();
-	
+
 				// No data yet, find field from the layer
 				if( this.sourceIsFS() )
 					return app.data.getSourceLayer().objectIdField;
 				else if ( this.sourceIsWebmap() )
 					return app.data.getSourceLayer().objectIdField || "__OBJECTID";
-	
+
 				return null;
 			};
 
@@ -331,7 +331,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			{
 				return this.getTourPoints(false).length;
 			};
-	
+
 			/**
 			 * Return true if the web map data source containing the Map Tour data is a Feature Layer
 			 */
@@ -339,7 +339,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			{
 				return _sourceLayer instanceof FeatureLayer && _sourceLayer.url != null && ! _sourceLayer.id.match(/^csv_/);
 			};
-	
+
 			/**
 			 * Return true if the web map data source containing the Map Tour data is an web map embedded data layer
 			 */
@@ -347,33 +347,33 @@ define(["storymaps/maptour/core/WebApplicationData",
 			{
 				return _sourceLayer instanceof FeatureLayer && (_sourceLayer.url == null || (_sourceLayer.updating === false && _sourceLayer.id.match(/^csv_/)) );
 			};
-			
+
 			this.sourceIsNotFSAttachments = function()
 			{
 				return this.sourceIsWebmap() || this.sourceIsFS() && ! _sourceLayer.hasAttachments;
 			};
-			
+
 			this.sourceIsNotEditable = function()
 			{
-				return _sourceLayer instanceof FeatureLayer 
+				return _sourceLayer instanceof FeatureLayer
 					&& /^csv_/.test(_sourceLayer.id) && WebMapHelper.findLayerTypeById(app.data.getWebMapItem().itemData, _sourceLayer.id) == "CSV";
 			};
-			
+
 			this.sourceIsEditable = function()
 			{
 				return ! this.sourceIsNotEditable();
 			};
-	
+
 			this.hasBeenAdded = function(point)
 			{
 				return _tourPointsAdded.indexOf(point.attributes.getID()) != -1;
 			};
-	
+
 			this.pointsAdded = function()
 			{
 				return this.getAddedPoints().length !== 0;
 			};
-			
+
 			this.getAddedPoints = function()
 			{
 				var graphics = [];
@@ -383,7 +383,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				});
 				return graphics;
 			};
-	
+
 			/**
 			 * Return the collection of dropped tour points
 			 */
@@ -391,7 +391,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			{
 				return _tourPointsDropped;
 			};
-			
+
 			this.getDroppedPointsGraphics = function()
 			{
 				var graphics = [];
@@ -400,11 +400,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 				});
 				return graphics;
 			};
-			
+
 			this.userIsAppOwner = function()
 			{
 				var portalUser = app.portal ? app.portal.getPortalUser() : null;
-				
+
 				return  (portalUser && portalUser.username == this.getAppItem().owner)
 						|| (Helper.getPortalUser() != null && Helper.getPortalUser() == this.getAppItem().owner)
 						// Admin privilege
@@ -413,50 +413,50 @@ define(["storymaps/maptour/core/WebApplicationData",
 						// Group with shared ownership
 						|| this.getAppItem().itemControl == "update";
 			};
-			
+
 			this.checkUserItemPrivileges = function()
 			{
 				var portalUser = app.portal ? app.portal.getPortalUser() : null;
-				
+
 				return (portalUser && ! portalUser.orgId && ! portalUser.privileges)
 						|| (portalUser && portalUser.privileges && $.inArray("portal:user:createItem", portalUser.privileges) > -1);
 			};
-	
+
 			this.userIsOrgaPublisher = function()
 			{
 				var user = app.portal ? app.portal.getPortalUser() : null;
-				
+
 				if ( ! user || ! user.orgId ) {
 					return false;
 				}
-				
-				if ( $.inArray("portal:publisher:publishFeatures", user.privileges) != -1 
+
+				if ( $.inArray("portal:publisher:publishFeatures", user.privileges) != -1
 						&& $.inArray("portal:user:createItem", user.privileges) != -1 ) {
 					return true;
 				}
-				
+
 				return false;
 			};
-				
+
 			this.isOrga = function()
 			{
 				if ( ! app.portal || ! app.portal.getPortalUser() )
 					return false;
-				
+
 				return !! app.portal.getPortalUser().orgId;
 			};
-			
+
 			/*
 			this.userIsWebmapOwner = function()
 			{
 				return Helper.getPortalUser() != null && Helper.getPortalUser() == this.getWebMapItem().item.owner;
 			}
 			*/
-			
+
 			//
 			// Public functions that manage the tour points
 			//
-	
+
 			/**
 			 * Add a new Tour point
 			 *  - create a new feature in the FS
@@ -476,18 +476,18 @@ define(["storymaps/maptour/core/WebApplicationData",
 			{
 				if( point == null || ! name /*|| ! description*/ || ! color || ! pictureData || ! thumbnailData )
 					return;
-	
+
 				var fields = this.getFieldsConfig();
 				var attributes = {};
 				attributes[fields.getNameField()] = name;
 				attributes[fields.getDescriptionField()] = description;
 				attributes[fields.getIconColorField()] = color;
-				
+
 				if ( app.data.layerHasVideoField() )
 					attributes[fields.getIsVideoField()] = "false";
-	
+
 				var newPoint = new Graphic(point, null, attributes);
-	
+
 				FeatureServiceManager.addFSNewTourPointUsingData(
 					newPoint,
 					pictureData,
@@ -500,12 +500,12 @@ define(["storymaps/maptour/core/WebApplicationData",
 					}
 				);
 			};
-			
+
 			this.addTourPointUsingAttributes = function(point, name, description, color, pictureUrl, thumbnailUrl, isVideo, successCallback)
 			{
 				if( point == null || ! name /*|| ! description*/ || ! color || ! pictureUrl || ! thumbnailUrl )
 					return;
-	
+
 				var fields = this.getFieldsConfig();
 				var attributes = {};
 				attributes[fields.getNameField()] = name;
@@ -513,62 +513,62 @@ define(["storymaps/maptour/core/WebApplicationData",
 				attributes[fields.getIconColorField()] = color;
 				attributes[fields.getURLField()] = pictureUrl;
 				attributes[fields.getThumbField()] = thumbnailUrl;
-				
+
 				if ( app.data.layerHasVideoField() )
 					attributes[fields.getIsVideoField()] = "" + isVideo;
-				
+
 				addTourPointUsingAttributes(point, attributes);
-				
+
 				processPointsOrder( computeTourPointOrderFromConfig() );
 				app.data.setCurrentPointByIndex(this.getTourPoints(false).length - 1);
-				
+
 				topic.publish("BUILDER_INCREMENT_COUNTER", 1);
 				topic.publish("CORE_UPDATE_UI");
-				
+
 				successCallback();
 			};
-			
+
 			this.importTourPoints = function(featureCollection)
 			{
 				var nbPointsBeforeImport = this.getTourPoints(false).length;
-				
+
 				$.each(featureCollection.featureSet.features, function(i, feature){
 					addTourPointUsingAttributes(new Point(feature.geometry), feature.attributes);
 				});
-				
+
 				processPointsOrder( computeTourPointOrderFromConfig() );
 				app.data.setCurrentPointByIndex(nbPointsBeforeImport);
-				
+
 				topic.publish("BUILDER_INCREMENT_COUNTER", featureCollection.featureSet.features.length);
 				topic.publish("CORE_UPDATE_UI");
 			};
-			
+
 			function addTourPointUsingAttributes(geometry, attributes)
 			{
 				// Create a temporary new point
 				var graphicTmp = new Graphic(geometry, null, attributes);
-				
+
 				// Assign a new ID
 				var newId = app.data.getSourceLayer()._nextId;
 				graphicTmp.attributes[_this.getFieldsConfig().getIDField()] = newId;
-				
+
 				// Create the new point
 				var newPoint = new Graphic(graphicTmp.geometry, null, new TourPointAttributes(graphicTmp));
-				
+
 				var newPointsOrder = {
 					id: newId,
 					visible: true
 				};
-				
+
 				_tourPoints.push(newPoint);
 				app.data.getTourLayer().add(newPoint);
 				_tourPointsAdded.push(newPoint.attributes.getID());
 				_tourPointsOrder = _tourPointsOrder.concat([newPointsOrder]);
 				WebApplicationData.setTourPointOrder(_tourPointsOrder);
-				
+
 				app.data.getSourceLayer()._nextId++;
 			}
-			
+
 			this.addTemporaryTourPointUsingForm = function(pictureFormId, successCallback, errorCallback)
 			{
 				var fields = this.getFieldsConfig();
@@ -576,9 +576,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 				attributes[fields.getNameField()] = "";
 				attributes[fields.getDescriptionField()] = "";
 				attributes[fields.getIconColorField()] = "";
-	
+
 				FeatureServiceManager.addTemporaryTourPointUsingForm(
-					new Graphic(new Point(0, 0), null, attributes), 
+					new Graphic(new Point(0, 0), null, attributes),
 					pictureFormId,
 					function(success, idOrError, imgID) {
 						if( success )
@@ -588,24 +588,24 @@ define(["storymaps/maptour/core/WebApplicationData",
 					}
 				);
 			};
-			
+
 			this.saveTemporaryTourPointUsingForm = function(objectId, point, name, description, color, imgID, thumbnailFormId, successCallback, errorCallback)
 			{
 				if( objectId == null || point == null || ! name || ! color || ! thumbnailFormId )
 					return;
-					
+
 				var fields = this.getFieldsConfig();
 				var attributes = {};
 				attributes[fields.getIDField()] = objectId;
 				attributes[fields.getNameField()] = name;
 				attributes[fields.getDescriptionField()] = description;
 				attributes[fields.getIconColorField()] = color;
-				
+
 				if ( app.data.layerHasVideoField() )
 					attributes[fields.getIsVideoField()] = "false";
-	
+
 				var newPoint = new Graphic(point, null, attributes);
-				
+
 				FeatureServiceManager.saveTemporaryTourPointUsingForm(
 					objectId,
 					newPoint,
@@ -618,7 +618,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					}
 				);
 			};
-	
+
 			this.changeCurrentPointPicAndThumbUsingData = function(pictureData, thumbnailData, callback)
 			{
 				var attr =  this.getCurrentAttributes() || this.getIntroData().attributes;
@@ -626,7 +626,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					callback(false);
 					return;
 				}
-				
+
 				FeatureServiceManager.changePicAndThumbUsingData(
 					attr.getID(),
 					pictureData,
@@ -639,7 +639,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					}
 				);
 			};
-	
+
 			this.changeCurrentPointThumbnailUsingData = function(thumbnailData, callback)
 			{
 				var attr =  this.getCurrentAttributes() || this.getIntroData().attributes;
@@ -647,7 +647,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					callback(false);
 					return;
 				}
-				
+
 				FeatureServiceManager.changeThumbnailUsingData(
 					attr.getID(),
 					thumbnailData,
@@ -659,7 +659,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					}
 				);
 			};
-			
+
 			this.changeCurrentPointPicAndThumbUsingForm = function(pictureFormId, thumbnailFormId, callback)
 			{
 				var attr =  this.getCurrentAttributes() || this.getIntroData().attributes;
@@ -667,7 +667,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					callback(false);
 					return;
 				}
-				
+
 				FeatureServiceManager.changePicAndThumbUsingForm(
 					attr.getID(),
 					pictureFormId,
@@ -680,53 +680,53 @@ define(["storymaps/maptour/core/WebApplicationData",
 					}
 				);
 			};
-			
+
 			this.changeCurrentPointPicURL = function(target, value, isVideo)
 			{
 				var attributes = _this.getCurrentAttributes() || _this.getIntroData().attributes;
-				
+
 				if( target == "picture" )
 					attributes.setURL(value);
 				else
 					attributes.setThumbURL(value);
-					
+
 				if ( app.data.layerHasVideoField() )
 					attributes.setIsVideo(isVideo);
-				
+
 				topic.publish("BUILDER_INCREMENT_COUNTER", 1);
 				topic.publish("CORE_UPDATE_UI", { editFirstRecord: ! _this.getCurrentAttributes() });
 			};
-			
+
 			function changedPictureAndThumbnail(id, imgID, thumbID, callback)
 			{
 				var imgURL = app.data.getSourceLayer().url + '/' + id + '/attachments/' + imgID;
 				var thumbURL = app.data.getSourceLayer().url + '/' + id + '/attachments/' + thumbID;
-				
+
 				var attr =  _this.getCurrentAttributes() || _this.getIntroData().attributes;
 				if( ! attr ) {
 					callback(false);
 					return;
 				}
-				
+
 				var layer = app.data.getSourceLayer();
 				if(!_this.isFSWithURLFields() && layer.credential && layer.credential.token ) {
 					imgURL += "?token=" + layer.credential.token;
 					thumbURL += "?token=" + layer.credential.token;
 				}
-				
+
 				attr.setURL(imgURL);
 				attr.setThumbURL(thumbURL);
-				
+
 				if (_this.isFSWithURLFields()) {
 					// TODO that shouldn't be needed, the change through getCurrentAttributes should already be applied
 					var fields = _this.getFieldsConfig();
 					var fieldsNoOverride = _this.getFieldsConfig(true);
-					var graphic = _this.getCurrentGraphic() || _this.getIntroData(); 
+					var graphic = _this.getCurrentGraphic() || _this.getIntroData();
 					var feature = graphic.getUpdatedFeature();
 					feature.attributes[fields.getURLField() || fieldsNoOverride.getURLField()] = imgURL;
 					feature.attributes[fields.getThumbField() || fieldsNoOverride.getThumbField()] = thumbURL;
-					
-					updateFSTourPoint( 
+
+					updateFSTourPoint(
 						feature,
 						function() {
 							callback(true);
@@ -740,32 +740,32 @@ define(["storymaps/maptour/core/WebApplicationData",
 					topic.publish("CORE_UPDATE_UI", { editFirstRecord: ! _this.getCurrentAttributes() });
 				}
 			}
-			
+
 			function changedThumbnail(id, thumbID, callback)
 			{
 				var thumbURL = app.data.getSourceLayer().url + '/' + id + '/attachments/' + thumbID;
-				
+
 				var attr =  _this.getCurrentAttributes() || _this.getIntroData().attributes;
 				if( ! attr ) {
 					callback(false);
 					return;
 				}
-				
+
 				var layer = app.data.getSourceLayer();
 				if(!_this.isFSWithURLFields() && layer.credential && layer.credential.token) {
 					thumbURL += "?token=" + layer.credential.token;
 				}
-				
+
 				attr.setThumbURL(thumbURL);
-	
+
 				if (_this.isFSWithURLFields()) {
 					// TODO that shouldn't be needed, the change through getCurrentAttributes should already be applied
 					var fields = _this.getFieldsConfig();
 					var fieldsNoOverride = _this.getFieldsConfig(true);
-					var graphic = _this.getCurrentGraphic() || _this.getIntroData(); 
+					var graphic = _this.getCurrentGraphic() || _this.getIntroData();
 					var feature = graphic.getUpdatedFeature();
 					feature.attributes[fields.getThumbField() || fieldsNoOverride.getThumbField()] = thumbURL;
-					
+
 					updateFSTourPoint(
 						feature,
 						function(){
@@ -780,31 +780,31 @@ define(["storymaps/maptour/core/WebApplicationData",
 					topic.publish("CORE_UPDATE_UI", { editFirstRecord: ! _this.getCurrentAttributes() });
 				}
 			}
-			
+
 			function tourPointAdded(id, newPoint, imgID, thumbID, successCallback, errorCallback)
 			{
 				var fields = _this.getFieldsConfig();
 				var fieldsNoOverride = _this.getFieldsConfig(true); // TODO should not be needed
 				var imgURL = app.data.getSourceLayer().url + '/' + id + '/attachments/' + imgID;
 				var thumbURL = app.data.getSourceLayer().url + '/' + id + '/attachments/' + thumbID;
-				
+
 				newPoint.attributes[fields.getIDField()] = id;
-				
+
 				// Store the URL of the newly added attchment if the FS has the expected fields
 				if( _this.isFSWithURLFields() ) {
 					newPoint.attributes[fields.getURLField() || fieldsNoOverride.getURLField()] = imgURL;
 					newPoint.attributes[fields.getThumbField() || fieldsNoOverride.getThumbField()] = thumbURL;
-					
-					updateFSTourPoint( 
+
+					updateFSTourPoint(
 						new Graphic(newPoint.geometry, null, newPoint.attributes),
 						function() {
 							// TODO : why result is empty ?
 							// also apply changes to changedPictureAndThumbnail and changedThumbnail
-							
+
 							//if(!result || !result[0] || !result[0].success)
 							//	errorCallback();
 							//else
-							
+
 							newPoint.attributes = new TourPointAttributes(newPoint);
 							tourPointAddedStep2(id, newPoint, successCallback);
 						},
@@ -817,39 +817,39 @@ define(["storymaps/maptour/core/WebApplicationData",
 						imgURL += "?token=" + layer.credential.token;
 						thumbURL += "?token=" + layer.credential.token;
 					}
-					
+
 					newPoint.attributes = new TourPointAttributes(newPoint, imgURL, thumbURL);
 					tourPointAddedStep2(id, newPoint, successCallback);
 				}
 			}
-			
+
 			function tourPointAddedStep2(id, newPoint, successCallback)
 			{
 				_tourPoints.push(newPoint);
-	
+
 				var newPointOrder = {
 					id: id,
 					visible: true
 				};
-	
+
 				app.data.getTourLayer().add(newPoint);
 				//_tourPointsAdded.push(newPoint.attributes.getID());
-				
+
 				WebApplicationData.setTourPointOrder( _tourPointsOrder.concat(newPointOrder) );
 				processPointsOrder( computeTourPointOrderFromConfig() );
 				app.data.setCurrentPointByGraphic(newPoint);
-				
+
 				topic.publish("BUILDER_INCREMENT_COUNTER", 1);
-	
+
 				topic.publish("CORE_UPDATE_UI");
 				successCallback();
 			}
-			
+
 			function updateFSTourPoint(graphic, successCallback, errorCallback)
 			{
 				FeatureServiceManager.fsApplyEdits(app.data.getSourceLayer(), [], [graphic], [], successCallback, errorCallback);
 			}
-	
+
 			/**
 			 * Update tour points order to the one given by pointsObjectIds
 			 * @param {Object} pointsObjectIds Array of Object Id's in the expected new order
@@ -859,43 +859,43 @@ define(["storymaps/maptour/core/WebApplicationData",
 				// pointsObjectIds contains all the point of the layer including those who haven't been saved into webappdata before
 				// Build a list with only those that are in webappdata (visible or hidden) and new visible point
 				var newPointsOrders = [];
-				
+
 				// Get the points that where not in _tourPointsOrder before
 				var newPoints = $.grep(pointsObjectIds, function(feature){
 					var found = $.grep(_tourPointsOrder, function(point){
 						return point.id == feature.id;
 					});
-					
+
 					// If point is found or if it's a new visible point
 					//if( found.length || (! found.length && feature.visible) )
 					newPointsOrders.push(feature);
-					
+
 					return feature.visible && ! found.length;
 				});
-				
+
 				// Add new points to the layer
 				$.each(newPoints, function(i, newPoint){
 					var point = $.grep(_tourPoints, function(point){
 						return point.attributes.getID() == newPoint.id;
 					});
-					
+
 					if (point)
 						app.data.getTourLayer().add(point[0]);
 				});
-				
+
 				processPointsOrder( computePointsOrderFromIds(newPointsOrders) );
 				if( this.getTourPoints().length === 0 )
 					app.data.setCurrentPointByIndex(-1);
-				
+
 				topic.publish("CORE_UPDATE_UI");
 			};
-	
+
 			/**
 			 * Tag the given tour points as dropped (will be dropped on global save)
 			 * @param {Object} droppedIds Array of feature Id
 			 */
 			this.dropTourPoints = function(droppedIds)
-			{			
+			{
 				// Drop tour points that were in the web app data
 				_tourPointsOrdered = $.grep(_tourPointsOrdered, function(tourPoint) {
 					if( droppedIds.indexOf(tourPoint.attributes.getID()) > -1 ) {
@@ -905,7 +905,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					}
 					return true;
 				});
-				
+
 				// Drop tour point that weren't in the web app data
 				$.each(droppedIds, function(i, id){
 					$.each(_tourPoints, function(j, tourPoint){
@@ -914,34 +914,34 @@ define(["storymaps/maptour/core/WebApplicationData",
 					});
 				});
 			};
-			
+
 			this.discardChanges = function()
 			{
 				// Remove added point
 				_tourPointsOrdered = $.grep(_tourPointsOrdered, function(tourPoint) {
 					return _tourPointsAdded.indexOf(tourPoint.attributes.getID()) == -1;
 				});
-				
+
 				processPointsOrder( computeTourPointOrderFromConfig() );
 			};
-	
+
 			this.updateAfterSave = function()
 			{
 				WebApplicationData.updateAfterSave();
-				
+
 				// Remove dropped points from _tourPoints
 				_tourPoints = $.grep(_tourPoints, function(tourPoint) {
 					return _tourPointsDropped.indexOf(tourPoint) == -1;
 				});
-				
+
 				_tourPointsDropped = [];
 				_tourPointsAdded = [];
-				
+
 				processPointsOrder( computeTourPointOrderFromConfig() );
-				
+
 				app.data.initialExtentHasBeenEdited = false;
 			};
-	
+
 			/**
 			 * Update the name and description of the currently selected tour point
 			 * @param {Object} name
@@ -950,7 +950,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			this.updateCurrentTourPoint = function(name, description)
 			{
 				_currentGraphic.attributes.updateNameAndDescription(name, description);
-	
+
 				topic.publish("CORE_SELECTED_TOURPOINT_UPDATE", {
 					index: _currentIndex,
 					name: MapTourHelper.decodeText(name),
@@ -958,17 +958,17 @@ define(["storymaps/maptour/core/WebApplicationData",
 					color: _currentGraphic.attributes.getColor()
 				});
 			};
-			
+
 			this.updateCurrentTourPointColor = function(color)
 			{
 				_currentGraphic.attributes.setColor(color);
-	
+
 				topic.publish("CORE_SELECTED_TOURPOINT_UPDATE", {
 					index: _currentIndex,
 					color: _currentGraphic.attributes.getColor()
 				});
 			};
-	
+
 			/**
 			 * Compute the initial tour point order from the data
 			 * @return an object with the array of tour point ordered by feature ID
@@ -976,7 +976,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 			function computeInitialTourPointOrder()
 			{
 				var pointsOrder = [];
-	
+
 				$.each(_tourPoints, function(i, tourPoint) {
 					pointsOrder.push({
 						id: tourPoint.attributes.getID(),
@@ -985,14 +985,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 						visible: true
 					});
 				});
-	
+
 				pointsOrder = pointsOrder.sort(function(a, b){
 					return a.id - b.id;
 				});
-	
+
 				return pointsOrder;
 			}
-	
+
 			/**
 			 * Compute the tour point order from a previously saved order in the web map application data
 			 * @return the array of tour point ordered by feature ID
@@ -1002,7 +1002,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var order = WebApplicationData.getTourPointOrder();
 				return computePointsOrderFromIds(order);
 			}
-	
+
 			/**
 			 * Compute the tour point order from the specified order
 			 * Point id's that are not present in the specified order are dropped
@@ -1012,12 +1012,12 @@ define(["storymaps/maptour/core/WebApplicationData",
 			function computePointsOrderFromIds(newOrder)
 			{
 				var pointsOrder = [];
-	
+
 				// Loop on _tourPoints
 				$.each(_tourPoints, function(i, tourPoint) {
 					var id = tourPoint.attributes.getID();
 					var pos = -1;
-	
+
 					// Find the position of the point in newOrder
 					$.each(newOrder, function(i, v){
 						if (v.id == id) {
@@ -1025,7 +1025,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 							return true;
 						}
 					});
-	
+
 					// If it hasn't been dropped
 					if( pos > -1 )
 						pointsOrder.push({
@@ -1035,15 +1035,15 @@ define(["storymaps/maptour/core/WebApplicationData",
 							visible: newOrder[pos].visible
 						});
 				});
-	
+
 				// Order by the position in newOrder
 				pointsOrder = pointsOrder.sort(function(a, b){
 					return a.order - b.order;
 				});
-	
+
 				return pointsOrder;
 			}
-	
+
 			/**
 			 * Internal function to call after tour points order have changed
 			 * It compute the _tourPointsOrdered and save the order in web map application data
@@ -1053,25 +1053,25 @@ define(["storymaps/maptour/core/WebApplicationData",
 			{
 				_tourPointsOrder = pointsOrder;
 				_tourPointsOrdered = [];
-	
+
 				$.each(_tourPointsOrder, function(i, item){
 					_tourPoints[item.index].attributes.setTourVisibility(item.visible);
 					_tourPointsOrdered.push( _tourPoints[item.index] );
 				});
-	
+
 				WebApplicationData.setTourPointOrder( _tourPointsOrder );
 			}
-			
+
 			this.detectDataAddedOutsideOfBuilder = function()
 			{
 				var counter = 0;
 				var pointOrder = WebApplicationData.getTourPointOrder() || [];
-				
+
 				// Loop on _tourPoints
 				$.each(_tourPoints, function(i, tourPoint) {
 					var id = tourPoint.attributes.getID();
 					var pos = -1;
-	
+
 					// Find the position of the point in pointOrder
 					$.each(pointOrder, function(i, v){
 						if (v.id == id) {
@@ -1079,7 +1079,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 							return true;
 						}
 					});
-	
+
 					// If point id hasn't been found
 					if( pos == -1 )
 						counter++;
@@ -1087,14 +1087,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 				return counter;
 			};
-	
+
 			/**
 			 * Find the best matching fields to construct a Map Tour point from the graphic attributes
 			 */
 			this.electFields = function(attributes)
 			{
 				console.log("TourData - electFields");
-	
+
 				return new FieldConfig({
 					fieldID: electFieldFromAttributes(attributes, APPCFG.FIELDS_CANDIDATE.objectid) || app.data.getSourceLayer().objectIdField,
 					fieldName: electFieldFromAttributes(attributes, APPCFG.FIELDS_CANDIDATE.name),
@@ -1105,11 +1105,11 @@ define(["storymaps/maptour/core/WebApplicationData",
 					fieldIsVideo: electFieldFromAttributes(attributes, APPCFG.FIELDS_CANDIDATE.is_video)
 				});
 			};
-			
+
 			this.electFieldsFromFieldsList = function(fieldsList)
 			{
 				console.log("TourData - electFields");
-	
+
 				return new FieldConfig({
 					fieldID: electFieldFromFieldsList(fieldsList, APPCFG.FIELDS_CANDIDATE.objectid) || app.data.getSourceLayer().objectIdField,
 					fieldName: electFieldFromFieldsList(fieldsList, APPCFG.FIELDS_CANDIDATE.name),
@@ -1120,7 +1120,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					fieldIsVideo: electFieldFromFieldsList(fieldsList, APPCFG.FIELDS_CANDIDATE.is_video)
 				});
 			};
-			
+
 			function electFieldFromAttributes(attributes, candidates)
 			{
 				for(var i=0; i < candidates.length; i++) {
@@ -1131,7 +1131,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				}
 				return '';
 			}
-			
+
 			function electFieldFromFieldsList(fields, candidates)
 			{
 				for(var i=0; i < candidates.length; i++) {
@@ -1142,7 +1142,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				}
 				return '';
 			}
-			
+
 			function electFieldFromFieldsArray(fields, candidates)
 			{
 				for(var i=0; i < candidates.length; i++) {
@@ -1153,12 +1153,12 @@ define(["storymaps/maptour/core/WebApplicationData",
 				}
 				return '';
 			}
-	
+
 			this.getFieldsConfig = function(disableOverride)
 			{
 				if( ! disableOverride && WebApplicationData.getFieldsOverride() )
 					return WebApplicationData.getFieldsOverride();
-	
+
 				var aTourPoint = this.getTourPoints()[0];
 				// If data
 				if( aTourPoint && aTourPoint.attributes )
@@ -1170,14 +1170,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 				else if ( app.data.getSourceLayer().fields )
 					return this.electFieldsFromFieldsList(app.data.getSourceLayer().fields);
 			};
-			
+
 			this.isFSWithURLFields = function()
 			{
 				var fields = app.data.getSourceLayer().fields;
-				return electFieldFromFieldsList(fields, APPCFG.FIELDS_CANDIDATE.pic_url) !== '' 
+				return electFieldFromFieldsList(fields, APPCFG.FIELDS_CANDIDATE.pic_url) !== ''
 						&& electFieldFromFieldsList(fields, APPCFG.FIELDS_CANDIDATE.thumb_url) !== '';
 			};
-			
+
 			this.lookForMatchingFields = function(fieldsName)
 			{
 				var fields = {
@@ -1187,22 +1187,22 @@ define(["storymaps/maptour/core/WebApplicationData",
 					fieldThumb: electFieldFromFieldsArray(fieldsName, APPCFG.FIELDS_CANDIDATE.thumb_url),
 					fieldVideo: electFieldFromFieldsArray(fieldsName, APPCFG.FIELDS_CANDIDATE.is_video)
 				};
-				
+
 				return {
 					allFieldsFound: fields.fieldName && fields.fieldDescription && fields.fieldURL && fields.fieldThumb,
 					fields: fields
 				};
 			};
-			
+
 			this.layerHasVideoField = function()
 			{
 				if ( ! app.data.getSourceLayer() )
 					return;
-				
+
 				var fields = app.data.getSourceLayer().fields;
 				return electFieldFromFieldsList(fields, APPCFG.FIELDS_CANDIDATE.is_video) !== '';
 			};
-			
+
 			this.getWebAppData = function()
 			{
 				return WebApplicationData.get();

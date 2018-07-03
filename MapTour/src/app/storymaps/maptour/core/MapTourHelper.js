@@ -1,6 +1,6 @@
 define(["storymaps/maptour/core/WebApplicationData", "esri/symbols/PictureMarkerSymbol"],
 	function(WebApplicationData, PictureMarkerSymbol){
-		var _myCanvas, _context, _icon, _icon2;
+		var _myCanvas, _context, _icon, _icon2, _icon3;
 		/**
 		 * MapTourHelper
 		 * @class MapTourHelper
@@ -106,6 +106,9 @@ define(["storymaps/maptour/core/WebApplicationData", "esri/symbols/PictureMarker
 			},
 			decodeText: function(text)
 			{
+				if(app.data.getAppItem().created > APPCFG.HTML_SANITIZER_DATE){
+					text = app.sanitizer.sanitize(text);
+				}
 				if ( ! app.data.sourceIsFS() )
 					return text;
 
@@ -185,19 +188,30 @@ define(["storymaps/maptour/core/WebApplicationData", "esri/symbols/PictureMarker
 
 				_icon2 = new Image();
 				_icon2.src = APPCFG.PIN_CFG.custom.iconPath2;
+
+				_icon3 = new Image();
+				_icon3.src = APPCFG.PIN_CFG.custom.iconPath3;
 			},
 			getSymbol: function(color, number, type, doNotAllowStatic)
 			{
 				var symbol = null;
+				color = color && typeof color == "string" ? color.toLowerCase() : 'r';
+				if(!type){
+					type = "normal";
+				}
+
 				if( $("body").hasClass("side-panel") ) {
-					if(typeof color == "number")
-						color = "r";
-					var newColor = this.getCustomColor(color || "r");
+					if(color != "r" && color != "g" && color != "b" && color != "p")
+						color = APPCFG.PIN_DEFAULT_CFG;
+					var newColor = this.getCustomColor((color || APPCFG.PIN_DEFAULT_CFG), type);
 					var newCanvas = document.createElement('canvas');
 					newCanvas.width = 77;
 					newCanvas.height = 120;
 					var newContext = newCanvas.getContext('2d');
 					newContext.font = newCanvas.width/3 + "pt pt open_sanssemibold, sans-serif";
+					/*if(type == "normal") {
+						newContext.globalAlpha = 0.9;
+					}*/
 					newContext.drawImage(_myCanvas, 0, 0);
 
 					// examine every pixel,
@@ -212,9 +226,15 @@ define(["storymaps/maptour/core/WebApplicationData", "esri/symbols/PictureMarker
 						imageData.data[i+1] = this.hexToRgb(newColor).g;
 						imageData.data[i+2] = this.hexToRgb(newColor).b;
 					}
+
 					// put the altered data back on the canvas
 					newContext.putImageData(imageData,0,0);
-					newContext.drawImage(_icon2, 0, 0);
+
+					if(type != "selected"){
+						newContext.drawImage(_icon2, 0, 0);
+					} else {
+						newContext.drawImage(_icon3, 0, 0);
+					}
 
 					var label = number;
 					newContext.textAlign = "center";
@@ -232,9 +252,7 @@ define(["storymaps/maptour/core/WebApplicationData", "esri/symbols/PictureMarker
 					symbol.setOffset(APPCFG.ICON_CUSTOM_CFG.normal.offsetX, APPCFG.ICON_CUSTOM_CFG.normal.offsetY);
 				} else {
 					var iconSpec = APPCFG.ICON_CFG[type || 'normal'];
-					if( $("body").hasClass("side-panel") ) {
-						iconSpec = APPCFG.ICON_CUSTOM_CFG[type  || 'normal'];
-					}
+
 					var isStatic = ! doNotAllowStatic && APPCFG.USE_STATIC_ICON && APPCFG.USE_STATIC_ICON.enabled;
 
 					if ( isStatic )
@@ -271,16 +289,19 @@ define(["storymaps/maptour/core/WebApplicationData", "esri/symbols/PictureMarker
 					b: parseInt(result[3], 16)
 				} : null;
 			},
-			getCustomColor: function(color)
+			getCustomColor: function(color, type)
 			{
+				if(!type) {
+					type = "selected";
+				}
 				if( color == "r" || color == "R") {
-					return APPCFG.ICON_CUSTOM_COLORS.r;
+					return type == "selected" ? APPCFG.ICON_CUSTOM_SELECTED_COLOR.r : APPCFG.ICON_CUSTOM_COLORS.r;
 				} else if ( color == "b" || color == "B") {
-					return APPCFG.ICON_CUSTOM_COLORS.b;
+					return type == "selected" ? APPCFG.ICON_CUSTOM_SELECTED_COLOR.b : APPCFG.ICON_CUSTOM_COLORS.b;
 				} else if ( color == "g" || color == "G") {
-					return APPCFG.ICON_CUSTOM_COLORS.g;
+					return type == "selected" ? APPCFG.ICON_CUSTOM_SELECTED_COLOR.g : APPCFG.ICON_CUSTOM_COLORS.g;
 				} else if ( color == "p" || color == "P"){
-					return APPCFG.ICON_CUSTOM_COLORS.p;
+					return type == "selected" ? APPCFG.ICON_CUSTOM_SELECTED_COLOR.p : APPCFG.ICON_CUSTOM_COLORS.p;
 				} else {
 					return;
 				}

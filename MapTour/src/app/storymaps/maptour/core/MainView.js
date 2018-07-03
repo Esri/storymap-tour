@@ -7,12 +7,14 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"storymaps/maptour/ui/desktop/Carousel",
 		"storymaps/maptour/ui/desktop/PicturePanel",
 		"storymaps/ui/autoplay/Autoplay",
+		"storymaps/ui/EmbedBar/EmbedBar",
 		// Mobile UI
 		"storymaps/maptour/ui/mobile/IntroView",
 		"storymaps/maptour/ui/mobile/ListView",
 		"storymaps/maptour/ui/mobile/InfoView",
 		"storymaps/maptour/ui/mobile/Carousel",
 		"storymaps/utils/Helper",
+		"storymaps/utils/FlickrConnector",
 		"dojo/has",
 		"esri/tasks/query",
 		"esri/layers/GraphicsLayer",
@@ -27,6 +29,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		"dojo/dom",
 		"dojo/on",
 		"dojo/_base/connect",
+		"dojo/_base/lang",
 		"dojo/query",
 		"dojo/dom-geometry"],
 	function (
@@ -38,11 +41,13 @@ define(["storymaps/maptour/core/WebApplicationData",
 		DesktopCarousel,
 		PicturePanel,
 		Autoplay,
+		EmbedBar,
 		IntroView,
 		ListView,
 		InfoView,
 		MobileCarousel,
 		Helper,
+		FlickrConnector,
 		has,
 		Query,
 		GraphicsLayer,
@@ -57,6 +62,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 		dom,
 		on,
 		connect,
+		lang,
 		domQuery,
 		domGeom)
 	{
@@ -99,6 +105,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 				app.mobileListView = new ListView("#listPanel");
 				app.mobileInfoView = new InfoView("#infoCarousel");
 				app.mobileCarousel = new MobileCarousel("#footerMobile", app.isInBuilderMode);
+
+				app.flickr = new FlickrConnector(APPCFG.FLICKR_API_KEY);
 
 				/*
 				 * Autoplay in viewer mode
@@ -338,6 +346,32 @@ define(["storymaps/maptour/core/WebApplicationData",
 						}
 					}
 				}
+
+				// Initialize Embed bar
+				var urlParams = esri.urlToObject(document.location.search).query || {};
+				var classicEmbedMode = urlParams.classicEmbedMode ? true : urlParams.classicEmbedMode === "" ? true : urlParams.classicembedmode ? true : urlParams.classicembedmode === "" ? true : false;
+				var strings = i18n.viewer.embedBar;
+				lang.mixin(strings, {
+					open: i18n.viewer.share.shareLinkOpen,
+					close: i18n.viewer.bannerNotification.close,
+					shareFacebook: i18n.viewer.desktopHTML.facebookTooltip,
+					shareTwitter: i18n.viewer.desktopHTML.twitterTooltip
+				});
+				app.embedBar = new EmbedBar({
+					classicEmbedMode: classicEmbedMode,
+					strings: strings,
+					appCreationDate: app.data.getAppItem().created,
+					june2018ReleaseDate: APPCFG.JUNE_CREATED_DATE,
+					isBuilder: app.isInBuilderMode,
+					isMobile: false,
+					isEsriLogo: !WebApplicationData.getLogoURL() ? true : false,
+					logoPath: "resources/icons/esri-logo-black.png",
+					logoElements: [$(".headerLogoImg"), $(".scroll-layout-banner")],
+					taglineElements: [$(".msLink"), $(".mobile-scroll-story-tag-link")],
+					shareElements: [$(".share_facebook"), $(".share_twitter"), $(".share_bitly")],
+					appTitle: WebApplicationData.getTitle(),
+					bitlyCreds: [APPCFG.HEADER_SOCIAL.bitly.key, APPCFG.HEADER_SOCIAL.bitly.login]
+				});
 
 				// Initialize picture panel
 				app.desktopPicturePanel.init(
@@ -673,6 +707,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 							if(app.data.getIntroData().attributes.getName()){
 								$("#splashTitle").html(app.data.getIntroData().attributes.getName());
 								$("#splashText").css("max-height", $(window).height() - 375 - (0.1 * $(window).height()));
+								$("#splashPanel").attr("alt", "");
 							} else {
 								$("#splashText").hide();
 							}
@@ -681,11 +716,24 @@ define(["storymaps/maptour/core/WebApplicationData",
 							}
 
 							$("#takeTourText").text(i18n.viewer.desktopHTML.takeTourText);
-							$("#takeTour").on("click", function() {
-								$("#splashPanel").animate({
-									bottom: "2000px"
-								}, 900);
-								topic.publish("SELECT_BY_SCROLL", 0);
+							$(".cover-start").on("click", function() {
+								if(app.isFirstUserAction) {
+									topic.subscribe("maptour-point-change-after", function(){
+										setTimeout(function(){
+											$("#splashPanel").animate({
+												bottom: "2000px"
+											}, 900);
+										}, 150);
+									});
+									topic.publish("SELECT_BY_SCROLL", 0);
+								} else {
+									setTimeout(function(){
+										$("#splashPanel").animate({
+											bottom: "2000px"
+										}, 900);
+									}, 150);
+									topic.publish("SELECT_BY_SCROLL", 0);
+								}
 							});
 							if(app.data.getCurrentIndex() == null) {
 								if( ! $("body").hasClass("mobile-layout-scroll") ) {
@@ -701,9 +749,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 						$("#headerDesktop .title").on("click", function() {
 							$("#splashPanel").show();
 							$("#splashPanel").animate({
-								bottom: "-64px"
+								bottom: app.embedBar && app.embedBar.initiated ? 26 : 0
 							}, 700);
-							topic.publish("SELECT_BY_SCROLL", 0);
 						});
 					}
 					else {
@@ -734,8 +781,9 @@ define(["storymaps/maptour/core/WebApplicationData",
 					}
 
 					topic.subscribe("SELECT_BY_SCROLL", loadPictureAtIndex);
-
-					app.mobileListView.init(tourPoints, appColors[2]);
+					var urlParams = Helper.getUrlParams();
+					var forceStartIndex = parseInt(urlParams.index, 10);
+					app.mobileListView.init(tourPoints, appColors[2], forceStartIndex, APPCFG.FLICKR_API_KEY);
 					if( ! $("body").hasClass("side-panel") && ! app.isInBuilderMode ) {
 						app.mobileInfoView.init(app.data.getTourPoints(), appColors[2]);
 					}
@@ -766,7 +814,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 			this.updateUI = function(tourPoints, appColors, editFirstRecord)
 			{
-				updateRenderer(editFirstRecord);
+				this.updateRenderer(editFirstRecord);
 
 				app.desktopCarousel.update(tourPoints, appColors[2], appColors[1]);
 				app.mobileCarousel.update(tourPoints, appColors[2]);
@@ -782,6 +830,12 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 			this.resize = function(cfg)
 			{
+				if(app.embedBar && app.embedBar.initiated){
+					cfg.height -= 26;
+					$("#introPanel").css('min-height', 0);
+					$("#infoPanel .embed-btn-container").css("bottom", "26px");
+					$(".tourPoint").height($(".tourPoint").height() - $("#header").height() - $(".embed-bar").height());
+				}
 				// Feature Service creation
 				if (app.initScreenIsOpen) {
 					// Display the fatal error dialog box on mobile or the data popup on desktop
@@ -806,6 +860,12 @@ define(["storymaps/maptour/core/WebApplicationData",
 					$("#picturePanel").width(cfg.width * (2/3));
 					$("#picturePanel").css('left', $("#leftPanel").width());
 
+					if($("#leftPanel").width() == 400){
+						$("#placard .name").width("235px");
+					}
+
+					var currentImgUrl = app.data.hasIntroRecord() && ( app.data.getCurrentIndex() == -1 || app.data.getCurrentIndex() == null ) ? app.data.getIntroData().attributes.getURL() : "";
+
 					if ('objectFit' in document.documentElement.style === true) {
 						$(".side-panel .member-image img").css("object-fit", "cover");
 					} else {
@@ -815,7 +875,15 @@ define(["storymaps/maptour/core/WebApplicationData",
 							backgroundPositionY: 'center',
 							backgroundRepeat: 'no-repeat',
 							backgroundSize: 'cover',
-							backgroundImage: app.data.getCurrentAttributes() && app.data.getCurrentAttributes().getURL() ? 'url(' + app.data.getCurrentAttributes().getURL() + ');' : 'url("");'
+							backgroundImage: currentImgUrl ? currentImgUrl : app.data.getCurrentAttributes() && app.data.getCurrentAttributes().getURL() ? 'url(' + app.data.getCurrentAttributes().getURL() + ');' : 'url("");'
+						});
+						$(".tour-point-content .media img").css("opacity", "0");
+						$(".tour-point-content .media").css({
+							backgroundPositionX: 'center',
+							backgroundPositionY: 'center',
+							backgroundRepeat: 'no-repeat',
+							backgroundSize: 'cover',
+							backgroundImage: currentImgUrl ? currentImgUrl : app.data.getCurrentAttributes() && app.data.getCurrentAttributes().getURL() ? 'url(' + app.data.getCurrentAttributes().getURL() + ');' : 'url("");'
 						});
 					}
 					$(".member-image.current").css('left', 0);
@@ -826,6 +894,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					if(!$("body").hasClass("mobile-layout-scroll")) {
 						$("#leftPanel").height(cfg.height);
 					} else {
+						$(".scroll-layout").height(cfg.height);
 						$("#leftPanel").height("35%");
 					}
 					if( app.data.hasIntroRecord() && ! cfg.isMobileView && ! app.isInBuilderMode ) {
@@ -853,6 +922,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 						left: "25%",
 						bottom: 160
 					});
+				}
+
+				if ( app.embedBar && app.embedBar.initiated && !$("body").hasClass("mobile-layout-scroll") ) {
+					$("#footer").css("bottom", "26px");
 				}
 
 				if ( cfg.isMobileView && $("body").hasClass("mobile-layout-scroll") && ! $(".tour-point-content").length && !app.isLoading) {
@@ -960,7 +1033,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 				}
 
 				// If intro record, display mobile intro view
-				if ( app.data.getIntroData() && app.data.getCurrentIndex() == null && (! has("ie") || has("ie") > 8) )
+				if ( app.data.getIntroData() && (app.data.getCurrentIndex() == null || $("body").hasClass("side-panel")) && (! has("ie") || has("ie") > 8) )
 					app.mobileIntroView.init(app.data.getIntroData(), WebApplicationData.getColors()[2]);
 
 				_core.displayApp();
@@ -1093,6 +1166,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					app.mapTips.clean(true);
 					return;
 				}
+
 				app.mapTips && app.mapTips.clean();
 				app.mapTips = new MultiTips({
 					map: app.map,
@@ -1104,7 +1178,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					borderColor: APPCFG.HOVER_POPUP_BORDER_COLOR,
 					pointerColor: APPCFG.HOVER_POPUP_ARROW_COLOR,
 					textColor: "#ffffff",
-					offsetTop: app.data.getTourLayer().renderer.getSymbol(graphic).height / 2 + app.data.getTourLayer().renderer.getSymbol(graphic).yoffset,
+					offsetTop: graphic.symbol.height / 2 + graphic.symbol.yoffset,
 					offsetBottom: $("body").hasClass("side-panel") ? 0 : 8,
 					topLeftNotAuthorizedArea: has('touch') ? [40, 180] : [30, 150],
 					mapAuthorizedWidth: MapTourHelper.isModernLayout() ? domQuery("#picturePanel").position()[0].x : -1,
@@ -1159,17 +1233,27 @@ define(["storymaps/maptour/core/WebApplicationData",
 				var attributes = forcedRecord ? forcedRecord.attributes : app.data.getCurrentAttributes();
 
 				if( $("body").hasClass("mobile-layout-scroll") ) {
-					if( attributes.isVideo() || !MapTourHelper.mediaIsSupportedImg(attributes.getURL()) ) {
-						var currentPointContent = $(".tour-point-content .media").eq(app.data.getCurrentIndex());
-						if( ! currentPointContent.find('.mobile-layout-scroll-video').attr("src") )
-							currentPointContent.find('.mobile-layout-scroll-video').attr("src", attributes.getURL());
-					}
-
-					var nextPoint = app.data.getAllFeatures()[app.data.getCurrentIndex() + 1];
-
-					if( nextPoint && (nextPoint.attributes.isVideo() || !MapTourHelper.mediaIsSupportedImg(nextPoint.attributes.getURL())) ) {
-						var nextPointContent = $(".tour-point-content .media").eq(app.data.getCurrentIndex() + 1);
-						nextPointContent.find('.mobile-layout-scroll-video').attr("src", nextPoint.attributes.getURL());
+					var i;
+					for(i=app.data.getCurrentIndex() >= 3 ? -2 : app.data.getCurrentIndex() == 2 ? -2 : 0; i < 4; i++) {
+						var thisIndex = app.data.getCurrentIndex() + i;
+						if(thisIndex > app.data.getTourPoints().length - 1)
+							break;
+						var thisAttributes = app.data.getTourPoints()[thisIndex].attributes;
+						var thisPointContent = $(".tour-point-content .media").eq(thisIndex);
+						if( thisAttributes.isVideo() || !MapTourHelper.mediaIsSupportedImg(thisAttributes.getURL()) ) {
+							if( ! thisPointContent.find('.mobile-layout-scroll-video').attr("src") )
+								thisPointContent.find('.mobile-layout-scroll-video').attr("src", attributes.getURL());
+						} else {
+							if( ! thisPointContent.find('img').attr("src") ) {
+								if ('objectFit' in document.documentElement.style === false) {
+									thisPointContent.find('img').parent().css({
+										backgroundImage: 'url(' + thisAttributes.getURL() + ')'
+									});
+								} else{
+									thisPointContent.find('img').attr("src", thisAttributes.getURL());
+								}
+							}
+						}
 					}
 				}
 
@@ -1269,7 +1353,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 				if($('.swipeview-active').children()[0] && $('.swipeview-active').children()[0].id){
 					if(!/iPhone|iPad|iPod/i.test(navigator.userAgent)){
-						$('#'+$('.swipeview-active').children()[0].id).css('height', $('#infoPanel').height() - 40);
+						$('#'+$('.swipeview-active').children()[0].id).css('height', $('#infoPanel').height() - 40 - (app.embedBar && app.embedBar.initiated ? 26 : 0));
 					}
 
 					setTimeout(function(){
@@ -1361,12 +1445,12 @@ define(["storymaps/maptour/core/WebApplicationData",
 				if( param.name !== undefined || ! param.color )
 					return;
 
-				updateRenderer();
+				_this.updateRenderer();
 				updateGraphicIcon(graphic, "selected");
 				moveGraphicToFront(graphic);
 			}
 
-			function updateRenderer(noRendererReset)
+			this.updateRenderer = function(noRendererReset)
 			{
 				var tourPoints = app.data.getTourPoints();
 				var currentId = app.data.getCurrentId();
@@ -1382,6 +1466,10 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 					if( graphic.attributes.getID() == currentId )
 						newIndex = index;
+					graphic.setSymbol(null);
+				});
+				$.each(app.data.getTourPoints(true), function(i, point){
+					point.setSymbol(null);
 				});
 				app.data.getTourLayer().setRenderer(renderer);
 				app.data.getTourLayer().refresh();
@@ -1392,7 +1480,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 
 				// Set the selected point
 				app.data.setCurrentPointByIndex(newIndex);
-			}
+			};
 
 			function setCurrentGraphicIcon(graphic)
 			{
@@ -1411,10 +1499,23 @@ define(["storymaps/maptour/core/WebApplicationData",
 					return;
 
 				var symbol = graphic.getLayer().renderer.getSymbol(graphic);
-				var iconCfg = APPCFG.ICON_CFG[type];
-				if( $("body").hasClass("side-panel") ) {
+				var tourPoints = app.data.getTourPoints(false);
+				var featureIndex = $.map(tourPoints, function(point, index){
+					if(point.attributes.getID() == graphic.attributes.getID()){
+						return index;
+					}
+				});
+				var color = graphic.attributes.getColor();
+				symbol = MapTourHelper.getSymbol(color, featureIndex[0] + 1, type);
+				graphic.setSymbol(symbol);
+
+				var iconCfg;
+				if($("body").hasClass("side-panel")) {
 					iconCfg = APPCFG.ICON_CUSTOM_CFG[type];
+				} else {
+					iconCfg = APPCFG.ICON_CFG[type];
 				}
+
 				if( ! iconCfg )
 					return;
 
@@ -1426,6 +1527,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 					return;
 
 				symbol.setWidth(iconCfg.width).setHeight(iconCfg.height).setOffset(iconCfg.offsetX, iconCfg.offsetY);
+
 				graphic.draw();
 			}
 
@@ -1474,7 +1576,7 @@ define(["storymaps/maptour/core/WebApplicationData",
 						borderColor: APPCFG.POPUP_BORDER_COLOR,
 						pointerColor: APPCFG.POPUP_ARROW_COLOR,
 						textColor: "#ffffff",
-						offsetTop: app.data.getTourLayer().renderer.getSymbol(graphic).height / 2 + app.data.getTourLayer().renderer.getSymbol(graphic).yoffset,
+						offsetTop: graphic.symbol.height / 2 + graphic.symbol.yoffset,
 						offsetBottom: $("body").hasClass("side-panel") ? 0 : 8,
 						topLeftNotAuthorizedArea: has('touch') ? [40, 180] : [30, 150],
 						mapAuthorizedWidth: MapTourHelper.isModernLayout() ? domQuery("#picturePanel").position()[0].x : -1,

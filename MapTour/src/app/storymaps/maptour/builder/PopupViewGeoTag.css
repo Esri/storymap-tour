@@ -6,7 +6,7 @@
 	font-weight: normal;
 	text-decoration: underline;
 }
- 
+
 .popupViewGeoTag .leftPanel {
 	width: 220px;
 	height: 400px;
@@ -147,7 +147,7 @@
 	width: 100%;
 	text-align: center;
  }
- 
+
  .popupViewGeoTag .wait {
 	width: 210px;
 	text-align: center;
@@ -158,8 +158,8 @@
 	padding-bottom: 16px;
 	font-weight: bold;
  }
- 
- 
+
+
 .popupViewGeoTag .wait.error {
 	color: red;
 	width: 300px;

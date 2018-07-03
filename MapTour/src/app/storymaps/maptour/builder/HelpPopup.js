@@ -50,15 +50,14 @@ define([],
 				container.find('#help-tab1').html(
 					i18n.viewer.helpPopup.tab1.div1 + '<br /><br />'
 					+ i18n.viewer.helpPopup.tab1.div2
-					+ i18n.viewer.helpPopup.tab1.moreInfo + '<br /><br />'
+					+ '<b>' + i18n.viewer.helpPopup.tab1.moreInfo + '</b><br /><br />'
 					+ i18n.viewer.helpPopup.tab1.infoSites + '<br /><br />'
 					+ i18n.viewer.helpPopup.tab1.mtFAQ + '<br /><br />'
-					+ i18n.viewer.helpPopup.tab1.div5 + '<br />'
 				);
 
 				container.find('.tab').eq(1).html(i18n.viewer.helpPopup.tab2.title);
 				container.find('#help-tab2').html(
-					i18n.viewer.helpPopup.tab2.div1 + ' ' + i18n.viewer.helpPopup.tab2.div1a +'<br /><br />'
+					i18n.viewer.helpPopup.tab2.div1 + '<br /><br />'
 					+ i18n.viewer.helpPopup.tab2.div2 + '<br />'
 					+ i18n.viewer.helpPopup.tab2.div3 + '<br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab2.div10 + '</b><br />'
@@ -74,17 +73,9 @@ define([],
 					+ ' <li><b>' + i18n.viewer.helpPopup.tab2.div154 + '</b>: ' + APPCFG.FIELDS_CANDIDATE.thumb_url.join(', ') + '</li>'
 					+ ' <li><b>' + i18n.viewer.helpPopup.tab2.div155 + '</b>: ' + APPCFG.FIELDS_CANDIDATE.color.join(', ') + '</li>'
 					+ '</ul><br />'
-					+ i18n.viewer.helpPopup.tab2.div162 + '<br /><br />'
-					+ i18n.viewer.helpPopup.tab2.div17 + ' '
-					+ i18n.viewer.helpPopup.tab2.div172 + '<br /><br />'
-					+ '<b>' + i18n.viewer.helpPopup.tab2.div18 + '</b><br />'
-					+ i18n.viewer.helpPopup.tab2.div19 + '<br /><br />'
+					+ i18n.viewer.helpPopup.tab2.div174 + '<br /><br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab2.div20 + '</b><br />'
 					+ i18n.viewer.helpPopup.tab2.div21 + '<br /><br />'
-					+ i18n.viewer.helpPopup.tab2.div22 + '<br /><br />'
-					+ i18n.viewer.helpPopup.tab2.div23 + '<br /><br />'
-					+ '<div style="text-align:center"><img src="resources/icons/builder-help-data-fs-video.png" /></div><br />'
-					+ i18n.viewer.helpPopup.tab2.div24
 				);
 
 				container.find('.tab').eq(2).html(i18n.viewer.helpPopup.tab4.title);
@@ -93,8 +84,9 @@ define([],
 					+ i18n.viewer.helpPopup.tab4.div2 + '<br /><br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab4.div3 + '</b><br />'
 					+ i18n.viewer.helpPopup.tab4.div4
-					+ ' <div style="margin-left: 40px; margin-right: 70px; margin-top: 6px; color: #D14;background-color: #F7F7F9;border: 1px solid #E1E1E8; font-size: 12px; font-family: Monaco, Menlo, Consolas, monospace;">&lt;a href="https://storymaps.esri.com/" style="color:green" target="_blank">More info&lt;/a></div>'
+					+ ' <div style="margin-left: 40px; margin-right: 70px; margin-top: 6px; color: #D14;background-color: #F7F7F9;border: 1px solid #E1E1E8; font-size: 12px; font-family: Monaco, Menlo, Consolas, monospace;">&lt;a href="https://www.esri.com/" style="color:green" target="_blank">More info&lt;/a></div>'
 					+ '<br />'
+					+ i18n.viewer.helpPopup.tab4.div4aa + '<br /><br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab4.div4a + '</b><br />'
 					+ i18n.viewer.helpPopup.tab4.div4b + '<br /><br />'
 					+ '<b>' + i18n.viewer.helpPopup.tab4.div5 + '</b><br />'

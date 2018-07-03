@@ -430,11 +430,11 @@ define(["storymaps/utils/Helper",
 					$.each(app.data.getWebMapItem().itemData.baseMap.baseMapLayers, function(i, bmLayer){
 						$.each(app.map.layerIds, function(i, layerId){
 							var basemap;
-							if(app.map.getLayer(layerId).url && bmLayer.url){
+							if(app.map.getLayer(layerId).url == bmLayer.url){
 								_csvMap.addLayer(Helper.cloneLayer(app.map.getLayer(layerId)));
 								if(!basemap)
 									basemap = app.map.getLayer(layerId);
-							} else if(app.map.getLayer(layerId).url == bmLayer.styleUrl){
+							} else if(app.map.getLayer(layerId).url && bmLayer.styleUrl){
 								var parser1 = document.createElement('a');
 								parser1.href = app.map.getLayer(layerId).url;
 								var parser2 = document.createElement('a');

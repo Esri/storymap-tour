@@ -609,7 +609,13 @@ define(["esri/dijit/Search",
 						var result = Helper.getBinaryStringFromArrayBuffer(this.result);
 						_exifData.hide();
 						_preivewPanel.show();
-						_preFileName.html(file.name.split(".")[0]).show();
+
+						var fileName = file.name.split(".")[0];
+						fileName = fileName.replace(/_/g, ' ');
+						_preFileName.html(fileName.replace(/\b\w/g, function(l){ return l.toUpperCase(); })).show();
+						if( ! _name.val().length )
+							_name.val(fileName.replace(/\b\w/g, function(l){ return l.toUpperCase(); }));
+						_tempItemData.name = _name.val();
 						var exif = EXIF.readFromBinaryFile(new BinaryFile(result));
 						displayExifInfo(exif);
 					};
@@ -849,13 +855,17 @@ define(["esri/dijit/Search",
 			function getYoutubeThumbnail(url)
 			{
 				var test = /\?v\=([a-zA-Z0-9_-]{11})/.exec(url);
-				return test && test.length == 2 ? "//img.youtube.com/vi/" + test[1] + "/default.jpg" : "";
+				if(!test)
+					test = /(\/embed\/)([a-zA-Z0-9_-]{11})/.exec(url);
+				return test && test.length == 2 ? "//img.youtube.com/vi/" + test[1] + "/default.jpg" : test.length == 3 ? "//img.youtube.com/vi/" + test[2] + "/default.jpg" : "";
 			}
 
 			function getYoutubeEmbed(url)
 			{
 				var test = /\?v\=([a-zA-Z0-9_-]{11})/.exec(url);
-				return test && test.length == 2 ? "//www.youtube.com/embed/" + test[1] + "?wmode=opaque" : "";
+				if(!test)
+					test = /(\/embed\/)([a-zA-Z0-9_-]{11})/.exec(url);
+				return test && test.length == 2 ? "//www.youtube.com/embed/" + test[1] + "?wmode=opaque" : test.length == 3 ? "//www.youtube.com/embed/" + test[2] + "?wmode=opaque" : "";
 			}
 
 			function checkVimeoUrl()
@@ -1129,6 +1139,7 @@ define(["esri/dijit/Search",
 				var color = $.grep(MapTourHelper.getSymbolColors(), function(color, index){
 					return index == colorIndex;
 				});
+				
 				if( $("body").hasClass("side-panel") ) {
 					_map.pointLayer.graphics[0].setSymbol(MapTourHelper.getSymbol(color[0], app.data.getNbPoints() + 1));
 				} else {

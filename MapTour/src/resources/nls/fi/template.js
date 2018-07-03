@@ -70,9 +70,10 @@ define({
       "buttonItem": "Avaa web-sovelluskohde",
       "buttonHelp": "Ohje",
       "buttonOrganize": "Järjestä",
+      "buttonOrganizeAndCover": "Järjestä kierroksen pisteet ja lisää kansisivu",
       "buttonAdd": "Lisää",
       "buttonImport": "Tuo",
-      "buttonImportDisabled": "Tuonti ei ole käytettävissä käytettäessä liitteitä sisältävää kohdepalvelua",
+      "buttonImportDisabled": "Tuonti ei ole käytettävissä käytettäessä kuvan latausta. Lataa kuva napsauttamalla Lisää.",
       "dataEditionDisabled": "Aineiston muokkaus on poistettu käytöstä tässä CSV-aineistolähteessä",
       "dataSourceWarning": "Karttakierroksen aineistokarttatasoa on muutettu. Jos kohteiden tunnukset eivät ole samat, nollaa järjestys ja piilotetut kentät <b>Järjestä</b>-valikon avulla. Jos kenttien nimet eivät täsmää, nollaa kenttien asetukset <b>Asetukset-näytön datavälilehdessä</b>.",
       "organizeWarning": "Ainakin yksi vuorovaikutteisen luontitoiminnon ulkopuolelle lisätty piste on piilotettu.",
@@ -86,7 +87,7 @@ define({
       "dataPicError6": "Kun valitset tämän vaihtoehdon, kaikki URL-osoitteet tulkitaan kuviksi. Et voi kuitenkaan lisätä videoita interaktiivisen muodostusohjelman avulla. Voit peruuttaa tämän, mikäli muutat mielesi ja haluat lisätä videon myöhemmin.",
       "dataPicError7": "Karttakierroksesi on rajoitettu kuviin eikä videoita voi käyttää. Jos haluat poistaa rajoituksen, tarkista ennen karttakierroksen tallentamista, että kaikki kuvasi latautuvat oikein. Voit tarvittaessa ottaa rajoituksen uudelleen käyttöön myöhemmin.",
       "dataPicError8": "Poista kuvarajoitus",
-      "dataPicError9": "Jos nämä URL-osoitteet osoittavat videoihin, voit jättää tämän varoituksen huomiotta. Jos ne osoittavat kuvaan, tee jompikumpi seuraavista toimista:",
+      "dataPicError9": "Jos nämä URL-osoitteet osoittavat videoihin, voit jättää tämän varoituksen huomiotta. Jos ne osoittavat kuviin, tee jompikumpi seuraavista toimista:",
       "modalCancel": "Peruuta",
       "modalApply": "Käytä",
       "organizeHeader": "Järjestä kierros",
@@ -141,7 +142,7 @@ define({
       "addMobileName": "Anna nimi",
       "addMobileNameMandatory": "Virhe, anna nimi.",
       "addMobileError": "Jossain tapahtui valitettavasti virhe.",
-      "settingsHeader": "Tarinan asetukset",
+      "settingsHeader": "Asetukset",
       "settingsTabLayout": "Asettelu",
       "settingsTabColor": "Värit",
       "settingsTabLogo": "Ylätunniste",
@@ -155,7 +156,7 @@ define({
       "settingsLayoutSelected": "Valittu asettelu",
       "settingsLayoutNew": "Uusi!",
       "settingsLayoutSelect": "Valitse",
-      "settingsLayoutNote": "Huomaa, että videoita käyttävissä pisteissä kyltti sijoitetaan aina videon alapuolelle, vaikka tätä asetusta ei olisi valittu.",
+      "settingsLayoutNote": "Huomaa, että videoita käyttävissä pisteissä kuvateksti sijoitetaan aina videon alapuolelle, vaikka tätä asetusta ei olisi valittu.",
       "settingsLayoutLocBtn": "Näytä Paikanna-painike",
       "settingsLayoutLocBtnHelp": "Useimmat selaimet tukevat tätä. Näkyy vain, kun tarinakarttaa käytetään HTTPS-yhteyden kautta. Ei näy, jos tarina on upotettu.",
       "settingsColorExplain": "Muuta ulkoasua valitsemalla ennalta määritetty teema tai luo omasi.",
@@ -176,8 +177,8 @@ define({
       "settingsFieldsLabelDescription": "Seloste",
       "settingsFieldsLabelColor": "Väri",
       "settingsFieldsReset": "Nollaa kenttien valinta",
-      "settingsExtentExplain": "Määritä karttakierroksen alkuperäinen laajuus alla olevan vuorovaikutteisen kartan avulla.",
-      "settingsExtentExplainBottom": "Määrittämäsi laajuus määrittää web-kartan alkuperäisen laajuuden. Huomaa, että tätä laajuutta käytetään vain, jos se sisältää kierroksen ensimmäisen pisteen. Muussa tapauksessa kierros avautuu ensimmäiseen pisteeseen kohdistettuna.",
+      "settingsExtentExplain": "Määritä karttakierroksen kodin laajuus alla olevaan vuorovaikutteiseen karttaan.",
+      "settingsExtentExplainBottom": "Määrittämäsi laajuus muokkaa kartan kodin laajuutta. Huomaa, että tätä laajuutta käytetään vain, jos se sisältää kierroksen ensimmäisen pisteen. Muussa tapauksessa kierros avautuu ensimmäiseen pisteeseen kohdistettuna.",
       "settingsExtentDateLineError": "Laajuus ei saa ylittää 180Â° pituusasteen meridiaania",
       "settingsExtentDateLineError2": "Virhe laajuuden laskennassa",
       "settingsExtentDrawBtn": "Piirrä uusi laajuus",
@@ -190,7 +191,7 @@ define({
       "settingsFieldError": "Valitse kenttä jokaisesta luettelosta",
       "dataTitle": "Luo isännöity Karttakierros-karttataso",
       "dataExplain": "Uusi kohdekarttataso luodaan kuvia ja kierroksen pisteitä varten. Kierroksen karttatasoa ei jaeta kenenkään kanssa, ellet jaat karttakierrosta.",
-      "dataExplainPortal": "Tämä ominaisuus edellyttää Portal for ArcGIS 10.4:aa. Jos kohdekarttatason luonti ei onnistu, ota yhteys ArcGIS-pääkäyttäjään.",
+      "dataExplainPortal": "Jos kohdekarttatason luonti ei onnistu, ota yhteys ArcGIS-pääkäyttäjääsi.",
       "dataNameLbl": "Tason nimi",
       "dataFolderListLbl": "Kansio",
       "dataFolderListFetching": "Haetaan kansioita...",
@@ -212,7 +213,8 @@ define({
       "showCover": "Näytä kansi",
       "editCover": "Muokkaa kantta",
       "coverNoVideo": "Kannen media ei tue videota. Valitse kuva.",
-      "coverPreview": "Jos haluat nähdä kannen, tallenna tarinasi ja esikatsele sitä sitten käyttämällä Jaa-painiketta."
+      "coverPreview": "Jos haluat nähdä kannen, tallenna tarinasi ja esikatsele sitä sitten käyttämällä Näytä tarina -painiketta.",
+      "thirdPartyTerms": "Käyttämällä kolmannen osapuolen palvelua suostut sen palveluehtoihin: "
     },
     "addPopupJS": {
       "uploadingPicture": "Ladataan kuvaa palvelimelle",
@@ -222,9 +224,9 @@ define({
       "notJpg": "Valitse palvelimelle ladattava jpeg-valokuva",
       "errorNoPhoto": "Valitse ladattava kuva",
       "errorNoThumbnail": "Valitse ladattava pikkukuva",
-      "errorInvalidPicUrl": "Anna kelvollinen kuva (alkaa merkkijonolla http(s):// ja päättyy tunnisteeseen jpg, png, gif tai bmp). Voit ohittaa säännön lopettamalla URL-osoitteen merkkijonoon #isImage.",
-      "errorInvalidThumbUrl": "Anna kelvollinen pikkukuva (alkaa merkkijonolla http(s):// ja päättyy tunnisteeseen jpg, png, gif tai bmp).",
-      "errorInvalidVideoUrl": "Anna kelvollinen videon URL-osoite (alkaa merkeillä http(s)://)",
+      "errorInvalidPicUrl": "Anna kelvollinen kuvan URL-osoite. Se alkaa merkkijonolla https. Se päättyy tunnisteeseen jpg, png, gif tai bmp. Voit ohittaa säännön lopettamalla URL-osoitteen merkkijonoon #isImage.",
+      "errorInvalidThumbUrl": "Anna kelvollinen pikkukuva (alkaa merkkijonolla https:// ja päättyy tunnisteeseen jpg, png, gif tai bmp).",
+      "errorInvalidVideoUrl": "Anna kelvollinen videon URL-osoite (alkaa merkkijonolla https://)",
       "errorNoName": "Anna tälle reittipisteelle nimi",
       "errorNoDescription": "Anna tämän kierroksen pisteen seloste",
       "errorNoLocation": "Määritä tämän kierroksen pisteen sijainti"
@@ -243,7 +245,7 @@ define({
       "popoverLoseSave": "Kun avaat katseluohjelman, kaikki tallentamattomat muutokset häviävät.",
       "ok": "OK",
       "popoverSaveWhenDone": "Älä unohda tallentaa, kun olet valmis",
-      "closeWithPendingChange": "Haluatko varmasti vahvistaa toiminnon? Muutoksesi häviävät.",
+      "closeWithPendingChange": "Haluatko varmasti vahvistaa toiminnon? Tekemäsi muutokset menetetään.",
       "gotIt": "OK",
       "savingApplication": "Tallennetaan tarinaa",
       "saveSuccess": "Tarina on tallennettu",
@@ -285,8 +287,8 @@ define({
     },
     "headerJS": {
       "editMe": "Muokkaa minua!",
-      "templateTitle": "Määritä mallin nimi",
-      "templateSubtitle": "Määritä mallin alaotsikko",
+      "templateTitle": "Määritä otsikko",
+      "templateSubtitle": "Määritä alaotsikko",
       "edit": "Muokkaa"
     },
     "crossFaderJS": {
@@ -324,18 +326,18 @@ define({
       "advancedCommonTip": "Se edellyttää, että kuvasi ja videosi ovat jo verkossa.",
       "select": "Tee valinta",
       "locUse": "Käytä kuvien geosijaintia",
-      "locExplain": "Et ehkä halua käyttää kuvien sijaintia, koska ne voivat olla peräisin albumista. Tällöin kaikki valokuvat ovat samassa sijainnissa.",
-      "locExplain2": "Et ehkä halua käyttää videoiden sijaintia, koska se voi olla peräisin käyttäjän asetuksista. Tällöin kaikki videot ovat samassa sijainnissa."
+      "locExplain": "Et ehkä halua käyttää kuvien sijainteja, koska ne voivat olla peräisin albumista. Tällöin kaikki valokuvat ovat samassa sijainnissa.",
+      "locExplain2": "Et ehkä halua käyttää videoiden sijainteja, koska ne voivat olla peräisin käyttäjän asetuksista. Tällöin kaikki videot ovat samassa sijainnissa."
     },
     "viewFlickr": {
       "title": "Flickr-tuonti",
-      "header": "Anna Flickr-käyttäjätunnuksesi ja valitse tuotava valokuvasarja tai tunniste.",
+      "header": "Anna Flickr-käyttäjätunnuksesi ja valitse tuotava albumi tai tunniste.",
       "userInputLbl": "Kirjoita käyttäjänimi",
       "signInMsg2": "Käyttäjää ei löydy",
-      "selectSet": "Valitse valokuvasarja",
+      "selectSet": "Valitse albumi",
       "selectTag": "tai valitse tunniste",
       "footerImportTag": "Tuo valittu tunniste",
-      "footerImportSet": "Tuo valittu sarja"
+      "footerImportSet": "Tuo valittu albumi"
     },
     "viewFacebook": {
       "title": "Facebook-tuonti",
@@ -347,12 +349,12 @@ define({
       "lookupMsgError": "Sivua ei löydy"
     },
     "viewPicasa": {
-      "title": "Picasa-tuonti",
-      "header": "Anna sähköpostiosoite tai Picasa-tunnus.",
-      "userInputLbl": "Sähköpostiosoite tai Picasa-tunnus",
+      "title": "Tuonti Google+:sta",
+      "header": "Anna sähköpostiosoitteesi tai tunnuksesi.",
+      "userInputLbl": "Sähköpostiosoite tai Picasa-/Google+-tunnus",
       "signInMsg2": "Tiliä ei löydy",
       "signInMsg3": "Ei julkista albumia",
-      "howToFind": "Picasa-tunnuksen etsiminen",
+      "howToFind": "<a href='https://links.esri.com/storymaps/google-photos-help' target='_blank'>Lisätietoja</a>",
       "howToFind2": "Kopioi minkä tahansa Picasa-sivun ensimmäisen ja toisen vinoviivan (/) välissä olevat luvut"
     },
     "viewCSV": {
@@ -392,12 +394,12 @@ define({
     },
     "viewGeoTag": {
       "title": "Valitse ja etsi kuvasi tai videosi",
-      "header": "Paikanna tuotavat kuvat napsauttamalla tai napauttamalla niitä.",
-      "headerMore": "Miksei kuviani/videoitani geopaikanneta?",
-      "headerExplain": "Jos kuviesi sijainti on kelvollinen, ne paikannetaan automaattisesti kartalle ja listataan toisessa välilehdessä.<br /><br />Oletusarvon mukaan Picasa ja Flickr eivät tallenna kuvien sijaintia koskevia EXIF-metatietoja kuvien tuonnin yhteydessä. Tarkista Picasa- tai Flickr-palvelun asetukset Tietosuoja-välilehdessä ja ota käyttöön kuvien sijaintietojen käyttö. Sinun on ehkä tuotava olemassa olevat kuvasi uudelleen Flickr- tai Picasa-palveluun, jotta EXIF-geosijainteja voidaan käyttää.",
+      "header": "Paikannetut kohteet tuodaan. Paikanna paikantamattomat tuotavat kohteet napsauttamalla niitä.",
+      "headerMore": "Ohje",
+      "headerExplain": "Kun napsautat <b>Tuo</b>-painiketta, vain <b>Paikannetut</b>-välilehdessä luetellut kuvat tai videot tuodaan.<br><br>Kuviin tai videoihin tallennetut geosijaintitiedot tuodaan automaattisesti, jos ne ovat saatavilla. Kaikki kohteet, joissa ei ole geosijaintia, on lueteltu <b>Paikannettavat</b>-välilehdellä. Jos haluat paikantaa kyseisellä välilehdellä luetellun kohteen, napsauta sitä ja napsauta sen jälkeen haluamaasi sijaintia kartalla.<br><br>Jos haluat poistaa kohteen <b>Paikannetut</b>-välilehdeltä, jotta sitä ei tuoda, napsauta Älä tuo -painiketta, joka tulee näkyviin, kun siirrät kohdistimen kohteen päälle.<br><br>Vihje: jos oman mediasi geosijaintitietoa ei tuoda, tarkista tilisi yksityisyysasetukset. Tarkista esimerkiksi Flickr-tilisi asetuksissa, että EXIF-tietoja ei ole piilotettu. Samoin, jos Flickr-palvelun yksityisyysasetus tuoda uusien latausten EXIF-tietoja on poistettu käytöstä (oletusasetus), geosijainteja ei tallenneta Flickr-palveluun kuviesi osalta, ellet lataa niitä uudelleen tai määritä niiden sijainteja manuaalisesti Flickr-palvelussa.",
       "leftPanelTab1": "Paikannettava",
       "leftPanelTab2": "Paikannettu",
-      "clickOrTap": "Paikanna napsauttamalla tai napauttamalla karttaa",
+      "clickOrTap": "Paikanna napsauttamalla karttaa",
       "clearLoc": "Tyhjennä sijainnit",
       "clickDrop": "Älä tuo",
       "footerImport": "Tuo",
@@ -434,7 +436,7 @@ define({
         "title": "Johdanto",
         "moreInfo": "Lisätietoja on kohdassa",
         "infoSites": "Tutustu <a href='https://storymaps.arcgis.com' target='_blank'>Esri Story Maps -sivuston</a> <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Karttakierros-osioon</a>.",
-        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Karttakierroksen usein esitetyt kysymykset.</a>",
+        "mtFAQ": "Lisätietoja on kohdassa <a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Karttakierroksen usein esitetyt kysymykset</a>.",
         "myStories": "Voit hallita karttakierroksia ja tarkistaa ne virheiden varalta verkkosivuston <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Omat tarinat</a> -osiossa.",
         "div1": "Karttakierrosmalli on suunniteltu sellaisten maantieteellisten tietojen esittämiseen, jotka sisältävät jonkin kerrottavaan tarinaan liittyvän mukaansatempaavan valokuvauksellisen elementin tai mediaelementin.",
         "div2": "Mallipohja tuottaa kiinnostavan, helppokäyttöisen Web-sovelluksen, jonka avulla voit näyttää kartalla numerojärjestyksessä paikkoja, joita käyttäjät voivat katsoa selaamalla. Mallia voidaan käyttää minkä tahansa laitteen, kuten älylaitteen tai taulutietokoneen, selaimissa. <br /><br />",
@@ -446,7 +448,7 @@ define({
         "div1": "Karttakierrosta luotaessa on tärkeää miettiä, mihin kuvat tallennetaan. Karttakierros voi käyttää valokuvien jakamispalveluihin tai mihin tahansa web-palvelimiin tallennettuja kuvia tai levyltä palvelimeen ladattuja kuvia.",
         "div1a": "Lisätietoja tuetuista kuvamuodoista ja videoista on tämän välilehden viimeisessä osassa.",
         "div2": "Interaktiivisen rakentajan avulla voit käsitellä karttakierroksesi kuvia kahdella tavalla:",
-        "div3": "<ul><li>Voit käyttää <b>aiemmin verkkoon</b>, kuten Flickrin kaltaiseen valokuvien jakamispalveluun, tallennettuja kuvia tai omaan web-sivustoosi tallennettuja kuvia. Kyseisiin kuviin viitataan karttakierroksella niiden URL-osoitteiden avulla.</li><li>Voit myös <b>ladata valokuvia tietokoneestasi</b> suoraan karttakierrokseesi. Tämä latausvaihtoehto edellyttää ArcGIS-tilausta ja julkaisijan tai pääkäyttäjän oikeuksia, koska isännöity kohdepalvelu, johon valokuvasi tallennetaan liitteinä, luodaan automaattisesti puolestasi.</li></ul>",
+        "div3": "<ul><li>Voit käyttää <b>aiemmin verkkoon</b>, kuten Flickr- tai Google+-palveluun tallennettuja kuvia tai omaan web-palvelimeesi tallennettuja kuvia. Kyseisiin kuviin viitataan karttakierroksella niiden URL-osoitteiden avulla.</li><li>Voit myös <b>ladata valokuvia tietokoneestasi</b> suoraan karttakierrokseesi. Tämä latausvaihtoehto edellyttää ArcGIS-tilausta ja julkaisijan tai pääkäyttäjän oikeuksia, koska isännöity kohdepalvelu, johon valokuvasi tallennetaan liitteinä, luodaan automaattisesti puolestasi.</li></ul>",
         "div4": "Pääasialliset käyttötilanteet ovat seuraavat:",
         "div4b": "<b>Valokuviasi ei isännöidä</b> vielä, ja sinulla on ArcGIS-tilaus: paras vaihtoehto on käyttää isännöityä kohdepalvelua. Valokuvien jakamispalveluiden tavoin luomme nopeasti latautuvia kuvia optimoimalla ne, ja voit käyttää kaikkia ArcGIS-ympäristön järjestelmänvalvojan ja tietojenhallinnan toimintoja.",
         "div5": "<b>Et ole organisaation jäsen</b>: sinun on ensin ladattava kuvasi valokuvien jakamispalveluun tai omaan web-palvelimeesi. Voit sitten muodostusohjelman avulla käyttää kyseisiä kuvia, jotka ovat edelleen isännöityinä niiden alkuperäisessä sijainnissa.",
@@ -457,7 +459,7 @@ define({
         "learn": "lisätietoja",
         "div9": "Tuontitoiminto viittaa jo isännöityihin kuviin tallentamalla niiden URL-osoitteet web-kartan kohdekokoelmaan. Kuvia ei ole tallennettu ArcGIS Onlineen. Jos isännöityjä kuvia ei voi käyttää, ne eivät ole käytettävissä karttakierroksella ja näet Kuva ei ole käytettävissä -kuvan. Se, tuoko karttakierros kuvien nimen, kuvauksen ja sijainnin, määräytyy valokuvan palveluntarjoajan mukaan. Kyseiset määritteet tallennetaan web-kartalle. Web-palveluihin tehdyt muutokset eivät näy karttakierroksella.",
         "div10": "Kuvien tallentaminen web-palvelimeen",
-        "div11": "Jos haluat isännöidä kuvia itse, sinun on luotava kuvien pikkukuvat manuaalisesti. Täyden tarkkuuden kuvien käyttäminen pikkukuvina heikentää laatua. Tässä <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>usein esitetyssä kysymyksessä</a> on vihjeitä kuvien koon muuttamiseen, jos käytät niitä verkossa suoraan URL-osoitteiden kautta.",
+        "div11": "Jos hallinnoit kuviasi omassa web-palvelimessa (Flickr- tai Google+-kuvien käytön sijasta tai sen sijaan, että lataat kuvat suoraan kierrokseesi), kuvien pikkukuvat on luotava manuaalisesti. Täyden tarkkuuden kuvien käyttäminen pikkukuvina heikentää laatua. Tässä <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>usein esitetyssä kysymyksessä</a> on vihjeitä kuvien koon muuttamiseen, jos käytät niitä verkossa suoraan URL-osoitteiden kautta.",
         "div12": "Olemassa olevan GIS-aineiston käyttäminen",
         "div13": "Mitä tahansa pisteitä sisältävää kohdepalvelua, CSV-tiedostoa tai Shapefile-tiedostoa voi käyttää karttakierroksen aineistolähteenä, jos se sisältää sovelluksen edellyttämien kenttien joukon. Aineistolähde on lisättävä karttatasona ArcGIS-web-karttaan. Sen jälkeen voit jakaa kartan luomalla karttakierroksen.",
         "div14": "Kenttien nimien tuetut arvot ovat (merkkien koolla ei ole merkitystä):",
@@ -471,10 +473,11 @@ define({
         "div17": "Kuva- ja pikkukuvakentät ovat pakolliset käytettäessä kohdepalvelua ilman liitteitä ja valinnaiset (vaikkakin suositeltavat) käytettäessä liitteitä sisältävää kohdepalvelua. Jos liitteet ovat käytössä palvelussa, muodostusohjelma sallii kuvien lataamisen liitteinä. Jos ne eivät ole käytössä palvelussa, voit ainoastaan muokata kuvan ja pikkukuvan URL-osoitteita.",
         "div172": "Jos kuva- ja pikkukuvakentät ovat käytettävissä, niitä käytetään aina eikä kohdepalvelun liitteisiin kohdistuvia hakuja tehdä.",
         "div173": "CSV- ja shapefile-esimerkkitiedostot voi ladata kohteesta",
+        "div174": "Tässä <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>usein esitetyssä kysymyksessä</a> on lisätietoja aiemmin luodun GIS-aineiston käytöstä.",
         "div18": "Isännöityjen kohdepalvelujen luominen CSV- tai shapefile-tiedostosta",
         "div19": "Kun luot isännöidyn kohdepalvelun CSV- tai shapefile-tiedostosta, liitteet eivät ole käytössä oletusarvon mukaan. Voit ottaa ne käyttöön avaamalla kohdepalvelun tietosivun ja napsauttamalla taso-osassa olevaa pientä nuolta, jolloin kyseinen vaihtoehto tulee näkyviin. Karttakierros käyttää uudelleen kuvia ja pikkukuvia, joihin olet viitannut määritteiden avulla. Voit vaihtoehtoisesti ladata kuvasi kohdepalvelun liitteinä kuvaruudun kahden painikkeen avulla (\"Vaihda kuva\" ja \"Vaihda pikkukuva\").",
         "div20": "Tuetut  kuvamuodot ja videot",
-        "div21": "Seuraavia kuvamuotoja tuetaan: <b>.jpg, .jpeg, .png, .gif ja .bmp</b>. Jos mediatiedostosi ei pääty johonkin näistä tunnisteista, karttakierros tulkitsee sen videoksi kaikissa muissa tilanteissa paitsi käytettäessä kohdepalvelua (lisätietoja on alla).",
+        "div21": "Jos käytät Flickr- tai Google+-palvelun kuvia, karttakierros käyttää kuvia automaattisesti .jpg-tiedostoina. Jos lataat kuvat Karttakierros-luontitoimintoon, kuvien on oltava .jpg- tai .jpeg-muodossa. Jos viittaat suoraan verkossa oleviin kuviin niiden URL-osoitteiden kautta, tuetut kuvamuodot ovat .jpg, .jpeg, .png, .gif ja .bmp. YouTube-videoita tuetaan suoraan.",
         "div22": "Karttakierrosmalli ei sisällä videosoitinta, joten sinun on käytettävä ulkoista videosoitinta (etsi videon upottamisasetus ja kopioi annetussa koodissa oleva URL-osoite). Jos haluat isännöidä videota itse, voit luoda videosoittimen, kuten <a href='http://www.videojs.com/'>Video.js</a>, sisältävän HTML-sivun.",
         "div23": "Interaktiivinen muodostusohjelma ei sisällä videon sisällyttämisen valintaikkunaa käytettäessä liitteitä sisältäviä kohdepalveluita. Voit kuitenkin sisällyttää videon muokkaamalla tietojasi interaktiivisen muodostusohjelman ulkopuolella. Jos muokkaat kuvakenttiä arcgis.com-palvelun karttojen katseluohjelmassa niin, että ne osoittavat ulkoiseen videoon ja lisäät URL-osoitteen loppuun parametrin #isVideo, mediasi tulkitaan videoksi.",
         "div24": "Huomaa, ettei pistettä käytetä, ellei sinulla ole kahta kelvollista kuvaliitettä. Videoita ei voi käyttää, kun kohdepalvelun liitteitä käytetään ilman kuva- ja pikkukuvakenttiä."
@@ -500,15 +503,16 @@ define({
         "div2a": "Suosittelemme pääkuvan enimmäiskooksi 1 000 x 750 pikseliä ja pikkukuvien enimmäiskooksi 140 x 93 pikseliä.",
         "div3": "Selostetekstin muotoileminen HTML-tunnisteiden avulla",
         "div4": "Voit lisätä HTML-tunnisteita kuvateksteihin muotoilun ja linkkien määrittämistä varten. Seuraavat tunnisteet lisäävät esimerkiksi vihreän hyperlinkin:",
+        "div4aa": "<b>Luo kansisivu sivupaneelin kierrokselle</b><br>Sivupaneeliasettelu tukee valinnaista kansisivua, jonka avulla voit kiinnittää yleisösi huomion näyttävällä ja koko näytön kokoisella kuvalla. Jos haluat määrittää kansisivun sivupaneelin kierrosta varten, lisää ensin osa kierroksen pisteistä tai kaikki pisteet. Napsauta sen jälkeen Järjestä-painiketta ja varmista sen jälkeen avautuvassa valintaikkunassa, että kierroksen piste, jota haluat käyttää kansisivun määrityksessä, on kierroksen ensimmäinen piste. Napsauta sen jälkeen valintaikkunan Käytä ensimmäistä pistettä kansisivuna -valintaruutua. Kierroksen ensimmäisen pisteen nimestä tulee kansisivulla näkyvä otsikko, pisteen kuvatekstistä tulee alaotsikko ja pisteen kuvaa käytetään kansisivun kuvana. Videota ei tueta kansisivulla. Tässä <a href='https://links.esri.com/storymaps/faq_map_tour_cover_page_sp' target='_blank'>usein esitetyssä kysymyksessä</a> on lisätietoja.</a>",
         "div4a": "Kirjoita kierrokselle hyvä alaotsikko",
-        "div4b": "Kirjoita kierroksellesi mukaansatempaava alaotsikko. Alaotsikko on hyvä tapa houkutella ihmisiä kierrokselle ja kertoa heille, mihin kohteisiin he kierroksella tutustuvat. Se on myös hyvä paikka kertoa yleisölle, mihin osavaltioon tai maahan kierros sijoittuu. Älä esimerkiksi oleta, että ihmiset tietävät, missä kierrokseesi sisältyvä suurkaupunki tai kaupunki sijaitsee. Älä kuitenkaan tee alaotsikosta liian pitkää. Jos et keksi hyvää alaotsikkoa, jätä se tyhjäksi. Sivupaneeliasettelussa alaotsikko, joka näkyy kansisivulla, on kierroksesi ensimmäisen pisteen kuvateksti (jos käytät Järjestä-valintaikkunan asetusta, jonka mukaan ensimmäisen pisteen sisältöä käytetään kansisivuna).",
+        "div4b": "Kirjoita kierroksellesi mukaansatempaava alaotsikko. Alaotsikko on hyvä tapa houkutella ihmisiä kierrokselle ja kertoa heille, mihin kohteisiin he kierroksella tutustuvat. Se on myös hyvä paikka kertoa yleisölle, mihin osavaltioon tai maahan kierros sijoittuu. Älä esimerkiksi oleta, että ihmiset tietävät, missä kierrokseesi sisältyvä suurkaupunki tai kaupunki sijaitsee. Älä kuitenkaan tee alaotsikosta liian pitkää. Jos et keksi hyvää alaotsikkoa, jätä se tyhjäksi. Toisin kuin kolmiruutuisissa ja integroiduissa asetteluissa, sivupaneeliasettelu ei tue alaotsikon käyttöä ylätunnisteessa. Jos käytät kansisivuasetusta sivupaneeliasettelussa, kierroksen ensimmäisen pisteen kuvateksti näkyy kansisivulla ja toimii samalla kierroksen alaotsikkona.",
         "div5": "Tukitasot",
-        "div6": "Voit lisätä karttakierrokselle kontekstia ylimääräisten tukitasojen avulla. Voit esimerkiksi lisätä karttakierroksen pisteiden lisäksi maantieteellisiä kohteita, kuten tutkimusalueen ja kierroksen pisteet yhdistävän kävely- tai ajoreitin. Karttakierrosmalli näyttää nämä ylimääräiset tukitasot symbolien avulla, jotka olet määrittänyt web-kartalla. Ponnahdusikkunat eivät ole käytettävissä. Jos haluat lisätä kierrokseesi karttatasoja, jotka tukevat tarinaasi, tallenna työsi ja sulje Karttakierros-luontitoiminto. Avaa sen jälkeen kierroksessa käytetty web-kartta. Se löytyy ArcGISin Oma sisältö-kohdasta tai Story Maps -verkkosivuston Omat tarinat -osiosta.",
+        "div6": "Voit lisätä karttakierrokselle kontekstia ylimääräisten tukitasojen avulla. Voit esimerkiksi lisätä karttakierroksen pisteiden lisäksi maantieteellisiä kohteita, kuten tutkimusalueen ja kierroksen pisteet yhdistävän kävely- tai ajoreitin. Karttakierrosmalli näyttää nämä ylimääräiset tukitasot symbolien avulla, jotka olet määrittänyt web-kartalla. Karttakerroksissa määritettyjä ponnahdusikkunoita ei tueta. Jos haluat lisätä kierrokseesi karttatasoja, jotka tukevat tarinaasi, tallenna työsi ja sulje Karttakierros-luontitoiminto. Avaa sen jälkeen kierroksessa käytetty web-kartta. Se löytyy ArcGISin Oma sisältö-kohdasta tai Story Maps -verkkosivuston Omat tarinat -osiosta.",
         "div7": "Pidä kierros lyhyenä ja hauskana",
         "div8": "Kierroksella voi olla enintään 99 pistettä. Useimmat karttakierrokset ovat yleensä tätä rajoitusta huomattavasti lyhyempiä. Yleisösi ei välttämättä halua käydä läpi liian montaa kierroksen pistettä. Kohde on varmasti omasta mielestäsi mielenkiintoinen, mutta älä odota muiden ajattelevan samoin.",
         "div10": "Upotustila",
         "div11": "Jos haluat upottaa mallin toiseen verkkosivustoon iframe-elementin avulla, valinnaisen parametrin \"&embed\" lisääminen URL-osoitteen loppuun poistaa ylätunnisteen.",
-        "div12": "Vältä leveydeltään kapean iFrame-kehyksen käyttöä, mikä aiheuttaa karttakierroksen vaihtumisen vastaavaan pienen kosketusnäytön asetteluun. Voit maksimoida käytön helppouden upottamalla karttakierroksen. Suosittelemme silti linkkitekstin lisäystä upotettuun kierrokseen, jotta käyttäjät voivat käynnistää kierroksen koko näytön kokoisena."
+        "div12": "Vältä leveydeltään kapean iFrame-kehyksen käyttöä, koska se aiheuttaa sen, että karttakierros vaihtuu responsiiviseen pieneen näyttönäkymään, joka on sama näkymä, jota käytetään mobiililaitteissa. Voit maksimoida käytön helppouden upottamalla karttakierroksen. Suosittelemme silti linkkitekstin lisäystä upotettuun kierrokseen, jotta käyttäjät voivat käynnistää kierroksen koko näytön kokoisena."
       },
       "tab5": {
         "title": "Julkaiseminen",
@@ -529,9 +533,9 @@ define({
     "share": {
       "firstSaveTitle": "Kierros on tallennettu",
       "manageStory": "Tarinan hallinta",
-      "manageStoryA1": "Vihje: Voit käyttää linkkiä %LINK1% tarinan virheiden tarkistamiseen ja sen komponenttien jakamistavan muuttamiseen. Omat tarinat palvelun avulla voit myös parantaa tarinasi ulkoasua, kun se jaetaan sosiaalisiin verkostoihin. Voit tutustua muihin hyödyllisiin Omat tarinat -palvelun kohteisiin linkin %LINK2% kautta.",
+      "manageStoryA1": "Vihje: voit käyttää linkkiä %LINK1% tarinan virheiden tarkistamiseen ja sen jakamistavan muuttamiseen. Sen avulla voit myös parantaa tarinasi ulkoasua esimerkiksi sosiaalisessa mediassa. Lisätietoja Omat tarinat -osiosta: %LINK2%.",
       "manageStoryA1V1": "Omat tarinat",
-      "manageStoryA1V2": "blogimerkinnät",
+      "manageStoryA1V2": "tätä",
       "shareTitle": "Jaa kierroksesi",
       "sharePrivateHeader": "Kierrostasi ei ole jaettu. Haluatko jakaa sen?",
       "sharePrivateBtn1": "Jaa julkisesti",
@@ -547,7 +551,8 @@ define({
       "shareA1": "Käytä kohdetta %SHAREIMG% <a href='%LINK1%' target='_blank'>sovelluskohteen sivulla</a>. Jos haluat myös lopettaa Web-kartan jaon, käytä <a href='%LINK2%' target='_blank'>Web-kartan kohdesivua</a>.",
       "shareWarning": "Jakaminen kohteen %WITH% kanssa on poistettu käytöstä, koska et ole <a href='%LINK%' target='_blank'>Web-kartan</a> omistaja.",
       "shareWarningWith1": "julkisesti",
-      "shareWarningWith2": "julkisesti ja organisaation kanssa"
+      "shareWarningWith2": "julkisesti ja organisaation kanssa",
+      "viewStory": "Näytä tarina"
     },
     "locator": {
       "error": "Sijainti ei ole käytettävissä"
@@ -573,13 +578,29 @@ define({
     "httpsTransitionNotification": {
       "bannerMsg": "Tärkeä viesti verkon suojauksesta ja tarinakartoista",
       "s1h1": "Esri parantaa tarinakarttojen suojausta",
-      "s1p1": "Tarinakarttasi ovat reaaliaikaisesti verkossa, ja verkkoyhteisö tekee parhaansa kaiken aikaa paremman turvallisuuden puolesta. HTTPS-protokollasta, joka tarjoaa suojatun yhteyden Internetissä lähetetylle sisällölle, on tullut odotettu tapa käyttää verkkosisältöä. Useimmat nykyaikaiset selaimet näyttävät nykyisin varoitusviestin, jos HTTPS-yhteyden sijasta käytetään HTTP-yhteyttä. Tämän yleistyneen standardin ja kesäkuussa 2018 tulevan ArcGIS Online -päivityksen takia tarinakartoissa on käytettävä HTTPS-protokollaa.",
+      "s1p1": "Tarinakarttasi ovat reaaliaikaisesti verkossa, ja verkkoyhteisö tekee parhaansa kaiken aikaa paremman turvallisuuden puolesta. HTTPS-protokollasta, joka tarjoaa suojatun yhteyden Internetissä lähetetylle sisällölle, on tullut odotettu tapa käyttää verkkosisältöä. Useimmat nykyaikaiset selaimet näyttävät nykyisin varoitusviestin, jos HTTPS-yhteyden sijasta käytetään HTTP-yhteyttä. Tämän yleistyneen standardin takia suosittelemme, että käytät HTTPS-linkkejä tarinakarttojen laatimiseen ja jakamiseen ja että käytät HTTPS URL -osoitteita vain silloin, kun upotat web-sisältöä tai linkität kuvia tarinakarttaan.",
       "s1p2": "Käytännössä tämä tarkoittaa sitä, että tarinakarttaa ja kaikkea sen sisältöä (myös kuvia, karttatasoja, upotettuja sovelluksia ja verkkosivustoja) on käytettävä sellaisten linkkien kautta, jotka alkavat merkkijonolla HTTPS eivätkä merkkijonolla HTTP. Tämä takaa parhaan kokemuksen lukijoille, koska useimmat verkkoselaimet osoittavat, että tarinasi ovat suojattuja.",
       "s2h1": "Mitä minun on tehtävä?",
-      "s2p1": "Esri yrittää tehdä siirtymästä helpon tarinakarttojen tekijöille ja lukijoille. Tarinakarttojen luontitoiminnoissa ja Omat tarinat -palvelussa on käytettävissä työkaluja, joiden avulla voit etsiä suojaamatonta sisältöä (HTTP) tarinoistasi. Työkalut tarjoavat myös suosituksia siihen, miten voit ratkaista suojausongelmat. Tarkista, onko tarinoissa suojaamatonta sisältöä, ja päivitä HTTPS-protokollaan ennen kesäkuuta 2018.",
+      "s2p1": "Esri yrittää tehdä siirtymästä helpon tarinakarttojen tekijöille ja lukijoille. Tarinakarttojen luontitoiminnoissa ja Omat tarinat -palvelussa on käytettävissä työkaluja, joiden avulla voit etsiä suojaamatonta sisältöä (HTTP) tarinoistasi. Työkalut tarjoavat myös suosituksia siihen, miten voit ratkaista suojausongelmat. Tarkista, onko tarinoissa suojaamatonta sisältöä, ja päivitä HTTPS-protokollaan mahdollisimman pian.",
       "action1": "Sulje",
       "action2": "Tarkista omat tarinani nyt",
       "action3": "Lisätietoja"
+    },
+    "embedBar": {
+      "share": "Jaa",
+      "fullScreen": "Koko näyttö",
+      "enlarge": "Laajenna",
+      "newTab": "Avaa uudessa välilehdessä",
+      "tagline": "Tarinakartta",
+      "exitFullScreen": "Poistu koko näytön tilasta"
+    },
+    "june2018SurveyMessage": {
+      "bannerMsg": "Voimmeko kysyä sinulta jotain? Siitä on apua tarinakarttojen tulevaisuuden muokkaamisessa.",
+      "s1h1": "Jaa ajatuksesi, muokkaa tulevaisuutta",
+      "s1p1": "Panoksesi on tärkein yksittäinen palautelähteemme ja sinuun tutustumisesta on apua tarinakarttojen parantamisessa. Olisimme kiitollisia, jos osallistut tähän kolmen minuutin kyselyyn.",
+      "s2p1": "Kiitos, että käytit Esri Story Mapsia!",
+      "action1": "Sulje",
+      "action2": "Osallistu kyselyyn"
     }
   }
 });

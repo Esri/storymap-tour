@@ -123,8 +123,8 @@ define(["storymaps/ui/crossfader/CrossFader",
 				});
 
 				if( $("body").hasClass("side-panel") ) {
-					$("#arrowPrev").attr("src","resources/icons/picturepanel-left-grey.png");
-					$("#arrowNext").attr("src","resources/icons/picturepanel-right-grey.png");
+					$("#arrowPrev").attr("src","resources/icons/picturepanel-left-grey-crushed.png");
+					$("#arrowNext").attr("src","resources/icons/picturepanel-right-grey-crushed.png");
 				}
 
 				isInit = true;
@@ -229,6 +229,7 @@ define(["storymaps/ui/crossfader/CrossFader",
 			{
 				if( _isModernLayout ){
 					resizeModernLayout(panelAvailableWidth  - APPCFG.MINIMUM_MAP_WIDTH, panelAvailableHeight);
+					$("#picturePanel").css("top", $("#header").height());
 				} else if( MapTourHelper.isPanelsLayout() ) {
 					resizePanelsLayout((panelAvailableWidth - ($("body").hasClass("builder-mode") ? 60 : 0)) - $("#leftPanel").width(), panelAvailableHeight);
 				} else
@@ -239,7 +240,7 @@ define(["storymaps/ui/crossfader/CrossFader",
 
 			function resizePanelsLayout(panelAvailableWidth, panelAvailableHeight)
 			{
-				$("#cfader").width(panelAvailableWidth);
+				$("#cfader").width($("body").width() * (2/3));
 				$("#cfader").height(panelAvailableHeight);
 				$("#cfader").css("margin", 0);
 				panel.width(panelAvailableWidth);
@@ -553,7 +554,7 @@ define(["storymaps/ui/crossfader/CrossFader",
 										+ ' <input type="radio" name="editType" value="video" disabled />&nbsp;' + i18n.viewer.builderHTML.addLabelVideo
 										+ ' <a id="changePictureVideoTooltip"><img src="resources/icons/builder-help.png" style="vertical-align: -4px;"/></a>'
 										+ '</div>'
-										+ '<input type="text" value=""/>'
+										+ '<input type="text" value="' + picUrl + '"/>'
 										+ '<button type="button" class="btn btn-small btn-primary disabled" onClick="app.desktopPicturePanel.editPointURL(0, true)">'+i18n.viewer.builderHTML.modalApply+'</button>'
 										+ '<button type="button" class="btn btn-small" onClick="app.desktopPicturePanel.editPointURL(0, false)">'+i18n.viewer.builderHTML.modalCancel+'</button>'
 										+ '<div class="error">' + i18n.viewer.addPopupJS.errorInvalidPicUrl + '</div>'

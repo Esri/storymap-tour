@@ -124,9 +124,12 @@ body.hasTouch .btn-fullscreen{
 }
 
 .side-panel #placardContainer {
-	min-width: 500px;
 	height: 50% !important;
 	position: relative;
+}
+
+.side-panel .builder-mode #placardContainer {
+	min-width: 500px;
 }
 
 #placard {

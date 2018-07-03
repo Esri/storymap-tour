@@ -204,7 +204,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 				if ( ! mediaIsImg )
 					url = MapTourHelper.checkVideoURL(url);
 
-				if (mediaEl.attr('src') == url) {
+				if (mediaEl.attr('src') == url && 'objectFit' in document.documentElement.style === true) {
 					onImageLoad();
 				}
 				else {
@@ -214,12 +214,17 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 						mediaEl.attr('src', 'https:' + url.slice(5));
 					}
 
-					mediaEl.attr('src', _protocolUrl);
 					if ('objectFit' in document.documentElement.style === false) {
 						mediaEl.parent().css({
 							backgroundImage: 'url(' + _protocolUrl + ')'
 						});
+						mediaEl.parent().attr("alt", "");
+						mediaEl.attr('src', _protocolUrl);
+					} else{
+						mediaEl.attr('src', _protocolUrl);
 					}
+
+					mediaEl.attr("alt", "");
 
 					if ( ! app.isLoading )
 						_loadingIndicator.start();
@@ -453,7 +458,7 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 
 				$(_placard).empty();
 				if( $("body").hasClass("side-panel") ){
-					if( app.data.hasIntroRecord() && (app.data.getCurrentIndex() == null || app.data.getCurrentIndex() == -1) ){
+					if( app.data.hasIntroRecord() && (app.data.getCurrentIndex() == null || app.data.getCurrentIndex() == -1 ) ){
 						$(_placard).append("<div class='cover-builder'><div class='cover-config'>" + i18n.viewer.builderHTML.coverBuilder + "<i class='fa fa-small fa-question-circle cover-builder-tooltip' title='" + i18n.viewer.builderHTML.coverPreview + "'></i></div></div>");
 						$(_placard).append("<div class='feature-id'></div>");
 						$(_placard).append("<div class='name' " + tabOrder + ">"+name+"</div>");
@@ -466,8 +471,11 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					}
 					if( app.data.getCurrentIndex() > -1 && app.data.getCurrentIndex() != null){
 						if($("body").hasClass('builder-mode')){
-							if( app.data.getCurrentIndex() > 0 /*|| (app.data.hasIntroRecord() && app.data.getCurrentIndex() === 0)*/ )
+							if( app.data.getCurrentIndex() > 0 && !MapTourHelper.isModernLayout()/*|| (app.data.hasIntroRecord() && app.data.getCurrentIndex() === 0)*/ ) {
 								$("#arrowPrev").show();
+							} else {
+								$("#arrowPrev").hide();
+							}
 							$(_placard).append("<div class='cover-builder' style='background-color: white;'><div class='btn btn-primary coverRecordButton'>" + i18n.viewer.builderHTML.cover + "</div><i class='fa fa-small fa-exclamation-circle cover-novideo-tooltip' title='" + i18n.viewer.builderHTML.coverNoVideo + "'></i></div>");
 							$(".cover-novideo-tooltip").css("margin-left", $(".coverRecordButton").width() + 57);
 
@@ -477,7 +485,10 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 								$(".cover-novideo-tooltip").show();
 							}
 						}
-						var color = app.data.getCurrentAttributes().getColor() || "r";
+						var color = app.data.getCurrentAttributes().getColor() || APPCFG.PIN_DEFAULT_CFG;
+						color = color && typeof color == "string" ? color.toLowerCase() : 'r';
+						if(color != "r" && color != "g" && color != "b" && color != "p")
+							color = APPCFG.PIN_DEFAULT_CFG;
 						var textColor = MapTourHelper.getCustomColor(color);
 
 						if(app.data.getCurrentIndex()+1 < 10){
@@ -503,6 +514,13 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 					}
 				} else {
 					$(_placard).append("<div class='name' " + tabOrder + ">"+name+"</div>");
+					if($("body").hasClass('builder-mode')){
+						if( app.data.getCurrentIndex() > 0 && !MapTourHelper.isModernLayout()) {
+							$("#arrowPrev").show();
+						} else {
+							$("#arrowPrev").hide();
+						}
+					}
 				}
 				$(_placard).append("<div class='description' " + tabOrder + "'>"+text+"</div>");
 

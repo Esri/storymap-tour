@@ -70,9 +70,10 @@ define({
       "buttonItem": "Öppna webbapplikationsobjektet",
       "buttonHelp": "Hjälp",
       "buttonOrganize": "Organisera",
+      "buttonOrganizeAndCover": "Organisera turpunkter och lägg till en omslagssida",
       "buttonAdd": "Lägg till",
       "buttonImport": "Importera",
-      "buttonImportDisabled": "Det går inte att importera när du använder en geoobjekttjänst med bilagor",
+      "buttonImportDisabled": "Importen är inte tillgänglig när du använder bildöverföring. Klicka på Lägg till om du vill överföra en bild.",
       "dataEditionDisabled": "Dataredigering är inaktiverat i den här CSV-datakällan",
       "dataSourceWarning": "Map Tour-datalagret har ändrats. Om geoobjektens ID inte är likadana måste du återställa ordningen och dolda punkter med <b>Organisera</b>. Om fältnamnen skiljer sig åt måste du återställa fältinställningarna på <b>datafliken i Inställningar</b>.",
       "organizeWarning": "En eller flera punkter som har lagts till utanför det interaktiva  byggverktyget är dolda.",
@@ -81,10 +82,10 @@ define({
       "dataPicError1": "Webbadresser till bilder måste numera ha något av följande filnamnstillägg: .jp(e)g, .png, .gif eller .bmp.",
       "dataPicError2": "Det påverkar inte den befintliga publicerade versionen av kartturen, men om du vill kunna använda det interaktiva byggverktyget måste du först åtgärda de felaktiga webbadresserna på något av följande sätt:",
       "dataPicError3": "Redigera webbadresser",
-      "dataPicError4": "<i>#isImage</i> läggs till i slutet av webbadresser för bilder som inte stöds. De flesta servrar har stöd för tillägg i webbadresser. När du har genomfört åtgärden bör du kontrollera att de uppdaterade webbadresserna fungerar genom att gå igenom punkterna. Om alla bilder läses in kan du spara kartturen. <b>Spara inte kartturen om det finns bilder som inte fungerar</b>. Läs in byggverktyget igen och gå igenom steg två en gång till.",
+      "dataPicError4": "<i>#isImage</i> läggs till i slutet av webbadresser för bilder som inte stöds. De flesta servrar har stöd för tillägg i webbadresser. När du har genomfört åtgärden bör du kontrollera att de uppdaterade webbadresserna fungerar genom att gå igenom punkterna. Om alla bilder läses in kan du spara kartturen. Om <b>det finns bilder som inte fungerar sparar du inte kartturen</b>. Läs i stället in byggverktyget igen och gå igenom steg två en gång till.",
       "dataPicError5": "Använd bara bilder i turen",
       "dataPicError6": "Med det här alternativet betraktas alla webbadresser som bilder, men du kommer inte att kunna lägga till videoklipp med det interaktiva byggverktyget. Du kan ångra den här åtgärden om du vill lägga till videoklipp i ett senare skede.",
-      "dataPicError7": "Endast bilder används i kartturen, videoklipp kan inte användas. Om du tar bort den begränsningen bör du kontrollera att bilderna fortfarande fungerar som de ska innan du sparar kartturen. Du kan begränsa kartturen till bilder igen i ett senare skede om det skulle behövas.",
+      "dataPicError7": "Endast bilder används i kartturen. Videoklipp kan inte användas. Om du tar bort den begränsningen bör du kontrollera att bilderna fortfarande fungerar som de ska, innan du sparar kartturen. Du kan begränsa kartturen till bilder igen i ett senare skede om det skulle behövas.",
       "dataPicError8": "Ta bort begränsningen till bilder",
       "dataPicError9": "Om webbadresserna pekar på videoklipp kan du ignorera den här varningen. Om de pekar på bilder måste du göra något av följande:",
       "modalCancel": "Avbryt",
@@ -141,7 +142,7 @@ define({
       "addMobileName": "Ange ett namn",
       "addMobileNameMandatory": "Ett fel har uppstått, ange ett namn.",
       "addMobileError": "Något har tyvärr gått fel",
-      "settingsHeader": "Inställningar för berättelsen",
+      "settingsHeader": "Inställningar",
       "settingsTabLayout": "Layout",
       "settingsTabColor": "Färger",
       "settingsTabLogo": "Rubrik",
@@ -155,7 +156,7 @@ define({
       "settingsLayoutSelected": "Markerad layout",
       "settingsLayoutNew": "Nytt!",
       "settingsLayoutSelect": "Välj",
-      "settingsLayoutNote": "För punkter som använder videoklipp kommer plakatet alltid att placeras under videoklippet, även om alternativet inte har markerats.",
+      "settingsLayoutNote": "För punkter som använder videoklipp kommer bildtexten alltid att placeras under videoklippet, även om alternativet inte har markerats.",
       "settingsLayoutLocBtn": "Visa en sökknapp",
       "settingsLayoutLocBtnHelp": "Stöds för de flesta webbläsare. Visas endast vid åtkomst till berättelsekartan via HTTPS. Visas inte om berättelsen är inbäddad.",
       "settingsColorExplain": "Ändra utseende genom att välja ett fördefinierat tema, eller skapa ett eget.",
@@ -176,8 +177,8 @@ define({
       "settingsFieldsLabelDescription": "Bildtext",
       "settingsFieldsLabelColor": "Färg",
       "settingsFieldsReset": "Återställ valda fält",
-      "settingsExtentExplain": "Ange ursprungsinnehåll för Map Tour via den interaktiva kartan nedan.",
-      "settingsExtentExplainBottom": "Den utbredning du definierar ändrar webbkartans inledande utbredning. Observera att utbredningen inte används om den inte innehåller den första turpunkten. I så fall öppnas turen centrerad på den första punkten.",
+      "settingsExtentExplain": "Ange standardutbredning för kartturen i den interaktiva kartan nedan.",
+      "settingsExtentExplainBottom": "Den utbredning du definierar ändrar kartans standardutbredning. Observera att utbredningen inte används om den inte innehåller den första turpunkten. I så fall öppnas turen centrerad på den första punkten.",
       "settingsExtentDateLineError": "Det går inte att ha en utbredning över 180°-meridianen",
       "settingsExtentDateLineError2": "Det gick inte att beräkna utbredningen",
       "settingsExtentDrawBtn": "Rita en ny utbredning",
@@ -190,7 +191,7 @@ define({
       "settingsFieldError": "Välj ett fält i varje lista",
       "dataTitle": "Skapa ett värdbaserat Map Tour-lager",
       "dataExplain": "Ett nytt geoobjektslager skapas för dina bilder och turpunkter. Turlagret kommer inte att delas med någon om du inte väljer att dela din karttur.",
-      "dataExplainPortal": "Detta geoobjekt kräver Portal for ArcGIS 10.4. Om du inte kan skapa geoobjektslagret kontaktar du din ArcGIS-administratör.",
+      "dataExplainPortal": "Om geoobjektlagret inte kan skapas kontaktar du din ArcGIS-administratör.",
       "dataNameLbl": "Lagernamn",
       "dataFolderListLbl": "Mapp",
       "dataFolderListFetching": "Hämtar mappar ...",
@@ -212,7 +213,8 @@ define({
       "showCover": "Visa omslag",
       "editCover": "Redigera omslag",
       "coverNoVideo": "Video stöds inte för omslagsmedia. Välj en bild i stället.",
-      "coverPreview": "Om du vill se omslaget kan du spara berättelsen och förhandsgranska den genom att använda knappen Dela."
+      "coverPreview": "Om du vill se omslaget kan du spara berättelsen och förhandsgranska den genom att använda knappen Visa berättelse.",
+      "thirdPartyTerms": "Genom att använda en tredje parts tjänst samtycker du till dess användarvillkor: "
     },
     "addPopupJS": {
       "uploadingPicture": "Laddar upp bild",
@@ -222,9 +224,9 @@ define({
       "notJpg": "Välj ett foto i jpeg-format som ska laddas upp",
       "errorNoPhoto": "Välj en bild att ladda upp",
       "errorNoThumbnail": "Välj en miniatyrbild att ladda upp",
-      "errorInvalidPicUrl": "Ange en giltig bild (börjar med http(s):// och slutar med jpg, png, gif eller bmp). Du kan lägga till ”#isImage” i slutet av webbadressen för att åsidosätta den regeln.",
-      "errorInvalidThumbUrl": "Ange en giltig miniatyrbild-URL (börjar med http(s):// och slutar med jpg, png, gif eller bmp).",
-      "errorInvalidVideoUrl": "Ange en giltig video-URL (börjar med http(s)://)",
+      "errorInvalidPicUrl": "Ange en giltig URL för bilden. En sådan inleds med https och slutar med jpg, png, gif eller bmp. Du kan avsluta den med ”#isImage” om du vill åsidosätta regeln.",
+      "errorInvalidThumbUrl": "Ange en giltig miniatyrbilds-URL (börjar med https:// och slutar med jpg, png, gif eller bmp).",
+      "errorInvalidVideoUrl": "Ange en giltig video-URL (börjar med https://)",
       "errorNoName": "Ange ett namn för denna färdpunkt",
       "errorNoDescription": "Ange en bildtext för färdpunkten",
       "errorNoLocation": "Ange en plats för denna färdpunkt"
@@ -285,8 +287,8 @@ define({
     },
     "headerJS": {
       "editMe": "Redigera mig!",
-      "templateTitle": "Ange malltitel",
-      "templateSubtitle": "Ange underrubrik för mallen",
+      "templateTitle": "Ange titel",
+      "templateSubtitle": "Ange underrubrik",
       "edit": "Redigera"
     },
     "crossFaderJS": {
@@ -329,13 +331,13 @@ define({
     },
     "viewFlickr": {
       "title": "Flickr-import",
-      "header": "Ange ditt Flickr-användarnamn och välj en bilduppsättning eller etikett som ska importeras.",
+      "header": "Ange ditt Flickr-användarnamn och välj ett album eller en tagg som ska importeras.",
       "userInputLbl": "Ange ett användarnamn",
       "signInMsg2": "Det gick inte att hitta användaren",
-      "selectSet": "Välj en fotouppsättning",
+      "selectSet": "Välj ett album",
       "selectTag": "eller välj en etikett",
       "footerImportTag": "Importera vald etikett",
-      "footerImportSet": "Importera vald uppsättning"
+      "footerImportSet": "Importera det valda albumet"
     },
     "viewFacebook": {
       "title": "Facebook-import",
@@ -347,12 +349,12 @@ define({
       "lookupMsgError": "Det gick inte att hitta sidan"
     },
     "viewPicasa": {
-      "title": "Picasa-import",
-      "header": "Ange din e-postadress eller ditt Picasa-ID.",
-      "userInputLbl": "E-postadress eller ID för Picasa",
+      "title": "Google+-import",
+      "header": "Ange din e-postadress eller ditt ID.",
+      "userInputLbl": "E-postadress eller ID för Picasa/Google+",
       "signInMsg2": "Det gick inte att hitta kontot",
       "signInMsg3": "Inget offentligt album",
-      "howToFind": "Hitta ett Picasa-ID",
+      "howToFind": "<a href='https://links.esri.com/storymaps/google-photos-help' target='_blank'>Läs mer</a>",
       "howToFind2": "Kopiera siffrorna mellan det första och andra \"/\"-tecknet på en Picasa-sida"
     },
     "viewCSV": {
@@ -363,7 +365,7 @@ define({
       "resultHasBeenLimited": "Importen har begränsats till de första %VAL1% punkterna av %VAL2% för att hålla gränsen på %VAL3% punkter per tur",
       "browserSupport": "Webbläsaren stöds inte. För att använda en CSV-fil måste du <a href='http://browsehappy.com/' target='_blank'>uppgradera webbläsaren</a> eller använda kartvyn på ArcGIS.com (se hjälpen).",
       "errorLatLng": "Det gick inte att hitta fälten Latitud och Longitud. Möjliga värden för latitud är: <i>%LAT%</i> och för longitud: <i>%LONG%</i>.",
-      "errorFieldsExplain": "Det gick inte att läsa in eftersom följande obligatoriska fält inte hittades",
+      "errorFieldsExplain": "Inläsningen misslyckades eftersom följande obligatoriska fält inte hittades",
       "errorFieldsName": "<b>Namn</b> möjliga värden är: %VAL%",
       "errorFieldsDesc": "<b>Beskrivning</b> möjliga värden är: %VAL%",
       "errorFieldsUrl": "<b>Bild-URL</b> möjliga värden är: %VAL%",
@@ -392,12 +394,12 @@ define({
     },
     "viewGeoTag": {
       "title": "Välj och leta upp dina bilder/videoklipp.",
-      "header": "Klicka eller peka på bilderna du vill importera för att platsbestämma dem.",
-      "headerMore": "Varför geolokaliseras inte mina bilder/videoklipp?",
-      "headerExplain": "Om bilderna har en giltig plats blir de automatiskt platsbestämda på kartan och visas på den andra fliken.<br /><br />Som standard utnyttjar Picasa och Flickr inte bildens EXIF-platsmetadata vid import av bilder. Kontrollera Flickr/Picasa-inställningarna på fliken Sekretess för att aktivera import av geolokalisering för bilder och användning av externa applikationer. Du måste kanske importera om bilderna helt till Flickr/Picasa för att EXIF-geolokaliseringen ska användas.",
+      "header": "Positionsbestämda objekt importeras. Klicka på objekt utan positionsbestämning som du vill importera om du vill positionsbestämma dem.",
+      "headerMore": "Hjälp",
+      "headerExplain": "När du klickar på knappen <b>Importera</b> importeras bara bilder och videoklipp på fliken <b>Positionsbestämda</b>.<br><br>Geolokaliseringsinformation som lagrats med bilderna eller videoklippen importeras automatiskt, under förutsättning att den går att komma åt. Alla objekt utan geolokalisering visas på fliken <b>Att positionsbestämma</b>. Om du vill positionsbestämma ett objekt på den fliken klickar du först på objektet och sedan på önskad plats på kartan.<br><br>Om du vill ta bort ett objekt från fliken <b>Positionsbestämda</b> så att det inte importeras, klickar du på knappen Importera inte, som visas när du för markören över objektet.<br><br>Tips! Om geolokaliseringsinformationen som tillhör ditt eget mediematerial inte importeras, kontrollerar du sekretessinställningarna för ditt konto. Kontrollera till exempel i inställningarna till ditt Flickr-konto att EXIF-data inte är dolda. Om sekretessalternativet i Flickr om att importera EXIF-data för nya uppladdningar är avstängt (standardinställningen), lagras inte geolokaliseringar i Flickr för dina bilder, om du inte laddar upp dem igen eller anger deras positioner manuellt i Flickr.",
       "leftPanelTab1": "Att platsbestämma",
       "leftPanelTab2": "Platsbestämd",
-      "clickOrTap": "Klicka eller peka på kartan för att platsbestämma",
+      "clickOrTap": "Klicka på kartan för att göra en positionsbestämning",
       "clearLoc": "Radera platser",
       "clickDrop": "Importera inte",
       "footerImport": "Importera",
@@ -434,7 +436,7 @@ define({
         "title": "Introduktion",
         "moreInfo": "Mer information",
         "infoSites": "Besök <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Map Tour-avsnittet</a> på <a href='https://storymaps.arcgis.com' target='_blank'>Esris Story Map-webbplats.</a>",
-        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Frågor och svar om Map Tour.</a>",
+        "mtFAQ": "Läs <a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Frågor och svar om Map Tour.</a>",
         "myStories": "Du kan hantera dina kartturer och felsöka dem i <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Mina berättelser</a> på webbplatsen.",
         "div1": "Map Tour-mallen är utformad för att presentera geografisk information när det finns tilltalande bild- eller medieelement i berättelsen du vill framföra.",
         "div2": "Mallen används för att skapa en attraktiv och användarvänlig webbapplikation där du kan presentera en liten uppsättning platser på en karta i en numrerad ordningsföljd som användarna kan bläddra igenom. Mallen är utformad för att användas med alla webbläsare för alla enheter, inklusive smartphones och surfplattor. <br /><br />",
@@ -446,7 +448,7 @@ define({
         "div1": "Det viktigaste att tänka på när du skapar en karttur är att välja var bilderna ska lagras. Kartturen kan innehålla bilder som finns lagrade hos fotodelningstjänster, på en webbserver eller som överförts från hårddisken.",
         "div1a": "I det sista avsnittet på den här fliken finns information om vilka bild- och videoformat som stöds.",
         "div2": "Det interaktiva byggverktyget innehåller två alternativ för att hantera bilderna i kartturen:",
-        "div3": "<ul><li>Du kan använda <b>bilder som redan finns online</b>, till exempel bilder som lagras på en fotodelningswebbplats, som Flickr, eller på din egen webbplats. De refereras i kartturen via webbadresserna till dem.</li><li>Du kan också <b>överföra bilder från datorn</b> direkt till kartturen. För det här överföringsalternativet krävs att du har ett ArcGIS-abonnemang och har utgivar- eller administratörsbehörighet. Det är för att en driftad geoobjekttjänst automatiskt skapas för dig, i vilken dina foton lagras som bilagor.</li></ul>",
+        "div3": "<ul><li>Du kan använda <b>bilder som redan finns online</b>, till exempel bilder på Flickr eller Google+ eller på din egen webbserver. De refereras i kartturen via webbadresserna till dem.</li><li>Du kan också <b>överföra bilder från datorn</b> direkt till kartturen. För det här överföringsalternativet krävs att du har ett ArcGIS-abonnemang och har utgivar- eller administratörsbehörighet. Det är för att en driftad geoobjekttjänst automatiskt skapas för dig, i vilken dina foton lagras som bilagor.</li></ul>",
         "div4": "De vanligaste exemplen är:",
         "div4b": "<b>Bilderna är inte driftade</b> ännu och du har ett ArcGIS-abonnemang: Det bästa alternativet är att använda en driftad geoobjekttjänst. Precis som i vanliga fotodelningstjänster optimeras bilderna så att de snabbt går att läsa in och du har tillgång till alla administrations- och datahanteringsfunktioner som finns i ArcGIS.",
         "div5": "<b>Du är inte medlem i en organisation</b>: Du måste först lägga upp bilderna på en fotodelningswebbplats eller en webbserver. Sedan kan du använda bilderna med hjälp av byggverktyget. Bilderna fortsätter att vara driftade på den ursprungliga platsen.",
@@ -457,7 +459,7 @@ define({
         "learn": "läs mer",
         "div9": "Importen refererar till redan driftade bilder genom att lagra webbadresserna till dem i en geoobjektsamling för webbkartor. Bilderna lagras inte i ArcGIS Online. Om de driftade bilderna inte kan nås så blir de inte tillgängliga i kartturen och en bild med ett felmeddelande visas istället. Namn, beskrivning och plats för bilderna kanske inte importeras beroende på vilken tjänsteleverantör du använder. De attributen lagras i webbkartan och de ändringar du gör i onlinetjänsterna återspeglas inte i kartturen.",
         "div10": "Lagra bilderna på en webbserver",
-        "div11": "Om du väljer att drifta bilderna själv måste du manuellt skapa miniatyrbilder för bilderna. Om du använder bilder med full upplösning för miniatyrbilderna får du sämre prestanda. Läs våra <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>frågor och svar</a> för tips om storleksanpassning av bilderna om du får åtkomst till dem direkt på webben via URL:er.",
+        "div11": "Om du väljer att ha dina bilder på din egen webbserver (i stället för att ha dem på Flickr eller Google+ eller ladda upp dem direkt till din tur), måste du skapa miniatyrbilder manuellt för dina bilder. Om du använder bilder med full upplösning för miniatyrbilderna får du sämre prestanda. Läs de här <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>frågorna och svaren</a> för tips om storleksanpassning av bilderna om du kommer åt dem direkt på nätet via URL:er.",
         "div12": "Använda befintliga GIS-data",
         "div13": "Alla geoobjekttjänster, CSV-filer eller shapefiler som innehåller punkter kan användas som datakälla för Map Tour om de innehåller den uppsättning fält som applikationen förväntar sig. Du måste lägga till dem som lager i en ArcGIS-webbkarta och sedan dela kartan genom att skapa en Map Tour.",
         "div14": "Följande värden har stöd för att användas i fältnamn (ej skiftlägeskänsliga):",
@@ -471,10 +473,11 @@ define({
         "div17": "Du måste fylla i fälten Bild och Miniatyrbild för geoobjekttjänster utan bilagor. Du behöver inte göra det för geoobjekttjänster med bilagor, men det rekommenderas starkt att du gör det. Om bilagor är aktiverat för tjänsten kan du ladda upp bilder som bilagor i byggverktyget. Annars kan du bara redigera bildernas och miniatyrbildernas webbadresser.",
         "div172": "Om fälten Bild och Miniatyrbild har fyllts i kommer de alltid att användas, och geoobjekttjänstens bilagor anropas inte.",
         "div173": "Exempel på CSV-filer och shapefiler kan hämtas från",
+        "div174": "Läs de här <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>frågorna och svaren</a> om du vill veta mer om att använda befintliga GIS-data.",
         "div18": "Skapa en driftad geoobjekttjänst av en CSV-fil eller shapefil",
         "div19": "När du skapar en driftad geoobjektstjänst av en CSV-fil eller shapefil är bilagorna inte aktiverade som standard. Du aktiverar dem genom att öppna geoobjektstjänstens informationssida och klicka på den lilla pilen i lageravsnittet, då visas det alternativet. De bilder och miniatyrbilder som du har refererat till i attributen fortsätter att användas i kartturen. Om du i stället vill ladda upp bilderna som geoobjektstjänstbilagor kan du göra det med hjälp av de två knapparna på bildpanelen (Byt bild och Byt miniatyrbild).",
         "div20": "Bild- och videoformat som stöds",
-        "div21": "De bildformat som stöds är: <b>JPG, JPEG, PNG, GIF och BMP</b>. Om filen inte har något av de filnamnstilläggen behandlas den som ett videoklipp i kartturen, utom när du använder en geoobjektstjänst (se nedan).",
+        "div21": "Om du använder bilder på Flickr och Google+ öppnas de bilderna automatiskt som .jpg-filer i kartturen. Om du överför bilder till byggverktyget för Map Tour måste bilderna vara i .jpg- eller .jpeg-format. Om du refererar till bilder direkt på nätet med deras URL:er, är .jpg, .jpeg, .png, .gif och .bmp de bildformat som stöds. YouTube-videor stöds direkt.",
         "div22": "Map Tour-mallen innehåller inte någon videospelare. Du måste använda en extern videospelare från den videotjänst du använder (leta upp alternativet för att bädda in videoklippet och kopiera den URL som finns i koden). Om du vill drifta videoklippen själv kan du skapa en HTML-sida som innehåller en videospelare, till exempel <a href='http://www.videojs.com/'>Video.js</a>.",
         "div23": "Det interaktiva byggverktyget innehåller ingen dialogruta för att ta med videoklipp när du använder geoobjekttjänster med bilagor, men det går att ta med videoklipp genom att redigera data utanför det interaktiva byggverktyget. I kartvisningsfönstret på ArcGIS.com kan du till exempel ändra bildfälten så att de pekar på ett externt videoklipp och lägga till en särskild parameter i slutet av webbadressen (#isVideo). Då behandlas filerna som videoklipp.",
         "div24": "Du måste dock fortfarande ha två giltiga bildbilagor, annars används inte punkten. Det går inte att använda videoklipp när du använder geoobjektstjänstbilagor utan fälten Bild och Miniatyrbild."
@@ -496,19 +499,20 @@ define({
         "div0a": "Map Tour-visaren kan användas med Internet Explorer 8 eller senare. Det interaktiva byggverktyget kan användas med Internet Explorer 9 eller senare. Vi testar aktivt alla större webbläsare, men om det uppstår problem rekommenderar vi att du använder Chrome.",
         "div0b": "Hör gärna av dig om det uppstår problem. Om du skapar kartturen med en CSV-mall behöver du inte använda byggverktyget lika mycket.",
         "div1": "Bilder",
-        "div2": "Även om bilder i olika storlekar, former och format kan användas i samma Map Tour rekommenderar vi liggande format framför stående format. Bilder med storleksförhållandet 4:3 passar bäst. I en trepanelslayout eller integrerade layouter där bildtexten överlappar bilden, kan bilden skymmas av bildtexten om bilden är i stående format. I en trepanelslayout eller integrerade layouter rekommenderar vi att man om möjligt använder samma storlek och form på alla bilder. På så sätt slipper användaren att bli distraherad av bilder i olika storlekar under den guidade turen.",
+        "div2": "Även om bilder i olika storlekar, former och format kan användas i samma karttur rekommenderar vi liggande format framför stående format. Bilder med storleksförhållandet 4:3 passar bäst. I en trepanelslayout eller integrerad layout, där bildtexten överlappar bilden, kan bilden skymmas av bildtexten om bilden är i stående format. I en trepanelslayout eller integrerad layout rekommenderar vi att man om möjligt använder samma storlek och form på alla bilder. På så sätt slipper användaren att bli distraherad av bilder i olika storlekar under den guidade turen.",
         "div2a": "Vi rekommenderar en maximal bildstorlek på 1000 x 750 för huvudbilder och 140 x 93 för miniatyrbilder.",
         "div3": "Formatera bildtexten med HTML-taggar",
         "div4": "Du kan lägga in HTML-taggar i bildtexterna för att definiera formatering och länkar. Till exempel lägger de här taggarna till en grön hyperlänk:",
+        "div4aa": "<b>Skapa en omslagssida för din sidopanelstur</b><br>Sidopanelslayouten innehåller stöd för en omslagsbild, vilket gör att du kan fånga målgruppens uppmärksamhet med en snygg helskärmsbild. Innan du kan konfigurera omslagsbilden för en sidopanelstur måste du först lägga till några eller alla punkter i turen. Klicka sedan på knappen Ordna, och i dialogrutan som visas kontrollerar du att den turpunkt som du vill använda när du definierar omslagssidan är den första punkten i turen. Klicka sedan på rutan Använd den första punkten som omslagssida. Namnet på din första turpunkt blir den titel som visas på omslagssidan, bildtexten för punkten blir underrubrik och punktens bild används som bild på omslagssidan. Video stöds inte på omslagssidan. Läs de här <a href='https://links.esri.com/storymaps/faq_map_tour_cover_page_sp' target='_blank'>frågorna och svaren</a> om du vill veta mer.</a>",
         "div4a": "Utforma en bra underrubrik för kartturen",
-        "div4b": "Ta dig tid att skriva en tilltalande underrubrik på den guidade turen. Underrubriken är ett bra sätt att locka besökare till din guidade tur och berätta för dem vad de kommer att upptäcka under turen. Med hjälp av underrubriken kan du också berätta för din publik i vilken region eller vilket land som turen utspelar sig. Utgå till exempel inte från att folk känner till staden eller platsen för din guidade tur. Samtidigt ska underrubriken inte vara för lång. Om du inte kommer på en bra underrubrik är det bättre att du lämnar rutan tom. I layouten med sidopanelen blir underrubriken som visas på omslagssidan bildtext till första punkten på din guidade tur (om du har valt alternativet att första punktens innehåll ska användas som omslagsbild i dialogrutan Organisera).",
+        "div4b": "Ta dig tid att skriva en tilltalande underrubrik för den guidade turen. Underrubriken är ett bra sätt att locka besökare till din guidade tur och berätta för dem vad de kommer att upptäcka under turen. Med hjälp av underrubriken kan du också berätta för din publik i vilken region eller vilket land som turen utspelar sig. Utgå till exempel inte från att folk känner till staden eller platsen för din guidade tur. Samtidigt ska underrubriken inte vara för lång. Om du inte kommer på en bra underrubrik är det bättre att du lämnar rutan tom. Till skillnad från trepanelslayouten och den integrerade layouten innehåller sidopanelslayouten inget stöd för en underrubrik i dess övre del. Om du använder alternativet för omslagssida i sidopanelslayouten, visas bildtexten för den första punkten i turen på omslagssidan och fungerar därmed som underrubrik till turen.",
         "div5": "Stödlager",
-        "div6": "Du kan lägga till stödlager med bakgrundsinformation i kartturen. De kan innehålla andra geoobjekt som du vill ska visas på kartan förutom färdpunkterna, till exempel ett undersökningsområde, en gång- eller körväg som förbinder färdpunkterna osv. I Map Tour-mallen visas stödlagren med den symbologi du anger i webbkartan, men popupfönster kan inte användas. Om du vill lägga till stödlager i den guidade turen sparar du arbetet och stänger byggverktyget för Map Tour. Öppna sedan webbkartan som används i din tur. Du hittar den i ArcGIS Mitt innehåll eller via avsnittet Min berättelse på Story Maps-webbplatsen.",
+        "div6": "Du kan lägga till stödlager med bakgrundsinformation i kartturen. Dessa lager kan innehålla andra geoobjekt du vill visa i kartan förutom turpunkterna, till exempel ett undersökningsområde , en gång- eller körväg som förbinder turpunkterna osv. I Map Tour-mallen visas stödlagren med den symbologi du anger i webbkartan, men eventuella popupfönster som definierats för lagren stöds inte. Om du vill lägga till stödlager i den guidade turen sparar du arbetet och stänger byggverktyget för Map Tour. Öppna sedan den webbkarta som används i din tur. Du hittar den i ArcGIS Mitt innehåll eller via avsnittet Min berättelse på Story Maps-webbplatsen.",
         "div7": "Håll turen kort och intressant",
         "div8": "Det finns en gräns på 99 punkter per tur. De flesta kartturer är givetvis mycket kortare än så. Förvänta dig inte att användarna vill gå igenom allt för många färdpunkter. Du kanske tycker att ämnet är fascinerande, men utgå inte från att de tycker likadant.",
         "div10": "Inbäddningsläge",
         "div11": "Om du vill bädda in mallen i en annan webbplats via en iframe kan du ta bort rubriken genom att lägga till parametern \"&embed\" i slutet av webbadressen.",
-        "div12": "Använd inte en smal iFrame-bredd som får kartturen att växla till layouten för en liten pekskärm. När du bäddar in en karttur rekommenderar vi för bästa användarvänlighet att du också infogar en länk, så att användaren kan köra kartturen i helskärmsläge."
+        "div12": "Använd inte en smal iFrame-bredd som får kartturen att växla till vyn för små skärmar, som är samma vy som används på mobila enheter. När du bäddar in en karttur rekommenderar vi för bästa användarvänlighet att du också infogar en länk, så att användaren kan köra kartturen i helskärmsläge."
       },
       "tab5": {
         "title": "Publicera",
@@ -529,9 +533,9 @@ define({
     "share": {
       "firstSaveTitle": "Kartturen har sparats",
       "manageStory": "Hantera din berättelse",
-      "manageStoryA1": "Tips: Du kan använda %LINK1% för att kontrollera om berättelsen har några fel och ändra hur dess komponenter delas. Mina berättelser hjälper dig också att få berättelsen att se bra ut när den delas på sociala nätverk. Läs om fler praktiska funktioner i Mina berättelser: %LINK2%.",
+      "manageStoryA1": "Tips! Du kan använda %LINK1 % för att kontrollera om berättelsen har några fel, ändra hur den delas, få den att se ut på sociala medier med mera. Läs mer om Mina berättelser %LINK2%.",
       "manageStoryA1V1": "Mina berättelser",
-      "manageStoryA1V2": "blogginlägg",
+      "manageStoryA1V2": "här",
       "shareTitle": "Dela kartturen",
       "sharePrivateHeader": "Din karttur delas inte. Vill du dela den?",
       "sharePrivateBtn1": "Dela offentligt",
@@ -547,7 +551,8 @@ define({
       "shareA1": "Använd %SHAREIMG% på <a href='%LINK1%' target='_blank'>applikationens objektsida</a>. Om du även vill sluta dela webbkartan använder du <a href='%LINK2%' target='_blank'>webbkartans objektsida</a>.",
       "shareWarning": "Delning %WITH% har inaktiverats eftersom du inte är ägare till <a href='%LINK%' target='_blank'>webbkartan</a>.",
       "shareWarningWith1": "offentligt",
-      "shareWarningWith2": "offentligt och med organisationen"
+      "shareWarningWith2": "offentligt och med organisationen",
+      "viewStory": "Visa berättelse"
     },
     "locator": {
       "error": "Platsen är inte tillgänglig"
@@ -573,13 +578,29 @@ define({
     "httpsTransitionNotification": {
       "bannerMsg": "Viktigt meddelande om webbsäkerhet och Story Maps",
       "s1h1": "Esri höjer säkerheten för Story Maps",
-      "s1p1": "Story Maps live på webben och vårt webbforum arbetar ständigt med att etablera och implementera bättre säkerhetsfunktioner. HTTPS, som ger en säker anslutning för överföring av innehåll via internet, börjar bli standard för åtkomst till webbinnehåll. De flesta moderna webbläsare visar nu varningsmeddelanden när HTTP används istället för HTTPS. Efter att vi har gått över till denna nya standard, vilket påbörjas vid uppdateringen av ArcGIS Online i juni 2018, kommer dina Story Maps att behöva använda HTTPS.",
+      "s1p1": "Story Maps live på webben och vårt webbforum arbetar ständigt med att etablera och implementera bättre säkerhetsfunktioner. HTTPS, som ger en säker anslutning för överföring av innehåll via internet, börjar bli standard för åtkomst till webbinnehåll. De flesta moderna webbläsare visar nu varningsmeddelanden när HTTP används istället för HTTPS. På grund av denna framväxande standard rekommenderar vi starkt att du använder HTTPS-länkar när du skapar och delar Story Maps, och att du bara använder HTTPS-URL:er när du bäddar in webbmaterial eller länkar till bilder i en Story Map.",
       "s1p2": "I praktiken innebär detta att man för att få åtkomst till en Story Map och allt dess innehåll (inklusive bilder, lager, inbäddade appar och webbplatser) måste använda länkar som börjar med HTTPS istället för HTTP. Detta ger dina läsare den bästa upplevelsen, eftersom de flesta webbläsare kommer att ange att dina berättelser är säkra.",
       "s2h1": "Vad behöver jag göra?",
-      "s2p1": "Esri strävar efter att förenkla övergången för författare och läsare av Story Maps. Vi erbjuder verktyg som hjälper dig att hitta osäkert innehåll (HTTP) i dina berättelser och ger råd om hur du ska hantera det. Dessa finns nu tillgängliga i byggverktyget för Story Map och Mina berättelser. Kontrollera om dina berättelser har osäkert innehåll och uppdatera till HTTPS före juni 2018.",
+      "s2p1": "Esri strävar efter att förenkla övergången för författare och läsare av Story Maps. Vi erbjuder verktyg som hjälper dig att hitta osäkert innehåll (HTTP) i dina berättelser och ger råd om hur du ska hantera det. Dessa finns nu tillgängliga i byggverktyget för Story Map och Mina berättelser. Kontrollera om dina berättelser har osäkert innehåll och uppdatera till HTTPS så snart som möjligt.",
       "action1": "Stäng",
       "action2": "Kontrollera mina berättelser nu",
       "action3": "Läs mer"
+    },
+    "embedBar": {
+      "share": "Dela",
+      "fullScreen": "Helskärm",
+      "enlarge": "Förstora",
+      "newTab": "Öppna i en ny flik",
+      "tagline": "En Story Map",
+      "exitFullScreen": "Avsluta helskärmsläge"
+    },
+    "june2018SurveyMessage": {
+      "bannerMsg": "Får vi be dig om en sak? Det kommer att bidra till att forma framtiden för Story Maps.",
+      "s1h1": "Dela med dig av dina tankar och forma framtiden",
+      "s1p1": "Dina synpunkter är vår viktigaste källa till information, och om vi får veta mer om vad du tycker hjälper du oss att förbättra Story Maps. Vi skulle vara tacksamma om du kan delta i denna tre minuter korta undersökning.",
+      "s2p1": "Tack för att du använder Esri Story Maps!",
+      "action1": "Stäng",
+      "action2": "Genomför undersökningen"
     }
   }
 });

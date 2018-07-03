@@ -70,9 +70,10 @@ define({
       "buttonItem": "Aprire l'elemento dell'applicazione Web",
       "buttonHelp": "Guida",
       "buttonOrganize": "Organizza",
+      "buttonOrganizeAndCover": "Organizzare punti del tour e aggiungere una pagina di copertina",
       "buttonAdd": "Aggiungi",
       "buttonImport": "Importa",
-      "buttonImportDisabled": "L'importazione non è disponibile quando si utilizza un feature service con allegati",
+      "buttonImportDisabled": "L'importazione non è disponibile quando si utilizza il caricamento dell'immagine. Fare clic su Aggiungi per caricare un'immagine.",
       "dataEditionDisabled": "La modifica dei dati è disabilita in questa origine dati CSV",
       "dataSourceWarning": "Il layer dati del Tour mappa è stato modificato. Se gli ID delle feature non corrispondono, sarà necessario ripristinare l'ordine e i punti nascosti tramite l'opzione <b>Organizza</b>. Se i nomi dei campi non sono gli stessi, sarà necessario ripristinare le impostazioni relative ai campi nella <b>scheda Dati in Impostazioni</b>.",
       "organizeWarning": "Uno o più punti aggiunti all'esterno del generatore interattivo sono nascosti.",
@@ -81,10 +82,10 @@ define({
       "dataPicError1": "Con Tour mappa è ora necessario che un URL immagine termini con una delle seguenti estensioni: .jp(e)g, .png, .gif o .bmp.",
       "dataPicError2": "Questo requisito non influirà sull'istanza esistente di Tour mappa pubblicata. Tuttavia, per poter utilizzare il generatore interattivo, è prima necessario risolvere il problema relativo all'URL eseguendo una delle seguenti due azioni:",
       "dataPicError3": "Modificare gli URL",
-      "dataPicError4": "Con questa azione il suffisso <i>#isImage</i> verrà aggiunto alla fine degli URL immagine non supportati. La maggior parte dei server supporta l'aggiunta di suffissi agli URL. Tuttavia, una volta completata questa azione, è necessario spostarsi tra i punti per verificare che gli URL immagine aggiornati siano funzionanti. Se tutte le immagini vengono caricate, è possibile salvare il Tour mappa. Se <b>le immagini non vengono caricate, non salvare il Tour mappa</b>. Ricaricare invece il generatore ed eseguire la seconda azione.",
+      "dataPicError4": "Ciò aggiungerà <i>#isImage</i> alla fine degli URL immagine non supportati. La maggior parte dei server supporta le appendici URL. Tuttavia, una volta eseguita questa azione, è necessario verificare che gli URL immagine aggiornati funzionino navigando tra i punti. Se si carica ogni immagine, è possibile salvare il Tour mappa. Se le <b>immagini sono danneggiate, non salvare il Tour mappa</b>. Piuttosto, ricaricare il generatore ed eseguire la seconda azione.",
       "dataPicError5": "Limitare il tour alle immagini",
       "dataPicError6": "Con questa opzione tutti gli URL verranno considerati immagini, ma non sarà possibile aggiungere video utilizzando il generatore interattivo. Questa azione è reversibile qualora si decidesse di aggiungere video in futuro.",
-      "dataPicError7": "Il Tour mappa è stato limitato alle immagini, pertanto non è possibile utilizzare i video. Se si sceglie di rimuovere questa limitazione, verificare che le immagini vengano caricate correttamente prima di salvare il Tour mappa. Se necessario, sarà comunque possibile ripristinare la limitazione.",
+      "dataPicError7": "Il Tour mappa è stato limitato alle immagini, i video non possono essere utilizzati. Se si sceglie di rimuovere questa limitazione, controllare che le immagini vengano caricate correttamente prima di salvare il Tour mappa. Sarà possibile quella limitazione in seguito, se necessario.",
       "dataPicError8": "Rimuovi la limitazione per le immagini",
       "dataPicError9": "Se gli URL puntano a video, è possibile ignorare questo avviso; se puntano a immagini, è necessario eseguire una delle seguenti due azioni:",
       "modalCancel": "Annulla",
@@ -141,7 +142,7 @@ define({
       "addMobileName": "Immettere un nome",
       "addMobileNameMandatory": "Errore. Immettere un nome.",
       "addMobileError": "Si è verificato un errore",
-      "settingsHeader": "Impostazioni storia",
+      "settingsHeader": "Impostazioni",
       "settingsTabLayout": "Layout",
       "settingsTabColor": "Colori",
       "settingsTabLogo": "Intestazione",
@@ -151,11 +152,11 @@ define({
       "settingsLayoutExplain": "Selezionare il layout desiderato.",
       "settingsLayoutProfessional": "A tre riquadri",
       "settingsLayoutModern": "Integrato",
-      "settingsLayoutSidePanel": "Riquadro laterale",
+      "settingsLayoutSidePanel": "Pannello laterale",
       "settingsLayoutSelected": "Layout selezionato",
       "settingsLayoutNew": "Novità!",
       "settingsLayoutSelect": "Seleziona",
-      "settingsLayoutNote": "Tenere presente che sui punti che utilizzano i video l'etichetta verrà posizionata sempre al di sotto del video, anche se l'opzione non è selezionata.",
+      "settingsLayoutNote": "Tenere presente che sui punti che utilizzano i video la didascalia verrà posizionata sempre al di sotto del video, anche se l'opzione non è selezionata.",
       "settingsLayoutLocBtn": "Visualizza un pulsante Trova posizione",
       "settingsLayoutLocBtnHelp": "Supportato su molti browser. Appare solo se si accede alla mappa della storia da HTTPS. Non appare se la storia è incorporata.",
       "settingsColorExplain": "Per modificare l'aspetto, scegliere un tema predefinito o crearne uno personale.",
@@ -177,7 +178,7 @@ define({
       "settingsFieldsLabelColor": "Colore",
       "settingsFieldsReset": "Ripristinare la selezione dei campi",
       "settingsExtentExplain": "Impostare l'estensione iniziale di Tour mappa utilizzando la mappa interattiva seguente.",
-      "settingsExtentExplainBottom": "L'estensione specificata modificherà l'estensione iniziale della mappa. Tenere presente che, se tale estensione non include il primo punto del tour, non verrà utilizzata . In questo caso, il tour verrà aperto sul primo punto.",
+      "settingsExtentExplainBottom": "L'estensione definita modificherà l'estensione iniziale della mappa. Questa estensione non viene utilizzata se non si include il primo punto del tour. In tal caso, il tour si apre al centro sul primo punto.",
       "settingsExtentDateLineError": "L'estensione non può attraversare il meridiano per 180° di longitudine",
       "settingsExtentDateLineError2": "Errore di calcolo dell'estensione",
       "settingsExtentDrawBtn": "Disegna una nuova estensione",
@@ -190,7 +191,7 @@ define({
       "settingsFieldError": "Selezionare un campo in ogni elenco",
       "dataTitle": "Crea layer tour mappa ospitato",
       "dataExplain": "Un nuovo feature layer verrà creato per le immagini e i punti del tour. Il layer Tour non sarà condiviso con alcun utente a meno che non venga condiviso il proprio tour mappa.",
-      "dataExplainPortal": "Questa feature richiede for ArcGIS 10.4. Se non è possibile creare il feature layer, contattare l'amministratore ArcGIS.",
+      "dataExplainPortal": "Se il feature layer non viene creato correttamente, contattare l'amministratore di ArcGIS.",
       "dataNameLbl": "Nome layer",
       "dataFolderListLbl": "Cartella",
       "dataFolderListFetching": "Recupero cartelle...",
@@ -212,7 +213,8 @@ define({
       "showCover": "Mostra copertina",
       "editCover": "Modifica copertina",
       "coverNoVideo": "La copertina non supporta i file video. Selezionare un’immagine.",
-      "coverPreview": "Per visualizzare la copertina, salvare la storia e poi visualizzare l’anteprima utilizzando il pulsante Condividi."
+      "coverPreview": "Per visualizzare la copertina, salvare la storia e poi visualizzare l’anteprima utilizzando il pulsante Visualizza storia.",
+      "thirdPartyTerms": "Utilizzando un servizio di terzi, si accettano i termini di servizio relativi: "
     },
     "addPopupJS": {
       "uploadingPicture": "Caricamento immagine in corso",
@@ -222,9 +224,9 @@ define({
       "notJpg": "Scegliere una foto JPEG da caricare",
       "errorNoPhoto": "Scegli un'immagine da caricare",
       "errorNoThumbnail": "Scegliere un'anteprima da caricare",
-      "errorInvalidPicUrl": "Immettere un URL immagine valido (deve iniziare con http(s):// e terminare con jpg, png, gif o bmp). Per ignorare la regola, è possibile terminare l'URL con '#isImage'.",
-      "errorInvalidThumbUrl": "Immettere un URL anteprima valido (deve iniziare con http(s):// e terminare con jpg, png, gif o bmp).",
-      "errorInvalidVideoUrl": "Immette un URL del video valido (iniziante con http(s)://)",
+      "errorInvalidPicUrl": "Immettere un URL immagine valido. Inizia con https. Termina con jpg, png, gif or bmp oppure terminare l’URL con '#isImage' per ignorare la regola.",
+      "errorInvalidThumbUrl": "Immettere un URL anteprima valido (deve iniziare con https:// e terminare con jpg, png, gif o bmp).",
+      "errorInvalidVideoUrl": "Immette un URL del video valido (iniziante con https://)",
       "errorNoName": "Immetti un nome per il punto del tour",
       "errorNoDescription": "Immetti una didascalia per il punto del tour",
       "errorNoLocation": "Imposta una posizione per il punto del tour"
@@ -243,7 +245,7 @@ define({
       "popoverLoseSave": "Se si apre il viewer, tutte le modifiche non salvate andranno perse",
       "ok": "OK",
       "popoverSaveWhenDone": "Al termine, non dimenticare di salvare",
-      "closeWithPendingChange": "Confermare l'azione? Le modifiche apportate andranno perse.",
+      "closeWithPendingChange": "Confermare l'azione? Le modifiche andranno perse.",
       "gotIt": "OK",
       "savingApplication": "Salvataggio storia",
       "saveSuccess": "Storia salvata",
@@ -285,8 +287,8 @@ define({
     },
     "headerJS": {
       "editMe": "Modifica utente",
-      "templateTitle": "Imposta titolo modello",
-      "templateSubtitle": "Imposta sottotitolo modello",
+      "templateTitle": "Imposta titolo",
+      "templateSubtitle": "Imposta sottotitolo",
       "edit": "Modifica"
     },
     "crossFaderJS": {
@@ -329,13 +331,13 @@ define({
     },
     "viewFlickr": {
       "title": "Importazione da Flickr",
-      "header": "Immettere il nome utente Flickr e selezionare un set di foto o un tag da importare.",
+      "header": "Immettere il nome utente Flickr e selezionare un album o un tag da importare.",
       "userInputLbl": "Immettere un nome utente",
       "signInMsg2": "Utente non trovato",
-      "selectSet": "Selezionare un set di foto",
+      "selectSet": "Seleziona un album",
       "selectTag": "o selezionare un tag",
       "footerImportTag": "Importa il tag selezionato",
-      "footerImportSet": "Importa il set selezionato"
+      "footerImportSet": "Importa l’album selezionato"
     },
     "viewFacebook": {
       "title": "Importazione da Facebook",
@@ -347,12 +349,12 @@ define({
       "lookupMsgError": "Pagina non trovata"
     },
     "viewPicasa": {
-      "title": "Importazione da Picasa",
-      "header": "Immettere l'indirizzo e-mail o l'ID Picasa.",
-      "userInputLbl": "E-mail o ID Picasa",
+      "title": "Importazione da Google+",
+      "header": "Immettere l'indirizzo e-mail o l'ID.",
+      "userInputLbl": "E-mail o ID Picasa/Google+",
       "signInMsg2": "Account non trovato",
       "signInMsg3": "Nessun album pubblico",
-      "howToFind": "Come trovare un ID Picasa",
+      "howToFind": "<a href='https://links.esri.com/storymaps/google-photos-help' target='_blank'>Ulteriori informazioni</a>",
       "howToFind2": "Copiare le cifre tra il primo e il secondo \"/\" di qualsiasi pagina Picasa"
     },
     "viewCSV": {
@@ -392,12 +394,12 @@ define({
     },
     "viewGeoTag": {
       "title": "Seleziona e individua immagini/video",
-      "header": "Fare clic o toccare le immagini da importare per individuarle.",
-      "headerMore": "Perché le immagini o i video non vengono geolocalizzati?",
-      "headerExplain": "Se le immagini dispongono di una geolocalizzazione valida, saranno posizionate automaticamente sulla mappa ed elencate nella seconda tabella.<br /><br />Per impostazione predefinita, Picasa e Flickr non memorizzano i metadati EXIF di geolocalizzazione quando si importano le immagini. Verificare le impostazioni della privacy di Picasa/Flickr per abilitare l’importazione della geolocalizzazione delle immagini e l’uso da parte di applicazioni esterne. Potrebbe essere necessario reimportare le immagini esistenti in Flickr/Picasa per poter usare i metadati EXIF di geolocalizzazione.",
+      "header": "Le voci individuate verranno importate. Fare clic su una delle voci non individuate da importare per individuarle.",
+      "headerMore": "Guida",
+      "headerExplain": "Facendo clic sul pulsante <b>Importa</b>, verranno importati solo le immagini o i video elencati nella scheda <b>Individuati</b>.<br><br>Le informazioni di geolocalizzazione archiviate con immagini o video vengono importate automaticamente, se è possibile accedervi. Tutte le voci senza una geolocalizzazione sono elencate nella scheda <b>Per individuare</b>. Per individuare una voce elencata in quella scheda, fare clic su di essa, quindi fare clic sulla posizione desiderata sulla mappa.<br><br>Per rimuovere una voce dalla scheda <b>Individuato</b> in modo che non venga importata, fare clic sul pulsante Non importare, che appare quando si sposta il cursore su quella voce.<br><br>Suggerimento: se le informazioni di geolocalizzazione dei file multimediali non vengono importate, controllare le impostazioni sulla privacy dell’account. Ad esempio, nelle impostazioni dell’account Flickr, assicurarsi che i dati EXIF non siano nascosti. Inoltre, se l'opzione della privacy di Flickr per importare i dati EXIF per i nuovi caricamenti è disattivata (impostazione predefinita), le geolocalizzazioni non vengono archiviate in Flickr per le immagini, a meno che non si carichino nuovamente o si specifichino manualmente le relative posizioni in Flickr.",
       "leftPanelTab1": "Per individuare",
       "leftPanelTab2": "Individuato",
-      "clickOrTap": "Fare clic o toccare la mappa per individuare",
+      "clickOrTap": "Fare clic sulla mappa per individuare",
       "clearLoc": "Cancella posizioni",
       "clickDrop": "Non importare",
       "footerImport": "Importa",
@@ -434,7 +436,7 @@ define({
         "title": "Introduzione",
         "moreInfo": "Ulteriori informazioni",
         "infoSites": "Visita la sezione <a href='https://storymaps.arcgis.com/en/app-list/map-tour/' target='_blank'>Tour mappa</a> del sito Web <a href='https://storymaps.arcgis.com' target='_blank'>Esri Story Maps.</a>",
-        "mtFAQ": "<a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Domande frequenti sul Tour mappa.</a>",
+        "mtFAQ": "Consultare le <a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>Domande frequenti sul Tour mappa.</a>",
         "myStories": "È possibile gestire i Tour mappa e verificare la presenza di eventuali errori in <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>My Stories</a> sul sito Web.",
         "div1": "Il modello di Tour mappa è progettato per presentare informazioni geografiche in cui è presente un elemento fotografico o multimediale interessante per la storia da raccontare.",
         "div2": "Il modello produce un'applicazione Web interessante e di facile utilizzo che consente di presentare una breve serie di luoghi su una mappa in una sequenza numerata accessibile agli utenti. Il modello è progettato per l'utilizzo con qualsiasi browser Web su qualsiasi dispositivo, compresi smartphone e tablet. <br /><br />",
@@ -446,7 +448,7 @@ define({
         "div1": "Quando si crea un Tour mappa, l'elemento principale da considerare è la scelta del punto in cui verranno archiviate le immagini. In un Tour mappa si possono utilizzare immagini archiviate in servizi di condivisione di foto, su qualsiasi server Web o caricate dalla propria memoria.",
         "div1a": "Per informazioni dettagliate sui formati immagine e sui video supportati, vedere l'ultima sezione di questa scheda.",
         "div2": "Il generatore interattivo offre due opzioni per la gestione delle immagini in Tour mappa:",
-        "div3": "<ul><li>È possibile usare <b>immagini che si trovano già online</b>, come quelle disponibili nei siti di condivisione di foto come Flickr, oppure immagini memorizzate nel tuo sito Web. Nel Map Tour si farà riferimento a queste immagini attraverso il loro URL.</li><li>Inoltre, è possibile <b>caricare immagini dal proprio computer</b> direttamente nel Map Tour. Per usufruire dell’opzione di caricamento, è necessario disporre di un abbonamento ad ArcGIS e dei privilegi di Editore o Amministratore, in quanto verrà creato automaticamente un feature service hosted nel quale le foto verranno memorizzate come allegati.</li></ul>",
+        "div3": "<ul><li>È possibile usare <b>immagini che si trovano già online</b>, come quelle disponibili in Flickr o Google+ oppure immagini archiviate nel proprio sito Web. Nel Map Tour si farà riferimento a queste immagini attraverso il loro URL.</li><li>Inoltre, è possibile <b>caricare immagini dal proprio computer</b> direttamente nel Map Tour. Per usufruire dell’opzione di caricamento, è necessario disporre di un abbonamento ad ArcGIS e dei privilegi di Editore o Amministratore, in quanto verrà creato automaticamente un feature service hosted nel quale le foto verranno memorizzate come allegati.</li></ul>",
         "div4": "I principali casi d'uso sono:",
         "div4b": "<b>Le foto non sono ancora ospitate</b> e l'utente dispone di un abbonamento ad ArcGIS: l'utilizzo di un Feature Service hosted rappresenta la scelta migliore. Come i servizi di condivisione di foto pubblici, le immagini vengono ottimizzate in modo da creare immagini rapide da caricare e l'utente avrà accesso a tutte le opzioni di amministrazione e di gestione dei dati della piattaforma ArcGIS.",
         "div5": "<b>L'utente non è membro di un'organizzazione</b>: prima è necessario caricare le immagini in un sito Web per la condivisione di foto o sul proprio server Web. Il generatore aiuta l'utente a utilizzare le immagini che continueranno a essere ospitate nella posizione originale.",
@@ -457,7 +459,7 @@ define({
         "learn": "ulteriori informazioni",
         "div9": "L'operazione di importazione fa riferimento a immagini già ospitate tramite la memorizzazione dei relativi URL in una raccolta di feature mappa Web. Le immagini non vengono archiviate in ArcGIS Online. Se le immagini ospitate risultano inaccessibili, non saranno disponibili in Tour mappa e verrà utilizzata un'immagine \"Immagine non disponibile\". A seconda del provider di servizi per le foto, il Tour mappa importerà o meno il nome, la descrizione e la posizione delle immagini. Tali attributi sono memorizzati nella mappa Web e le eventuali modifiche ai servizi online non verranno applicate al Tour mappa.",
         "div10": "Archiviare le immagini su un server Web",
-        "div11": "Se si sceglie di ospitare le immagini per proprio conto, sarà necessario creare manualmente le relative anteprime. Se per le anteprime si utilizzano immagini a piena risoluzione, le prestazioni ne risentiranno. Consultare le <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>Domande frequenti</a> per i suggerimenti sulle dimensioni delle immagini quando si accede ad esse direttamente attraverso un URL.",
+        "div11": "Se si sceglie di ospitare le immagini sul proprio server Web (piuttosto che accedere alle immagini in Flickr o Google+ o caricarle direttamente nel proprio tour), sarà necessario creare manualmente le relative anteprime. Se per le anteprime si utilizzano immagini a piena risoluzione, le prestazioni ne risentiranno. Consultare le <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>Domande frequenti</a> per i suggerimenti sulle dimensioni delle immagini quando si accede ad esse direttamente attraverso un URL.",
         "div12": "Uso di dati GIS esistenti",
         "div13": "Qualsiasi Feature Service, file CSV o shapefile contenente punti può essere usato come origine dei dati di un Tour mappa, purché contenga l’insieme dei campi richiesti dall’applicazione. Sarà sufficiente aggiungerlo come un Layer nella mappa Web ArcGIS e, in seguito, condividere la mappa creando un Tour mappa.",
         "div14": "I valori supportati per i nomi dei campi sono (senza differenza tra maiuscole e minuscole):",
@@ -471,10 +473,11 @@ define({
         "div17": "I campi Immagine e Anteprima sono obbligatori per i feature service senza allegati e facoltativi ma consigliati per i feature service con allegati. Se nel servizio sono abilitati gli allegati, il generatore consente di caricare le immagini come allegati. In caso contrario, è possibile soltanto modificare gli URL dell'immagine e dell'anteprima.",
         "div172": "Quando presenti, verranno sempre utilizzati i campi relativi a immagine e anteprima e gli allegati del feature service non verranno cercati.",
         "div173": "È possibile scaricare CSV e shapefile di esempio da",
+        "div174": "Consultare le <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>Domande frequenti</a> per ulteriori informazioni sull’uso dei dati GIS esistenti.",
         "div18": "Creazione di un feature service ospitato da CSV o shapefile",
         "div19": "Quando si crea un feature service ospitato da un CSV o shapefile, per impostazione predefinita gli allegati non sono abilitati. Per abilitarli, aprire la pagina dei dettagli del feature service e fare clic sulla piccola freccia sulla sezione Layer per visualizzare l'opzione. Dopo aver effettuato quest'operazione, Tour mappa continuerà a utilizzare le immagini e le anteprime a cui si è fatto riferimento mediante gli attributi. Facoltativamente, se si desidera caricare le immagini come allegati di feature service, utilizzare i due pulsanti sul pannello immagini (\"Cambia immagine\" e \"Cambia anteprima\").",
         "div20": "Formati immagine e video supportati",
-        "div21": "I formati immagine supportati sono: <b>.jpg, .jpeg, .png, .gif e .bmp</b>. Se il file non termina con tale estensione, verrà considerato come video nel Tour mappa, ad eccezione dei casi in cui si utilizza un feature service (vedere sotto).",
+        "div21": "Se si accede alle immagini in Flickr o Google+, il Tour mappa accede automaticamente a queste immagini come file .jpg. Se si caricano immagini nel generatore di Tour mappa, le immagini devono essere in formato .jpg o .jpeg. Se fai riferimento alle immagini direttamente sul Web tramite i relativi URL, i formati di immagine supportati sono .jpg, .jpeg, .png, .gif e .bmp. I video di YouTube sono supportati direttamente.",
         "div22": "Il modello Tour mappa non include un lettore video, pertanto è necessario utilizzare il lettore esterno fornito dal servizio di hosting video preferito (individuare l'opzione per incorporare il video e copiare l'URL presente nel codice specificato). Se si desidera ospitare il video, è possibile creare una pagina HTML che contiene un lettore video, ad esempio <a href='http://www.videojs.com/'>Video.js</a>.",
         "div23": "Il generatore interattivo non prevede una finestra di dialogo per includere i video quando si utilizzano feature service senza allegati, ma è possibile effettuare questa operazione modificando i dati all'esterno del generatore interattivo. Se in Arcgis.com Map Viewer si modificano i campi delle immagini in modo che puntino a un video esterno e si aggiunge un parametro speciale alla fine dell'URL (#isVideo), il file multimediale verrà considerato come video.",
         "div24": "Si noti che per utilizzare il punto è comunque necessario disporre di due allegati immagine validi. Non è possibile utilizzare video quando si utilizzano allegati di feature service senza i campi immagine e anteprima."
@@ -500,15 +503,16 @@ define({
         "div2a": "Per il formato massimo delle immagini si consiglia un massimo di 1000 pixel (larghezza) x 750 pixel (altezza) per le immagini principali e di 140x93 per le anteprime.",
         "div3": "Formattare il testo della didascalia con tag HTML",
         "div4": "È possibile inserire tag HTML nelle didascalie per definirne la formattazione e i link. Ad esempio, questi tag aggiungono un hyperlink verde:",
+        "div4aa": "<b>Creare una pagina di copertina per il tour con riquadro laterale</b><br>Il layout con riquadro laterale supporta una pagina di copertina opzionale, in modo da poter attirare l'attenzione del pubblico con un’immagine di impatto a schermo intero. Per configurare la pagina di copertina per il tour con riquadro laterale, prima aggiungere alcuni o tutti i punti nel tour. Quindi, fare clic sul pulsante Organizza e, nella finestra di dialogo visualizzata, assicurarsi che il punto del tour da utilizzare per definire la copertina sia il primo punto del tour. Quindi, fare clic sulla finestra di dialogo 'Usa il primo punto come pagina di copertina'. Il nome del tuo primo punto del tour diventerà il titolo mostrato sulla pagina di copertina, la didascalia per quel punto diventerà il sottotitolo e l'immagine di quel punto verrà utilizzata come immagine della pagina di copertina. Il video non è supportato nella pagina di copertina. Consultare le <a href='https://links.esri.com/storymaps/faq_map_tour_cover_page_sp' target='_blank'>Domande frequenti</a> per ulteriori informazioni.</a>",
         "div4a": "Scrivere un sottotitolo per il Tour",
-        "div4b": "È importante elaborare con cura un sottotitolo avvincente per il Tour. Il sottotitolo è il modo migliore per coinvolgere le persone nel Tour e raccontare loro cosa scopriranno. Inoltre, è lo spazio adeguato in cui parlare al proprio pubblico del paese nel quale il Tour si svolge. Ad esempio, non si deve dare per scontato che le persone sappiano dove si trovano le città e le cittadine del Tour. Tuttavia, il sottotitolo non deve essere troppo lungo. Se non si riesce a elaborare un buon sottotitolo, è preferibile non inserirlo. Nel layout con riquadro laterale, il sottotitolo visualizzato nella pagina della copertina è la didascalia del primo punto del Tour (se si sta usando l’opzione presente nella finestra di dialogo Organizza che consente di usare il contenuto del primo punto come pagina di copertina).",
+        "div4b": "È importante elaborare con cura un sottotitolo avvincente per il tour. Il sottotitolo è il modo migliore per coinvolgere le persone nel tour e raccontare loro cosa scopriranno. Inoltre, è lo spazio adeguato in cui parlare al proprio pubblico del paese nel quale il tour si svolge. Ad esempio, non si deve dare per scontato che le persone sappiano dove si trovano le città e le cittadine del tour. Tuttavia, il sottotitolo non deve essere troppo lungo. Se non si riesce a elaborare un buon sottotitolo, è preferibile non inserirlo. A differenza dei layout a tre riquadri e integrato, il layout con riquadro laterale supporta una sottotitolo nell'intestazione. Se si utilizza l'opzione della pagina di copertina nel layout con riquadro laterale, la didascalia del primo punto del tour viene visualizzata sulla pagina di copertina e funge da sottotitolo per il tour.",
         "div5": "Layer di supporto",
-        "div6": "È possibile aggiungere ulteriori Layer di supporto per fornire un contesto per il Tour mappa. I Layer possono contenere altre Feature geografiche che si desidera visualizzare nella mappa oltre ai punti del Tour mappa, ad esempio un'area di studio, un percorso a piedi o in auto che collega i punti del tour, ecc. Il modello Tour mappa visualizza i Layer di supporto aggiuntivi utilizzando la simbologia specificata nella mappa Web, ma i popup non sono disponibili. Per aggiungere Layer di supporto al Tour, salvare il lavoro e chiudere il generatore di Tour mappa. In seguito, aprire la mappa Web usata nel Tour, che è possibile trovare nella sezione I miei contenuti di ArcGIS o nella sezione My Stories del sito Web Story Maps.",
+        "div6": "È possibile aggiungere ulteriori layer di supporto per fornire contesto per il Tour mappa. I layer possono contenere altre feature geografiche che si desidera visualizzare nella mappa oltre ai punti del Tour mappa, ad esempio un'area di studio, un percorso a piedi o in auto che collega i punti del tour, ecc. Il modello Tour mappa visualizza i layer di supporto aggiuntivi utilizzando la simbologia specificata nella mappa Web, ma i popup non sono disponibili. Per aggiungere layer di supporto al tour, salvare il lavoro e chiudere il generatore di Tour mappa. In seguito, aprire la mappa Web usata nel tour, che è possibile trovare nella sezione I miei contenuti di ArcGIS o nella sezione My Stories del sito Web Story Maps.",
         "div7": "Mantenere il tour breve e piacevole",
         "div8": "Esiste un limite di 99 punti per tour. Naturalmente, la maggior parte dei Tour mappa sarà molto più breve. Il pubblico non desidera scorrere troppi punti del tour. Il soggetto può essere affascinante, ma non si deve presupporre che lo sarà anche per il pubblico.",
         "div10": "Modalità Incorpora",
         "div11": "Se si desidera incorporare il modello in un altro sito Web tramite un iframe, aggiungere il parametro facoltativo \"&embed” alla fine dell'URL per rimuovere l'intestazione.",
-        "div12": "Evitare di specificare una larghezza troppo ridotta per l'iFrame; in caso contrario, per il Tour mappa verrà attivato il layout per touch screen piccoli. Per garantire la massima semplicità d'uso, quando si incorpora un Tour mappa, si consiglia di fornire comunque un collegamento accanto al Tour incorporato per consentire agli utenti di avviare il Tour a schermo intero."
+        "div12": "Evitare di specificare una larghezza troppo ridotta per l'iFrame; in caso contrario, per il Tour mappa verrà attivata la visualizzazione su schermo piccolo, ovvero la stessa visualizzazione utilizzata dal tour su dispositivi mobili. Per garantire la massima semplicità d'uso, quando si incorpora un Tour mappa, si consiglia di fornire comunque un collegamento accanto al tour incorporato per consentire agli utenti di avviare il tour a schermo intero."
       },
       "tab5": {
         "title": "Pubblicazione",
@@ -529,9 +533,9 @@ define({
     "share": {
       "firstSaveTitle": "Tour salvato",
       "manageStory": "Gestisci la storia",
-      "manageStoryA1": "Suggerimento: è possibile utilizzare %LINK1% per controllare che la storia non contenga errori e cambiare la modalità di condivisione dei suoi componenti. My Stories consente anche di migliorare l'aspetto della storia quando viene condivisa su reti social. È possibile reperire ulteriori informazioni su altre feature utili di My Stories in questi %LINK2%.",
+      "manageStoryA1": "Suggerimento: è possibile utilizzare %LINK1% per controllare che la storia non contenga errori, cambiare la modalità di condivisione dei suoi componenti, migliorarne l'aspetto sui social network, ecc. Maggiori informazioni su My Stories %LINK2%.",
       "manageStoryA1V1": "My Stories",
-      "manageStoryA1V2": "post del blog",
+      "manageStoryA1V2": "qui",
       "shareTitle": "Condividi il Tour",
       "sharePrivateHeader": "Il Tour non è condiviso. Condividerlo?",
       "sharePrivateBtn1": "Condividi pubblicamente",
@@ -547,7 +551,8 @@ define({
       "shareA1": "Utilizzare %SHAREIMG% nella <a href='%LINK1%' target='_blank'>pagina degli elementi dell'applicazione</a>. Se si desidera anche annullare la condivisione della mappa Web, utilizzare la <a href='%LINK2%' target='_blank'>pagina degli elementi della mappa Web</a>.",
       "shareWarning": "La condivisione %WITH% è stata disabilitata perché non si è proprietari della <a href='%LINK%' target='_blank'>mappa Web</a>.",
       "shareWarningWith1": "con il pubblico",
-      "shareWarningWith2": "con il pubblico e con l'organizzazione"
+      "shareWarningWith2": "con il pubblico e con l'organizzazione",
+      "viewStory": "Visualizza storia"
     },
     "locator": {
       "error": "Posizione non disponibile"
@@ -573,13 +578,29 @@ define({
     "httpsTransitionNotification": {
       "bannerMsg": "Messaggio importante riguardante la sicurezza Web e le Story Map",
       "s1h1": "Esri sta migliorando la sicurezza delle Story Map",
-      "s1p1": "Le Story Map vivono nel Web e la comunità Web è costantemente impegnata nella formulazione e nell’implementazione di misure volte a migliorare la sicurezza. Il protocollo HTTPS, che fornisce una connessione sicura per i contenuti trasmessi su Internet, si sta affermando come metodo di accesso più comune ai contenuti Web. Molti dei browser moderni mostrano un messaggio di avviso nei casi in cui viene usato l’HTTP anziché l’HTTPS. A seguito dell’affermazione di questo standard, a partire dall’aggiornamento di giugno 2018 di ArcGIS Online, le Story Map dovranno usare l’HTTPS.",
-      "s1p2": "A livello pratico, ciò implica che le Story Map e tutti i relativi contenuti (ivi comprese immagini, Layer, app e siti Web incorporati) dovranno essere accessibili attraverso link che iniziano con HTTPS anziché con HTTP. Ciò garantirà una miglior esperienza per gli utenti poiché molti browser segnaleranno che la Story Map è sicura.",
+      "s1p1": "Le Story Map vivono nel Web e la comunità Web è costantemente impegnata nella formulazione e nell’implementazione di misure volte a migliorare la sicurezza. Il protocollo HTTPS, che fornisce una connessione sicura per i contenuti trasmessi su Internet, si sta affermando come metodo di accesso più comune ai contenuti Web. Molti dei browser moderni mostrano un messaggio di avviso nei casi in cui viene usato l’HTTP anziché l’HTTPS. A causa di questo standard emergente, consigliamo vivamente di utilizzare i link HTTPS per la creazione e la condivisione di Story Maps e di utilizzare solo gli URL HTTPS per incorporare il contenuto Web o il collegamento a immagini all'interno di una Story Map.",
+      "s1p2": "In pratica, ciò significa che una Story Map e tutto il suo contenuto (inclusi immagini, layer, app incorporate e siti Web) devono essere accessibili utilizzando i collegamenti che iniziano con HTTPS anziché con HTTP. Ciò garantisce la migliore esperienza per i lettori perché la maggior parte dei browser Web indica che le tue storie sono al sicuro.",
       "s2h1": "Cosa occorre fare?",
-      "s2p1": "Esri sta lavorando per facilitare la transizione sia per gli autori sia per i lettori di Story Map. I generatori di Story Map e My Stories contengono strumenti che possono essere impiegati per trovare contenuti non sicuri (HTTP) all’interno delle storie e che forniscono indicazioni utili sulla loro gestione. Si prega di verificare la presenza di contenuti non sicuri all’interno delle storie e di aggiornarli all’HTTPS prima del mese di giugno 2018.",
+      "s2p1": "Esri sta lavorando per rendere questa transizione facile per autori e lettori di Story Map. I generatori di Story Map e My Stories contengono strumenti che possono essere impiegati per trovare contenuti non sicuri (HTTP) all’interno delle storie e che forniscono indicazioni utili sulla loro gestione. Si prega di verificare la presenza di contenuti non sicuri all’interno delle storie e di aggiornarli all’HTTPS prima possibile.",
       "action1": "Chiudi",
       "action2": "Controlla subito le mie storie",
       "action3": "Ulteriori informazioni"
+    },
+    "embedBar": {
+      "share": "Crea",
+      "fullScreen": "Schermo intero",
+      "enlarge": "Allarga",
+      "newTab": "Apri in una nuova scheda",
+      "tagline": "Story Map",
+      "exitFullScreen": "Chiudi visualizzazione a schermo intero"
+    },
+    "june2018SurveyMessage": {
+      "bannerMsg": "Possiamo fare qualche domanda? Ci consentiranno di plasmare il futuro di Story Maps.",
+      "s1h1": "Condividi le tue opinioni, plasma il futuro",
+      "s1p1": "Il contributi degli utenti sono la nostra più importante fonte di feedback e ottenere ulteriori informazioni sugli utenti ci consentirà di migliorare Story Maps. Saremmo lieti che i nostri utenti possano partecipare a questa inchiesta di tre minuti.",
+      "s2p1": "Come sempre, grazie per aver utilizzato Esri Story Maps!",
+      "action1": "Chiudere",
+      "action2": "Partecipa all’inchiesta"
     }
   }
 });

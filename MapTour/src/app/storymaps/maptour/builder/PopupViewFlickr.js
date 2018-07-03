@@ -1,42 +1,40 @@
-define(["storymaps/utils/FlickrConnector", "dojo/Deferred"], 
-	function (FlickrConnector, Deferred) {
-		return function PopupViewFlickr() 
+define(["dojo/Deferred"],
+	function (Deferred) {
+		return function PopupViewFlickr()
 		{
 			$('#init-import-views').append($('#popupViewFlickr').clone());
 			var _container = $('.popupViewFlickr').last();
 			_container.attr("id", '#popupViewFlickr' + $('.popupViewFlickr').length);
-			
-			var _flickr = null;
+
 			var _footer = null;
-			
+
 			var _nbPicturesMax = -1;
 			var _nbPicturesAuthorized = -1;
-			
+
 			this.init = function(params, initCompleteDeferred, footer)
 			{
-				_flickr = new FlickrConnector(params.apiKey);
 				_footer = footer;
-				
+
 				_nbPicturesMax = params.nbPicturesMax;
 				_nbPicturesAuthorized = params.nbPicturesAuthorized;
 			};
-			
+
 			this.getView = function(params)
 			{
 				if( params )
 					showView(params);
 				return _container;
 			};
-			
+
 			this.getNextView = function()
 			{
-				var nextViewDeferred = new Deferred();				
+				var nextViewDeferred = new Deferred();
 				var pictureRqHandler = function(data, title){
 					if( ! data.length ) {
 						updateFooter("error");
 						return;
 					}
-					
+
 					nextViewDeferred.resolve({
 						name: 'geotag',
 						params: {
@@ -45,18 +43,18 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 						}
 					});
 				};
-				
+
 				_footer.find('.btnNext').attr("disabled", "disabled");
-				
+
 				if( _container.find("#flickrListSet").find(":selected").attr("disabled") )
-					_flickr.getPicturesByTag(
-						_container.find("#flickrListTag").val(), 
+					app.flickr.getPicturesByTag(
+						_container.find("#flickrListTag").val(),
 						{
 							per_page: _nbPicturesAuthorized
 						}
 					).then(pictureRqHandler);
-				else 
-					_flickr.getPicturesInSet(
+				else
+					app.flickr.getPicturesInSet(
 						_container.find("#flickrListSet").val(),
 						{
 							per_page: _nbPicturesAuthorized
@@ -64,18 +62,18 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 					).then(function(data) {
 						var albumTitle = _container.find("#flickrListSet option:selected").text();
 						albumTitle = albumTitle.split(/\ \([0-9]+\)/)[0];
-						
+
 						pictureRqHandler(data, albumTitle);
 					});
-					
+
 				return nextViewDeferred;
 			};
-			
+
 			this.getTitle = function()
 			{
 				return i18n.viewer.viewFlickr.title;
 			};
-			
+
 			function showView(params)
 			{
 				if (! params || ! params.isReturning) {
@@ -84,7 +82,7 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 					disableNextBtn();
 					disableLists();
 				}
-				
+
 				// TODO: buggy when a set and a tag has been selected and return from geotag screen
 				// Restore the next button text
 				if( params.isReturning ) {
@@ -93,29 +91,29 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 					else
 						_footer.find('.btnNext').html(i18n.viewer.onlinePhotoSharingCommon.footerImport);
 				}
-				
+
 				_container.find(".commonHeader").html(
-					i18n.viewer.onlinePhotoSharingCommon.header1 
-					+ ' ' 
+					i18n.viewer.onlinePhotoSharingCommon.header1
+					+ ' '
 					+ i18n.viewer.onlinePhotoSharingCommon.header2.replace('%NB1%', _nbPicturesAuthorized).replace('%NB1%', _nbPicturesAuthorized).replace('%MEDIA%', i18n.viewer.onlinePhotoSharingCommon.pictures).replace('%NB2%', _nbPicturesMax)
 				);
 				updateFooter();
 			}
-			
+
 			function login()
 			{
-				var userName = _container.find(".selectUserName").val(); 
-				
+				var userName = _container.find(".selectUserName").val();
+
 				if ( userName ) {
 					userName = userName.trim();
 				}
-				
+
 				_container.find(".signInMsg").removeClass('error').html(i18n.viewer.onlinePhotoSharingCommon.userLookingup + ' <img src="resources/icons/loader-upload.gif" />');
 				disableLists();
 				disableNextBtn();
 				updateFooter();
-				
-				_flickr.connect(userName).then(
+
+				app.flickr.connect(userName).then(
 					function(data){
 						// Sets
 						var outHtml = "<option value='' style='display:none;' disabled selected>" + i18n.viewer.onlinePhotoSharingCommon.pleaseChoose + "</option>";
@@ -123,14 +121,14 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 							outHtml += '<option value="' + set.id + '">' + set.title._content + ' (' + set.photos + ')</option>';
 						});
 						_container.find("#flickrListSet").html(outHtml);
-						
+
 						// Tags
 						outHtml = "<option value='' style='display:none;' disabled selected>" + i18n.viewer.onlinePhotoSharingCommon.pleaseChoose + "</option>";
 						$.each(data.tags, function(i, tag){
 							outHtml += '<option value="' + tag._content + '">' + tag._content + '</option>';
 						});
 						_container.find("#flickrListTag").html(outHtml);
-						
+
 						_container.find("#flickrListSet, #flickrListTag").removeAttr("disabled");
 						_container.find(".signInMsg").html("");
 					},
@@ -139,7 +137,7 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 					}
 				);
 			}
-			
+
 			function initEvents()
 			{
 				_container.find('.btn-userLogin').click(login);
@@ -149,53 +147,53 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 					else
 						_container.find('.btn-userLogin').attr("disabled", "disabled");
 				});
-				
-				_container.find("#flickrListSet").change(function(){ 
+
+				_container.find("#flickrListSet").change(function(){
 					selectChange(
-						_container.find("#flickrListSet"), 
+						_container.find("#flickrListSet"),
 						_container.find("#flickrListTag"),
 						i18n.viewer.onlinePhotoSharingCommon.footerImport
 					);
 				});
-				
-				_container.find("#flickrListTag").change(function(){ 
+
+				_container.find("#flickrListTag").change(function(){
 					selectChange(
-						_container.find("#flickrListTag"), 
+						_container.find("#flickrListTag"),
 						_container.find("#flickrListSet"),
 						i18n.viewer.onlinePhotoSharingCommon.footerImport
 					);
 				});
-				
+
 				// iPad keyboard workaround
 				_container.find('.selectUserName').blur(function(){ $(window).scrollTop(0); });
 			}
-			
+
 			function selectChange(select, otherSelect, nextBtn)
 			{
 				otherSelect.find("option:nth-child(1)").attr("selected", "selected");
 				otherSelect.focus();
 				select.focus();
-				
+
 				var btnNext = _footer.find('.btnNext');
 				btnNext.html(nextBtn);
 				btnNext.removeAttr("disabled");
 				updateFooter();
 			}
-			
+
 			function disableLists()
 			{
 				_container.find("#flickrListSet, #flickrListTag").attr("disabled", "disabled");
 				_container.find("#flickrListSet").html("");
 				_container.find("#flickrListTag").html("");
 			}
-			
+
 			function disableNextBtn()
 			{
 				var btnNext = _footer.find('.btnNext');
 				btnNext.html(i18n.viewer.onlinePhotoSharingCommon.footerImport);
 				btnNext.attr("disabled", "disabled");
 			}
-			
+
 			function updateFooter(msg)
 			{
 				var footerText = _footer.find('.dataFooterText');
@@ -204,7 +202,7 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 				else
 					footerText.removeClass("error").html("").hide();
 			}
-			
+
 			this.initLocalization = function()
 			{
 				_container.find('.header').append(i18n.viewer.viewFlickr.header);
@@ -212,7 +210,7 @@ define(["storymaps/utils/FlickrConnector", "dojo/Deferred"],
 				_container.find('.btn-userLogin').html(i18n.viewer.onlinePhotoSharingCommon.userLookup);
 				_container.find('.control-label[for="flickrListSet"]').html(i18n.viewer.viewFlickr.selectSet);
 				_container.find('.control-label[for="flickrListTag"]').html(i18n.viewer.viewFlickr.selectTag);
-				
+
 				initEvents();
 			};
 		};

@@ -44,7 +44,7 @@ define(["storymaps/utils/Helper"],
 				container.find('.saved-tip').html(
 					i18n.viewer.share.manageStoryA1
 						.replace('%LINK1%', '<a href="' + myStoriesUrl + '" target="_blank">' + i18n.viewer.share.manageStoryA1V1 + '</a>')
-						.replace('%LINK2%', '<a href="http://links.esri.com/storymaps/my_stories_blog_posts" target="_blank">' + i18n.viewer.share.manageStoryA1V2 + '</a>')
+						.replace('%LINK2%', '<a href="https://links.esri.com/storymaps/about_my_stories" target="_blank">' + i18n.viewer.share.manageStoryA1V2 + '</a>')
 				);
 				container.find('.first-save').removeClass('hide');
 			}
@@ -146,7 +146,7 @@ define(["storymaps/utils/Helper"],
 				container.find('.shared-tip').html(
 					i18n.viewer.share.manageStoryA1
 						.replace('%LINK1%', '<a href="' + myStoriesUrl + '" target="_blank">' + i18n.viewer.share.manageStoryA1V1 + '</a>')
-						.replace('%LINK2%', '<a href="http://links.esri.com/storymaps/my_stories_blog_posts" target="_blank">' + i18n.viewer.share.manageStoryA1V2 + '</a>')
+						.replace('%LINK2%', '<a href="https://links.esri.com/storymaps/about_my_stories" target="_blank">' + i18n.viewer.share.manageStoryA1V2 + '</a>')
 				);
 
 				if (APPCFG.HEADER_SOCIAL && APPCFG.HEADER_SOCIAL.bitly && APPCFG.HEADER_SOCIAL.bitly.enable) {

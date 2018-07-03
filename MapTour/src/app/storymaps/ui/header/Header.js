@@ -107,7 +107,6 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 			this.resize = function(widthViewport)
 			{
 				if($("body").hasClass("side-panel")){
-					$('.textArea').css('left', $('.logo img').width() + 10);
 					$('.textArea').width(widthViewport - $('.logo img').width() - $('.rightArea').outerWidth() - (app.data.userIsAppOwner() ? 45 : 15));
 				} else {
 					var rightAreaWidth = Math.max($(selector + " #headerDesktop .headerLogoImg").outerWidth() + 50, $(selector + " #headerDesktop .rightArea").outerWidth() + 20);
@@ -139,7 +138,6 @@ define(["storymaps/ui/inlineFieldEdit/InlineFieldEdit",
 
 			this.setLogoInfo = function(url, target)
 			{
-				console.log(url,target);
 				if ( ! url || url == "NO_LOGO" ) {
 					$(selector + ' .logo img').hide();
 				}

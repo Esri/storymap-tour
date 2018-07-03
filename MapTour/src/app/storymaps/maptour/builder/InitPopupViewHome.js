@@ -79,7 +79,7 @@ define(["dojo/has"],
 
 			this.getTitle = function()
 			{
-				return i18n.viewer.initPopup.title + ' <a class="initHeaderTooltip"><img src="resources/icons/builder-help2.png" style="width: 14px; vertical-align: -1px;"/></a>';
+				return i18n.viewer.initPopup.title;
 			};
 
 			function select(selectedView, target)
@@ -98,10 +98,13 @@ define(["dojo/has"],
 				_container.find('.sideTitle1').append(i18n.viewer.initPopupHome.title1);
 				_container.find('.sideTitle2').append(i18n.viewer.initPopupHome.title2);
 
-				_container.find('.footer').append("<a data-href='#' onClick='app.builder.openHelpPopup(1)'>" + i18n.viewer.initPopupHome.footer5 + "</a>");
+				_container.find('.footer').append("<a data-href='#' onClick='app.builder.openHelpPopup(1)'>" + i18n.viewer.initPopupHome.footer5 + "</a>"+ "<br><span style='text-decoration: none;'>" + i18n.viewer.builderHTML.thirdPartyTerms + "</span>"
+				+ "<br><span><a style='display: inline; font-weight: normal;' href=" + APPCFG.FLICKR_TERMS_LINK + " target='_blank' class='link'>Flickr</a> | </span>"
+				+ "<span><a style='display: inline; font-weight: normal;' href=" + APPCFG.GOOGLE_TERMS_LINK + " target='_blank' class='link'>Google</a> | </span>"
+				+ "<span><a style='display: inline; font-weight: normal;' href=" + APPCFG.YOUTUBE_TERMS_LINK + " target='_blank' class='link'>YouTube</a></span>");
 
 				_container.find('.btn-select-flickr img').attr('src', 'resources/icons/builder-import-flickr.png');
-				_container.find('.btn-select-picasa img').attr('src', 'resources/icons/builder-import-picasa.png');
+				_container.find('.btn-select-picasa img').attr('src', 'resources/icons/builder-import-google.png');
 				_container.find('.btn-select-youtube img').attr('src', 'resources/icons/builder-import-youtube.png');
 				_container.find('.btn-select-advanced img').attr('src', 'resources/icons/builder-import-scratch.png');
 				_container.find('.btn-select-hostedFS img').attr('src', 'resources/icons/builder-import-arcgis.png');
@@ -128,7 +131,7 @@ define(["dojo/has"],
 						trigger: 'hover',
 						placement: 'top',
 						html: true,
-						content: APPCFG.AUTHORIZED_IMPORT_SOURCE.picasa ? 'Picasa' : i18n.viewer.onlinePhotoSharingCommon.disabled,
+						content: APPCFG.AUTHORIZED_IMPORT_SOURCE.picasa ? 'Google' : i18n.viewer.onlinePhotoSharingCommon.disabled,
 						container: '.popover-init'
 					});
 				}

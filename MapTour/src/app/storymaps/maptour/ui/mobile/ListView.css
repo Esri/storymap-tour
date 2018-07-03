@@ -103,6 +103,7 @@ body.hasTouch .listWrapper > div:nth-child(2) {
 	width: 100%;
 	border: none;
 	display: block;
+	background: #efefef;
 }
 
 .mobile-view.mobile-layout-scroll #mobile-scroll-story-content .mobile-layout-scroll-video {

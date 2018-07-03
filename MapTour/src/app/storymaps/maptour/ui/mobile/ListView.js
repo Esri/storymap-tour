@@ -33,7 +33,7 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic", "dojo/has", "dojo/
 				rateLimit: true
 			};
 
-			this.init = function(slides, bgColor)
+			this.init = function(slides, bgColor, startIndex)
 			{
 				$(selector + ' .listWrapper').mousemove(function(e){
 					mousePos.onMove[0] = e.screenX;
@@ -41,7 +41,7 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic", "dojo/has", "dojo/
 				});
 
 				setColor(bgColor);
-				render(slides);
+				render(slides, startIndex);
 				initEvents();
 			};
 
@@ -73,10 +73,13 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic", "dojo/has", "dojo/
 				}
 			};
 
-			function render(slides)
+			function render(slides, startIndex)
 			{
-        // Mobile Layout Scroll
-        var createMobileScrollList = function () {
+				// Mobile Layout Scroll
+				var createMobileScrollList = function () {
+					if( ! $("body").hasClass("mobile-layout-scroll") ) {
+						return;
+					}
 
 					if (app.data.webAppData && app.data.webAppData.getFirstRecordAsIntro && !app.data.webAppData.getFirstRecordAsIntro()) {
 						$('#mobile-scroll-story-content').append(
@@ -108,10 +111,11 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic", "dojo/has", "dojo/
 						for (var i = 0; i < slides.length; i++) {
 							var feature = slides[i];
 							var videoSrc = (i === 0 || i == 1) ? feature.attributes.getURL() : "";
+							var imgSrc = i<= 2 ? feature.attributes.getURL() : '';
 							var tpEl = $('<div class="tour-point-content">'
 									+'<div class="media">'
 										+ (! feature.attributes.isVideo() && MapTourHelper.mediaIsSupportedImg(feature.attributes.getURL())
-										? '<img src="' + feature.attributes.getURL() + '" />'
+										? '<img alt="";  src="' + imgSrc + '" />'
 										: '<iframe class="mobile-layout-scroll-video" src="' + videoSrc + '"></iframe>')
 									+ '</div>'
 									+ '<div class="text-wrapper">'
@@ -130,7 +134,26 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic", "dojo/has", "dojo/
 							$('.mobile-layout-scroll-video').css({
 								height: $('.mobile-layout-scroll-video').outerWidth() * (1/(16/9))
 							});
+							if(i > 3) {
+								$('.tour-point-content .media img').eq(i).css({
+									"min-height": $('.tour-point-content .media img').outerWidth() * (1/(16/9))
+								});
+							}
+							if( startIndex ) {
+								loadImages();
+							}
 						}
+					}
+
+					if( startIndex ) {
+						var imgHeight = $(".tour-point-content .media").eq(startIndex - 1).height();
+						$('#mobile-scroll-story-content').animate({
+							scrollTop: $(".tour-point-content").eq(startIndex - 1).offset().top - imgHeight
+						}, 0);
+						setTimeout(function() {
+							topic.publish("SELECT_BY_SCROLL", startIndex - 1);
+							app.mobileIntroView.hide();
+						}, 750);
 					}
 
 					$('body').append('<button type="button" id="mobile-scroll-top-btn" class="reset-btn icon-up-open-big back-to-top hidden"></button>');
@@ -166,6 +189,9 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic", "dojo/has", "dojo/
 					});
 
 					$(selector + ' .listScroller').css('height', (slides.length * ITEM_HEIGHT) + 'px');
+					if(app.embedBar && app.embedBar.initiated){
+						$(selector + ' .listScroller').height($(selector + ' .listScroller').height() + 26);
+					}
 
 					var fragment = document.createDocumentFragment();
 
@@ -294,10 +320,23 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic", "dojo/has", "dojo/
 				topic.subscribe("maptour-point-change-before", function(oldIndex, newIndex){
 					if ($('body').hasClass('mobile-layout-scroll') && scrollEventTracking.selectedIndex !== newIndex) {
 						scrollEventTracking.selectedIndex = newIndex;
-						$("#mobile-scroll-story-content").animate({
-							scrollTop: scrollEventTracking.goToTop ? 0 : document.querySelectorAll('#mobile-scroll-story-content .tour-point-content')[newIndex].offsetTop
-						});
-						scrollEventTracking.goToTop = false;
+						if(!document.querySelectorAll('#mobile-scroll-story-content .tour-point-content .media img')[newIndex].getAttribute('src')) {
+							var imgToLoad = new Image();
+							imgToLoad.newIndex = newIndex;
+							imgToLoad.addEventListener("load", function(){
+								$("#mobile-scroll-story-content").animate({
+									scrollTop: scrollEventTracking.goToTop ? 0 : document.querySelectorAll('#mobile-scroll-story-content .tour-point-content')[this.newIndex].offsetTop
+								});
+								topic.publish("CORE_PICTURE_CHANGED");
+								scrollEventTracking.goToTop = false;
+							});
+							imgToLoad.src = app.data.getTourPoints()[newIndex].attributes.getURL();
+						}else{
+							$("#mobile-scroll-story-content").animate({
+								scrollTop: scrollEventTracking.goToTop ? 0 : document.querySelectorAll('#mobile-scroll-story-content .tour-point-content')[newIndex].offsetTop
+							});
+							scrollEventTracking.goToTop = false;
+						}
 					}
 				});
 
@@ -382,6 +421,32 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic", "dojo/has", "dojo/
 				$(selector).css("background-color", bgColor);
 				$(selector + ' .listItem').css("background-color", bgColor);
 				_bgColor = bgColor;
+			}
+
+			function loadImages()
+			{
+				var i;
+				for(i=app.data.getCurrentIndex() >= 3 ? -2 : app.data.getCurrentIndex() == 2 ? -2 : 0; i < 4; i++) {
+					var thisIndex = app.data.getCurrentIndex() + i;
+					if(thisIndex > app.data.getTourPoints().length - 1)
+						return;
+					var thisAttributes = app.data.getTourPoints()[thisIndex].attributes;
+					var thisPointContent = $(".tour-point-content .media").eq(thisIndex);
+					if( thisAttributes.isVideo() || !MapTourHelper.mediaIsSupportedImg(thisAttributes.getURL()) ) {
+						if( ! thisPointContent.find('.mobile-layout-scroll-video').attr("src") )
+							thisPointContent.find('.mobile-layout-scroll-video').attr("src", thisAttributes.getURL());
+					} else {
+						if( ! thisPointContent.find('img').attr("src") ) {
+							if ('objectFit' in document.documentElement.style === false) {
+								thisPointContent.find('img').parent().css({
+									backgroundImage: 'url(' + thisAttributes.getURL() + ')'
+								});
+							} else{
+								thisPointContent.find('img').attr("src", thisAttributes.getURL());
+							}
+						}
+					}
+				}
 			}
 		};
 	}
