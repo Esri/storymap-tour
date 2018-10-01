@@ -63,6 +63,8 @@ define([
       // The number of times to show the banner message before it doesn't shown
       // again.
       autohideAfter: typeof options.autohideAfter !== 'undefined' ? options.autohideAfter : 2,
+      // The number of milliseconds after which the banner will disappear.
+      fadeAfter: typeof options.fadeAfter !== 'undefined' ? options.fadeAfter : 30000,
       // The IDs of other banner notification that will block this banner from
       // showing if their hidden cookie has not been set. This allows you to
       // only show a single banner per app load.
@@ -73,40 +75,46 @@ define([
     var cookieKey = 'bannerNotification_' + settings.id + '_hidden';
 
     var setDontShowCookie = function(incrementAutoHide) {
-      var domain = settings.cookie.domain ? "domain=" + settings.cookie.domain + ";" : "";
-      var path = settings.cookie.path ? "path=" + settings.cookie.path + ";" : "";
+      var domain = settings.cookie.domain ? 'domain=' + settings.cookie.domain + ';' : '';
+      var path = settings.cookie.path ? 'path=' + settings.cookie.path + ';' : '';
       var maxAge = new Date(new Date().getTime() + (settings.cookie.maxAge * 1000)).toUTCString();
       var dontShowCheckbox = document.querySelector('#'+ settings.id + '-banner-notification-dont-show');
       if (dontShowCheckbox && dontShowCheckbox.checked) {
-        document.cookie = cookieKey + "=true;expires=" + maxAge + ";" + domain + path;
-      } else if (incrementAutoHide === true) {
-        var cookieValue = document.cookie.replace(new RegExp("(?:(?:^|.*;\\s*)" + cookieKey + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1");
-        var cookieInt = parseInt(cookieValue, 0);
+        document.cookie = cookieKey + '=true;expires=' + maxAge + ';' + domain + path;
+      }
+      else if (incrementAutoHide === true) {
+        var cookieValue = document.cookie.replace(new RegExp('(?:(?:^|.*;\\s*)' + cookieKey + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1');
+        var cookieInt = parseInt(cookieValue, 10);
         if (settings.autohideAfter === 0) {
-          document.cookie = cookieKey + "=true;expires=" + maxAge + ";" + domain + path;
-        } else if (cookieValue.length === 0) {
-          document.cookie = cookieKey + "=0;expires=" + maxAge + ";" + domain + path;
-        } else if (cookieInt !== isNaN && cookieInt < settings.autohideAfter - 1) {
-          document.cookie = cookieKey + "=" + (cookieInt + 1) + ";expires=" + maxAge + ";" + domain + path;
-        } else if (cookieInt !== isNaN && cookieInt >= settings.autohideAfter - 1) {
+          document.cookie = cookieKey + '=true;expires=' + maxAge + ';' + domain + path;
+        }
+        else if (cookieValue.length === 0) {
+          document.cookie = cookieKey + '=0;expires=' + maxAge + ';' + domain + path;
+        }
+        else if (cookieInt !== isNaN && cookieInt < settings.autohideAfter - 1) {
+          document.cookie = cookieKey + '=' + (cookieInt + 1) + ';expires=' + maxAge + ';' + domain + path;
+        }
+        else if (cookieInt !== isNaN && cookieInt >= settings.autohideAfter - 1) {
           window.onbeforeunload = function() {
-            var cv = document.cookie.replace(new RegExp("(?:(?:^|.*;\\s*)" + cookieKey + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1");
+            var cv = document.cookie.replace(new RegExp('(?:(?:^|.*;\\s*)' + cookieKey + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1');
             if (cv !== 'false') {
-              document.cookie = cookieKey + "=true;expires=" + maxAge + ";" + domain + path;
+              document.cookie = cookieKey + '=true;expires=' + maxAge + ';' + domain + path;
             }
           };
         }
-      } else {
-        document.cookie = cookieKey + "=false;expires=" + maxAge + ";" + domain + path;
+      }
+      else {
+        document.cookie = cookieKey + '=false;expires=' + maxAge + ';' + domain + path;
       }
     };
 
+	var bannerTimer;
     var isNotificationBlocked = function() {
       var isBlocked = false;
       var blockingNotifications = [].concat(settings.blockingNotifications);
 
       for (var i = 0; i < blockingNotifications.length; i++) {
-        if (document.cookie.replace(new RegExp("(?:(?:^|.*;\\s*)bannerNotification_" + blockingNotifications[i] + "_hidden\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1") !== 'true') {
+        if (document.cookie.replace(new RegExp('(?:(?:^|.*;\\s*)bannerNotification_' + blockingNotifications[i] + '_hidden\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1') !== 'true') {
           isBlocked = true;
         }
       }
@@ -114,7 +122,7 @@ define([
     };
 
     var isHidden = function () {
-      var cookieValue = document.cookie.replace(new RegExp("(?:(?:^|.*;\\s*)" + cookieKey + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1");
+      var cookieValue = document.cookie.replace(new RegExp('(?:(?:^|.*;\\s*)' + cookieKey + '\\s*\\=\\s*([^;]*).*$)|^.*$'), "$1");
       if (settings.autohideAfter === 0) {
         setDontShowCookie(true);
         return true;
@@ -154,6 +162,7 @@ define([
             margin: 0;\
             padding: 3px 6px;\
             border-radius: 3px;\
+			text-transform: uppercase;\
             width: auto;\
             overflow: visible;\
             background: inherit;\
@@ -407,10 +416,13 @@ define([
 
         document.querySelector('#' + settings.id + '-banner-notification-dont-show').checked = true;
         setDontShowCookie();
+		clearTimeout(bannerTimer);
       };
 
       var closeMessage = function (e) {
-        e.stopPropagation();
+        if (e && e.stopPropagation) {
+          e.stopPropagation();
+        }
 
         document.removeEventListener('keyup', escapeEvent);
         window.removeEventListener('resize', resizeMainMsg);
@@ -456,6 +468,8 @@ define([
             }
           });
         }
+		// Close message if ignored by author when bannerTimer expires
+        bannerTimer = setTimeout(closeMessage, settings.fadeAfter);
 
         // Don't show again checkbox
         dontShowCheckbox.addEventListener('click', setDontShowCookie);

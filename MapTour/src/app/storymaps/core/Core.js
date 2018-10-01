@@ -176,7 +176,11 @@ define(["esri/map",
 				userCanEdit: false,
 				sanitizer: new Sanitizer({
           whiteList: {
-            hr: []
+            hr: [],
+            // needed for <audio> and <video> tags
+            // in featurecollections (because src gets
+            // stripped by agol)
+            source: ['src', 'type']
 					}
 				}, true)
 			};

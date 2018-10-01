@@ -103,38 +103,7 @@ define(["esri/arcgis/Portal",
 			// Show https-transition notification when app loads
 			if (!app.isPortal) {
 				topic.subscribe('maptour-ready', function() {
-					var stringsSurvey = i18n.viewer.june2018SurveyMessage;
 					var stringsHttps = i18n.viewer.httpsTransitionNotification;
-					new BannerNotification({
-						id: "storymapsSurvey",
-						bannerMsg: stringsSurvey.bannerMsg,
-						primaryColor: '#1e8a87',
-						mainMsgHtml: '\
-						<h2>' + stringsSurvey.s1h1 + '</h2>\
-						<p>' + stringsSurvey.s1p1 + '</p>\
-						<p>' + stringsSurvey.s2p1 + '</p>\
-						',
-						actions: [
-							{
-								string: stringsSurvey.action1,
-								closeOnAction: true
-							},
-							{
-								primary: true,
-								string: stringsSurvey.action2,
-								closeOnAction: true,
-								action: function() {
-									window.open('https://links.esri.com/storymaps/june2018-survey');
-								}
-							}
-						],
-						cookie: {
-							domain: 'arcgis.com',
-							path: '/',
-							maxAge: 60 * 60 * 24 * 365
-						},
-						autohideAfter: new Date() > new Date(/*'July 31 2018'*/) ? 0 : 2
-					});
 					new BannerNotification({
 						id: "httpsTransitionMessage",
 						bannerMsg: stringsHttps.bannerMsg,

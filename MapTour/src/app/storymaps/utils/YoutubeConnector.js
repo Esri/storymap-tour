@@ -21,6 +21,7 @@ define(["dojo/Deferred"],
 				
 				$.ajax({
 					url: userRqStr,
+					dataType: 'json',
 					timeout: 4000
 				}).then(
 					function(userRqResponse){
@@ -40,6 +41,7 @@ define(["dojo/Deferred"],
 						
 						$.ajax({
 							url: rqStr + '&maxResults=' + nbResultRq1,
+							dataType: 'json',
 							timeout: 4000
 						}).then(
 							function(response){
@@ -52,6 +54,7 @@ define(["dojo/Deferred"],
 									
 									$.ajax({
 										url: rqStr,
+										dataType: 'json',
 										timeout: 4000
 									}).then(
 										function(response){
