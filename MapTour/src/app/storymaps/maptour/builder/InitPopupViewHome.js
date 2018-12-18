@@ -100,7 +100,6 @@ define(["dojo/has"],
 
 				_container.find('.footer').append("<a data-href='#' onClick='app.builder.openHelpPopup(1)'>" + i18n.viewer.initPopupHome.footer5 + "</a>"+ "<br><span style='text-decoration: none;'>" + i18n.viewer.builderHTML.thirdPartyTerms + "</span>"
 				+ "<br><span><a style='display: inline; font-weight: normal;' href=" + APPCFG.FLICKR_TERMS_LINK + " target='_blank' class='link'>Flickr</a> | </span>"
-				+ "<span><a style='display: inline; font-weight: normal;' href=" + APPCFG.GOOGLE_TERMS_LINK + " target='_blank' class='link'>Google</a> | </span>"
 				+ "<span><a style='display: inline; font-weight: normal;' href=" + APPCFG.YOUTUBE_TERMS_LINK + " target='_blank' class='link'>YouTube</a></span>");
 
 				_container.find('.btn-select-flickr img').attr('src', 'resources/icons/builder-import-flickr.png');

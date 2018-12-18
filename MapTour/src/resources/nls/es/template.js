@@ -601,6 +601,9 @@ define({
       "s2p1": "Como siempre ¡gracias por usar Esri Story Maps!",
       "action1": "Cerrar",
       "action2": "Responder a la encuesta"
+    },
+    "licenseChange2018": {
+      "noAccess": "Su cuenta (%USER_NAME%) no tiene licencia para abrir un story map que no sea público.  Pídale al administrador de su organización que le asigne un tipo de usuario que incluya Story Maps o una licencia complementaria de aplicaciones esenciales."
     }
   }
 });

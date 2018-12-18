@@ -601,6 +601,9 @@ define({
       "s2p1": "Kao i uvek, hvala vam što koristite Esri Story Maps.",
       "action1": "Zatvori",
       "action2": "Popuni anketu"
+    },
+    "licenseChange2018": {
+      "noAccess": "Vaš nalog (%USER_NAME%) nema licencu za korišćenje Story mapa koje nisu javne. Zatražite od administratora organizacije da vam dodeli onaj tip korisnika koji uključuje Story mape ili licencu za dodatne osnovne aplikacije."
     }
   }
 });

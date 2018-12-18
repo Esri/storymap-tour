@@ -601,6 +601,9 @@ define({
       "s2p1": "Kaip visada, dėkojame, kad naudojate Esri žemėlapių pasakojimus!",
       "action1": "Uždaryti",
       "action2": "Užpildyti apklausą"
+    },
+    "licenseChange2018": {
+      "noAccess": "Jūsų paskyra (%USER_NAME%) nelicencijuota atidaryti ne viešą žemėlapio pasakojimą. Kreipkitės į organizacijos administratorių, kad paskirtų jums vartotojo tipą, kuris turi žemėlapių pasakojimus, arba suteiktų jums papildomą svarbiausių aplikacijų licenciją."
     }
   }
 });

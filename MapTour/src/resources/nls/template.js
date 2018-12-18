@@ -602,6 +602,9 @@ define({
 				s2p1: "As always, thanks for using Esri Story Maps!",
 				action1: "Close",
 				action2: "Take the survey"
+			},
+			licenseChange2018: {
+				noAccess: "Your account (%USER_NAME%) is not licensed to open a Story Map that is not public.  Please ask your organization administrator to assign you a user type that includes Story Maps or an add-on Essential Apps license."
 			}
     }
   }),

@@ -59,7 +59,6 @@ define(["storymaps/maptour/core/WebApplicationData", "dojo/has"],
 					+ " | <a href='https://raw.github.com/Esri/map-tour-storytelling-template-js/master/samples/csv_file__lat_long/Locations.csv' target='_blank' download>" + i18n.viewer.initPopupHome.footer3 + "</a><span style='font-size: 11px'> (" + i18n.viewer.initPopupHome.footer4 + ")</span>"
 					+ "<br><br><span>" + i18n.viewer.builderHTML.thirdPartyTerms + "</span>"
 					+ "<br><a href=" + APPCFG.FLICKR_TERMS_LINK + " target='_blank' class='link'>Flickr</a> | "
-					+ "<a href=" + APPCFG.GOOGLE_TERMS_LINK + " target='_blank' class='link'>Google</a> | "
 					+ "<a href=" + APPCFG.YOUTUBE_TERMS_LINK + " target='_blank' class='link'>YouTube</a>"
 				);
 

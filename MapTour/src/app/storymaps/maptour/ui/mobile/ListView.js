@@ -307,7 +307,7 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic", "dojo/has", "dojo/
 
 			function initEvents()
 			{
-        // Scroll Layout
+				// Scroll Layout
 				$(window).on('resize', function() {
 					$('.mobile-layout-scroll-video').css({
 						height: $('.mobile-layout-scroll-video').outerWidth() * (1/(16/9))
@@ -318,23 +318,33 @@ define(["storymaps/maptour/core/MapTourHelper", "dojo/topic", "dojo/has", "dojo/
 
 				scrollEventTracking.containerHeight = $('#mobile-scroll-story-content').outerHeight();
 				topic.subscribe("maptour-point-change-before", function(oldIndex, newIndex){
+
 					if ($('body').hasClass('mobile-layout-scroll') && scrollEventTracking.selectedIndex !== newIndex) {
 						scrollEventTracking.selectedIndex = newIndex;
-						if(!document.querySelectorAll('#mobile-scroll-story-content .tour-point-content .media img')[newIndex].getAttribute('src')) {
-							var imgToLoad = new Image();
-							imgToLoad.newIndex = newIndex;
-							imgToLoad.addEventListener("load", function(){
-								$("#mobile-scroll-story-content").animate({
-									scrollTop: scrollEventTracking.goToTop ? 0 : document.querySelectorAll('#mobile-scroll-story-content .tour-point-content')[this.newIndex].offsetTop
+						if(! app.data.getTourPoints()[newIndex].attributes.isVideo() && MapTourHelper.mediaIsSupportedImg(app.data.getTourPoints()[newIndex].attributes.getURL())){
+							if(!document.querySelectorAll('#mobile-scroll-story-content .tour-point-content .media img')[newIndex].getAttribute('src')) {
+								var imgToLoad = new Image();
+								imgToLoad.newIndex = newIndex;
+								imgToLoad.addEventListener("load", function(){
+									$("#mobile-scroll-story-content").animate({
+										scrollTop: scrollEventTracking.goToTop ? 0 : document.querySelectorAll('#mobile-scroll-story-content .tour-point-content')[this.newIndex].offsetTop
+									});
+									//topic.publish("CORE_PICTURE_CHANGED");
+									scrollEventTracking.goToTop = false;
 								});
-								topic.publish("CORE_PICTURE_CHANGED");
+								imgToLoad.src = app.data.getTourPoints()[newIndex].attributes.getURL();
+							}else{
+								$("#mobile-scroll-story-content").animate({
+									scrollTop: scrollEventTracking.goToTop ? 0 : document.querySelectorAll('#mobile-scroll-story-content .tour-point-content')[newIndex].offsetTop
+								});
 								scrollEventTracking.goToTop = false;
-							});
-							imgToLoad.src = app.data.getTourPoints()[newIndex].attributes.getURL();
-						}else{
+							}
+						} else {
+							document.querySelectorAll('#mobile-scroll-story-content .tour-point-content .media')[newIndex].src = app.data.getTourPoints()[newIndex].attributes.getURL();
 							$("#mobile-scroll-story-content").animate({
 								scrollTop: scrollEventTracking.goToTop ? 0 : document.querySelectorAll('#mobile-scroll-story-content .tour-point-content')[newIndex].offsetTop
 							});
+							//topic.publish("CORE_PICTURE_CHANGED");
 							scrollEventTracking.goToTop = false;
 						}
 					}

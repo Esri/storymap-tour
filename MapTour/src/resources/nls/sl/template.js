@@ -601,6 +601,9 @@ define({
       "s2p1": "Kot vedno se vam zahvaljujemo za uporabo Esri Kart z zgodbo.",
       "action1": "Zapri",
       "action2": "Izpolni obrazec"
+    },
+    "licenseChange2018": {
+      "noAccess": "Vaš račun (%USER_NAME%) ni licenciran za odpiranje Karte z zgodbo, ki ni javna. Prosite administratorja v vaši organizaciji, da vam dodeli tip uporabnika, ki vsebuje aplikacije Karto z zgodbo ali licenco za dodatne aplikacije Essential Apps."
     }
   }
 });

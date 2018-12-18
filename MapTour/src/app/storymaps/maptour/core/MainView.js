@@ -1241,8 +1241,8 @@ define(["storymaps/maptour/core/WebApplicationData",
 						var thisAttributes = app.data.getTourPoints()[thisIndex].attributes;
 						var thisPointContent = $(".tour-point-content .media").eq(thisIndex);
 						if( thisAttributes.isVideo() || !MapTourHelper.mediaIsSupportedImg(thisAttributes.getURL()) ) {
-							if( ! thisPointContent.find('.mobile-layout-scroll-video').attr("src") )
-								thisPointContent.find('.mobile-layout-scroll-video').attr("src", attributes.getURL());
+							if( ! thisPointContent.find('iframe').attr("src") )
+								thisPointContent.find('iframe').attr("src", thisAttributes.getURL());
 						} else {
 							if( ! thisPointContent.find('img').attr("src") ) {
 								if ('objectFit' in document.documentElement.style === false) {

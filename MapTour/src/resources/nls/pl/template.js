@@ -601,6 +601,9 @@ define({
       "s2p1": "Jak zawsze, dziękujemy też za korzystanie z map narracyjnych firmy Esri!",
       "action1": "Zamknij",
       "action2": "Wypełnij ankietę"
+    },
+    "licenseChange2018": {
+      "noAccess": "Twoje konto (%USER_NAME%) nie jest licencjonowane do otwierania mapy narracyjnej, która nie jest publiczna. Poproś administratora instytucji o przypisanie typu użytkownika, który obejmuje licencję na mapy narracyjne lub licencję na kluczowe aplikacje dodatkowe."
     }
   }
 });

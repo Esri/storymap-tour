@@ -601,6 +601,9 @@ define({
       "s2p1": "最后，感谢您一如既往地使用 Esri Story Maps!",
       "action1": "关闭",
       "action2": "参与调查"
+    },
+    "licenseChange2018": {
+      "noAccess": "您的帐户(%USER_NAME%)无权打开非公共 Story Map。 请联系您的组织管理员为您分配包含 Story Maps 或附加基本应用程序许可的用户类型。"
     }
   }
 });

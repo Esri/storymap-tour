@@ -601,6 +601,9 @@ define({
       "s2p1": "Her zaman olduğu gibi Esri Story Maps’i kullandığınız için teşekkür ederiz!",
       "action1": "Kapat",
       "action2": "Ankete katıl"
+    },
+    "licenseChange2018": {
+      "noAccess": "Hesabınız (%USER_NAME%) herkese açık olmayan bir Hikaye Haritasını açmak için lisanslandırılmamış. Lütfen kuruluş yöneticinizden Hikaye Haritaları veya eklenti Temel Uygulamalar lisansı içeren bir kullanıcı türü atamasını isteyin."
     }
   }
 });

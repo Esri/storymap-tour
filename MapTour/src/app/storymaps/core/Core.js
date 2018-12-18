@@ -404,10 +404,27 @@ define(["esri/map",
 				redirectToSignIn();
 			}
 			// Direct creation and signed in
-			else if ( app.isDirectCreation )
+			else if ( app.isDirectCreation ){
 				portalLogin().then(function(){
-					loadWebMap(MapTourBuilderHelper.getBlankWebmapJSON());
+					var oAuthInfo = new ArcGISOAuthInfo({
+						appId: 'storymaps',
+						portalUrl: 'https:' + configOptions.sharingurl.split('/sharing')[0],
+						popup: true
+					});
+					IdentityManager.registerOAuthInfos([oAuthInfo]);
+					IdentityManager.checkAppAccess('https:' + configOptions.sharingurl, 'storymaps').then(function(identityResponse){
+						if (identityResponse && identityResponse.code && identityResponse.code === "IdentityManagerBase.1") {
+							initError("notAuthorizedBuilder");
+							return;
+						}else {
+							loadWebMap(MapTourBuilderHelper.getBlankWebmapJSON());
+						}
+					}, function() {
+						initError("notAuthorizedBuilder");
+						return;
+					});
 				});
+			}
 			else if( Helper.isArcGISHosted() )
 				showTemplatePreview();
 			else if ( ! isProd() )
@@ -517,7 +534,6 @@ define(["esri/map",
 					} else{
 						WebApplicationData.set(response);
 					}
-
 					app.data.webAppData = WebApplicationData;
 				},
 				error: function(){ }
@@ -532,75 +548,99 @@ define(["esri/map",
 						initError("invalidApp");
 					return;
 				}
-
-				app.userCanEdit = app.data.userIsAppOwner();
-
-				// Prevent app from accessing the cookie in viewer when user is not the owner
-				if ( ! app.isInBuilderMode && ! app.userCanEdit ) {
-					if( ! document.__defineGetter__ ) {
-						Object.defineProperty(document, 'cookie', {
-							get: function(){ return ''; },
-							set: function(){ return true; }
-						});
-					}
-					else {
-						document.__defineGetter__("cookie", function() { return ''; });
-						document.__defineSetter__("cookie", function() {} );
-					}
-				}
-
-				if( configOptions.authorizedOwners && configOptions.authorizedOwners.length > 0 && configOptions.authorizedOwners[0] ) {
-					var ownerFound = false;
-
-					if( itemRq.results[0].owner )
-						ownerFound = $.inArray(itemRq.results[0].owner, configOptions.authorizedOwners) != -1;
-
-					if ( ! ownerFound && configOptions.authorizedOwners[0] == "*" )
-						ownerFound = true;
-
-					if (!ownerFound) {
-						initError("invalidConfigOwner");
+				var oAuthInfo = new ArcGISOAuthInfo({
+					appId: 'storymaps',
+					portalUrl: 'https:' + configOptions.sharingurl.split('/sharing')[0],
+					popup: true
+				});
+				IdentityManager.registerOAuthInfos([oAuthInfo]);
+				if(itemRq.results[0].access !== "public") {
+					IdentityManager.checkAppAccess('https:' + configOptions.sharingurl, 'storymaps').then(function(identityResponse){
+						if (identityResponse && identityResponse.code && identityResponse.code === "IdentityManagerBase.1") {
+							initError("notAuthorizedLicense");
+							return;
+						}else {
+							loadWebMappingAppStep3(itemRq);
+						}
+					}, function() {
+						initError("notAuthorizedLicense");
 						return;
-					}
-				}
-
-				// App proxies
-				if (itemRq.results[0] && itemRq.results[0].appProxies) {
-					var layerMixins = array.map(itemRq.results[0].appProxies, function (p) {
-						return {
-							"url": p.sourceUrl,
-							"mixin": {
-								"url": p.proxyUrl
-							}
-						};
 					});
-					app.data.setAppProxies(layerMixins);
+				} else {
+					loadWebMappingAppStep3(itemRq);
 				}
+			});
+		}
 
-				// If in builder, check that user is app owner or org admin
-				if (app.isInBuilderMode && isProd() && !app.userCanEdit) {
-					initError("notAuthorized");
+		function loadWebMappingAppStep3(itemRq)
+		{
+			app.userCanEdit = app.data.userIsAppOwner();
+
+			// Prevent app from accessing the cookie in viewer when user is not the owner
+			if ( ! app.isInBuilderMode && ! app.userCanEdit ) {
+				if( ! document.__defineGetter__ ) {
+					Object.defineProperty(document, 'cookie', {
+						get: function(){ return ''; },
+						set: function(){ return true; }
+					});
+				}
+				else {
+					document.__defineGetter__("cookie", function() { return ''; });
+					document.__defineSetter__("cookie", function() {} );
+				}
+			}
+
+			if( configOptions.authorizedOwners && configOptions.authorizedOwners.length > 0 && configOptions.authorizedOwners[0] ) {
+				var ownerFound = false;
+
+				if( itemRq.results[0].owner )
+					ownerFound = $.inArray(itemRq.results[0].owner, configOptions.authorizedOwners) != -1;
+
+				if ( ! ownerFound && configOptions.authorizedOwners[0] == "*" )
+					ownerFound = true;
+
+				if (!ownerFound) {
+					initError("invalidConfigOwner");
 					return;
 				}
+			}
 
-				// Force side-panel for preview/demo
-				//WebApplicationData.setLayout("side-panel");
-				var webmapId = WebApplicationData.getWebmap() || Helper.getWebmapID(isProd());
-				if (webmapId)
-					loadWebMap(webmapId);
-				// Come back from the redirect below, create a new webmap
-				else if (app.isGalleryCreation){
-					WebApplicationData.setTitle(app.data.getAppItem().title);
-					WebApplicationData.setSubtitle(app.data.getAppItem().description);
-					WebApplicationData.setLayout("side-panel");
-					loadWebMap(MapTourBuilderHelper.getBlankWebmapJSON());
-				}
-				// ArcGIS Gallery page start the app with an appid that doesn't include a webmap
-				else if (Helper.getPortalUser() || ! isProd())
-					redirectToBuilderFromGallery();
-				else
-					initError("invalidApp");
-			});
+			// App proxies
+			if (itemRq.results[0] && itemRq.results[0].appProxies) {
+				var layerMixins = array.map(itemRq.results[0].appProxies, function (p) {
+					return {
+						"url": p.sourceUrl,
+						"mixin": {
+							"url": p.proxyUrl
+						}
+					};
+				});
+				app.data.setAppProxies(layerMixins);
+			}
+
+			// If in builder, check that user is app owner or org admin
+			if (app.isInBuilderMode && isProd() && !app.userCanEdit) {
+				initError("notAuthorized");
+				return;
+			}
+
+			// Force side-panel for preview/demo
+			//WebApplicationData.setLayout("side-panel");
+			var webmapId = WebApplicationData.getWebmap() || Helper.getWebmapID(isProd());
+			if (webmapId)
+				loadWebMap(webmapId);
+			// Come back from the redirect below, create a new webmap
+			else if (app.isGalleryCreation){
+				WebApplicationData.setTitle(app.data.getAppItem().title);
+				WebApplicationData.setSubtitle(app.data.getAppItem().description);
+				WebApplicationData.setLayout("side-panel");
+				loadWebMap(MapTourBuilderHelper.getBlankWebmapJSON());
+			}
+			// ArcGIS Gallery page start the app with an appid that doesn't include a webmap
+			else if (Helper.getPortalUser() || ! isProd())
+				redirectToBuilderFromGallery();
+			else
+				initError("invalidApp");
 		}
 
 		function portalLogin()
@@ -817,6 +857,14 @@ define(["esri/map",
 
 			if( error == "noLayerView" ) {
 				loadingIndicator.setMessage(i18n.viewer.errors[error], true);
+				return;
+			}
+			if ( error == "notAuthorizedLicense" ) {
+				var errorMsg = i18n.viewer.licenseChange2018.noAccess;
+				var userName = Helper.getPortalUser() ? Helper.getPortalUser() : app.portal && app.portal.getPortalUser() && app.portal.getPortalUser().username ? app.portal.getPortalUser().username : '';
+				errorMsg = errorMsg.replace(/%USER_NAME%/g, userName);
+				$("#fatalError .error-msg").html(errorMsg);
+				$("#fatalError").show();
 				return;
 			}
 			//else if ( error != "initMobile" )

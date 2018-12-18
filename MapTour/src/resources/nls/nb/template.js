@@ -601,6 +601,9 @@ define({
       "s2p1": "Nok en gang takk for at du bruker Esri Story Maps!",
       "action1": "Lukk",
       "action2": "Ta undersøkelsen"
+    },
+    "licenseChange2018": {
+      "noAccess": "Kontoen (%USER_NAME%) er ikke lisensiert til å åpne et fortellingskart som ikke er offentlig. Be administratoren for organisasjonen om å tilordne deg en brukertype som omfatter Story Maps eller en tilleggslisens for Essential Apps."
     }
   }
 });

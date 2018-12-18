@@ -601,6 +601,9 @@ define({
       "s2p1": "Bedankt voor het gebruik van Esri Story Maps!",
       "action1": "Sluiten",
       "action2": "De enquête invullen"
+    },
+    "licenseChange2018": {
+      "noAccess": "Uw account  (%USER_NAME%) heeft geen licentie om een Story Map te openen die niet openbaar is. Vraag uw organisatiebeheerder om u een gebruikerstype toe te wijzen die Sory Maps of een add-on Essential Apps-licentie bevat."
     }
   }
 });

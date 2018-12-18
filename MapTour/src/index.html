@@ -72,7 +72,7 @@
 		</script>
 
 		<script type="text/javascript">
-			var version = '2.13.0';
+			var version = '2.14.0';
 			var isProduction = false;
 			// IE 9 and below are not compatible with script async attribute.
 			var canUseAsyncAttr = true;
@@ -115,8 +115,8 @@
 				document.getElementsByTagName("head")[0].appendChild(el);
 			}
 
-			loadCSS("https://js.arcgis.com/3.26/esri/css/esri.css", true);
-			loadCSS("https://js.arcgis.com/3.26/dijit/themes/claro/claro.css", true);
+			loadCSS("https://js.arcgis.com/3.27/esri/css/esri.css", true);
+			loadCSS("https://js.arcgis.com/3.27/dijit/themes/claro/claro.css", true);
 
 			if( isProduction ) {
 				loadCSS("app/maptour-min.css");
@@ -161,7 +161,6 @@
 
 				loadCSS("app/storymaps/maptour/builder/PopupViewCSV.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewFlickr.css");
-				loadCSS("app/storymaps/maptour/builder/PopupViewPicasa.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewYoutube.css");
 				loadCSS("app/storymaps/maptour/builder/PopupViewGeoTag.css");
 
@@ -738,16 +737,14 @@
 							<td class="btn-select-flickr">
 								<a><img style="width: 50px"/></a>
 							</td>
-							<td class="btn-select-picasa">
+							<td class="btn-select-youtube">
 								<a><img style="width: 50px"/></a>
 							</td>
 						</tr>
 						<tr style="height: 15px">
 						</tr>
 						<tr>
-							<td class="btn-select-youtube">
-								<a><img style="width: 50px"/></a>
-							</td>
+							
 							<td class="btn-select-advanced">
 								<a><img style="width: 44px"/></a>
 							</td>
@@ -813,9 +810,6 @@
 						<td class="btn-select-flickr">
 							<img style="width: 50px"/>
 						</td>
-						<td class="btn-select-picasa">
-							<img style="width: 50px"/>
-						</td>
 						<td class="btn-select-youtube">
 							<img style="width: 50px"/>
 						</td>
@@ -873,27 +867,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div id="popupViewPicasa" class="popupViewPicasa">
-				<div class="headerContainer">
-					<span class="header"></span>
-					<span class="commonHeader"></span>
-				</div>
-				<div class="contentContainer">
-					<input class="selectUserName" type="text" value=""/>
-					<button class="btn btn-userLogin"></button>
-					<span class="signInMsg"></span>
-
-					<label class="control-label" for="picasaListAlbum"></label>
-					<div class="controls">
-						<div class="btn-group">
-							<select id="picasaListAlbum"></select>
-						</div>
-					</div>
-					<div class="howToFind">
-						<a></a>
 					</div>
 				</div>
 			</div>
@@ -1250,7 +1223,7 @@
 			</table>
 		</div>
 
-		<script src="https://js.arcgis.com/3.26/init.js"></script>
+		<script src="https://js.arcgis.com/3.27/init.js"></script>
 		<script type="text/javascript">
 			loadJS('app/maptour-config.js');
 
