@@ -387,14 +387,14 @@ This is useful if you use a custom basemap that don't cover the whole world.
 
 ## Developer guide
 
-This developer guide is intended to developer that wants to modify behavior or add new functionalities to the Map Tour application. If you only need to customize look and feel of the Map Tour, you should be able to do so using the User download.
-It requires basic knowledge of HTML, Javascript and CSS languages.
+This developer guide is intended for developers that want to modify the behavior or add new functionalities to the Map Tour application. If you only need to customize the look and feel of the Map Tour, you should be able to do so using the User download.
+Making these types of modifications requires basic knowledge of the HTML, Javascript and CSS languages.
 
 ### Developer extension events
 
-The template fire some events to allow customization with lose integration. This mean that you may not need to understand the internal of the application to extend it.
+The template fires some events that allow customization with loose integration. This means that you may not need to understand the internal workings of the application to extend it.
 
-Three events are available (application ready, before/after picture change):
+Three events are available (application ready, before picture change, and after picture change):
 
 		require(["dojo/topic"], function(topic) {
 			// The application is ready
