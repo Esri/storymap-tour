@@ -448,7 +448,7 @@ define({
         "div1": "Glavni element koji treba razmotriti pri izradi Map Toura jest odabir gdje ćete pohraniti slike. Map Tour može upotrijebiti slike pohranjene na servisima za dijeljenje fotografija, s bilo kojeg poslužitelja ili slike koje učitate s diska.",
         "div1a": "Pojedinosti o podržanim formatima slika i videozapisima potražite u posljednjem odjeljku ove kartice.",
         "div2": "Interaktivni sastavljač daje vam dvije opcije za rukovanje slikama u Map Touru:",
-        "div3": "<ul><li>Možete upotrijebiti <b>fotografije koje su već na mreži</b>, kao što su slike u Flickru ili Google+ ili slike pohranjene na vašem mrežnom poslužitelju. Te će se slike referencirati u vašem Map Touru putem njihovih URL-ova.</li><li>Također možete <b>učitati fotografije sa svojeg računala</b> izravno u Map Tour. Za ovu opciju učitavanja morate imate pretplatu za ArcGIS i privilegije izdavača ili administratora jer se automatski stvara hostirana usluga za vas u kojoj se vaše fotografije pohranjuju kao privitci.</li></ul>",
+        "div3": "<ul><li>Možete upotrijebiti <b>fotografije koje su već na mreži</b>, kao što su slike u Flickru ili slike pohranjene na vašem mrežnom poslužitelju. Te će se slike referencirati u vašem Map Touru putem njihovih URL-ova.</li><li>Također možete <b>učitati fotografije sa svojeg računala</b> izravno u Map Tour. Za ovu opciju učitavanja morate imate pretplatu za ArcGIS i privilegije izdavača ili administratora jer se automatski stvara hostirana usluga za vas u kojoj se vaše fotografije pohranjuju kao privitci.</li></ul>",
         "div4": "Glavni slučajevi kad se upotrebljava:",
         "div4b": "<b>Vaše fotografije još nisu hostirane</b> i imate pretplatu na ArcGIS: upotreba hostirane usluge geoobjekata najbolji vam je izbor. Kao javni servis za dijeljenje fotografija optimizirat ćemo vam slike kako bismo stvorili slike koje se brzo učitavaju i imat ćete pristup svim mogućnostima za administraciju i upravljanje podacima platforme ArcGIS.",
         "div5": "<b>Niste član organizacije</b>: prvo morate učitati slike na web-mjesto za dijeljenje fotografija ili na vlastiti web-poslužitelj. Sastavljač će vam pomoći upotrijebiti ove slike koje će se nastaviti hostirati na izvornoj lokaciji.",
@@ -459,9 +459,9 @@ define({
         "learn": "saznaj više",
         "div9": "Operacija uvoza referencira slike koje su već hostirane tako da pohranjuje njihove URL-ove u kolekciji geoobjekata web-karte. Slike nisu pohranjene na programu ArcGIS Online. Ako se hostiranim slikama ne može pristupiti, neće biti dostupne u Map Touru i vidjet ćete obavijest 'Slika nije dostupna'. Ovisno o pružatelju usluga za fotografije, Map Tour možda neće uvesti naziv, opis i lokaciju slika. Ovi su atributi pohranjeni u web-karti i sva uređivanja usluga na mreži neće se odraziti u Map Touru.",
         "div10": "Pohranjivanje slika na web-poslužitelju",
-        "div11": "Ako odlučite hostirati svoje fotografije na vlastitom mrežnom poslužitelju (umjesto pristupanja slikama u Flickru ili Google+ ili izravnog učitavanja u obilazak), morat ćete ručno izraditi sličice za svoje slike. Upotreba slika s punom razlučivošću za sličice rezultirat će lošijim performansama. U <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>često postavljenim pitanjima</a> potražite savjete za promjenu veličine vaših slika ako ćete im pristupati mrežno izravno putem URL-ova.",
-        "div12": "Upotreba postojećih GIS podataka",
-        "div13": "Bilo koja usluga geoobjekata, CSV datoteka ili shapefile koji sadrži točke može se upotrijebiti kao izvor podataka za Map Tour ako sadrži skup polja koje aplikacija očekuje. Morate je/ga dodati kao sloj na ArcGIS web-kartu i zatim podijeliti kartu stvaranjem Map Toura.",
+        "div11": "Ako odlučite hostirati svoje fotografije na vlastitom mrežnom poslužitelju (umjesto pristupanja slikama u Flickru ili izravnog učitavanja u obilazak), morat ćete ručno izraditi sličice za svoje slike. Upotreba slika s punom razlučivošću za sličice rezultirat će lošijim performansama. U <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>često postavljenim pitanjima</a> potražite savjete za promjenu veličine vaših slika ako ćete im pristupati mrežno izravno putem URL-ova.",
+        "div12": "Upotreba postojećih podataka o mjestima",
+        "div13": "Ako imate postojeće podatke o mjestima, kao što je popis mjesta u proračunskoj tablici ili GIS točkastom sloju, te podatke možete upotrebljavati u CSV formatu da biste stvorili Map Tour. To zahtijeva da se vašim slikama pristupa izravno putem URL-ova koji su pohranjeni kao vrijednosti u CSV datoteci. CSV predložak možete preuzeti iz dijaloškog okvira Napredne opcije kada prvi put pokrenete sastavljač Map Tour. Vaša CSV datoteka može se učitati u taj dijalog.",
         "div14": "Podržane vrijednosti za naziv polja jesu (velika i mala slova):",
         "div151": "Naziv",
         "div152": "Opis",
@@ -473,11 +473,11 @@ define({
         "div17": "Polja slike i sličice su obvezna za usluge geoobjekata bez privitaka, a nisu obvezna (no preporučuju se) za usluge geoobjekata s privicima. Ako vaša usluga ima omogućene privitke, sastavljač će vam dopustiti da učitate slike kao privitke. Ako nema, moći ćete samo urediti URL-ove slike i sličice.",
         "div172": "Kada postoje, polja slike i sličice uvijek će se upotrijebiti i neće biti upita za privicima usluge geoobjekata.",
         "div173": "Primjeri CSV-a i shapefileova mogu se preuzeti s",
-        "div174": "Pogledajte <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>često postavljena pitanja</a> i pronađite više informacija o upotrebi postojećih GIS podataka.",
+        "div174": "Više informacija potražite u <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>često postavljenim pitanjima</a>.",
         "div18": "Stvaranje hostirane usluge geoobjekata od CSV-a ili shapefile",
         "div19": "Kada stvorite hostiranu uslugu geoobjekata od CSV-a ili shapefilea, privici nisu omogućeni po zadanim postavkama. Da bi ste ih omogućili, otvorite stranicu o pojedinostima značajke usluge geoobjekata, kliknite na malu strelicu na odjeljku sloja i vidjet ćete tu opciju. Map Tour nastavit će upotrebljavati slike i sličice koje ste referencirali atributima. Po želji, ako želite učitati svoje slike kao privitke usluge geoobjekata, moći ćete to napraviti putem dva gumba na ploči slike („Promijeni sliku” i „Promijeni sličicu”).",
         "div20": "Podržani formati slika i videozapisi",
-        "div21": "Ako pristupate slikama u Flickru ili Google+, Map automatski pristupa tim slikama kao .jpg datotekama. Ako učitate slike u sastavljač za Map Tour, slike trebaju biti u formatu .jpg ili .jpeg. Ako navodite slike izravno s mreže putem URL-ova, podržani formati slika su .jpg, .jpeg, .png, .gif i .bmp. Videozapisi s YouTubea izravno su podržani.",
+        "div21": "Ako pristupate slikama u Flickru, Map Tour automatski pristupa tim slikama kao .jpg datotekama. Ako učitate slike u sastavljač za Map Tour, slike trebaju biti u formatu .jpg ili .jpeg. Ako navodite slike izravno s mreže putem URL-ova, podržani formati slika su .jpg, .jpeg, .png, .gif i .bmp. Videozapisi s YouTubea izravno su podržani.",
         "div22": "Predložak Map Tour ne uključuje reproduktor videozapisa pa morate upotrijebiti vanjski reproduktor videozapisa koji pruža vaš omiljeni servis za hostiranje videozapisa (pronađite opciju za ugrađivanje videozapisa i kopirajte URL u danom kodu). Ako sami želite hostirati videozapis, možete stvoriti HTML stranicu koja sadrži reproduktor videozapisa poput <a href='http://www.videojs.com/'>Video.js</a>.",
         "div23": "Interaktivni sastavljač ne pruža dijalog za uključivanje videozapisa prilikom upotrebe usluge geoobjekata s privicima, no moguće je to napraviti uređivanjem podataka izvan interaktivnog sastavljača. U pregledniku karte na arcgis.com ako izmijenite polja slike da ukazuju na vanjski videozapis i dodate posebne parametre na kraju svojeg URL-a (#isVideo), vaš će se medij smatrati videozapisom.",
         "div24": "Imajte na umu da još uvijek morate imati dva valjana privitka sa slikama ili se točka neće upotrijebiti. Nije moguće upotrijebiti videozapise prilikom upotrebe privitaka usluge geoobjekata bez polja slike i sličice."
@@ -604,6 +604,9 @@ define({
     },
     "licenseChange2018": {
       "noAccess": "Vaš račun (%USER_NAME%) nije licenciran za upotrebu Story Mapa koji nije javan. Obratite se administratoru svoje organizacije da vam dodijeli vrstu korisnika koja sadrži licencu za Story Map ili za dodatke za osnovne appove."
+    },
+    "storyTellerUserType": {
+      "notCreatorError": "Vaš račun (%USER_NAME%) nije licenciran za upotrebu classic story map builder softvera. Upitajte administratora svoje organizacije da vam dodijeli vrstu korisnika Creator."
     }
   }
 });

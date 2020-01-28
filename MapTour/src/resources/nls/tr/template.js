@@ -448,7 +448,7 @@ define({
         "div1": "Harita Turu oluştururken dikkate alınacak temel unsur, resimlerin nerede saklanacağını seçmektir. Harita Turunda, fotoğraf paylaşım hizmetleri, herhangi bir web sunucusu veya diskte saklanan resimler kullanabilir.",
         "div1a": "Desteklenen resim formatların ve videoların ayrıntıları için bu sekmenin son bölümüne bakın.",
         "div2": "Etkileşimli derleyici Harita Turunuzdaki görüntüleri yönetmek için iki seçenek sunar:",
-        "div3": "<ul><li>Flickr veya Google+’taki veya web sunucunuzda saklanan görüntüler gibi <b>zaten çevrimiçi olan fotoğrafları</b> kullanabilirsiniz. Bu görüntülere, URL'leri aracılığıyla, Harita Turunuzda referans verilecektir.</li><li>Ayrıca, fotoğrafları bilgisayarınızdan <b>doğrudan Harita Turunuza</b> da yükleyebilirsiniz. Bu yükleme seçeneği, bir ArcGIS aboneliğinizin olmasını ve Yayıncı veya Yönetici ayrıcalıklarınızın olmasını gerektirir; çünkü fotoğraflarınızın ek olarak saklandığı barındırılan bir özellik detay sizin için otomatik olarak oluşturulur.</li></ul>",
+        "div3": "<ul><li>Flickr veya web sunucunuzda saklanan görüntüler gibi <b>zaten çevrimiçi olan fotoğrafları</b> kullanabilirsiniz. Bu görüntülere, URL'leri aracılığıyla, Harita Turunuzda referans verilecektir.</li><li>Ayrıca, fotoğrafları  <b>bilgisayarınızdan</b> doğrudan Harita Turunuza da yükleyebilirsiniz. Bu yükleme seçeneği, bir ArcGIS aboneliğinizin olmasını ve Yayıncı veya Yönetici ayrıcalıklarınızın olmasını gerektirir; çünkü fotoğraflarınızın ek olarak saklandığı barındırılan bir özellik detay sizin için otomatik olarak oluşturulur.</li></ul>",
         "div4": "Ana kullanım örnekleri şunlardır:",
         "div4b": "<b>Fotoğraflarınız henüz barındırılmıyor</b> ve bir ArcGIS aboneliğine sahipsiniz: Barındırılan detay servisini kullanmak en iyi seçiminizdir. Genel fotoğraf paylaşım hizmetlerinde de olduğu gibi, hızlı yüklenen görüntüler için resimlerinizi optimum hale getireceğiz ve siz de ArcGIS platformunun tüm idari ve veri yönetim becerilerine erişim sağlayabileceksiniz.",
         "div5": "<b>Bir Kuruluşa üye değilsinizdir</b>: Resimlerinizi önce bir fotoğraf paylaşma web sitesine veya kendi web sunucunuza yüklemeniz gerekir. Derleyici, asıl konumlarında barındırılmaya devam edecek olan bu resimleri kullanmanıza yardımcı olur.",
@@ -459,9 +459,9 @@ define({
         "learn": "daha fazla bilgi",
         "div9": "İçe aktarma işlemi zaten barındırılmakta olan resimlere bunların URL'lerini bir web haritası detay koleksiyonda depolayarak başvurur. Resimler ArcGIS Online'da depolanamaz. Barındırılan resimlere erişilemiyorsa, bunlar Harita Turu'nda kullanılamaz ve bir 'Resim kullanılamıyor' görüntüsü görürsünüz. Fotoğraf servisi sağlayıcınıza bağlı olarak Harita Turu resimlerini adını, açıklamasını ve konumunu içe aktaramayabilir. Bu öznitelikler web haritasında depolanır ve çevrimiçi servislerde yapılan düzenlemelerin hiçbiri Harita Turuna yansımaz.",
         "div10": "Resimleri bir web sunucusunda depolama",
-        "div11": "Fotoğraflarınızı web sunucunuzda tutmayı seçerseniz (Flickr veya Google+’taki görüntülere erişmek veya bunları doğrudan turunuza yüklemek yerine), görüntüleriniz için manuel olarak küçük resimler oluşturmanız gerekir. Küçük resim için tam çözünürlüklü fotoğraflar kullanmak kötü bir performansa neden olur. URL’ler yoluyla doğrudan web’de erişecekseniz görüntülerinizi yeniden boyutlandırmayla ilgili ipuçları için bkz. <a href=’https://links.esri.com/storymaps/faq_maptour_image_size’ target=’_blank’>SSS</a>.",
-        "div12": "Mevcut GIS verilerinin kullanılması",
-        "div13": "Herhangi bir detay servisi, CSV dosyası veya noktalar içeren bir shapefile dosyası, uygulamanın beklediği alanlar kümesini içeriyorsa, bir Harita Turu veri kaynağı olarak kullanılabilir. Bunu bir ArcGIS web haritasına katman olarak eklemeli ve ardından Harita Turu oluşturarak haritayı paylaşmalısınız.",
+        "div11": "Fotoğraflarınızı web sunucunuzda tutmayı seçerseniz (Flickr’daki görüntülere erişmek veya bunları doğrudan turunuza yüklemek yerine), görüntüleriniz için manuel olarak küçük resimler oluşturmanız gerekir. Küçük resim için tam çözünürlüklü fotoğraflar kullanmak kötü bir performansa neden olur. URL’ler yoluyla doğrudan web’de erişecekseniz görüntülerinizi yeniden boyutlandırmayla ilgili ipuçları için bkz. <a href=’https://links.esri.com/storymaps/faq_maptour_image_size’ target=’_blank’>SSS</a>.",
+        "div12": "Mevcut yer verilerinin kullanılması",
+        "div13": "Elektronik tabloda bir yer listesi veya bir GIS nokta katmanı gibi mevcut yer verileriniz varsa, bir Harita Turu oluşturmak için bu verileri CSV biçiminde kullanabilirsiniz. Bu, resimlerinize, CSV dosyasında değerler olarak saklanan URL’ler üzerinden erişilmesini gerektirir. Harita Turu Oluşturucu’yu ilk başlatışınızda, CSV şablonunu Gelişmiş Seçenekler iletişim kutusundan indirebilirsiniz. CSV dosyanız bu iletişim kutusuna yüklenebilir.",
         "div14": "Alan adları için desteklenen değerler (büyük/küçük harfe duyarlı):",
         "div151": "Ad",
         "div152": "Açıklama",
@@ -473,11 +473,11 @@ define({
         "div17": "Ekleri olmayan detay servisleri için resim ve küçük resim alanları zorunlu, ekleri olan detay servisleri içinse isteğe bağlıdır (ancak özellikle önerilir). Serviste ekler etkinleştirilmişse, derleyici resimleri ekler olarak yüklemenize izin verir. Değilse, resmin ve küçük resmin URL'lerini düzenleyebilirsiniz.",
         "div172": "Mevcut olduğunda resim ve küçük resim alanları her zaman kullanılır ve detay servisi ekleri sorgulanmaz.",
         "div173": "Örnek CSV'ler ve shapefile'lar şuradan indirilebilir:",
-        "div174": "Mevcut CBS verilerinin kullanımıyla ilgili daha fazla bilgi için bkz. <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>SSS</a>.",
+        "div174": "Daha fazla bilgi için bkz. <a href=’https://links.esri.com/storymaps/faq_map_tour_gis_data’ target=’_blank’>FAQ</a>.",
         "div18": "CSV'den veya shapefile'dan barındırılan bir Detay Servisi oluşturma",
         "div19": "CSV veya shapefile dosyasından barındırılan bir detay servisi oluşturduğunuzda, ekler varsayılan olarak etkinleştirilmez. Bunları etkinleştirmek için detay servisinin sayfasını açıp katman bölümündeki küçük oka tıklarsanız, bu seçeneği görürsünüz. Harita Turu öznitelikler yoluyla başvurduğunuz resimleri ve küçük resimleri kullanmaya devam eder. Resimlerinizi detay servisi ekleri olarak karşıya yüklemek isterseniz, resim panelindeki iki düğme (\"Resmi Değiştir\" ve \"Küçük Resmi Değiştir\") yoluyla bunu yapabilirsiniz.",
         "div20": "Desteklenen resim formatları ve videolar",
-        "div21": "Flickr veya Google+’taki görüntülere erişiyorsanız, Harita Turu bu görüntülere otomatik olarak .jpg dosyası şeklinde erişir. Görüntüleri Harita Turu’na yüklerseniz, görüntülerin .jpg veya .jpeg formatında olmaları gerekir. URL’leri yoluyla web’deki görüntülere doğrudan referans veriyorsanız, desteklenen görüntü formatları .jpg, .jpeg, .png, .gif ve .bmp’dir. YouTube videoları doğrudan desteklenir.",
+        "div21": "Flickr’daki görüntülere erişiyorsanız, Harita Turu bu görüntülere otomatik olarak .jpg dosyası şeklinde erişir. Görüntüleri Harita Turu’na yüklerseniz, görüntülerin .jpg veya .jpeg formatında olmaları gerekir. URL’leri yoluyla web’deki görüntülere doğrudan referans veriyorsanız, desteklenen görüntü formatları .jpg, .jpeg, .png, .gif ve .bmp’dir. YouTube videoları doğrudan desteklenir.",
         "div22": "Harita Turu şablonu bir video oynatıcısı içermez, bu yüzden favori video barındırma servisinizin sağladığı harici video oynatıcısını kullanmanız gerekir. (Videoyu katıştırma seçeneğini bulun ve verili koddaki URL'yi kopyalayın.) Videoyu kendiniz barındırmak isterseniz, <a href='http://www.videojs.com/'>Video.js</a> gibi bir video oynatıcı içeren bir HTML sayfası oluşturabilirsiniz.",
         "div23": "Ekleri olan detay servisleri kullanılırken etkileşimli derleyici video dahil etmek için bir iletişim kutusu sunmaz, ancak verilerinizi etkileşimli derleyicinin dışında düzenleyerek bunu yapabilirsiniz. Arcgis.com harita görüntüleyicisinde, resim alanlarını harici bir videoya işaret edecek şekilde değiştirir ve URL'nizin sonuna özel bir parametre (#isVideo) eklerseniz, medyanızın bir video olduğu kabul edilir.",
         "div24": "İki geçerli resim ekiniz olması gerektiğine, aksi halde noktanın kullanılamayacağına dikkat edin. Resim ve küçük resim alanları olmadan, detay servisi ekleri kullanılırken video kullanmak mümkün değildir."
@@ -604,6 +604,9 @@ define({
     },
     "licenseChange2018": {
       "noAccess": "Hesabınız (%USER_NAME%) herkese açık olmayan bir Hikaye Haritasını açmak için lisanslandırılmamış. Lütfen kuruluş yöneticinizden Hikaye Haritaları veya eklenti Temel Uygulamalar lisansı içeren bir kullanıcı türü atamasını isteyin."
+    },
+    "storyTellerUserType": {
+      "notCreatorError": "Hesabınızın (%USER_NAME%) klasik story map oluşturucularını kullanma yetkisi yok. Kuruluşunuzun yöneticisinden size bir Creator kullanıcı türü atamasını isteyin."
     }
   }
 });

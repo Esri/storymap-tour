@@ -416,7 +416,11 @@ define(["esri/map",
 						if (identityResponse && identityResponse.code && identityResponse.code === "IdentityManagerBase.1") {
 							initError("notAuthorizedBuilder");
 							return;
-						}else {
+						} else if(identityResponse.viewOnly){
+							// Storyteller user type
+							initError("viewOnlyLicense");
+							return;
+						} else  {
 							loadWebMap(MapTourBuilderHelper.getBlankWebmapJSON());
 						}
 					}, function() {
@@ -554,17 +558,18 @@ define(["esri/map",
 					popup: true
 				});
 				IdentityManager.registerOAuthInfos([oAuthInfo]);
-				if(itemRq.results[0].access !== "public") {
+				if(itemRq.results[0].access !== "public" || app.isInBuilderMode) {
 					IdentityManager.checkAppAccess('https:' + configOptions.sharingurl, 'storymaps').then(function(identityResponse){
 						if (identityResponse && identityResponse.code && identityResponse.code === "IdentityManagerBase.1") {
 							initError("notAuthorizedLicense");
 							return;
-						}else {
+						} else if(app.isInBuilderMode && identityResponse.viewOnly){
+							// Storyteller user type
+							initError("viewOnlyLicense");
+							return;
+						} else {
 							loadWebMappingAppStep3(itemRq);
 						}
-					}, function() {
-						initError("notAuthorizedLicense");
-						return;
 					});
 				} else {
 					loadWebMappingAppStep3(itemRq);
@@ -864,6 +869,14 @@ define(["esri/map",
 				var userName = Helper.getPortalUser() ? Helper.getPortalUser() : app.portal && app.portal.getPortalUser() && app.portal.getPortalUser().username ? app.portal.getPortalUser().username : '';
 				errorMsg = errorMsg.replace(/%USER_NAME%/g, userName);
 				$("#fatalError .error-msg").html(errorMsg);
+				$("#fatalError").show();
+				return;
+			}
+			if (error == "viewOnlyLicense") {
+				var storyTellerErrMsg = i18n.viewer.storyTellerUserType.notCreatorError;
+				var storyTellerUserName = Helper.getPortalUser() ? Helper.getPortalUser() : app.portal && app.portal.getPortalUser() && app.portal.getPortalUser().username ? app.portal.getPortalUser().username : '';
+				storyTellerErrMsg = storyTellerErrMsg.replace(/%USER_NAME%/g, storyTellerUserName);
+				$("#fatalError .error-msg").html(storyTellerErrMsg);
 				$("#fatalError").show();
 				return;
 			}

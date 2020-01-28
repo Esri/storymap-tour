@@ -157,9 +157,9 @@ define({
       "settingsLayoutNew": "Neu!",
       "settingsLayoutSelect": "Auswählen",
       "settingsLayoutNote": "Beachten Sie, dass für Punkte, die Videos verwenden, die Bildunterschrift immer unter dem Video angezeigt wird, selbst wenn die Option deaktiviert ist.",
-      "settingsLayoutLocBtn": "\"Suchen\"-Schaltfläche anzeigen",
+      "settingsLayoutLocBtn": "Schaltfläche \"Suchen\" anzeigen",
       "settingsLayoutLocBtnHelp": "Wird auf den meisten Browsern unterstützt. Wird nur angezeigt, wenn auf die Story-Map über HTTPS zugegriffen wird. Wird für eine eingebettete Story nicht angezeigt.",
-      "settingsColorExplain": "Ändern Sie das Aussehen durch Auswahl eines vordefinierten Themas, oder erstellen Sie ein eigenes.",
+      "settingsColorExplain": "Ändern Sie das Aussehen durch Auswahl eines vordefinierten Designs, oder erstellen Sie ein eigenes.",
       "settingsLabelColor": "Farben für Kopfzeilen, Inhalt und Fußzeilen",
       "settingsLogoExplain": "Kopfzeilen-Logo anpassen (max. 250 x 50 Pixel).",
       "settingsLogoEsri": "Esri Logo",
@@ -448,7 +448,7 @@ define({
         "div1": "Die wichtigste Entscheidung bei der Erstellung einer Map Tour betrifft den Speicherort der Bilder. In einer Map Tour können Bilder verwendet werden, die in Bilddatenbanken oder auf einem Webserver gespeichert sind oder die von der Festplatte hochgeladen wurden.",
         "div1a": "Dem letzten Abschnitt dieses Registers können Sie Näheres zu unterstützten Bildformaten und Videos entnehmen.",
         "div2": "Mit dem interaktiven Builder stehen Ihnen zwei Optionen für die Verwendung der Bilder in der Map Tour zur Verfügung:",
-        "div3": "<Ul><li>Sie können <b>Fotos, die bereits online sind</b>, verwenden, so z. B. Bilder in Flickr oder Google+ oder auf Ihrem eigenen Webserver gespeicherte Bilder. Diese Bilder werden in Ihrer Map Tour über die URL referenziert.</li><li>Sie können auch <b>Fotos von Ihrem Computer direkt in die Map Tour hochladen</b>. Für diese Option benötigen Sie eine ArcGIS-Subskription und Publisher- bzw. Administratorberechtigungen, da automatisch ein gehosteter Feature-Service erstellt wird, in dem Ihre Fotos als Anlagen gespeichert werden.</li></ul>",
+        "div3": "<Ul><li>Sie können <b>Fotos, die bereits online sind</b>, verwenden, so z. B. Bilder in Flickr oder auf Ihrem eigenen Webserver gespeicherte Bilder. Diese Bilder werden in Ihrer Map Tour über die URL referenziert.</li><li>Sie können auch <b>Fotos von Ihrem Computer direkt in die Map Tour hochladen</b>. Für diese Option benötigen Sie eine ArcGIS-Subskription und Publisher- bzw. Administratorberechtigungen, da automatisch ein gehosteter Feature-Service erstellt wird, in dem Ihre Fotos als Anlagen gespeichert werden.</li></ul>",
         "div4": "Es gibt hauptsächlich folgende Anwendungsfälle:",
         "div4b": "<b>Ihre Fotos werden noch nicht gehostet</b>, dabei verfügen Sie über eine ArcGIS-Subskription: Die beste Option in diesem Fall ist die Verwendung eines gehosteten Feature-Service. Wie bei öffentlichen Bilddatenbanken werden Ihre Bilder optimiert, damit sie schnell geladen werden können. Sie haben außerdem Zugriff auf alle Verwaltungs- und Datenmanagementfunktionen der ArcGIS Plattform.",
         "div5": "<b>Sie sind kein Mitglied einer Organisation</b>: Sie müssen Ihre Bilder zuerst auf eine Fotofreigabe-Website oder einen eigenen Webserver hochladen. Danach unterstützt Sie der Builder bei der Verwendung der Bilder, die weiter am ursprünglichen Speicherort gehostet werden.",
@@ -459,9 +459,9 @@ define({
         "learn": "Weitere Informationen",
         "div9": "Beim Importvorgang wird auf bereits gehostete Bilder verwiesen, indem die URLs in einer Webkarten-Feature-Sammlung gespeichert werden. Die Bilder werden nicht in ArcGIS Online gespeichert. Wenn auf die gehosteten Bilder nicht zugegriffen werden kann, sind sie nicht in der Map Tour verfügbar, stattdessen wird \"Bild nicht verfügbar\" angezeigt. Abhängig vom Service-Provider werden Name, Beschreibung und Position der Bilder nicht in die Map Tour importiert. Diese Attribute werden in der Webkarte gespeichert, Änderungen in den Online-Services werden nicht in die Map Tour übernommen.",
         "div10": "Speichern der Bilder auf einem Webserver",
-        "div11": "Wenn Sie Ihre Bilder auf Ihrem eigenen Webserver hosten (anstatt auf Bilder in Flickr oder Google+ zuzugreifen oder sie direkt in Ihre Tour hochzuladen), müssen Sie manuell Miniaturansichten für Ihre Bilder erstellen. Wenn Sie für Miniaturansichten Bilder mit voller Auflösung verwenden, beeinträchtigt dies die Performance. In den <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>FAQ</a> finden Sie Tipps zur Größenanpassung von Bildern für den Fall, dass Sie im Internet direkt über URLs auf die Bilder zugreifen möchten.",
-        "div12": "Verwenden von vorhandenen GIS-Daten",
-        "div13": "Alle Feature-Services, CSV-Dateien oder Shapefiles mit Punkten können als Datenquelle für eine Map Tour verwendet werden, solange die Quelle die entsprechenden Felder für die Anwendung enthält. Sie müssen sie einer ArcGIS-Webkarte als Layer hinzufügen und dann die Karte freigeben, indem Sie eine Map Tour erstellen.",
+        "div11": "Wenn Sie die Bilder auf Ihrem eigenen Webserver hosten (anstatt auf Bilder in Flickr zuzugreifen oder sie direkt in Ihre Tour hochzuladen), müssen Sie manuell Miniaturansichten für Ihre Bilder erstellen. Wenn Sie für Miniaturansichten Bilder mit voller Auflösung verwenden, beeinträchtigt dies die Performance. In den <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>FAQ</a> finden Sie Tipps zur Größenanpassung von Bildern für den Fall, dass Sie im Internet direkt über URLs auf die Bilder zugreifen möchten.",
+        "div12": "Verwenden von vorhandenen Ortsdaten",
+        "div13": "Wenn Sie bereits über Ortsdaten verfügen, z. B. in Form einer Liste von Orten in einer Tabelle oder eines GIS-Punkt-Layers, können Sie diese Daten im CSV-Format zum Erstellen einer Map Tour verwenden. Hierzu ist es erforderlich, dass auf die Bilder direkt über URLs, die als Werte in der CSV-Datei gespeichert sind, zugegriffen wird. Beim ersten Start des Map Tour Builders können Sie die CSV-Vorlage im Dialogfeld \"Erweiterte Optionen\" herunterladen. Die CSV-Datei kann in dieses Dialogfeld hochgeladen werden.",
         "div14": "Es werden folgende Werte als Feldnamen unterstützt (keine Unterscheidung zwischen Groß-/Kleinschreibung):",
         "div151": "Name",
         "div152": "Beschreibung",
@@ -469,15 +469,15 @@ define({
         "div154": "Miniaturansicht",
         "div155": "Farbe ",
         "div16": "Wenn bei der Verwendung eines Feature-Service keine passenden Felder von der Anwendung gefunden werden, funktioniert der Viewer erst, wenn Sie die zu verwendenden Felder durch den Builder konfigurieren. Der zur Webkarte hinzugefügte CSV- und Shapefile-Layer muss alle Pflichtfelder enthalten, damit der Builder funktioniert.",
-        "div162": "Bei Nutzung eines Feature-Service, der die Bilder in Form von Anlagen speichert,<b>werden lediglich die Features mit zwei Anlagen verwendet</b>. Die erste Anlage definiert das Hauptbild, der zweite die Miniaturansicht.",
+        "div162": "Bei Nutzung eines Feature-Service, der die Bilder in Form von Anlagen speichert, <b>werden lediglich die Features mit zwei Anlagen verwendet</b>. Die erste Anlage definiert das Hauptbild, der zweite die Miniaturansicht.",
         "div17": "Die Bild- und Miniaturansichtsfelder sind für Feature-Services ohne Anlagen Pflichtfelder und für Feature-Services mit Anlagen optional (jedoch sehr empfehlenswert). Wenn Anlagen für den Service aktiviert sind, können Sie Bilder mit dem Map Tour Builder als Anlagen hochladen. Andernfalls können Sie nur die Bild- und Miniaturansicht-URL bearbeiten.",
         "div172": "Sofern vorhanden, werden die Felder Bild und Miniaturansicht stets verwendet, und die Anlagen des Feature-Service werden nicht abgefragt.",
         "div173": "Beispiele für CSV-Dateien und Shapefiles können heruntergeladen werden unter",
-        "div174": "In den <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>FAQ</a> finden Sie weitere Informationen zur Verwendung vorhandener GIS-Daten.",
+        "div174": "Weitere Informationen finden Sie in den <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>FAQ</a>.",
         "div18": "Erstellen eines gehosteten Feature-Service aus einer CSV-Datei oder einem Shapefile",
         "div19": "Bei der Erstellung eines gehosteten Feature-Service aus einer CSV-Datei oder einem Shapefile sind Anlagen nicht standardmäßig aktiviert. Um sie zu aktivieren, öffnen Sie die Feature-Service-Seite und klicken Sie auf den kleinen Pfeil im Layer-Abschnitt, damit die Option angezeigt wird. Die Bilder und Miniaturansichten, auf die Sie durch Attribute verwiesen haben, werden in Map Tour weiter verwendet. Wenn Sie Ihre Bilder optional als Feature-Service-Anlagen hochladen möchten, ist dies über zwei Schaltflächen im Bildbereich möglich (\"Bild ändern\" und \"Miniaturansicht ändern\").",
         "div20": "Unterstützte Bildformate und Videos",
-        "div21": "Wenn Sie auf Bilder in Flickr oder Google+ zugreifen, ruft die Map Tour diese automatisch als JPG-Dateien ab. Wenn Sie Bilder in den Map Tour Builder hochladen möchten, müssen diese das JPG- oder JPEG-Format aufweisen. Beim Direktverweis auf Bilder im Web per URL werden die Bildformate JPG, JPEG, PNG, GIF und BMP unterstützt. YouTube-Videos werden direkt unterstützt.",
+        "div21": "Wenn Sie auf Bilder in Flickr zugreifen, ruft die Map Tour diese automatisch als JPG-Dateien ab. Wenn Sie Bilder in den Map Tour Builder hochladen möchten, müssen diese das JPG- oder JPEG-Format aufweisen. Beim Direktverweis auf Bilder im Web per URL werden die Bildformate JPG, JPEG, PNG, GIF und BMP unterstützt. YouTube-Videos werden direkt unterstützt.",
         "div22": "Da die Map Tour-Vorlage über keine Videoabspielfunktion verfügt, müssen Sie auf den externen Videoplayer Ihres bevorzugten Video-Hosting-Service zurückgreifen (betten Sie das Video mit der entsprechenden Option ein und kopieren Sie die vorhandene URL in den angegebenen Code). Wenn Sie das Video selbst hosten möchten, können Sie eine HTML-Seite erstellen, die einen Videoplayer wie <a href='http://www.videojs.com/'>Video.js</a> enthält.",
         "div23": "Der interaktive Builder bietet keine Dialogfunktion zum Einbetten eines Videos bei Verwendung von Feature-Services mit Anlagen an, aber Sie können die Daten einfach außerhalb des interaktiven Builders bearbeiten. Bearbeiten Sie im arcgis.com Map Viewer die Bildfelder so, dass diese auf ein externes Video verweisen, fügen Sie einen speziellen Parameter (#isVideo) an das Ende Ihrer URL an und schon werden Ihre Medien als Video behandelt.",
         "div24": "Beachten Sie, dass Sie weiterhin zwei gültige Anlagen mit Bildern benötigen; andernfalls wird der Punkt nicht verwendet. Wenn Anlagen von Feature-Services ohne die Felder für Bild und Miniaturansicht verwendet werden, können keine Videos integriert werden."
@@ -491,7 +491,7 @@ define({
         "div41": "Sie erstellen unter Verwendung des interaktiven Builders Ihre Map Tour in der gehosteten Umgebung und konfigurieren die Vorlage mit der Kennung der Webkartenanwendung. Ihre mit dem interaktiven Builder definierten Einstellungen werden angewendet.",
         "div42": "Sie erstellen Ihre Webkarte außerhalb des interaktiven Builders und konfigurieren die Vorlage mit der Webkartenkennung. Eine Anleitung zur Konfiguration der Vorlage können Sie der Dokumentation entnehmen.",
         "div43": "Beachten Sie, dass der interaktive Builder in der herunterladbaren Version verfügbar ist, allerdings ist in manchen Browsern wie dem Internet Explorer vor Version 10 mit technischen Einschränkungen zu rechnen.",
-        "div5": "Um die aktuelle Version der Vorlage herunterzuladen und weitere Informationen zu deren Verwendung zu erhalten, besuchen Sie die<a href='https://github.com/Esri/map-tour-storytelling-template-js' target='_blank'>GitHub-Projektseite</a>."
+        "div5": "Um die aktuelle Version der Vorlage herunterzuladen und weitere Informationen zu deren Verwendung zu erhalten, besuchen Sie die <a href='https://github.com/Esri/map-tour-storytelling-template-js' target='_blank'>GitHub-Projektseite</a>."
       },
       "tab4": {
         "title": "Tipps",
@@ -604,6 +604,9 @@ define({
     },
     "licenseChange2018": {
       "noAccess": "Ihr Konto (%USER_NAME%) ist nicht dafür lizenziert, eine nicht öffentliche Story-Map zu öffnen. Bitten Sie den Administrator der Organisation, Ihnen einen Benutzertyp mit Story-Maps oder eine Add-On-Lizenz für Essential Apps zuzuweisen."
+    },
+    "storyTellerUserType": {
+      "notCreatorError": "Ihr Konto (%USER_NAME%) ist nicht für die Verwendung klassischer Story-Map-Builder lizenziert. Bitten Sie den Administrator Ihrer Organisation, Ihnen einen Creator-Benutzertyp zuzuweisen."
     }
   }
 });

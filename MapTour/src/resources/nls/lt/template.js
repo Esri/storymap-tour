@@ -327,13 +327,13 @@ define({
       "select": "Pažymėti",
       "locUse": "Naudoti nuotraukų vietas",
       "locExplain": "Galite nenorėti naudoti paveikslėlių vietų, kadangi jos gali būti paveldėtos iš albumo. Dėl to visos nuotraukos gali atsidurti toje pačioje vietoje.",
-      "locExplain2": "Galite nenaudoti vaizdo įrašų vietų, kadangi jos gali būti paveldėtos iš vartotojo nustatymų ir dėl to visi vaizdo įrašai gali atsidurti toje pačioje vietoje."
+      "locExplain2": "Galite nenaudoti vaizdo įrašų vietų, kadangi jos gali būti paveldėtos iš naudotojo nustatymų ir dėl to visi vaizdo įrašai gali atsidurti toje pačioje vietoje."
     },
     "viewFlickr": {
       "title": "Flickr importas",
-      "header": "Įveskite savo Flickr vartotojo vardą ir pasirinkite importuojamą albumą ar raktinę frazę.",
-      "userInputLbl": "Įveskite vartotojo vardą",
-      "signInMsg2": "Vartotojas nerastas",
+      "header": "Įveskite savo Flickr naudotojo vardą ir pasirinkite importuojamą albumą ar raktinę frazę.",
+      "userInputLbl": "Įveskite naudotojo vardą",
+      "signInMsg2": "Naudotojas nerastas",
       "selectSet": "Pasirinkite albumą",
       "selectTag": "Pasirinkite raktinę frazę",
       "footerImportTag": "Importuoti pasirinktą raktinę frazę",
@@ -341,8 +341,8 @@ define({
     },
     "viewFacebook": {
       "title": "Facebook importas",
-      "header": "Autentikuokitės su Facebook vartotojo paskyra arba naudokite viešą puslapį. Asmeniniai albumai gali būti naudojami kuriant viešą žemėlapio turą, kuriam nereikalinga Facebook autentifikacija, leidžianti komentarus ir patikimus išlikti privatiems.",
-      "leftHeader": "Facebook vartotojas",
+      "header": "Autentikuokitės su Facebook naudotojo paskyra arba naudokite viešą puslapį. Asmeniniai albumai gali būti naudojami kuriant viešą žemėlapio turą, kuriam nereikalinga Facebook autentifikacija, leidžianti komentarus ir patikimus išlikti privatiems.",
+      "leftHeader": "Facebook naudotojas",
       "rightHeader": "Facebook puslapis",
       "pageExplain": "Facebook puslapis yra viešas prekės ženklas, produktas ar įžymybė kaip <b>esrigis</b>. Jūs galite pamatyti puslapio pavadinimą po pirmo '/' puslapio URL.",
       "pageInputLbl": "Įveskite puslapio pavadinimą",
@@ -384,11 +384,11 @@ define({
     },
     "viewYoutube": {
       "title": "YouTube importas",
-      "header": "Įveskite YouTube vartotojo vardą ir raskite viešai bendrinamų vaizdo įrašų.",
-      "pageInputLbl": "Įveskite YouTube vartotojo vardą",
-      "lookupMsgError": "Vartotojas nerastas",
-      "howToFind": "Kaip rasti YouTube vartotojo vardą",
-      "howToFind2": "Vartotojo vardas rodomas po vaizdo įrašais",
+      "header": "Įveskite YouTube naudotojo vardą ir raskite viešai bendrinamų vaizdo įrašų.",
+      "pageInputLbl": "Įveskite YouTube naudotojo vardą",
+      "lookupMsgError": "Naudotojas nerastas",
+      "howToFind": "Kaip rasti YouTube naudotojo vardą",
+      "howToFind2": "Naudotojo vardas rodomas po vaizdo įrašais",
       "found": "Surasta",
       "noData": "Nerasta viešų vaizdo įrašų"
     },
@@ -421,7 +421,7 @@ define({
       "hostedFSTooltip": "Įkelkite savo paveikslėlius ir saugokite juos žemėlapio pasakojime (vaizdo įrašai nepalaikomi).",
       "hostedFsNA": "Kad galėtumėte publikuoti talpinamus objektų sluoksnius, jums būtinas leidėjo arba kitas šią teisę turintis vaidmuo. Kreipkitės į savo ArcGIS administratorių.",
       "hostedFsNA2": "Galima tik užsiprenumeravus ArcGIS Online. <a href='%LINK%'>Užsiregistruokite nemokamai bandomajai versijai</a>",
-      "footer1": "Kai baigsite, nepamirškite bendrinti žemėlapio turo su vartotojais per aplikacijos elementų puslapį.",
+      "footer1": "Kai baigsite, nepamirškite bendrinti žemėlapio turo su naudotojais per aplikacijos elementų puslapį.",
       "footer3": "Atsisiųsti CSV šabloną",
       "footer4": "Išsaugokite, jei nebus atsiųsta",
       "footer4bis": "Spauskite dešiniu klavišu \"Įrašyti\" jei siuntimas neprasidėjo",
@@ -439,8 +439,8 @@ define({
         "mtFAQ": "Žr. <a href='https://storymaps.arcgis.com/en/faq/#category4' target='_blank'>žemėlapio turo DUK.</a>",
         "myStories": "Galite tvarkyti Žemėlapio turus ir patikrinkite, ar nėra klaidų skiltyje <a href='https://storymaps.arcgis.com/en/my-stories/' target='_blank'>Mano pasakojimai</a>, kurią rasite svetainėje.",
         "div1": "Žemėlapio turo šablonas sukurtas, geografinės informacijos su didele fotografinio elemento reikšme, pateikimui.",
-        "div2": "Šablonas pateikia patrauklią, nesudėtingą internetinę aplikaciją, kuri suteikia galimybę pateikti nedidelį vietovių rinkinį žemėlapyje sunumeruota seka, kuria gali naršyti vartotojai. Šis šablonas sukurtas naudotis bet kuria žiniatinklio naršykle, bet kuriuo įrenginiu, įskaitant išmaniuosius telefonus ir planšetinius kompiuterius. <br /><br />",
-        "div42": "Norėdami pamatyti kitų vartotojų kuriamus Žemėlapių turus, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>apsilankykite galerijoje</a>, esančioje <a href='https://storymaps.arcgis.com/' target='_blank'>Žemėlapių pasakojimų svetainėje</a>. Mus taip pat galite stebėti Twitter <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
+        "div2": "Šablonas pateikia patrauklią, nesudėtingą internetinę aplikaciją, kuri suteikia galimybę pateikti nedidelį vietovių rinkinį žemėlapyje sunumeruota seka, kuria gali naršyti naudotojai. Šis šablonas sukurtas naudotis bet kuria žiniatinklio naršykle, bet kuriuo įrenginiu, įskaitant išmaniuosius telefonus ir planšetinius kompiuterius. <br /><br />",
+        "div42": "Norėdami pamatyti kitų naudotojų kuriamus Žemėlapių turus, <a href='https://links.esri.com/storymaps/map_tour_gallery' target='_blank'>apsilankykite galerijoje</a>, esančioje <a href='https://storymaps.arcgis.com/' target='_blank'>Žemėlapių pasakojimų svetainėje</a>. Mus taip pat galite stebėti Twitter <a href='https://twitter.com/EsriStoryMaps' target='_blank'>@EsriStoryMaps</a>.",
         "div5": "Norėtume gauti iš jūsų atsiliepimų! Praneškite mums apie problemas ir trūkstamą funkcionalumą, apsilankę žemėlapių pasakojimų forume <a href='https://links.esri.com/storymaps/forum' target='_blank'>„Geonet“ svetainėje.</a>"
       },
       "tab2": {
@@ -448,7 +448,7 @@ define({
         "div1": "Pagrindinis elementas, į kurį reiktų atsižvelgti kuriant Žemėlapio turą - tai pasirinkti, kur bus saugomos nuotraukos. Žemėlapio turas gali naudoti nuotraukas, laikomas nuotraukų bendrinimo portaluose, internetiniame serveryje arba įkeltas iš disko.",
         "div1a": "Žiūrėkite paskutinį šios skilties skyrių, kad gautumėt informacijos apie palaikomus nuotraukų ir vaizdo įrašų formatus.",
         "div2": "Interaktyvus kūrėjas suteikia dvi galimybes paveikslų valdymui žemėlapių ture:",
-        "div3": "<ul><li>Galite naudoti <b>nuotraukas, esančias internete</b>, pvz., paveikslėlius, esančius Flickr ar Google+, arba paveikslėlius, saugomus jūsų pačių interneto serveryje. Šie paveikslėliai bus pasiekiami žemėlapio ture, nurodžius jų URL.</li><li>Taip pat galite <b>įkelti nuotraukas iš savo kompiuterio<a> tiesiai į žemėlapio turą. Šiam talpinimo pasirinkimui būtina ArcGIS prenumerata ir publikuotojo arba administratoriaus teisės (kadangi automatiškai sukuriama paslauga, kurioje jūsų nuotraukos saugomos kaip priedai).</li></ul>",
+        "div3": "<ul><li>Galite naudoti <b>nuotraukas, esančias internete</b>, pvz., paveikslėlius, esančius Flickr arba paveikslėlius, saugomus jūsų pačių interneto serveryje. Šie paveikslėliai bus pasiekiami žemėlapio ture, nurodžius jų URL.</li><li>Taip pat galite <b>įkelti nuotraukas iš savo kompiuterio<a> tiesiai į žemėlapio turą. Šiam talpinimo pasirinkimui būtina ArcGIS prenumerata ir publikuotojo arba administratoriaus teisės (kadangi automatiškai sukuriama paslauga, kurioje jūsų nuotraukos saugomos kaip priedai).</li></ul>",
         "div4": "Pagrindiniai naudojimo pavyzdžiai yra:",
         "div4b": "<b>Jūsų nuotraukos dar nėra talpinamos</b> ir jūs turite ArcGIS prenumeratą: talpinamos elementų paslaugos naudojimas yra geriausias pasirinkimas. Kaip ir viešų nuotraukų talpinimo paslaugų atveju, mes optimizuosime jūsų nuotraukas, kad sukurtume greitai užsikraunančius paveikslėlius, o jūs turėsite prieigą prie visų ArcGIS platformos administravimo ir duomenų valdymo galimybių.",
         "div5": "<b>Jūs nesate organizacijos narys</b>: pirmiausiai turite patalpinti nuotraukas į nuotraukų bendrinimo puslapį arba į savo interneto serverį. Tuomet vedlys padės jums panaudoti šias nuotraukas, kurios ir toliau bus talpinamos pradinėje vietoje.",
@@ -459,9 +459,9 @@ define({
         "learn": "sužinokite daugiau",
         "div9": "Importavimo veiksmas nurodo jau talpinamas nuotraukas, saugodamas jų URL internetinių žemėlapio elementų rinkinyje. Šios nuotraukos netalpinamos ArcGIS Online. Jei nuotraukų talpinimas sutrinka, jos nebus matomos žemėlapio ture ir vietoje jų bus naudojamas “Nuotraukos nepasiekiamos” vaizdas. Priklausomai nuo interneto tiekėjo, žemėlapio turas importuos arba neimportuos vaizdų pavadinimo, aprašo ir vietos. Šie atributai saugomi internetiniame žemėlapyje ir bet koks internetinių paslaugų redagavimas neatsispindės žemėlapio ture.",
         "div10": "Nuotraukų saugojimas internetiniame serveryje",
-        "div11": "Jei pasirinksite paveikslėlius laikyti savo pačių interneto serveryje (o ne pasiekti atvaizdus Flickr ar Google+ arba juos tiesiogiai įkelti į savo turą), turėsite rankiniu būdu sukurti savo paveikslėlių miniatiūras. Naudojant pilnos skiriamosios gebos miniatiūros paveikslėlius, suprastės veikimas. Žr. šiuos <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>DUK</a>, kur rasite paveikslėlių dydžio keitimo patarimų, jei norėsite juos tiesiogiai per URL pasiekti internete.",
-        "div12": "Esamų GIS duomenų naudojimas",
-        "div13": "Visas elementų paslaugas, CSV failą arba Shape failą, kuriame yra taškų, galima naudoti kaip Žemėlapio turo duomenų šaltinį, jei jame yra laukai, kurių tikisi aplikacija. Į ArcGIS internetinį žemėlapį jį turite įtraukti kaip sluoksnį ir bendrinti žemėlapį sukuriant Žemėlapio turą.",
+        "div11": "Jei pasirinksite paveikslėlius laikyti savo pačių interneto serveryje (o ne pasiekti atvaizdus Flickr arba juos tiesiogiai įkelti į savo turą), turėsite rankiniu būdu sukurti savo paveikslėlių miniatiūras. Naudojant pilnos skiriamosios gebos miniatiūros paveikslėlius, suprastės veikimas. Žr. šiuos <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>DUK</a>, kur rasite paveikslėlių dydžio keitimo patarimų, jei norėsite juos tiesiogiai per URL pasiekti internete.",
+        "div12": "Esamų vietos duomenų naudojimas",
+        "div13": "Jei turite esamų vietos duomenų, pvz., vietų sąrašą skaičiuoklėje arba GIS taškų sluoksnį, galite naudoto tuos duomenis CSV formatu, kad sukurtumėte žemėlapio turą. Tam reikia, kad jūsų paveikslėliai būtų tiesiogiai pasiekiami naudojant URL, saugomus kaip CSV failo reikšmės. Galite atsisiųsti CSV šabloną iš išplėstinių parinkčių dialogo lango, kai pirmą kartą paleidžiate žemėlapio turo kūrimo priemonę. Į tą dialogo langą galima įkelti jūsų CSV failą.",
         "div14": "Palaikomos reikšmės laukų pavadinimams yra (didžiosios ir mažosios raidės - svarbu):",
         "div151": "Pavadinimas",
         "div152": "Aprašas",
@@ -473,11 +473,11 @@ define({
         "div17": "Nuotraukos ir miniatiūros laukai yra privalomi elementų paslaugai be priedų. Pasirinktinos, bet primygtinai rekomenduojamos jos yra elementų paslaugoms su priedais. Jei jūsų paslauga turi įgalintus tuos pačius priedus, kūrėjas leis talpinti nuotraukas kaip priedus. Jei ne, jūs galėsite redaguoti tik nuotraukos ir miniatiūros URL.",
         "div172": "Kai jie yra, nuotraukos ir miniatiūros laukai visada bus naudojami, o elementų paslaugų priedus galima bus naudoti užklausomis.",
         "div173": "CSV ir Shape failų pavyzdžių galima parsisiųsti iš",
-        "div174": "Žr. šiuos <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>DUK</a>, kur rasite daugiau informacijos, kaip naudoti esamus GIS duomenis.",
+        "div174": "Daugiau informacijos rasite šiuose <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>DUK</a>.",
         "div18": "Talpinamų elementų paslaugų kūrimas iš CSV ar Shape failo",
         "div19": "Kai kuriate talpinamą elementų paslaugą iš CSV ar Shape failo, priedai nėra įjungti. Kad juos įjungtumėte, atverkite elementų paslaugos elementų puslapį, spustelkite nedidelę rodyklę ties sluoksnio pasirinkimu ir pamatysite šį nustatymą. Tai atlikus Žemėlapio turas ir toliau naudos nuotraukas bei miniatiūras, kurias nurodėte per atributus. Pasirinktinai, jei norite talpinti nuotraukas kaip elementų paslaugų priedus, galite tai padaryti dviem mygtukais nuotraukų skyde (\"Pakeisti nuotrauką\" ir \"Pakeisti miniatiūrą\").",
         "div20": "Palaikomi nuotraukų formatai ir vaizdo įrašai",
-        "div21": "Jei pasiekiate Flickr ar Google+ atvaizdus, žemėlapio turas juos automatiškai pasiekia kaip .jpg failus. Jei į žemėlapio turą įkeliate atvaizdus, jie turi būti .jpg arba .jpeg formatu. Jei nurodysite atvaizdus tiesiogiai internete naudodami jų URL, palaikomi paveikslėlių formatai yra .jpg, .jpeg, .png, .gif ir .bmp. YouTube vaizdo įrašai palaikomi tiesiogiai.",
+        "div21": "Jei pasiekiate Flickr paveikslėlius, žemėlapio turas juos automatiškai pasiekia kaip .jpg failus. Jei į žemėlapio turą įkeliate atvaizdus, jie turi būti .jpg arba .jpeg formatu. Jei nurodysite atvaizdus tiesiogiai internete naudodami jų URL, palaikomi paveikslėlių formatai yra .jpg, .jpeg, .png, .gif ir .bmp. YouTube vaizdo įrašai palaikomi tiesiogiai.",
         "div22": "Žemėlapio turo šablone nėra vaizdo grotuvo, todėl turite naudoti išorinį vaizdo grotuvą, kurį pateikia jūsų mėgstamas vaizdo talpinimo paslaugų teikėjas (pasirinkite sprendimus vaizdui talpinti ir nukopijuokite URL, esantį duotame kode). Jei norite talpinti vaizdą patys, galite sukurti HTML puslapį, turintį grotuvą, tokį kaip <a href='http://www.videojs.com/'>Video.js</a>.",
         "div23": "Interaktyvus vedlys nesuteikia dialogo vaizdo įrašo pridėjimui, naudojant elementų paslaugas su priedais, bet tai galima padaryti redaguojant jūsų duomenys už interaktyvaus vedlio ribų. Arcgis.com žemėlapių peržiūros aplikacijoje, jei pakeičiate nuotraukos laukus taip, kad jie nurodytų į išorinius vaizdo įrašus ir pridėtumėt specialų parametrą URL pabaigoje (#isVideo), jūsų medija bus laikoma video.",
         "div24": "Atkreipkite dėmesį, kad jums reikalingi du tinkami nuotraukų priedai arba taškas nebus naudojamas. Naudojant elementų paslaugą naudoti vaizdo įrašų priedų be nuotraukų ir miniatiūrų laukų negalima."
@@ -486,7 +486,7 @@ define({
         "title": "Adaptavimas",
         "div1": "Kūrėjas pateikia keletą adaptavimo galimybių, kurios yra pasiekiamos per NUSTATYMAI mygtuką viršutinėje panelėje.Jei nerandate norimo pasirinkimo, mes taip pat pateikiame ir parsisiunčiamą versiją, kurią galite įdiegti savo interneto serveryje ir patobulinti, kad atitiktų jūsų poreikį.",
         "div2": "Rekomenduojame naudoti talpinamąją versiją, nebent:",
-        "div3": "<li>Joje nėra vartotojo sąsajos adaptavimo, kurį norėtumėte turėti, pavyzdžiui, naudoti antraštės foninį vaizdą</li><li>Esate programuotojas ir norite patobulinti aplikaciją.</li>",
+        "div3": "<li>Joje nėra naudotojo sąsajos adaptavimo, kurį norėtumėte turėti, pavyzdžiui, naudoti antraštės foninį vaizdą</li><li>Esate kūrėjas ir norite patobulinti aplikaciją.</li>",
         "div4": "Parsisiunčiama versijoje gali būti konfigūruojama per internetinio žemėlapio ar internetinės kartografavimo aplikacijos identifikatorių. Pagrindiniai panaudos atvejai yra:",
         "div41": "Kuriate žemėlapio turą naudodami interaktyvų vedlį talpinamoje aplinkoje ir konfigūruojate šabloną su žemėlapių aplikacijos identifikatoriumi. Galios nustatymai, kuriuos nurodėte interaktyviame vedlyje.",
         "div42": "Kuriate internetinį žemėlapį už interaktyvaus vedlio ribų ir konfigūruojate šabloną su internetinio žemėlapio identifikatoriumi. Turėsite perskaityti dokumentaciją, kad išmoktumėt konfigūruoti šabloną.",
@@ -497,9 +497,9 @@ define({
         "title": "Užuominos",
         "div0": "Palaikomos naršyklės",
         "div0a": "Žemėlapio turo peržiūros aplikacija palaikoma IE8+. Interaktyvus vedlys palaikomas IE9+. Mes aktyviai testuojame visas naršykles, tačiau jei susiduriate su tam tikrais sunkumais, rekomenduojame naudoti Chrome.",
-        "div0b": "Jei susiduriate su tam tikrais sunkumais, praneškite mums. Tuo tarpu, kurdami žemėlapio turą naudojant CSV šabloną sumažinsite sąveiką su vedlio vartotojo sąsaja.",
+        "div0b": "Jei susiduriate su tam tikrais sunkumais, praneškite mums. Tuo tarpu, kurdami žemėlapio turą naudojant CSV šabloną sumažinsite sąveiką su vedlio naudotojo sąsaja.",
         "div1": "Paveikslėliai",
-        "div2": "Nors žemėlapio ture galima naudoti įvairių dydžių, formų ir padėties atvaizdus, rekomenduojame naudoti horizontalią, o ne vertikalią padėtį. Geriausiai tinka 4:3 formato atvaizdai. Trijų skydelių ir integruotame išdėstyme, kai antraštė persidengia su atvaizdu, naudojant vertikalios padėties atvaizdus, antraštė gali uždengti didelę atvaizdo dalį. Rekomenduojame trijų skydelių ir integruotame išdėstyme visiems atvaizdams naudoti tą patį dydį ir formą, jei tai įmanoma. Tokiu atveju vartotojui peržiūrint turą jo neblaškys skirtingo dydžio atvaizdai.",
+        "div2": "Nors žemėlapio ture galima naudoti įvairių dydžių, formų ir padėties atvaizdus, rekomenduojame naudoti horizontalią, o ne vertikalią padėtį. Geriausiai tinka 4:3 formato atvaizdai. Trijų skydelių ir integruotame išdėstyme, kai antraštė persidengia su atvaizdu, naudojant vertikalios padėties atvaizdus, antraštė gali uždengti didelę atvaizdo dalį. Rekomenduojame trijų skydelių ir integruotame išdėstyme visiems atvaizdams naudoti tą patį dydį ir formą, jei tai įmanoma. Tokiu atveju naudotojui peržiūrint turą, jo neblaškys skirtingo dydžio atvaizdai.",
         "div2a": "Rekomenduojame maksimalią 1000 pikselių pločio ir x725 pikselių aukščio raišką pagrindinėms nuotraukoms ir 140x93 miniatiūroms.",
         "div3": "Antraštės teksto formatavimas HTML gairėmis",
         "div4": "Į antraštes galite įtraukti HTML žymas, kad apibrėžtumėte formatavimą ir nuorodas. Pavyzdžiui, naudojant šias žymas, įtraukiamas žalias hipersaitas:",
@@ -512,7 +512,7 @@ define({
         "div8": "Yra 99 taškų limitas vienam turui. Suprantama, dauguma žemėlapio turų bus gerokai trumpesni. Nemanykite, kad auditorija norės pereiti per daugelį turo taškų. Jūsų sritis jums gali atrodyti įspūdinga, bet ji nebūtinai bus įspūdinga žiūrovams!",
         "div10": "Įterpimo režimas",
         "div11": "Jei norite įterpti šabloną į kitą puslapį per iframe, pridėdami papildomą parametrą \"embed\" URL pabaigoje, pašalinsite antraštę.",
-        "div12": "Venkite naudoti siaurą iFrame plotį, dėl kurio žemėlapio turas perjungiamas į jo prisitaikantį mažąjį rodinį, naudojamą mobiliuosiuose įrenginiuose. Kad naudoti būtų kuo paprasčiau, rekomenduojame įdedant žemėlapio turą vis tiek pateikti nuorodą šalia įdėto turo, kad vartotojai galėtų turą paleisti per visą ekraną."
+        "div12": "Venkite naudoti siaurą iFrame plotį, dėl kurio žemėlapio turas perjungiamas į jo prisitaikantį mažąjį rodinį, naudojamą mobiliuosiuose įrenginiuose. Kad naudoti būtų kuo paprasčiau, rekomenduojame įdedant žemėlapio turą vis tiek pateikti nuorodą šalia įdėto turo, kad naudotojai galėtų turą paleisti per visą ekraną."
       },
       "tab5": {
         "title": "Publikuojama",
@@ -520,9 +520,9 @@ define({
         "div2a": "Turas bendrinamas per kūrėją.",
         "div2b": "BENDRINTI mygtukas atnaujins aplikacijos ir internetinio žemėlapio elementus. Jei jūsų turo duomenys saugomi elementų paslaugoje, jie taip pat bus atnaujinti. Jei pridėjote kitų sluoksnius per ArcGIS.com žemėlapių peržiūros aplikaciją, jie nebus atnaujinti. Tai gali lemti tai, kad turas nebus bendrintas taip kaip norėjote. Elementai, jau turintys reikiamas (ar didesnes) teises nebus atnaujinti.",
         "div2c": "Turas bendrinamas per ArcGIS Online",
-        "div2d": "Kai bendrinsite aplikaciją per ArcGIS Online, jei reikės, jūsų bus prašoma bendrinti susijusius šaltinius (internetinį žemėlapį, elementų paslaugą, žymėjimų sluoksnį), kurie dar nėra bendrinti. Jei žemėlapio turas yra viešas ir vienas iš jūsų išteklių nėra bendrintas su auditorija, vartotojai bus nukreipiami į ArcGIS Online prisijungimo puslapį.",
+        "div2d": "Kai bendrinsite aplikaciją per ArcGIS Online, jei reikės, jūsų bus prašoma bendrinti susijusius šaltinius (internetinį žemėlapį, elementų paslaugą, žymėjimų sluoksnį), kurie dar nėra bendrinti. Jei žemėlapio turas yra viešas ir vienas iš jūsų išteklių nėra bendrintas su auditorija, naudotojai bus nukreipiami į ArcGIS Online prisijungimo puslapį.",
         "div3t": "Elementų paslaugos saugumas",
-        "div3a": "Jei naudojate talpinamą elementų paslaugą, sukurta žemėlapių turo vedlio pagalba, aplikacija už jus sutvarkys paslaugos saugumą, ir jūs išliksite vienintelis vartotojas, turintis redagavimo teises, net jei bendrinsite viešai.",
+        "div3a": "Jei naudojate talpinamą elementų paslaugą, sukurta žemėlapių turo vedlio pagalba, aplikacija už jus sutvarkys paslaugos saugumą, ir jūs išliksite vienintelis naudotojas, turintis redagavimo teises, net jei bendrinsite viešai.",
         "div3t2": "Prieš bendrindami turą su auditoriją",
         "div3": "Įsitikinkite, kad turas veiks ir jums atsijungus nuo ArcGIS.com paskyros. URL, kurį norėsite naudoti, neturėtų nukreipti į prisijungimo puslapį ar kūrimo režimą.",
         "div4": "Būtų gerai, jei peržiūrėtumėte, kaip žemėlapio turas atrodo naudojant iPad horizontalioje padėtyje, kad įsitikintumėte, jog jis atrodo gerai šiame populiariame įrenginyje. Tai padės jums pamatyti ar antraštės dengia per daug nuotraukų. Taip pat tai leidžia pamatyti ar alternatyvus pavadinimas telpa ir ar nėra apkerpamas dėl savo ilgio.",
@@ -603,7 +603,10 @@ define({
       "action2": "Užpildyti apklausą"
     },
     "licenseChange2018": {
-      "noAccess": "Jūsų paskyra (%USER_NAME%) nelicencijuota atidaryti ne viešą žemėlapio pasakojimą. Kreipkitės į organizacijos administratorių, kad paskirtų jums vartotojo tipą, kuris turi žemėlapių pasakojimus, arba suteiktų jums papildomą svarbiausių aplikacijų licenciją."
+      "noAccess": "Jūsų paskyra (%USER_NAME%) nelicencijuota atidaryti ne viešą žemėlapio pasakojimą. Kreipkitės į organizacijos administratorių, kad paskirtų jums naudotojo tipą, kuris turi žemėlapių pasakojimus, arba suteiktų jums papildomą svarbiausių aplikacijų licenciją."
+    },
+    "storyTellerUserType": {
+      "notCreatorError": "Jūsų paskyra (% USER_NAME%) nelicencijuota naudoti klasikines žemėlapių pasakojimų kūrimo priemones. Paprašykite organizacijos administratoriaus priskirti jums Kūrėjo naudotojo tipą."
     }
   }
 });

@@ -449,7 +449,7 @@ define({
 					div1: "The main element to consider when building a Map Tour is to choose where your pictures will be stored. A Map Tour can use pictures stored on photo sharing services, on any web server, or that you upload from disk.",
 					div1a: "See the last section of this tab for details about supported picture formats and videos.",
 					div2: "The interactive builder gives you two options for handling the images in your Map Tour:",
-					div3: "<ul><li>You can use <b>photos that are already online</b>, such as images in Flickr or Google+, or images stored on your own web server. These images will be referenced in your Map Tour via their URLs.</li><li>You can also <b>upload photos from your computer</b> directly into your Map Tour. This upload option requires that you have an ArcGIS subscription and that you have Publisher or Administrator privileges, because a hosted feature service is automatically created for you in which your photos are stored as attachments.</li></ul>",
+					div3: "<ul><li>You can use <b>photos that are already online</b>, such as images in Flickr or images stored on your own web server. These images will be referenced in your Map Tour via their URLs.</li><li>You can also <b>upload photos from your computer</b> directly into your Map Tour. This upload option requires that you have an ArcGIS subscription and that you have Publisher or Administrator privileges, because a hosted feature service is automatically created for you in which your photos are stored as attachments.</li></ul>",
 					div4: "The main use cases are:",
 					div4b: "<b>Your photos are not hosted</b> yet and you have an ArcGIS subscription: Using a hosted feature service is your best choice. Like public photo sharing services, we will optimize your pictures to create fast-loading images and you will have access to all administration and data management capabilities of the ArcGIS platform.",
 					div5: "<b>You aren't a member of an Organization</b>: You first have to upload your pictures to a photo sharing website or to your own web server. The builder will help you use these pictures that will continue to be hosted at their original location.",
@@ -460,9 +460,9 @@ define({
 					learn: "learn more",
 					div9: "The import operation references pictures that are already hosted by storing their URLs in a web map feature collection. The pictures are not stored in ArcGIS Online. If the hosted pictures can't be accessed, they won't be available in the Map Tour and you'll see a 'Picture not available' image. Depending on your photo service provider, the Map Tour may not import the name, description, and location of the pictures. Those attributes are stored in the web map and any edits to the online services won't be reflected in the Map Tour.",
 					div10: "Storing the pictures on a web server",
-					div11: "If you choose to host your pictures on your own web server (instead of accessing images in Flickr or Google+, or uploading them directly into your tour) you will have to manually create thumbnails for your pictures. Using the full resolution pictures for the thumbnail will result in poor performance. See this <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>FAQ</a> for tips on sizing your images if you will be accessing them on the web directly via URLs.",
-					div12: "Using existing GIS data",
-					div13: "Any feature service, CSV file, or shapefile containing points can be used as a Map Tour data source if it contains the set of fields the application expects. You have to add it as a layer into an ArcGIS web map and then share the map by creating a Map Tour.",
+					div11: "If you choose to host your pictures on your own web server (instead of accessing images in Flickr or uploading them directly into your tour) you will have to manually create thumbnails for your pictures. Using the full resolution pictures for the thumbnail will result in poor performance. See this <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>FAQ</a> for tips on sizing your images if you will be accessing them on the web directly via URLs.",
+					div12: "Using existing place data",
+					div13: "If you have existing place data, such as a list of places in a spreadsheet or a GIS point layer, you can use that data in CSV format to create a Map Tour. This requires that your pictures are accessed directly via URLs that are stored as values in the CSV file. You can download the CSV template from the Advanced options dialog when you first launch the Map Tour Builder. Your CSV file can be uploaded into that dialog.",
 					div14: "The supported values for fields name are (case insensitive):",
 					div151: "Name",
 					div152: "Description",
@@ -474,11 +474,11 @@ define({
 					div17: "The picture and thumbnail fields are mandatory for feature services without attachments and optional (but strongly recommended) for feature services with attachments. If your service has attachments enabled, the builder will let you upload pictures as attachments. If not, you will only be able to edit the picture and thumbnail URLs.",
 					div172: "When present, the picture and thumbnail fields will always be used and the feature service attachments won't be queried.",
 					div173: "Example CSVs and shapefiles can be downloaded from",
-					div174: "See this <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>FAQ</a> for more info on using existing GIS data.",
+					div174: "See this <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>FAQ</a> for more info.",
 					div18: "Creating a hosted Feature Services from a CSV or shapefile",
 					div19: "When you create a hosted feature service from a CSV or shapefile, the attachments are not enabled by default. To enable them, open the feature service’s details page, click the small arrow on the layer section, and you will see that option. The Map Tour will continue to use the pictures and thumbnails you have referenced through attributes. Optionally, if you want to upload your pictures as feature service attachments, you will be able to do so through two buttons on the picture panel (\"Change Picture\" and \"Change Thumbnail\").",
 					div20: "Supported picture formats and videos",
-					div21: "If you access images in Flickr or Google+, the Map Tour automatically accesses those images as .jpg files. If you upload images into the Map Tour builder, the images have to be in .jpg, or .jpeg format. If you reference images directly on the web via their URLs, supported picture formats are .jpg, .jpeg, .png, .gif and .bmp. YouTube videos are supported directly.",
+					div21: "If you access images in Flickr the Map Tour automatically accesses those images as .jpg files. If you upload images into the Map Tour builder, the images have to be in .jpg, or .jpeg format. If you reference images directly on the web via their URLs, supported picture formats are .jpg, .jpeg, .png, .gif and .bmp. YouTube videos are supported directly.",
 					div22: "The Map Tour template doesn't include a video player, so you have to use the external video player provided by your favorite video hosting service (find the option to embed the video and copy the URL present in the given code). If you want to host the video yourself, you can create an HTML page that contains a video player like <a href='http://www.videojs.com/'>Video.js</a>.",
 					div23: "The interactive builder doesn't provide a dialog to include video when using feature services with attachments, but it is possible to do so by editing your data outside of the interactive builder. In the arcgis.com map viewer, if you modify the picture fields to point to an external video and add a special parameter at the end of your URL (#isVideo), your media will be considered to be a video.",
 					div24: "Note that you still need to have two valid pictures attachments or the point won’t be used. It isn't possible to use videos when using feature service attachments without the picture and thumbnail fields."
@@ -605,6 +605,9 @@ define({
 			},
 			licenseChange2018: {
 				noAccess: "Your account (%USER_NAME%) is not licensed to open a Story Map that is not public.  Please ask your organization administrator to assign you a user type that includes Story Maps or an add-on Essential Apps license."
+			},
+			storyTellerUserType: {
+				notCreatorError: 'Your account (%USER_NAME%) is not licensed to use classic story map builders. Please ask your organization administrator to assign you a Creator user type.'
 			}
     }
   }),
@@ -620,7 +623,6 @@ define({
 	"fi": 1,
 	"fr": 1,
 	"he": 1,
-	"hi": 1,
 	"hr": 1,
 	"hu": 1,
 	"id": 1,
@@ -641,6 +643,7 @@ define({
 	"sv": 1,
 	"th": 1,
 	"tr": 1,
+	"uk": 1,
 	"vi": 1,
 	"zh-cn": 1,
 	"zh-hk": 1,

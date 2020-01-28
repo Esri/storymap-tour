@@ -448,7 +448,7 @@ define({
         "div1": "Det viktigaste att tänka på när du skapar en karttur är att välja var bilderna ska lagras. Kartturen kan innehålla bilder som finns lagrade hos fotodelningstjänster, på en webbserver eller som överförts från hårddisken.",
         "div1a": "I det sista avsnittet på den här fliken finns information om vilka bild- och videoformat som stöds.",
         "div2": "Det interaktiva byggverktyget innehåller två alternativ för att hantera bilderna i kartturen:",
-        "div3": "<ul><li>Du kan använda <b>bilder som redan finns online</b>, till exempel bilder på Flickr eller Google+ eller på din egen webbserver. De refereras i kartturen via webbadresserna till dem.</li><li>Du kan också <b>överföra bilder från datorn</b> direkt till kartturen. För det här överföringsalternativet krävs att du har ett ArcGIS-abonnemang och har utgivar- eller administratörsbehörighet. Det är för att en driftad geoobjekttjänst automatiskt skapas för dig, i vilken dina foton lagras som bilagor.</li></ul>",
+        "div3": "<ul><li>Du kan använda <b>bilder som redan finns online</b>, till exempel bilder på Flickr eller på din egen webbserver. De refereras i kartturen via webbadresserna till dem.</li><li>Du kan också <b>överföra bilder från datorn</b> direkt till kartturen. För det här överföringsalternativet krävs att du har ett ArcGIS-abonnemang och har utgivar- eller administratörsbehörighet. Det är för att en driftad geoobjekttjänst automatiskt skapas för dig, i vilken dina foton lagras som bilagor.</li></ul>",
         "div4": "De vanligaste exemplen är:",
         "div4b": "<b>Bilderna är inte driftade</b> ännu och du har ett ArcGIS-abonnemang: Det bästa alternativet är att använda en driftad geoobjekttjänst. Precis som i vanliga fotodelningstjänster optimeras bilderna så att de snabbt går att läsa in och du har tillgång till alla administrations- och datahanteringsfunktioner som finns i ArcGIS.",
         "div5": "<b>Du är inte medlem i en organisation</b>: Du måste först lägga upp bilderna på en fotodelningswebbplats eller en webbserver. Sedan kan du använda bilderna med hjälp av byggverktyget. Bilderna fortsätter att vara driftade på den ursprungliga platsen.",
@@ -459,9 +459,9 @@ define({
         "learn": "läs mer",
         "div9": "Importen refererar till redan driftade bilder genom att lagra webbadresserna till dem i en geoobjektsamling för webbkartor. Bilderna lagras inte i ArcGIS Online. Om de driftade bilderna inte kan nås så blir de inte tillgängliga i kartturen och en bild med ett felmeddelande visas istället. Namn, beskrivning och plats för bilderna kanske inte importeras beroende på vilken tjänsteleverantör du använder. De attributen lagras i webbkartan och de ändringar du gör i onlinetjänsterna återspeglas inte i kartturen.",
         "div10": "Lagra bilderna på en webbserver",
-        "div11": "Om du väljer att ha dina bilder på din egen webbserver (i stället för att ha dem på Flickr eller Google+ eller ladda upp dem direkt till din tur), måste du skapa miniatyrbilder manuellt för dina bilder. Om du använder bilder med full upplösning för miniatyrbilderna får du sämre prestanda. Läs de här <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>frågorna och svaren</a> för tips om storleksanpassning av bilderna om du kommer åt dem direkt på nätet via URL:er.",
-        "div12": "Använda befintliga GIS-data",
-        "div13": "Alla geoobjekttjänster, CSV-filer eller shapefiler som innehåller punkter kan användas som datakälla för Map Tour om de innehåller den uppsättning fält som applikationen förväntar sig. Du måste lägga till dem som lager i en ArcGIS-webbkarta och sedan dela kartan genom att skapa en Map Tour.",
+        "div11": "Om du väljer att ha dina bilder på din egen webbserver (i stället för att ha dem på Flickr eller ladda upp dem direkt till din tur) måste du skapa miniatyrbilder manuellt för dina bilder. Om du använder bilder med full upplösning för miniatyrbilderna får du sämre prestanda. Läs de här <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>frågorna och svaren</a> för tips om storleksanpassning av bilderna om du kommer åt dem direkt på nätet via URL:er.",
+        "div12": "Använda befintliga platsdata",
+        "div13": "Om du har befintliga platsdata, t.ex. en lista med platser i ett kalkylark eller ett GIS-punktlager, kan du använda dessa data i CSV-format till att skapa en karttur. Detta kräver att dina bilder är åtkomliga direkt via webbadresser som lagras som värden i CSV-filen. Du kan hämta CSV-mallen från dialogrutan Avancerade alternativ när du först startar byggverktyget för Map Tour. Din CSV-fil kan överföras till den dialogrutan.",
         "div14": "Följande värden har stöd för att användas i fältnamn (ej skiftlägeskänsliga):",
         "div151": "Namn",
         "div152": "Beskrivning",
@@ -473,11 +473,11 @@ define({
         "div17": "Du måste fylla i fälten Bild och Miniatyrbild för geoobjekttjänster utan bilagor. Du behöver inte göra det för geoobjekttjänster med bilagor, men det rekommenderas starkt att du gör det. Om bilagor är aktiverat för tjänsten kan du ladda upp bilder som bilagor i byggverktyget. Annars kan du bara redigera bildernas och miniatyrbildernas webbadresser.",
         "div172": "Om fälten Bild och Miniatyrbild har fyllts i kommer de alltid att användas, och geoobjekttjänstens bilagor anropas inte.",
         "div173": "Exempel på CSV-filer och shapefiler kan hämtas från",
-        "div174": "Läs de här <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>frågorna och svaren</a> om du vill veta mer om att använda befintliga GIS-data.",
+        "div174": "Läs de här <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>frågorna och svaren</a> om du vill veta mer.",
         "div18": "Skapa en driftad geoobjekttjänst av en CSV-fil eller shapefil",
         "div19": "När du skapar en driftad geoobjektstjänst av en CSV-fil eller shapefil är bilagorna inte aktiverade som standard. Du aktiverar dem genom att öppna geoobjektstjänstens informationssida och klicka på den lilla pilen i lageravsnittet, då visas det alternativet. De bilder och miniatyrbilder som du har refererat till i attributen fortsätter att användas i kartturen. Om du i stället vill ladda upp bilderna som geoobjektstjänstbilagor kan du göra det med hjälp av de två knapparna på bildpanelen (Byt bild och Byt miniatyrbild).",
         "div20": "Bild- och videoformat som stöds",
-        "div21": "Om du använder bilder på Flickr och Google+ öppnas de bilderna automatiskt som .jpg-filer i kartturen. Om du överför bilder till byggverktyget för Map Tour måste bilderna vara i .jpg- eller .jpeg-format. Om du refererar till bilder direkt på nätet med deras URL:er, är .jpg, .jpeg, .png, .gif och .bmp de bildformat som stöds. YouTube-videor stöds direkt.",
+        "div21": "Om du använder bilder på Flickr öppnas de bilderna automatiskt som .jpg-filer i kartturen. Om du överför bilder till byggverktyget för Map Tour måste bilderna vara i .jpg- eller .jpeg-format. Om du refererar till bilder direkt på nätet med deras URL:er, är .jpg, .jpeg, .png, .gif och .bmp de bildformat som stöds. YouTube-videor stöds direkt.",
         "div22": "Map Tour-mallen innehåller inte någon videospelare. Du måste använda en extern videospelare från den videotjänst du använder (leta upp alternativet för att bädda in videoklippet och kopiera den URL som finns i koden). Om du vill drifta videoklippen själv kan du skapa en HTML-sida som innehåller en videospelare, till exempel <a href='http://www.videojs.com/'>Video.js</a>.",
         "div23": "Det interaktiva byggverktyget innehåller ingen dialogruta för att ta med videoklipp när du använder geoobjekttjänster med bilagor, men det går att ta med videoklipp genom att redigera data utanför det interaktiva byggverktyget. I kartvisningsfönstret på ArcGIS.com kan du till exempel ändra bildfälten så att de pekar på ett externt videoklipp och lägga till en särskild parameter i slutet av webbadressen (#isVideo). Då behandlas filerna som videoklipp.",
         "div24": "Du måste dock fortfarande ha två giltiga bildbilagor, annars används inte punkten. Det går inte att använda videoklipp när du använder geoobjektstjänstbilagor utan fälten Bild och Miniatyrbild."
@@ -604,6 +604,9 @@ define({
     },
     "licenseChange2018": {
       "noAccess": "Ditt konto (%USER_NAME%) har ingen licens för att öppna en Story Map som inte är tillgänglig för allmänheten. Be din organisations administratör att tilldela dig en användartyp som omfattar Story Maps eller en tilläggslicens för Essential Apps."
+    },
+    "storyTellerUserType": {
+      "notCreatorError": "Ditt konto (%USER_NAME%) har ingen licens för att använda klassiska Story Maps-builder. Be organisationens administratör att tilldela dig en Creator-användartyp."
     }
   }
 });

@@ -448,7 +448,7 @@ define({
         "div1": "Karttakierrosta luotaessa on tärkeää miettiä, mihin kuvat tallennetaan. Karttakierros voi käyttää valokuvien jakamispalveluihin tai mihin tahansa web-palvelimiin tallennettuja kuvia tai levyltä palvelimeen ladattuja kuvia.",
         "div1a": "Lisätietoja tuetuista kuvamuodoista ja videoista on tämän välilehden viimeisessä osassa.",
         "div2": "Interaktiivisen rakentajan avulla voit käsitellä karttakierroksesi kuvia kahdella tavalla:",
-        "div3": "<ul><li>Voit käyttää <b>aiemmin verkkoon</b>, kuten Flickr- tai Google+-palveluun tallennettuja kuvia tai omaan web-palvelimeesi tallennettuja kuvia. Kyseisiin kuviin viitataan karttakierroksella niiden URL-osoitteiden avulla.</li><li>Voit myös <b>ladata valokuvia tietokoneestasi</b> suoraan karttakierrokseesi. Tämä latausvaihtoehto edellyttää ArcGIS-tilausta ja julkaisijan tai pääkäyttäjän oikeuksia, koska isännöity kohdepalvelu, johon valokuvasi tallennetaan liitteinä, luodaan automaattisesti puolestasi.</li></ul>",
+        "div3": "<ul><li>Voit käyttää <b>aiemmin verkkoon</b>, kuten Flickr-palveluun tallennettuja kuvia tai omaan web-palvelimeesi tallennettuja kuvia. Kyseisiin kuviin viitataan karttakierroksella niiden URL-osoitteiden avulla.</li><li>Voit myös <b>ladata valokuvia tietokoneestasi</b> suoraan karttakierrokseesi. Tämä latausvaihtoehto edellyttää ArcGIS-tilausta ja julkaisijan tai pääkäyttäjän oikeuksia, koska isännöity kohdepalvelu, johon valokuvasi tallennetaan liitteinä, luodaan automaattisesti puolestasi.</li></ul>",
         "div4": "Pääasialliset käyttötilanteet ovat seuraavat:",
         "div4b": "<b>Valokuviasi ei isännöidä</b> vielä, ja sinulla on ArcGIS-tilaus: paras vaihtoehto on käyttää isännöityä kohdepalvelua. Valokuvien jakamispalveluiden tavoin luomme nopeasti latautuvia kuvia optimoimalla ne, ja voit käyttää kaikkia ArcGIS-ympäristön järjestelmänvalvojan ja tietojenhallinnan toimintoja.",
         "div5": "<b>Et ole organisaation jäsen</b>: sinun on ensin ladattava kuvasi valokuvien jakamispalveluun tai omaan web-palvelimeesi. Voit sitten muodostusohjelman avulla käyttää kyseisiä kuvia, jotka ovat edelleen isännöityinä niiden alkuperäisessä sijainnissa.",
@@ -459,9 +459,9 @@ define({
         "learn": "lisätietoja",
         "div9": "Tuontitoiminto viittaa jo isännöityihin kuviin tallentamalla niiden URL-osoitteet web-kartan kohdekokoelmaan. Kuvia ei ole tallennettu ArcGIS Onlineen. Jos isännöityjä kuvia ei voi käyttää, ne eivät ole käytettävissä karttakierroksella ja näet Kuva ei ole käytettävissä -kuvan. Se, tuoko karttakierros kuvien nimen, kuvauksen ja sijainnin, määräytyy valokuvan palveluntarjoajan mukaan. Kyseiset määritteet tallennetaan web-kartalle. Web-palveluihin tehdyt muutokset eivät näy karttakierroksella.",
         "div10": "Kuvien tallentaminen web-palvelimeen",
-        "div11": "Jos hallinnoit kuviasi omassa web-palvelimessa (Flickr- tai Google+-kuvien käytön sijasta tai sen sijaan, että lataat kuvat suoraan kierrokseesi), kuvien pikkukuvat on luotava manuaalisesti. Täyden tarkkuuden kuvien käyttäminen pikkukuvina heikentää laatua. Tässä <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>usein esitetyssä kysymyksessä</a> on vihjeitä kuvien koon muuttamiseen, jos käytät niitä verkossa suoraan URL-osoitteiden kautta.",
-        "div12": "Olemassa olevan GIS-aineiston käyttäminen",
-        "div13": "Mitä tahansa pisteitä sisältävää kohdepalvelua, CSV-tiedostoa tai Shapefile-tiedostoa voi käyttää karttakierroksen aineistolähteenä, jos se sisältää sovelluksen edellyttämien kenttien joukon. Aineistolähde on lisättävä karttatasona ArcGIS-web-karttaan. Sen jälkeen voit jakaa kartan luomalla karttakierroksen.",
+        "div11": "Jos hallinnoit kuviasi omassa web-palvelimessa (Flickr-kuvien käytön sijasta tai sen sijaan, että lataat kuvat suoraan kierrokseesi), kuvien pikkukuvat on luotava manuaalisesti. Täyden tarkkuuden kuvien käyttäminen pikkukuvina heikentää laatua. Tässä <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>usein esitetyssä kysymyksessä</a> on vihjeitä kuvien koon muuttamiseen, jos käytät niitä verkossa suoraan URL-osoitteiden kautta.",
+        "div12": "Olemassa olevan paikka-aineiston käyttäminen",
+        "div13": "Jos sinulla on olemassa olevaa paikka-aineistoa, kuten luettelo paikoista taulukkomuodossa tai GIS-pistekarttatasona, voit luoda karttakierroksen CSV-muotoisen aineiston avulla. Tämä edellyttää sitä, että kuvat ovat käytettävissä suoraan URL-osoitteiden kautta, jotka on tallennettu arvoina CSV-tiedostoon. Voit ladata CSV-mallin Lisäasetukset-valintaikkunasta, kun avaat Karttakierros-luontitoiminnon ensimmäisen kerran. Voit ladata CSV-tiedostosi tähän valintaikkunaan.",
         "div14": "Kenttien nimien tuetut arvot ovat (merkkien koolla ei ole merkitystä):",
         "div151": "Nimi",
         "div152": "Kuvaus",
@@ -473,11 +473,11 @@ define({
         "div17": "Kuva- ja pikkukuvakentät ovat pakolliset käytettäessä kohdepalvelua ilman liitteitä ja valinnaiset (vaikkakin suositeltavat) käytettäessä liitteitä sisältävää kohdepalvelua. Jos liitteet ovat käytössä palvelussa, muodostusohjelma sallii kuvien lataamisen liitteinä. Jos ne eivät ole käytössä palvelussa, voit ainoastaan muokata kuvan ja pikkukuvan URL-osoitteita.",
         "div172": "Jos kuva- ja pikkukuvakentät ovat käytettävissä, niitä käytetään aina eikä kohdepalvelun liitteisiin kohdistuvia hakuja tehdä.",
         "div173": "CSV- ja shapefile-esimerkkitiedostot voi ladata kohteesta",
-        "div174": "Tässä <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>usein esitetyssä kysymyksessä</a> on lisätietoja aiemmin luodun GIS-aineiston käytöstä.",
+        "div174": "Tässä <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>usein esitetyssä kysymyksessä</a> on lisätietoja.",
         "div18": "Isännöityjen kohdepalvelujen luominen CSV- tai shapefile-tiedostosta",
         "div19": "Kun luot isännöidyn kohdepalvelun CSV- tai shapefile-tiedostosta, liitteet eivät ole käytössä oletusarvon mukaan. Voit ottaa ne käyttöön avaamalla kohdepalvelun tietosivun ja napsauttamalla taso-osassa olevaa pientä nuolta, jolloin kyseinen vaihtoehto tulee näkyviin. Karttakierros käyttää uudelleen kuvia ja pikkukuvia, joihin olet viitannut määritteiden avulla. Voit vaihtoehtoisesti ladata kuvasi kohdepalvelun liitteinä kuvaruudun kahden painikkeen avulla (\"Vaihda kuva\" ja \"Vaihda pikkukuva\").",
         "div20": "Tuetut  kuvamuodot ja videot",
-        "div21": "Jos käytät Flickr- tai Google+-palvelun kuvia, karttakierros käyttää kuvia automaattisesti .jpg-tiedostoina. Jos lataat kuvat Karttakierros-luontitoimintoon, kuvien on oltava .jpg- tai .jpeg-muodossa. Jos viittaat suoraan verkossa oleviin kuviin niiden URL-osoitteiden kautta, tuetut kuvamuodot ovat .jpg, .jpeg, .png, .gif ja .bmp. YouTube-videoita tuetaan suoraan.",
+        "div21": "Jos käytät Flickr-palvelun kuvia, karttakierros käyttää kuvia automaattisesti .jpg-tiedostoina. Jos lataat kuvat Karttakierros-luontitoimintoon, kuvien on oltava .jpg- tai .jpeg-muodossa. Jos viittaat suoraan verkossa oleviin kuviin niiden URL-osoitteiden kautta, tuetut kuvamuodot ovat .jpg, .jpeg, .png, .gif ja .bmp. YouTube-videoita tuetaan suoraan.",
         "div22": "Karttakierrosmalli ei sisällä videosoitinta, joten sinun on käytettävä ulkoista videosoitinta (etsi videon upottamisasetus ja kopioi annetussa koodissa oleva URL-osoite). Jos haluat isännöidä videota itse, voit luoda videosoittimen, kuten <a href='http://www.videojs.com/'>Video.js</a>, sisältävän HTML-sivun.",
         "div23": "Interaktiivinen muodostusohjelma ei sisällä videon sisällyttämisen valintaikkunaa käytettäessä liitteitä sisältäviä kohdepalveluita. Voit kuitenkin sisällyttää videon muokkaamalla tietojasi interaktiivisen muodostusohjelman ulkopuolella. Jos muokkaat kuvakenttiä arcgis.com-palvelun karttojen katseluohjelmassa niin, että ne osoittavat ulkoiseen videoon ja lisäät URL-osoitteen loppuun parametrin #isVideo, mediasi tulkitaan videoksi.",
         "div24": "Huomaa, ettei pistettä käytetä, ellei sinulla ole kahta kelvollista kuvaliitettä. Videoita ei voi käyttää, kun kohdepalvelun liitteitä käytetään ilman kuva- ja pikkukuvakenttiä."
@@ -604,6 +604,9 @@ define({
     },
     "licenseChange2018": {
       "noAccess": "Tiliäsi (%USER_NAME%) ei ole lisensoitu avaamaan tarinakarttaa, joka ei ole julkinen. Pyydä organisaatiosi pääkäyttäjää määrittämään sinulle käyttäjätyyppi, joka sisältää tarinakartat tai keskeisten sovellusten lisäosan lisenssin."
+    },
+    "storyTellerUserType": {
+      "notCreatorError": "Tiliäsi (%USER_NAME%) ei ole lisensoitu käyttämään perinteisiä tarinakarttojen luontitoimintoja. Pyydä organisaatiosi pääkäyttäjää määrittämään sinulle Creator-käyttäjätyyppi."
     }
   }
 });

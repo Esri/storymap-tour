@@ -448,7 +448,7 @@ define({
         "div1": "Det viktigste å tenke på når du skal bygge en kartomvisning, er hvor du skal lagre bildene dine. Kartomvisningen kan bruke bilder som er lagret i bildedelingstjenester, på en webserver eller som du laster opp fra en disk.",
         "div1a": "Se den siste delen av denne fanen for detaljer om støttede bilde- og videoformater.",
         "div2": "Det interaktive verktøyet gir deg to alternativer for bildebehandling i Map Tour:",
-        "div3": "<ul><li>Du kan bruke <b>bilder som allerede er lagret på nettet</b>, for eksempel bilder i Flickr eller Google+, eller bilder du har lagret på din egen webserver. Disse bildene refereres til med URL-adresser i kartomvisningen.</li><li>Du kan også <b>laste opp bilder fra datamaskinen</b> direkte til kartomvisningen. Dette opplastingsalternativet krever at du har et ArcGIS-abonnement, og at du har utgiver- eller administratorrettigheter fordi det automatisk opprettes en hostet geoobjektstjeneste der bildene lagres som vedlegg.</li></ul>",
+        "div3": "<ul><li>Du kan bruke <b>bilder som allerede er lagret på nettet</b>, for eksempel bilder i Flickr eller bilder du har lagret på din egen webserver. Disse bildene refereres til med URL-adresser i kartomvisningen.</li><li>Du kan også <b>laste opp bilder fra datamaskinen</b> direkte til kartomvisningen. Dette opplastingsalternativet krever at du har et ArcGIS-abonnement, og at du har utgiver- eller administratorrettigheter fordi det automatisk opprettes en hostet geoobjektstjeneste der bildene lagres som vedlegg.</li></ul>",
         "div4": "De viktigste brukertilfellene er:",
         "div4b": "<b>Bildene dine er ikke hostet</b> ennå, og du har et ArcGIS-abonnement: Det beste er å bruke en hostet geoobjektstjeneste. I likhet med offentlige bildedelingstjenester optimaliserer vi bildene slik at de lastes raskt, og du får tilgang til alle funksjonene for administrasjon og databehandling på ArcGIS-plattformen.",
         "div5": "<b>Du er ikke medlem av en organisasjon</b>: Du må først laste opp bildene dine på et bildedelingsområde eller på din egen webserver. Veiviseren gir deg deretter hjelp til å bruke disse bildene, som fortsatt blir liggende på den opprinnelige plasseringen.",
@@ -459,9 +459,9 @@ define({
         "learn": "få mer informasjon",
         "div9": "Importoperasjonen refererer til bilder som allerede er vertsbaserte, ved å lagre URL-adressene i en samling av webkartfunksjoner. Bildene lagres ikke i ArcGIS Online. Hvis driftingen av bildene avbrytes, blir de ikke lenger tilgjengelige i kartomvisningen og et \"Bilde ikke tilgjengelig\"-bilde blir brukt. Det avhenger av tjenesteleverandøren om kartomvisningen importerer bildenes navn, beskrivelse og plassering, eller ikke. De attributttene er lagret i webkartet, og eventuelle redigeringer av online-tjenestene gjenspeiles ikke i kartomvisningen.",
         "div10": "Lagre bildene på en webserver",
-        "div11": "Hvis du velger å hoste bildene på din egen webserver (i stedet for å ha tilgang til bilder i Flickr eller Google+, eller laste dem opp direkte i omvisningen din), må du opprette miniatyrer av bildene manuelt. Hvis du bruker bilder med maksimal oppløsning til miniatyrbildene, reduseres ytelsen. Se <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>Vanlige spørsmål</a> for tips om tilpasning av størrelse hvis du vil ha tilgang til bildene direkte på nettet via URL-er.",
-        "div12": "Bruke eksisterende GIS-data",
-        "div13": "Alle geoobjektstjenester, CSV-filer eller shapefiler som inneholder punkter, kan brukes som datakilde for kartomvisningen forutsatt at de inneholder de feltene som applikasjonen forventer. Du må legge dem til som et lag i et ArcGIS-webkart og deretter dele kartet ved å opprette en kartomvisning.",
+        "div11": "Hvis du velger å hoste bildene på din egen webserver (i stedet for å ha tilgang til bilder i Flickr eller laste dem opp direkte i omvisningen din), må du opprette miniatyrer av bildene manuelt. Hvis du bruker bilder med maksimal oppløsning til miniatyrbildene, reduseres ytelsen. Se <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>Vanlige spørsmål</a> for tips om tilpasning av størrelse hvis du vil ha tilgang til bildene direkte på nettet via URL-er.",
+        "div12": "Bruke eksisterende stedsdata",
+        "div13": "Hvis du har gjeldende stedsdata, for eksempel en liste over steder på et regneark eller i et GIS-punktlag, kan du bruke de dataene i CSV-format til å opprette en kartomvisning. Det krever direkte tilgang til bildene via URL-adresser som er lagret som verdier i CSV-filen. Du kan laste ned CSV-malen fra dialogboksen Avanserte alternativer den første gangen du starter verktøyet for kartomvisning. CSV-filen kan da lastes opp i den dialogboksen.",
         "div14": "Støttede verdier for feltnavn er (skiller ikke mellom små og store bokstaver):",
         "div151": "Navn",
         "div152": "Beskrivelse",
@@ -473,11 +473,11 @@ define({
         "div17": "Feltene Bilde og Miniatyrbilde er obligatoriske for featuretjenester uten vedlegg, og valgfrie (men anbefales sterkt) for featuretjenester med vedlegg. Hvis vedlegg er aktivert for tjenesten din, lar byggeverktøyet deg laste opp bilder som vedlegg. Hvis ikke kan du bare redigere bildet og miniatyrbildet via URL-adressen.",
         "div172": "Når de er til stede, brukes bilde- og minatyrbildefeltene alltid, og vedleggene til featuretjenesten blir ikke søkt opp.",
         "div173": "Eksempel-CSV- og shapefiler kan lastes ned fra",
-        "div174": "Se <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>Vanlige spørsmål</a> hvis du vil vite mer om bruken av eksisterende GIS-data.",
+        "div174": "Se <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>Vanlige spørsmål</a> hvis du vil vite mer.",
         "div18": "Opprette en administrert (hosted) featuretjeneste fra CSV eller shapefil",
         "div19": "Når du oppretter en administrert (hosted) featuretjeneste fra en CSV- eller shapefil, er vedlegg som standard ikke aktivert. Du kan aktivere dem ved å åpne detaljsiden for featuretjenester og klikke på den lille pilen i lagdelen for å vise alternativet. Kartomvisningen fortsetter å bruke de bildene og miniatyrbildene som du har referert til gjennom attributter. Hvis du heller vil laste opp bildene som vedlegg til en featuretjeneste, kan du gjøre det ved hjelp av to knapper på bildepanelet (Endre bilde og Endre miniatyrbilde).",
         "div20": "Bildeformater og videoer som støttes",
-        "div21": "Hvis du bruker Flickr eller Google+ for å få tilgang til bilder, åpner kartomvisningen automatisk de aktuelle bildene som .jpg-filer. Hvis du laster opp bilder i verktøyet for kartomvisning, må bildene være i formatet .jpg eller .jpeg. Hvis du viser til bilder direkte på nettet via URL-ene deres, er de støttede bildeformatene .jpg, .jpeg, .png, .gif og .bmp. YouTube-videoer støttes alltid direkte.",
+        "div21": "Hvis du bruker Flickr for å få tilgang til bilder, åpner kartomvisningen automatisk de aktuelle bildene som .jpg-filer. Hvis du laster opp bilder i verktøyet for kartomvisning, må bildene være i formatet .jpg eller .jpeg. Hvis du viser til bilder direkte på nettet via URL-ene deres, er de støttede bildeformatene .jpg, .jpeg, .png, .gif og .bmp. YouTube-videoer støttes alltid direkte.",
         "div22": "Map Tour-malen inkluderer ingen videospiller, så du må bruke den eksterne videospilleren fra videotjenesten du foretrekker (finn alternativet for å bygge inn videoen, og kopier URLen som gis i den koden som oppgis). Hvis du vil drifte videoen selv, kan du opprette en HTML-side som inneholder en videospiller som <a href='http://www.videojs.com/'>Video.js</a>.",
         "div23": "Den interaktive byggeren har ingen dialog for å ta med video ved bruk av featuretjenester med vedlegg, men det er mulig å gjøre det ved å redigere dataene utenfor den interaktive byggeren. I arcgis.com-kartvisningen kan du endre bildefeltene slik at de peker mot en ekstern video og legge til en egen parameter til slutt i URLen (#isVideo), slik at mediene dine regnes som en video.",
         "div24": "Merk at du fortsatt må ha to gyldige bildevedlegg, ellers blir ikke punktet brukt. Det er ikke mulig å bruke videoer når du bruker featuretjenestevedlegg, uten bilde- og miniatyrbildefeltene."
@@ -604,6 +604,9 @@ define({
     },
     "licenseChange2018": {
       "noAccess": "Kontoen (%USER_NAME%) er ikke lisensiert til å åpne et fortellingskart som ikke er offentlig. Be administratoren for organisasjonen om å tilordne deg en brukertype som omfatter Story Maps eller en tilleggslisens for Essential Apps."
+    },
+    "storyTellerUserType": {
+      "notCreatorError": "Kontoen (%USER_NAME%) har ikke lisens til å bruke byggeverktøyene for klassiske Story Maps. Be administratoren for organisasjonen om å tilordne Creator-brukertypen til deg."
     }
   }
 });

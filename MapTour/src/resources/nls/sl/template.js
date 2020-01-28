@@ -448,7 +448,7 @@ define({
         "div1": "Glavni element, ki ga morate imeti v mislih pri izdelavi Potopisne karte, je izbira, kam bodo shranjene vaše slike. V Potopisni karti lahko uporabite slike, shranjene na storitvah za deljenje fotografij, na vseh spletnih strežnikih ali ki jih naložite z diska.",
         "div1a": "Za podrobnosti o podprtih formatih slik in videov glejte zadnji razdelek tega zavihka.",
         "div2": "Interaktivni graditelj vam ponuja dve možnosti za ravnanje s slikami v Kartnem potopisu:",
-        "div3": "<ul><li>Uporabite lahko <b>fotografije, ki so že na spletu</b>, kot so slike na Flickr ali Google+ ali slike, shranjene na vašem spletnem strežniku. Na te slike se boste v svojem Kartnem potopisu sklicevali z njihovimi URL-ji.</li><li>Prav tako lahko <b>naložite fotografije z vašega računalnika</b> neposredno v vašo Potopisno karto. Za to možnost nalaganja morate imeti račun ArcGIS in pravice izdajatelja ali administratorja. Za vas se samodejno ustvari gostujoča geoobjektna storitev, v kateri so fotografije shranjene kot priloge.</li></ul>",
+        "div3": "<ul><li>Uporabite lahko <b>fotografije, ki so že na spletu</b>, kot so slike na Flickr ali slike, shranjene na vašem spletnem strežniku. Na te slike se boste na svoji potopisni karti sklicevali z njihovimi URL-ji.</li><li>Prav tako lahko <b>naložite fotografije z vašega računalnika</b> neposredno v vašo Potopisno karto. Za to možnost nalaganja morate imeti račun ArcGIS in pravice izdajatelja ali administratorja. Za vas se samodejno ustvari gostujoča geoobjektna storitev, v kateri so fotografije shranjene kot priloge.</li></ul>",
         "div4": "Glavni primeri uporabe so:",
         "div4b": "<b>Vaše fotografije še niso gostovane</b> in imate naročnino ArcGIS: uporaba gostujoče geoobjektne storitve je najboljša izbira za vas. Kot javne storitve za deljenje fotografij bomo tudi mi optimizirali vaše slike, da ustvarimo slike, ki se hitro nalagajo, in imeli boste dostop do vse administracije in zmožnosti upravljanja podatkov platforme ArcGIS.",
         "div5": "<b>Niste uporabnik organizacije</b>: Najprej morate svoje slike naložiti na spletno mesto za deljenje fotografij ali na lastni spletni strežnik. Graditelj vam bo pomagal uporabiti te slike, ki bodo še naprej gostovale na svoji izvorni lokaciji.",
@@ -459,9 +459,9 @@ define({
         "learn": "Izvedite več",
         "div9": "Operacija uvoza se sklicuje na slike, ki že gostujejo, tako da njihove URL-je shranjuje v zbirko geoobjektov spletne karte. Slike niso shranjene v ArcGIS Online. Če do gostujočih slik ni mogoče dostopiti, v Kartnem potopisu ne bodo na voljo in videli boste sliko »Slika ni na voljo«. Izbrani ponudnik storitev za slike Kartnega potopisa morda ne bo uvozil imena, opisa in lokacije slike. Ti atributi so shranjeni na spletni karti, urejanja na spletni storitvi pa se ne bodo odražala v Kartnem potopisu.",
         "div10": "Shranjevanje slik na spletnem strežniku",
-        "div11": "Če se odločite gostiti vaše slike na vašem lastnem spletnem strežniku (namesto dostopanja do slik na Flickr ali Google+ ali njihovega nalaganja neposredno v vaš potopis), boste morali ročno ustvariti sličice za vaše slike. Uporaba slik s polno ločljivostjo za sličice se bo kazala v slabši učinkovitosti delovanja. Oglejte si <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>Pogosta vprašanja</a> za nasvete v zvezi z določanjem velikosti slik, če boste do njih dostopali na spletu neposredno preko URL-jev.",
-        "div12": "Uporaba obstoječih podatkov GIS",
-        "div13": "Vse geoobjektne storitve, datoteka CSV ali shapefile, ki vsebujejo točke, so lahko uporabljeni kot podatkovni viri Potopisne karte, če vsebujejo nabor polj, ki jih aplikacija pričakuje. Morate jih dodati kot sloj v spletno karto ArcGIS in nato deliti karto, tako da ustvarite Potopisno karto.",
+        "div11": "Če se odločite gostiti svoje slike na svojem lastnem spletnem strežniku (namesto dostopanja do slik na Flickr ali njihovega nalaganja neposredno v svoj potopis), boste morali ročno ustvariti sličice za svoje slike. Uporaba slik s polno ločljivostjo za sličice se bo kazala v slabši učinkovitosti delovanja. Oglejte si <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>Pogosta vprašanja</a> za nasvete v zvezi z določanjem velikosti slik, če boste do njih dostopali na spletu neposredno preko URL-jev.",
+        "div12": "Uporaba obstoječih krajevnih podatkov",
+        "div13": "Če imate obstoječe krajevne podatke, kot je seznam krajev v preglednici ali točkovni sloj GIS, lahko te podatke uporabite v formatu CSV, da ustvarite potopisno karto. Vaše slike morajo biti dostopne neposredno prek URL-jev, ki so shranjeni kot vrednosti v datoteki CSV. Predlogo CSV lahko prenesete iz pogovornega okna z naprednimi možnostmi ob prvem zagonu graditelja potopisne karte. Svojo datoteko CSV lahko naložite v to pogovorno okno.",
         "div14": "Podprte vrednosti za imena polj so (razlikovanje velikih in malih črk):",
         "div151": "Ime",
         "div152": "Opis",
@@ -473,11 +473,11 @@ define({
         "div17": "Polji slika in sličica sta obvezni za geoobjektne storitve brez prilog in izbirni (vendar močno priporočljivi) za geoobjektne storitve s prilogami. Če ima vaša storitev omogočene priloge, vam bo graditelj dovolil nalagati slike kot priloge. Če ne, boste URL-je slik in sličic lahko samo urejali.",
         "div172": "Če so prisotna, bodo polja za slike in sličice vedno uporabljena in za priloge geoobjektnih storitev ne bodo opravljene poizvedbe.",
         "div173": "Primere CSV-jev in shapefilov je mogoče prenesti z",
-        "div174": "Za več informacij o uporabi obstoječih podatkov GIS si oglejte <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>Pogosta vprašanja</a>.",
+        "div174": "Za več informacij glejte <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>Pogosta vprašanja</a>.",
         "div18": "Ustvarjam gostujočo geoobjektno storitev iz CSV-ja ali shapefile",
         "div19": "Ko ustvarite gostujočo geoobjektno storitev iz CSV-ja ali shapefile, priloge niso omogočene privzeto. Da jih omogočite, odprite stran s podrobnostmi geoobjektne storitve, kliknite majhno puščico v razdelku sloja in zagledali boste to možnost. Kartni potopis bo še naprej uporabljal slike in sličice, na katere ste se sklicevali z atributi. Izbirno, če želite svoje slike naložiti kot priloge geoobjektnih storitev, boste to lahko naredili z dvema gumboma na plošči slike (»Spremeni sliko« in »Spremeni sličico«).",
         "div20": "Podprti formati slik in videov",
-        "div21": "Če dostopate do slik na Flickr ali Google+, potopisna karta samodejno dostopa do teh slik datotek .jpg. Če nalagate slike v graditelja potopisne karte, morajo slike biti v formatu .jpg, ali .jpeg. Če se neposredno sklicujete na slike na spletu prek njihovih URL-jev, so podprti formati slike .jpg, .jpeg, .png, .gif in .bmp. Videi na YouTubu so podprti neposredno.",
+        "div21": "Če dostopate do slik na Flickr, potopisna karta samodejno dostopa do teh slik v obliki datotek .jpg. Če nalagate slike v graditelja potopisne karte, morajo slike biti v formatu .jpg, ali .jpeg. Če se neposredno sklicujete na slike na spletu prek njihovih URL-jev, so podprti formati slike .jpg, .jpeg, .png, .gif in .bmp. Videi na YouTubu so podprti neposredno.",
         "div22": "Predloga Kartni potopis ne vključuje video predvajalnika, zato morate uporabiti zunanjega ponudnika predvajanja videov, ki ga zagotavlja vaša najljubša storitev za gostovanje videov (najdite možnost za vdelavo videa in kopirajte URL v dano kodo). Če želite sami gostiti video, lahko ustvarite stran HTML, ki vsebuje predvajalnik videov, kot je <a href='http://www.videojs.com/'>Video.js</a>.",
         "div23": "Ta interaktivni graditelj ne ponuja pogovornega okna za vključevanje videa pri uporabi geoobjektne storitve s prilogami, vendar je to mogoče narediti, če podatke urejate zunaj interaktivnega graditelja. Če v pregledovalniku kart arcgis.com spremenite polja za slike, da kažejo na zunanji video, in dodate posebne parametre na konec URL-ja (#isVideo), bo vaš medij obravnavan kot video.",
         "div24": "Ne pozabite, da še vedno potrebujete dve veljavni slikovni prilogi ali pa točka ne bo uporabljena. Med uporabo prilog geoobjektne storitve ni mogoče uporabiti videov brez polj za sliko in sličico."
@@ -604,6 +604,9 @@ define({
     },
     "licenseChange2018": {
       "noAccess": "Vaš račun (%USER_NAME%) ni licenciran za odpiranje Karte z zgodbo, ki ni javna. Prosite administratorja v vaši organizaciji, da vam dodeli tip uporabnika, ki vsebuje aplikacije Karto z zgodbo ali licenco za dodatne aplikacije Essential Apps."
+    },
+    "storyTellerUserType": {
+      "notCreatorError": "Vaš račun (%UPORABNIŠKO_IME%) nima licence za uporabo graditeljev klasičnih kart z zgodbo. Prosite skrbnika svoje organizacije, da vam dodeli vrsto uporabnika Ustvarjalec."
     }
   }
 });

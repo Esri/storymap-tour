@@ -448,7 +448,7 @@ define({
         "div1": "Kaardituuri loomisel tuleb eelkõige silmas pidada kohta, kuhu pildid salvestatakse. Kaardituuri loomisel saab kasutada pilte, mis asuvad fotode jagamise keskkondades, mistahes veebiserveris või mis laaditakse üles kettalt.",
         "div1a": "Vaadake selle vahelehe viimast sektsiooni piltide ja videote toetatud formaatide osas.",
         "div2": "Interaktiivne koostaja pakib tuuri piltide haldamisega seoses kahte valikut:",
-        "div3": "<ul><li>Kasutada saate <b>fotosid, mis on juba veebi üles laaditud</b>, näiteks pilte, mis on talletatud Flickris või Google+ kontol või Teie enda veebiserveris. Teie kaardituuris viidatakse neile piltidele nende URL-ide kaudu.</li><li>Soovi korral saate ka <b>fotod oma arvutist üles laadida</b> otse kaardituuri. Selle üleslaadimisvariandi kasutamiseks peab Teil olema ArcGIS-i tellimus ning avaldaja või administraatori õigused, kuna Teie jaoks luuakse automaatselt majutatud objektide teenus, kus Teie fotod talletatakse manustena.</li></ul>",
+        "div3": "<ul><li>Kasutada saate <b>fotosid, mis on juba veebi üles laaditud</b>, näiteks pilte, mis on salvestatud Flickrisse või teie enda veebiserverisse. Teie kaardiloo tuuris viidatakse neile piltidele nende URL-ide kaudu.</li><li>Soovi korral saate ka <b>fotod oma arvutist üles laadida</b> otse kaardituuri. Selle üleslaadimisvariandi kasutamiseks peab teil olema ArcGIS-i tellimus ning publitseerija või administraatori õigused, kuna teie jaoks luuakse automaatselt hostitud objektide teenus, kus teie fotod talletatakse manustena.</li></ul>",
         "div4": "Peamised kasutusjuhud on:",
         "div4b": "<b>Teie fotod on veel majutamata</b> ning Teil on ArcGIS Online tellimus: sobiv valik oleks kasutada majutusteenust. Analoogiliselt nagu fotode jagamise keskkondades, optimeeritakse ka siin pilte selliselt, et laadida neid kiiresti üles, kasutades selleks ArcGIS platvormi andmehalduse ja administreerimise oskusi.",
         "div5": "<b>Te ei ole organisatsiooni liige</b>: esmalt peate pildid laadima fotode jagamise keskkonda või enda veebiserverisse. Seejärel aitab Teid kaardituuri koostaja, et saaksite kasutada neid pilte, mida jätkuvalt algses asukohas hoitakse.",
@@ -459,9 +459,9 @@ define({
         "learn": "lisateave",
         "div9": "Importimise toiming viitab juba majutatud piltidele, mis on salvestatud nende URL-ide veebikaardi objektide kollektsioonis. Pilte ei hoita ArcGIS Online all. Kui piltide lingid on vigased, ei kuvata neid ka kaardi tuuri aknas ja kuvatakse teadet \"Pilt ei ole kättesaadav\". Sõltuvalt fototeenuse pakkujast, kaardi tuur ei pruugi importida piltide nime, kirjeldust ja asukohta. Neid atribuute hoitakse veebikaardil ning tehtavad muudatused ei kajastu kaardi tuuri sisus.",
         "div10": "Haldan pilte veebiserveris",
-        "div11": "Kui otsustate oma pildid majutada enda veebiserveris (mitte kasutada Flickris või Google+ kontol asuvaid pilte või otse tuuri üles laaditud pilte), peate pisipildid ehk eelvaated oma piltide jaoks käsitsi looma. Täissuuruses piltide kasutamine eelvaate jaoks pole soovitatav, kuna sel juhul laaditakse pildid aeglaselt. Sellest <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>KKK-st</a> leiate näpunäiteid piltide suuruse muutmiseks, kui kavatsete neile veebis otse URL-i kaudu juurde pääseda.",
-        "div12": "Olemasolevate GIS-i andmete kasutamine",
-        "div13": "Kaardituuri andmeallikana saab kasutada igasugust punkte sisaldavat objektiteenust, CSV-faili või Shape faili, kui see sisaldab sellist väljakomplekti, mida rakendus eeldab. Teil tuleb see lisada kihina ArcGIS-i veebikaardile ja seejärel kaarti jagada, luues kaardituuri.",
+        "div11": "Kui otsustate oma pildid majutada oma veebiserveris (mitte kasutada Flickris või otse tuuri üles laaditud pilte), peate pisipildid oma piltide jaoks käsitsi looma. Täissuuruses piltide kasutamine eelvaate jaoks pole soovitatav, kuna sel juhul laaditakse pildid aeglaselt. Sellest <a href='https://links.esri.com/storymaps/faq_maptour_image_size' target='_blank'>KKK-st</a> leiate näpunäiteid piltide suuruse muutmiseks, kui kavatsete neile veebis otse URL-i kaudu juurde pääseda.",
+        "div12": "Olemasolevate andmete kasutamine",
+        "div13": "Kui teil on olemasolevad kohaandmed, näiteks GIS-i punktikiht, saate neid andmeid kaardituuri loomiseks kasutada CSV-formaadis. See nõuab, et teie pildid peavad olema otse kättesaadavad URL-ide kaudu, mis on salvestatud CSV-faili väärtustena. Kaardituuri koostaja esmakordsel käivitamisel saate CSV-malli alla laadida täpsemate valikute dialoogist. Teie CSV-faili saab sellesse dialoogi üles laadida.",
         "div14": "Väljanimedena toetatakse väärtusi (tõstutundlikud):",
         "div151": "Nimi",
         "div152": "Kirjeldus",
@@ -473,11 +473,11 @@ define({
         "div17": "Pildi ja pisipildi veerud on esmatähtsad manusteta objektiteenuses ja valikulised (aga tungivalt soovitatavad) manustega objektiteenuste korral. Kui teenuses on manused lubatud, lubab koostaja pildid üles laadida manustena. Kui ei, saate muuta vaid pildi ja pisipildi URL-i.",
         "div172": "Pildi ja eelvaate välju kasutatakse alati nende olemasolu korral ning majutusteenuse manuseid ei pärita.",
         "div173": "Näidiskujul CSV- ja Shape-faili saab alla laadida",
-        "div174": "Olemasolevate GIS-i andmete kasutamise kohta leiate lisateavet sellest <a href='https://links.esri.com/storymaps/faq_map_tour_gis_data' target='_blank'>KKK-st</a>.",
+        "div174": "Lisateavet leiate selle kohta <a href='https://links.esri.com/storymaps/faq_map_tour_cover_page_sp' target='_blank'>KKK-st</a>.",
         "div18": "Koostan majutatud objektiteenuse CSV- või Shape-failist",
         "div19": "Kui loote majutatud objektiteenuse CSV- või Shape failist, siis manused ei ole vaikimisi toetatud. Selleks saate avada objektiteenuse sisu lehe, klikkida väikesel noolekesel ning siis on vastav valik ka nähtav. Jätkub kaardituuri piltide ja pisipiltide kasutamine, millele olete atribuutide kaudu viidanud. Valikuliselt võib pilte laadida ka objektiteenuse manustena, seda saad teha kahe pildipaneelil asuva nupu abil (\"Muuda pilti\" ja \"Muuda pisipilti\").",
         "div20": "Toetatud pildiformaadid ja videod",
-        "div21": "Flickri või Google+ piltide kasutamise korral tõlgendab kaardituur neid pilte automaatselt JPG-failidena. Kaardituuri koostaja abil üleslaaditavad pildid peavad olema JPG- või JPEG-vormingus. Kui viitate veebis asuvatele piltidele otse pildi URL-i kaudu, on toetatud pildivormingud järgmised: .jpg, .jpeg, .png, .gif ja .bmp. YouTube’i videod on toetatud otse.",
+        "div21": "Flickri piltide kasutamise korral tõlgendab kaardiloo tuur neid pilte automaatselt jpg-failidena. Kaardiloo tuuri koosturi kaudu üleslaaditavad pildid peavad olema JPG- või JPEG-vormingus. Kui viitate veebis asuvatele piltidele otse pildi URL-i kaudu, on toetatud pildivormingud järgmised: .jpg, .jpeg, .png, .gif ja .bmp. YouTube’i videod on toetatud otse.",
         "div22": "Kaardituuri mall ei sisalda videopleierit, seega peate kasutama välist videopleierit oma videote majutuse teenusest (leidke sealt võimalused video kaasamiseks ja kopeerige vastav aadress antud koodis). Kui soovite majutada oma videoid ise, siis võite luua HTML lehe, mis sisaldab videomängijat nagu näiteks: <a href='http://www.videojs.com/'>Video.js</a>.",
         "div23": "Interaktiivne kaardituuri koostaja ei paku dialoogi videote lisamiseks majutusteenuse manustena, aga seda on võimalik teha, redigeerides oma andmeid väljaspool interaktiivset koostajat. Arcgis.com kaardil võite muuta pildi välja ning suunata väärtused välistele videotele, lisades spetsiaalse parameetri video aadressi lõppu (#isVideo), seejärel käsitletakse seda meediat videona.",
         "div24": "Pange tähele, et vajate kaht sobilikku pildimanust või Teie punkte ei kasutata. Videoklipi kasutamine majutusteenuse manustena ei ole võimalik ilma pildi- ja eelvaateväljata."
@@ -604,6 +604,9 @@ define({
     },
     "licenseChange2018": {
       "noAccess": "Teie kontol (%USER_NAME%) puudub litsents kaardiloo avamiseks, mis ei ole avalik. Paluge oma organisatsiooni administraatoril määrata teile kasutajatüüp, mis sisaldab kaardilugusid või oluliste rakenduse lisalitsentsi."
+    },
+    "storyTellerUserType": {
+      "notCreatorError": "Teie konto (%USER_NAME%) ei ole litsentseeritud klassikaliste kaardilugude tegemiseks. Paluge oma organisatsiooni administraatoril määrata teile kasutajatüüp Creator."
     }
   }
 });
