@@ -435,19 +435,19 @@ To build a production version of the application from the source code, you first
 
 Then initialize the environment by running the following commands in the MapTour folder:
  * `npm install`
- * `npm install –g grunt-cli`
+ * `npx grunt-cli --version`
 
-This will create a new `node-modules` folder in your project root with all tools to build the project. If you have trouble running the second command, [see this documentation on how to install grunt-cli locally](https://github.com/gruntjs/grunt-cli#installing-grunt-cli-locally).
+This will create a new `node_modules` folder in your project root with all tools to build the project. The `npx` command uses a local Grunt CLI without requiring a global install. If needed, [see this documentation on how to install grunt-cli locally](https://github.com/gruntjs/grunt-cli#installing-grunt-cli-locally).
 
 ### How to use the application from the source code
  * Make accessible the src folder to your web server
  * If using a Portal for ArcGIS instance configure the sharing url `app/maptour-config.js` (last properties)
  * If you are not using a modern browser you have to [set-up a proxy](https://developers.arcgis.com/en/javascript/jshelp/ags_proxy.html) on your development computer and configure the url in `app/maptour-config.js` (you can use a relative path)
- * Use or use the URL parameters `webmap` and `appid` to specify the item to be loaded (all parameters from index.html are ignored in development mode)
+ * Use URL parameters `webmap` and `appid` to specify the item to be loaded (all parameters from index.html are ignored in development mode)
 
 ### How to build application from the source code
   * Open a terminal and navigate to the MapTour folder
-  * Run the following command: `grunt`
+   * Run the following command: `npx grunt-cli`
 
 The deploy folder now contains the built application that you can deploy to your web server.
 

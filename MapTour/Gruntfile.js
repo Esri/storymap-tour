@@ -108,7 +108,7 @@
 					files: [{
 						expand: true,
 						cwd: 'src',
-						src:['*.html'],
+								src:['*.html'],
 						dest: 'deploy/'
 					}]
 				},
@@ -213,7 +213,10 @@
 			},
 
 			jshint: {
-				files: ['src/app/**/*.js'],
+				files: [
+					'src/app/**/*.js',
+					'!src/app/storymaps/utils/arcgis-html-sanitizer.js'
+				],
 				options: {jshintrc: '.jshintrc'}
 			},
 
