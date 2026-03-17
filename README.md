@@ -1,3 +1,13 @@
+> [!IMPORTANT]  
+> **********ESRI CLASSIC STORY MAPS RETIRED ON FEB 25, 2026**********
+>
+> This application code is no longer being maintained and is available only for archival purposes.
+>
+> For more information, see the following resources:
+>
+> - [Managing the classic Esri Story Maps retirement in your organization](https://community.esri.com/t5/arcgis-storymaps-blog/managing-the-classic-esri-story-maps-retirement-in/ba-p/1599398)
+> - [Classic Esri Story Maps Roadmap for Retirement](https://www.esri.com/arcgis-blog/products/arcgis-storymaps/announcements/classic-story-map-transition-timeline-december-2022)
+
 Story Map Tour
 ==============
 
